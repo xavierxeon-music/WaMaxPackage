@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+<c74object name="wa.launchpad.device">
+    <digest>Hello World</digest>
+    <metadatalist>
+        <metadata name="author">Ralf Waspe</metadata>
+        <metadata name="tag">WaMaxPackage</metadata>
+    </metadatalist>
+    <parser inlet_count="3"/>
+    <misc name="Outputs">
+        <entry name="color_keys" id="0">
+            <digest/>
+        </entry>
+    </misc>
+    <objarglist/>
+    <attributelist/>
+    <methodlist>
+
+        <method standard="1" name="bang">
+            <arglist>
+                <arg type="bang" name="" optional="0"/>
+            </arglist>
+            <digest/>
+            <description>In left inlet: turn launchapd on<br/>In middle inlet: turn launchapd off<br/>In right inlet: reset launchapd<br/></description>
+        </method>
+    </methodlist>
+    <seealsolist/>
+</c74object>

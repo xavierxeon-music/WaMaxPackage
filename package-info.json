@@ -1,0 +1,19 @@
+{
+  "author": "Ralf Waspe",
+ 	"description" : "Helper classes",
+	"max_version_min" : "8.0", 
+   "max_version_max" : "none",
+	"name": "WaMaxPackage",
+	"os" : {
+		"macintosh" : {
+			"platform" : [ "x64", "aarch64" ],
+			"min_version" : "none"
+		},
+		"windows" : {
+			"platform" : [ "x64" ],
+			"min_version" : "none"
+		}
+	},
+	"tags" : [ ],
+   "version": "0.1.0"
+}

@@ -1,0 +1,18 @@
+{
+   "off": 0,
+   "dull_gray": 1,
+   "light_gray": 2,
+   "white": 3,
+   "red": 5,
+   "green": 21,
+   "blue": 79,
+   "yellow": 13,
+   "magenta": 53,
+   "cyan": 37,
+   "dull_red": 7,
+   "dull_green": 23,
+   "dull_blue": 47,
+   "dull_yellow": 63,
+   "dull_magenta": 37,
+   "dull_cyan": 39
+}
