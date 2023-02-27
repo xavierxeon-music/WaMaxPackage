@@ -47,8 +47,10 @@
 	<attributelist>
 
 		<attribute name='greeting' get='1' set='1' type='symbol' size='1' >
-			<digest>Greeting to be posted</digest>
-			<description>Greeting to be posted. The greeting will be posted to the Max console when a bang is received. </description>
+			<digest>Greeting to be posted.
+ The greeting will be posted to the Max console when a bang is received</digest>
+			<description>Greeting to be posted.
+ The greeting will be posted to the Max console when a bang is received. </description>
 		</attribute>
 
 	</attributelist>
