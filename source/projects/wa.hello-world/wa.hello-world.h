@@ -10,8 +10,8 @@ class hello_world : public object<hello_world>
 public:
    MIN_DESCRIPTION{"Post to the Max Console."};
    MIN_TAGS{"utilities"};
-   MIN_AUTHOR{"Cycling '74"};
-   MIN_RELATED{"print, jit.print, dict.print"};
+   MIN_AUTHOR{"Ralf Wasoe"};
+   MIN_RELATED{"print"};
 
 public:
    hello_world();
