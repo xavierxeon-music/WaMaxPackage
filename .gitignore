@@ -19,3 +19,4 @@ tmp
 package-info.json
 
 **/.vscode
+**/CMakeLists.txt.user

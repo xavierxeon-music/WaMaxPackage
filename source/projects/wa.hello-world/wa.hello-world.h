@@ -1,9 +1,11 @@
 #ifndef WaHelloWorldH
 #define WaHelloWorldH
 
-#include "../WaCommon/WaObject.h"
+#include "c74_min.h"
 
-class hello_world : public Wa::Object<hello_world>
+using namespace c74::min;
+
+class hello_world : public object<hello_world>
 {
 public:
    MIN_DESCRIPTION{"Post to the Max Console."};
@@ -15,19 +17,19 @@ public:
    hello_world();
 
 public:
-   Wa::Inlet input;
-   Wa::Outlet output;
+   inlet<> input;
+   outlet<> output;
 
-   Wa::SymbolArgument greeting_arg;
-   Wa::SymbolAttribute greeting;
+   argument<symbol> greeting_arg;
+   attribute<symbol> greeting;
 
-   Wa::Message bang;
-   Wa::Message maxclass_setup;
+   message<> bang;
+   message<> maxclass_setup;
 
 public:
-   void setGreeting(const Wa::Atom& arg);
-   Wa::Atoms onBang(const Wa::Atoms& as, const int inlet);
-   Wa::Atoms onMaxClassSteup(const Wa::Atoms& as, const int inlet);
+   void setGreeting(const atom& arg);
+   atoms onBang(const atoms& as, const int inlet);
+   atoms onMaxClassSteup(const atoms& as, const int inlet);
 };
 
 #endif // WaHelloWorldH

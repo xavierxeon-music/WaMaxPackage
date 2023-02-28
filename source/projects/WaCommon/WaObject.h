@@ -27,7 +27,7 @@ namespace Wa
       Object();
 
    public:
-      c74::min::argument_function af(void (MinClassType::*functionPointer)(const Atom& arg)) const;
+      c74::min::argument_function af(void (MinClassType::*functionPointer)(const Atom& arg));
    };
 } // namespace Wa
 
