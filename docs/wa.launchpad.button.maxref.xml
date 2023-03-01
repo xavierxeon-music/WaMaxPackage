@@ -31,15 +31,15 @@
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute name="color" set="0" size="1" type="int" get="0">
+        <attribute name="color" set="1" size="1" type="int" get="1">
             <digest>the color of the inactive pad</digest>
             <description>set the color of the inactive pad.<br/>see the <m>color</m> message for overview of colors</description>
         </attribute>
-        <attribute name="downColor" set="0" size="1" type="int" get="0">
+        <attribute name="downColor" set="1" size="1" type="int" get="1">
             <digest>the color of the active pad</digest>
             <description>set the color of the active pad.<br/>see the <m>color</m> message for overview of colors</description>
         </attribute>
-        <attribute name="toggle" set="0" size="1" type="int" get="0">
+        <attribute name="toggle" set="1" size="1" type="int" get="1">
             <digest>make this a toggle pad</digest>
             <description>set to 1 to make this a toggle pad</description>
         </attribute>

@@ -25,7 +25,7 @@
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute name="initial" size="1" set="0" get="0" type="int">
+        <attribute name="initial" size="1" set="1" get="1" type="int">
             <digest>set the value at launch</digest>
         </attribute>
     </attributelist>

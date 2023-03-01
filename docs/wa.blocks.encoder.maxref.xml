@@ -25,23 +25,17 @@
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute type="symbol" name="intervall" size="1" set="0" get="0">
+        <attribute type="symbol" name="intervall" size="1" set="1" get="1">
             <digest>set the repeat intervall</digest>
             <description>see <m>intervall</m></description>
         </attribute>
     </attributelist>
     <methodlist>
         <method name="int" standard="1">
-            <arglist>
-                <arg type="int" name="" optional="0"/>
-            </arglist>
             <digest/>
             <description>In left input: decrement the current value, will repeat at <m>intervall</m><br/><br/>In middle input: increment the current value, will repeat at <m>intervall</m><br/><br/>In right  input:  force the current value</description>
         </method>
         <method name="bang" standard="1">
-            <arglist>
-                <arg type="bang" name="" optional="0"/>
-            </arglist>
             <digest/>
             <description>in left input: decrement the value<br/><br/>in middle input: increment the value<br/></description>
         </method>
