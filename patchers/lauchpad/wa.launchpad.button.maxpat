@@ -57,7 +57,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "int" ],
-					"patching_rect" : [ 458.666666666666686, 728.0, 63.0, 22.0 ],
+					"patching_rect" : [ 476.666666666666686, 731.0, 63.0, 22.0 ],
 					"text" : "unpack s i"
 				}
 
@@ -77,18 +77,19 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-55",
+					"linecount" : 2,
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 4,
 					"outlettype" : [ "dictionary", "", "", "" ],
-					"patching_rect" : [ 424.0, 684.0, 123.0, 22.0 ],
+					"patching_rect" : [ 424.0, 684.0, 177.0, 35.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0
 					}
 ,
-					"text" : "dict colors colors.json"
+					"text" : "dict launchpad_named_colors colors.json"
 				}
 
 			}
@@ -111,7 +112,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "int" ],
-					"patching_rect" : [ 276.666666666666686, 718.0, 63.0, 22.0 ],
+					"patching_rect" : [ 294.666666666666686, 737.0, 63.0, 22.0 ],
 					"text" : "unpack s i"
 				}
 
@@ -123,7 +124,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 242.0, 634.0, 73.0, 22.0 ],
+					"patching_rect" : [ 243.0, 644.0, 73.0, 22.0 ],
 					"text" : "prepend get"
 				}
 
@@ -131,18 +132,19 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-45",
+					"linecount" : 2,
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 4,
 					"outlettype" : [ "dictionary", "", "", "" ],
-					"patching_rect" : [ 242.0, 674.0, 123.0, 22.0 ],
+					"patching_rect" : [ 243.0, 684.0, 174.0, 35.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0
 					}
 ,
-					"text" : "dict colors colors.json"
+					"text" : "dict launchpad_named_colors colors.json"
 				}
 
 			}

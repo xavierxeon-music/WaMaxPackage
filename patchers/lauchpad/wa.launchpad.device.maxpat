@@ -339,14 +339,14 @@
 					"numinlets" : 2,
 					"numoutlets" : 4,
 					"outlettype" : [ "dictionary", "", "", "" ],
-					"patching_rect" : [ 1423.0, 303.0, 123.0, 22.0 ],
+					"patching_rect" : [ 1423.0, 303.0, 229.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0
 					}
 ,
-					"text" : "dict colors colors.json"
+					"text" : "dict launchpad_named_colors colors.json"
 				}
 
 			}
@@ -840,8 +840,6 @@
 				}
 
 			}
- ],
-		"editing_bgcolor" : [ 0.76078431372549, 0.796078431372549, 0.76078431372549, 1.0 ]
-	}
+ ]}
 
 }
