@@ -6,22 +6,44 @@
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="3"/>
+    <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry name="color_keys" id="0">
+        <entry id="0" name="color_keys">
+            <digest/>
+        </entry>
+        <entry id="1" name="color_keys">
             <digest/>
         </entry>
     </misc>
     <objarglist/>
     <attributelist/>
     <methodlist>
-
-        <method standard="1" name="bang">
+        <method standard="0" name="off">
             <arglist>
-                <arg type="bang" name="" optional="0"/>
+                <arg optional="0" name="" type="symbol"/>
             </arglist>
-            <digest/>
-            <description>In left inlet: turn launchapd on<br/>In middle inlet: turn launchapd off<br/>In right inlet: reset launchapd<br/></description>
+            <digest>turn launchpad off</digest>
+            <description>turn launchpad off</description>
+        </method>
+        <method standard="0" name="on">
+            <arglist>
+                <arg optional="0" name="" type="symbol"/>
+            </arglist>
+            <digest>turn laucnpad on</digest>
+        </method>
+        <method standard="0" name="printColors">
+            <arglist>
+                <arg optional="0" name="" type="symbol"/>
+            </arglist>
+            <digest>print available color symbols</digest>
+            <description>print available color symbols</description>
+        </method>
+        <method standard="0" name="reset">
+            <arglist>
+                <arg optional="0" name="" type="symbol"/>
+            </arglist>
+            <digest>reset the launchpad</digest>
+            <description>reset the launchpad</description>
         </method>
     </methodlist>
     <seealsolist/>
