@@ -17,14 +17,3 @@ fi
 
 ln -s "$SOURCE" "$TARGET/WaMaxPackage"
 echo "DONE"
-
-if [ ! -f build ]
-then
-   git submodule update --init --recursive
-
-   mkdir build
-   cd build 
-  
-   cmake ..
-   cmake --build . --parallel
-fi
