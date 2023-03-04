@@ -451,7 +451,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 377.0, 534.0, 50.0, 22.0 ],
-					"text" : "white"
+					"text" : "yellow"
 				}
 
 			}
@@ -525,7 +525,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "color, message(setPad)",
+					"comment" : "color, message(color downColor toggle forceActive setButton)",
 					"id" : "obj-8",
 					"index" : 1,
 					"maxclass" : "inlet",
@@ -651,7 +651,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 209.0, 535.0, 50.0, 22.0 ],
-					"text" : "yellow"
+					"text" : "blue"
 				}
 
 			}
@@ -663,7 +663,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 68.0, 186.0, 50.0, 22.0 ],
-					"text" : "12"
+					"text" : "29"
 				}
 
 			}
