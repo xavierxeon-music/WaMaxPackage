@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 162.0, 1732.0, 973.0 ],
+		"rect" : [ 34.0, 171.0, 2755.0, 1395.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -443,18 +443,19 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-39",
+					"linecount" : 2,
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 4,
 					"outlettype" : [ "dictionary", "", "", "" ],
-					"patching_rect" : [ 1423.0, 303.0, 229.0, 22.0 ],
+					"patching_rect" : [ 1423.0, 303.0, 194.0, 35.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0
 					}
 ,
-					"text" : "dict launchpad_named_colors colors.json"
+					"text" : "dict launchpad_named_colors launchpad_named_colors.json"
 				}
 
 			}
