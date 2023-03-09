@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 760.0, 128.0, 2224.0, 1283.0 ],
+		"rect" : [ 760.0, 128.0, 3039.0, 1283.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,30 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-88",
+					"linecount" : 3,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 23.0, 215.0, 37.0, 47.0 ],
+					"text" : "the pad id"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-67",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 23.0, 184.0, 50.0, 22.0 ],
+					"text" : "92"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-87",
 					"maxclass" : "newobj",
@@ -151,8 +175,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 626.5, 644.0, 152.0, 22.0 ],
-					"text" : "receive pish2_button_color"
+					"patching_rect" : [ 626.5, 644.0, 156.0, 22.0 ],
+					"text" : "receive push2_button_color"
 				}
 
 			}
@@ -225,7 +249,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "jit_matrix" ],
 					"patching_rect" : [ 1905.0, 56.0, 30.0, 30.0 ]
 				}
 
@@ -520,7 +544,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 188.5, 226.0, 50.0, 22.0 ],
-					"text" : "36"
+					"text" : "20"
 				}
 
 			}
@@ -1521,6 +1545,13 @@
 					"destination" : [ "obj-19", 0 ],
 					"midpoints" : [ 434.5, 324.0, 291.5, 324.0 ],
 					"source" : [ "obj-75", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-67", 1 ],
+					"source" : [ "obj-79", 0 ]
 				}
 
 			}
