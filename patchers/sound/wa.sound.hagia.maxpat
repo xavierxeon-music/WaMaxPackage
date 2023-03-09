@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 190.0, 2745.0, 945.0 ],
+		"rect" : [ 760.0, 128.0, 2221.0, 1283.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -559,7 +559,7 @@
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_longname" : "frequency offset",
-							"parameter_mmax" : 6.0,
+							"parameter_mmax" : 20.0,
 							"parameter_mmin" : 1.0,
 							"parameter_shortname" : "frequency offset",
 							"parameter_type" : 0,
