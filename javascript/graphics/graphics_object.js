@@ -10,7 +10,7 @@ var id = "id_" + Math.random().toString(8).slice(2)
 
 function loadbang() {
    target.append(id);
-   target.setparse(id, "type: circle");
+   target.setparse(id, "type: " + jsarguments[1]);
 
    outlet(0, id);
 }
