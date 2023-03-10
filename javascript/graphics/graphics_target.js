@@ -24,11 +24,12 @@ function bang() {
    screen.setall(255, 0, 0, 0);
 
    var objectIds = target.getkeys();
-   for (var id = 0; 0 < objectIds.length; id += 1) {
+   for (var id = 0; id < objectIds.length; id += 1) {
       var key = objectIds[id];
       var object = target.get(key);
-      if (null === object)
-         break;
+
+      if (!checkKeys(object, ["type"]))
+         return;
 
       var type = object.get("type");
       if ("circle" === type)
@@ -54,22 +55,46 @@ function getColor(text) {
 }
 drawCircle.local = 1;
 
+function checkKeys(object, keyList) {
+
+   if (object == null)
+      return false;
+
+   for (var i = 0; i < keyList.length; i += 1) {
+      var key = keyList[i];
+      if (!object.contains(key))
+         return false;
+   }
+
+   return true;
+}
+checkKeys.local = 1;
+
 
 function drawCircle(object) {
-   var xPos = object.get("x");
-   var yPos = object.get("y");
-   var radius = object.get("radius");
 
-   var color = getColor(object.get("color"));
+   if (!checkKeys(object, ["x", "y", "radius", "color", "fill"]))
+      return;
 
-   var filled = ("1" == object.get("fill"));
-   var radius2 = radius * radius;
+   const xPos = parseInt(object.get("x"));
+   const yPos = parseInt(object.get("y"));
+   const radius = parseInt(object.get("radius"));
 
-   for (var x = xPos - radius; x <= xPos + radius; x += 1) {
+   const color = getColor(object.get("color"));
+
+   const filled = ("1" == object.get("fill"));
+   const radius2 = radius * radius;
+
+   const xMin = xPos - radius;
+   const xMax = xPos + radius;
+
+   for (var x = xMin; x <= xMax; x += 1) {
+      const xDiff = xPos - x;
+
       for (var y = yPos - radius; y <= yPos + radius; y += 1) {
-         var xDiff = xPos - x;
-         var yDiff = yPos - y;
-         var dist2 = (xDiff * xDiff) + (yDiff * yDiff);
+         const yDiff = yPos - y;
+         const dist2 = (xDiff * xDiff) + (yDiff * yDiff);
+
          if (filled) {
             if (dist2 > radius2)
                continue;
