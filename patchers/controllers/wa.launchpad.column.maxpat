@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 115.0, 3772.0, 1451.0 ],
+		"rect" : [ 34.0, 115.0, 2786.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -353,7 +353,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1867.0, 559.0, 93.0, 22.0 ],
+					"patching_rect" : [ 1867.0, 559.0, 107.0, 22.0 ],
 					"text" : "prepend setButton"
 				}
 
@@ -587,7 +587,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1573.0, 559.0, 93.0, 22.0 ],
+					"patching_rect" : [ 1573.0, 559.0, 107.0, 22.0 ],
 					"text" : "prepend setButton"
 				}
 
@@ -636,7 +636,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1358.0, 559.0, 93.0, 22.0 ],
+					"patching_rect" : [ 1358.0, 559.0, 107.0, 22.0 ],
 					"text" : "prepend setButton"
 				}
 
@@ -685,7 +685,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1149.0, 559.0, 93.0, 22.0 ],
+					"patching_rect" : [ 1149.0, 559.0, 107.0, 22.0 ],
 					"text" : "prepend setButton"
 				}
 
@@ -698,7 +698,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "bang", "bang" ],
-					"patching_rect" : [ 1144.0, 962.0, 138.0, 49.0 ],
+					"patching_rect" : [ 1144.0, 962.0, 139.0, 49.0 ],
 					"text" : "wa.launchpad.button 0 @color off @downColor #2 @toggle 1"
 				}
 
@@ -734,7 +734,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 950.0, 559.0, 93.0, 22.0 ],
+					"patching_rect" : [ 950.0, 559.0, 107.0, 22.0 ],
 					"text" : "prepend setButton"
 				}
 
@@ -747,7 +747,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "bang", "bang" ],
-					"patching_rect" : [ 949.0, 962.0, 138.0, 49.0 ],
+					"patching_rect" : [ 949.0, 962.0, 139.0, 49.0 ],
 					"text" : "wa.launchpad.button 0 @color off @downColor #2 @toggle 1"
 				}
 
@@ -783,7 +783,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 675.0, 555.0, 93.0, 22.0 ],
+					"patching_rect" : [ 675.0, 555.0, 107.0, 22.0 ],
 					"text" : "prepend setButton"
 				}
 
@@ -832,7 +832,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 469.0, 555.0, 93.0, 22.0 ],
+					"patching_rect" : [ 469.0, 555.0, 107.0, 22.0 ],
 					"text" : "prepend setButton"
 				}
 
@@ -881,7 +881,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 266.0, 555.0, 93.0, 22.0 ],
+					"patching_rect" : [ 266.0, 555.0, 107.0, 22.0 ],
 					"text" : "prepend setButton"
 				}
 
@@ -930,7 +930,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 49.0, 555.0, 93.0, 22.0 ],
+					"patching_rect" : [ 49.0, 555.0, 107.0, 22.0 ],
 					"text" : "prepend setButton"
 				}
 
