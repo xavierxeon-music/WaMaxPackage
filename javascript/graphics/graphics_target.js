@@ -48,9 +48,9 @@ function getColor(text) {
    var blue = 0;
 
    if (null !== text) {
-      var red = parseInt(text.substring(0, 2), 16);
-      var green = parseInt(text.substring(2, 4), 16);
-      var blue = parseInt(text.substring(4, 6), 16);
+      red = parseInt(text.substring(0, 2), 16);
+      green = parseInt(text.substring(2, 4), 16);
+      blue = parseInt(text.substring(4, 6), 16);
 
    }
 
