@@ -1,0 +1,18 @@
+{
+   "play": [
+      85,
+      true
+   ],
+   "record": [
+      86,
+      true
+   ],
+   "shift": [
+      49,
+      false
+   ],
+   "select": [
+      48,
+      false
+   ]
+}

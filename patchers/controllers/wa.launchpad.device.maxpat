@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 162.0, 2721.0, 973.0 ],
+		"rect" : [ 517.0, 471.0, 2220.0, 835.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -45,13 +45,13 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 337.0, 567.0, 219.0, 22.0 ],
+					"patching_rect" : [ 337.0, 567.0, 281.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "color_select.js",
+						"filename" : "launchpad_color_select.js",
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js color_select.js launchpad_colors.json"
+					"text" : "js launchpad_color_select.js launchpad_colors.json"
 				}
 
 			}
