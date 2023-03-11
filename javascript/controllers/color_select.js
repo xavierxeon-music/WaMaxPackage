@@ -18,7 +18,7 @@ var colorNames = {
    cyan: "00ffff",
    white: "ffffff"
 };
-
+var indexBuffer = {};
 var white_index = 0;
 
 function loadbang() {
@@ -31,16 +31,28 @@ function loadbang() {
    file.close();
 
    colorList = JSON.parse(text);
-   white_index = getColorRGB("ffffff");
+
+   white_index = findNearestMatchInColorList("ffffff");
+   indexBuffer["ffffff"] = white_index;
+   for (var index = 0; index < colorList.length; index += 1) {
+
+      const color = colorList[index];
+      indexBuffer[color] = index;
+   }
 }
 
-function list(id, color) {
+function list(id, inColor) {
 
    var color_index = white_index;
+   var color = inColor;
+
    if (color in colorNames)
-      color_index = getColorRGB(colorNames[color]);
-   else if (isHex(color))
-      color_index = getColorRGB(color);
+      color = colorNames[color];
+
+   if (isHex(color))
+      color_index = findNearestMatchInColorList(color);
+
+   // post(inColor, color, color_index, "\n");
 
    outlet(0, [id, color_index]);
 }
@@ -48,7 +60,8 @@ function list(id, color) {
 // str match not workling!
 function isHex(color) {
 
-   if (color.length != 6) return false;
+   if (color.length != 6)
+      return false;
 
    for (var index = 0; index < 6; index += 1) {
 
@@ -80,29 +93,33 @@ function isHex(color) {
 }
 isHex.local = 1;
 
-// TODO: buffer map
-function getColorRGB(color) {
+function findNearestMatchInColorList(color) {
+
+   if (colorList.length === 0) // need colorList to work with
+      return 0;
+
+   if (color in indexBuffer)
+      return indexBuffer[color];
 
    var color_index = 0;
 
-   var color_red = parseInt(color.substring(0, 2), 16);
-   var color_green = parseInt(color.substring(2, 4), 16);
-   var color_blue = parseInt(color.substring(4, 6), 16);
-
+   const color_red = parseInt(color.substring(0, 2), 16);
+   const color_green = parseInt(color.substring(2, 4), 16);
+   const color_blue = parseInt(color.substring(4, 6), 16);
 
    var minDistance = 0;
    for (var index = 0; index < colorList.length; index += 1) {
 
-      var test = colorList[index];
-      var test_red = parseInt(test.substring(0, 2), 16);
-      var test_green = parseInt(test.substring(2, 4), 16);
-      var test_blue = parseInt(test.substring(4, 6), 16);
+      const test = colorList[index];
+      const test_red = parseInt(test.substring(0, 2), 16);
+      const test_green = parseInt(test.substring(2, 4), 16);
+      const test_blue = parseInt(test.substring(4, 6), 16);
 
-      var diff_red = color_red - test_red;
-      var diff_green = color_green - test_green;
-      var diff_blue = color_blue - test_blue;
+      const diff_red = color_red - test_red;
+      const diff_green = color_green - test_green;
+      const diff_blue = color_blue - test_blue;
 
-      var distance = diff_red * diff_red + diff_green * diff_green + diff_blue * diff_blue;
+      const distance = diff_red * diff_red + diff_green * diff_green + diff_blue * diff_blue;
 
       if (0 === index || distance < minDistance) {
          minDistance = distance;
@@ -112,6 +129,7 @@ function getColorRGB(color) {
 
    //post("MATCH", color , color_index, "\n");
 
+   indexBuffer[color] = color_index;
    return color_index;
 }
-getColorRGB.local = 1;
+findNearestMatchInColorList.local = 1;
