@@ -23,7 +23,7 @@ function lookup(name) {
       value = padmap[name];
 
    outlet(0, value);
-   post("LOOKUP", name, value, "\n");
+   //post("LOOKUP", name, value, "\n");
 }
 
 function fromPush(id, velocity) {
