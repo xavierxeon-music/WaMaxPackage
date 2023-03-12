@@ -7,6 +7,178 @@
       86,
       true
    ],
+   "automate": [
+      89,
+      true
+   ],
+   "fixed_length": [
+      80,
+      false
+   ],
+   "new": [
+      87,
+      false
+   ],
+   "duplicate": [
+      88,
+      false
+   ],
+   "qauntize": [
+      116,
+      false
+   ],
+   "double_loop": [
+      117,
+      false
+   ],
+   "convert": [
+      35,
+      false
+   ],
+   "1_4": [
+      36,
+      true
+   ],
+   "1_4t": [
+      37,
+      true
+   ],
+   "1_8": [
+      38,
+      true
+   ],
+   "1_8t": [
+      39,
+      true
+   ],
+   "1_16": [
+      40,
+      true
+   ],
+   "1_16t": [
+      41,
+      true
+   ],
+   "1_32": [
+      42,
+      true
+   ],
+   "1_32t": [
+      43,
+      true
+   ],
+   "mute": [
+      60,
+      true
+   ],
+   "solo": [
+      61,
+      true
+   ],
+   "stop": [
+      29,
+      true
+   ],
+   "b1": [
+      20,
+      true
+   ],
+   "b2": [
+      21,
+      true
+   ],
+   "b3": [
+      22,
+      true
+   ],
+   "b4": [
+      23,
+      true
+   ],
+   "b5": [
+      24,
+      true
+   ],
+   "b6": [
+      25,
+      true
+   ],
+   "b7": [
+      26,
+      true
+   ],
+   "b8": [
+      27,
+      true
+   ],
+   "master": [
+      28,
+      false
+   ],
+   "undo": [
+      119,
+      false
+   ],
+   "delete": [
+      118,
+      false
+   ],
+   "add_track": [
+      53,
+      false
+   ],
+   "add_device": [
+      52,
+      false
+   ],
+   "tap": [
+      3,
+      false
+   ],
+   "metro": [
+      9,
+      false
+   ],
+   "t1": [
+      102,
+      true
+   ],
+   "t2": [
+      103,
+      true
+   ],
+   "t3": [
+      104,
+      true
+   ],
+   "t4": [
+      105,
+      true
+   ],
+   "t5": [
+      106,
+      true
+   ],
+   "t6": [
+      107,
+      true
+   ],
+   "t7": [
+      108,
+      true
+   ],
+   "t8": [
+      109,
+      true
+   ],
+   "setup": [
+      30,
+      false
+   ],
+   "user": [
+      59,
+      false
+   ],
    "shift": [
       49,
       false
