@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+<c74object name="wa.graphics.circle">
+    <digest>Hello World</digest>
+    <metadatalist>
+        <metadata name="author">Ralf Waspe</metadata>
+        <metadata name="tag">WaMaxPackage</metadata>
+    </metadatalist>
+    <parser inlet_count="1"/>
+    <misc name="Outputs"/>
+    <objarglist>
+        <objarg type="symbol" optional="1" name="1">
+            <digest/>
+        </objarg>
+        <objarg type="symbol" optional="1" name="2">
+            <digest/>
+        </objarg>
+        <objarg type="symbol" optional="1" name="3">
+            <digest/>
+        </objarg>
+    </objarglist>
+    <attributelist>
+        <attribute type="symbol" get="1" size="1" set="1" name="color">
+            <digest/>
+        </attribute>
+        <attribute type="symbol" get="1" size="1" set="1" name="fill">
+            <digest/>
+        </attribute>
+    </attributelist>
+    <methodlist>
+        <method standard="0" name="color">
+            <arglist>
+                <arg type="symbol" optional="0" name=""/>
+            </arglist>
+            <digest/>
+        </method>
+        <method standard="0" name="fill">
+            <arglist>
+                <arg type="symbol" optional="0" name=""/>
+            </arglist>
+            <digest/>
+        </method>
+        <method standard="0" name="radius">
+            <arglist>
+                <arg type="symbol" optional="0" name=""/>
+            </arglist>
+            <digest/>
+        </method>
+        <method standard="0" name="x">
+            <arglist>
+                <arg type="symbol" optional="0" name=""/>
+            </arglist>
+            <digest/>
+        </method>
+        <method standard="0" name="y">
+            <arglist>
+                <arg type="symbol" optional="0" name=""/>
+            </arglist>
+            <digest/>
+        </method>
+    </methodlist>
+    <seealsolist/>
+</c74object>

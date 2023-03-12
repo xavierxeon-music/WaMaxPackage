@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.setup.transport_manual">
+<c74object name="wa.wavetable.sine">
     <digest>Hello World</digest>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="0"/>
-    <misc name="Outputs">
-        <entry name="reset" id="0">
-            <digest/>
-        </entry>
-    </misc>
-    <objarglist>
-        <objarg type="symbol" optional="1" name="1">
-            <digest/>
-        </objarg>
-    </objarglist>
+    <misc name="Outputs"/>
+    <objarglist/>
     <attributelist/>
     <methodlist/>
     <seealsolist/>

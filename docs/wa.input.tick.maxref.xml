@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.setup.transport_manual">
+<c74object name="wa.input.tick">
     <digest>Hello World</digest>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="0"/>
+    <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry name="reset" id="0">
+        <entry name="bang" id="1">
+            <digest/>
+        </entry>
+        <entry name="intervall" id="2">
+            <digest/>
+        </entry>
+        <entry name="bpm" id="3">
             <digest/>
         </entry>
     </misc>
-    <objarglist>
-        <objarg type="symbol" optional="1" name="1">
-            <digest/>
-        </objarg>
-    </objarglist>
+    <objarglist/>
     <attributelist/>
     <methodlist/>
     <seealsolist/>

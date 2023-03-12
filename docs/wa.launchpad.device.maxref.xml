@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 <c74object name="wa.launchpad.device">
-    <digest>Hello World</digest>
+    <digest>Launchpad Mini device</digest>
+    <description>needs to pe present in order for a <o>wa.lauchnpad.button</o> to work</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry id="0" name="color_keys">
+        <entry name="color_keys" id="0">
             <digest/>
         </entry>
-        <entry id="1" name="color_keys">
+        <entry name="color_keys" id="1">
             <digest/>
         </entry>
     </misc>
@@ -20,27 +21,27 @@
     <methodlist>
         <method standard="0" name="off">
             <arglist>
-                <arg optional="0" name="" type="symbol"/>
+                <arg type="symbol" optional="0" name=""/>
             </arglist>
             <digest>turn launchpad off</digest>
             <description>turn launchpad off</description>
         </method>
         <method standard="0" name="on">
             <arglist>
-                <arg optional="0" name="" type="symbol"/>
+                <arg type="symbol" optional="0" name=""/>
             </arglist>
             <digest>turn laucnpad on</digest>
         </method>
         <method standard="0" name="printColors">
             <arglist>
-                <arg optional="0" name="" type="symbol"/>
+                <arg type="symbol" optional="0" name=""/>
             </arglist>
             <digest>print available color symbols</digest>
             <description>print available color symbols</description>
         </method>
         <method standard="0" name="reset">
             <arglist>
-                <arg optional="0" name="" type="symbol"/>
+                <arg type="symbol" optional="0" name=""/>
             </arglist>
             <digest>reset the launchpad</digest>
             <description>reset the launchpad</description>

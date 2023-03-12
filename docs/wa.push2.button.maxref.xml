@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+<c74object name="wa.push2.button">
+    <digest>Hello World</digest>
+    <metadatalist>
+        <metadata name="author">Ralf Waspe</metadata>
+        <metadata name="tag">WaMaxPackage</metadata>
+    </metadatalist>
+    <parser inlet_count="1"/>
+    <misc name="Outputs">
+        <entry name="active" id="1">
+            <digest/>
+        </entry>
+        <entry name="pressed" id="2">
+            <digest/>
+        </entry>
+        <entry name="released" id="3">
+            <digest/>
+        </entry>
+    </misc>
+    <objarglist>
+        <objarg type="symbol" optional="1" name="1">
+            <digest/>
+        </objarg>
+    </objarglist>
+    <attributelist>
+        <attribute type="symbol" get="1" size="1" set="1" name="color">
+            <digest/>
+        </attribute>
+        <attribute type="symbol" get="1" size="1" set="1" name="downColor">
+            <digest/>
+        </attribute>
+        <attribute type="symbol" get="1" size="1" set="1" name="toggle">
+            <digest/>
+        </attribute>
+    </attributelist>
+    <methodlist>
+        <method standard="0" name="color">
+            <arglist>
+                <arg type="symbol" optional="0" name=""/>
+            </arglist>
+            <digest/>
+        </method>
+        <method standard="0" name="downColor">
+            <arglist>
+                <arg type="symbol" optional="0" name=""/>
+            </arglist>
+            <digest/>
+        </method>
+        <method standard="0" name="forceActive">
+            <arglist>
+                <arg type="symbol" optional="0" name=""/>
+            </arglist>
+            <digest/>
+        </method>
+        <method standard="0" name="setButton">
+            <arglist>
+                <arg type="symbol" optional="0" name=""/>
+            </arglist>
+            <digest/>
+        </method>
+        <method standard="0" name="toggle">
+            <arglist>
+                <arg type="symbol" optional="0" name=""/>
+            </arglist>
+            <digest/>
+        </method>
+    </methodlist>
+    <seealsolist/>
+</c74object>

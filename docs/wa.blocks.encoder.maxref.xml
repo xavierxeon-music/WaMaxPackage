@@ -7,7 +7,7 @@
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="3"/>
+    <parser inlet_count="2"/>
     <misc name="Outputs">
         <entry name="value" id="1">
             <digest/>
@@ -15,54 +15,54 @@
         </entry>
     </misc>
     <objarglist>
-        <objarg type="int" name="min" optional="1">
+        <objarg type="int" optional="1" name="min">
             <digest>set the minmum value</digest>
             <description>set the minmum value<br/><br/>default is 0<br/>see <m>setMin</m><br/><br/><br/></description>
         </objarg>
-        <objarg type="int" name="max" optional="1">
+        <objarg type="int" optional="1" name="max">
             <digest>set the maximum value</digest>
             <description>see <m>setMax</m><br/><br/>default is 127</description>
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute type="symbol" name="intervall" size="1" set="1" get="1">
+        <attribute type="symbol" get="1" size="1" set="1" name="intervall">
             <digest>set the repeat intervall</digest>
             <description>see <m>intervall</m></description>
         </attribute>
     </attributelist>
     <methodlist>
-        <method name="int" standard="1">
+        <method standard="1" name="int">
             <digest/>
             <description>In left input: decrement the current value, will repeat at <m>intervall</m><br/><br/>In middle input: increment the current value, will repeat at <m>intervall</m><br/><br/>In right  input:  force the current value</description>
         </method>
-        <method name="bang" standard="1">
+        <method standard="1" name="bang">
             <digest/>
             <description>in left input: decrement the value<br/><br/>in middle input: increment the value<br/></description>
         </method>
-        <method name="forceValue" standard="0">
+        <method standard="0" name="forceValue">
             <arglist>
-                <arg type="int" name="" optional="0"/>
+                <arg type="int" optional="0" name=""/>
             </arglist>
             <digest>set the current value</digest>
             <description>In right input: set the current value</description>
         </method>
-        <method name="intervall" standard="0">
+        <method standard="0" name="intervall">
             <arglist>
-                <arg type="int" name="" optional="0"/>
+                <arg type="int" optional="0" name=""/>
             </arglist>
             <digest>set the repeat intervall</digest>
             <description>In right input:  set the repeat intervall.<br/><br/>if the left or middle port receive an integer value the value will be repeatedly decremented or incremented at the given intervall</description>
         </method>
-        <method name="setMax" standard="0">
+        <method standard="0" name="setMax">
             <arglist>
-                <arg type="int" name="" optional="0"/>
+                <arg type="int" optional="0" name=""/>
             </arglist>
             <digest>the minmum value</digest>
             <description>set the minmum possible value.<br/><br/>there is no check if the min value is actually smaller then the max value</description>
         </method>
-        <method name="setMin" standard="0">
+        <method standard="0" name="setMin">
             <arglist>
-                <arg type="int" name="" optional="0"/>
+                <arg type="int" optional="0" name=""/>
             </arglist>
             <digest>the maximum value</digest>
             <description>set the maximum possible value<br/><br/>there is no check if the min value is actually smaller then the max value</description>

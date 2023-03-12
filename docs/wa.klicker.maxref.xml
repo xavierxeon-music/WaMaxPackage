@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.schverb">
+<c74object name="wa.klicker">
     <digest>Hello World</digest>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="4"/>
+    <parser inlet_count="2"/>
     <misc name="Outputs">
-        <entry name="audioL" id="1">
-            <digest/>
-        </entry>
-        <entry name="audioR" id="2">
+        <entry name="click" id="0">
             <digest/>
         </entry>
     </misc>
@@ -19,15 +16,8 @@
         <objarg type="symbol" optional="1" name="1">
             <digest/>
         </objarg>
-        <objarg type="symbol" optional="1" name="2">
-            <digest/>
-        </objarg>
     </objarglist>
-    <attributelist>
-        <attribute type="symbol" get="1" size="1" set="1" name="cutoff">
-            <digest/>
-        </attribute>
-    </attributelist>
+    <attributelist/>
     <methodlist/>
     <seealsolist/>
 </c74object>

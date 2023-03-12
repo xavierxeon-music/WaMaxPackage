@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.schverb">
+<c74object name="wa.blocks.feedpass~">
     <digest>Hello World</digest>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
@@ -8,10 +8,7 @@
     </metadatalist>
     <parser inlet_count="4"/>
     <misc name="Outputs">
-        <entry name="audioL" id="1">
-            <digest/>
-        </entry>
-        <entry name="audioR" id="2">
+        <entry name="audio" id="1">
             <digest/>
         </entry>
     </misc>

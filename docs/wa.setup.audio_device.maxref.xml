@@ -9,23 +9,23 @@
     <parser inlet_count="2"/>
     <misc name="Outputs"/>
     <objarglist>
-        <objarg type="symbol" name="devioce" optional="1">
+        <objarg type="symbol" optional="1" name="devioce">
             <digest>the name of the device</digest>
             <description>the name of the device as given in the system settings.<br/><br/>default is "BlackHole 64ch"<br/></description>
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute set="1" size="1" get="1" type="int" name="auto_start">
+        <attribute type="int" get="1" size="1" set="1" name="auto_start">
             <digest>automatically start the device</digest>
             <description>automatically start the device<br/><br/>default is true</description>
         </attribute>
-        <attribute set="1" size="1" get="1" type="int" name="input_enabled">
+        <attribute type="int" get="1" size="1" set="1" name="input_enabled">
             <digest>enable the input</digest>
             <description>enable the input<br/><br/>default is true</description>
         </attribute>
     </attributelist>
     <methodlist>
-        <method name="bang" standard="1">
+        <method standard="1" name="bang">
             <digest/>
             <description>In left input: enable device manually.<br/><br/>In right input: choose the device as set in the system settings. <b>MAC OS ONLY</b><br/></description>
         </method>
