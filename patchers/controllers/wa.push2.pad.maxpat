@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 517.0, 471.0, 3209.0, 835.0 ],
+		"rect" : [ 34.0, 115.0, 3765.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,18 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 62.0, 120.0, 91.0, 22.0 ],
+					"text" : "prepend lookup"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-54",
 					"maxclass" : "message",
@@ -584,7 +596,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 382.0, 405.0, 55.0, 22.0 ],
-					"text" : "red"
+					"text" : "ff0000"
 				}
 
 			}
@@ -607,7 +619,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 214.0, 406.0, 50.0, 22.0 ],
-					"text" : "ffff00"
+					"text" : "ffffff"
 				}
 
 			}
@@ -653,7 +665,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 31.0, 201.0, 50.0, 22.0 ],
-					"text" : "90"
+					"text" : "36"
 				}
 
 			}
@@ -663,9 +675,9 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
-					"patching_rect" : [ 31.0, 88.0, 53.0, 22.0 ],
-					"text" : "unpack i"
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 31.0, 88.0, 57.0, 22.0 ],
+					"text" : "unpack s"
 				}
 
 			}
@@ -794,16 +806,23 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-15", 0 ],
-					"order" : 1,
+					"destination" : [ "obj-72", 0 ],
+					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-13", 0 ],
+					"order" : 0,
 					"source" : [ "obj-14", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-72", 0 ],
-					"order" : 0,
+					"destination" : [ "obj-15", 0 ],
+					"order" : 1,
 					"source" : [ "obj-14", 0 ]
 				}
 

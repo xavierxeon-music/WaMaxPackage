@@ -12,7 +12,7 @@
       true
    ],
    "fixed_length": [
-      80,
+      90,
       false
    ],
    "new": [
@@ -23,7 +23,7 @@
       88,
       false
    ],
-   "qauntize": [
+   "quantize": [
       116,
       false
    ],
@@ -171,20 +171,92 @@
       109,
       true
    ],
-   "setup": [
-      30,
-      false
-   ],
-   "user": [
-      59,
-      false
-   ],
    "shift": [
       49,
       false
    ],
    "select": [
       48,
+      false
+   ],
+   "octave_down": [
+      54,
+      false
+   ],
+   "page_left": [
+      62,
+      false
+   ],
+   "page_right": [
+      63,
+      false
+   ],
+   "octave_up": [
+      55,
+      false
+   ],
+   "note": [
+      50,
+      false
+   ],
+   "session": [
+      51,
+      false
+   ],
+   "scale": [
+      58,
+      false
+   ],
+   "layout": [
+      31,
+      false
+   ],
+   "repeat": [
+      56,
+      false
+   ],
+   "accent": [
+      57,
+      false
+   ],
+   "curosr_down": [
+      47,
+      false
+   ],
+   "cursor_left": [
+      44,
+      false
+   ],
+   "cursor_right": [
+      45,
+      false
+   ],
+   "cursor_up": [
+      46,
+      false
+   ],
+   "browse": [
+      111,
+      false
+   ],
+   "clip": [
+      113,
+      false
+   ],
+   "device": [
+      110,
+      false
+   ],
+   "mix": [
+      112,
+      false
+   ],
+   "setup": [
+      30,
+      false
+   ],
+   "user": [
+      59,
       false
    ]
 }

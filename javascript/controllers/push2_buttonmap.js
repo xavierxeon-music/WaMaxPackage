@@ -30,6 +30,25 @@ function lookup(name) {
    outlet(1, isColor);
 }
 
+function fromPush(id) {
+
+   if (Object.keys(buttonmap).length === 0) {
+      buildMap();
+   }
+   for (var name in buttonmap) {
+      const value = buttonmap[name][0];
+      const isColor = (1 == buttonmap[name][1]);
+      if (value === id) {
+         if (isColor)
+            outlet(0, "RGB BUTTON " + name);
+         else
+            outlet(0, "BUTTON " + name);
+         return;
+      }
+   }
+
+   outlet(0, "???" + id);
+}
 
 function buildMap() {
 
