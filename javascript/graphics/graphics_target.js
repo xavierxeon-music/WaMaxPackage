@@ -7,12 +7,12 @@ setinletassist(0, "bang, dimensions");
 outlets = 1;
 setoutletassist(0, "message");
 
-var target = new Dict("graphics_target");
+var graphics = new Global("graphics");
 
 
 function dimensions(x, y) {
-   outlet(0, ["dim", x, y]);
 
+   outlet(0, ["dim", x, y]);
    bang();
 }
 
@@ -21,15 +21,18 @@ function bang() {
    outlet(0, ["clear"]);
    outlet(0, ["brgb", 0, 0, 0]);
 
-   var objectIds = target.getkeys();
-   for (var id = 0; id < objectIds.length; id += 1) {
-      var key = objectIds[id];
-      var object = target.get(key);
+   var objectIds = Object.keys(graphics.target);
+   if (objectIds === null) // no objects
+      return;
 
-      if (!checkKeys(object, ["type"]))
-         return;
+   for (var index = 0; index < objectIds.length; index++) {
+      var id = objectIds[index];
+      var object = graphics.target[id];
 
-      var type = object.get("type");
+      var type = object["type"];
+      if (type === undefined)
+         continue;
+
       if ("circle" === type)
          drawCircle(object);
       else if ("box" === type)
@@ -39,7 +42,6 @@ function bang() {
       else if ("text" === type)
          drawText(object);
    }
-
 }
 
 function getColor(text) {
@@ -65,7 +67,7 @@ function checkKeys(object, keyList) {
 
    for (var i = 0; i < keyList.length; i += 1) {
       var key = keyList[i];
-      if (!object.contains(key))
+      if (object[key] === undefined)
          return false;
    }
 
@@ -79,13 +81,13 @@ function drawCircle(object) {
    if (!checkKeys(object, ["x", "y", "radius", "color", "fill"]))
       return;
 
-   const x = parseInt(object.get("x"));
-   const y = parseInt(object.get("y"));
-   const radius = parseInt(object.get("radius"));
+   const x = parseInt(object["x"]);
+   const y = parseInt(object["y"]);
+   const radius = parseInt(object["radius"]);
 
-   const color = getColor(object.get("color"));
+   const color = getColor(object["color"]);
 
-   const filled = ("1" == object.get("fill"));
+   const filled = ("1" == object["fill"]);
 
    if (filled)
       outlet(0, ["paintoval", x - radius, y - radius, x + radius, y + radius, color[0], color[1], color[2]]);
@@ -99,14 +101,14 @@ function drawBox(object) {
    if (!checkKeys(object, ["x", "y", "width", "height", "color", "fill"]))
       return;
 
-   const x = parseInt(object.get("x"));
-   const y = parseInt(object.get("y"));
-   const width = parseInt(object.get("width"));
-   const height = parseInt(object.get("height"));
+   const x = parseInt(object["x"]);
+   const y = parseInt(object["y"]);
+   const width = parseInt(object["width"]);
+   const height = parseInt(object["height"]);
 
-   const color = getColor(object.get("color"));
+   const color = getColor(object["color"]);
 
-   const filled = ("1" == object.get("fill"));
+   const filled = ("1" == object["fill"]);
 
    outlet(0, ["frgb", color[0], color[1], color[2]]);
 
@@ -122,13 +124,13 @@ function drawLine(object) {
    if (!checkKeys(object, ["xStart", "yStart", "xEnd", "yEnd", "color"]))
       return;
 
-   const xStart = parseInt(object.get("xStart"));
-   const yStart = parseInt(object.get("yStart"));
+   const xStart = parseInt(object["xStart"]);
+   const yStart = parseInt(object["yStart"]);
 
-   const xEnd = parseInt(object.get("xEnd"));
-   const yEnd = parseInt(object.get("yEnd"));
+   const xEnd = parseInt(object["xEnd"]);
+   const yEnd = parseInt(object["yEnd"]);
 
-   const color = getColor(object.get("color"));
+   const color = getColor(object["color"]);
 
    outlet(0, ["frgb", color[0], color[1], color[2]]);
 
@@ -142,13 +144,13 @@ function drawText(object) {
    if (!checkKeys(object, ["x", "y", "fontSize", "text", "color"]))
       return;
 
-   const x = parseInt(object.get("x"));
-   const y = parseInt(object.get("y"));
+   const x = parseInt(object["x"]);
+   const y = parseInt(object["y"]);
 
-   const fontSize = parseInt(object.get("fontSize"));
-   const text = object.get("text").replace("\,", " ");
+   const fontSize = parseInt(object["fontSize"]);
+   const text = object["text"].replace("\,", " ");
 
-   const color = getColor(object.get("color"));
+   const color = getColor(object["color"]);
 
    outlet(0, ["frgb", color[0], color[1], color[2]]);
 
