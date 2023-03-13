@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 115.0, 2793.0, 1451.0 ],
+		"rect" : [ 34.0, 134.0, 1732.0, 1001.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,18 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-11",
+					"maxclass" : "newobj",
+					"numinlets" : 3,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1731.5, 596.0, 52.0, 22.0 ],
+					"text" : "switch 1"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-112",
 					"maxclass" : "newobj",
@@ -438,7 +450,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1747.5, 720.5, 30.0, 30.0 ]
+					"patching_rect" : [ 1731.5, 761.5, 30.0, 30.0 ]
 				}
 
 			}
@@ -463,7 +475,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 1747.5, 666.5, 24.0, 24.0 ]
+					"patching_rect" : [ 1731.5, 715.5, 24.0, 24.0 ]
 				}
 
 			}
@@ -474,7 +486,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 1747.5, 635.0, 95.0, 22.0 ],
+					"patching_rect" : [ 1731.5, 676.0, 95.0, 22.0 ],
 					"text" : "route connected"
 				}
 
@@ -486,7 +498,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1747.5, 597.0, 133.0, 22.0 ],
+					"patching_rect" : [ 1731.5, 638.0, 133.0, 22.0 ],
 					"text" : "jit.net.send @port 6667"
 				}
 
@@ -1187,8 +1199,15 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-55", 0 ],
+					"destination" : [ "obj-11", 1 ],
 					"source" : [ "obj-108", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-55", 0 ],
+					"source" : [ "obj-11", 0 ]
 				}
 
 			}
@@ -1570,7 +1589,17 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-11", 0 ],
+					"midpoints" : [ 1741.0, 740.0, 1718.0, 740.0, 1718.0, 575.0, 1741.0, 575.0 ],
+					"order" : 1,
+					"source" : [ "obj-6", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-68", 0 ],
+					"order" : 0,
 					"source" : [ "obj-6", 0 ]
 				}
 
