@@ -8,7 +8,7 @@ outlets = 1;
 setoutletassist(0, "message");
 
 var graphics = new Global("graphics");
-
+var deviceName = null;
 
 function dimensions(x, y) {
 
@@ -16,32 +16,43 @@ function dimensions(x, y) {
    bang();
 }
 
+function loadbang() {
+   graphics.target = {}; // global data persistent between application starts!
+   //post("init target", "\n");
+}
+
 function bang() {
 
    outlet(0, ["clear"]);
    outlet(0, ["brgb", 0, 0, 0]);
 
-   var objectIds = Object.keys(graphics.target);
-   if (objectIds === null) // no objects
+   if (graphics.target === undefined)
       return;
 
-   for (var index = 0; index < objectIds.length; index++) {
-      var id = objectIds[index];
-      var object = graphics.target[id];
 
-      var type = object["type"];
-      if (type === undefined)
-         continue;
+   for (deviceName in graphics.target) {
+      var device = graphics.target[deviceName];
+      for (id in device) {
+         var object = device[id];
 
-      if ("circle" === type)
-         drawCircle(object);
-      else if ("box" === type)
-         drawBox(object);
-      else if ("line" === type)
-         drawLine(object);
-      else if ("text" === type)
-         drawText(object);
+         var type = object["type"];
+         if (type === undefined)
+            continue;
+
+         if ("circle" === type)
+            drawCircle(object);
+         else if ("box" === type)
+            drawBox(object);
+         else if ("line" === type)
+            drawLine(object);
+         else if ("text" === type)
+            drawText(object);
+      }
    }
+}
+
+function setDeviceName(name) {
+   deviceName = name;
 }
 
 function getColor(text) {

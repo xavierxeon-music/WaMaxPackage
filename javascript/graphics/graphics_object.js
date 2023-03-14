@@ -8,23 +8,36 @@ outlets = 1;
 setoutletassist(0, "id");
 
 var graphics = new Global("graphics");
-const id = "id_" + Math.random().toString(8).slice(2)
-
-function loadbang() {
-
-   graphics.target[id] = {};
-   graphics.target[id]["type"] = jsarguments[1];
-
-   outlet(0, id);
-}
+var id = "id_" + Math.random().toString(8).slice(2)
+var deviceName = "generic";
+var myDict = undefined;
 
 function toDict(content) {
 
-   const componets = content.split(" ");
-   const key = componets[0];
-   const value = componets.slice(1).join();
+   if (myDict === undefined)
+      createMyDict();
 
-   graphics.target[id][key] = value;
+   var componets = content.split(" ");
+   var key = componets[0];
+   var value = componets.slice(1).join();
+
+   myDict[key] = value;
+   //post("update", id, jsarguments[1], deviceName, key, value, "\n")
+}
+
+function setDeviceName(name) {
+
+   deviceName = name;
+
+   var oldDict = myDict;
+   createMyDict();
+
+   if (oldDict !== undefined) {
+      myDict = oldDict;
+      delete oldDict;
+   }
+
+   //post("setDeviceName", deviceName, name, "\n");
 }
 
 function bang() {
@@ -34,5 +47,26 @@ function bang() {
 
 function notifydeleted() {
 
-   delete graphics.target[id];
+   if (myDict !== undefined) {
+      delete myDict;
+   }
 }
+
+function createMyDict() {
+
+   if (graphics.target === undefined) {
+      graphics.target = {};
+      //post("init target", "\n");
+   }
+
+   if (graphics.target[deviceName] === undefined)
+      graphics.target[deviceName] = {};
+
+   graphics.target[deviceName][id] = {};
+   myDict = graphics.target[deviceName][id];
+
+   myDict["type"] = jsarguments[1];
+   //post("new target", id, jsarguments[1], deviceName, "\n")
+
+}
+createMyDict.local = 1;
