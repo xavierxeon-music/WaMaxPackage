@@ -29,8 +29,9 @@ function bang() {
    if (graphics.target === undefined)
       return;
 
+   // for (deviceName in graphics.target) post(deviceName, "\n");
 
-   for (deviceName in graphics.target) {
+   if (deviceName in graphics.target) {
       var device = graphics.target[deviceName];
       for (id in device) {
          var object = device[id];
@@ -53,6 +54,7 @@ function bang() {
 
 function setDeviceName(name) {
    deviceName = name;
+   post("set target device name", deviceName, "\n");
 }
 
 function getColor(text) {

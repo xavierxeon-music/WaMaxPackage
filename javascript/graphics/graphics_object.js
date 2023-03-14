@@ -27,16 +27,17 @@ function toDict(content) {
 
 function setDeviceName(name) {
 
+   var oldDeviceName = deviceName;
    deviceName = name;
 
-   var oldDict = myDict;
    createMyDict();
 
-   if (oldDict !== undefined) {
-      myDict = oldDict;
-      delete oldDict;
+   var oldDict = graphics.target[oldDeviceName][id];
+   for (key in oldDict) {
+      myDict[key] = oldDict[key];
    }
 
+   delete graphics.target[oldDeviceName][id];
    //post("setDeviceName", deviceName, name, "\n");
 }
 
