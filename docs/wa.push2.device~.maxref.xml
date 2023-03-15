@@ -9,7 +9,7 @@
     </metadatalist>
     <parser inlet_count="2"/>
     <misc name="Outputs">
-          <entry name="connected" id="1">
+        <entry id="1" name="connected">
             <digest/>
             <description>Is the device connected to a screen server</description>
         </entry>
@@ -17,15 +17,15 @@
     <objarglist/>
     <attributelist/>
     <methodlist>
-        <method standard="1" name="int">
+        <method name="int" standard="1">
             <digest/>
             <description>in inlet1: toogle pad and button name mode on / off</description>
         </method>
-        <method standard="1" name="signal">
+        <method name="signal" standard="1">
             <digest/>
             <description>in inlet 2: the jit.matrix to be sent to the screen server</description>
         </method>
-        <method standard="0" name="reset">
+        <method name="reset" standard="0">
             <arglist>
                 <arg type="symbol" optional="0" name=""/>
             </arglist>

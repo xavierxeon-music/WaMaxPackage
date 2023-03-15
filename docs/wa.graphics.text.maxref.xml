@@ -23,36 +23,39 @@
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute type="symbol" get="1" size="1" set="1" name="color">
+        <attribute type="symbol" size="1" set="1" name="color" get="1">
+            <digest/>
+        </attribute>
+        <attribute type="symbol" size="1" set="1" name="deviceName" get="1">
             <digest/>
         </attribute>
     </attributelist>
     <methodlist>
-        <method standard="0" name="color">
+        <method name="color" standard="0">
             <arglist>
                 <arg type="symbol" optional="0" name=""/>
             </arglist>
             <digest/>
         </method>
-        <method standard="0" name="fontSize">
+        <method name="fontSize" standard="0">
             <arglist>
                 <arg type="symbol" optional="0" name=""/>
             </arglist>
             <digest/>
         </method>
-        <method standard="0" name="text">
+        <method name="text" standard="0">
             <arglist>
                 <arg type="symbol" optional="0" name=""/>
             </arglist>
             <digest/>
         </method>
-        <method standard="0" name="x">
+        <method name="x" standard="0">
             <arglist>
                 <arg type="symbol" optional="0" name=""/>
             </arglist>
             <digest/>
         </method>
-        <method standard="0" name="y">
+        <method name="y" standard="0">
             <arglist>
                 <arg type="symbol" optional="0" name=""/>
             </arglist>

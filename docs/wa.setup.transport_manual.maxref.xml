@@ -8,7 +8,7 @@
     </metadatalist>
     <parser inlet_count="0"/>
     <misc name="Outputs">
-        <entry name="reset" id="0">
+        <entry id="0" name="reset">
             <digest/>
         </entry>
     </misc>

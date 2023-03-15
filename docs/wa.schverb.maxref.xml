@@ -8,10 +8,10 @@
     </metadatalist>
     <parser inlet_count="4"/>
     <misc name="Outputs">
-        <entry name="audioL" id="1">
+        <entry id="1" name="audioL">
             <digest/>
         </entry>
-        <entry name="audioR" id="2">
+        <entry id="2" name="audioR">
             <digest/>
         </entry>
     </misc>
@@ -24,7 +24,7 @@
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute type="symbol" get="1" size="1" set="1" name="cutoff">
+        <attribute type="symbol" size="1" set="1" name="cutoff" get="1">
             <digest/>
         </attribute>
     </attributelist>

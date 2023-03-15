@@ -9,7 +9,7 @@
     </metadatalist>
     <parser inlet_count="2"/>
     <misc name="Outputs">
-        <entry name="value" id="1">
+        <entry id="1" name="value">
             <digest/>
             <description>the current value</description>
         </entry>
@@ -25,42 +25,42 @@
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute type="symbol" get="1" size="1" set="1" name="intervall">
+        <attribute type="symbol" size="1" set="1" name="intervall" get="1">
             <digest>set the repeat intervall</digest>
             <description>see <m>intervall</m></description>
         </attribute>
     </attributelist>
     <methodlist>
-        <method standard="1" name="int">
+        <method name="int" standard="1">
             <digest/>
             <description>In left input: decrement the current value, will repeat at <m>intervall</m><br/><br/>In middle input: increment the current value, will repeat at <m>intervall</m><br/><br/>In right  input:  force the current value</description>
         </method>
-        <method standard="1" name="bang">
+        <method name="bang" standard="1">
             <digest/>
             <description>in left input: decrement the value<br/><br/>in middle input: increment the value<br/></description>
         </method>
-        <method standard="0" name="forceValue">
+        <method name="forceValue" standard="0">
             <arglist>
                 <arg type="int" optional="0" name=""/>
             </arglist>
             <digest>set the current value</digest>
             <description>In right input: set the current value</description>
         </method>
-        <method standard="0" name="intervall">
+        <method name="intervall" standard="0">
             <arglist>
                 <arg type="int" optional="0" name=""/>
             </arglist>
             <digest>set the repeat intervall</digest>
             <description>In right input:  set the repeat intervall.<br/><br/>if the left or middle port receive an integer value the value will be repeatedly decremented or incremented at the given intervall</description>
         </method>
-        <method standard="0" name="setMax">
+        <method name="setMax" standard="0">
             <arglist>
                 <arg type="int" optional="0" name=""/>
             </arglist>
             <digest>the minmum value</digest>
             <description>set the minmum possible value.<br/><br/>there is no check if the min value is actually smaller then the max value</description>
         </method>
-        <method standard="0" name="setMin">
+        <method name="setMin" standard="0">
             <arglist>
                 <arg type="int" optional="0" name=""/>
             </arglist>

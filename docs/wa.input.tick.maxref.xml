@@ -8,13 +8,13 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry name="bang" id="1">
+        <entry id="1" name="bang">
             <digest/>
         </entry>
-        <entry name="intervall" id="2">
+        <entry id="2" name="intervall">
             <digest/>
         </entry>
-        <entry name="bpm" id="3">
+        <entry id="3" name="bpm">
             <digest/>
         </entry>
     </misc>

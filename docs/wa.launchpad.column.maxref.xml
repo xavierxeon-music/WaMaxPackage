@@ -9,7 +9,7 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry name="value" id="1">
+        <entry id="1" name="value">
             <digest/>
             <description>the current value as selected by a button press or passed on from ther input</description>
         </entry>
@@ -25,7 +25,7 @@
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute type="int" get="1" size="1" set="1" name="initial">
+        <attribute type="int" size="1" set="1" name="initial" get="1">
             <digest>set the value at launch</digest>
         </attribute>
     </attributelist>

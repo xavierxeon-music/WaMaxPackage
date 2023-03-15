@@ -9,37 +9,37 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry name="color_keys" id="0">
+        <entry id="0" name="color_keys">
             <digest/>
         </entry>
-        <entry name="color_keys" id="1">
+        <entry id="1" name="color_keys">
             <digest/>
         </entry>
     </misc>
     <objarglist/>
     <attributelist/>
     <methodlist>
-        <method standard="0" name="off">
+        <method name="off" standard="0">
             <arglist>
                 <arg type="symbol" optional="0" name=""/>
             </arglist>
             <digest>turn launchpad off</digest>
             <description>turn launchpad off</description>
         </method>
-        <method standard="0" name="on">
+        <method name="on" standard="0">
             <arglist>
                 <arg type="symbol" optional="0" name=""/>
             </arglist>
             <digest>turn laucnpad on</digest>
         </method>
-        <method standard="0" name="printColors">
+        <method name="printColors" standard="0">
             <arglist>
                 <arg type="symbol" optional="0" name=""/>
             </arglist>
             <digest>print available color symbols</digest>
             <description>print available color symbols</description>
         </method>
-        <method standard="0" name="reset">
+        <method name="reset" standard="0">
             <arglist>
                 <arg type="symbol" optional="0" name=""/>
             </arglist>

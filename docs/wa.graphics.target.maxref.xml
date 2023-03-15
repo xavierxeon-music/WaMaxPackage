@@ -8,7 +8,7 @@
     </metadatalist>
     <parser inlet_count="0"/>
     <misc name="Outputs">
-        <entry name="" id="1">
+        <entry id="1" name="">
             <digest/>
         </entry>
     </misc>
@@ -20,7 +20,11 @@
             <digest/>
         </objarg>
     </objarglist>
-    <attributelist/>
+    <attributelist>
+        <attribute type="symbol" size="1" set="1" name="deviceName" get="1">
+            <digest/>
+        </attribute>
+    </attributelist>
     <methodlist/>
     <seealsolist/>
 </c74object>

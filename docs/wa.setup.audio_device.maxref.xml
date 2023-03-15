@@ -15,17 +15,17 @@
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute type="int" get="1" size="1" set="1" name="auto_start">
+        <attribute type="int" size="1" set="1" name="auto_start" get="1">
             <digest>automatically start the device</digest>
             <description>automatically start the device<br/><br/>default is true</description>
         </attribute>
-        <attribute type="int" get="1" size="1" set="1" name="input_enabled">
+        <attribute type="int" size="1" set="1" name="input_enabled" get="1">
             <digest>enable the input</digest>
             <description>enable the input<br/><br/>default is true</description>
         </attribute>
     </attributelist>
     <methodlist>
-        <method standard="1" name="bang">
+        <method name="bang" standard="1">
             <digest/>
             <description>In left input: enable device manually.<br/><br/>In right input: choose the device as set in the system settings. <b>MAC OS ONLY</b><br/></description>
         </method>
