@@ -8,10 +8,10 @@
     </metadatalist>
     <parser inlet_count="2"/>
     <misc name="Outputs">
-        <entry id="1" name="left">
+        <entry name="left" id="1">
             <digest/>
         </entry>
-        <entry id="2" name="right">
+        <entry name="right" id="2">
             <digest/>
         </entry>
     </misc>

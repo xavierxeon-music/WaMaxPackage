@@ -8,60 +8,60 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry id="1" name="active">
+        <entry name="active" id="1">
             <digest/>
         </entry>
-        <entry id="2" name="pressed">
+        <entry name="pressed" id="2">
             <digest/>
         </entry>
-        <entry id="3" name="released">
+        <entry name="released" id="3">
             <digest/>
         </entry>
     </misc>
     <objarglist>
-        <objarg type="symbol" optional="1" name="1">
+        <objarg name="1" optional="1" type="symbol">
             <digest/>
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute type="symbol" size="1" set="1" name="color" get="1">
+        <attribute size="1" name="color" type="symbol" get="1" set="1">
             <digest/>
         </attribute>
-        <attribute type="symbol" size="1" set="1" name="downColor" get="1">
+        <attribute size="1" name="downColor" type="symbol" get="1" set="1">
             <digest/>
         </attribute>
-        <attribute type="symbol" size="1" set="1" name="toggle" get="1">
+        <attribute size="1" name="toggle" type="symbol" get="1" set="1">
             <digest/>
         </attribute>
     </attributelist>
     <methodlist>
-        <method name="color" standard="0">
+        <method standard="0" name="color">
             <arglist>
-                <arg type="symbol" optional="0" name=""/>
+                <arg name="" optional="0" type="symbol"/>
             </arglist>
             <digest/>
         </method>
-        <method name="downColor" standard="0">
+        <method standard="0" name="downColor">
             <arglist>
-                <arg type="symbol" optional="0" name=""/>
+                <arg name="" optional="0" type="symbol"/>
             </arglist>
             <digest/>
         </method>
-        <method name="forceActive" standard="0">
+        <method standard="0" name="forceActive">
             <arglist>
-                <arg type="symbol" optional="0" name=""/>
+                <arg name="" optional="0" type="symbol"/>
             </arglist>
             <digest/>
         </method>
-        <method name="setButton" standard="0">
+        <method standard="0" name="setButton">
             <arglist>
-                <arg type="symbol" optional="0" name=""/>
+                <arg name="" optional="0" type="symbol"/>
             </arglist>
             <digest/>
         </method>
-        <method name="toggle" standard="0">
+        <method standard="0" name="toggle">
             <arglist>
-                <arg type="symbol" optional="0" name=""/>
+                <arg name="" optional="0" type="symbol"/>
             </arglist>
             <digest/>
         </method>

@@ -8,13 +8,13 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry id="0" name="">
+        <entry name="" id="0">
             <digest/>
         </entry>
     </misc>
     <objarglist/>
     <attributelist>
-        <attribute type="symbol" size="1" set="1" name="presentation" get="1">
+        <attribute size="1" name="presentation" type="symbol" get="1" set="1">
             <digest/>
         </attribute>
     </attributelist>

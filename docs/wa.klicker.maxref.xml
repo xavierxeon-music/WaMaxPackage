@@ -8,12 +8,12 @@
     </metadatalist>
     <parser inlet_count="2"/>
     <misc name="Outputs">
-        <entry id="0" name="click">
+        <entry name="click" id="0">
             <digest/>
         </entry>
     </misc>
     <objarglist>
-        <objarg type="symbol" optional="1" name="1">
+        <objarg name="1" optional="1" type="symbol">
             <digest/>
         </objarg>
     </objarglist>

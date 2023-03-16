@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 <c74object name="wa.blocks.autopan~">
-    <digest>Hello World</digest>
+    <digest>autopan</digest>
+    <description>thing</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="3"/>
     <misc name="Outputs">
-        <entry id="1" name="left">
+        <entry name="left" id="1">
             <digest/>
+            <description>the left signal output</description>
         </entry>
-        <entry id="2" name="right">
+        <entry name="right" id="2">
             <digest/>
+            <description>the right signal output</description>
         </entry>
     </misc>
     <objarglist>
-        <objarg type="symbol" optional="1" name="1">
+        <objarg name="1" optional="1" type="int">
             <digest/>
+            <description>with text</description>
         </objarg>
     </objarglist>
     <attributelist/>

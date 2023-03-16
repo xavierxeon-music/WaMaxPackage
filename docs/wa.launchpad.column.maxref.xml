@@ -9,23 +9,23 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry id="1" name="value">
+        <entry name="value" id="1">
             <digest/>
             <description>the current value as selected by a button press or passed on from ther input</description>
         </entry>
     </misc>
     <objarglist>
-        <objarg type="int" optional="1" name="col">
+        <objarg name="col" optional="1" type="int">
             <digest>the column of the launchpad</digest>
             <description>all buttons in this column will be used, including the sytem button</description>
         </objarg>
-        <objarg type="symbol" optional="1" name="color">
+        <objarg name="color" optional="1" type="symbol">
             <digest>the color of  the column</digest>
             <description>For a givven value the corresponding numbers of buttons wioll be light in this color</description>
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute type="int" size="1" set="1" name="initial" get="1">
+        <attribute size="1" name="initial" type="int" get="1" set="1">
             <digest>set the value at launch</digest>
         </attribute>
     </attributelist>
