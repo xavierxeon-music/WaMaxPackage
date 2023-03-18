@@ -1,33 +1,23 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.schverb">
+<c74object name="wa.rack.voct~">
     <digest>Hello World</digest>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="4"/>
+    <parser inlet_count="2"/>
     <misc name="Outputs">
-        <entry name="audioL" id="1">
-            <digest/>
-        </entry>
-        <entry name="audioR" id="2">
+        <entry name="frequency" id="0">
             <digest/>
         </entry>
     </misc>
     <objarglist>
-        <objarg name="1" optional="1" type="symbol">
-            <digest/>
-        </objarg>
-        <objarg name="2" optional="1" type="symbol">
+        <objarg optional="1" type="symbol" name="1">
             <digest/>
         </objarg>
     </objarglist>
-    <attributelist>
-        <attribute size="1" name="cutoff" type="symbol" get="1" set="1">
-            <digest/>
-        </attribute>
-    </attributelist>
+    <attributelist/>
     <methodlist/>
     <seealsolist/>
 </c74object>
