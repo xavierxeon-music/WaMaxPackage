@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.launchpad.column">
+<c74object name="wa.launchpad.column" as_bpatcher="0">
     <digest>Represents values from 0 to 8</digest>
     <description>All buttons of a column of a launchpad mini used to represent values from 0 to 8 (inclusive)<br/><br/>The button will light uo from top to buttom depending on the current value.<br/>If a button is pressed the current value is set and send by the output.<br/><br/>Use the topmost function button to set the value to zero</description>
     <metadatalist>
@@ -15,17 +15,17 @@
         </entry>
     </misc>
     <objarglist>
-        <objarg name="col" optional="1" type="int">
+        <objarg name="col" type="int" optional="1">
             <digest>the column of the launchpad</digest>
             <description>all buttons in this column will be used, including the sytem button</description>
         </objarg>
-        <objarg name="color" optional="1" type="symbol">
+        <objarg name="color" type="symbol" optional="1">
             <digest>the color of  the column</digest>
             <description>For a givven value the corresponding numbers of buttons wioll be light in this color</description>
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute size="1" name="initial" type="int" get="1" set="1">
+        <attribute name="initial" get="1" size="1" type="int" set="1">
             <digest>set the value at launch</digest>
         </attribute>
     </attributelist>

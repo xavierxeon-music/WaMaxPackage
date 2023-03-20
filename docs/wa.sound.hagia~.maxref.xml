@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.sound.hagia~">
-    <digest>Hello World</digest>
+<c74object name="wa.sound.hagia~" as_bpatcher="1">
+    <digest>a ripple oscilator</digest>
+    <description>a clone of XAOC device sophia</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry name="" id="0">
+        <entry name="signal" id="0">
             <digest/>
+            <description>the waveform</description>
         </entry>
     </misc>
     <objarglist/>
-    <attributelist>
-        <attribute size="1" name="presentation" type="symbol" get="1" set="1">
-            <digest/>
-        </attribute>
-    </attributelist>
+    <attributelist/>
     <methodlist/>
     <seealsolist/>
 </c74object>

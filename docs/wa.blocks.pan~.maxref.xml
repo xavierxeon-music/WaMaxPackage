@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.blocks.pan~">
-    <digest>Hello World</digest>
+<c74object name="wa.blocks.pan~" as_bpatcher="0">
+    <digest>pan a mono signal</digest>
+    <description>pans a mono signal to a stereo outpuit</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
@@ -10,13 +11,28 @@
     <misc name="Outputs">
         <entry name="left" id="1">
             <digest/>
+            <description>left signal output</description>
         </entry>
         <entry name="right" id="2">
             <digest/>
+            <description>right signal outpuit</description>
         </entry>
     </misc>
-    <objarglist/>
+    <objarglist>
+        <objarg name="1" type="symbol" optional="1">
+            <digest/>
+        </objarg>
+    </objarglist>
     <attributelist/>
-    <methodlist/>
+    <methodlist>
+        <method name="float" standard="1">
+            <digest/>
+            <description>on right inlent the position of the signal [-1,1]. Center is at 0.</description>
+        </method>
+        <method name="signal" standard="1">
+            <digest/>
+            <description>on right inlet: the signal to be panned.</description>
+        </method>
+    </methodlist>
     <seealsolist/>
 </c74object>

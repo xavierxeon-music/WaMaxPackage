@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.setup.transport_metropolix">
-    <digest>Hello World</digest>
+<c74object name="wa.setup.transport_metropolix" as_bpatcher="0">
+    <digest>transport from metropolix</digest>
+    <description>control the max transport via mid from metropolix</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>

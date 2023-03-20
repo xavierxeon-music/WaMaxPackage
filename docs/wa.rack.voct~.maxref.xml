@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.rack.voct~">
-    <digest>Hello World</digest>
+<c74object name="wa.rack.voct~" as_bpatcher="0">
+    <digest>convert v/oct eurorack to frequency</digest>
+    <description>convert v/oct eurorack to frequency</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
@@ -10,11 +11,13 @@
     <misc name="Outputs">
         <entry name="frequency" id="0">
             <digest/>
+            <description>the frequency corresponding to the input voltage</description>
         </entry>
     </misc>
     <objarglist>
-        <objarg optional="1" type="symbol" name="1">
-            <digest/>
+        <objarg name="voltage" type="signal" optional="1">
+            <digest>the voltage from eurorack</digest>
+            <description>the voltage from eurorack</description>
         </objarg>
     </objarglist>
     <attributelist/>

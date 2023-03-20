@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.midi.print">
-    <digest>Hello World</digest>
+<c74object name="wa.midi.print" as_bpatcher="0">
+    <digest>print midi devices name </digest>
+    <description>prints all available midi inputs and outputs to the console</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.rack.tick~">
-    <digest>Hello World</digest>
+<c74object name="wa.rack.tick~" as_bpatcher="0">
+    <digest>convert a eurorack trigger </digest>
+    <description>convert a eurorack trigger to max </description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
@@ -10,16 +11,24 @@
     <misc name="Outputs">
         <entry name="bang" id="1">
             <digest/>
+            <description>a bang for each tick</description>
         </entry>
         <entry name="intervall" id="2">
             <digest/>
+            <description>the intervall between ticks</description>
         </entry>
         <entry name="bpm" id="3">
             <digest/>
+            <description>the estimated bpm from the ticks</description>
         </entry>
     </misc>
     <objarglist/>
     <attributelist/>
-    <methodlist/>
+    <methodlist>
+        <method name="signal" standard="1">
+            <digest/>
+            <description>the trigger from eurorack</description>
+        </method>
+    </methodlist>
     <seealsolist/>
 </c74object>
