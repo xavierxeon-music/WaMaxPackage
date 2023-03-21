@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.push2.button" as_bpatcher="0">
+<c74object as_bpatcher="0" name="wa.push2.button">
     <digest>a button on a push device</digest>
     <description>a button on a push device</description>
     <metadatalist>
@@ -20,50 +20,50 @@
         </entry>
     </misc>
     <objarglist>
-        <objarg name="name" type="symbol" optional="1">
+        <objarg name="name" optional="1" type="symbol">
             <digest>the name of the button</digest>
             <description>the name of the button. see <o>wa.push.device~</o> for details</description>
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute name="color" get="1" size="1" type="symbol" set="1">
+        <attribute get="1" set="1" name="color" type="symbol" size="1">
             <digest/>
         </attribute>
-        <attribute name="downColor" get="1" size="1" type="symbol" set="1">
+        <attribute get="1" set="1" name="downColor" type="symbol" size="1">
             <digest/>
         </attribute>
-        <attribute name="toggle" get="1" size="1" type="symbol" set="1">
+        <attribute get="1" set="1" name="toggle" type="symbol" size="1">
             <digest/>
         </attribute>
     </attributelist>
     <methodlist>
-        <method name="color" standard="0">
+        <method standard="0" name="color">
             <arglist>
-                <arg name="" type="symbol" optional="0"/>
+                <arg name="" optional="0" type="symbol"/>
             </arglist>
             <digest/>
         </method>
-        <method name="downColor" standard="0">
+        <method standard="0" name="downColor">
             <arglist>
-                <arg name="" type="symbol" optional="0"/>
+                <arg name="" optional="0" type="symbol"/>
             </arglist>
             <digest/>
         </method>
-        <method name="forceActive" standard="0">
+        <method standard="0" name="forceActive">
             <arglist>
-                <arg name="" type="symbol" optional="0"/>
+                <arg name="" optional="0" type="symbol"/>
             </arglist>
             <digest/>
         </method>
-        <method name="setButton" standard="0">
+        <method standard="0" name="setButton">
             <arglist>
-                <arg name="" type="symbol" optional="0"/>
+                <arg name="" optional="0" type="symbol"/>
             </arglist>
             <digest/>
         </method>
-        <method name="toggle" standard="0">
+        <method standard="0" name="toggle">
             <arglist>
-                <arg name="" type="symbol" optional="0"/>
+                <arg name="" optional="0" type="symbol"/>
             </arglist>
             <digest/>
         </method>

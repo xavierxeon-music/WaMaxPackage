@@ -1,2 +1,2 @@
 max objectfile wa.sound.hagia~ wa.sound.hagia~;
-max definesubstitution wa.sound.hagia~ bpatcher @openinpresentation 1 @name wa.sound.hagia~.maxpat;
+max definesubstitution wa.sound.hagia~ bpatcher @name wa.sound.hagia~.maxpat;

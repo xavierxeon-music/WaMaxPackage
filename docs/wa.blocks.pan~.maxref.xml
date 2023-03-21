@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.blocks.pan~" as_bpatcher="0">
+<c74object as_bpatcher="0" name="wa.blocks.pan~">
     <digest>pan a mono signal</digest>
     <description>pans a mono signal to a stereo outpuit</description>
     <metadatalist>
@@ -19,17 +19,18 @@
         </entry>
     </misc>
     <objarglist>
-        <objarg name="1" type="symbol" optional="1">
-            <digest/>
+        <objarg name="pan" optional="1" type="float">
+            <digest>set the pan</digest>
+            <description>set the pan in range [-1. 1.]</description>
         </objarg>
     </objarglist>
     <attributelist/>
     <methodlist>
-        <method name="float" standard="1">
+        <method standard="1" name="float">
             <digest/>
             <description>on right inlent the position of the signal [-1,1]. Center is at 0.</description>
         </method>
-        <method name="signal" standard="1">
+        <method standard="1" name="signal">
             <digest/>
             <description>on right inlet: the signal to be panned.</description>
         </method>

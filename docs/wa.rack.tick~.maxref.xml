@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.rack.tick~" as_bpatcher="0">
+<c74object as_bpatcher="0" name="wa.rack.tick~">
     <digest>convert a eurorack trigger </digest>
     <description>convert a eurorack trigger to max </description>
     <metadatalist>
@@ -25,7 +25,7 @@
     <objarglist/>
     <attributelist/>
     <methodlist>
-        <method name="signal" standard="1">
+        <method standard="1" name="signal">
             <digest/>
             <description>the trigger from eurorack</description>
         </method>

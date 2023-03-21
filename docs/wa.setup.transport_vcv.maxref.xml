@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.setup.transport_vcv" as_bpatcher="0">
+<c74object as_bpatcher="0" name="wa.setup.transport_vcv">
     <digest>transport from vcv rack</digest>
     <description>controll the max transport from vcv rack</description>
     <metadatalist>
@@ -17,7 +17,7 @@
     <objarglist/>
     <attributelist/>
     <methodlist>
-        <method name="signal" standard="1">
+        <method standard="1" name="signal">
             <digest/>
             <description>on left input: the 16th note tick<br/>on middle input: reset the transport<br/>on right input: start / stop the transport</description>
         </method>

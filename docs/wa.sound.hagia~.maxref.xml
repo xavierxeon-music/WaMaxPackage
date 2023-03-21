@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.sound.hagia~" as_bpatcher="1">
+<c74object as_bpatcher="1" name="wa.sound.hagia~">
     <digest>a ripple oscilator</digest>
     <description>a clone of XAOC device sophia</description>
     <metadatalist>

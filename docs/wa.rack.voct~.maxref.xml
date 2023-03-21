@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.rack.voct~" as_bpatcher="0">
+<c74object as_bpatcher="0" name="wa.rack.voct~">
     <digest>convert v/oct eurorack to frequency</digest>
     <description>convert v/oct eurorack to frequency</description>
     <metadatalist>
@@ -15,7 +15,7 @@
         </entry>
     </misc>
     <objarglist>
-        <objarg name="voltage" type="signal" optional="1">
+        <objarg name="voltage" optional="1" type="signal">
             <digest>the voltage from eurorack</digest>
             <description>the voltage from eurorack</description>
         </objarg>
