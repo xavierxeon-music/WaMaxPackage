@@ -19,9 +19,13 @@ var colorNames = {
    white: "ffffff"
 };
 var indexBuffer = {};
-var white_index = 0;
+var whiteIndex = 0;
 
 function loadbang() {
+
+   const white = new Color("ffffff");
+   whiteIndex = findNearestMatchInColorList(white);
+   indexBuffer[white.hex] = whiteIndex;
 
    var text = "";
    var file = new File(jsarguments[1], "read");
@@ -29,11 +33,8 @@ function loadbang() {
       text += file.readline();
    }
    file.close();
-
    colorList = JSON.parse(text);
 
-   white_index = findNearestMatchInColorList("ffffff");
-   indexBuffer["ffffff"] = white_index;
    for (var index = 0; index < colorList.length; index += 1) {
 
       const color = colorList[index];
@@ -43,83 +44,33 @@ function loadbang() {
 
 function list(id, inColor) {
 
-   var color_index = white_index;
-   var color = inColor;
+   var color_index = whiteIndex;
+   var color = new Color(inColor);
 
-   if (color in colorNames)
-      color = colorNames[color];
-
-   if (isHex(color))
-      color_index = findNearestMatchInColorList(color);
+   var color_index = findNearestMatchInColorList(color);
 
    // post(inColor, color, color_index, "\n");
 
    outlet(0, [id, color_index]);
 }
 
-// str match not workling!
-function isHex(color) {
-
-   if (color.length != 6)
-      return false;
-
-   for (var index = 0; index < 6; index += 1) {
-
-      var test = color[index];
-      switch (test) {
-         case "0":
-         case "1":
-         case "2":
-         case "3":
-         case "4":
-         case "5":
-         case "6":
-         case "7":
-         case "8":
-         case "9":
-         case "a":
-         case "b":
-         case "c":
-         case "d":
-         case "e":
-         case "f":
-            continue;
-         default:
-            return false;
-      }
-   }
-
-   return true;
-}
-isHex.local = 1;
-
 function findNearestMatchInColorList(color) {
 
    if (colorList.length === 0) // need colorList to work with
-      return 0;
+      return whiteIndex;
 
-   if (color in indexBuffer)
-      return indexBuffer[color];
+   if (color.hex in indexBuffer)
+      return indexBuffer[color.hex];
 
-   var color_index = 0;
-
-   const color_red = parseInt(color.substring(0, 2), 16);
-   const color_green = parseInt(color.substring(2, 4), 16);
-   const color_blue = parseInt(color.substring(4, 6), 16);
+   var color_index = whiteIndex;
 
    var minDistance = 0;
    for (var index = 0; index < colorList.length; index += 1) {
 
       const test = colorList[index];
-      const test_red = parseInt(test.substring(0, 2), 16);
-      const test_green = parseInt(test.substring(2, 4), 16);
-      const test_blue = parseInt(test.substring(4, 6), 16);
+      const rgb = new Color(test);
 
-      const diff_red = color_red - test_red;
-      const diff_green = color_green - test_green;
-      const diff_blue = color_blue - test_blue;
-
-      const distance = diff_red * diff_red + diff_green * diff_green + diff_blue * diff_blue;
+      const distance = color.distance(rgb);
 
       if (0 === index || distance < minDistance) {
          minDistance = distance;
@@ -129,7 +80,7 @@ function findNearestMatchInColorList(color) {
 
    //post("MATCH", color , color_index, "\n");
 
-   indexBuffer[color] = color_index;
+   indexBuffer[color.hex] = color_index;
    return color_index;
 }
 findNearestMatchInColorList.local = 1;

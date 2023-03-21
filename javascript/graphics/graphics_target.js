@@ -54,7 +54,7 @@ function bang() {
 
 function setDeviceName(name) {
    deviceName = name;
-   post("set target device name", deviceName, "\n");
+   // post("set target device name", deviceName, "\n");
 }
 
 function getColor(text) {
