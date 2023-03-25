@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.sound.hagia~" as_bpatcher="1">
-    <digest>a ripple oscilator</digest>
-    <description>a clone of XAOC device sophia</description>
+<c74object name="wa.graphics.hex_color" as_bpatcher="0">
+    <digest>convert RGB liost to hex symbol</digest>
+    <description>convert RGB liost to hex symbol</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
@@ -10,13 +10,18 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry name="signal" id="0">
+        <entry name="hex_color" id="1">
             <digest/>
-            <description>the waveform</description>
+            <description>the hex color</description>
         </entry>
     </misc>
     <objarglist/>
     <attributelist/>
-    <methodlist/>
+    <methodlist>
+        <method name="list" standard="1">
+            <digest/>
+            <description>the RGB color as 3 floats in range [0,1]</description>
+        </method>
+    </methodlist>
     <seealsolist/>
 </c74object>

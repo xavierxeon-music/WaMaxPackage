@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="0" name="wa.launchpad.column">
+<c74object name="wa.launchpad.column" as_bpatcher="0">
     <digest>Represents values from 0 to 8</digest>
     <description>All buttons of a column of a launchpad mini used to represent values from 0 to 8 (inclusive)<br/><br/>The button will light uo from top to buttom depending on the current value.<br/>If a button is pressed the current value is set and send by the output.<br/><br/>Use the topmost function button to set the value to zero</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
+        <metadata name="tag">WaMaxPackage</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="1"/>
@@ -25,7 +26,7 @@
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute get="1" set="1" name="initial" type="int" size="1">
+        <attribute size="1" name="initial" get="1" type="int" set="1">
             <digest>set the value at launch</digest>
         </attribute>
     </attributelist>

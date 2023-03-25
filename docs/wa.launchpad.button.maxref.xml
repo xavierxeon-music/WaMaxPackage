@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="0" name="wa.launchpad.button">
+<c74object name="wa.launchpad.button" as_bpatcher="0">
     <digest>lauchpad button</digest>
     <description>Interact with a single button of a Novation Launchpad Mini.<br/>Can be used in 2 modes: click and toggle.<br/><br/><i>"click"</i> is active for as long as the button is pressed.<br/><i>"toggle"</i> is active between to consecutive button presses.<br/><br/><b>Needs</b> a <o>wa.launchpad.device</o></description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
+        <metadata name="tag">WaMaxPackage</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
         <metadata name="tag">Hardware</metadata>
         <metadata name="tag">Midi</metadata>
@@ -31,49 +32,49 @@
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute get="1" set="1" name="color" type="int" size="1">
+        <attribute size="1" name="color" get="1" type="int" set="1">
             <digest>the color of the inactive pad</digest>
             <description>set the color of the inactive pad.<br/>see the <m>color</m> message for overview of colors</description>
         </attribute>
-        <attribute get="1" set="1" name="downColor" type="int" size="1">
+        <attribute size="1" name="downColor" get="1" type="int" set="1">
             <digest>the color of the active pad</digest>
             <description>set the color of the active pad.<br/>see the <m>color</m> message for overview of colors</description>
         </attribute>
-        <attribute get="1" set="1" name="toggle" type="int" size="1">
+        <attribute size="1" name="toggle" get="1" type="int" set="1">
             <digest>make this a toggle pad</digest>
             <description>set to 1 to make this a toggle pad</description>
         </attribute>
     </attributelist>
     <methodlist>
-        <method standard="0" name="color">
+        <method name="color" standard="0">
             <arglist>
                 <arg name="id" optional="0" type="int"/>
             </arglist>
             <digest>the color of the inactive pad</digest>
             <description>set the color of the inactive pad.<br/>accepts RGB hex values<br/>            </description>
         </method>
-        <method standard="0" name="downColor">
+        <method name="downColor" standard="0">
             <arglist>
                 <arg name="id" optional="0" type="int"/>
             </arglist>
             <digest>the color of the active pad</digest>
             <description>the color of the active pad<br/>accepts RGB hex values</description>
         </method>
-        <method standard="0" name="forceActive">
+        <method name="forceActive" standard="0">
             <arglist>
                 <arg name="id" optional="0" type="int"/>
             </arglist>
             <digest>force the active status</digest>
             <description> force the active state of the pad.<br/>not really relevant for a clickable pad.</description>
         </method>
-        <method standard="0" name="setButton">
+        <method name="setButton" standard="0">
             <arglist>
                 <arg name="id" optional="0" type="int"/>
             </arglist>
             <digest>set the midi ID of the pad</digest>
             <description>Set the midi ID of the pad<br/><br/>The button IDs are as follows:<br/><br/>91 92 93 94 95 96 97 98 xx <br/>81 ...<br/>71 ...<br/>61 ...<br/>51 ...<br/>41 ...<br/>31 ...<br/>21 ...<br/>11 12 13 14 15 16 17 18 19</description>
         </method>
-        <method standard="0" name="toggle">
+        <method name="toggle" standard="0">
             <arglist>
                 <arg name="id" optional="0" type="int"/>
             </arglist>

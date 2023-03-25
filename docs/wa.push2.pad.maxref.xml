@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="0" name="wa.push2.pad">
+<c74object name="wa.push2.pad" as_bpatcher="0">
     <digest>a pad on a push device</digest>
     <description>a pad on a push device</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
+        <metadata name="tag">WaMaxPackage</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
         <entry name="active" id="1">
             <digest/>
+            <description>In <i>"click"</i>mode active is 1 for as long as the pad is pressed.<br/>In <i>"toggle"</i> mode active is 1 between to consecutive pad presses.</description>
         </entry>
         <entry name="pressed" id="2">
             <digest/>
+            <description>bang when pad is pressed.</description>
         </entry>
         <entry name="released" id="3">
             <digest/>
+            <description>bang when pad is released.</description>
         </entry>
     </misc>
     <objarglist>
@@ -26,46 +30,54 @@
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute get="1" set="1" name="color" type="symbol" size="1">
-            <digest/>
+        <attribute size="1" name="color" get="1" type="symbol" set="1">
+            <digest>color of the pad</digest>
+            <description>rgb hex color of the pad, default is  ffffff</description>
         </attribute>
-        <attribute get="1" set="1" name="downColor" type="symbol" size="1">
-            <digest/>
+        <attribute size="1" name="downColor" get="1" type="symbol" set="1">
+            <digest>color of the pressed pad</digest>
+            <description>rgb hex color of the pad, default is  blue</description>
         </attribute>
-        <attribute get="1" set="1" name="toggle" type="symbol" size="1">
-            <digest/>
+        <attribute size="1" name="toggle" get="1" type="symbol" set="1">
+            <digest>make this a toggle pad</digest>
+            <description>make this a toggle pad, default is 0</description>
         </attribute>
     </attributelist>
     <methodlist>
-        <method standard="0" name="color">
+        <method name="color" standard="0">
             <arglist>
                 <arg name="" optional="0" type="symbol"/>
             </arglist>
-            <digest/>
+            <digest>color of the pad</digest>
+            <description>rgb hex color of the pad, default is  ffffff</description>
         </method>
-        <method standard="0" name="downColor">
+        <method name="downColor" standard="0">
             <arglist>
                 <arg name="" optional="0" type="symbol"/>
             </arglist>
-            <digest/>
+            <digest>color of the pressed pad</digest>
+            <description>rgb hex color of the pad, default is  blue</description>
         </method>
-        <method standard="0" name="forceActive">
+        <method name="forceActive" standard="0">
             <arglist>
                 <arg name="" optional="0" type="symbol"/>
             </arglist>
-            <digest/>
+            <digest>force the active state</digest>
+            <description>force the active state</description>
         </method>
-        <method standard="0" name="setPad">
+        <method name="setPad" standard="0">
             <arglist>
                 <arg name="" optional="0" type="symbol"/>
             </arglist>
-            <digest/>
+            <digest>set the pad id</digest>
+            <description>set the pad id</description>
         </method>
-        <method standard="0" name="toggle">
+        <method name="toggle" standard="0">
             <arglist>
                 <arg name="" optional="0" type="symbol"/>
             </arglist>
-            <digest/>
+            <digest>make this a toggle pad</digest>
+            <description>make this a toggle pad, default 0</description>
         </method>
     </methodlist>
     <seealsolist/>

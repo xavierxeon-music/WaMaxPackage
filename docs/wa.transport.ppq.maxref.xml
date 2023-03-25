@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.sound.hagia~" as_bpatcher="1">
-    <digest>a ripple oscilator</digest>
-    <description>a clone of XAOC device sophia</description>
+<c74object name="wa.transport.ppq" as_bpatcher="0">
+    <digest>time for live.step</digest>
+    <description>query transport and prepere PPQ message for <o>live.step</o></description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="1"/>
+    <parser inlet_count="0"/>
     <misc name="Outputs">
-        <entry name="signal" id="0">
+        <entry name="PPQ" id="1">
             <digest/>
-            <description>the waveform</description>
+            <description>the PPQ message for <o>live.step</o></description>
         </entry>
     </misc>
     <objarglist/>

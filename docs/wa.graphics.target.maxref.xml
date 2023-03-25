@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="0" name="wa.graphics.target">
-    <digest>Hello World</digest>
+<c74object name="wa.graphics.target" as_bpatcher="0">
+    <digest>a graphics target</digest>
+    <description>a graphics target</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
+        <metadata name="tag">WaMaxPackage</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="0"/>
     <misc name="Outputs">
-        <entry name="" id="1">
+        <entry name="matrix" id="0">
             <digest/>
+            <description>the jit matrix</description>
         </entry>
     </misc>
     <objarglist>
-        <objarg name="1" optional="1" type="symbol">
-            <digest/>
+        <objarg name="width" optional="1" type="int">
+            <digest>the width of the target</digest>
+            <description>the width of the target</description>
         </objarg>
-        <objarg name="2" optional="1" type="symbol">
-            <digest/>
+        <objarg name="height" optional="1" type="int">
+            <digest>the height of the target</digest>
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute get="1" set="1" name="deviceName" type="symbol" size="1">
-            <digest/>
+        <attribute size="1" name="deviceName" get="1" type="symbol" set="1">
+            <digest>targer device name</digest>
+            <description>must be same devcieName as the <o>wa.graphics.target</o></description>
         </attribute>
     </attributelist>
     <methodlist/>
