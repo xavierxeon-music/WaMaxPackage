@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.graphics.hex_color" as_bpatcher="0">
+<c74object as_bpatcher="0" name="wa.graphics.hex_color">
     <digest>convert RGB liost to hex symbol</digest>
     <description>convert RGB liost to hex symbol</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
-        <metadata name="tag">WaMaxPackage</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="1"/>
@@ -18,7 +17,7 @@
     <objarglist/>
     <attributelist/>
     <methodlist>
-        <method name="list" standard="1">
+        <method standard="1" name="list">
             <digest/>
             <description>the RGB color as 3 floats in range [0,1]</description>
         </method>

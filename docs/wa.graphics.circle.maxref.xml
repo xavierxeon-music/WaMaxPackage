@@ -1,75 +1,74 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.graphics.circle" as_bpatcher="0">
+<c74object as_bpatcher="0" name="wa.graphics.circle">
     <digest>draw a circle</digest>
     <description>draw a box on a <o>wa.graphics.target</o></description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
-        <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs"/>
     <objarglist>
-        <objarg name="1" optional="1" type="int">
+        <objarg optional="1" type="int" name="1">
             <digest>x position</digest>
             <description>the x position of the center</description>
         </objarg>
-        <objarg name="2" optional="1" type="symbol">
+        <objarg optional="1" type="symbol" name="2">
             <digest>y position</digest>
             <description>the y position of the center</description>
         </objarg>
-        <objarg name="3" optional="1" type="int">
+        <objarg optional="1" type="int" name="3">
             <digest>radius</digest>
             <description>the radius of the circle</description>
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute size="1" name="color" get="1" type="symbol" set="1">
+        <attribute set="1" get="1" type="symbol" name="color" size="1">
             <digest>color</digest>
             <description>rgb hex color of the box, default is  ffffff</description>
         </attribute>
-        <attribute size="1" name="deviceName" get="1" type="symbol" set="1">
+        <attribute set="1" get="1" type="symbol" name="deviceName" size="1">
             <digest>targer device name</digest>
             <description>must be same devcieName as the <o>wa.graphics.target</o></description>
         </attribute>
-        <attribute size="1" name="fill" get="1" type="int" set="1">
+        <attribute set="1" get="1" type="int" name="fill" size="1">
             <digest>fillt the box</digest>
             <description>set to 1 if box is to be filled. default is 1</description>
         </attribute>
     </attributelist>
     <methodlist>
-        <method name="color" standard="0">
+        <method standard="0" name="color">
             <arglist>
-                <arg name="" optional="0" type="symbol"/>
+                <arg optional="0" type="symbol" name=""/>
             </arglist>
             <digest>color</digest>
             <description>rgb hex color of the box, default is  ffffff</description>
         </method>
-        <method name="fill" standard="0">
+        <method standard="0" name="fill">
             <arglist>
-                <arg name="" optional="0" type="int"/>
+                <arg optional="0" type="int" name=""/>
             </arglist>
             <digest>fillt the box</digest>
             <description>set to 1 if box is to be filled. </description>
         </method>
-        <method name="radius" standard="0">
+        <method standard="0" name="radius">
             <arglist>
-                <arg name="" optional="0" type="symbol"/>
+                <arg optional="0" type="symbol" name=""/>
             </arglist>
             <digest>radius</digest>
             <description>set the radius of the circle</description>
         </method>
-        <method name="x" standard="0">
+        <method standard="0" name="x">
             <arglist>
-                <arg name="" optional="0" type="symbol"/>
+                <arg optional="0" type="symbol" name=""/>
             </arglist>
             <digest>x position</digest>
             <description>set the x position of the center</description>
         </method>
-        <method name="y" standard="0">
+        <method standard="0" name="y">
             <arglist>
-                <arg name="" optional="0" type="symbol"/>
+                <arg optional="0" type="symbol" name=""/>
             </arglist>
             <digest>y position</digest>
             <description>the y position of the center</description>
