@@ -15,16 +15,16 @@
         </entry>
     </misc>
     <objarglist>
-        <objarg optional="1" type="int" name="width">
+        <objarg optional="1" name="width" type="int">
             <digest>the width of the target</digest>
             <description>the width of the target</description>
         </objarg>
-        <objarg optional="1" type="int" name="height">
+        <objarg optional="1" name="height" type="int">
             <digest>the height of the target</digest>
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute set="1" get="1" type="symbol" name="deviceName" size="1">
+        <attribute size="1" get="1" name="deviceName" set="1" type="symbol">
             <digest>targer device name</digest>
             <description>must be same devcieName as the <o>wa.graphics.target</o></description>
         </attribute>

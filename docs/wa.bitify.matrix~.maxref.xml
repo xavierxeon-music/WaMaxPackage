@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="0" name="wa.bitify.signal~">
-    <digest>turn a byte into a signal</digest>
-    <description>turn a byte into a signal<br/><br/>and imitation of the left right  of a XAOC Device Drezno</description>
+<c74object as_bpatcher="1" name="wa.bitify.matrix~">
+    <digest>route bytes</digest>
+    <description>route bytes</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="1"/>
+    <parser inlet_count="2"/>
     <misc name="Outputs">
-        <entry name="signal" id="1">
+        <entry name="byte" id="1">
             <digest/>
-            <description>the signal</description>
+            <description>byte</description>
         </entry>
     </misc>
     <objarglist/>
@@ -19,7 +19,7 @@
     <methodlist>
         <method standard="1" name="signal">
             <digest/>
-            <description>Bit 1 (127) to bit 8 (1)</description>
+            <description>mc singal for byte</description>
         </method>
     </methodlist>
     <seealsolist/>

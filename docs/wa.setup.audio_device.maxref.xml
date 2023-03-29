@@ -10,17 +10,17 @@
     <parser inlet_count="2"/>
     <misc name="Outputs"/>
     <objarglist>
-        <objarg optional="1" type="symbol" name="device">
+        <objarg optional="1" name="device" type="symbol">
             <digest>the name of the device</digest>
             <description>the name of the device as given in the system settings.<br/><br/>default is "BlackHole 64ch"<br/></description>
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute set="1" get="1" type="int" name="auto_start" size="1">
+        <attribute size="1" get="1" name="auto_start" set="1" type="int">
             <digest>automatically start the device</digest>
             <description>automatically start the device<br/><br/>default is true</description>
         </attribute>
-        <attribute set="1" get="1" type="int" name="input_enabled" size="1">
+        <attribute size="1" get="1" name="input_enabled" set="1" type="int">
             <digest>enable the input</digest>
             <description>enable the input<br/><br/>default is true</description>
         </attribute>

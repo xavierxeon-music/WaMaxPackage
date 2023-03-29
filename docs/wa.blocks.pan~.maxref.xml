@@ -19,7 +19,7 @@
         </entry>
     </misc>
     <objarglist>
-        <objarg optional="1" type="float" name="pan">
+        <objarg optional="1" name="pan" type="float">
             <digest>set the pan</digest>
             <description>set the pan in range [-1. 1.]</description>
         </objarg>

@@ -15,17 +15,17 @@
         </entry>
     </misc>
     <objarglist>
-        <objarg optional="1" type="int" name="col">
+        <objarg optional="1" name="col" type="int">
             <digest>the column of the launchpad</digest>
             <description>all buttons in this column will be used, including the sytem button</description>
         </objarg>
-        <objarg optional="1" type="symbol" name="color">
+        <objarg optional="1" name="color" type="symbol">
             <digest>the color of  the column</digest>
             <description>For a givven value the corresponding numbers of buttons wioll be light in this color</description>
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute set="1" get="1" type="int" name="initial" size="1">
+        <attribute size="1" get="1" name="initial" set="1" type="int">
             <digest>set the value at launch</digest>
         </attribute>
     </attributelist>

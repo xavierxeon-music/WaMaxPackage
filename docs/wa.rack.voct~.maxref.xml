@@ -15,7 +15,7 @@
         </entry>
     </misc>
     <objarglist>
-        <objarg optional="1" type="signal" name="voltage">
+        <objarg optional="1" name="voltage" type="signal">
             <digest>the voltage from eurorack</digest>
             <description>the voltage from eurorack</description>
         </objarg>

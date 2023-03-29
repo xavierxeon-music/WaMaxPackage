@@ -14,27 +14,27 @@
     <methodlist>
         <method standard="0" name="off">
             <arglist>
-                <arg optional="0" type="symbol" name=""/>
+                <arg optional="0" name="" type="symbol"/>
             </arglist>
             <digest>turn launchpad off</digest>
             <description>turn launchpad off</description>
         </method>
         <method standard="0" name="on">
             <arglist>
-                <arg optional="0" type="symbol" name=""/>
+                <arg optional="0" name="" type="symbol"/>
             </arglist>
             <digest>turn laucnpad on</digest>
         </method>
         <method standard="0" name="printColors">
             <arglist>
-                <arg optional="0" type="symbol" name=""/>
+                <arg optional="0" name="" type="symbol"/>
             </arglist>
             <digest>print available color symbols</digest>
             <description>print available color symbols</description>
         </method>
         <method standard="0" name="reset">
             <arglist>
-                <arg optional="0" type="symbol" name=""/>
+                <arg optional="0" name="" type="symbol"/>
             </arglist>
             <digest>reset the launchpad</digest>
             <description>reset the launchpad</description>

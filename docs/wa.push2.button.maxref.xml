@@ -23,21 +23,21 @@
         </entry>
     </misc>
     <objarglist>
-        <objarg optional="1" type="symbol" name="name">
+        <objarg optional="1" name="name" type="symbol">
             <digest>the name of the button</digest>
             <description>the name of the button. see <o>wa.push.device~</o> for details</description>
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute set="1" get="1" type="symbol" name="color" size="1">
+        <attribute size="1" get="1" name="color" set="1" type="symbol">
             <digest>color of the button</digest>
             <description>rgb hex color of the button, default is  green</description>
         </attribute>
-        <attribute set="1" get="1" type="symbol" name="downColor" size="1">
+        <attribute size="1" get="1" name="downColor" set="1" type="symbol">
             <digest>color of the pressed button</digest>
             <description>rgb hex color of the button, default is  blue</description>
         </attribute>
-        <attribute set="1" get="1" type="int" name="toggle" size="1">
+        <attribute size="1" get="1" name="toggle" set="1" type="int">
             <digest>make this a toggle button</digest>
             <description>make this a toggle button, default 0</description>
         </attribute>
@@ -45,35 +45,35 @@
     <methodlist>
         <method standard="0" name="color">
             <arglist>
-                <arg optional="0" type="symbol" name=""/>
+                <arg optional="0" name="" type="symbol"/>
             </arglist>
             <digest>color of the button</digest>
             <description>rgb hex color of the button, default is  ffffff</description>
         </method>
         <method standard="0" name="downColor">
             <arglist>
-                <arg optional="0" type="symbol" name=""/>
+                <arg optional="0" name="" type="symbol"/>
             </arglist>
             <digest>color of the pressed button</digest>
             <description>rgb hex color of the button, default is  blue</description>
         </method>
         <method standard="0" name="forceActive">
             <arglist>
-                <arg optional="0" type="int" name=""/>
+                <arg optional="0" name="" type="int"/>
             </arglist>
             <digest>force the active state</digest>
             <description>force the active state</description>
         </method>
         <method standard="0" name="setButton">
             <arglist>
-                <arg optional="0" type="symbol" name=""/>
+                <arg optional="0" name="" type="symbol"/>
             </arglist>
             <digest>set the button id</digest>
             <description>set the button id</description>
         </method>
         <method standard="0" name="toggle">
             <arglist>
-                <arg optional="0" type="int" name=""/>
+                <arg optional="0" name="" type="int"/>
             </arglist>
             <digest>make this a toggle button</digest>
             <description>make this a toggle button, default 0</description>

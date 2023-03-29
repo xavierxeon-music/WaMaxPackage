@@ -25,21 +25,21 @@
         </entry>
     </misc>
     <objarglist>
-        <objarg optional="0" type="int" name="id">
+        <objarg optional="0" name="id" type="int">
             <digest>The midi ID of the pad</digest>
             <description>Set the midi ID of the pad.<br/><br/>see <m>setButton</m> for details.</description>
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute set="1" get="1" type="int" name="color" size="1">
+        <attribute size="1" get="1" name="color" set="1" type="int">
             <digest>the color of the inactive pad</digest>
             <description>set the color of the inactive pad.<br/>see the <m>color</m> message for overview of colors</description>
         </attribute>
-        <attribute set="1" get="1" type="int" name="downColor" size="1">
+        <attribute size="1" get="1" name="downColor" set="1" type="int">
             <digest>the color of the active pad</digest>
             <description>set the color of the active pad.<br/>see the <m>color</m> message for overview of colors</description>
         </attribute>
-        <attribute set="1" get="1" type="int" name="toggle" size="1">
+        <attribute size="1" get="1" name="toggle" set="1" type="int">
             <digest>make this a toggle pad</digest>
             <description>set to 1 to make this a toggle pad</description>
         </attribute>
@@ -47,35 +47,35 @@
     <methodlist>
         <method standard="0" name="color">
             <arglist>
-                <arg optional="0" type="int" name="id"/>
+                <arg optional="0" name="id" type="int"/>
             </arglist>
             <digest>the color of the inactive pad</digest>
             <description>set the color of the inactive pad.<br/>accepts RGB hex values<br/>            </description>
         </method>
         <method standard="0" name="downColor">
             <arglist>
-                <arg optional="0" type="int" name="id"/>
+                <arg optional="0" name="id" type="int"/>
             </arglist>
             <digest>the color of the active pad</digest>
             <description>the color of the active pad<br/>accepts RGB hex values</description>
         </method>
         <method standard="0" name="forceActive">
             <arglist>
-                <arg optional="0" type="int" name="id"/>
+                <arg optional="0" name="id" type="int"/>
             </arglist>
             <digest>force the active status</digest>
             <description> force the active state of the pad.<br/>not really relevant for a clickable pad.</description>
         </method>
         <method standard="0" name="setButton">
             <arglist>
-                <arg optional="0" type="int" name="id"/>
+                <arg optional="0" name="id" type="int"/>
             </arglist>
             <digest>set the midi ID of the pad</digest>
             <description>Set the midi ID of the pad<br/><br/>The button IDs are as follows:<br/><br/>91 92 93 94 95 96 97 98 xx <br/>81 ...<br/>71 ...<br/>61 ...<br/>51 ...<br/>41 ...<br/>31 ...<br/>21 ...<br/>11 12 13 14 15 16 17 18 19</description>
         </method>
         <method standard="0" name="toggle">
             <arglist>
-                <arg optional="0" type="int" name="id"/>
+                <arg optional="0" name="id" type="int"/>
             </arglist>
             <digest>make this a toggle pad</digest>
             <description>set to 1 to make this button a toggle</description>
