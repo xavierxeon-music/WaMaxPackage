@@ -6,21 +6,21 @@
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
-        <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="2"/>
     <misc name="Outputs">
         <entry name="byte" id="0">
             <digest/>
-            <description>byte</description>
+            <description>mc signal for byte</description>
         </entry>
     </misc>
     <objarglist/>
     <attributelist/>
     <methodlist>
-        <method standard="1" name="signal">
+
+        <method name="mc.signal" standard="1">
             <digest/>
-            <description>mc singal for byte</description>
+            <description>mc signal for byte</description>
         </method>
     </methodlist>
     <seealsolist/>
