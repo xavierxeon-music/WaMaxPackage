@@ -14,7 +14,7 @@ function loadbang() {
 
 function bang() {
 
-   resizerHandle.delayedResize();
+   resizerHandle.execute();
 }
 
 function bPatcherResize() {
@@ -23,6 +23,25 @@ function bPatcherResize() {
    var contentPatch = patcher.parentpatcher;
    //post(contentPatch.name, contentPatch.wind.title, contentPatch.maxclass, "\n");
    contentPatch.setattr("presentation", 1);
+
+   this.execute = function () {
+
+      var size = this._compileContentSize();
+
+      var bpatcherList = this._findBPatchers();
+      for (var index = 0; index < bpatcherList.length; index++) {
+
+         var bpatcher = bpatcherList[index];
+         if (null === bpatcher)
+            return;
+
+         var boxSize = bpatcher.getboxattr("patching_rect");
+         boxSize[2] = size[0];
+         boxSize[3] = size[1];
+         bpatcher.setboxattr("patching_rect", boxSize);
+
+      }
+   }
 
    this._compileContentSize = function () {
 
@@ -67,40 +86,31 @@ function bPatcherResize() {
       return [width, height];
    }
 
-   this._findBPatcher = function () {
+   this._findBPatchers = function () {
 
       var includingPatch = contentPatch.parentpatcher;
       //post(includingPatch.name, includingPatch.wind.title, includingPatch.maxclass, "\n");
 
+      var bpatcherList = [];
       for (var child = includingPatch.firstobject; child !== null; child = child.nextobject) {
 
          if ("patcher" !== child.maxclass)
             continue;
 
+         /*
+         var keyList = child.getboxattrnames();
+         for (var index = 0; index < keyList.length; index++) {
+            post(index, keyList[index], "\n");
+         }
+         */
+
          var patchName = child.getattr("name");
          if (patchName !== contentPatch.name)
             continue;
 
-         return child;
+         bpatcherList.push(child);
       }
-      return null;
-   }
-
-   this.delayedResize = function () {
-
-      post("delay resize", "\n");
-
-      var bpatcher = this._findBPatcher();
-      if (null === bpatcher)
-         return;
-
-      var size = this._compileContentSize();
-
-
-      var boxSize = bpatcher.getboxattr("patching_rect");
-      boxSize[2] = size[0];
-      boxSize[3] = size[1];
-      bpatcher.setboxattr("patching_rect", boxSize);
+      return bpatcherList;
    }
 
    return this;
