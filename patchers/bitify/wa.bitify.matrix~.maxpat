@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 199.0, 2963.0, 1367.0 ],
+		"rect" : [ 34.0, 199.0, 2969.0, 1367.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,13 +40,53 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-5",
+					"id" : "obj-2",
+					"linecount" : 4,
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 435.0, 210.0, 58.0, 22.0 ],
-					"text" : "loadbang"
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 180.0, 30.0, 105.0, 62.0 ],
+					"saved_object_attributes" : 					{
+						"client_rect" : [ 1817, 411, 2525, 1225 ],
+						"parameter_enable" : 0,
+						"parameter_mappable" : 0,
+						"storage_rect" : [ 200, 200, 800, 500 ]
+					}
+,
+					"text" : "pattrstorage @autorestore 1 @dirty 1 @savemode 3",
+					"varname" : "u141005674"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-5",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 50.0, 150.0, 163.0, 22.0 ],
+					"text" : "routepass multichannelsignal"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "" ],
+					"patching_rect" : [ 300.0, 113.0, 40.0, 22.0 ],
+					"restore" : [ 0, 0, 0 ],
+					"saved_object_attributes" : 					{
+						"parameter_enable" : 0,
+						"parameter_mappable" : 0
+					}
+,
+					"text" : "pattr",
+					"varname" : "u062003350"
 				}
 
 			}
@@ -54,23 +94,10 @@
 				"box" : 				{
 					"id" : "obj-3",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 435.0, 255.0, 107.0, 22.0 ],
-					"text" : "wa.setup.bpatcher"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "message",
-					"id" : "obj-2",
-					"index" : 0,
-					"maxclass" : "inlet",
 					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 150.0, 40.0, 30.0, 30.0 ]
+					"numoutlets" : 0,
+					"patching_rect" : [ 596.0, 260.0, 107.0, 22.0 ],
+					"text" : "wa.setup.bpatcher"
 				}
 
 			}
@@ -83,7 +110,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 199.0, 100.0, 165.0, 30.0 ],
+					"patching_rect" : [ 360.0, 105.0, 165.0, 30.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 165.0, 30.0 ],
 					"saved_attribute_attributes" : 					{
@@ -121,7 +148,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 199.0, 143.0, 489.0, 22.0 ],
+					"patching_rect" : [ 360.0, 148.0, 489.0, 22.0 ],
 					"text" : "clear, set 0 0 1, set 1 1 1, set 2 2 1, set 3 3 1, set 4 4 1, set 5 5 1, set 6 6 1, set 7 7 1, bang"
 				}
 
@@ -134,11 +161,23 @@
 					"numoutlets" : 2,
 					"one/column" : 1,
 					"outlettype" : [ "list", "list" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 199.0, 190.0, 165.0, 150.0 ],
+					"parameter_enable" : 1,
+					"patching_rect" : [ 360.0, 195.0, 165.0, 150.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 30.0, 165.0, 150.0 ],
-					"rows" : 8
+					"rows" : 8,
+					"saved_attribute_attributes" : 					{
+						"valueof" : 						{
+							"parameter_invisible" : 1,
+							"parameter_linknames" : 1,
+							"parameter_longname" : "bit_router",
+							"parameter_shortname" : "bit_router",
+							"parameter_type" : 3
+						}
+
+					}
+,
+					"varname" : "bit_router"
 				}
 
 			}
@@ -191,7 +230,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-8", 0 ],
+					"destination" : [ "obj-5", 0 ],
 					"source" : [ "obj-16", 0 ]
 				}
 
@@ -199,13 +238,20 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
-					"source" : [ "obj-2", 0 ]
+					"source" : [ "obj-4", 1 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-3", 0 ],
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-5", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-8", 0 ],
 					"source" : [ "obj-5", 0 ]
 				}
 
@@ -219,6 +265,7 @@
 			}
  ],
 		"parameters" : 		{
+			"obj-1" : [ "bit_router", "bit_router", 0 ],
 			"obj-15" : [ "live.text", "live.text", 0 ],
 			"parameterbanks" : 			{
 				"0" : 				{
