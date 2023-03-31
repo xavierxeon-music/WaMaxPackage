@@ -61,6 +61,8 @@ function Color(text) {
    this.red = parseInt(text.substring(0, 2), 16);
    this.green = parseInt(text.substring(2, 4), 16);
    this.blue = parseInt(text.substring(4, 6), 16);
+
+   return this;
 }
 
 Color.prototype.distance = function (other) {
