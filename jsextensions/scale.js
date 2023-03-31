@@ -65,5 +65,7 @@ Scale.prototype.setPredifined = function (baseNote, major = true) {
 }
 
 Scale.prototype.closestMatch = function (midiNote) {
+   // midi 0 = C-2
+   var scaleNote = midiNote % 12
    return 0;
 }
