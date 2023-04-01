@@ -18,22 +18,22 @@ function Scale() {
       11: true // b
    };
 
-   this.names = {
-      "c": 0,
-      "c#": 1,
-      "d": 2,
-      "d#": 3,
-      "e": 4,
-      "f": 5,
-      "f#": 6,
-      "g": 7,
-      "g#": 8,
-      "a": 9,
-      "a#": 10,
-      "b": 11
-   }
-
    return this;
+}
+
+Scale.names = {
+   "c": 0,
+   "c#": 1,
+   "d": 2,
+   "d#": 3,
+   "e": 4,
+   "f": 5,
+   "f#": 6,
+   "g": 7,
+   "g#": 8,
+   "a": 9,
+   "a#": 10,
+   "b": 11
 }
 
 Scale.prototype.clear = function () {
@@ -65,7 +65,7 @@ Scale.prototype.setPredefined = function (baseNote, major) {
 
    this.clear();
 
-   var startIndex = this.names[baseNote];
+   var startIndex = Scale.names[baseNote];
    if (undefined === startIndex)
       return;
 

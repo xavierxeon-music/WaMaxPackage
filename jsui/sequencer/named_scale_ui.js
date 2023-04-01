@@ -11,49 +11,95 @@ var isMajor = true;
 
 // set up jsui defaults to 2d
 sketch.default2d();
-
-function setSize(width, height) {
-
-   box.rect = [box.rect[0], box.rect[1], box.rect[0] + width, box.rect[1] + height];
-}
+var xList = [-2.5, -2.0, -1.75, -1.25, -1.0, 0.0, 0.5, 0.75, 1.25, 1.5, 2.0, 2.25];
+var yList = [-0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5];
 
 function loadbang() {
 
-   setSize(150, 50);
+   Ui.setSize(this, 150, 50);
    draw();
-   refresh();
 }
 
 function name(text) {
 
    scaleName = text;
+
    maybeCreate();
+
    draw();
-   refresh();
 }
 
 function root(note) {
-   maybeCreate();
+
    rootNote = note;
-   scales.target[scaleName].setPredefined(rootNote, isMajor);
+
+   maybeCreate();
+   myScale().setPredefined(rootNote, isMajor);
+
    draw();
-   refresh();
 }
 
 function major(enabled) {
-   maybeCreate();
+
    isMajor = (1 === enabled);
-   scales.target[scaleName].setPredefined(rootNote, isMajor);
+
+   maybeCreate();
+   myScale().setPredefined(rootNote, isMajor);
+
    draw();
-   refresh();
 }
 
 function scale(text) {
+
    maybeCreate();
-   scales.target[scaleName].setScale(text);
+   myScale().setScale(text);
+
    draw();
-   refresh();
 }
+
+function enable(note) {
+
+   setNote(note, true);
+
+   draw();
+}
+
+function disable(note) {
+
+   setNote(note, false);
+
+   draw();
+}
+
+function clear() {
+
+   maybeCreate();
+   myScale().clear();
+
+   draw();
+}
+
+function myScale() {
+
+   if (scales.target === undefined)
+      return undefined;
+
+   return scales.target[scaleName];
+}
+myScale.local = 1;
+
+function setNote(note, enabled) {
+
+   maybeCreate();
+
+   var noteIndex = Scale.names[note];
+   if (undefined === noteIndex)
+      return;
+
+   var notes = myScale().notes;
+   notes[noteIndex] = enabled;
+}
+setNote.local = 1;
 
 
 // draw -- main graphics function
@@ -61,34 +107,60 @@ function draw() {
 
    sketch.glclear();
 
-   if (scales.target === undefined) {
+   if (undefined === myScale())
       return;
-   }
 
-   var scale = scales.target[scaleName];
-   if (scale === undefined) {
-      return;
-   }
-
-   const x = [-2.5, -2.0, -1.75, -1.25, -1.0, 0.0, 0.5, 0.75, 1.25, 1.5, 2.0, 2.25];
-   const y = [-0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5];
    for (var index = 0; index < 12; index++) {
 
-      if (scale.notes[index])
+      if (myScale().notes[index])
          sketch.glcolor(0.5, 0.7, 0.3);
       else
          sketch.glcolor(0.7, 0.5, 0.3);
-      sketch.moveto(x[index], y[index]);
+      sketch.moveto(xList[index], yList[index]);
       sketch.cube(0.3);
    }
+
+   refresh();
 }
 draw.local = 1;
 
 function onclick(x, y) {
 
-   sketch.moveto(sketch.screentoworld(x, y))
-   sketch.framecircle(1.0)
-   refresh()
+   var point = sketch.screentoworld(x, y);
+   post("CLICK", point[0], "/", point[1], x, y, "\n");
+
+   for (var index = 0; index < 12; index++) {
+
+      var xMin = xList[index];
+      var xMax = xList[index] + 0.6;
+      post(index, "x =>", xMin, " -", xMax, "\n");
+
+      if (point[0] < xMin)
+         continue;
+      if (point[0] > xMax)
+         continue;
+      post("X match", index, "\n");
+
+      var yMin = yList[index] - 0.6;
+      var yMax = yList[index];
+      post(index, "y =>", yMin, " -", yMax, "\n");
+
+      if (point[1] < yMin)
+         continue;
+      if (point[1] > yMax)
+         continue;
+
+      var note = myScale().notes[index];
+      post("MATCH", index, note, "\n");
+      if (note)
+         myScale().notes[index] = false;
+      else
+         myScale().notes[index] = true;
+
+      break;
+   }
+
+   draw();
 }
 onclick.local = 1;
 
@@ -96,22 +168,19 @@ function onresize(w, h) {
 
    if (w === 3 * h) {
       draw();
-      refresh();
    }
    else {
-      setSize(3 * h, h);
+      Ui.setSize(this, 3 * h, h);
    }
 }
 onresize.local = 1;
 
 function maybeCreate() {
 
-   if (scales.target === undefined) {
+   if (undefined === scales.target)
       scales.target = {};
-      //post("init target", "\n");
-   }
 
-   if (scales.target[scaleName] === undefined)
+   if (undefined === scales.target[scaleName])
       scales.target[scaleName] = new Scale();
 }
 maybeCreate.local = 1;
