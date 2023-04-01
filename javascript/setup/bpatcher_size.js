@@ -29,6 +29,8 @@ function bang() {
       if (changed)
          bpatcher.setboxattr("patching_rect", boxSize);
    }
+
+   outlet(0, "bang");
 }
 
 function compileContentSize() {

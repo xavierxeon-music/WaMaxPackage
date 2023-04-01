@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 451.0, 3177.0, 1115.0 ],
+		"rect" : [ 34.0, 143.0, 1662.0, 1423.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -46,6 +46,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 165.0, 165.0, 40.0, 22.0 ],
+					"restore" : [ "s000001010101" ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0
@@ -63,7 +64,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 510.0, 135.0, 35.0, 22.0 ],
+					"patching_rect" : [ 438.0, 150.0, 35.0, 22.0 ],
 					"text" : "clear"
 				}
 
@@ -73,8 +74,9 @@
 					"id" : "obj-6",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
-					"numoutlets" : 0,
-					"patching_rect" : [ 45.0, 255.0, 107.0, 22.0 ],
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 438.0, 180.0, 107.0, 22.0 ],
 					"text" : "wa.setup.bpatcher"
 				}
 
@@ -152,7 +154,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 300.0, 60.0, 30.0, 30.0 ]
+					"patching_rect" : [ 213.0, 60.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -160,7 +162,6 @@
 		"lines" : [ 			{
 				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
-					"midpoints" : [ 309.5, 105.0, 222.5, 105.0 ],
 					"source" : [ "obj-1", 0 ]
 				}
 
@@ -240,6 +241,13 @@
 					"destination" : [ "obj-8", 0 ],
 					"midpoints" : [ 39.5, 204.0, 244.5, 204.0 ],
 					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-8", 0 ],
+					"source" : [ "obj-6", 0 ]
 				}
 
 			}

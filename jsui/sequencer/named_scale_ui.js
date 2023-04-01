@@ -17,7 +17,11 @@ var yList = [28, 5, 28, 5, 28, 28, 5, 28, 5, 28, 5, 28];
 
 function loadbang() {
 
-   canvas.enforceSize();
+   draw();
+}
+
+function bang() {
+
    draw();
 }
 
@@ -41,8 +45,6 @@ function name(text) {
    scaleName = text;
 
    maybeCreate();
-
-   notifyclients();
    draw();
 }
 
