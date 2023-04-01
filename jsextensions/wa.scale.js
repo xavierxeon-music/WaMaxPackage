@@ -61,6 +61,19 @@ Scale.prototype.setScale = function (text) {
    }
 }
 
+Scale.prototype.getScale = function () {
+
+   var text = "s";
+
+   for (var index = 0; index < 12; index++) {
+      if (this.notes[index])
+         text += "1";
+      else
+         text += "0";
+   }
+   return text;
+}
+
 Scale.prototype.setPredefined = function (baseNote, major) {
 
    this.clear();

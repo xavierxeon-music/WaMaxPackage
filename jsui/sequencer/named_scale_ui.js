@@ -9,14 +9,30 @@ var scaleName = "main";
 var rootNote = "c";
 var isMajor = true;
 
-// set up jsui defaults to 2d
-sketch.default2d();
-var xList = [-2.5, -2.0, -1.75, -1.25, -1.0, 0.0, 0.5, 0.75, 1.25, 1.5, 2.0, 2.25];
-var yList = [-0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5];
+// set up
+canvas = new Canvas(this, 160, 55);
+var cubeSide = 18;
+var xList = [3, 13, 23, 33, 43, 73, 83, 93, 103, 113, 123, 133];
+var yList = [28, 5, 28, 5, 28, 28, 5, 28, 5, 28, 5, 28];
 
 function loadbang() {
 
-   Ui.setSize(this, 150, 50);
+   canvas.enforceSize();
+   draw();
+}
+
+function getvalueof() {
+
+   maybeCreate();
+
+   return myScale().getScale();
+}
+
+function setvalueof(value) {
+
+   maybeCreate();
+
+   myScale().setScale(value)
    draw();
 }
 
@@ -26,6 +42,7 @@ function name(text) {
 
    maybeCreate();
 
+   notifyclients();
    draw();
 }
 
@@ -36,6 +53,7 @@ function root(note) {
    maybeCreate();
    myScale().setPredefined(rootNote, isMajor);
 
+   notifyclients();
    draw();
 }
 
@@ -46,6 +64,7 @@ function major(enabled) {
    maybeCreate();
    myScale().setPredefined(rootNote, isMajor);
 
+   notifyclients();
    draw();
 }
 
@@ -54,6 +73,7 @@ function scale(text) {
    maybeCreate();
    myScale().setScale(text);
 
+   notifyclients();
    draw();
 }
 
@@ -61,6 +81,7 @@ function enable(note) {
 
    setNote(note, true);
 
+   notifyclients();
    draw();
 }
 
@@ -68,6 +89,7 @@ function disable(note) {
 
    setNote(note, false);
 
+   notifyclients();
    draw();
 }
 
@@ -76,6 +98,7 @@ function clear() {
    maybeCreate();
    myScale().clear();
 
+   notifyclients();
    draw();
 }
 
@@ -106,9 +129,13 @@ setNote.local = 1;
 function draw() {
 
    sketch.glclear();
+   sketch.default2d();
 
    if (undefined === myScale())
       return;
+
+   var worldCubeSide = canvas.canvasToSketchDimension(sketch, cubeSide, cubeSide);
+   var cubeHafSide = worldCubeSide[0] / 2;
 
    for (var index = 0; index < 12; index++) {
 
@@ -116,8 +143,12 @@ function draw() {
          sketch.glcolor(0.5, 0.7, 0.3);
       else
          sketch.glcolor(0.7, 0.5, 0.3);
-      sketch.moveto(xList[index], yList[index]);
-      sketch.cube(0.3);
+
+      var screenPoint = canvas.canvasToScreen(xList[index], yList[index]);
+      var worldPoint = sketch.screentoworld(screenPoint[0], screenPoint[1]);
+
+      sketch.moveto(worldPoint[0] + cubeHafSide, worldPoint[1] - cubeHafSide);
+      sketch.cube(cubeHafSide);
    }
 
    refresh();
@@ -126,24 +157,22 @@ draw.local = 1;
 
 function onclick(x, y) {
 
-   var point = sketch.screentoworld(x, y);
-   post("CLICK", point[0], "/", point[1], x, y, "\n");
-
+   var point = canvas.screenToCanvas(x, y);
    for (var index = 0; index < 12; index++) {
 
       var xMin = xList[index];
-      var xMax = xList[index] + 0.6;
-      post(index, "x =>", xMin, " -", xMax, "\n");
+      var xMax = xList[index] + cubeSide;
+      //post(index, "x =>", xMin, " -", xMax, "\n");
 
       if (point[0] < xMin)
          continue;
       if (point[0] > xMax)
          continue;
-      post("X match", index, "\n");
+      //post("X match", index, "\n");
 
-      var yMin = yList[index] - 0.6;
-      var yMax = yList[index];
-      post(index, "y =>", yMin, " -", yMax, "\n");
+      var yMin = yList[index];
+      var yMax = yList[index] + cubeSide;
+      //post(index, "y =>", yMin, " -", yMax, "\n");
 
       if (point[1] < yMin)
          continue;
@@ -151,7 +180,7 @@ function onclick(x, y) {
          continue;
 
       var note = myScale().notes[index];
-      post("MATCH", index, note, "\n");
+      //post("MATCH", index, note, "\n");
       if (note)
          myScale().notes[index] = false;
       else
@@ -166,12 +195,7 @@ onclick.local = 1;
 
 function onresize(w, h) {
 
-   if (w === 3 * h) {
-      draw();
-   }
-   else {
-      Ui.setSize(this, 3 * h, h);
-   }
+   draw();
 }
 onresize.local = 1;
 
