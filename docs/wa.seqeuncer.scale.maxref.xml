@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+<c74object as_bpatcher="1" name="wa.seqeuncer.scale">
+    <digest>a named scale</digest>
+    <description>a named scale to be used with <o>wa.sequencer.qunatizer</o></description>
+    <metadatalist>
+        <metadata name="author">Ralf Waspe</metadata>
+        <metadata name="tag">WaMaxPackage</metadata>
+    </metadatalist>
+    <parser inlet_count="1"/>
+    <misc name="Outputs"/>
+    <objarglist>
+        <objarg type="symbol" optional="1" name="1">
+            <digest/>
+        </objarg>
+    </objarglist>
+    <attributelist>
+        <attribute type="symbol" set="1" get="1" size="1" name="major">
+            <digest/>
+        </attribute>
+        <attribute type="symbol" set="1" get="1" size="1" name="root">
+            <digest/>
+        </attribute>
+    </attributelist>
+    <methodlist>
+        <method standard="0" name="major">
+            <arglist>
+                <arg type="symbol" optional="0" name=""/>
+            </arglist>
+            <digest/>
+        </method>
+        <method standard="0" name="root">
+            <arglist>
+                <arg type="symbol" optional="0" name=""/>
+            </arglist>
+            <digest/>
+        </method>
+        <method standard="0" name="scale">
+            <arglist>
+                <arg type="symbol" optional="0" name=""/>
+            </arglist>
+            <digest/>
+        </method>
+    </methodlist>
+    <seealsolist/>
+</c74object>
