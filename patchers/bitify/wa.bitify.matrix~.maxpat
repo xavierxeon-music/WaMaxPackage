@@ -40,33 +40,12 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-2",
-					"linecount" : 4,
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 180.0, 30.0, 105.0, 62.0 ],
-					"saved_object_attributes" : 					{
-						"client_rect" : [ 1817, 411, 2525, 1225 ],
-						"parameter_enable" : 0,
-						"parameter_mappable" : 0,
-						"storage_rect" : [ 200, 200, 800, 500 ]
-					}
-,
-					"text" : "pattrstorage @autorestore 1 @dirty 1 @savemode 3",
-					"varname" : "u141005674"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-5",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 50.0, 150.0, 163.0, 22.0 ],
+					"patching_rect" : [ 50.0, 120.0, 163.0, 22.0 ],
 					"text" : "routepass multichannelsignal"
 				}
 
@@ -78,8 +57,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 300.0, 113.0, 40.0, 22.0 ],
-					"restore" : [ 0, 0, 0 ],
+					"patching_rect" : [ 210.0, 83.0, 40.0, 22.0 ],
+					"restore" : [ 0, 0, 1.0, 1, 1, 1.0, 2, 2, 1.0, 3, 3, 1.0, 4, 4, 1.0, 5, 5, 1.0, 6, 6, 1.0, 7, 7, 1.0 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0
@@ -95,8 +74,9 @@
 					"id" : "obj-3",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
-					"numoutlets" : 0,
-					"patching_rect" : [ 596.0, 260.0, 107.0, 22.0 ],
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 506.0, 230.0, 107.0, 22.0 ],
 					"text" : "wa.setup.bpatcher"
 				}
 
@@ -110,7 +90,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 360.0, 105.0, 165.0, 30.0 ],
+					"patching_rect" : [ 270.0, 75.0, 165.0, 30.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 165.0, 30.0 ],
 					"saved_attribute_attributes" : 					{
@@ -148,7 +128,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 360.0, 148.0, 489.0, 22.0 ],
+					"patching_rect" : [ 270.0, 118.0, 489.0, 22.0 ],
 					"text" : "clear, set 0 0 1, set 1 1 1, set 2 2 1, set 3 3 1, set 4 4 1, set 5 5 1, set 6 6 1, set 7 7 1, bang"
 				}
 
@@ -162,7 +142,7 @@
 					"one/column" : 1,
 					"outlettype" : [ "list", "list" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 360.0, 195.0, 165.0, 150.0 ],
+					"patching_rect" : [ 270.0, 165.0, 165.0, 150.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 30.0, 165.0, 150.0 ],
 					"rows" : 8,

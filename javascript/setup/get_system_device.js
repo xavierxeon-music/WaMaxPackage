@@ -29,4 +29,5 @@ function getSystemDeivce() {
    }
 }
 
-maxApi.addHandler('execute', () => { getSystemDeivce(); });
+getSystemDeivce();
+// maxApi.addHandler('execute', () => { getSystemDeivce(); });
