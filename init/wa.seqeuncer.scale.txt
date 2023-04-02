@@ -1,2 +1,0 @@
-max objectfile wa.seqeuncer.scale wa.seqeuncer.scale;
-max definesubstitution wa.seqeuncer.scale bpatcher @name wa.seqeuncer.scale.maxpat;

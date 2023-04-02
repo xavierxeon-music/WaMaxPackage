@@ -2,13 +2,19 @@
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 <c74object as_bpatcher="0" name="wa.setup.bpatcher">
     <digest>load as bpatcher</digest>
-    <description>load as bpatcher</description>
+    <description>when loaded as a bpatcher force presentation mode and resize bpatcher</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
+        <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="0"/>
-    <misc name="Outputs"/>
+    <misc name="Outputs">
+        <entry id="1" name="loaded">
+            <digest/>
+            <description>send out a bang when the size has been readjusted</description>
+        </entry>
+    </misc>
     <objarglist/>
     <attributelist/>
     <methodlist/>

@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="0" name="wa.seqeuncer.quantizer">
+<c74object as_bpatcher="0" name="wa.sequencer.nosferatu">
     <digest>Hello World</digest>
     <metadatalist>
-        <metadata name="author"/>
-        <metadata name="tag"/>
+        <metadata name="author">Ralf Waspe</metadata>
+        <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
         <entry id="1" name="">
             <digest/>
         </entry>
-    </misc>
-    <objarglist>
-        <objarg type="symbol" name="1" optional="1">
+        <entry id="2" name="">
             <digest/>
-        </objarg>
-    </objarglist>
+        </entry>
+    </misc>
+    <objarglist/>
     <attributelist/>
     <methodlist/>
     <seealsolist/>
