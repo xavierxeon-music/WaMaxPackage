@@ -10,9 +10,9 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 199.0, 2969.0, 1367.0 ],
+		"rect" : [ 34.0, 227.0, 3765.0, 1339.0 ],
 		"bglocked" : 0,
-		"openinpresentation" : 0,
+		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
 		"default_fontface" : 0,
 		"default_fontname" : "Arial",
@@ -40,44 +40,45 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-5",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 50.0, 120.0, 163.0, 22.0 ],
-					"text" : "routepass multichannelsignal"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-4",
+					"id" : "obj-3",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 210.0, 83.0, 40.0, 22.0 ],
-					"restore" : [ 0, 0, 1.0, 1, 1, 1.0, 2, 2, 1.0, 3, 3, 1.0, 4, 4, 1.0, 5, 5, 1.0, 6, 6, 1.0, 7, 7, 1.0 ],
+					"patching_rect" : [ 108.5, 73.0, 40.0, 22.0 ],
+					"restore" : [ 0, 0, 0 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0
 					}
 ,
 					"text" : "pattr",
-					"varname" : "u062003350"
+					"varname" : "u214012327"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-3",
+					"id" : "obj-2",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 506.0, 230.0, 107.0, 22.0 ],
+					"patching_rect" : [ 75.0, 165.0, 107.0, 22.0 ],
 					"text" : "wa.setup.bpatcher"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"comment" : "mix_matrix",
+					"id" : "obj-5",
+					"index" : 0,
+					"maxclass" : "inlet",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 165.0, 65.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -90,7 +91,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 270.0, 75.0, 165.0, 30.0 ],
+					"patching_rect" : [ 210.0, 30.0, 165.0, 30.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 165.0, 30.0 ],
 					"saved_attribute_attributes" : 					{
@@ -116,7 +117,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "multichannelsignal", "" ],
-					"patching_rect" : [ 50.0, 382.0, 107.0, 22.0 ],
+					"patching_rect" : [ 50.0, 300.0, 107.0, 22.0 ],
 					"text" : "mcs.matrix~ 8 8 1."
 				}
 
@@ -128,7 +129,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 270.0, 118.0, 489.0, 22.0 ],
+					"patching_rect" : [ 210.0, 73.0, 489.0, 22.0 ],
 					"text" : "clear, set 0 0 1, set 1 1 1, set 2 2 1, set 3 3 1, set 4 4 1, set 5 5 1, set 6 6 1, set 7 7 1, bang"
 				}
 
@@ -142,7 +143,7 @@
 					"one/column" : 1,
 					"outlettype" : [ "list", "list" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 270.0, 165.0, 165.0, 150.0 ],
+					"patching_rect" : [ 210.0, 120.0, 165.0, 150.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 30.0, 165.0, 150.0 ],
 					"rows" : 8,
@@ -170,7 +171,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 50.0, 40.0, 30.0, 30.0 ]
+					"patching_rect" : [ 50.0, 30.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -182,7 +183,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 50.0, 464.0, 30.0, 30.0 ]
+					"patching_rect" : [ 50.0, 353.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -210,7 +211,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-5", 0 ],
+					"destination" : [ "obj-8", 0 ],
 					"source" : [ "obj-16", 0 ]
 				}
 
@@ -218,20 +219,13 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
-					"source" : [ "obj-4", 1 ]
+					"source" : [ "obj-3", 1 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
-					"source" : [ "obj-5", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-8", 0 ],
 					"source" : [ "obj-5", 0 ]
 				}
 

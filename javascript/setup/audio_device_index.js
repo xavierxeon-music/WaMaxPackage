@@ -26,8 +26,13 @@ function bang() {
 
    //post("AUDIO for ", deviceName, ": in = ", inputId, ", out = ", outputId, "is system = ", useSystemDevice, "\n");
 
-   outlet(0, inputId);
-   outlet(1, outputId);
-   outlet(2, "bang");
+   if (null !== inputId)
+      outlet(0, inputId);
+
+   if (null !== outputId)
+      outlet(1, outputId);
+
+   if (1 === audioDeviceDict.get("auto_start"))
+      outlet(2, "bang");
 }
 

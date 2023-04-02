@@ -40,6 +40,19 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"comment" : "start",
+					"id" : "obj-3",
+					"index" : 1,
+					"maxclass" : "inlet",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 780.0, 199.5, 30.0, 30.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-9",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
@@ -63,21 +76,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 705.0, 137.707274999999981, 53.0, 22.0 ],
+					"patching_rect" : [ 703.154540999999881, 137.707274999999981, 53.0, 22.0 ],
 					"text" : "trigger b"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-6",
-					"linecount" : 2,
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 945.0, 354.585450000000037, 131.0, 35.0 ],
-					"text" : ";\rdsp start, dsp sr 48000"
 				}
 
 			}
@@ -108,13 +108,13 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-2",
-					"linecount" : 2,
+					"linecount" : 3,
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 825.0, 354.585450000000037, 55.0, 35.0 ],
-					"text" : ";\rdsp start"
+					"patching_rect" : [ 823.154540999999881, 354.585450000000037, 78.0, 49.0 ],
+					"text" : ";\rdsp start,;\rdsp sr 48000"
 				}
 
 			}
@@ -169,7 +169,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "int" ],
-					"patching_rect" : [ 765.0, 412.0, 108.0, 23.0 ],
+					"patching_rect" : [ 763.154540999999881, 412.0, 108.0, 23.0 ],
 					"text" : "adstatus option 1"
 				}
 
@@ -195,7 +195,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "int" ],
-					"patching_rect" : [ 705.0, 460.0, 110.0, 23.0 ],
+					"patching_rect" : [ 703.154540999999881, 461.5, 110.0, 23.0 ],
 					"text" : "adstatus option 0"
 				}
 
@@ -816,7 +816,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 705.0, 309.585450000000037, 139.0, 22.0 ],
+					"patching_rect" : [ 703.154540999999881, 300.0, 139.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "audio_device_index.js",
 						"parameter_enable" : 0
@@ -874,6 +874,8 @@
 					"saved_object_attributes" : 					{
 						"autostart" : 1,
 						"defer" : 0,
+						"node_bin_path" : "",
+						"npm_bin_path" : "",
 						"watch" : 0
 					}
 ,
@@ -1037,6 +1039,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-63", 0 ],
 					"source" : [ "obj-29", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-36", 0 ],
+					"source" : [ "obj-3", 0 ]
 				}
 
 			}
