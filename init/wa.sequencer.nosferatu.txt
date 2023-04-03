@@ -1,2 +1,0 @@
-max objectfile wa.sequencer.nosferatu wa.sequencer.nosferatu;
-max definesubstitution wa.sequencer.nosferatu bpatcher @name wa.sequencer.nosferatu.maxpat;

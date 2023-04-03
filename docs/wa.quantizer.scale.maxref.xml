@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="1" name="wa.sequencer.scale">
+<c74object as_bpatcher="1" name="wa.quantizer.scale">
     <digest>a named scale</digest>
-    <description>a named scale to be used with <o>wa.sequencer.quantizer</o></description>
+    <description>a named scale to be used with <o>wa.quantizer</o></description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
+        <metadata name="tag">WaMaxPackage</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="1"/>
@@ -69,5 +70,7 @@
             <description>must start with "s" and must have 12 entries of "0" or "1"</description>
         </method>
     </methodlist>
-    <seealsolist/>
+    <seealsolist>
+        <seealso name="wa.quantizer"/>
+    </seealsolist>
 </c74object>

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 171.0, 1662.0, 1395.0 ],
+		"rect" : [ 34.0, 311.0, 3170.0, 1255.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -45,13 +45,13 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 20.0, 165.0, 78.0, 22.0 ],
+					"patching_rect" : [ 20.0, 165.0, 85.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "qunatize.js",
+						"filename" : "qunantize.js",
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js qunatize.js"
+					"text" : "js qunantize.js"
 				}
 
 			}
@@ -95,11 +95,11 @@
 				"box" : 				{
 					"comment" : "midiNote",
 					"id" : "obj-1",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "int" ],
 					"patching_rect" : [ 20.0, 20.0, 30.0, 30.0 ]
 				}
 
@@ -108,7 +108,7 @@
 				"box" : 				{
 					"comment" : "midiNote",
 					"id" : "obj-2",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -152,16 +152,7 @@
 				}
 
 			}
- ],
-		"dependency_cache" : [ 			{
-				"name" : "qunatize.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/seqeuncer",
-				"patcherrelativepath" : "../../javascript/seqeuncer",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
- ],
-		"autosave" : 0
+ ]
 	}
 
 }
