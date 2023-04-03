@@ -1,0 +1,2 @@
+max objectfile wa.nosferatu.pitch wa.nosferatu.pitch;
+max definesubstitution wa.nosferatu.pitch bpatcher @name wa.nosferatu.pitch.maxpat;

@@ -73,8 +73,8 @@ function compileContentSize() {
 
    }
 
-   var width = right - left;
-   var height = bottom - top;
+   var width = 10 + right - left;
+   var height = 10 + bottom - top;
 
    return [width, height];
 }

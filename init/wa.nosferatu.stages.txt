@@ -1,0 +1,2 @@
+max objectfile wa.nosferatu.stages wa.nosferatu.stages;
+max definesubstitution wa.nosferatu.stages bpatcher @name wa.nosferatu.stages.maxpat;

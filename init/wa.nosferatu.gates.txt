@@ -1,0 +1,2 @@
+max objectfile wa.nosferatu.gates wa.nosferatu.gates;
+max definesubstitution wa.nosferatu.gates bpatcher @name wa.nosferatu.gates.maxpat;
