@@ -7,10 +7,11 @@
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
+        <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry id="0" name="midiNote">
+        <entry id="1" name="midiNote">
             <digest/>
             <description>the qunatized midi note</description>
         </entry>

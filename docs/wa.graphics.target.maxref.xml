@@ -9,24 +9,28 @@
     </metadatalist>
     <parser inlet_count="0"/>
     <misc name="Outputs">
-        <entry name="matrix" id="0">
+        <entry id="0" name="matrix">
             <digest/>
             <description>the jit matrix</description>
         </entry>
     </misc>
     <objarglist>
-        <objarg optional="1" name="width" type="int">
+        <objarg name="width" optional="1" type="int">
             <digest>the width of the target</digest>
             <description>the width of the target</description>
         </objarg>
-        <objarg optional="1" name="height" type="int">
+        <objarg name="height" optional="1" type="int">
             <digest>the height of the target</digest>
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute size="1" get="1" name="deviceName" set="1" type="symbol">
-            <digest>targer device name</digest>
-            <description>must be same devcieName as the <o>wa.graphics.target</o></description>
+        <attribute get="1" name="deviceName" set="1" size="1" type="symbol">
+            <digest>target device name</digest>
+            <description>the target device name<br/><br/>must be same devcieName as the <o>wa.graphics.target</o></description>
+        </attribute>
+        <attribute get="1" name="refreshRate" set="1" size="1" type="symbol">
+            <digest>refresh rate</digest>
+            <description>the display refresh rate.<br/><br/>send an update to the device at the interavall given in milliseconds</description>
         </attribute>
     </attributelist>
     <methodlist/>

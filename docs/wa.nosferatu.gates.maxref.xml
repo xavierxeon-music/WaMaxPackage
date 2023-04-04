@@ -2,18 +2,44 @@
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 <c74object as_bpatcher="1" name="wa.nosferatu.gates">
     <digest>create gates from stages</digest>
+    <description>create gates from stages</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
+        <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="2"/>
+    <parser inlet_count="1"/>
     <misc name="Outputs">
         <entry id="1" name="">
             <digest/>
+            <description>the messages from the input are passed here</description>
+        </entry>
+        <entry id="2" name="">
+            <digest/>
+            <description>the gate</description>
         </entry>
     </misc>
     <objarglist/>
     <attributelist/>
-    <methodlist/>
+    <methodlist>
+        <method name="setSize" standard="0">
+            <arglist>
+                <arg name="" optional="0" type="symbol"/>
+            </arglist>
+            <digest/>
+        </method>
+        <method name="stageIndex" standard="0">
+            <arglist>
+                <arg name="" optional="0" type="symbol"/>
+            </arglist>
+            <digest/>
+        </method>
+        <method name="stagePercentage" standard="0">
+            <arglist>
+                <arg name="" optional="0" type="symbol"/>
+            </arglist>
+            <digest/>
+        </method>
+    </methodlist>
     <seealsolist/>
 </c74object>

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 311.0, 3765.0, 1255.0 ],
+		"rect" : [ 34.0, 311.0, 3170.0, 1255.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -52,7 +52,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "gate",
 					"id" : "obj-4",
 					"index" : 2,
 					"maxclass" : "outlet",
@@ -201,7 +201,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 480.0, 210.0, 96.0, 22.0 ],
-					"restore" : [ 95.833333333333329, 92.5, 90.833333333333329, 90.833333333333329, 90.833333333333329, 92.5, 88.333333333333329, 88.333333333333329 ],
+					"restore" : [ 58.333333333333336, 41.666666666666664, 35.0, 41.666666666666664, 47.5, 57.5, 61.666666666666664, 60.833333333333336 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0
@@ -258,7 +258,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "message",
 					"id" : "obj-2",
 					"index" : 1,
 					"maxclass" : "outlet",
