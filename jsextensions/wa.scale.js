@@ -99,18 +99,28 @@ Scale.prototype.setPredefined = function (baseNote, major) {
 }
 
 Scale.prototype.closestMatch = function (midiNote) {
+
+   if (midiNote < 0)
+      return 0;
+
    // midi 0 = C-2
    var scaleNote = midiNote % 12;
    var octaveC = (midiNote - scaleNote);
 
    if (!this.notes[scaleNote]) {
       var up = 1;
-      while (!this.notes[(scaleNote + up) % 12])
+      while (!this.notes[(scaleNote + up) % 12]) {
          up++;
 
+         if (up > 12) {
+            return midiNote; // scale has no notes!
+         }
+      }
+
       var down = 1;
-      while (!this.notes[(scaleNote + 12 - down) % 12])
+      while (!this.notes[(scaleNote + 12 - down) % 12]) {
          down++;
+      }
 
       if (up >= down) { // move down
          scaleNote = (scaleNote + 12 - down) % 12;

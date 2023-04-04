@@ -10,10 +10,10 @@ var rootNote = "c";
 var isMajor = true;
 
 // set up
-canvas = new Canvas(this, 160, 55);
-var cubeSide = 18;
-var xList = [3, 13, 23, 33, 43, 73, 83, 93, 103, 113, 123, 133];
-var yList = [28, 5, 28, 5, 28, 28, 5, 28, 5, 28, 5, 28];
+canvas = new Canvas(this, 155, 45);
+var cubeSide = 15;
+var xList = [5, 15, 25, 35, 45, 75, 85, 95, 105, 115, 125, 135];
+var yList = [25, 5, 25, 5, 25, 25, 5, 25, 5, 25, 5, 25];
 
 function loadbang() {
 
@@ -136,8 +136,8 @@ function draw() {
    if (undefined === myScale())
       return;
 
-   var worldCubeSide = canvas.canvasToSketchDimension(sketch, cubeSide, cubeSide);
-   var cubeHafSide = worldCubeSide[0] / 2;
+   var cubeWorldSize = canvas.canvasSizeToWold(sketch, cubeSide, cubeSide);
+   var cubeHafSide = (cubeWorldSize[0] > cubeWorldSize[1]) ? cubeWorldSize[1] : cubeWorldSize[0];
 
    for (var index = 0; index < 12; index++) {
 
@@ -147,6 +147,7 @@ function draw() {
          sketch.glcolor(0.7, 0.5, 0.3);
 
       var screenPoint = canvas.canvasToScreen(xList[index], yList[index]);
+      //post(index, ": ", xList[index], yList[index], " => ", screenPoint[0], screenPoint[1], "\n");
       var worldPoint = sketch.screentoworld(screenPoint[0], screenPoint[1]);
 
       sketch.moveto(worldPoint[0] + cubeHafSide, worldPoint[1] - cubeHafSide);
@@ -197,6 +198,7 @@ onclick.local = 1;
 
 function onresize(w, h) {
 
+   //canvas.enforceSize();
    draw();
 }
 onresize.local = 1;

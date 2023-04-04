@@ -9,12 +9,13 @@ function Canvas(self, width, height) {
    return this;
 }
 
+/*
 Canvas.prototype.enforceAscpectRatio = function () {
 
    var rect = this.self.box.rect;
-   var width = rect[2] - rect[1];
-   var height = rect[3] - rect[0];
-   var aspectRatio = width / height;
+   var bwidth = rect[2] - rect[0];
+   var bheight = rect[3] - rect[1];
+   var aspectRatio = bwidth / bheight;
 
    var myAspectRatio = this.width / this.height;
 
@@ -22,13 +23,13 @@ Canvas.prototype.enforceAscpectRatio = function () {
       return false;
 
    if (myAspectRatio > aspectRatio) {// scale width
-      width = height * myAspectRatio;
+      bwidth = bheight * myAspectRatio;
    }
    else {// scale height
-      height = width / myAspectRatio;
+      bheight = bwidth / myAspectRatio;
    }
 
-   this.self.box.rect = [rect[0], rect[1], rect[0] + width, rect[1] + height];
+   this.self.box.rect = [rect[0], rect[1], rect[0] + bwidth, rect[1] + bheight];
    return true;
 }
 
@@ -37,15 +38,16 @@ Canvas.prototype.enforceSize = function () {
    var rect = this.self.box.rect;
    this.self.box.rect = [rect[0], rect[1], rect[0] + this.width, rect[1] + this.height];
 }
+*/
 
 Canvas.prototype.screenToCanvas = function (xScreen, yScreen) {
 
    var rect = this.self.box.rect;
-   var width = rect[2] - rect[1];
-   var height = rect[3] - rect[0];
+   var bwidth = rect[2] - rect[0];
+   var bheight = rect[3] - rect[1];
 
-   var x = Math.round((this.width / width) * xScreen);
-   var y = Math.round((this.height / height) * yScreen);
+   var x = Math.round((this.width / bwidth) * xScreen);
+   var y = Math.round((this.height / bheight) * yScreen);
 
    return [x, y];
 }
@@ -53,34 +55,20 @@ Canvas.prototype.screenToCanvas = function (xScreen, yScreen) {
 Canvas.prototype.canvasToScreen = function (xCanvas, yCanvas) {
 
    var rect = this.self.box.rect;
-   var width = rect[2] - rect[1];
-   var height = rect[3] - rect[0];
+   var bwidth = rect[2] - rect[0];
+   var bheight = rect[3] - rect[1];
 
-   var xScreen = Math.round((width / this.width) * xCanvas);
-   var yScreen = Math.round((height / this.height) * yCanvas);
+   var xScreen = Math.round((bwidth / this.width) * xCanvas);
+   var yScreen = Math.round((bheight / this.height) * yCanvas);
 
    return [xScreen, yScreen];
 }
 
-Canvas.prototype.canvasToSketchDimension = function (sketch, canvasWidth, canvasHeight) {
+Canvas.prototype.canvasSizeToWold = function (sketch, widthOnCanvas, heightOnCanvas) {
 
-   var rect = this.self.box.rect;
-   var width = rect[2] - rect[1];
-   var height = rect[3] - rect[0];
+   var sizeOnScreen = this.canvasToScreen(widthOnCanvas, heightOnCanvas);
+   var worldCubeSide = sketch.screentoworld((this.width / 2) + sizeOnScreen[0], (this.height / 2) - sizeOnScreen[1], 0);
 
-   var testMin = sketch.screentoworld(0, 0, 0);
-   var testMax = sketch.screentoworld(width, height, 0);
-   var screenWorldWidth = testMax[0] - testMin[0];
-   var screenWorldHeight = testMin[1] - testMax[1];
-
-   var canvasWorldWidth = (screenWorldWidth / this.width) * canvasWidth;
-   var canvasWorldHeight = (screenWorldHeight / this.height) * canvasHeight;
-
-   return [canvasWorldWidth, canvasWorldHeight];
+   return [0.5 * worldCubeSide[0], 0.5 * worldCubeSide[1]];
 }
 
-Canvas.setSize = function (self, width, height) {
-
-   var rect = self.box.rect;
-   self.box.rect = [rect[0], rect[1], rect[0] + width, rect[1] + height];
-}

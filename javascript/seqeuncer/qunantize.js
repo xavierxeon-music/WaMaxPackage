@@ -15,7 +15,6 @@ function name(text) {
    scaleName = text;
 }
 
-
 function msg_int(midiNote) {
 
    if (scales.target === undefined) {
@@ -28,6 +27,7 @@ function msg_int(midiNote) {
       return out(midiNote);
    }
 
+
    midiNote = scales.target[scaleName].closestMatch(midiNote);
    out(midiNote);
 }
@@ -36,4 +36,5 @@ function out(midiNote) {
 
    outlet(0, midiNote);
 }
+out.local = 1;
 
