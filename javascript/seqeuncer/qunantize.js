@@ -7,6 +7,8 @@ setinletassist(0, "midinote");
 outlets = 1;
 setoutletassist(0, "midinote");
 
+include("_scale.js");
+
 var scales = new Global("Scales");
 var scaleName = "main";
 

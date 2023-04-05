@@ -9,6 +9,8 @@ setinletassist(0, "list (isColor, id, color)");
 outlets = 1;
 setoutletassist(0, "list(id, color_index)");
 
+include("_color.js");
+
 var colorList = [];
 var colorIndexBuffer = {};
 var colorWhiteIndex = 0;

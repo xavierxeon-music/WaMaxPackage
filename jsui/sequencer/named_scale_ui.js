@@ -4,6 +4,9 @@ autowatch = 1;
 inlets = 1;
 setinletassist(0, "message");
 
+include("_scale.js");
+include("_canvas.js");
+
 var scales = new Global("Scales");
 var scaleName = "main";
 var rootNote = "c";
