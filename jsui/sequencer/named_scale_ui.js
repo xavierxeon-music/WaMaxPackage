@@ -145,9 +145,9 @@ function paint() {
    for (var index = 0; index < 12; index++) {
 
       if (myScale().notes[index])
-         canvas.setColor("557733");
+         canvas.setColor("556655");
       else
-         canvas.setColor("775533");
+         canvas.setColor("bbbbbb");
 
       canvas.drawRectangle(xList[index], yList[index], cubeSide, cubeSide, true);
    }
