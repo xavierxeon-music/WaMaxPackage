@@ -7,6 +7,13 @@ setinletassist(0, "message");
 include("_scale.js");
 include("_canvas.js");
 
+//////////////////////////////////////////
+
+
+
+
+//////////////////////////////////////////
+
 var scales = new Global("Scales");
 var scaleName = "main";
 var rootNote = "c";
@@ -20,12 +27,12 @@ var yList = [25, 5, 25, 5, 25, 25, 5, 25, 5, 25, 5, 25];
 
 function loadbang() {
 
-   draw();
+   canvas.draw();
 }
 
 function bang() {
 
-   draw();
+   canvas.draw();
 }
 
 function getvalueof() {
@@ -40,7 +47,7 @@ function setvalueof(value) {
    maybeCreate();
 
    myScale().setScale(value)
-   draw();
+   canvas.draw();
 }
 
 function name(text) {
@@ -48,7 +55,7 @@ function name(text) {
    scaleName = text;
 
    maybeCreate();
-   draw();
+   canvas.draw();
 }
 
 function root(note) {
@@ -59,7 +66,7 @@ function root(note) {
    myScale().setPredefined(rootNote, isMajor);
 
    notifyclients();
-   draw();
+   canvas.draw();
 }
 
 function major(enabled) {
@@ -70,7 +77,7 @@ function major(enabled) {
    myScale().setPredefined(rootNote, isMajor);
 
    notifyclients();
-   draw();
+   canvas.draw();
 }
 
 function scale(text) {
@@ -79,7 +86,7 @@ function scale(text) {
    myScale().setScale(text);
 
    notifyclients();
-   draw();
+   canvas.draw();
 }
 
 function enable(note) {
@@ -87,7 +94,7 @@ function enable(note) {
    setNote(note, true);
 
    notifyclients();
-   draw();
+   canvas.draw();
 }
 
 function disable(note) {
@@ -95,7 +102,7 @@ function disable(note) {
    setNote(note, false);
 
    notifyclients();
-   draw();
+   canvas.draw();
 }
 
 function clear() {
@@ -104,7 +111,7 @@ function clear() {
    myScale().clear();
 
    notifyclients();
-   draw();
+   canvas.draw();
 }
 
 function myScale() {
@@ -130,36 +137,22 @@ function setNote(note, enabled) {
 setNote.local = 1;
 
 
-// draw -- main graphics function
-function draw() {
-
-   sketch.glclear();
-   sketch.default2d();
+function paint() {
 
    if (undefined === myScale())
       return;
 
-   var cubeWorldSize = canvas.canvasSizeToWold(sketch, cubeSide, cubeSide);
-   var cubeHafSide = (cubeWorldSize[0] > cubeWorldSize[1]) ? cubeWorldSize[1] : cubeWorldSize[0];
-
    for (var index = 0; index < 12; index++) {
 
       if (myScale().notes[index])
-         sketch.glcolor(0.5, 0.7, 0.3);
+         canvas.setColor("557733");
       else
-         sketch.glcolor(0.7, 0.5, 0.3);
+         canvas.setColor("775533");
 
-      var screenPoint = canvas.canvasToScreen(xList[index], yList[index]);
-      //post(index, ": ", xList[index], yList[index], " => ", screenPoint[0], screenPoint[1], "\n");
-      var worldPoint = sketch.screentoworld(screenPoint[0], screenPoint[1]);
-
-      sketch.moveto(worldPoint[0] + cubeHafSide, worldPoint[1] - cubeHafSide);
-      sketch.cube(cubeHafSide);
+      canvas.drawRectangle(xList[index], yList[index], cubeSide, cubeSide, true);
    }
-
-   refresh();
 }
-draw.local = 1;
+paint.local = 1;
 
 function onclick(x, y) {
 
@@ -195,14 +188,13 @@ function onclick(x, y) {
       break;
    }
 
-   draw();
+   canvas.draw();
 }
 onclick.local = 1;
 
 function onresize(w, h) {
 
-   //canvas.enforceSize();
-   draw();
+   canvas.draw();
 }
 onresize.local = 1;
 
