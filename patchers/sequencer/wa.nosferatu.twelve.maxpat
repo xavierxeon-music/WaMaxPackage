@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 311.0, 3170.0, 1255.0 ],
+		"rect" : [ 34.0, 171.0, 2953.0, 1395.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,42 @@
 		"subpatcher_template" : "OpenGrid",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-20",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 705.0, 75.0, 57.0, 22.0 ],
+					"text" : "unpack s"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 705.0, 120.0, 72.0, 22.0 ],
+					"text" : "prepend set"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-6",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 705.0, 30.0, 142.0, 22.0 ],
+					"text" : "patcherargs \"pitch offset\""
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-18",
 					"maxclass" : "newobj",
@@ -69,8 +105,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 540.0, 450.0, 113.0, 22.0 ],
-					"text" : "prepend pitchOffset"
+					"patching_rect" : [ 540.0, 450.0, 108.0, 22.0 ],
+					"text" : "prepend setValues"
 				}
 
 			}
@@ -81,13 +117,13 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 540.0, 525.0, 115.0, 22.0 ],
+					"patching_rect" : [ 540.0, 525.0, 123.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "nosferatu_pitch.js",
+						"filename" : "nosferatu_twelve.js",
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js nosferatu_pitch.js"
+					"text" : "js nosferatu_twelve.js"
 				}
 
 			}
@@ -189,7 +225,7 @@
 					"patching_rect" : [ 630.0, 248.0, 70.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 8.0, 70.0, 20.0 ],
-					"text" : "pitch offset"
+					"text" : "octave"
 				}
 
 			}
@@ -307,6 +343,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-26", 0 ],
+					"source" : [ "obj-10", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-8", 0 ],
 					"source" : [ "obj-11", 0 ]
 				}
@@ -356,6 +399,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-10", 0 ],
+					"source" : [ "obj-20", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-12", 0 ],
 					"source" : [ "obj-23", 1 ]
 				}
@@ -388,6 +438,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-9", 0 ],
 					"source" : [ "obj-5", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-20", 0 ],
+					"source" : [ "obj-6", 0 ]
 				}
 
 			}

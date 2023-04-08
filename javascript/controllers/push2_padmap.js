@@ -4,7 +4,7 @@ autowatch = 1;
 
 // inlets and outlets
 inlets = 1;
-setinletassist(0, "id");
+setinletassist(0, "lookup");
 
 outlets = 1;
 setoutletassist(0, "id");

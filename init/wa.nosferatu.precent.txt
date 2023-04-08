@@ -1,0 +1,2 @@
+max objectfile wa.nosferatu.precent wa.nosferatu.precent;
+max definesubstitution wa.nosferatu.precent bpatcher @name wa.nosferatu.precent.maxpat;

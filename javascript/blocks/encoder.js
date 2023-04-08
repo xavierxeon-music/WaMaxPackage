@@ -8,8 +8,10 @@ setoutletassist(0, "value");
 var min = 0;
 var max = 100;
 var current = 0;
+var wrapAround = false;
 
 function setMin(value) {
+
    if (value > max)
       return;
    else
@@ -24,6 +26,7 @@ function setMin(value) {
 }
 
 function setMax(value) {
+
    if (value < min)
       return;
    else
@@ -38,9 +41,10 @@ function setMax(value) {
 }
 
 function increment() {
+
    if (current < max)
       current += 1;
-   else
+   else if (wrapAround)
       current = min;
 
    outlet(0, current);
@@ -49,9 +53,10 @@ function increment() {
 }
 
 function decrement() {
+
    if (current > min)
       current -= 1;
-   else
+   else if (wrapAround)
       current = max;
 
    outlet(0, current);
@@ -60,7 +65,8 @@ function decrement() {
 }
 
 
-function setValue(value) {
+function forceValue(value) {
+
    if (value < min)
       current = min;
    else if (value > max)
@@ -70,7 +76,12 @@ function setValue(value) {
 
    outlet(0, current);
 
-   //post("setValue", min, max, current);
+   //post("forceValue", min, max, current);
+}
+
+function wrap(value) {
+
+   wrapAround = value;
 }
 
 

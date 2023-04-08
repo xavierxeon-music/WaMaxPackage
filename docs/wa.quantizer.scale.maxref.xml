@@ -6,10 +6,14 @@
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
-        <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="1"/>
-    <misc name="Outputs"/>
+    <misc name="Outputs">
+        <entry id="1" name="midiNote">
+            <digest/>
+            <description>the midi that has been quantized</description>
+        </entry>
+    </misc>
     <objarglist>
         <objarg name="1" optional="1" type="symbol">
             <digest>the name of the scale</digest>
@@ -27,6 +31,10 @@
         </attribute>
     </attributelist>
     <methodlist>
+        <method name="int" standard="1">
+            <digest/>
+            <description>a midi note to be qunatized</description>
+        </method>
         <method name="clear" standard="0">
             <arglist>
                 <arg name="" optional="0" type="bang"/>

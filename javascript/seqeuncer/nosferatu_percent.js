@@ -7,15 +7,15 @@ setinletassist(0, "message");
 outlets = 1;
 setoutletassist(0, "pitch");
 
-var pitches = [];
+var values = [];
 
-function pitchOffset(values) {
+function setValues(values) {
 
-   pitches = values.split(" ");
+   values = values.split(" ");
 }
 
 function stageIndex(index) {
 
-   var pitch = pitches[index];
-   outlet(0, pitch);
+   var value = values[index];
+   outlet(0, value);
 }
