@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 199.0, 2956.0, 1367.0 ],
+		"rect" : [ 34.0, 311.0, 3557.0, 1255.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,22 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-16",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 120.0, 570.0, 121.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"filename" : "nosferatu_resize.js",
+						"parameter_enable" : 0
+					}
+,
+					"text" : "js nosferatu_resize.js"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-20",
 					"maxclass" : "comment",
 					"numinlets" : 1,
@@ -47,7 +63,7 @@
 					"patching_rect" : [ 855.0, 450.0, 150.0, 20.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 135.0, 8.0, 150.0, 20.0 ],
-					"text" : "16"
+					"text" : "18"
 				}
 
 			}
@@ -233,10 +249,11 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "list", "list" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 120.0, 525.0, 130.0, 37.0 ],
+					"patching_rect" : [ 120.0, 525.0, 146.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 165.0, 285.0, 37.0 ],
-					"rows" : 1
+					"presentation_rect" : [ 0.0, 165.0, 240.0, 30.0 ],
+					"rows" : 1,
+					"varname" : "steps"
 				}
 
 			}
@@ -274,7 +291,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 544.0, 105.0, 101.0, 22.0 ],
-					"restore" : [ 2, 2, 2, 2, 2, 2, 2, 2 ],
+					"restore" : [ 2, 3, 2, 2, 3, 2, 2, 2 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0
@@ -295,11 +312,11 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 585.0, 180.0, 285.0, 120.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 30.0, 285.0, 120.0 ],
+					"presentation_rect" : [ 0.0, 30.0, 240.0, 120.0 ],
 					"setminmax" : [ 1.0, 8.0 ],
 					"settype" : 0,
 					"size" : 8,
-					"varname" : "multislider[1]"
+					"varname" : "sliders"
 				}
 
 			}

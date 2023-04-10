@@ -1,8 +1,9 @@
 // nicer print
+
 function print() {
 
    for (var index = 0; index < arguments.length; index++)
-      post(arguments[i]);
+      post(arguments[index]);
    post("\n");
 }
 

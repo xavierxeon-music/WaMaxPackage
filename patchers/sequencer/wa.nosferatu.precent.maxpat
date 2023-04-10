@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 199.0, 2953.0, 1367.0 ],
+		"rect" : [ 34.0, 311.0, 2632.0, 1255.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,23 @@
 		"subpatcher_template" : "OpenGrid",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-19",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 30.0, 315.0, 121.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"filename" : "nosferatu_resize.js",
+						"parameter_enable" : 0
+					}
+,
+					"text" : "js nosferatu_resize.js"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-20",
 					"maxclass" : "newobj",
@@ -187,7 +204,8 @@
 					"patching_rect" : [ 30.0, 255.0, 130.0, 37.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 165.0, 285.0, 37.0 ],
-					"rows" : 1
+					"rows" : 1,
+					"varname" : "steps"
 				}
 
 			}
@@ -262,7 +280,7 @@
 					"setminmax" : [ 0.0, 100.0 ],
 					"setstyle" : 1,
 					"size" : 8,
-					"varname" : "multislider"
+					"varname" : "sliders"
 				}
 
 			}

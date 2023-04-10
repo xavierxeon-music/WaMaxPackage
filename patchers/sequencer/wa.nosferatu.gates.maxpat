@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 311.0, 3170.0, 1255.0 ],
+		"rect" : [ 34.0, 311.0, 3554.0, 1255.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,23 @@
 		"subpatcher_template" : "OpenGrid",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-16",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 30.0, 315.0, 121.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"filename" : "nosferatu_resize.js",
+						"parameter_enable" : 0
+					}
+,
+					"text" : "js nosferatu_resize.js"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-9",
 					"maxclass" : "newobj",
@@ -129,6 +146,7 @@
 			}
 , 			{
 				"box" : 				{
+					"columns" : 9,
 					"id" : "obj-64",
 					"ignoreclick" : 1,
 					"maxclass" : "matrixctrl",
@@ -139,7 +157,8 @@
 					"patching_rect" : [ 30.0, 255.0, 130.0, 37.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 165.0, 285.0, 37.0 ],
-					"rows" : 1
+					"rows" : 1,
+					"varname" : "steps"
 				}
 
 			}
@@ -201,7 +220,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 480.0, 210.0, 96.0, 22.0 ],
-					"restore" : [ 58.333333333333336, 41.666666666666664, 35.0, 41.666666666666664, 47.5, 57.5, 61.666666666666664, 60.833333333333336 ],
+					"restore" : [ 73.333333333333329, 72.5, 66.666666666666671, 68.333333333333329, 68.333333333333329, 69.166666666666671, 70.0, 71.666666666666671, 0.0 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0
@@ -225,8 +244,8 @@
 					"presentation_rect" : [ 0.0, 30.0, 285.0, 120.0 ],
 					"setminmax" : [ 0.0, 100.0 ],
 					"setstyle" : 1,
-					"size" : 8,
-					"varname" : "multislider[2]"
+					"size" : 9,
+					"varname" : "sliders"
 				}
 
 			}
