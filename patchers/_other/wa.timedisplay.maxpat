@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 143.0, 2907.0, 1423.0 ],
+		"rect" : [ 34.0, 199.0, 2907.0, 1367.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,13 +40,75 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-3",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 49.0, 495.0, 110.0, 22.0 ],
+					"text" : "loadmess 00:00:00"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 435.0, 120.0, 57.0, 22.0 ],
+					"text" : "unpack s"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-9",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 435.0, 75.0, 102.0, 22.0 ],
+					"text" : "patcherargs timer",
+					"varname" : "timer"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-8",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 435.0, 210.0, 150.0, 20.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 0.0, 30.0, 105.0, 20.0 ],
+					"text" : "clip1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-6",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 435.0, 165.0, 72.0, 22.0 ],
+					"text" : "prepend set"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-2",
 					"maxclass" : "newobj",
-					"numinlets" : 3,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 176.0, 120.0, 82.0, 22.0 ],
-					"text" : "route int bang"
+					"numinlets" : 4,
+					"numoutlets" : 4,
+					"outlettype" : [ "", "", "", "" ],
+					"patching_rect" : [ 176.0, 120.0, 123.0, 22.0 ],
+					"text" : "route int bang symbol"
 				}
 
 			}
@@ -145,10 +207,10 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 69.0, 506.0, 126.0, 29.0 ],
+					"patching_rect" : [ 69.0, 555.0, 126.0, 29.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 120.0, 29.0 ],
-					"text" : "0:00:00",
+					"presentation_rect" : [ 0.0, 0.0, 105.0, 29.0 ],
+					"text" : "00:00:03",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 				}
 
@@ -257,8 +319,8 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 176.0, 465.0, 141.0, 23.0 ],
-					"text" : "sprintf %i:%02i:%02i"
+					"patching_rect" : [ 176.0, 465.0, 157.0, 23.0 ],
+					"text" : "sprintf %02i:%02i:%02i"
 				}
 
 			}
@@ -281,17 +343,24 @@
 				"box" : 				{
 					"comment" : "state",
 					"id" : "obj-91",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "int" ],
 					"patching_rect" : [ 176.0, 60.0, 30.0, 30.0 ]
 				}
 
 			}
  ],
 		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"source" : [ "obj-10", 0 ]
+				}
+
+			}
+, 			{
 				"patchline" : 				{
 					"destination" : [ "obj-101", 2 ],
 					"source" : [ "obj-100", 0 ]
@@ -337,6 +406,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"source" : [ "obj-2", 2 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-88", 0 ],
 					"source" : [ "obj-2", 0 ]
 				}
@@ -344,8 +420,22 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-89", 1 ],
+					"source" : [ "obj-3", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-102", 0 ],
 					"source" : [ "obj-59", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-8", 0 ],
+					"source" : [ "obj-6", 0 ]
 				}
 
 			}
@@ -360,6 +450,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-86", 0 ],
 					"source" : [ "obj-88", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-10", 0 ],
+					"source" : [ "obj-9", 0 ]
 				}
 
 			}
@@ -400,23 +497,7 @@
 				}
 
 			}
- ],
-		"dependency_cache" : [ 			{
-				"name" : "bpatcher_size.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/setup",
-				"patcherrelativepath" : "../../javascript/setup",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "wa.setup.bpatcher.maxpat",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/patchers/setup",
-				"patcherrelativepath" : "../setup",
-				"type" : "JSON",
-				"implicit" : 1
-			}
- ],
-		"autosave" : 0
+ ]
 	}
 
 }

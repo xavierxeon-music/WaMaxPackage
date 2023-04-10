@@ -24,15 +24,15 @@ function bang() {
 
    var outputId = audioDeviceDict.get("output::" + deviceName);
 
+   if (null === inputId || null === outputId)
+      return;
+
+   outlet(0, inputId);
+   outlet(1, outputId);
+
    //post("AUDIO for ", deviceName, ": in = ", inputId, ", out = ", outputId, "is system = ", useSystemDevice, "\n");
 
-   if (null !== inputId)
-      outlet(0, inputId);
-
-   if (null !== outputId)
-      outlet(1, outputId);
-
-   if (1 === audioDeviceDict.get("auto_start"))
-      outlet(2, "bang");
+   var start = audioDeviceDict.get("auto_start");
+   outlet(2, start);
 }
 
