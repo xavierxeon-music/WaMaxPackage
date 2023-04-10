@@ -36,7 +36,7 @@ function update() {
    slidersPresentRect[3] = sliderHeight;
    sliders.setattr("presentation_rect", slidersPresentRect);
 
-   print("update", columns, "\n");
+   //print("update", columns);
 
 }
 update.local = 1;
