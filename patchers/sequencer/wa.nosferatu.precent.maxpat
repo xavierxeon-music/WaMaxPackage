@@ -105,9 +105,9 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "pitch",
+					"comment" : "precent",
 					"id" : "obj-16",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -203,7 +203,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 30.0, 255.0, 130.0, 37.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 165.0, 285.0, 37.0 ],
+					"presentation_rect" : [ 0.0, 165.0, 240.0, 30.0 ],
 					"rows" : 1,
 					"varname" : "steps"
 				}
@@ -276,7 +276,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 540.0, 270.0, 285.0, 120.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 30.0, 285.0, 120.0 ],
+					"presentation_rect" : [ 0.0, 30.0, 240.0, 120.0 ],
 					"setminmax" : [ 0.0, 100.0 ],
 					"setstyle" : 1,
 					"size" : 8,
@@ -313,7 +313,7 @@
 				"box" : 				{
 					"comment" : "message",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -326,7 +326,7 @@
 				"box" : 				{
 					"comment" : "message",
 					"id" : "obj-2",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -480,7 +480,37 @@
 				}
 
 			}
- ]
+ ],
+		"dependency_cache" : [ 			{
+				"name" : "bpatcher_size.js",
+				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/setup",
+				"patcherrelativepath" : "../../javascript/setup",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "nosferatu_percent.js",
+				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/seqeuncer",
+				"patcherrelativepath" : "../../javascript/seqeuncer",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "nosferatu_resize.js",
+				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/seqeuncer",
+				"patcherrelativepath" : "../../javascript/seqeuncer",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "wa.setup.bpatcher.maxpat",
+				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/patchers/setup",
+				"patcherrelativepath" : "../setup",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0
 	}
 
 }

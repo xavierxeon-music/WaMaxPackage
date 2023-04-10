@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 311.0, 2629.0, 1255.0 ],
+		"rect" : [ 34.0, 143.0, 3177.0, 1423.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -194,7 +194,6 @@
 			}
 , 			{
 				"box" : 				{
-					"columns" : 9,
 					"id" : "obj-8",
 					"ignoreclick" : 1,
 					"maxclass" : "matrixctrl",
@@ -204,7 +203,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 30.0, 255.0, 130.0, 37.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 165.0, 285.0, 37.0 ],
+					"presentation_rect" : [ 0.0, 165.0, 240.0, 30.0 ],
 					"rows" : 1,
 					"varname" : "steps"
 				}
@@ -241,10 +240,10 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 630.0, 248.0, 70.0, 20.0 ],
+					"patching_rect" : [ 630.0, 248.0, 285.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 8.0, 70.0, 20.0 ],
-					"text" : "pitch offset"
+					"presentation_rect" : [ 0.0, 8.0, 240.0, 20.0 ],
+					"text" : "octave switch"
 				}
 
 			}
@@ -256,7 +255,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 426.0, 224.0, 97.0, 22.0 ],
-					"restore" : [ 5, 3, 0, 4, 3, 0, 1, 5, 0 ],
+					"restore" : [ 5, 3, 0, 11, 3, 0, 1, 5 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0
@@ -277,10 +276,10 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 540.0, 270.0, 285.0, 120.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 30.0, 285.0, 120.0 ],
+					"presentation_rect" : [ 0.0, 30.0, 240.0, 120.0 ],
 					"setminmax" : [ 0.0, 11.0 ],
 					"settype" : 0,
-					"size" : 9,
+					"size" : 8,
 					"varname" : "sliders"
 				}
 
