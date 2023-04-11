@@ -9,7 +9,7 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry name="hex_color" id="1">
+        <entry id="1" name="hex_color">
             <digest/>
             <description>the hex color</description>
         </entry>
@@ -17,10 +17,16 @@
     <objarglist/>
     <attributelist/>
     <methodlist>
-        <method standard="1" name="list">
+        <method name="list" standard="1">
             <digest/>
             <description>the RGB color as 3 floats in range [0,1]</description>
         </method>
     </methodlist>
-    <seealsolist/>
+    <seealsolist>
+        <seealso name="wa.graphics.box"/>
+        <seealso name="wa.graphics.circle"/>
+        <seealso name="wa.graphics.line"/>
+        <seealso name="wa.graphics.target"/>
+        <seealso name="wa.graphics.text"/>
+    </seealsolist>
 </c74object>

@@ -9,26 +9,29 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry name="value" id="1">
+        <entry id="1" name="value">
             <digest/>
             <description>the current value as selected by a button press or passed on from ther input</description>
         </entry>
     </misc>
     <objarglist>
-        <objarg optional="1" name="col" type="int">
+        <objarg name="col" optional="1" type="int">
             <digest>the column of the launchpad</digest>
             <description>all buttons in this column will be used, including the sytem button</description>
         </objarg>
-        <objarg optional="1" name="color" type="symbol">
+        <objarg name="color" optional="1" type="symbol">
             <digest>the color of  the column</digest>
             <description>For a givven value the corresponding numbers of buttons wioll be light in this color</description>
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute size="1" get="1" name="initial" set="1" type="int">
+        <attribute get="1" name="initial" set="1" size="1" type="int">
             <digest>set the value at launch</digest>
         </attribute>
     </attributelist>
     <methodlist/>
-    <seealsolist/>
+    <seealsolist>
+        <seealso name="wa.launchpad.button"/>
+        <seealso name="wa.launchpad.device"/>
+    </seealsolist>
 </c74object>

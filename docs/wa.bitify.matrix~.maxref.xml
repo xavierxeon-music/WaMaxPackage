@@ -6,9 +6,8 @@
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
-        <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="1"/>
+    <parser inlet_count="2"/>
     <misc name="Outputs">
         <entry id="0" name="byte">
             <digest/>
@@ -18,10 +17,13 @@
     <objarglist/>
     <attributelist/>
     <methodlist>
-        <method standard="1" name="multichannelsignal">
+        <method name="multichannelsignal" standard="1">
             <digest/>
             <description>mc signal for byte</description>
         </method>
     </methodlist>
-    <seealsolist/>
+    <seealsolist>
+        <seealso name="wa.bitify.byte~"/>
+        <seealso name="wa.bitify.signal~"/>
+    </seealsolist>
 </c74object>

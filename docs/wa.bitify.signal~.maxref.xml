@@ -9,7 +9,7 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry name="signal" id="1">
+        <entry id="1" name="signal">
             <digest/>
             <description>the signal</description>
         </entry>
@@ -17,10 +17,13 @@
     <objarglist/>
     <attributelist/>
     <methodlist>
-        <method standard="1" name="signal">
+        <method name="multichannelsignal" standard="1">
             <digest/>
-            <description>Bit 1 (127) to bit 8 (1)</description>
+            <description>mc signal for byte</description>
         </method>
     </methodlist>
-    <seealsolist/>
+    <seealsolist>
+        <seealso name="wa.bitify.byte~"/>
+        <seealso name="wa.bitify.matrix~"/>
+    </seealsolist>
 </c74object>

@@ -16,11 +16,11 @@
     </misc>
     <objarglist>
         <objarg name="min" optional="1" type="int">
-            <digest>set the minmum value</digest>
+            <digest>set the minmum value (0)</digest>
             <description>set the minmum value<br/><br/>default is 0<br/>see <m>setMin</m><br/><br/><br/></description>
         </objarg>
         <objarg name="max" optional="1" type="int">
-            <digest>set the maximum value</digest>
+            <digest>set the maximum value (127)</digest>
             <description>see <m>setMax</m><br/><br/>default is 127</description>
         </objarg>
     </objarglist>
