@@ -27,13 +27,7 @@ function loadbang() {
    whiteIndex = findNearestMatchInColorList(white);
    indexBuffer[white.hex] = whiteIndex;
 
-   var text = "";
-   var file = new File(jsarguments[1], "read");
-   while (file.isopen && file.position < file.eof) {
-      text += file.readline();
-   }
-   file.close();
-   colorList = JSON.parse(text);
+   colorList = readJsonFile(jsarguments[1]);
 
    for (var index = 0; index < colorList.length; index += 1) {
 

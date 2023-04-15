@@ -22,13 +22,7 @@ function loadbang() {
    colorWhiteIndex = findNearestMatchInColorList(white);
    colorIndexBuffer[white.hex] = colorWhiteIndex;
 
-   var text = "";
-   var file = new File(jsarguments[1], "read");
-   while (file.isopen && file.position < file.eof) {
-      text += file.readline();
-   }
-   file.close();
-   colorList = JSON.parse(text);
+   colorList = readJsonFile(jsarguments[1]);
 
    for (var index = 0; index < colorList.length; index += 1) {
 
@@ -37,14 +31,7 @@ function loadbang() {
    }
 
    if (3 == jsarguments.length) { // optional white list 
-      var text = "";
-      var file = new File(jsarguments[2], "read");
-      while (file.isopen && file.position < file.eof) {
-         text += file.readline();
-      }
-      file.close();
-
-      whiteList = JSON.parse(text);
+      whiteList = readJsonFile(jsarguments[2]);
 
       whiteIndexBuffer["000000"] = 0;
       whiteIndexBuffer["ffffff"] = 127;

@@ -52,14 +52,7 @@ function fromPush(id) {
 
 function buildMap() {
 
-   var text = "";
-   var file = new File(jsarguments[1], "read");
-   while (file.isopen && file.position < file.eof) {
-      text += file.readline();
-   }
-   file.close();
-
-   buttonmap = JSON.parse(text);
+   buttonmap = readJsonFile(jsarguments[1]);
 }
 buildMap.local = 1;
 
