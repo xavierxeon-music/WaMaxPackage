@@ -9,13 +9,6 @@ setoutletassist(0, "length");
 
 // data types
 
-var Mode = {
-   RampA: "rampA",
-   RampB: "rampB",
-   Gates: "gates",
-   Beat: "beats"
-};
-
 function Stage() {
 
    this.startValue = null;
@@ -33,7 +26,6 @@ function Lane() {
 
 // variables
 
-var mode = Mode.RampA;
 var prefix = "???";
 var division = 0; // ticks per segment
 var segments = 0;
@@ -47,17 +39,7 @@ function loadbang() {
 
 function bang() {
 
-   var test = jsarguments[1];
-   if (Mode.RampB === test)
-      mode = Mode.RampB;
-   else if (Mode.Gates === test)
-      mode = Mode.Gates;
-   else if (Mode.Beat === test)
-      mode = Mode.Beat;
-   else
-      mode = Mode.RampA;
-
-   prefix = jsarguments[2];
+   prefix = jsarguments[1];
 
    for (var index = 0; index < 8; index++) {
 
@@ -68,9 +50,7 @@ function bang() {
    }
 }
 
-function read(fileName) {
-
-   // print(sampleRate, mode, prefix);
+function read(fileName, offset) {
 
    var data = readJsonFile(fileName);
    var project = data["project"];
@@ -82,7 +62,7 @@ function read(fileName) {
    var totalLength = division * segments;
    outlet(0, totalLength);
 
-   if (Mode.RampA === mode)
+   if (0 === offset)
       readContours(project["contours"], 0);
    else if (Mode.RampB === mode)
       readContours(project["contours"], 8);
