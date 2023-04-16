@@ -9,9 +9,18 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs"/>
-    <objarglist/>
+    <objarglist>
+        <objarg name="1" optional="1" type="symbol">
+            <digest>the content of the label</digest>
+            <description>the content of the label</description>
+        </objarg>
+    </objarglist>
     <attributelist/>
     <methodlist>
+        <method name="symbol" standard="1">
+            <digest/>
+            <description>the content of the label</description>
+        </method>
         <method name="int" standard="1">
             <digest/>
             <description>set 1 to start the display, 0 pauses the display</description>
