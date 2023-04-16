@@ -1,4 +1,4 @@
-// nicer print
+// helpers
 
 function readJsonFile(fileName) {
 
