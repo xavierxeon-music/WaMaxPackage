@@ -9,6 +9,26 @@ setoutletassist(0, "length");
 
 // data types
 
+// a matrix of lanes (columns) and segments (rows) populated by stages
+// buufers are created for each lane, length of buffer determined by combined lengths of all segmentCount
+// buffers to be played by a 128n pahsor adjusted by totalLength
+
+function Lane() {
+
+   this.buffer = null;
+   this.data = null;
+
+   return this;
+}
+
+function Segment(length) {
+
+   this.length = length;
+
+   return this;
+}
+
+
 function Stage() {
 
    this.startValue = null;
@@ -18,35 +38,28 @@ function Stage() {
    return this;
 }
 
-function Lane() {
-
-   this.buffer = null;
-   this.data = null;
-}
-
 // variables
 
-var prefix = "???";
-var division = 0; // ticks per segment
-var segments = 0;
+var segmentCount = 0;
+var totalLength = 0;
 
-var lanes = [new Lane(), new Lane(), new Lane(), new Lane(), new Lane(), new Lane(), new Lane(), new Lane()];
+var lanes = [];
+var segments = [];
+
+// functions
 
 function loadbang() {
 
-   bang();
-}
-
-function bang() {
-
-   prefix = jsarguments[1];
+   var prefix = jsarguments[1];
 
    for (var index = 0; index < 8; index++) {
 
-      var name = prefix + "_contour" + (index + 1);
-      lanes[index].buffer = new Buffer(name);
+      var lane = new Lane()
 
-      //print(name);
+      var name = prefix + "_contour" + (index + 1);
+      lane.buffer = new Buffer(name);
+
+      lanes.push(lane);
    }
 }
 
@@ -55,31 +68,46 @@ function read(fileName, offset) {
    var data = readJsonFile(fileName);
    var project = data["project"];
 
-   division = 8 * parseInt(project["division"]);
-   segments = parseInt(project["segments"]);
-   //print(segments, " @ ", division, "ticks");
+   segmentCount = parseInt(project["segments"]);
+   var defaultLength = 8 * parseInt(project["division"]);
 
-   var totalLength = division * segments;
+   segments = [];
+   for (var index = 0; index < segmentCount; index++)
+      segments.push(new Segment(defaultLength));
+
+   var header = project["header"];
+   for (var key in header) {
+
+      var laneInfo = header[key];
+      if ("length" in laneInfo) {
+         var index = parseInt(key);
+         segments[index].length = 8 * parseInt(laneInfo["length"]);
+      }
+   }
+
+   totalLength = 0;
+   for (var index = 0; index < segmentCount; index++)
+      totalLength += segments[index].length;
    outlet(0, totalLength);
 
    if (0 === offset)
-      readContours(project["contours"], 0);
+      compileLaneData(project["contours"], 0);
    else if (Mode.RampB === mode)
-      readContours(project["contours"], 8);
+      compileLaneData(project["contours"], 8);
 
 }
 
-function readContours(contours, offset) {
+function compileLaneData(contours, offset) {
 
    for (var laneIndex = 0; laneIndex < 8; laneIndex++) {
 
       var stages = [];
 
-      for (var index = 0; index < segments; index++) {
+      for (var index = 0; index < segmentCount; index++) {
          var stage = new Stage();
          if (0 === index)
             stage.startValue = 0;
-         else if (segments === index + 1)
+         else if (segmentCount === index + 1)
             stage.endValue = 0;
          stages.push(stage);
       }
@@ -104,7 +132,7 @@ function readContours(contours, offset) {
 
       }
 
-      for (var index = 1; index < segments; index++) {
+      for (var index = 1; index < segmentCount; index++) {
 
          var stagePrev = stages[index - 1];
          var stage = stages[index];
@@ -116,14 +144,14 @@ function readContours(contours, offset) {
       var output = [];
 
       var startIndex = 0;
-      for (var index = 0; index < segments; index++) {
+      for (var index = 0; index < segmentCount; index++) {
 
          var stage = stages[index];
          if (stage.startValue !== null)
             startIndex = index;
 
          if (stage.endValue !== null) {
-            var duration = (1 + index - startIndex) * division;
+            var duration = (1 + index - startIndex) * segments[index].length;
             var startStage = stages[startIndex];
 
             var startValue = startStage.startValue;
@@ -142,7 +170,7 @@ function readContours(contours, offset) {
 
    updateBuffers();
 }
-readContours.local = 1;
+compileLaneData.local = 1;
 
 function updateBuffers() {
 
@@ -155,11 +183,7 @@ function updateBuffers() {
          continue;
 
       buffer.send("clear");
-
-      var totalLength = division * segments;
       buffer.send("sizeinsamps", totalLength, 1);
-
-      // print(" * lane ", laneIndex, ", lenght = ", totalLength);
 
       var bufferValue = [];
       for (var dataIndex = 0; dataIndex < data.length; dataIndex += 3) {
