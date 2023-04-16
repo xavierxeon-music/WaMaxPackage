@@ -120,7 +120,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js encoder.js"
+					"text" : "js encoder"
 				}
 
 			}

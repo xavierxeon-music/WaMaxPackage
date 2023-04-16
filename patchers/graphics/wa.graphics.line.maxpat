@@ -99,7 +99,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js graphics_object.js line"
+					"text" : "js graphics_object line"
 				}
 
 			}

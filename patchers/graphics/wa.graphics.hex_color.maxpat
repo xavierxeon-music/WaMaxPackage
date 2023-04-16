@@ -51,7 +51,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js graphics_hex_color.js"
+					"text" : "js graphics_hex_color"
 				}
 
 			}

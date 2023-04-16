@@ -375,7 +375,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js maestro_contour.js  #0 "
+					"text" : "js maestro_contour #0 "
 				}
 
 			}

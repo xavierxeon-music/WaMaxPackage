@@ -51,7 +51,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js launchpad_color_select.js launchpad_colors.json"
+					"text" : "js launchpad_color_select launchpad_colors.json"
 				}
 
 			}

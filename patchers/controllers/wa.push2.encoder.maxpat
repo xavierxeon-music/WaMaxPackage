@@ -63,7 +63,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js push2_encodermap.js"
+					"text" : "js push2_encodermap"
 				}
 
 			}

@@ -111,7 +111,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js push2_padmap.js"
+					"text" : "js push2_padmap"
 				}
 
 			}

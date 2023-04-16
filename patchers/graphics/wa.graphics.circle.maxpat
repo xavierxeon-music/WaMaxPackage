@@ -87,7 +87,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js graphics_object.js circle"
+					"text" : "js graphics_object circle"
 				}
 
 			}

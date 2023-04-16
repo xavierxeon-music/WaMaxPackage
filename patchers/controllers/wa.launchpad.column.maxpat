@@ -540,7 +540,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js selector_row.js"
+					"text" : "js selector_row"
 				}
 
 			}

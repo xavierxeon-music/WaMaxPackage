@@ -158,7 +158,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js push2_buttonmap.js push2_button_names.json"
+					"text" : "js push2_buttonmap push2_button_names.json"
 				}
 
 			}

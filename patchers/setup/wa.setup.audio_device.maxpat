@@ -969,7 +969,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js audio_device_index.js"
+					"text" : "js audio_device_index"
 				}
 
 			}

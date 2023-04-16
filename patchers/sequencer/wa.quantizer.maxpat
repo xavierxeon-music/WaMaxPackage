@@ -51,7 +51,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js qunantize.js"
+					"text" : "js qunantize"
 				}
 
 			}

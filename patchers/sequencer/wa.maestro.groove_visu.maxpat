@@ -192,10 +192,10 @@
 					"id" : "obj-165",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 8,
-					"outlettype" : [ "int", "int", "int", "int", "int", "int", "int", "int" ],
-					"patching_rect" : [ 315.0, 90.0, 165.0, 22.0 ],
-					"text" : "unpack i i i i i i i i"
+					"numoutlets" : 9,
+					"outlettype" : [ "", "", "", "", "", "", "", "", "" ],
+					"patching_rect" : [ 315.0, 90.0, 103.0, 22.0 ],
+					"text" : "unjoin 8"
 				}
 
 			}
@@ -300,10 +300,10 @@
 					"id" : "obj-11",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 8,
-					"outlettype" : [ "int", "int", "int", "int", "int", "int", "int", "int" ],
-					"patching_rect" : [ 1140.0, 90.0, 165.0, 22.0 ],
-					"text" : "unpack i i i i i i i i"
+					"numoutlets" : 9,
+					"outlettype" : [ "", "", "", "", "", "", "", "", "" ],
+					"patching_rect" : [ 1140.0, 90.0, 103.0, 22.0 ],
+					"text" : "unjoin 8"
 				}
 
 			}

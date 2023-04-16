@@ -56,7 +56,7 @@
 , 			{
 				"box" : 				{
 					"maxclass" : "newobj",
-					"text" : "js patch_title.js",
+					"text" : "js patch_title",
 					"numinlets" : 1,
 					"patching_rect" : [ 10.0, 70.0, 87.0, 22.0 ],
 					"numoutlets" : 1,

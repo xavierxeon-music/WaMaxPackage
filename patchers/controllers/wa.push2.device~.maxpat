@@ -75,7 +75,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js push2_buttonmap.js push2_button_names.json"
+					"text" : "js push2_buttonmap push2_button_names.json"
 				}
 
 			}
@@ -104,7 +104,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js push2_padmap.js"
+					"text" : "js push2_padmap"
 				}
 
 			}
@@ -266,7 +266,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js push2_color_select.js push2_colors.json push2_whites.json"
+					"text" : "js push2_color_select push2_colors.json push2_whites.json"
 				}
 
 			}
@@ -296,7 +296,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js push2_color_select.js push2_colors.json"
+					"text" : "js push2_color_select push2_colors.json"
 				}
 
 			}

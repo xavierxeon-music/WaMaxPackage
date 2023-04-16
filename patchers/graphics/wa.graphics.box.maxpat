@@ -99,7 +99,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js graphics_object.js box"
+					"text" : "js graphics_object box"
 				}
 
 			}

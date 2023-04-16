@@ -157,7 +157,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js nosferatu_resize.js"
+					"text" : "js nosferatu_resize"
 				}
 
 			}
@@ -295,7 +295,7 @@
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js nosferatu_stages.js"
+					"text" : "js nosferatu_stages"
 				}
 
 			}
