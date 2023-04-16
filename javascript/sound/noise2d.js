@@ -92,15 +92,5 @@ function create(name, size) {
       buffer.poke(1, frame, data[index]);
    }
 
-   /*
-   for (var x = 0; x < size; x++) {
-
-      for (var y = 0; y < size; y++) {
-         var frame = (x * 512) + y;
-         buffer.poke(1, frame, data[x][y]);
-      }
-   }
-   */
-
    outlet(0, "bang");
 }
