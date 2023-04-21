@@ -91,9 +91,9 @@ function read(fileName, offset) {
    outlet(0, totalLength);
 
    if (0 === offset)
-      compileLaneData(project["contours"], 0);
+      compileLaneData(data["contours"], 0);
    else if (Mode.RampB === mode)
-      compileLaneData(project["contours"], 8);
+      compileLaneData(data["contours"], 8);
 
 }
 
@@ -102,7 +102,6 @@ function compileLaneData(contours, offset) {
    for (var laneIndex = 0; laneIndex < 8; laneIndex++) {
 
       var stages = [];
-
       for (var index = 0; index < segmentCount; index++) {
          var stage = new Stage();
          if (0 === index)
@@ -112,23 +111,35 @@ function compileLaneData(contours, offset) {
          stages.push(stage);
       }
 
-      var countour = contours[offset + laneIndex];
-      for (var key in countour) {
+      var laneKey = (laneIndex + offset).toString();
+      if (1 == laneKey.length)
+         laneKey = "lane0" + laneKey;
+      else
+         laneKey = "lane" + laneKey;
+
+      var lane = contours[laneKey];
+      for (var key in lane) {
 
          if ("name" == key)
             continue;
 
          var segment = parseInt(key);
-         var entry = countour[key];
-
          var stage = stages[segment];
 
-         if ("start" in entry)
-            stage.startValue = parseInt(entry["start"]);
-         if ("end" in entry)
-            stage.endValue = parseInt(entry["end"]);
-         if ("steady" in entry)
-            stage.steady = (1 == entry["steady"]);
+         var entry = parseInt(lane[key]);
+         var startValue = (entry & 0x000000ff) >> 0;
+         var endValue = (entry & 0x0000ff00) >> 8;
+
+         var flags = (entry & 0x00ff0000) >> 16;
+         stage.steady = (entry & 0xf000000f) >> 24;
+
+         var hasStartValue = (0 != (flags & 0x01));
+         if (hasStartValue)
+            stage.startValue = startValue;
+
+         var hasEndValue = (0 != (flags & 0x02));
+         if (hasEndValue)
+            stage.endValue = endValue;
 
       }
 
