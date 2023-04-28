@@ -33,7 +33,6 @@ function Stage() {
 
    this.startValue = null;
    this.endValue = null;
-   this.steady = false;
 
    return this;
 }
@@ -48,7 +47,13 @@ var segments = [];
 
 // functions
 
+
 function loadbang() {
+
+   bang();
+}
+
+function bang() {
 
    var prefix = jsarguments[1];
 
@@ -94,13 +99,24 @@ function read(fileName, offset) {
       compileLaneData(data["contours"], 0);
    else if (Mode.RampB === mode)
       compileLaneData(data["contours"], 8);
+}
 
+function getByte(value, index) {
+
+   var shift = index * 8;
+   var mask = 0xff << shift;
+
+   var extract = value & mask;
+   var byte = extract >> shift;
+
+   return byte;
 }
 
 function compileLaneData(contours, offset) {
 
    for (var laneIndex = 0; laneIndex < 8; laneIndex++) {
 
+      // create stages, first and last proxy
       var stages = [];
       for (var index = 0; index < segmentCount; index++) {
          var stage = new Stage();
@@ -117,6 +133,7 @@ function compileLaneData(contours, offset) {
       else
          laneKey = "lane" + laneKey;
 
+      // fill stages
       var lane = contours[laneKey];
       for (var key in lane) {
 
@@ -127,22 +144,19 @@ function compileLaneData(contours, offset) {
          var stage = stages[segment];
 
          var entry = parseInt(lane[key]);
-         var startValue = (entry & 0x000000ff) >> 0;
-         var endValue = (entry & 0x0000ff00) >> 8;
 
-         var flags = (entry & 0x00ff0000) >> 16;
-         stage.steady = (entry & 0xf000000f) >> 24;
-
-         var hasStartValue = (0 != (flags & 0x01));
+         var startValue = getByte(entry, 0);
+         var hasStartValue = getByte(entry, 1);
          if (hasStartValue)
             stage.startValue = startValue;
 
-         var hasEndValue = (0 != (flags & 0x02));
+         var endValue = getByte(entry, 2);
+         var hasEndValue = getByte(entry, 3);
          if (hasEndValue)
             stage.endValue = endValue;
-
       }
 
+      // propagate end values
       for (var index = 1; index < segmentCount; index++) {
 
          var stagePrev = stages[index - 1];
@@ -150,6 +164,7 @@ function compileLaneData(contours, offset) {
 
          if (stage.startValue !== null && stagePrev.endValue === null)
             stagePrev.endValue = stage.startValue;
+
       }
 
       var output = [];
@@ -158,6 +173,7 @@ function compileLaneData(contours, offset) {
       for (var index = 0; index < segmentCount; index++) {
 
          var stage = stages[index];
+
          if (stage.startValue !== null)
             startIndex = index;
 
@@ -166,9 +182,7 @@ function compileLaneData(contours, offset) {
             var startStage = stages[startIndex];
 
             var startValue = startStage.startValue;
-            var endValue = startValue;
-            if (!startStage.steady)
-               endValue = stage.endValue;
+            var endValue = stage.endValue;
 
             output.push(duration);
             output.push(startValue);
@@ -203,6 +217,8 @@ function updateBuffers() {
          var endValue = parseFloat(data[dataIndex + 2]);
 
          var diff = (endValue - startValue) / duration;
+
+         print(dataIndex, duration, startValue, endValue, diff);
 
          for (var index = 0; index < duration; index++) {
             var value = startValue + (index * diff);
