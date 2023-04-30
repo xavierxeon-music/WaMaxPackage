@@ -25,6 +25,10 @@ function Segment(length) {
 
 // variables
 
+var fileName = null;
+var modificationDate = null;
+
+
 var segmentCount = 0;
 var segments = [];
 
@@ -58,7 +62,23 @@ function reset() {
    currentSegmentIndex = 0;
 }
 
-function read(fileName) {
+function moddate(value) {
+
+   if (value != modificationDate) {
+      modificationDate = value;
+      loadInternal();
+   }
+}
+
+function read(newFileName) {
+
+   fileName = newFileName;
+
+   if (null != modificationDate)
+      loadInternal();
+}
+
+function loadInternal() {
 
    var data = readJsonFile(fileName);
    var project = data["project"];

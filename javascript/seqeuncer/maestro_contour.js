@@ -39,6 +39,10 @@ function Stage() {
 
 // variables
 
+var fileName = null;
+var contourOffset = 0;
+var modificationDate = null;
+
 var segmentCount = 0;
 var totalLength = 0;
 
@@ -68,7 +72,26 @@ function bang() {
    }
 }
 
-function read(fileName, offset) {
+function moddate(value) {
+
+   if (value != modificationDate) {
+      modificationDate = value;
+      loadInternal();
+   }
+}
+
+function read(newFileName, offset) {
+
+   fileName = newFileName;
+   contourOffset = offset;
+
+   if (null != modificationDate)
+      loadInternal();
+}
+
+function loadInternal() {
+
+   print("read", fileName);
 
    var data = readJsonFile(fileName);
    var project = data["project"];
@@ -95,22 +118,12 @@ function read(fileName, offset) {
       totalLength += segments[index].length;
    outlet(0, totalLength);
 
-   if (0 === offset)
+   if (0 === contourOffset)
       compileLaneData(data["contours"], 0);
-   else if (Mode.RampB === mode)
+   else
       compileLaneData(data["contours"], 8);
 }
-
-function getByte(value, index) {
-
-   var shift = index * 8;
-   var mask = 0xff << shift;
-
-   var extract = value & mask;
-   var byte = extract >> shift;
-
-   return byte;
-}
+loadInternal.local = 1;
 
 function compileLaneData(contours, offset) {
 

@@ -3,11 +3,18 @@ inlets = 0;
 outlets = 0;
 
 
+var isAutomatic = false;
+var padding = 0;
+
 function bang() {
 
    var size = compileContentSize();
 
    var bpatcherList = findBPatchers();
+
+   if (!isAutomatic)
+      return;
+
    for (var index = 0; index < bpatcherList.length; index++) {
 
       var bpatcher = bpatcherList[index];
@@ -31,6 +38,11 @@ function bang() {
    }
 
    outlet(0, "bang");
+}
+
+function automatic(value) {
+
+   isAutomatic = (1 == value);
 }
 
 function compileContentSize() {
@@ -73,8 +85,8 @@ function compileContentSize() {
 
    }
 
-   var width = 10 + right - left;
-   var height = 10 + bottom - top;
+   var width = padding + right - left;
+   var height = padding + bottom - top;
 
    return [width, height];
 }

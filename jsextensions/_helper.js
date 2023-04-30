@@ -13,6 +13,18 @@ function readJsonFile(fileName) {
    return object;
 }
 
+function removeFromArray(array, value) {
+
+   for (var index = 0; index < array.length; index++) {
+
+      if (array[index] !== value)
+         continue;
+
+      array.splice(index, 1);
+      return;
+   }
+}
+
 function print() {
 
    for (var index = 0; index < arguments.length; index++)

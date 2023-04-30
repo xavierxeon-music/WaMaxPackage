@@ -15,3 +15,14 @@ function powerOfTwo(value) {
    else
       return -1;
 }
+
+function getByte(value, index) {
+
+   var shift = index * 8;
+   var mask = 0xff << shift;
+
+   var extract = value & mask;
+   var byte = extract >> shift;
+
+   return byte;
+}
