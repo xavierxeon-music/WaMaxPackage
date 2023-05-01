@@ -231,7 +231,7 @@ function updateBuffers() {
 
          var diff = (endValue - startValue) / duration;
 
-         print(dataIndex, duration, startValue, endValue, diff);
+         //print(dataIndex, duration, startValue, endValue, diff);
 
          for (var index = 0; index < duration; index++) {
             var value = startValue + (index * diff);

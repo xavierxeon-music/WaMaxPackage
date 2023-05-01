@@ -18,6 +18,8 @@ var patcherName = null;
 
 function mixerHandle(idList, unmute) {
 
+   print("mixerHandle", idList.length, unmute);
+
    if (unmute) {
 
       isMute = false;
@@ -26,16 +28,18 @@ function mixerHandle(idList, unmute) {
 
 
    isSolo = false;
+
    for (var index = 0; index < idList.length; index++) {
       if (idList[index] == patcherName) {
          isSolo = true;
          break;
       }
    }
+
    if (!isSolo)
       outlet(2, 0);
 
-   updateOutlet();
+   updateVolumeOutlet();
 }
 mixerHandle.local = 1;
 
@@ -46,7 +50,7 @@ function setup() {
 }
 setup.local = 1;
 
-function updateOutlet() {
+function updateVolumeOutlet() {
 
    if (isMute) {
 
@@ -62,7 +66,7 @@ function updateOutlet() {
 
    outlet(0, 1);
 }
-updateOutlet.local = 0;
+updateVolumeOutlet.local = 0;
 
 function loadbang() {
    setup();
@@ -73,12 +77,14 @@ function freebang() {
 }
 
 function mute(value) {
+
    isMute = (1 == value);
-   updateOutlet();
+   updateVolumeOutlet();
 }
 
 function solo(value) {
 
+   // isSolo will be set via mixerHandler
    if (1 == value)
       mixer.enableSolo(patcherName);
    else

@@ -4,15 +4,15 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 3,
+			"revision" : 4,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 171.0, 2953.0, 1395.0 ],
+		"rect" : [ 34.0, 367.0, 3218.0, 1199.0 ],
 		"bglocked" : 0,
-		"openinpresentation" : 0,
+		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
 		"default_fontface" : 0,
 		"default_fontname" : "Arial",
@@ -47,7 +47,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 120.0, 180.0, 85.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "qunantize.js",
+						"filename" : "qunantize",
 						"parameter_enable" : 0
 					}
 ,
@@ -59,7 +59,7 @@
 				"box" : 				{
 					"comment" : "midiNote",
 					"id" : "obj-14",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -203,7 +203,7 @@
 				"box" : 				{
 					"comment" : "midiNote, message",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -351,7 +351,51 @@
 				}
 
 			}
- ]
+ ],
+		"dependency_cache" : [ 			{
+				"name" : "_canvas.js",
+				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/jsui/_commmon",
+				"patcherrelativepath" : "../../jsui/_commmon",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "_scale.js",
+				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/seqeuncer",
+				"patcherrelativepath" : "../../javascript/seqeuncer",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bpatcher_size.js",
+				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/setup",
+				"patcherrelativepath" : "../../javascript/setup",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "named_scale_ui.js",
+				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/jsui/sequencer",
+				"patcherrelativepath" : "../../jsui/sequencer",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "qunantize.js",
+				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/seqeuncer",
+				"patcherrelativepath" : "../../javascript/seqeuncer",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "wa.setup.bpatcher.maxpat",
+				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/patchers/setup",
+				"patcherrelativepath" : "../setup",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0
 	}
 
 }
