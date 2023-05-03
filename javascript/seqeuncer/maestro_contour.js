@@ -5,37 +5,23 @@ inlets = 1;
 setinletassist(0, "message");
 
 outlets = 1;
-setoutletassist(0, "length");
+setoutletassist(0, "buffer_length");
 
 // data types
 
-// a matrix of lanes (columns) and segments (rows) populated by stages
-// buufers are created for each lane, length of buffer determined by combined lengths of all segmentCount
+// a list of segments
+// a buufer is created, length of buffer determined by combined lengths of all segmentCount
 // buffers to be played by a 128n pahsor adjusted by totalLength
-
-function Lane() {
-
-   this.buffer = null;
-   this.data = null;
-
-   return this;
-}
 
 function Segment(length) {
 
    this.length = length;
-
-   return this;
-}
-
-
-function Stage() {
-
    this.startValue = null;
    this.endValue = null;
 
    return this;
 }
+
 
 // variables
 
@@ -46,44 +32,35 @@ var modificationDate = null;
 var segmentCount = 0;
 var totalLength = 0;
 
-var lanes = [];
 var segments = [];
 
 // functions
 
-
-function loadbang() {
-
-   bang();
-}
-
-function bang() {
-
-   var prefix = jsarguments[1];
-
-   for (var index = 0; index < 8; index++) {
-
-      var lane = new Lane()
-
-      var name = prefix + "_contour" + (index + 1);
-      lane.buffer = new Buffer(name);
-
-      lanes.push(lane);
-   }
-}
-
 function moddate(value) {
 
-   if (value != modificationDate) {
-      modificationDate = value;
-      loadInternal();
-   }
+   if (value == modificationDate)
+      return;
+
+
+   modificationDate = value;
+   loadInternal();
 }
 
-function read(newFileName, offset) {
+function offset(value) {
+
+   if (value == contourOffset)
+      return;
+
+   contourOffset = value;
+   loadInternal();
+}
+
+function read(newFileName) {
+
+   if (newFileName == undefined)
+      return;
 
    fileName = newFileName;
-   contourOffset = offset;
 
    if (null != modificationDate)
       loadInternal();
@@ -91,7 +68,7 @@ function read(newFileName, offset) {
 
 function loadInternal() {
 
-   print("read", fileName);
+   //print("read", fileName);
 
    var data = readJsonFile(fileName);
    var project = data["project"];
@@ -118,129 +95,114 @@ function loadInternal() {
       totalLength += segments[index].length;
    outlet(0, totalLength);
 
-   if (0 === contourOffset)
-      compileLaneData(data["contours"], 0);
-   else
-      compileLaneData(data["contours"], 8);
+   var output = compileData(data["contours"]);
+   updateBuffers(output);
 }
 loadInternal.local = 1;
 
-function compileLaneData(contours, offset) {
+function compileData(contoursData) {
 
-   for (var laneIndex = 0; laneIndex < 8; laneIndex++) {
+   //  first and last proxy
+   segments[0].startValue = 0;
+   segments[segmentCount - 1].endValue = 0;
 
-      // create stages, first and last proxy
-      var stages = [];
-      for (var index = 0; index < segmentCount; index++) {
-         var stage = new Stage();
-         if (0 === index)
-            stage.startValue = 0;
-         else if (segmentCount === index + 1)
-            stage.endValue = 0;
-         stages.push(stage);
-      }
 
-      var laneKey = (laneIndex + offset).toString();
-      if (1 == laneKey.length)
-         laneKey = "lane0" + laneKey;
-      else
-         laneKey = "lane" + laneKey;
+   var laneKey = contourOffset.toString();
+   if (1 == laneKey.length)
+      laneKey = "lane0" + laneKey;
+   else
+      laneKey = "lane" + laneKey;
 
-      // fill stages
-      var lane = contours[laneKey];
-      for (var key in lane) {
+   // fill proxies
+   var laneData = contoursData[laneKey];
+   for (var key in laneData) {
 
-         if ("name" == key)
-            continue;
-
-         var segment = parseInt(key);
-         var stage = stages[segment];
-
-         var entry = parseInt(lane[key]);
-
-         var startValue = getByte(entry, 0);
-         var hasStartValue = getByte(entry, 1);
-         if (hasStartValue)
-            stage.startValue = startValue;
-
-         var endValue = getByte(entry, 2);
-         var hasEndValue = getByte(entry, 3);
-         if (hasEndValue)
-            stage.endValue = endValue;
-      }
-
-      // propagate end values
-      for (var index = 1; index < segmentCount; index++) {
-
-         var stagePrev = stages[index - 1];
-         var stage = stages[index];
-
-         if (stage.startValue !== null && stagePrev.endValue === null)
-            stagePrev.endValue = stage.startValue;
-
-      }
-
-      var output = [];
-
-      var startIndex = 0;
-      for (var index = 0; index < segmentCount; index++) {
-
-         var stage = stages[index];
-
-         if (stage.startValue !== null)
-            startIndex = index;
-
-         if (stage.endValue !== null) {
-            var duration = (1 + index - startIndex) * segments[index].length;
-            var startStage = stages[startIndex];
-
-            var startValue = startStage.startValue;
-            var endValue = stage.endValue;
-
-            output.push(duration);
-            output.push(startValue);
-            output.push(endValue);
-         }
-      }
-
-      lanes[laneIndex].data = output;
-   }
-
-   updateBuffers();
-}
-compileLaneData.local = 1;
-
-function updateBuffers() {
-
-   for (var laneIndex = 0; laneIndex < 8; laneIndex++) {
-
-      var buffer = lanes[laneIndex].buffer;
-      var data = lanes[laneIndex].data;
-
-      if (null === buffer || null == data)
+      if ("name" == key)
          continue;
 
-      buffer.send("clear");
-      buffer.send("sizeinsamps", totalLength, 1);
+      var segmentIndex = parseInt(key);
+      var proxy = segments[segmentIndex];
 
-      var bufferValue = [];
-      for (var dataIndex = 0; dataIndex < data.length; dataIndex += 3) {
-         var duration = parseInt(data[dataIndex + 0]);
-         var startValue = parseFloat(data[dataIndex + 1]);
-         var endValue = parseFloat(data[dataIndex + 2]);
+      var entry = parseInt(laneData[key]);
 
-         var diff = (endValue - startValue) / duration;
+      var startValue = getByte(entry, 0);
+      var hasStartValue = getByte(entry, 1);
+      if (hasStartValue)
+         proxy.startValue = startValue;
 
-         //print(dataIndex, duration, startValue, endValue, diff);
-
-         for (var index = 0; index < duration; index++) {
-            var value = startValue + (index * diff);
-            bufferValue.push(value / 256.0);
-         }
-
-      }
-      buffer.poke(1, 0, bufferValue);
+      var endValue = getByte(entry, 2);
+      var hasEndValue = getByte(entry, 3);
+      if (hasEndValue)
+         proxy.endValue = endValue;
    }
+
+   // propagate end values
+   for (var index = 1; index < segmentCount; index++) {
+
+      var proxyPrev = segments[index - 1];
+      var proxy = segments[index];
+
+      if (proxy.startValue !== null && proxyPrev.endValue === null)
+         proxyPrev.endValue = proxy.startValue;
+
+   }
+
+   var output = [];
+
+   var startIndex = 0;
+   for (var index = 0; index < segmentCount; index++) {
+
+      var proxy = segments[index];
+
+      if (proxy.startValue !== null)
+         startIndex = index;
+
+      if (proxy.endValue !== null) {
+         var duration = (1 + index - startIndex) * segments[index].length;
+         var startproxy = segments[startIndex];
+
+         var startValue = startproxy.startValue;
+         var endValue = proxy.endValue;
+
+         output.push(duration);
+         output.push(startValue);
+         output.push(endValue);
+      }
+   }
+
+   return output;
+}
+compileData.local = 1;
+
+function updateBuffers(data) {
+
+   if (null == data)
+      return;
+
+   var prefix = jsarguments[1];
+   var name = prefix + "_contour";
+   buffer = new Buffer(name);
+
+   buffer.send("clear");
+   buffer.send("sizeinsamps", totalLength, 1);
+
+   var bufferValue = [];
+   for (var dataIndex = 0; dataIndex < data.length; dataIndex += 3) {
+      var duration = parseInt(data[dataIndex + 0]);
+      var startValue = parseFloat(data[dataIndex + 1]);
+      var endValue = parseFloat(data[dataIndex + 2]);
+
+      var diff = (endValue - startValue) / duration;
+
+      //print(dataIndex, duration, startValue, endValue, diff);
+
+      for (var index = 0; index < duration; index++) {
+         var value = startValue + (index * diff);
+         bufferValue.push(value / 256.0);
+      }
+
+   }
+   buffer.poke(1, 0, bufferValue);
 
 }
 updateBuffers.local = 1;
