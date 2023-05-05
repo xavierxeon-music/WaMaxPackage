@@ -65,7 +65,7 @@ function bang() {
    var propability = unit.propability;
    var value2 = unit.value2;
 
-   outlet(3, [value1, value2])
+   outlet(2, [value1, value2])
 
    currentSegmentTick++;
    if (currentSegmentTick >= segment.length) {
