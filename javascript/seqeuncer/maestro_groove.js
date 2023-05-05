@@ -28,7 +28,6 @@ function Segment(length) {
 var fileName = null;
 var modificationDate = null;
 
-
 var segmentCount = 0;
 var segments = [];
 
@@ -38,6 +37,9 @@ var currentSegmentTick = 0;
 // functions
 
 function bang() {
+
+   if (0 == segments.length)
+      return;
 
    var segment = segments[currentSegmentIndex];
    var gates = segment.gates;
@@ -108,8 +110,8 @@ function loadInternal() {
    for (var index = 0; index < segments[0].length; index++)
       segments[0].beat.push(0);
 
-   readGates(project["gates"]);
-   readBeats(project["beats"]);
+   readGates(data["gates"]);
+   readBeats(data["beats"]);
 
    for (var index = 0; index < segmentCount; index++) {
 
@@ -184,6 +186,8 @@ function bitList(value) {
    bits[6] = (0 != (value & parseInt("00100000", 2)));
    bits[6] = (0 != (value & parseInt("01000000", 2)));
    bits[7] = (0 != (value & parseInt("10000000", 2)));
+
+   //print(value, bits);
 
    return bits;
 }

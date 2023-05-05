@@ -4,9 +4,10 @@ autowatch = 1;
 inlets = 1;
 setinletassist(0, "message");
 
-outlets = 2;
-setoutletassist(0, "gate");
-setoutletassist(1, "values");
+outlets = 3;
+setoutletassist(0, "length");
+setoutletassist(1, "buffer_size");
+setoutletassist(2, "values");
 
 // data types
 
@@ -42,9 +43,12 @@ var modificationDate = null;
 
 var segmentCount = 0;
 var segments = [];
+var totalLength = 0;
 
 var currentSegmentIndex = 0;
 var currentSegmentTick = 0;
+
+var subTickCount = 32;
 
 // functions
 
@@ -61,8 +65,7 @@ function bang() {
    var propability = unit.propability;
    var value2 = unit.value2;
 
-   outlet(0, length);
-   outlet(1, [value1, value2])
+   outlet(3, [value1, value2])
 
    currentSegmentTick++;
    if (currentSegmentTick >= segment.length) {
@@ -131,13 +134,12 @@ function loadInternal() {
       }
    }
 
-   // set start value (maybe overriden later)
-   var firstSegment = segments[0];
-   firstSegment.units = [];
-   for (var unitIndex = 0; unitIndex < firstSegment.length; unitIndex++) {
-      var unit = new Unit();
-      firstSegment.units.push(unit);
-   }
+   totalLength = 0;
+   for (var index = 0; index < segmentCount; index++)
+      totalLength += segments[index].length;
+   outlet(0, totalLength);
+   outlet(1, subTickCount * totalLength);
+
 
    var stagesData = data["stages"];
    var laneKey = stageOffset.toString();
@@ -147,6 +149,7 @@ function loadInternal() {
       laneKey = "lane" + laneKey;
 
    var laneData = stagesData[laneKey];
+   // read data
    for (var key in laneData) {
 
       if ("name" == key)
@@ -154,6 +157,7 @@ function loadInternal() {
 
       var segmentIndex = parseInt(key);
       var segment = segments[segmentIndex];
+      //print("parse segment", segmentIndex);
 
       var unitArray = laneData[key];
       if (unitArray.length != segment.length) {
@@ -163,6 +167,7 @@ function loadInternal() {
       else {
          segment.units = [];
       }
+
 
       for (var unitIndex = 0; unitIndex < segment.length; unitIndex++) {
          var unitStore = parseInt(unitArray[unitIndex]);
@@ -177,6 +182,23 @@ function loadInternal() {
       }
    }
 
+   fillEmptySegments();
+   updateBuffer();
+}
+loadInternal.local = 1;
+
+function fillEmptySegments() {
+
+   // set start units (if not present)
+   var firstSegment = segments[0];
+   if (null === firstSegment.units) {
+      //print("fill first sgment");
+      firstSegment.units = [];
+      for (var unitIndex = 0; unitIndex < firstSegment.length; unitIndex++) {
+         var unit = new Unit();
+         firstSegment.units.push(unit);
+      }
+   }
 
    // propagate units
    for (var index = 1; index < segmentCount; index++) {
@@ -184,11 +206,42 @@ function loadInternal() {
       var lastSegment = segments[index - 1];
       var segment = segments[index];
       if (null === segment.units) {
+         //print("copy segment from ", index - 1, " to ", index);
          segment.units = [];
          for (var index2 = 0; index2 < lastSegment.units.length; index2++)
             segment.units[index2] = lastSegment.units[index2];
 
       }
    }
-
 }
+fillEmptySegments.local = 1;
+
+function updateBuffer() {
+
+   var prefix = jsarguments[1];
+   var name = prefix + "_stage";
+   buffer = new Buffer(name);
+
+   buffer.send("clear");
+   buffer.send("sizeinsamps", subTickCount * totalLength, 1);
+
+   var bufferValue = [];
+   for (var index = 0; index < segmentCount; index++) {
+
+      var segment = segments[index];
+      for (var tick = 0; tick < segment.units.length; tick++) {
+
+         var unitLength = segment.units[tick].length;
+         for (var subTick = 0; subTick < subTickCount; subTick++) {
+
+            var percentage = subTick / subTickCount;
+            if (percentage < unitLength)
+               bufferValue.push(1);
+            else
+               bufferValue.push(0);
+         }
+      }
+   }
+   buffer.poke(1, 0, bufferValue);
+}
+updateBuffer.local = 1;
