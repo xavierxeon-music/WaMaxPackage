@@ -76,9 +76,9 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "gate",
 					"id" : "obj-24",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -150,7 +150,7 @@
 				"box" : 				{
 					"comment" : "values",
 					"id" : "obj-16",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -323,7 +323,7 @@
 				"box" : 				{
 					"comment" : "message",
 					"id" : "obj-12",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -552,7 +552,16 @@
 				}
 
 			}
- ]
+ ],
+		"dependency_cache" : [ 			{
+				"name" : "maestro_stage.js",
+				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/seqeuncer",
+				"patcherrelativepath" : "../../javascript/seqeuncer",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0
 	}
 
 }

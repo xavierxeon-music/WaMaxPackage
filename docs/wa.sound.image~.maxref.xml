@@ -9,7 +9,7 @@
     </metadatalist>
     <parser inlet_count="2"/>
     <misc name="Outputs">
-        <entry id="1" name="sound">
+        <entry id="0" name="sound">
             <digest/>
             <description>the sound</description>
         </entry>

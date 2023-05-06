@@ -6,17 +6,21 @@
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
-        <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="0"/>
     <misc name="Outputs">
-        <entry id="1" name="loaded">
+        <entry id="0" name="loaded">
             <digest/>
             <description>send out a bang when the size has been readjusted</description>
         </entry>
     </misc>
     <objarglist/>
-    <attributelist/>
+    <attributelist>
+        <attribute get="1" name="automatic" set="1" size="1" type="symbol">
+            <digest>automatic resize</digest>
+            <description>automatic resize</description>
+        </attribute>
+    </attributelist>
     <methodlist/>
     <seealsolist/>
 </c74object>

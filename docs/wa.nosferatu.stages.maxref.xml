@@ -6,11 +6,10 @@
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
-        <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry id="1" name="message">
+        <entry id="0" name="message">
             <digest/>
             <description>the message bus</description>
         </entry>

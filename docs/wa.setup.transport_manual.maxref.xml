@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="0" name="wa.transport_metropolix.control">
+<c74object as_bpatcher="0" name="wa.setup.transport_manual">
     <digest>control transport</digest>
-    <description>Control the Metropolix dummy transport in MusicHub</description>
+    <description>Manual control of the global transport</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
@@ -12,18 +12,18 @@
     <objarglist>
         <objarg name="1" optional="1" type="int">
             <digest>tempo</digest>
-            <description>the tempo</description>
+            <description>the tempo of the transport<br/></description>
         </objarg>
     </objarglist>
     <attributelist/>
     <methodlist>
         <method name="int" standard="1">
             <digest/>
-            <description>in left inlet: start / stop</description>
+            <description>start/ stop</description>
         </method>
         <method name="bang" standard="1">
             <digest/>
-            <description>in left inlet: reset</description>
+            <description>reset</description>
         </method>
     </methodlist>
     <seealsolist/>
