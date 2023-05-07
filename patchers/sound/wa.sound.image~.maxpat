@@ -219,7 +219,6 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 60.0, 169.0, 81.0, 22.0 ],
-					"restore" : [ "Macintosh HD:/Users/waspe/Library/CloudStorage/Dropbox/Pictures/Space/JWST Carina Nebula.png" ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0

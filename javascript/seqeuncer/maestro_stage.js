@@ -5,9 +5,9 @@ inlets = 1;
 setinletassist(0, "message");
 
 outlets = 3;
-setoutletassist(0, "length");
-setoutletassist(1, "buffer_size");
-setoutletassist(2, "values");
+setoutletassist(0, "values");
+setoutletassist(1, "length");
+setoutletassist(2, "buffer_size");
 
 // data types
 
@@ -65,7 +65,7 @@ function bang() {
    var propability = unit.propability;
    var value2 = unit.value2;
 
-   outlet(2, [value1, value2])
+   outlet(0, [value1, value2])
 
    currentSegmentTick++;
    if (currentSegmentTick >= segment.length) {
@@ -137,8 +137,8 @@ function loadInternal() {
    totalLength = 0;
    for (var index = 0; index < segmentCount; index++)
       totalLength += segments[index].length;
-   outlet(0, totalLength);
-   outlet(1, subTickCount * totalLength);
+   outlet(1, totalLength);
+   outlet(2, subTickCount * totalLength);
 
 
    var stagesData = data["stages"];

@@ -18,7 +18,7 @@ var patcherName = null;
 
 function mixerHandle(idList, unmute) {
 
-   print("mixerHandle", idList.length, unmute);
+   //print("mixerHandle", idList.length, unmute);
 
    if (unmute) {
 
