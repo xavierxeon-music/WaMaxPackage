@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 367.0, 3218.0, 1199.0 ],
+		"rect" : [ 34.0, 675.0, 3113.0, 891.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -80,7 +80,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "rightOut",
 					"id" : "obj-6",
 					"index" : 0,
 					"maxclass" : "outlet",
@@ -92,7 +92,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "leftOut",
 					"id" : "obj-5",
 					"index" : 0,
 					"maxclass" : "outlet",
@@ -168,7 +168,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "rightIn",
 					"id" : "obj-30",
 					"index" : 0,
 					"maxclass" : "inlet",
@@ -379,7 +379,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "leftIn",
 					"id" : "obj-1",
 					"index" : 0,
 					"maxclass" : "inlet",

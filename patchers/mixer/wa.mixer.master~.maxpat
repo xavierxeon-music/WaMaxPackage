@@ -369,7 +369,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "rightOut",
 					"id" : "obj-6",
 					"index" : 0,
 					"maxclass" : "outlet",
@@ -422,7 +422,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "leftOut",
 					"id" : "obj-2",
 					"index" : 0,
 					"maxclass" : "outlet",

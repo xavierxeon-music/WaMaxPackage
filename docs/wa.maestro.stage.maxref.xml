@@ -17,10 +17,15 @@
             <digest/>
             <description>value1 and value2</description>
         </entry>
+        <entry id="2" name="gate">
+            <digest/>
+            <description>the gate signal (0 = off, 1 = on)</description>
+        </entry>
     </misc>
     <objarglist>
         <objarg name="1" optional="1" type="symbol">
             <digest>the grm file</digest>
+            <description>the grm file to load</description>
         </objarg>
     </objarglist>
     <attributelist>

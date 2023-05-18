@@ -128,7 +128,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "rightIn",
 					"id" : "obj-30",
 					"index" : 0,
 					"maxclass" : "inlet",
@@ -361,7 +361,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "leftIn",
 					"id" : "obj-1",
 					"index" : 0,
 					"maxclass" : "inlet",
