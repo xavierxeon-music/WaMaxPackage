@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 4,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 647.0, 2632.0, 919.0 ],
+		"rect" : [ 34.0, 255.0, 3365.0, 1311.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -39,19 +39,6 @@
 		"subpatcher_template" : "OpenGrid",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
-				"box" : 				{
-					"comment" : "mute",
-					"id" : "obj-23",
-					"index" : 0,
-					"maxclass" : "inlet",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 270.0, 273.5, 30.0, 30.0 ]
-				}
-
-			}
-, 			{
 				"box" : 				{
 					"id" : "obj-17",
 					"maxclass" : "newobj",
@@ -83,7 +70,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 315.0, 277.5, 29.5, 22.0 ],
-					"text" : "0"
+					"text" : "1."
 				}
 
 			}
@@ -95,31 +82,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 350.5, 277.5, 29.5, 22.0 ],
-					"text" : "1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-25",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 394.5, 277.5, 67.0, 22.0 ],
-					"text" : "open wave"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-22",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "bang", "bang" ],
-					"patching_rect" : [ 350.5, 237.5, 63.0, 22.0 ],
-					"text" : "trigger b b"
+					"text" : "0."
 				}
 
 			}
@@ -132,18 +95,6 @@
 					"outlettype" : [ "bang", "bang", "" ],
 					"patching_rect" : [ 315.0, 194.5, 90.0, 22.0 ],
 					"text" : "select 0 1"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-14",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 253.0, 435.0, 69.0, 22.0 ],
-					"text" : "sfrecord~ 2"
 				}
 
 			}
@@ -168,7 +119,7 @@
 			}
 , 			{
 				"box" : 				{
-					"activebgoncolor" : [ 0.847058823529412, 0.164705882352941, 0.164705882352941, 1.0 ],
+					"activebgoncolor" : [ 0.847058823529412, 0.705882352941177, 0.164705882352941, 1.0 ],
 					"id" : "obj-11",
 					"maxclass" : "live.text",
 					"numinlets" : 1,
@@ -193,8 +144,8 @@
 
 					}
 ,
-					"text" : "Rec",
-					"texton" : "Stop",
+					"text" : "Mute",
+					"texton" : "Umute",
 					"varname" : "live.text"
 				}
 
@@ -466,15 +417,6 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-10", 0 ],
-					"order" : 1,
-					"source" : [ "obj-13", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-14", 0 ],
-					"order" : 0,
 					"source" : [ "obj-13", 0 ]
 				}
 
@@ -495,16 +437,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-14", 1 ],
-					"order" : 1,
-					"source" : [ "obj-17", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-9", 0 ],
-					"order" : 0,
 					"source" : [ "obj-17", 0 ]
 				}
 
@@ -518,7 +451,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-22", 0 ],
+					"destination" : [ "obj-27", 0 ],
 					"source" : [ "obj-19", 1 ]
 				}
 
@@ -546,23 +479,9 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-25", 0 ],
-					"source" : [ "obj-22", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-27", 0 ],
-					"source" : [ "obj-22", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-13", 1 ],
 					"order" : 1,
-					"source" : [ "obj-23", 0 ]
+					"source" : [ "obj-27", 0 ]
 				}
 
 			}
@@ -570,27 +489,22 @@
 				"patchline" : 				{
 					"destination" : [ "obj-17", 1 ],
 					"order" : 0,
-					"source" : [ "obj-23", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-14", 0 ],
-					"source" : [ "obj-25", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-14", 0 ],
 					"source" : [ "obj-27", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-14", 0 ],
+					"destination" : [ "obj-13", 1 ],
+					"order" : 1,
+					"source" : [ "obj-28", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-17", 1 ],
+					"order" : 0,
 					"source" : [ "obj-28", 0 ]
 				}
 
@@ -650,28 +564,28 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "_mixer.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/mixer",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/WaMaxPackage/javascript/mixer",
 				"patcherrelativepath" : "../../javascript/mixer",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "bpatcher_size.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/setup",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/WaMaxPackage/javascript/setup",
 				"patcherrelativepath" : "../../javascript/setup",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mixer_master.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/mixer",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/WaMaxPackage/javascript/mixer",
 				"patcherrelativepath" : "../../javascript/mixer",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "wa.setup.bpatcher.maxpat",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/patchers/setup",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/WaMaxPackage/patchers/setup",
 				"patcherrelativepath" : "../setup",
 				"type" : "JSON",
 				"implicit" : 1
