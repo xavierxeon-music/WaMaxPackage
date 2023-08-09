@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 143.0, 3033.0, 1423.0 ],
+		"rect" : [ 34.0, 143.0, 3433.0, 1423.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 					"numinlets" : 3,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 120.0, 280.0, 112.0, 22.0 ],
+					"patching_rect" : [ 90.0, 195.0, 112.0, 22.0 ],
 					"text" : "routepass signal int"
 				}
 
@@ -392,7 +392,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 120.0, 220.0, 30.0, 30.0 ]
+					"patching_rect" : [ 90.0, 135.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -430,16 +430,8 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-31", 1 ],
-					"order" : 0,
-					"source" : [ "obj-11", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-8", 1 ],
-					"order" : 1,
+					"destination" : [ "obj-16", 0 ],
+					"midpoints" : [ 146.0, 228.0, 405.0, 228.0, 405.0, 24.0, 429.5, 24.0 ],
 					"source" : [ "obj-11", 1 ]
 				}
 
