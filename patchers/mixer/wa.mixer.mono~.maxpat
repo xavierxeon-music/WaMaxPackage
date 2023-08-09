@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 4,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 367.0, 3765.0, 1199.0 ],
+		"rect" : [ 34.0, 143.0, 2633.0, 1423.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -40,12 +40,25 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"comment" : "pan",
+					"id" : "obj-32",
+					"index" : 0,
+					"maxclass" : "inlet",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 305.0, 202.0, 30.0, 30.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-30",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 390.0, 240.0, 72.0, 22.0 ],
+					"patching_rect" : [ 525.0, 255.0, 72.0, 22.0 ],
 					"text" : "prepend set"
 				}
 
@@ -57,7 +70,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 435.0, 195.0, 72.0, 22.0 ],
+					"patching_rect" : [ 570.0, 210.0, 72.0, 22.0 ],
 					"text" : "prepend set"
 				}
 
@@ -69,7 +82,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 960.0, 240.0, 72.0, 22.0 ],
+					"patching_rect" : [ 654.0, 555.0, 72.0, 22.0 ],
 					"text" : "prepend set"
 				}
 
@@ -81,7 +94,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 960.0, 195.0, 69.0, 22.0 ],
+					"patching_rect" : [ 654.0, 510.0, 69.0, 22.0 ],
 					"text" : "route name"
 				}
 
@@ -93,7 +106,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 840.0, 150.0, 144.0, 22.0 ],
+					"patching_rect" : [ 534.0, 465.0, 144.0, 22.0 ],
 					"text" : "patcherargs @name mon"
 				}
 
@@ -106,7 +119,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 960.0, 300.0, 45.0, 17.0 ],
+					"patching_rect" : [ 654.0, 615.0, 45.0, 17.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 30.0, 17.0 ],
 					"text" : "mon",
@@ -133,7 +146,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 600.0, 105.0, 103.0, 22.0 ],
+					"patching_rect" : [ 735.0, 120.0, 103.0, 22.0 ],
 					"text" : "prepend freebang"
 				}
 
@@ -145,7 +158,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 600.0, 60.0, 56.0, 22.0 ],
+					"patching_rect" : [ 735.0, 75.0, 56.0, 22.0 ],
 					"text" : "freebang"
 				}
 
@@ -169,7 +182,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 345.0, 90.0, 83.0, 22.0 ],
+					"patching_rect" : [ 480.0, 105.0, 83.0, 22.0 ],
 					"text" : "prepend mute"
 				}
 
@@ -181,7 +194,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 450.0, 90.0, 78.0, 22.0 ],
+					"patching_rect" : [ 585.0, 105.0, 78.0, 22.0 ],
 					"text" : "prepend solo"
 				}
 
@@ -193,7 +206,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 345.0, 150.0, 109.0, 22.0 ],
+					"patching_rect" : [ 480.0, 165.0, 109.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "mixer_strip",
 						"parameter_enable" : 0
@@ -261,7 +274,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 450.0, 15.0, 75.0, 45.0 ],
+					"patching_rect" : [ 585.0, 30.0, 75.0, 45.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 225.0, 30.0, 31.0 ],
 					"saved_attribute_attributes" : 					{
@@ -290,7 +303,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
 					"parameter_enable" : 1,
-					"patching_rect" : [ 345.0, 15.0, 75.0, 45.0 ],
+					"patching_rect" : [ 480.0, 30.0, 75.0, 45.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 195.0, 30.0, 30.0 ],
 					"saved_attribute_attributes" : 					{
@@ -445,8 +458,8 @@
 					"numinlets" : 3,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 195.0, 90.0, 122.0, 22.0 ],
-					"text" : "routepass signal float"
+					"patching_rect" : [ 195.0, 90.0, 112.0, 22.0 ],
+					"text" : "routepass signal int"
 				}
 
 			}
@@ -482,7 +495,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "signal",
 					"id" : "obj-1",
 					"index" : 0,
 					"maxclass" : "inlet",
@@ -634,7 +647,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-18", 0 ],
-					"midpoints" : [ 444.5, 219.0, 474.0, 219.0, 474.0, 228.0, 540.0, 228.0, 540.0, 0.0, 459.5, 0.0 ],
+					"midpoints" : [ 579.5, 234.0, 609.0, 234.0, 609.0, 243.0, 675.0, 243.0, 675.0, 15.0, 594.5, 15.0 ],
 					"source" : [ "obj-24", 0 ]
 				}
 
@@ -677,8 +690,15 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-16", 0 ],
-					"midpoints" : [ 399.5, 264.0, 330.0, 264.0, 330.0, 9.0, 354.5, 9.0 ],
+					"midpoints" : [ 534.5, 279.0, 465.0, 279.0, 465.0, 24.0, 489.5, 24.0 ],
 					"source" : [ "obj-30", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-23", 0 ],
+					"source" : [ "obj-32", 0 ]
 				}
 
 			}
@@ -707,7 +727,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-23", 0 ],
+					"destination" : [ "obj-8", 1 ],
 					"source" : [ "obj-5", 1 ]
 				}
 
@@ -753,28 +773,28 @@
 ,
 		"dependency_cache" : [ 			{
 				"name" : "_mixer.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/mixer",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/WaMaxPackage/javascript/mixer",
 				"patcherrelativepath" : "../../javascript/mixer",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "bpatcher_size.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/setup",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/WaMaxPackage/javascript/setup",
 				"patcherrelativepath" : "../../javascript/setup",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "mixer_strip.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/mixer",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/WaMaxPackage/javascript/mixer",
 				"patcherrelativepath" : "../../javascript/mixer",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "wa.setup.bpatcher.maxpat",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/patchers/setup",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/WaMaxPackage/patchers/setup",
 				"patcherrelativepath" : "../setup",
 				"type" : "JSON",
 				"implicit" : 1

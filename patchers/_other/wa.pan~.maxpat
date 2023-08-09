@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 199.0, 3061.0, 1367.0 ],
+		"rect" : [ 34.0, 143.0, 3433.0, 1423.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,8 +57,8 @@
 					"numinlets" : 3,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 124.0, 105.0, 97.0, 22.0 ],
-					"text" : "route float signal"
+					"patching_rect" : [ 124.0, 105.0, 122.0, 22.0 ],
+					"text" : "routepass float signal"
 				}
 
 			}
@@ -165,7 +165,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 124.0, 45.0, 30.0, 30.0 ]
 				}
 
@@ -279,7 +279,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-3", 0 ],
-					"midpoints" : [ 172.5, 225.0, 129.5, 225.0 ],
+					"midpoints" : [ 185.0, 225.0, 129.5, 225.0 ],
 					"source" : [ "obj-9", 1 ]
 				}
 
