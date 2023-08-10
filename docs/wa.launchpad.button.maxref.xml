@@ -23,6 +23,9 @@
             <digest/>
             <description>bang when button is released.</description>
         </entry>
+        <entry id="3" name="released">
+            <digest/>
+        </entry>
     </misc>
     <objarglist>
         <objarg name="id" optional="0" type="int">

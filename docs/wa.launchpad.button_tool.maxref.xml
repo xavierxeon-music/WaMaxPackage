@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+<c74object as_bpatcher="1" name="wa.launchpad.button_tool">
+    <digest>A launchpad button</digest>
+    <description>Show color and get button id, when placed in a <o>wa.launchpad.device</o> in presentarion mode.</description>
+    <metadatalist>
+        <metadata name="author">Ralf Waspe</metadata>
+        <metadata name="tag">WaMaxPackage</metadata>
+    </metadatalist>
+    <parser inlet_count="0"/>
+    <misc name="Outputs">
+        <entry id="1" name="">
+            <digest/>
+            <description>the button id</description>
+        </entry>
+    </misc>
+    <objarglist/>
+    <attributelist/>
+    <methodlist/>
+    <seealsolist/>
+</c74object>
