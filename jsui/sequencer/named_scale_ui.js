@@ -5,7 +5,7 @@ inlets = 1;
 setinletassist(0, "message");
 
 include("_scale.js");
-include("_canvas.js");
+include("_mapped_canvas.js");
 
 
 //////////////////////////////////////////
@@ -17,19 +17,22 @@ var rootNote = "c";
 var isMajor = true;
 
 // set up
-canvas = new Canvas(this, 155, 45);
 var cubeSide = 15;
 var xList = [5, 15, 25, 35, 45, 75, 85, 95, 105, 115, 125, 135];
 var yList = [25, 5, 25, 5, 25, 25, 5, 25, 5, 25, 5, 25];
 
+var mc = new MappedCanvas(this, 155, 45);
+
+//////////////////////////////////////////
+
 function loadbang() {
 
-   canvas.draw();
+   mc.draw();
 }
 
 function bang() {
 
-   canvas.draw();
+   mc.draw();
 }
 
 function getvalueof() {
@@ -44,7 +47,7 @@ function setvalueof(value) {
    maybeCreate();
 
    myScale().setScale(value)
-   canvas.draw();
+   mc.draw();
 }
 
 function name(text) {
@@ -52,7 +55,7 @@ function name(text) {
    scaleName = text;
 
    maybeCreate();
-   canvas.draw();
+   mc.draw();
 }
 
 function root(note) {
@@ -63,7 +66,7 @@ function root(note) {
    myScale().setPredefined(rootNote, isMajor);
 
    notifyclients();
-   canvas.draw();
+   mc.draw();
 }
 
 function major(enabled) {
@@ -74,7 +77,7 @@ function major(enabled) {
    myScale().setPredefined(rootNote, isMajor);
 
    notifyclients();
-   canvas.draw();
+   mc.draw();
 }
 
 function scale(text) {
@@ -83,7 +86,7 @@ function scale(text) {
    myScale().setScale(text);
 
    notifyclients();
-   canvas.draw();
+   mc.draw();
 }
 
 function enable(note) {
@@ -91,7 +94,7 @@ function enable(note) {
    setNote(note, true);
 
    notifyclients();
-   canvas.draw();
+   mc.draw();
 }
 
 function disable(note) {
@@ -99,7 +102,7 @@ function disable(note) {
    setNote(note, false);
 
    notifyclients();
-   canvas.draw();
+   mc.draw();
 }
 
 function clear() {
@@ -108,7 +111,7 @@ function clear() {
    myScale().clear();
 
    notifyclients();
-   canvas.draw();
+   mc.draw();
 }
 
 function myScale() {
@@ -142,18 +145,18 @@ function paint() {
    for (var index = 0; index < 12; index++) {
 
       if (myScale().notes[index])
-         canvas.setColor("556655");
+         mc.setColor("556655");
       else
-         canvas.setColor("bbbbbb");
+         mc.setColor("bbbbbb");
 
-      canvas.drawRectangle(xList[index], yList[index], cubeSide, cubeSide, true);
+      mc.drawRectangle(xList[index], yList[index], cubeSide, cubeSide, true);
    }
 }
 paint.local = 1;
 
 function onclick(x, y) {
 
-   var point = canvas.screenToCanvas(x, y);
+   var point = mc.screenToCanvas(x, y);
    for (var index = 0; index < 12; index++) {
 
       var xMin = xList[index];
@@ -185,13 +188,13 @@ function onclick(x, y) {
       break;
    }
 
-   canvas.draw();
+   mc.draw();
 }
 onclick.local = 1;
 
 function onresize(w, h) {
 
-   canvas.draw();
+   mc.draw();
 }
 onresize.local = 1;
 

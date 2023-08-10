@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 666.0, 255.0, 2736.0, 1311.0 ],
+		"rect" : [ 666.0, 395.0, 2780.0, 1171.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -46,7 +46,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 360.0, 60.0, 24.0, 24.0 ]
+					"patching_rect" : [ 58.75, 585.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -64,14 +64,14 @@
 			}
 , 			{
 				"box" : 				{
-					"filename" : "launchpad_ui.js",
+					"filename" : "launchpad_device_ui.js",
 					"id" : "obj-6",
 					"maxclass" : "jsui",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 360.0, 105.0, 135.0, 135.0 ],
+					"patching_rect" : [ 58.75, 630.0, 135.0, 135.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 225.0, 210.0 ]
 				}
@@ -492,7 +492,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 555.0, 105.0, 211.0, 141.0 ],
+					"patching_rect" : [ 58.75, 800.0, 211.0, 141.0 ],
 					"text" : "PAD LAYOUT\n91 92 93 94 95 96 97 98 xx \n81\n71\n61\n51\n41\n31\n21\n11 12 13 14 15 16 17 18 19"
 				}
 
@@ -869,7 +869,16 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"order" : 1,
+					"source" : [ "obj-3", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-62", 0 ],
+					"order" : 0,
 					"source" : [ "obj-3", 0 ]
 				}
 
@@ -1037,7 +1046,7 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "_canvas.js",
+				"name" : "_mapped_canvas.js",
 				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/WaMaxPackage/jsui/_commmon",
 				"patcherrelativepath" : "../../jsui/_commmon",
 				"type" : "TEXT",
@@ -1058,7 +1067,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "launchpad_ui.js",
+				"name" : "launchpad_device_ui.js",
 				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/WaMaxPackage/jsui/hardware",
 				"patcherrelativepath" : "../../jsui/hardware",
 				"type" : "TEXT",
