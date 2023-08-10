@@ -30,30 +30,9 @@ function Color(text) {
       return;
 
    // check for hex content
-   for (var index = 0; index < 6; index += 1) {
-
-      var test = text[index];
-      switch (test) {
-         case "0":
-         case "1":
-         case "2":
-         case "3":
-         case "4":
-         case "5":
-         case "6":
-         case "7":
-         case "8":
-         case "9":
-         case "a":
-         case "b":
-         case "c":
-         case "d":
-         case "e":
-         case "f":
-            continue;
-         default:
-            return false;
-      }
+   if (!isHex(text)) {
+      print("not a hex value", text);
+      return;
    }
 
    this.hex = text;

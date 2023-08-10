@@ -34,18 +34,56 @@ function print() {
 
 function dump(obj, name) {
 
-   if ((typeof obj == "number") || (typeof obj == "string")) {
-      print(name + " :" + obj);
+   if (obj === null) {
+      print(name + " : NULL");
+   }
+   else if (obj === undefined) {
+      print(name + " : UNDEFINED");
+   }
+   else if (typeof obj == "number") {
+      print(name + " :" + obj, " (NUMBER)");
+   }
+   else if (typeof obj == "string") {
+      print(name + " :" + obj, "  (STRING)");
+   }
+   else if (typeof obj == "object") {
+      for (var key in obj) {
+         dump(obj[key], name + "," + key);
+      }
    }
    else {
-      for (var k in obj) {
-         if (obj[k] && typeof obj[k] == "object") {
-            objectprinter(obj[k], name + "[" + k + "]");
-         }
-         else {
-            print(name + "[" + k + "] : " + obj[k])
-         }
-      }
+      print(name + " is " + typeof obj);
+
    }
 }
 
+function isHex(value) {
+
+   for (var index = 0; index < 6; index += 1) {
+
+      var test = value[index];
+      switch (test) {
+         case "0":
+         case "1":
+         case "2":
+         case "3":
+         case "4":
+         case "5":
+         case "6":
+         case "7":
+         case "8":
+         case "9":
+         case "a":
+         case "b":
+         case "c":
+         case "d":
+         case "e":
+         case "f":
+            continue;
+         default:
+            return false;
+      }
+   }
+
+   return true;
+}

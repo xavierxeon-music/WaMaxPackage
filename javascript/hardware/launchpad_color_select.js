@@ -8,32 +8,30 @@ outlets = 1;
 setoutletassist(0, "list(id, color_index)");
 
 var colorList = [];
-var colorNames = {
-   off: "000000",
-   red: "ff0000",
-   green: "00ff00",
-   blue: "0000ff",
-   yellow: "ffff00",
-   magenta: "ff00ff",
-   cyan: "00ffff",
-   white: "ffffff"
-};
 var indexBuffer = {};
 var whiteIndex = 0;
 
 function loadbang() {
+   init();
+}
+
+function init() {
+
+   colorList = readJsonFile(jsarguments[1]);
 
    const white = new Color("ffffff");
    whiteIndex = findNearestMatchInColorList(white);
+   //print("init white", white.hex, whiteIndex);
+
    indexBuffer[white.hex] = whiteIndex;
 
-   colorList = readJsonFile(jsarguments[1]);
 
    for (var index = 0; index < colorList.length; index += 1) {
 
       const color = colorList[index];
       indexBuffer[color] = index;
    }
+
 }
 
 function list(id, inColor) {
@@ -43,7 +41,7 @@ function list(id, inColor) {
 
    var color_index = findNearestMatchInColorList(color);
 
-   // post(inColor, color, color_index, "\n");
+   //print(inColor, color.hex, color_index);
 
    outlet(0, [id, color_index]);
 }
@@ -72,7 +70,7 @@ function findNearestMatchInColorList(color) {
       }
    }
 
-   //post("MATCH", color , color_index, "\n");
+   //print("MATCH", color.hex, color_index);
 
    indexBuffer[color.hex] = color_index;
    return color_index;

@@ -7,14 +7,11 @@ setinletassist(0, "message");
 include("_scale.js");
 include("_canvas.js");
 
-//////////////////////////////////////////
-
-
-
 
 //////////////////////////////////////////
 
 var scales = new Global("Scales");
+
 var scaleName = "main";
 var rootNote = "c";
 var isMajor = true;

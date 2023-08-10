@@ -1,10 +1,12 @@
 // ui helpers
 
-mgraphics.init();
-mgraphics.relative_coords = 0;
-mgraphics.autofill = 0;
+var ctx = new MaxCanvas(this).getContext("max-2d");
 
 function Canvas(self, width, height) {
+
+   mgraphics.init();
+   mgraphics.relative_coords = 0;
+   mgraphics.autofill = 0;
 
    this.self = self;
    this.width = width;
@@ -32,6 +34,7 @@ Canvas.prototype.drawRectangle = function (left, top, width, height, filled) {
    var pos = this.canvasToScreen(left, top);
    var dim = this.canvasToScreen(width, height);
    mgraphics.rectangle(pos[0], pos[1], dim[0], dim[1]);
+
    if (filled)
       mgraphics.fill();
    else
