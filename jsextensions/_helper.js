@@ -25,6 +25,31 @@ function removeFromArray(array, value) {
    }
 }
 
+function getPresentationRectanlge(object) {
+
+   var objectPatchName = object.patcher.name;
+
+   var topPatcher = object.patcher;
+   while (topPatcher.parentpatcher) {
+      topPatcher = topPatcher.parentpatcher;
+   }
+
+   for (var child = topPatcher.firstobject; child !== null; child = child.nextobject) {
+
+      if ("patcher" !== child.maxclass)
+         continue;
+
+      var patchName = child.getattr("name");
+      if (patchName !== objectPatchName)
+         continue;
+
+      var box_rect = child.getboxattr("presentation_rect");
+      return box_rect;
+   }
+
+   return null;
+}
+
 function print() {
 
    for (var index = 0; index < arguments.length; index++)
@@ -87,3 +112,67 @@ function isHex(value) {
 
    return true;
 }
+
+//////////////////////////////////////////
+
+function Inspector(fileName) {
+
+   this.file = new File(fileName, "write");
+   print(fileName, this.file.isopen);
+
+   return this;
+}
+
+Inspector.prototype.done = function () {
+
+   this.file.close();
+}
+
+Inspector.prototype.dump = function (object) {
+
+   this.file.writeline("*** " + object.maxclass)
+
+   if (undefined !== object.getattrnames) {
+
+      this.file.writeline("");
+
+      var attrNames = object.getattrnames();
+      for (var index in attrNames) {
+         var key = attrNames[index];
+         var value = object.getattr(key);
+         this.file.writestring(key + " : ");
+         this.file.writestring(typeof value + " : ");
+         this.file.writeline(value);
+      }
+
+   }
+
+   this.file.writeline("");
+
+   for (var key in object) {
+      var value = object[key];
+      this.file.writestring(key + " : ");
+      this.file.writestring(typeof value + " : ");
+      this.file.writeline(value);
+
+      if ("firstobject" === key) {
+         for (var child = object.firstobject; child !== null; child = child.nextobject) {
+            var child_rect = child.getattr("presentation_rect");
+            var box_rect = child.getboxattr("presentation_rect");
+
+            this.file.writestring(" * " + child.maxclass);
+            if (child_rect) {
+               this.file.writestring(" : " + child_rect);
+            }
+            if (box_rect) {
+               this.file.writestring(" : " + box_rect);
+            }
+            this.file.writeline("");
+         }
+      }
+   }
+
+   this.file.writeline("");
+}
+
+//////////////////////////////////////////

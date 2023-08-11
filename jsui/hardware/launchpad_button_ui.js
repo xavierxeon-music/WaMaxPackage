@@ -10,43 +10,41 @@ include("_mapped_canvas.js");
 //////////////////////////////////////////
 
 // set up
-function Button(x, y) {
-   this.x = x;
-   this.y = y;
-
-   this.color = "222222";
-
-   return this;
-}
-
 var launchpad = new Global("Launchpad");
-var buttonSize = launchpad.buttonSize + 2 * launchpad.gapSize;
+var buttonSize = launchpad.buttonSize + (2 * launchpad.gapSize);
 
 var mc = new MappedCanvas(this, buttonSize, buttonSize);
 
+var id = null;
+
+//////////////////////////////////////////
+
+var tsk = new Task(updateButtonId, this);
+tsk.interval = 1000; // every second
+tsk.repeat();
 
 //////////////////////////////////////////
 
 function loadbang() {
 
-   bang();
+   // bang();
 }
 
 function bang() {
 
-
+   updateButtonId();
    mc.draw();
-
 }
 
+function list(id, color) {
+}
 
 function paint() {
 
    mc.setColor("111111");
    mc.drawRectangle(0, 0, buttonSize, buttonSize, true);
 
-   var id = launchpad.getButtonId(0, 0);
-   var color = launchpad.getButtonColor(id);
+   var color = (null !== id) ? launchpad.getButtonColor(id) : "red";
 
    mc.setColor(color);
    mc.drawRectangle(launchpad.gapSize, launchpad.gapSize, launchpad.buttonSize, launchpad.buttonSize, true);
@@ -65,3 +63,31 @@ function onresize(w, h) {
    mc.draw();
 }
 onresize.local = 1;
+
+function getButtonColor(id) {
+
+   return "ff0000";
+   if (this.buttonMap === null)
+      return "ff0000";
+
+   return this.buttonMap[id].color;
+}
+onclick.getButtonColor = 1;
+
+function updateButtonId() {
+
+   var my_rect = getPresentationRectanlge(this);
+   var parent_rect = getPresentationRectanlge(launchpad.device);
+
+   var gridSize = my_rect[2];
+
+   var diffX = my_rect[0] - parent_rect[0];
+   var diffY = my_rect[1] - parent_rect[1];
+
+   var xIndex = Math.floor(diffX / gridSize);
+   var yIndex = 8 - Math.floor(diffY / gridSize);
+
+   id = (10 * (yIndex + 1)) + (xIndex + 1);
+   outlet(0, ["setButton", id]);
+}
+onclick.updateButtonId = 1;

@@ -25,24 +25,11 @@ function Button(x, y) {
 var launchpad = new Global("Launchpad");
 launchpad.buttonSize = 5;
 launchpad.gapSize = 1;
-launchpad.device = this;
+launchpad.device = null;
 launchpad.buttonMap = null;
 
 var deviceSize = (9 * (launchpad.buttonSize + launchpad.gapSize)) + launchpad.gapSize;
-
-launchpad.getButtonId = function (x, y) {
-   return 11;
-}
-
-launchpad.getButtonColor = function (id) {
-   if (this.buttonMap === null)
-      return "ffffff";
-
-   return this.buttonMap[id].color;
-}
-
 var mc = new MappedCanvas(this, deviceSize, deviceSize);
-
 
 //////////////////////////////////////////
 
@@ -53,6 +40,7 @@ function loadbang() {
 
 function bang() {
 
+   launchpad.device = this;
    launchpad.buttonMap = {};
 
    for (var xIndex = 0; xIndex < 9; xIndex++) {
