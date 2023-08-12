@@ -5,17 +5,17 @@ outlets = 1;
 setoutletassist(0, "id");
 
 include("_mapped_canvas.js");
-
+include("_launchkey.js");
 
 //////////////////////////////////////////
 
 // set up
-var launchpad = new Global("Launchpad");
-var buttonSize = launchpad.buttonSize + (2 * launchpad.gapSize);
+var launchkey = new Global("Launchkey");
+var buttonSize = launchkey.buttonSize + (2 * launchkey.gapSize);
 
 var mc = new MappedCanvas(this, buttonSize, buttonSize);
 
-var id = null;
+var nameId = null;
 
 //////////////////////////////////////////
 
@@ -33,12 +33,19 @@ function loadbang() {
 function bang() {
 
    updateButtonId();
+
+
+   if (null == nameId)
+      outlet(0, ["setButton", 0]);
+   else
+      outlet(0, ["setButton", nameId]);
+
    mc.draw();
 }
 
 function list(changedId, color) {
 
-   if (changedId === id)
+   if (changedId === nameId)
       mc.draw();
 }
 
@@ -47,12 +54,14 @@ function paint() {
    mc.setColor("111111");
    mc.drawRectangle(0, 0, buttonSize, buttonSize, true);
 
-   var color = "222222";
-   if (null !== id && launchpad.buttonMap && launchpad.buttonMap[id])
-      color = launchpad.buttonMap[id].color;
+   var color = "ff0000";
+   /*
+   if (null !== id && launchkey.buttonMap && launchkey.buttonMap[id])
+      color = launchkey.buttonMap[id].color;
+   */
 
    mc.setColor(color);
-   mc.drawRectangle(launchpad.gapSize, launchpad.gapSize, launchpad.buttonSize, launchpad.buttonSize, true);
+   mc.drawRectangle(launchkey.gapSize, launchkey.gapSize, launchkey.buttonSize, launchkey.buttonSize, true);
 }
 paint.local = 1;
 
@@ -70,20 +79,10 @@ function onresize(w, h) {
 }
 onresize.local = 1;
 
-function getButtonColor(id) {
-
-   return "ff0000";
-   if (this.buttonMap === null)
-      return "ff0000";
-
-   return this.buttonMap[id].color;
-}
-onclick.getButtonColor = 1;
-
 function updateButtonId() {
 
    var my_rect = getPresentationRectanlge(this);
-   var parent_rect = getPresentationRectanlge(launchpad.device);
+   var parent_rect = getPresentationRectanlge(launchkey.device);
 
    var gridSize = my_rect[2];
 
@@ -91,9 +90,30 @@ function updateButtonId() {
    var diffY = my_rect[1] - parent_rect[1];
 
    var xIndex = Math.floor(diffX / gridSize);
-   var yIndex = 8 - Math.floor(diffY / gridSize);
+   var yIndex = 2 - Math.floor(diffY / gridSize);
 
-   id = (10 * (yIndex + 1)) + (xIndex + 1);
-   outlet(0, ["setButton", id]);
+   var newId = null;
+
+   var name = null;
+   var index = compileKey(yIndex) + compileKey(xIndex);
+   if (launchkey.indexMap)
+      name = launchkey.indexMap[index];
+
+   if (name && launchkey.placeMap !== null) {
+      if (launchkey.placeMap[name] !== undefined) {
+         newId = launchkey.placeMap[name].name;
+      }
+   }
+
+   if (newId == nameId)
+      return;
+   else
+      nameId = newId;
+
+   if (null == nameId)
+      outlet(0, ["setButton", 0]);
+   else
+      outlet(0, ["setButton", nameId]);
+
 }
 onclick.updateButtonId = 1;

@@ -1,55 +1,80 @@
 autowatch = 1;
 // inlets and outlets
 inlets = 1;
-setinletassist(0, "lookup");
+setinletassist(0, "messages(note, control)");
 
 outlets = 2;
-setoutletassist(0, "id");
-setoutletassist(0, "isColor");
+setoutletassist(0, "[name, value]");
 
-var buttonmap = {};
+include("_launchkey.js");
 
-function lookup(name) {
+//////////////////////////////////////////
 
-   if (Object.keys(buttonmap).length === 0) {
-      buildMap();
-   }
+var noteMap = null;
+var controlMap = null;
 
-   var value = 85; // fallback to play button on bottom left   
+//////////////////////////////////////////
 
-   var isColor = true;
-   if (name in buttonmap) {
-      value = buttonmap[name][0];
-      isColor = (1 == buttonmap[name][1]);
-   }
+function loadbang() {
 
-   outlet(0, value);
-   outlet(1, isColor);
+   bang();
 }
 
-function fromPush(id) {
+function bang() {
 
-   if (Object.keys(buttonmap).length === 0) {
-      buildMap();
-   }
-   for (var name in buttonmap) {
-      const value = buttonmap[name][0];
-      const isColor = (1 == buttonmap[name][1]);
-      if (value === id) {
-         if (isColor)
-            outlet(0, "RGB BUTTON " + name);
+   var deviceInfo = readJsonFile(jsarguments[1]);
+
+   noteMap = { 1: {}, 16: {} };
+   controlMap = { 1: {}, 16: {} };
+
+   for (var rowKey in deviceInfo) {
+      for (var colKey in deviceInfo[rowKey]) {
+         var placeInfo = deviceInfo[rowKey][colKey];
+
+         var type = typeFromString(placeInfo["type"]);
+         if (InputType.Blank == type)
+            continue;
+
+         var name = placeInfo["name"];
+
+         var value = placeInfo["midi_value"];
+         var isController = placeInfo["midi_cc"];
+         var channel = placeInfo["channel"];
+
+         if (isController)
+            controlMap[channel][value] = name;
          else
-            outlet(0, "BUTTON " + name);
-         return;
+            noteMap[channel][value] = name;
       }
    }
-
-   outlet(0, "???" + id);
 }
 
-function buildMap() {
+function note(note, value, channel) {
 
-   buttonmap = readJsonFile(jsarguments[1]);
+   if (null == noteMap)
+      return;
+
+   if (1 != channel && 16 != channel)
+      return;
+
+   var name = noteMap[channel][note];
+   if (name === undefined)
+      return;
+
+   outlet(0, [name, value]);
 }
-buildMap.local = 1;
 
+function control(controller, value, channel) {
+
+   if (null == controlMap)
+      return;
+
+   if (1 != channel && 16 != channel)
+      return;
+
+   var name = controlMap[channel][controller];
+   if (name === undefined)
+      return;
+
+   outlet(0, [name, value]);
+}

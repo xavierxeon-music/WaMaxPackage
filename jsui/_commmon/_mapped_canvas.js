@@ -1,4 +1,6 @@
-// ui helpers
+// mapped canvas
+
+// see /Applications/Max.app/Contents/Resources/C74/jsextensions/max/CanvasExtension.js
 
 function MappedCanvas(self, width, height, background) {
 
@@ -45,6 +47,28 @@ MappedCanvas.prototype.drawRectangle = function (left, top, width, height, fille
    else
       this.ctx.strokeRect(pos[0], pos[1], dim[0], dim[1]);
    this.ctx.closePath();
+}
+
+MappedCanvas.prototype.drawEllipse = function (left, top, width, height, filled) {
+
+   var pos = this.canvasToScreen(left, top);
+   var dim = this.canvasToScreen(width, height);
+
+   var halfWidth = Math.floor(dim[0] / 2);
+   var halfHeight = Math.floor(dim[1] / 2);
+
+   var x = pos[0] + halfWidth;
+   var y = pos[1] + halfHeight;
+   var r = (halfWidth < halfHeight) ? halfWidth : halfHeight;
+
+   this.ctx.beginPath();
+   this.ctx.arc(x, y, r, 0, Math.PI * 2, false);
+   this.ctx.closePath();
+
+   if (filled)
+      this.ctx.fill();
+   else
+      this.ctx.stroke();
 }
 
 MappedCanvas.prototype.getBoxDimensions = function () {

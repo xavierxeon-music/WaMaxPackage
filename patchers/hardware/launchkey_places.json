@@ -1,215 +1,439 @@
 {
    "00": {
       "00": {
-         "type": "Button"
+         "type": "Button",
+         "name": "down",
+         "midi_value": 105,
+         "midi_cc": true,
+         "channel": 16
       },
       "01": {
-         "type": "Button"
+         "type": "Button",
+         "name": "pad11",
+         "midi_value": 112,
+         "midi_cc": false,
+         "channel": 1
       },
       "02": {
-         "type": "Button"
+         "type": "Button",
+         "name": "pad12",
+         "midi_value": 113,
+         "midi_cc": false,
+         "channel": 1
       },
       "03": {
-         "type": "Button"
+         "type": "Button",
+         "name": "pad13",
+         "midi_value": 114,
+         "midi_cc": false,
+         "channel": 1
       },
       "04": {
-         "type": "Button"
+         "type": "Button",
+         "name": "pad14",
+         "midi_value": 115,
+         "midi_cc": false,
+         "channel": 1
       },
       "05": {
-         "type": "Button"
+         "type": "Button",
+         "name": "pad15",
+         "midi_value": 116,
+         "midi_cc": false,
+         "channel": 1
       },
       "06": {
-         "type": "Button"
+         "type": "Button",
+         "name": "pad16",
+         "midi_value": 117,
+         "midi_cc": false,
+         "channel": 1
       },
       "07": {
-         "type": "Button"
+         "type": "Button",
+         "name": "pad17",
+         "midi_value": 118,
+         "midi_cc": false,
+         "channel": 1
       },
       "08": {
-         "type": "Button"
+         "type": "Button",
+         "name": "pad18",
+         "midi_value": 119,
+         "midi_cc": false,
+         "channel": 1
       },
       "09": {
-         "type": "Button"
+         "type": "Button",
+         "name": "mute",
+         "midi_value": 105,
+         "midi_cc": true,
+         "channel": 1
       },
       "10": {
-         "type": "Button"
+         "type": "Button",
+         "name": "fader_button1",
+         "midi_value": 37,
+         "midi_cc": true,
+         "channel": 16
       },
       "11": {
-         "type": "Button"
+         "type": "Button",
+         "name": "fader_button2",
+         "midi_value": 38,
+         "midi_cc": true,
+         "channel": 16
       },
       "12": {
-         "type": "Button"
+         "type": "Button",
+         "name": "fader_button3",
+         "midi_value": 39,
+         "midi_cc": true,
+         "channel": 16
       },
       "13": {
-         "type": "Button"
+         "type": "Button",
+         "name": "fader_button4",
+         "midi_value": 40,
+         "midi_cc": true,
+         "channel": 16
       },
       "14": {
-         "type": "Button"
+         "type": "Button",
+         "name": "fader_button5",
+         "midi_value": 41,
+         "midi_cc": true,
+         "channel": 16
       },
       "15": {
-         "type": "Button"
+         "type": "Button",
+         "name": "fader_button6",
+         "midi_value": 42,
+         "midi_cc": true,
+         "channel": 16
       },
       "16": {
-         "type": "Button"
+         "type": "Button",
+         "name": "fader_button7",
+         "midi_value": 43,
+         "midi_cc": true,
+         "channel": 16
       },
       "17": {
-         "type": "Button"
+         "type": "Button",
+         "name": "fader_button8",
+         "midi_value": 44,
+         "midi_cc": true,
+         "channel": 16
       },
       "18": {
-         "type": "Button"
+         "type": "Button",
+         "name": "fader_button9",
+         "midi_value": 45,
+         "midi_cc": true,
+         "channel": 16
       },
       "19": {
-         "type": "Button"
+         "type": "Button",
+         "name": "play",
+         "midi_value": 115,
+         "midi_cc": true,
+         "channel": 16
       },
       "20": {
-         "type": "Button"
+         "type": "Button",
+         "name": "stop",
+         "midi_value": 116,
+         "midi_cc": true,
+         "channel": 16
       },
       "21": {
-         "type": "Button"
+         "type": "Button",
+         "name": "record",
+         "midi_value": 117,
+         "midi_cc": true,
+         "channel": 16
       },
       "22": {
-         "type": "Button"
+         "type": "Button",
+         "name": "repeat",
+         "midi_value": 118,
+         "midi_cc": true,
+         "channel": 16
       }
    },
    "01": {
       "00": {
-         "type": "Button"
+         "type": "Button",
+         "name": "up",
+         "midi_value": 104,
+         "midi_cc": true,
+         "channel": 16
       },
       "01": {
-         "type": "Button"
+         "type": "Button",
+         "name": "pad21",
+         "midi_value": 96,
+         "midi_cc": false,
+         "channel": 1
       },
       "02": {
-         "type": "Button"
+         "type": "Button",
+         "name": "pad22",
+         "midi_value": 97,
+         "midi_cc": false,
+         "channel": 1
       },
       "03": {
-         "type": "Button"
+         "type": "Button",
+         "name": "pad23",
+         "midi_value": 98,
+         "midi_cc": false,
+         "channel": 1
       },
       "04": {
-         "type": "Button"
+         "type": "Button",
+         "name": "pad24",
+         "midi_value": 99,
+         "midi_cc": false,
+         "channel": 1
       },
       "05": {
-         "type": "Button"
+         "type": "Button",
+         "name": "pad25",
+         "midi_value": 100,
+         "midi_cc": false,
+         "channel": 1
       },
       "06": {
-         "type": "Button"
+         "type": "Button",
+         "name": "pad26",
+         "midi_value": 101,
+         "midi_cc": false,
+         "channel": 1
       },
       "07": {
-         "type": "Button"
+         "type": "Button",
+         "name": "pad27",
+         "midi_value": 102,
+         "midi_cc": false,
+         "channel": 1
       },
       "08": {
-         "type": "Button"
+         "type": "Button",
+         "name": "pad28",
+         "midi_value": 103,
+         "midi_cc": false,
+         "channel": 1
       },
       "09": {
-         "type": "Button"
+         "type": "Button",
+         "name": "next",
+         "midi_value": 104,
+         "midi_cc": true,
+         "channel": 1
       },
       "10": {
-         "type": "Button"
+         "type": "Fader",
+         "name": "fader1",
+         "midi_value": 53,
+         "midi_cc": true,
+         "channel": 16
       },
       "11": {
-         "type": "Button"
+         "type": "Fader",
+         "name": "fader2",
+         "midi_value": 54,
+         "midi_cc": true,
+         "channel": 16
       },
       "12": {
-         "type": "Button"
+         "type": "Fader",
+         "name": "fader3",
+         "midi_value": 55,
+         "midi_cc": true,
+         "channel": 16
       },
       "13": {
-         "type": "Button"
+         "type": "Fader",
+         "name": "fader4",
+         "midi_value": 56,
+         "midi_cc": true,
+         "channel": 16
       },
       "14": {
-         "type": "Button"
+         "type": "Fader",
+         "name": "fader5",
+         "midi_value": 57,
+         "midi_cc": true,
+         "channel": 16
       },
       "15": {
-         "type": "Button"
+         "type": "Fader",
+         "name": "fader6",
+         "midi_value": 58,
+         "midi_cc": true,
+         "channel": 16
       },
       "16": {
-         "type": "Button"
+         "type": "Fader",
+         "name": "fader7",
+         "midi_value": 59,
+         "midi_cc": true,
+         "channel": 16
       },
       "17": {
-         "type": "Button"
+         "type": "Fader",
+         "name": "fader8",
+         "midi_value": 60,
+         "midi_cc": true,
+         "channel": 16
       },
       "18": {
-         "type": "Button"
+         "type": "Fader",
+         "name": "fader9",
+         "midi_value": 61,
+         "midi_cc": true,
+         "channel": 16
       },
       "19": {
-         "type": "Button"
+         "type": "Button",
+         "name": "capture",
+         "midi_value": 74,
+         "midi_cc": true,
+         "channel": 16
       },
       "20": {
-         "type": "Button"
+         "type": "Button",
+         "name": "quantize",
+         "midi_value": 75,
+         "midi_cc": true,
+         "channel": 16
       },
       "21": {
-         "type": "Button"
+         "type": "Button",
+         "name": "clock",
+         "midi_value": 76,
+         "midi_cc": true,
+         "channel": 16
       },
       "22": {
-         "type": "Button"
+         "type": "Button",
+         "name": "undo",
+         "midi_value": 77,
+         "midi_cc": true,
+         "channel": 16
       }
    },
    "02": {
       "00": {
-         "type": "Button"
+         "type": "Blank"
       },
       "01": {
-         "type": "Button"
+         "type": "Pot",
+         "name": "pot1",
+         "midi_value": 21,
+         "midi_cc": true,
+         "channel": 16
       },
       "02": {
-         "type": "Button"
+         "type": "Pot",
+         "name": "pot2",
+         "midi_value": 22,
+         "midi_cc": true,
+         "channel": 16
       },
       "03": {
-         "type": "Button"
+         "type": "Pot",
+         "name": "pot3",
+         "midi_value": 23,
+         "midi_cc": true,
+         "channel": 16
       },
       "04": {
-         "type": "Button"
+         "type": "Pot",
+         "name": "pot4",
+         "midi_value": 24,
+         "midi_cc": true,
+         "channel": 16
       },
       "05": {
-         "type": "Button"
+         "type": "Pot",
+         "name": "pot5",
+         "midi_value": 25,
+         "midi_cc": true,
+         "channel": 16
       },
       "06": {
-         "type": "Button"
+         "type": "Pot",
+         "name": "pot6",
+         "midi_value": 26,
+         "midi_cc": true,
+         "channel": 16
       },
       "07": {
-         "type": "Button"
+         "type": "Pot",
+         "name": "pot7",
+         "midi_value": 27,
+         "midi_cc": true,
+         "channel": 16
       },
       "08": {
-         "type": "Button"
+         "type": "Pot",
+         "name": "pot8",
+         "midi_value": 28,
+         "midi_cc": true,
+         "channel": 16
       },
       "09": {
-         "type": "Button"
+         "type": "Button",
+         "name": "device_lock",
+         "midi_value": 52,
+         "midi_cc": true,
+         "channel": 16
       },
       "10": {
-         "type": "Button"
+         "type": "Button",
+         "name": "device_select",
+         "midi_value": 51,
+         "midi_cc": true,
+         "channel": 16
       },
       "11": {
-         "type": "Button"
+         "type": "Blank"
       },
       "12": {
-         "type": "Button"
+         "type": "Blank"
       },
       "13": {
-         "type": "Button"
+         "type": "Blank"
       },
       "14": {
-         "type": "Button"
+         "type": "Blank"
       },
       "15": {
-         "type": "Button"
+         "type": "Blank"
       },
       "16": {
-         "type": "Button"
+         "type": "Blank"
       },
       "17": {
-         "type": "Button"
+         "type": "Blank"
       },
       "18": {
-         "type": "Button"
+         "type": "Blank"
       },
       "19": {
-         "type": "Button"
+         "type": "Blank"
       },
       "20": {
-         "type": "Button"
+         "type": "Blank"
       },
       "21": {
-         "type": "Button"
+         "type": "Blank"
       },
       "22": {
-         "type": "Button"
+         "type": "Blank"
       }
    }
 }

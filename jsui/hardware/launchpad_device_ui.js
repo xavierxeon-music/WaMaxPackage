@@ -17,7 +17,7 @@ function Button(x, y) {
    this.x = x;
    this.y = y;
 
-   this.color = "222222";
+   this.color = "444444";
 
    return this;
 }

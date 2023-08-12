@@ -14,31 +14,48 @@ include("_launchkey.js");
 
 // set up
 
-function Input(x, y, inputInfo) {
-   this.x = x;
-   this.y = y;
-
-   //this.color = "222222";
-   this.color = "ff0000";
-   this.type = inputInfo["type"];;
-
-   return this;
-}
-
 var launchkey = new Global("Launchkey");
 launchkey.gridSize = 5;
 launchkey.gapSize = 1;
 launchkey.device = null;
-launchkey.inputMap = null;
+launchkey.placeMap = null;
+launchkey.indexMap = null;
 
 var deviceWidth = (23 * (launchkey.gridSize + launchkey.gapSize)) + launchkey.gapSize;
 var deviceHeight = (3 * (launchkey.gridSize + launchkey.gapSize)) + launchkey.gapSize;
-print(deviceWidth, deviceHeight);
 
 var mc = new MappedCanvas(this, deviceWidth, deviceHeight);
 
-var midRow = [InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button];
-var bottomRow = [InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button, InputType.Button];
+//////////////////////////////////////////
+
+function Place(x, y, placeInfo) {
+   this.x = x;
+   this.y = y;
+
+   this.color = "444444";
+   //this.color = "ff0000";
+   this.type = typeFromString(placeInfo["type"]);
+   this.name = placeInfo["name"];
+
+   return this;
+}
+
+Place.prototype.draw = function () {
+
+   if (InputType.Button === this.type) {
+      mc.setColor(this.color);
+      mc.drawRectangle(this.x, this.y, launchkey.gridSize, launchkey.gridSize, true);
+   }
+   else if (InputType.Pot === this.type) {
+      mc.setColor(this.color);
+      mc.drawEllipse(this.x, this.y, launchkey.gridSize, launchkey.gridSize, true);
+   }
+   else if (InputType.Fader === this.type) {
+      mc.setColor(this.color);
+      mc.drawRectangle(this.x + (1 * launchkey.gapSize), this.y, launchkey.gridSize - (4 * launchkey.gapSize), launchkey.gridSize, true);
+      mc.drawRectangle(this.x + (3 * launchkey.gapSize), this.y, launchkey.gridSize - (4 * launchkey.gapSize), launchkey.gridSize, true);
+   }
+}
 
 //////////////////////////////////////////
 
@@ -50,9 +67,8 @@ function loadbang() {
 function bang() {
 
    launchkey.device = this;
-   launchkey.inputMap = {};
-
-   var index = 0;
+   launchkey.placeMap = {};
+   launchkey.indexMap = {};
 
    var deviceInfo = readJsonFile(jsarguments[1]);
 
@@ -67,12 +83,12 @@ function bang() {
          var y = launchkey.gapSize + (yIndex * (launchkey.gridSize + launchkey.gapSize));
          y = deviceHeight - (y + launchkey.gridSize);
 
-         var inputInfo = deviceInfo[rowKey][colKey];
+         var placeInfo = deviceInfo[rowKey][colKey];
+         var place = new Place(x, y, placeInfo);
+         launchkey.placeMap[place.name] = place;
 
-         var input = new Input(x, y, inputInfo);
-         launchkey.inputMap[index] = input;
-
-         index++;
+         var index = compileKey(yIndex) + compileKey(xIndex);
+         launchkey.indexMap[index] = place.name;
       }
    }
 
@@ -80,15 +96,15 @@ function bang() {
 
 }
 
-function list(id, color) {
+function list(name, color) {
 
-   if (launchkey.inputMap === null)
+   if (launchkey.placeMap === null)
       return;
 
-   if (launchkey.inputMap[id] === undefined)
+   if (launchkey.placeMap[name] === undefined)
       return;
 
-   launchkey.inputMap[id].color = color;
+   launchkey.placeMap[name].color = color;
    mc.draw();
 }
 
@@ -98,18 +114,14 @@ function paint() {
    mc.setColor("111111");
    mc.drawRectangle(0, 0, deviceWidth, deviceHeight, true);
 
-   if (launchkey.inputMap === null)
+   if (launchkey.placeMap === null)
       return;
 
+   for (index in launchkey.placeMap) {
 
-   for (index in launchkey.inputMap) {
-
-      var input = launchkey.inputMap[index];
-      mc.setColor(input.color);
-      mc.drawRectangle(input.x, input.y, launchkey.gridSize, launchkey.gridSize, true);
-
+      var place = launchkey.placeMap[index];
+      place.draw();
    }
-
 }
 paint.local = 1;
 
@@ -126,12 +138,3 @@ function onresize(w, h) {
    mc.draw();
 }
 onresize.local = 1;
-
-function compileKey(value) {
-
-   var text = value.toString();
-   if (value < 10)
-      text = "0" + text;
-
-   return text;
-}
