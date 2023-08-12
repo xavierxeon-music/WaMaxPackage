@@ -66,6 +66,9 @@ function list(id, color) {
    if (launchpad.buttonMap === null)
       return;
 
+   if (launchpad.buttonMap[id] === undefined)
+      return;
+
    launchpad.buttonMap[id].color = color;
    mc.draw();
 }

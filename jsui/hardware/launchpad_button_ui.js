@@ -36,7 +36,10 @@ function bang() {
    mc.draw();
 }
 
-function list(id, color) {
+function list(changedId, color) {
+
+   if (changedId === id)
+      mc.draw();
 }
 
 function paint() {
@@ -44,7 +47,9 @@ function paint() {
    mc.setColor("111111");
    mc.drawRectangle(0, 0, buttonSize, buttonSize, true);
 
-   var color = (null !== id) ? launchpad.getButtonColor(id) : "red";
+   var color = "222222";
+   if (null !== id && launchpad.buttonMap && launchpad.buttonMap[id])
+      color = launchpad.buttonMap[id].color;
 
    mc.setColor(color);
    mc.drawRectangle(launchpad.gapSize, launchpad.gapSize, launchpad.buttonSize, launchpad.buttonSize, true);
