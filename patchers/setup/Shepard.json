@@ -1,0 +1,38 @@
+{
+	"pattrstorage" : 	{
+		"name" : "main",
+		"slots" : 		{
+			"1" : 			{
+				"id" : 1,
+				"data" : 				{
+					"wa.mixer.master~::main_gain" : [ 0.0 ],
+					"wa.mixer.stereo~::gain" : [ -34.351851851851848 ],
+					"wa.mixer.mono~::pan" : [ 0.0 ],
+					"wa.mixer.mono~::gain" : [ 0.0 ],
+					"wa.mixer.mono~[1]::pan" : [ 0.0 ],
+					"wa.mixer.mono~[1]::gain" : [ 0.0 ],
+					"wa.mixer.mono~[2]::gain" : [ 0.0 ],
+					"wa.mixer.mono~[2]::pan" : [ 0.0 ],
+					"wa.mixer.mono~[3]::gain" : [ 0.0 ],
+					"wa.mixer.mono~[3]::pan" : [ 0.0 ],
+					"wa.mixer.mono~[4]::pan" : [ 0.0 ],
+					"wa.mixer.mono~[4]::gain" : [ 0.0 ],
+					"wa.mixer.mono~[9]::pan" : [ 0.0 ],
+					"wa.mixer.mono~[9]::gain" : [ 0.0 ],
+					"wa.mixer.mono~[8]::pan" : [ 0.0 ],
+					"wa.mixer.mono~[8]::gain" : [ 0.0 ],
+					"wa.mixer.mono~[7]::gain" : [ 0.0 ],
+					"wa.mixer.mono~[7]::pan" : [ 0.0 ],
+					"wa.mixer.mono~[6]::gain" : [ 0.0 ],
+					"wa.mixer.mono~[6]::pan" : [ 0.0 ],
+					"wa.mixer.mono~[5]::gain" : [ 0.0 ],
+					"wa.mixer.mono~[5]::pan" : [ 0.0 ]
+				}
+
+			}
+
+		}
+
+	}
+
+}
