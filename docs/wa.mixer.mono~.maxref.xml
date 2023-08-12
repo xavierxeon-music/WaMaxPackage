@@ -7,7 +7,8 @@
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="1"/>
+    <parser inlet_count="2"/>
+    <misc name="Outputs"/>
     <objarglist/>
     <attributelist>
         <attribute get="1" name="name" set="1" size="1" type="symbol">
@@ -18,6 +19,10 @@
         <method name="float" standard="1">
             <digest/>
             <description>panning left (-1) to right (+1)</description>
+        </method>
+        <method name="int" standard="1">
+            <digest/>
+            <description>mute the mixer</description>
         </method>
         <method name="signal" standard="1">
             <digest/>

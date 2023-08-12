@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 482.0, 397.0, 2717.0, 1059.0 ],
+		"rect" : [ 482.0, 425.0, 3117.0, 1031.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,14 +40,13 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"comment" : "",
-					"id" : "obj-1",
-					"index" : 0,
-					"maxclass" : "inlet",
+					"id" : "obj-10",
+					"maxclass" : "newobj",
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 60.0, 105.0, 30.0, 30.0 ]
+					"patching_rect" : [ 45.0, 90.0, 128.0, 22.0 ],
+					"text" : "receive launchpad_init"
 				}
 
 			}
@@ -58,21 +57,21 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 345.0, 90.0, 107.0, 22.0 ],
+					"patching_rect" : [ 45.0, 45.0, 107.0, 22.0 ],
 					"text" : "wa.setup.bpatcher"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"filename" : "launchpad_button_ui.js",
+					"filename" : "launchpad_place_ui.js",
 					"id" : "obj-6",
 					"maxclass" : "jsui",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 43.75, 255.0, 46.25, 45.0 ],
+					"patching_rect" : [ 45.0, 165.0, 46.25, 45.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 15.0, 15.0 ]
 				}
@@ -85,7 +84,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 346.0, 142.0, 139.0, 22.0 ],
+					"patching_rect" : [ 204.0, 90.0, 139.0, 22.0 ],
 					"text" : "receive launchpad_color"
 				}
 
@@ -98,7 +97,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 60.0, 450.0, 30.0, 30.0 ]
+					"patching_rect" : [ 46.25, 255.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -106,7 +105,7 @@
 		"lines" : [ 			{
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
-					"source" : [ "obj-1", 0 ]
+					"source" : [ "obj-10", 0 ]
 				}
 
 			}
@@ -140,7 +139,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "launchpad_button_ui.js",
+				"name" : "launchpad_input_ui.js",
 				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/WaMaxPackage/jsui/hardware",
 				"patcherrelativepath" : "../../jsui/hardware",
 				"type" : "TEXT",

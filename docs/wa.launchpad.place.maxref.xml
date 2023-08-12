@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="1" name="wa.launchkey.device">
-    <digest>Launchkey 61 mk3 device</digest>
+<c74object as_bpatcher="1" name="wa.launchpad.input">
+    <digest>A launchpad input</digest>
+    <description>Represents a button. Show color and get button id, when placed in a <o>wa.launchpad.device</o> in presentarion mode.</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry id="1" name="">
+        <entry id="0" name="id">
             <digest/>
+            <description>the id of the button</description>
         </entry>
     </misc>
     <objarglist/>
     <attributelist/>
-    <methodlist>
-        <method name="bang" standard="1">
-            <digest/>
-        </method>
-    </methodlist>
+    <methodlist/>
     <seealsolist/>
 </c74object>

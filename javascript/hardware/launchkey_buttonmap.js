@@ -1,7 +1,4 @@
 autowatch = 1;
-
-// see https://github.com/Ableton/push-interface/blob/master/doc/AbletonPush2MIDIDisplayInterface.asc
-
 // inlets and outlets
 inlets = 1;
 setinletassist(0, "lookup");

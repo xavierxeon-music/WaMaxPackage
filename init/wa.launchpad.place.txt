@@ -1,0 +1,2 @@
+max objectfile wa.launchpad.place wa.launchpad.place;
+max definesubstitution wa.launchpad.place bpatcher @name wa.launchpad.place.maxpat;

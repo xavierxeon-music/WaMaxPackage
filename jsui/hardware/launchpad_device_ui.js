@@ -94,6 +94,7 @@ function paint() {
 }
 paint.local = 1;
 
+// needed to avoid error message
 function onclick(x, y) {
 
    var point = mc.screenToCanvas(x, y);

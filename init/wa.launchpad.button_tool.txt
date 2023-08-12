@@ -1,2 +1,0 @@
-max objectfile wa.launchpad.button_tool wa.launchpad.button_tool;
-max definesubstitution wa.launchpad.button_tool bpatcher @name wa.launchpad.button_tool.maxpat;

@@ -36,6 +36,9 @@ function init() {
 
 function list(id, inColor) {
 
+   if (0 === id)
+      return;
+
    var color_index = whiteIndex;
    var color = new Color(inColor);
 
