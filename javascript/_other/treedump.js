@@ -57,74 +57,86 @@ ObjectId.prototype.get = function (object) {
    return id;
 }
 
-//////////////////////////////////////////
-
-function write(fileName) {
+function TreeDunp() {
 
    var topPatcher = this.patcher;
    while (topPatcher.parentpatcher) {
       topPatcher = topPatcher.parentpatcher;
    }
 
-   objectId = new ObjectId();
-   topJsonObject = {};
-   crawl(topPatcher, topJsonObject, objectId);
-   saveJsonFile(topJsonObject, fileName);
+   this.objectId = new ObjectId();
+   var topJsonObject = {};
+
+   this.crawl = function (object, jsonObject) {
+
+      if (!object)
+         return;
+
+      var id = this.objectId.get(object);
+      jsonObject["id"] = id;
+
+      var attrObject = {};
+      if (object.getattrnames) {
+         var attrNames = object.getattrnames();
+         for (var index in attrNames) {
+            var key = attrNames[index];
+            var value = object.getattr(key);
+            attrObject[key] = value;
+         }
+      }
+      jsonObject["attributes"] = attrObject;
+
+      var boxAttrObject = {};
+      if (object.getboxattrnames) {
+         var boxAttrNames = object.getboxattrnames();
+         for (var index in boxAttrNames) {
+            var key = boxAttrNames[index];
+            var value = object.getboxattr(key);
+            boxAttrObject[key] = value;
+         }
+      }
+      jsonObject["box_attributes"] = boxAttrObject;
+
+      var propertyObject = {};
+      for (var key in object) {
+         //if (key !== "name" && key !== "maxclass")
+         //   continue;
+
+         var value = object[key];
+         if ("object" !== typeof value)
+            propertyObject[key] = value;
+         else {
+            propertyObject[key] = this.objectId.get(value);
+         }
+      }
+      jsonObject["properties"] = propertyObject;
+
+      var childrenArray = [];
+      if ("firstobject" in object) {
+
+         for (var child = object.firstobject; child !== null; child = child.nextobject) {
+            var childObject = {};
+            crawl(child, childObject, objectId);
+            childrenArray.push(childObject);
+         }
+
+      }
+      jsonObject["children"] = childrenArray;
+   }
+
+   this.crawl(topPatcher, topJsonObject);
+
+   return topJsonObject;
 }
 
-function crawl(object, jsonObject, objectId) {
 
-   if (!object)
-      return;
 
-   var id = objectId.get(object);
-   jsonObject["id"] = id;
 
-   var attrObject = {};
-   if (object.getattrnames) {
-      var attrNames = object.getattrnames();
-      for (var index in attrNames) {
-         var key = attrNames[index];
-         var value = object.getattr(key);
-         attrObject[key] = value;
-      }
-   }
-   jsonObject["attributes"] = attrObject;
 
-   var boxAttrObject = {};
-   if (object.getboxattrnames) {
-      var boxAttrNames = object.getboxattrnames();
-      for (var index in boxAttrNames) {
-         var key = boxAttrNames[index];
-         var value = object.getboxattr(key);
-         boxAttrObject[key] = value;
-      }
-   }
-   jsonObject["box_attributes"] = boxAttrObject;
+//////////////////////////////////////////
 
-   var propertyObject = {};
-   for (var key in object) {
-      //if (key !== "name" && key !== "maxclass")
-      //   continue;
+function write(fileName) {
 
-      var value = object[key];
-      if ("object" !== typeof value)
-         propertyObject[key] = value;
-      else
-         propertyObject[key] = objectId.get(value);
-   }
-   jsonObject["properties"] = propertyObject;
-
-   var childrenArray = [];
-   if ("firstobject" in object) {
-
-      for (var child = object.firstobject; child !== null; child = child.nextobject) {
-         var childObject = {};
-         crawl(child, childObject, objectId);
-         childrenArray.push(childObject);
-      }
-
-   }
-   jsonObject["children"] = childrenArray;
+   saveJsonFile(TreeDunp(), fileName);
 }
 
