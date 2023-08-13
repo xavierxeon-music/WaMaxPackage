@@ -2,10 +2,10 @@ autowatch = 1;
 
 // inlets and outlets
 inlets = 1;
-setinletassist(0, "text");
+setinletassist(0, "message");
 
 outlets = 1;
-setoutletassist(0, "text");
+setoutletassist(0, "color midi");
 
 include("_mapped_canvas.js");
 include("_launchkey.js");
@@ -42,23 +42,6 @@ function Place(x, y, placeInfo) {
    this.channel = placeInfo["channel"];
 
    return this;
-}
-
-Place.prototype.draw = function () {
-
-   if (InputType.Button === this.type) {
-      mc.setColor(this.color);
-      mc.drawRectangle(this.x, this.y, launchkey.gridSize, launchkey.gridSize, true);
-   }
-   else if (InputType.Pot === this.type) {
-      mc.setColor(this.color);
-      mc.drawEllipse(this.x, this.y, launchkey.gridSize, launchkey.gridSize, true);
-   }
-   else if (InputType.Fader === this.type) {
-      mc.setColor(this.color);
-      mc.drawRectangle(this.x + (1 * launchkey.gapSize), this.y, launchkey.gridSize - (4 * launchkey.gapSize), launchkey.gridSize, true);
-      mc.drawRectangle(this.x + (3 * launchkey.gapSize), this.y, launchkey.gridSize - (4 * launchkey.gapSize), launchkey.gridSize, true);
-   }
 }
 
 //////////////////////////////////////////
@@ -100,15 +83,15 @@ function bang() {
 
 }
 
-function list(name, color) {
+function color(nameId, color) {
 
-   if (launchkey.placeMap === null)
+   if (null === launchkey.placeMap)
       return;
 
-   if (launchkey.placeMap[name] === undefined)
+   if (undefined === launchkey.placeMap[nameId])
       return;
 
-   launchkey.placeMap[name].color = color;
+   launchkey.placeMap[nameId].color = color;
    mc.draw();
 }
 
@@ -121,10 +104,26 @@ function paint() {
    if (launchkey.placeMap === null)
       return;
 
-   for (index in launchkey.placeMap) {
+   for (nameId in launchkey.placeMap) {
 
-      var place = launchkey.placeMap[index];
-      place.draw();
+      var place = launchkey.placeMap[nameId];
+      if (!place || undefined === place.value)
+         continue;
+
+      if (InputType.Button === place.type) {
+         mc.setColor(place.color);
+         mc.drawRectangle(place.x, place.y, launchkey.gridSize, launchkey.gridSize, true);
+      }
+      else if (InputType.Pot === place.type) {
+         mc.setColor(place.color);
+         mc.drawEllipse(place.x, place.y, launchkey.gridSize, launchkey.gridSize, true);
+      }
+      else if (InputType.Fader === place.type) {
+         mc.setColor(place.color);
+         mc.drawRectangle(place.x + (1 * launchkey.gapSize), place.y, launchkey.gridSize - (4 * launchkey.gapSize), launchkey.gridSize, true);
+         mc.drawRectangle(place.x + (3 * launchkey.gapSize), place.y, launchkey.gridSize - (4 * launchkey.gapSize), launchkey.gridSize, true);
+      }
+
    }
 }
 paint.local = 1;
@@ -135,7 +134,6 @@ function onclick(x, y) {
    var point = mc.screenToCanvas(x, y);
 }
 onclick.local = 1;
-
 
 function onresize(w, h) {
 

@@ -3,8 +3,7 @@ autowatch = 1;
 inlets = 1;
 setinletassist(0, "messages(note, control)");
 
-outlets = 2;
-setoutletassist(0, "color midi");
+outlets = 1;
 setoutletassist(1, "[name, value]");
 
 include("_launchkey.js");
@@ -63,7 +62,7 @@ function note(note, value, channel) {
    if (name === undefined)
       return;
 
-   outlet(1, [name, value]);
+   outlet(0, [name, value]);
 }
 
 function control(controller, value, channel) {
@@ -78,25 +77,6 @@ function control(controller, value, channel) {
    if (name === undefined)
       return;
 
-   outlet(1, [name, value]);
+   outlet(0, [name, value]);
 }
 
-
-function color(name, color) {
-
-   if (null === launchkey.placeMap)
-      return;
-
-   var place = launchkey.placeMap[name];
-   if (undefined === place)
-      return;
-
-   //var first = (place.channel == 1) ? 144 : 159;
-   var first = 144;
-   if (place.isController) {
-      //first = (place.channel == 1) ? 176 : 181;
-      first = 176;
-   }
-
-   outlet(0, [first, place.value, color]);
-}

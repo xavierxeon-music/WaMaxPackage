@@ -11,15 +11,17 @@ include("_launchkey.js");
 
 // set up
 var launchkey = new Global("Launchkey");
-var buttonSize = launchkey.buttonSize + (2 * launchkey.gapSize);
+launchkey.gridSize = 5;
+launchkey.gapSize = 1;
 
+var buttonSize = launchkey.gridSize + (2 * launchkey.gapSize);
 var mc = new MappedCanvas(this, buttonSize, buttonSize);
 
 var nameId = null;
 
 //////////////////////////////////////////
 
-var tsk = new Task(updateButtonId, this);
+var tsk = new Task(updateButtonId, this, this);
 tsk.interval = 1000; // every second
 tsk.repeat();
 
@@ -34,18 +36,12 @@ function bang() {
 
    updateButtonId();
 
-
    if (null == nameId)
       outlet(0, ["setButton", 0]);
    else
       outlet(0, ["setButton", nameId]);
 
    mc.draw();
-}
-
-function list(changedId, color) {
-
-   color(changedId, color);
 }
 
 function color(changedId, color) {
@@ -60,14 +56,26 @@ function paint() {
    mc.setColor("111111");
    mc.drawRectangle(0, 0, buttonSize, buttonSize, true);
 
-   var color = "ff0000";
-   /*
-   if (null !== id && launchkey.buttonMap && launchkey.buttonMap[id])
-      color = launchkey.buttonMap[id].color;
-   */
+   if (null !== nameId && launchkey.placeMap) {
 
-   mc.setColor(color);
-   mc.drawRectangle(launchkey.gapSize, launchkey.gapSize, launchkey.buttonSize, launchkey.buttonSize, true);
+      var place = launchkey.placeMap[nameId];
+      if (!place)
+         return;
+
+      if (InputType.Button === place.type) {
+         mc.setColor(place.color);
+         mc.drawRectangle(launchkey.gapSize, launchkey.gapSize, launchkey.gridSize, launchkey.gridSize, true);
+      }
+      else if (InputType.Pot === place.type) {
+         mc.setColor(place.color);
+         mc.drawEllipse(launchkey.gapSize, launchkey.gapSize, launchkey.gridSize, launchkey.gridSize, true);
+      }
+      else if (InputType.Fader === place.type) {
+         mc.setColor(place.color);
+         mc.drawRectangle(launchkey.gapSize + (1 * launchkey.gapSize), launchkey.gapSize, launchkey.gridSize - (4 * launchkey.gapSize), launchkey.gridSize, true);
+         mc.drawRectangle(launchkey.gapSize + (3 * launchkey.gapSize), launchkey.gapSize, launchkey.gridSize - (4 * launchkey.gapSize), launchkey.gridSize, true);
+      }
+   }
 }
 paint.local = 1;
 
@@ -85,7 +93,7 @@ function onresize(w, h) {
 }
 onresize.local = 1;
 
-function updateButtonId() {
+function updateButtonId(instance) {
 
    var my_rect = getPresentationRectanlge(this);
    if (null == my_rect)
@@ -94,6 +102,8 @@ function updateButtonId() {
    var parent_rect = getPresentationRectanlge(launchkey.device);
    if (null == parent_rect)
       return;
+
+   //print(this, my_rect, parent_rect);
 
    var gridSize = my_rect[2];
 

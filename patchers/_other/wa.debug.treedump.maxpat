@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ -2958.0, 509.0, 2729.0, 947.0 ],
+		"rect" : [ -2958.0, 509.0, 2329.0, 947.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,40 +40,19 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-10",
+					"id" : "obj-4",
 					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 30.0, 60.0, 127.0, 22.0 ],
-					"text" : "receive launchkey_init"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-15",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 30.0, 15.0, 107.0, 22.0 ],
-					"text" : "wa.setup.bpatcher"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"filename" : "launchkey_place_ui.js",
-					"id" : "obj-6",
-					"maxclass" : "jsui",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 30.0, 120.0, 46.25, 45.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 15.0, 15.0 ]
+					"patching_rect" : [ 20.0, 120.0, 83.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"filename" : "treedump.js",
+						"parameter_enable" : 0
+					}
+,
+					"style" : "wa.patcher",
+					"text" : "js treedump.js"
 				}
 
 			}
@@ -81,47 +60,60 @@
 				"box" : 				{
 					"id" : "obj-3",
 					"maxclass" : "newobj",
-					"numinlets" : 0,
+					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 180.0, 60.0, 137.0, 22.0 ],
-					"text" : "receive launchkey_color"
+					"patching_rect" : [ 20.0, 75.0, 81.0, 22.0 ],
+					"text" : "prepend write"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"comment" : "id",
-					"id" : "obj-2",
+					"comment" : "",
+					"id" : "obj-1",
 					"index" : 1,
-					"maxclass" : "outlet",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 195.0, 30.0, 30.0 ]
+					"maxclass" : "inlet",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 20.0, 20.0, 30.0, 30.0 ]
 				}
 
 			}
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
-					"destination" : [ "obj-6", 0 ],
-					"source" : [ "obj-10", 0 ]
+					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-1", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-6", 0 ],
+					"destination" : [ "obj-4", 0 ],
 					"source" : [ "obj-3", 0 ]
 				}
 
 			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-2", 0 ],
-					"source" : [ "obj-6", 0 ]
+ ],
+		"styles" : [ 			{
+				"name" : "wa.patcher",
+				"default" : 				{
+					"accentcolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ]
 				}
-
+,
+				"parentstyle" : "",
+				"multi" : 0
+			}
+, 			{
+				"name" : "wa.receive",
+				"default" : 				{
+					"accentcolor" : [ 0.960784, 0.827451, 0.156863, 1.0 ]
+				}
+,
+				"parentstyle" : "",
+				"multi" : 0
 			}
  ]
 	}
