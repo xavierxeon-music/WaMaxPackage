@@ -79,7 +79,13 @@ onresize.local = 1;
 function updateButtonId() {
 
    var my_rect = getPresentationRectanlge(this);
+   if (null == my_rect)
+      return;
+
    var parent_rect = getPresentationRectanlge(launchpad.device);
+   if (null == parent_rect)
+      return;
+
 
    var gridSize = my_rect[2];
 

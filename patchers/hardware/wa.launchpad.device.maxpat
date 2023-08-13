@@ -110,11 +110,11 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 361.0, 615.0, 269.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "launchpad_color_select",
+						"filename" : "launchpad_color",
 						"parameter_enable" : 0
 					}
 ,
-					"text" : "js launchpad_color_select launchpad_colors.json"
+					"text" : "js launchpad_color launchpad_colors.json"
 				}
 
 			}
@@ -1087,7 +1087,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "launchpad_color_select.js",
+				"name" : "launchpad_color.js",
 				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/WaMaxPackage/javascript/hardware",
 				"patcherrelativepath" : "../../javascript/hardware",
 				"type" : "TEXT",

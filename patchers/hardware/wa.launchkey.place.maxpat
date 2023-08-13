@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ -2958.0, 425.0, 2326.0, 1031.0 ],
+		"rect" : [ -2958.0, 453.0, 2726.0, 1003.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,18 @@
 		"subpatcher_template" : "OpenGrid",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-1",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 180.0, 105.0, 82.0, 22.0 ],
+					"text" : "prepend color"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-10",
 					"maxclass" : "newobj",
@@ -71,7 +83,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 30.0, 120.0, 46.25, 45.0 ],
+					"patching_rect" : [ 30.0, 165.0, 46.25, 45.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 15.0, 15.0 ]
 				}
@@ -97,12 +109,19 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 195.0, 30.0, 30.0 ]
+					"patching_rect" : [ 30.0, 240.0, 30.0, 30.0 ]
 				}
 
 			}
  ],
 		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
 					"source" : [ "obj-10", 0 ]
@@ -111,7 +130,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-6", 0 ],
+					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-3", 0 ]
 				}
 
@@ -125,9 +144,9 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "_mapped_canvas.js",
-				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/WaMaxPackage/jsui/_commmon",
-				"patcherrelativepath" : "../../jsui/_commmon",
+				"name" : "_launchkey.js",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/WaMaxPackage/jsui/hardware",
+				"patcherrelativepath" : "../../jsui/hardware",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

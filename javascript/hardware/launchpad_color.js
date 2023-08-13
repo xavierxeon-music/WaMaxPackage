@@ -36,6 +36,11 @@ function init() {
 
 function list(id, inColor) {
 
+   color(id, inColor);
+}
+
+function color(id, inColor) {
+
    if (0 === id)
       return;
 

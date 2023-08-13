@@ -37,6 +37,10 @@ function Place(x, y, placeInfo) {
    this.type = typeFromString(placeInfo["type"]);
    this.name = placeInfo["name"];
 
+   this.value = placeInfo["midi_value"];
+   this.isController = placeInfo["midi_cc"];
+   this.channel = placeInfo["channel"];
+
    return this;
 }
 
