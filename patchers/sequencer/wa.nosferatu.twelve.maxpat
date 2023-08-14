@@ -4,15 +4,15 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 143.0, 3177.0, 1423.0 ],
+		"rect" : [ 756.0, 461.0, 3043.0, 891.0 ],
 		"bglocked" : 0,
-		"openinpresentation" : 0,
+		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
 		"default_fontface" : 0,
 		"default_fontname" : "Arial",
@@ -40,6 +40,19 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-22",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 600.0, 248.0, 77.0, 20.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 0.0, 152.0, 84.0, 20.0 ],
+					"text" : "values [0-12]"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-19",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -47,7 +60,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 30.0, 300.0, 121.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "nosferatu_resize.js",
+						"filename" : "nosferatu_resize",
 						"parameter_enable" : 0
 					}
 ,
@@ -86,8 +99,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 705.0, 30.0, 142.0, 22.0 ],
-					"text" : "patcherargs \"pitch offset\""
+					"patching_rect" : [ 705.0, 30.0, 85.0, 22.0 ],
+					"text" : "patcherargs ..."
 				}
 
 			}
@@ -107,7 +120,7 @@
 				"box" : 				{
 					"comment" : "pitch",
 					"id" : "obj-16",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -136,7 +149,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 540.0, 525.0, 123.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "nosferatu_twelve.js",
+						"filename" : "nosferatu_twelve",
 						"parameter_enable" : 0
 					}
 ,
@@ -203,7 +216,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 30.0, 255.0, 130.0, 37.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 165.0, 240.0, 30.0 ],
+					"presentation_rect" : [ 0.0, 120.0, 240.0, 30.0 ],
 					"rows" : 1,
 					"varname" : "steps"
 				}
@@ -240,10 +253,9 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 630.0, 248.0, 285.0, 20.0 ],
+					"patching_rect" : [ 705.0, 248.0, 285.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 8.0, 240.0, 20.0 ],
-					"text" : "octave switch"
+					"presentation_rect" : [ 90.0, 152.0, 150.0, 20.0 ]
 				}
 
 			}
@@ -276,7 +288,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 540.0, 270.0, 285.0, 120.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 30.0, 240.0, 120.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 240.0, 120.0 ],
 					"setminmax" : [ 0.0, 11.0 ],
 					"settype" : 0,
 					"size" : 8,
@@ -311,9 +323,9 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "message",
+					"comment" : "nosferatu_bus",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -324,9 +336,9 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "message",
+					"comment" : "nosferatu_bus",
 					"id" : "obj-2",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -480,7 +492,37 @@
 				}
 
 			}
- ]
+ ],
+		"dependency_cache" : [ 			{
+				"name" : "bpatcher_size.js",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
+				"patcherrelativepath" : "../../javascript/setup",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "nosferatu_resize.js",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/seqeuncer",
+				"patcherrelativepath" : "../../javascript/seqeuncer",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "nosferatu_twelve.js",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/seqeuncer",
+				"patcherrelativepath" : "../../javascript/seqeuncer",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "wa.setup.bpatcher.maxpat",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/setup",
+				"patcherrelativepath" : "../setup",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0
 	}
 
 }

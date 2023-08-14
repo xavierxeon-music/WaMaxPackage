@@ -4,15 +4,15 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 311.0, 2632.0, 1255.0 ],
+		"rect" : [ 756.0, 461.0, 2134.0, 891.0 ],
 		"bglocked" : 0,
-		"openinpresentation" : 0,
+		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
 		"default_fontface" : 0,
 		"default_fontname" : "Arial",
@@ -47,7 +47,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 72.0, 326.5, 121.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "nosferatu_resize.js",
+						"filename" : "nosferatu_resize",
 						"parameter_enable" : 0
 					}
 ,
@@ -95,7 +95,7 @@
 				"box" : 				{
 					"comment" : "pass",
 					"id" : "obj-12",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -136,7 +136,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 594.0, 480.0, 125.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "nosferatu_maybe.js",
+						"filename" : "nosferatu_maybe",
 						"parameter_enable" : 0
 					}
 ,
@@ -218,10 +218,10 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 720.0, 206.5, 70.0, 20.0 ],
+					"patching_rect" : [ 720.0, 206.5, 125.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 8.0, 70.0, 20.0 ],
-					"text" : "propability"
+					"presentation_rect" : [ 0.0, 152.0, 125.0, 20.0 ],
+					"text" : "propability of passing "
 				}
 
 			}
@@ -235,7 +235,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 645.0, 228.5, 285.0, 120.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 30.0, 285.0, 120.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 240.0, 120.0 ],
 					"setminmax" : [ 0.0, 100.0 ],
 					"setstyle" : 1,
 					"size" : 8,
@@ -247,7 +247,7 @@
 				"box" : 				{
 					"comment" : "pass",
 					"id" : "obj-6",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -279,7 +279,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 72.0, 270.0, 130.0, 37.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 165.0, 285.0, 37.0 ],
+					"presentation_rect" : [ 0.0, 120.0, 240.0, 30.0 ],
 					"rows" : 1,
 					"varname" : "steps"
 				}
@@ -312,9 +312,9 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "message",
+					"comment" : "nosferatu_bus",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -325,9 +325,9 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "message",
+					"comment" : "nosferatu_bus",
 					"id" : "obj-2",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -488,7 +488,37 @@
 				}
 
 			}
- ]
+ ],
+		"dependency_cache" : [ 			{
+				"name" : "bpatcher_size.js",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
+				"patcherrelativepath" : "../../javascript/setup",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "nosferatu_maybe.js",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/seqeuncer",
+				"patcherrelativepath" : "../../javascript/seqeuncer",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "nosferatu_resize.js",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/seqeuncer",
+				"patcherrelativepath" : "../../javascript/seqeuncer",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "wa.setup.bpatcher.maxpat",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/setup",
+				"patcherrelativepath" : "../setup",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0
 	}
 
 }

@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 4,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 143.0, 3772.0, 1423.0 ],
+		"rect" : [ 756.0, 461.0, 2134.0, 891.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,55 @@
 		"subpatcher_template" : "OpenGrid",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-25",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 450.0, 255.0, 35.0, 22.0 ],
+					"text" : "reset"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-17",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 342.5, 180.0, 66.0, 22.0 ],
+					"text" : "route bang"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 45.0, 270.0, 72.0, 22.0 ],
+					"text" : "prepend set"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-11",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 855.0, 480.0, 77.0, 20.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 90.0, 152.0, 73.0, 20.0 ],
+					"text" : "pulse count "
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-49",
 					"maxclass" : "newobj",
@@ -111,7 +160,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 855.0, 450.0, 150.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 122.0, 122.0, 105.0, 20.0 ],
+					"presentation_rect" : [ 165.0, 152.0, 43.0, 20.0 ],
 					"text" : "16"
 				}
 
@@ -243,18 +292,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-7",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 451.0, 240.0, 91.0, 22.0 ],
-					"text" : "routepass reset"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-66",
 					"maxclass" : "message",
 					"numinlets" : 2,
@@ -276,7 +313,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 120.0, 525.0, 146.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 150.0, 240.0, 30.0 ],
+					"presentation_rect" : [ 0.0, 122.0, 240.0, 30.0 ],
 					"rows" : 1,
 					"varname" : "steps"
 				}
@@ -301,10 +338,10 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 677.333312999999976, 158.0, 118.0, 20.0 ],
+					"patching_rect" : [ 20.0, 375.0, 44.0, 20.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 122.0, 120.0, 20.0 ],
-					"text" : "stages / pulse count"
+					"presentation_rect" : [ 0.0, 152.0, 44.0, 20.0 ],
+					"text" : "stages"
 				}
 
 			}
@@ -365,8 +402,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 120.0, 90.0, 61.0, 22.0 ],
-					"text" : "route size"
+					"patching_rect" : [ 120.0, 90.0, 69.0, 22.0 ],
+					"text" : "route count"
 				}
 
 			}
@@ -377,8 +414,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 20.0, 45.0, 119.0, 22.0 ],
-					"text" : "patcherargs @size 8"
+					"patching_rect" : [ 20.0, 45.0, 127.0, 22.0 ],
+					"text" : "patcherargs @count 8"
 				}
 
 			}
@@ -389,27 +426,27 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 195.0, 45.0, 107.0, 22.0 ],
+					"patching_rect" : [ 556.0, 45.0, 107.0, 22.0 ],
 					"text" : "wa.setup.bpatcher"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"comment" : "message",
+					"comment" : "reset",
 					"id" : "obj-1",
 					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 451.0, 180.0, 30.0, 30.0 ]
+					"patching_rect" : [ 342.5, 135.0, 30.0, 30.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"comment" : "message",
+					"comment" : "nosferatu_bus",
 					"id" : "obj-2",
 					"index" : 0,
 					"maxclass" : "outlet",
@@ -419,10 +456,23 @@
 				}
 
 			}
+, 			{
+				"box" : 				{
+					"id" : "obj-21",
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 45.0, 345.0, 19.0, 20.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 45.0, 152.0, 45.0, 20.0 ],
+					"text" : "8"
+				}
+
+			}
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
-					"destination" : [ "obj-7", 0 ],
+					"destination" : [ "obj-17", 0 ],
 					"source" : [ "obj-1", 0 ]
 				}
 
@@ -443,6 +493,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-21", 0 ],
+					"source" : [ "obj-13", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-3", 0 ],
 					"source" : [ "obj-14", 0 ]
 				}
@@ -452,6 +509,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-2", 0 ],
 					"source" : [ "obj-15", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-25", 0 ],
+					"source" : [ "obj-17", 0 ]
 				}
 
 			}
@@ -486,6 +550,14 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-13", 0 ],
+					"order" : 3,
+					"source" : [ "obj-24", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-31", 0 ],
 					"order" : 0,
 					"source" : [ "obj-24", 0 ]
@@ -497,6 +569,22 @@
 					"destination" : [ "obj-34", 0 ],
 					"order" : 1,
 					"source" : [ "obj-24", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-19", 0 ],
+					"order" : 1,
+					"source" : [ "obj-25", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"order" : 0,
+					"source" : [ "obj-25", 0 ]
 				}
 
 			}
@@ -613,22 +701,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-19", 0 ],
-					"order" : 1,
-					"source" : [ "obj-7", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-3", 0 ],
-					"order" : 0,
-					"source" : [ "obj-7", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
 					"source" : [ "obj-8", 0 ]
 				}
@@ -644,28 +716,28 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "bpatcher_size.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/setup",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
 				"patcherrelativepath" : "../../javascript/setup",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "nosferatu_resize.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/seqeuncer",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/seqeuncer",
 				"patcherrelativepath" : "../../javascript/seqeuncer",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "nosferatu_stages.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/seqeuncer",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/seqeuncer",
 				"patcherrelativepath" : "../../javascript/seqeuncer",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "wa.setup.bpatcher.maxpat",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/patchers/setup",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/setup",
 				"patcherrelativepath" : "../setup",
 				"type" : "JSON",
 				"implicit" : 1
