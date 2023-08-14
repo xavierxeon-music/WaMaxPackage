@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ -2958.0, 509.0, 2329.0, 947.0 ],
+		"rect" : [ 756.0, 433.0, 2134.0, 919.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -43,8 +43,7 @@
 					"id" : "obj-4",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"numoutlets" : 0,
 					"patching_rect" : [ 20.0, 120.0, 83.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "treedump.js",
@@ -52,7 +51,8 @@
 					}
 ,
 					"style" : "wa.patcher",
-					"text" : "js treedump.js"
+					"text" : "js treedump.js",
+					"varname" : "dump_script"
 				}
 
 			}
@@ -63,8 +63,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 20.0, 75.0, 81.0, 22.0 ],
-					"text" : "prepend write"
+					"patching_rect" : [ 20.0, 69.0, 81.0, 22.0 ],
+					"text" : "prepend write",
+					"varname" : "dump_prepend"
 				}
 
 			}
@@ -77,7 +78,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 20.0, 20.0, 30.0, 30.0 ]
+					"patching_rect" : [ 20.0, 20.0, 30.0, 30.0 ],
+					"varname" : "dump_inlet"
 				}
 
 			}

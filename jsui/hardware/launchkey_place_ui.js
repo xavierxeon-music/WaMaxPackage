@@ -21,7 +21,7 @@ var nameId = null;
 
 //////////////////////////////////////////
 
-var tsk = new Task(updateButtonId, this, this);
+var tsk = new Task(updateButtonId, this);
 tsk.interval = 1000; // every second
 tsk.repeat();
 
@@ -93,7 +93,12 @@ function onresize(w, h) {
 }
 onresize.local = 1;
 
-function updateButtonId(instance) {
+function updateButtonId() {
+
+   var topPatcher = this.patcher;
+   while (topPatcher.parentpatcher) {
+      topPatcher = topPatcher.parentpatcher;
+   }
 
    var my_rect = getPresentationRectanlge(this);
    if (null == my_rect)

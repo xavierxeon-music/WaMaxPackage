@@ -1,16 +1,10 @@
 // helpers
 
-function readJsonFile(fileName) {
+function print() {
 
-   var text = "";
-   var file = new File(fileName, "read");
-   while (file.isopen && file.position < file.eof) {
-      text += file.readline();
-   }
-   file.close();
-
-   var object = JSON.parse(text);
-   return object;
+   for (var index = 0; index < arguments.length; index++)
+      post(arguments[index]);
+   post("\n");
 }
 
 function removeFromArray(array, value) {
@@ -61,38 +55,6 @@ function getPresentationRectanlge(object) {
    return null;
 }
 
-function print() {
-
-   for (var index = 0; index < arguments.length; index++)
-      post(arguments[index]);
-   post("\n");
-}
-
-function dump(obj, name) {
-
-   if (obj === null) {
-      print(name + " : NULL");
-   }
-   else if (obj === undefined) {
-      print(name + " : UNDEFINED");
-   }
-   else if (typeof obj == "number") {
-      print(name + " :" + obj, " (NUMBER)");
-   }
-   else if (typeof obj == "string") {
-      print(name + " :" + obj, "  (STRING)");
-   }
-   else if (typeof obj == "object") {
-      for (var key in obj) {
-         dump(obj[key], name + "," + key);
-      }
-   }
-   else {
-      print(name + " is " + typeof obj);
-
-   }
-}
-
 function isHex(value) {
 
    for (var index = 0; index < 6; index += 1) {
@@ -122,4 +84,19 @@ function isHex(value) {
    }
 
    return true;
+}
+
+function createPseudoUuid() {
+
+   var s = [];
+   var hexDigits = "0123456789abcdef";
+   for (var i = 0; i < 36; i++) {
+      s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+   }
+   s[14] = "4";  // bits 12-15 of the time_hi_and_version field to 0010
+   s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
+   s[8] = s[13] = s[18] = s[23] = "-";
+
+   var uuid = s.join("");
+   return uuid;
 }
