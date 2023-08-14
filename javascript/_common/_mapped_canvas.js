@@ -15,6 +15,10 @@ function MappedCanvas(self, width, height, background) {
    else
       this.clearColor = "#" + Color("white").hex;
 
+   this.fontSize = "18px";
+   this.fontFamily = "Times New Roman bold";
+   this.ctx.font = this.fontSize + " " + this.fontFamily;
+
    return this;
 }
 
@@ -26,6 +30,18 @@ MappedCanvas.prototype.draw = function () {
 MappedCanvas.prototype.setColor = function (color) {
 
    this.ctx.fillStyle = "#" + Color(color).hex;
+}
+
+MappedCanvas.prototype.setFontSize = function (fontSize) {
+
+   this.fontSize = fontSize;
+   this.ctx.font = this.fontSize + " " + this.fontFamily;
+}
+
+MappedCanvas.prototype.setFontFamily = function (fontFamily) {
+
+   this.fontFamily = fontFamily;
+   this.ctx.font = this.fontSize + " " + this.fontFamily;
 }
 
 MappedCanvas.prototype.clear = function () {
@@ -70,6 +86,16 @@ MappedCanvas.prototype.drawEllipse = function (left, top, width, height, filled)
    else
       this.ctx.stroke();
 }
+
+MappedCanvas.prototype.drawText = function (left, top, text) {
+
+   var pos = this.canvasToScreen(left, top);
+
+   var x = pos[0];
+   var y = pos[1];
+
+   this.ctx.fillText(text, x, y);
+};
 
 MappedCanvas.prototype.getBoxDimensions = function () {
 

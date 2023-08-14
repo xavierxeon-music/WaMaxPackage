@@ -10,21 +10,6 @@ setoutletassist(0, "color midi");
 include("_mapped_canvas.js");
 include("_launchkey.js");
 
-//////////////////////////////////////////
-
-// set up
-
-var launchkey = new Global("Launchkey");
-launchkey.gridSize = 5;
-launchkey.gapSize = 1;
-launchkey.device = null;
-launchkey.placeMap = null;
-launchkey.indexMap = null;
-
-var deviceWidth = (23 * (launchkey.gridSize + launchkey.gapSize)) + launchkey.gapSize;
-var deviceHeight = (3 * (launchkey.gridSize + launchkey.gapSize)) + launchkey.gapSize;
-
-var mc = new MappedCanvas(this, deviceWidth, deviceHeight);
 
 //////////////////////////////////////////
 
@@ -43,6 +28,77 @@ function Place(x, y, placeInfo) {
 
    return this;
 }
+
+function MouseHover() {
+   this.xIndex = 0;
+   this.yIndex = 0;
+
+   this.active = false;
+   this.nameId = "none";
+
+   this.stick = false;
+
+   return this;
+}
+
+MouseHover.prototype.update = function (x, y) {
+
+   if (this.stick)
+      return;
+
+   var point = mc.screenToCanvas(x, y);
+
+   var gridSize = launchkey.gridSize + launchkey.gapSize;
+
+   var xIndex = Math.floor(point[0] / gridSize);
+   var yIndex = 2 - Math.floor(point[1] / gridSize);
+
+   if (xIndex == this.xIndex && yIndex == this.yIndex)
+      return false;
+
+   this.active = true;
+   this.xIndex = xIndex;
+   this.yIndex = yIndex;
+
+   if (xIndex < 0 || xIndex > 22 || yIndex < 0 || yIndex > 2)
+      this.active = false;
+
+   this.nameId = null;
+
+   var name = null;
+   var index = compileKey(yIndex) + compileKey(xIndex);
+   if (launchkey.indexMap)
+      name = launchkey.indexMap[index];
+
+   if (name && launchkey.placeMap !== null) {
+      if (launchkey.placeMap[name] !== undefined) {
+         this.nameId = launchkey.placeMap[name].name;
+      }
+   }
+
+   if (!this.nameId)
+      this.active = false;
+
+   return true;
+}
+
+//////////////////////////////////////////
+
+// set up
+
+var launchkey = new Global("Launchkey");
+launchkey.gridSize = 5;
+launchkey.gapSize = 1;
+launchkey.device = null;
+launchkey.placeMap = null;
+launchkey.indexMap = null;
+
+var deviceWidth = (23 * (launchkey.gridSize + launchkey.gapSize)) + launchkey.gapSize;
+var deviceHeight = (3 * (launchkey.gridSize + launchkey.gapSize)) + launchkey.gapSize;
+
+var mc = new MappedCanvas(this, deviceWidth, deviceHeight);
+
+var mouseHover = new MouseHover();
 
 //////////////////////////////////////////
 
@@ -123,17 +179,55 @@ function paint() {
          mc.drawRectangle(place.x + (1 * launchkey.gapSize), place.y, launchkey.gridSize - (4 * launchkey.gapSize), launchkey.gridSize, true);
          mc.drawRectangle(place.x + (3 * launchkey.gapSize), place.y, launchkey.gridSize - (4 * launchkey.gapSize), launchkey.gridSize, true);
       }
-
    }
+
+   if (mouseHover.active) {
+
+      var x = launchkey.gridSize + (2 * launchkey.gapSize);
+      var y = launchkey.gapSize;
+
+      var width = (8 * launchkey.gridSize) + (7 * launchkey.gapSize);
+      var height = 2 * (launchkey.gridSize + launchkey.gapSize);
+
+      if (mouseHover.xIndex < 12)
+         x = (14 * launchkey.gridSize) + (15 * launchkey.gapSize);
+
+      if (mouseHover.stick)
+         mc.setColor("222266");
+      else
+         mc.setColor("111111");
+      mc.drawRectangle(x, y, width, height, true);
+
+      mc.setColor("ffffff");
+      mc.drawText(x + 2, y + 8, mouseHover.nameId);
+   }
+
 }
 paint.local = 1;
 
 // needed to avoid error message
-function onclick(x, y) {
+function onclick() {
 
-   var point = mc.screenToCanvas(x, y);
+   mouseHover.stick = !mouseHover.stick;
+   mc.draw();
 }
 onclick.local = 1;
+
+function onidle(x, y) {
+
+   if (mouseHover.update(x, y))
+      mc.draw();
+}
+onclick.onidle = 1;
+
+function onidleout(x, y) {
+
+   if (!mouseHover.stick) {
+      mouseHover.active = false;
+      mc.draw();
+   }
+}
+onclick.onidleout = 1;
 
 function onresize(w, h) {
 
