@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 756.0, 489.0, 2131.0, 863.0 ],
+		"rect" : [ -3406.0, 275.0, 3365.0, 1291.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,17 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-37",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 1170.0, 210.0, 32.0, 22.0 ],
+					"text" : "print"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-22",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -56,7 +67,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 615.0, 101.0, 97.0, 22.0 ],
+					"patching_rect" : [ 615.0, 101.0, 111.0, 22.0 ],
 					"style" : "wa.receive",
 					"text" : "receive #0_reset"
 				}
@@ -112,7 +123,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 32.0, 58.0, 97.0, 22.0 ],
+					"patching_rect" : [ 32.0, 58.0, 111.0, 22.0 ],
 					"style" : "wa.receive",
 					"text" : "receive #0_reset"
 				}
@@ -125,7 +136,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 270.0, 270.0, 97.0, 22.0 ],
+					"patching_rect" : [ 270.0, 270.0, 111.0, 22.0 ],
 					"style" : "wa.receive",
 					"text" : "receive #0_reset"
 				}
@@ -138,7 +149,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 810.0, 180.0, 97.0, 22.0 ],
+					"patching_rect" : [ 810.0, 180.0, 111.0, 22.0 ],
 					"style" : "wa.receive",
 					"text" : "receive #0_reset"
 				}
@@ -150,7 +161,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 32.0, 420.0, 85.0, 22.0 ],
+					"patching_rect" : [ 32.0, 420.0, 98.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_reset"
 				}
@@ -435,14 +446,14 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 495.0, 58.0, 281.0, 22.0 ],
+					"patching_rect" : [ 495.0, 58.0, 230.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "launchpad_color",
+						"filename" : "launchkey_color",
 						"parameter_enable" : 0
 					}
 ,
 					"style" : "wa.patcher",
-					"text" : "js launchpad_color launchpad_colors.json"
+					"text" : "js launchkey_color launchpad_colors.json"
 				}
 
 			}
@@ -614,6 +625,15 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-13", 0 ],
+					"order" : 1,
+					"source" : [ "obj-16", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-37", 0 ],
+					"order" : 0,
 					"source" : [ "obj-16", 0 ]
 				}
 
@@ -788,6 +808,13 @@
 				"implicit" : 1
 			}
 , 			{
+				"name" : "launchkey_color.js",
+				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/hardware",
+				"patcherrelativepath" : "../../javascript/hardware",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "launchkey_device.js",
 				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/hardware",
 				"patcherrelativepath" : "../../javascript/hardware",
@@ -803,13 +830,6 @@
 			}
 , 			{
 				"name" : "launchkey_input.js",
-				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/hardware",
-				"patcherrelativepath" : "../../javascript/hardware",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "launchpad_color.js",
 				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/hardware",
 				"patcherrelativepath" : "../../javascript/hardware",
 				"type" : "TEXT",

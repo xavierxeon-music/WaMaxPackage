@@ -1,161 +1,161 @@
 {
    "00": {
       "00": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "down",
-         "midi_value": 105,
+         "midi_value": 107,
          "midi_cc": true,
          "channel": 16
       },
       "01": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "pad11",
          "midi_value": 112,
          "midi_cc": false,
          "channel": 1
       },
       "02": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "pad12",
          "midi_value": 113,
          "midi_cc": false,
          "channel": 1
       },
       "03": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "pad13",
          "midi_value": 114,
          "midi_cc": false,
          "channel": 1
       },
       "04": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "pad14",
          "midi_value": 115,
          "midi_cc": false,
          "channel": 1
       },
       "05": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "pad15",
          "midi_value": 116,
          "midi_cc": false,
          "channel": 1
       },
       "06": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "pad16",
          "midi_value": 117,
          "midi_cc": false,
          "channel": 1
       },
       "07": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "pad17",
          "midi_value": 118,
          "midi_cc": false,
          "channel": 1
       },
       "08": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "pad18",
          "midi_value": 119,
          "midi_cc": false,
          "channel": 1
       },
       "09": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "mute",
          "midi_value": 105,
          "midi_cc": true,
          "channel": 1
       },
       "10": {
-         "type": "Button",
-         "name": "fader_button1",
+         "type": "ColorButton",
+         "name": "fabut1",
          "midi_value": 37,
          "midi_cc": true,
          "channel": 16
       },
       "11": {
-         "type": "Button",
-         "name": "fader_button2",
+         "type": "ColorButton",
+         "name": "fabut2",
          "midi_value": 38,
          "midi_cc": true,
          "channel": 16
       },
       "12": {
-         "type": "Button",
-         "name": "fader_button3",
+         "type": "ColorButton",
+         "name": "fabut3",
          "midi_value": 39,
          "midi_cc": true,
          "channel": 16
       },
       "13": {
-         "type": "Button",
-         "name": "fader_button4",
+         "type": "ColorButton",
+         "name": "fabut4",
          "midi_value": 40,
          "midi_cc": true,
          "channel": 16
       },
       "14": {
-         "type": "Button",
-         "name": "fader_button5",
+         "type": "ColorButton",
+         "name": "fabut5",
          "midi_value": 41,
          "midi_cc": true,
          "channel": 16
       },
       "15": {
-         "type": "Button",
-         "name": "fader_button6",
+         "type": "ColorButton",
+         "name": "fabut6",
          "midi_value": 42,
          "midi_cc": true,
          "channel": 16
       },
       "16": {
-         "type": "Button",
-         "name": "fader_button7",
+         "type": "ColorButton",
+         "name": "fabut7",
          "midi_value": 43,
          "midi_cc": true,
          "channel": 16
       },
       "17": {
-         "type": "Button",
-         "name": "fader_button8",
+         "type": "ColorButton",
+         "name": "fabut8",
          "midi_value": 44,
          "midi_cc": true,
          "channel": 16
       },
       "18": {
-         "type": "Button",
-         "name": "fader_button9",
+         "type": "GrayButton",
+         "name": "arm",
          "midi_value": 45,
          "midi_cc": true,
          "channel": 16
       },
       "19": {
-         "type": "Button",
+         "type": "GrayButton",
          "name": "play",
          "midi_value": 115,
          "midi_cc": true,
          "channel": 16
       },
       "20": {
-         "type": "Button",
+         "type": "GrayButton",
          "name": "stop",
          "midi_value": 116,
          "midi_cc": true,
          "channel": 16
       },
       "21": {
-         "type": "Button",
+         "type": "GrayButton",
          "name": "record",
          "midi_value": 117,
          "midi_cc": true,
          "channel": 16
       },
       "22": {
-         "type": "Button",
+         "type": "GrayButton",
          "name": "repeat",
          "midi_value": 118,
          "midi_cc": true,
@@ -164,70 +164,70 @@
    },
    "01": {
       "00": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "up",
-         "midi_value": 104,
+         "midi_value": 106,
          "midi_cc": true,
          "channel": 16
       },
       "01": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "pad21",
          "midi_value": 96,
          "midi_cc": false,
          "channel": 1
       },
       "02": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "pad22",
          "midi_value": 97,
          "midi_cc": false,
          "channel": 1
       },
       "03": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "pad23",
          "midi_value": 98,
          "midi_cc": false,
          "channel": 1
       },
       "04": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "pad24",
          "midi_value": 99,
          "midi_cc": false,
          "channel": 1
       },
       "05": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "pad25",
          "midi_value": 100,
          "midi_cc": false,
          "channel": 1
       },
       "06": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "pad26",
          "midi_value": 101,
          "midi_cc": false,
          "channel": 1
       },
       "07": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "pad27",
          "midi_value": 102,
          "midi_cc": false,
          "channel": 1
       },
       "08": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "pad28",
          "midi_value": 103,
          "midi_cc": false,
          "channel": 1
       },
       "09": {
-         "type": "Button",
+         "type": "ColorButton",
          "name": "next",
          "midi_value": 104,
          "midi_cc": true,
@@ -297,28 +297,28 @@
          "channel": 16
       },
       "19": {
-         "type": "Button",
+         "type": "GrayButton",
          "name": "capture",
          "midi_value": 74,
          "midi_cc": true,
          "channel": 16
       },
       "20": {
-         "type": "Button",
+         "type": "GrayButton",
          "name": "quantize",
          "midi_value": 75,
          "midi_cc": true,
          "channel": 16
       },
       "21": {
-         "type": "Button",
+         "type": "GrayButton",
          "name": "clock",
          "midi_value": 76,
          "midi_cc": true,
          "channel": 16
       },
       "22": {
-         "type": "Button",
+         "type": "GrayButton",
          "name": "undo",
          "midi_value": 77,
          "midi_cc": true,
@@ -386,22 +386,16 @@
          "channel": 16
       },
       "09": {
-         "type": "Button",
-         "name": "device_lock",
+         "type": "GrayButton",
+         "name": "lock",
          "midi_value": 52,
          "midi_cc": true,
          "channel": 16
       },
       "10": {
-         "type": "Button",
-         "name": "device_select",
-         "midi_value": 51,
-         "midi_cc": true,
-         "channel": 16
-      },
-      "11": {
          "type": "Blank"
       },
+      "11": {},
       "12": {
          "type": "Blank"
       },

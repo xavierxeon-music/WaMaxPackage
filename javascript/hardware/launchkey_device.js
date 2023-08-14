@@ -12,9 +12,7 @@ include("_launchkey.js");
 //////////////////////////////////////////
 
 // set up
-
 var launchkey = new Global("Launchkey");
-
 
 //////////////////////////////////////////
 
@@ -39,7 +37,7 @@ function sendColor(nameId, colorCode) {
       return false;
 
    if (undefined === place.value) {
-      print(place.name);
+      //print(place.name, nameId);
       return false;
    }
 

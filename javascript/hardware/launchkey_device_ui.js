@@ -166,7 +166,7 @@ function paint() {
       if (!place || undefined === place.value)
          continue;
 
-      if (InputType.Button === place.type) {
+      if (InputType.ColorButton === place.type || InputType.GrayButton === place.type) {
          mc.setColor(place.color);
          mc.drawRectangle(place.x, place.y, launchkey.gridSize, launchkey.gridSize, true);
       }

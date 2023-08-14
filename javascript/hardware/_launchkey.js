@@ -1,14 +1,17 @@
 var InputType = {
    Blank: 0,
-   Button: 1,
-   Pot: 2,
-   Fader: 3
+   ColorButton: 1,
+   GrayButton: 2,
+   Pot: 3,
+   Fader: 4
 };
 
 function typeFromString(text) {
 
-   if ("Button" == text)
-      return InputType.Button;
+   if ("ColorButton" == text)
+      return InputType.ColorButton;
+   else if ("GrayButton" == text)
+      return InputType.GrayButton;
    else if ("Pot" == text)
       return InputType.Pot;
    else if ("Fader" == text)
