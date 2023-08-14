@@ -10,7 +10,6 @@ setoutletassist(0, "color midi");
 include("_mapped_canvas.js");
 include("_launchkey.js");
 
-
 //////////////////////////////////////////
 
 function Place(x, y, placeInfo) {
@@ -26,6 +25,10 @@ function Place(x, y, placeInfo) {
    this.isController = placeInfo["midi_cc"];
    this.channel = placeInfo["channel"];
 
+   this.object = placeInfo["object"];
+   if (this.object)
+      this.object = this.object.replace("%LAUNCHKEY%", "\"Internal LaunchKey\"");
+
    return this;
 }
 
@@ -34,9 +37,10 @@ function MouseHover() {
    this.yIndex = 0;
 
    this.active = false;
-   this.nameId = "none";
-
    this.stick = false;
+
+   this.nameId = "none";
+   this.type = InputType.Blank;
 
    return this;
 }
@@ -64,15 +68,17 @@ MouseHover.prototype.update = function (x, y) {
       this.active = false;
 
    this.nameId = null;
+   this.type = InputType.Blank;
 
    var name = null;
    var index = compileKey(yIndex) + compileKey(xIndex);
    if (launchkey.indexMap)
       name = launchkey.indexMap[index];
 
-   if (name && launchkey.placeMap !== null) {
-      if (launchkey.placeMap[name] !== undefined) {
+   if (name && launchkey.placeMap != null) {
+      if (launchkey.placeMap[name] != undefined) {
          this.nameId = launchkey.placeMap[name].name;
+         this.type = launchkey.placeMap[name].type;
       }
    }
 
@@ -141,10 +147,10 @@ function bang() {
 
 function color(nameId, color) {
 
-   if (null === launchkey.placeMap)
+   if (null == launchkey.placeMap)
       return;
 
-   if (undefined === launchkey.placeMap[nameId])
+   if (undefined == launchkey.placeMap[nameId])
       return;
 
    launchkey.placeMap[nameId].color = color;
@@ -157,27 +163,35 @@ function paint() {
    mc.setColor("111111");
    mc.drawRectangle(0, 0, deviceWidth, deviceHeight, true);
 
-   if (launchkey.placeMap === null)
+   if (null == launchkey.placeMap)
       return;
 
    for (nameId in launchkey.placeMap) {
 
       var place = launchkey.placeMap[nameId];
-      if (!place || undefined === place.value)
+      if (!place)
          continue;
 
-      if (InputType.ColorButton === place.type || InputType.GrayButton === place.type) {
-         mc.setColor(place.color);
-         mc.drawRectangle(place.x, place.y, launchkey.gridSize, launchkey.gridSize, true);
-      }
-      else if (InputType.Pot === place.type) {
-         mc.setColor(place.color);
-         mc.drawEllipse(place.x, place.y, launchkey.gridSize, launchkey.gridSize, true);
-      }
-      else if (InputType.Fader === place.type) {
-         mc.setColor(place.color);
-         mc.drawRectangle(place.x + (1 * launchkey.gapSize), place.y, launchkey.gridSize - (4 * launchkey.gapSize), launchkey.gridSize, true);
-         mc.drawRectangle(place.x + (3 * launchkey.gapSize), place.y, launchkey.gridSize - (4 * launchkey.gapSize), launchkey.gridSize, true);
+      switch (place.type) {
+         case InputType.ColorButton:
+         case InputType.GrayButton:
+            mc.setColor(place.color);
+            mc.drawRectangle(place.x, place.y, launchkey.gridSize, launchkey.gridSize, true);
+            break;
+         case InputType.Pot:
+            mc.setColor(place.color);
+            mc.drawEllipse(place.x, place.y, launchkey.gridSize, launchkey.gridSize, true);
+            break;
+         case InputType.Fader:
+            mc.setColor(place.color);
+            mc.drawRectangle(place.x + (1 * launchkey.gapSize), place.y, launchkey.gridSize - (4 * launchkey.gapSize), launchkey.gridSize, true);
+            mc.drawRectangle(place.x + (3 * launchkey.gapSize), place.y, launchkey.gridSize - (4 * launchkey.gapSize), launchkey.gridSize, true);
+            break;
+         case InputType.Creator:
+            mc.setColor("8888dd");
+            mc.drawRectangle(place.x + (2 * launchkey.gapSize), place.y, launchkey.gapSize, launchkey.gridSize, true);
+            mc.drawRectangle(place.x, place.y + (2 * launchkey.gapSize), launchkey.gridSize, launchkey.gapSize, true);
+            break;
       }
    }
 
@@ -214,6 +228,9 @@ onclick.local = 1;
 
 function ondblclick(x, y) {
 
+   if (!mouseHover.active)
+      return;
+
    var topPatcher = this.patcher;
    while (topPatcher.parentpatcher)
       topPatcher = topPatcher.parentpatcher;
@@ -222,7 +239,13 @@ function ondblclick(x, y) {
 
    var x = my_rect[0];
    var y = my_rect[1] + my_rect[3];
-   topPatcher.newdefault(x, y, "wa.launchkey.element", mouseHover.nameId);
+   if (InputType.Creator === mouseHover.type) {
+      var place = launchkey.placeMap[mouseHover.nameId];
+      topPatcher.newdefault(x, y, place.object);
+   }
+   else if (InputType.Blank !== mouseHover.type) {
+      topPatcher.newdefault(x, y, "wa.launchkey.element", mouseHover.nameId);
+   }
 }
 onclick.ondblclick = 1;
 

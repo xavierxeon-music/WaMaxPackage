@@ -33,7 +33,7 @@ function bang() {
          var placeInfo = deviceInfo[rowKey][colKey];
 
          var type = typeFromString(placeInfo["type"]);
-         if (InputType.Blank == type)
+         if (InputType.Blank == type || InputType.Creator == type)
             continue;
 
          var name = placeInfo["name"];
@@ -59,7 +59,7 @@ function note(note, value, channel) {
       return;
 
    var name = launchkey.noteMap[channel][note];
-   if (name === undefined)
+   if (name == undefined)
       return;
 
    outlet(0, [name, value]);
@@ -74,7 +74,7 @@ function control(controller, value, channel) {
       return;
 
    var name = launchkey.controlMap[channel][controller];
-   if (name === undefined)
+   if (name == undefined)
       return;
 
    outlet(0, [name, value]);

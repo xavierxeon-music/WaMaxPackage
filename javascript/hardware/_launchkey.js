@@ -3,7 +3,8 @@ var InputType = {
    ColorButton: 1,
    GrayButton: 2,
    Pot: 3,
-   Fader: 4
+   Fader: 4,
+   Creator: 5
 };
 
 function typeFromString(text) {
@@ -16,6 +17,8 @@ function typeFromString(text) {
       return InputType.Pot;
    else if ("Fader" == text)
       return InputType.Fader;
+   else if ("Creator" == text)
+      return InputType.Creator;
    else
       return InputType.Blank;
 }

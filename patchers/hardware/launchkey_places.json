@@ -327,7 +327,9 @@
    },
    "02": {
       "00": {
-         "type": "Blank"
+         "type": "Creator",
+         "name": "notes",
+         "object": "midiin %LAUNCHKEY%"
       },
       "01": {
          "type": "Pot",
@@ -421,13 +423,19 @@
          "type": "Blank"
       },
       "20": {
-         "type": "Blank"
+         "type": "Creator",
+         "name": "pitchbend",
+         "object": "wa.midi.control %LAUNCHKEY% @value pitchbend"
       },
       "21": {
-         "type": "Blank"
+         "type": "Creator",
+         "name": "modulation",
+         "object": "wa.midi.control %LAUNCHKEY% @value modulation"
       },
       "22": {
-         "type": "Blank"
+         "type": "Creator",
+         "name": "sustain",
+         "object": "wa.midi.control %LAUNCHKEY% @value sustain"
       }
    }
 }
