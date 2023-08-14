@@ -1,2 +1,0 @@
-max objectfile wa.launchkey.place wa.launchkey.place;
-max definesubstitution wa.launchkey.place bpatcher @name wa.launchkey.place.maxpat;

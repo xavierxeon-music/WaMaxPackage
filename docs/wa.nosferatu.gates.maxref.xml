@@ -11,11 +11,11 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry id="1" name="message">
+        <entry id="0" name="nosferatu_bus">
             <digest/>
             <description>the messages from the input are passed here</description>
         </entry>
-        <entry id="2" name="gate">
+        <entry id="1" name="gate">
             <digest/>
             <description>the gate</description>
         </entry>

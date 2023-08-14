@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1066.0, 203.0, 2459.0, 1235.0 ],
+		"rect" : [ -3172.0, 280.0, 2459.0, 1235.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -134,7 +134,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 972.5, 415.0, 55.0, 20.0 ],
+					"patching_rect" : [ 992.5, 415.0, 55.0, 20.0 ],
 					"text" : "released"
 				}
 
@@ -170,7 +170,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 985.0, 375.0, 30.0, 30.0 ]
+					"patching_rect" : [ 1005.0, 375.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -434,7 +434,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 873.5, 415.0, 40.0, 20.0 ],
+					"patching_rect" : [ 848.5, 415.0, 40.0, 20.0 ],
 					"text" : "value"
 				}
 
@@ -447,7 +447,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 880.0, 375.0, 30.0, 30.0 ]
+					"patching_rect" : [ 855.0, 375.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -458,8 +458,8 @@
 					"numinlets" : 5,
 					"numoutlets" : 5,
 					"outlettype" : [ "", "", "", "", "" ],
-					"patching_rect" : [ 364.0, 136.0, 216.0, 22.0 ],
-					"text" : "route setButton color downColor toggle"
+					"patching_rect" : [ 364.0, 136.0, 225.0, 22.0 ],
+					"text" : "route setElement color downColor toggle"
 				}
 
 			}

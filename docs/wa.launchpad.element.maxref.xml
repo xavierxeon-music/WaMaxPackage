@@ -11,15 +11,15 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry id="1" name="active">
+        <entry id="0" name="active">
             <digest/>
             <description>In <i>"click"</i>mode active is 1 for as long as the button is pressed.<br/>In <i>"toggle"</i> mode active is 1 between to consecutive button presses.<br/></description>
         </entry>
-        <entry id="2" name="pressed">
+        <entry id="1" name="pressed">
             <digest/>
             <description>bang when button is pressed.</description>
         </entry>
-        <entry id="3" name="released">
+        <entry id="2" name="released">
             <digest/>
             <description>bang when button is released.</description>
         </entry>

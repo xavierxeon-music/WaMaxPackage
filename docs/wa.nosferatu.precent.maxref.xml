@@ -9,13 +9,13 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry id="0" name="precent">
-            <digest/>
-            <description>the precentage for the current stage</description>
-        </entry>
-        <entry id="1" name="message">
+        <entry id="0" name="nosferatu_bus">
             <digest/>
             <description>the message bus</description>
+        </entry>
+        <entry id="1" name="precent">
+            <digest/>
+            <description>the precentage for the current stage</description>
         </entry>
     </misc>
     <objarglist>
