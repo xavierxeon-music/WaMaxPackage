@@ -154,13 +154,26 @@ function paint() {
 }
 paint.local = 1;
 
-// needed to avoid error message
 function onclick() {
 
    mouseHover.stick = !mouseHover.stick;
    mc.draw();
 }
 onclick.local = 1;
+
+function ondblclick(x, y) {
+
+   var topPatcher = this.patcher;
+   while (topPatcher.parentpatcher)
+      topPatcher = topPatcher.parentpatcher;
+
+   var my_rect = getPresentationRectanlge(this);
+
+   var x = my_rect[0];
+   var y = my_rect[1] + my_rect[3];
+   topPatcher.newdefault(x, y, "wa.launchpad.element", mouseHover.id);
+}
+onclick.ondblclick = 1;
 
 function onidle(x, y) {
 

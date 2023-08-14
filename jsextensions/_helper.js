@@ -41,14 +41,6 @@ function getPresentationRectanlge(object) {
          continue;
 
       var box_rect = child.getboxattr("presentation_rect");
-
-      /*
-
-      for (var child2 = child.firstobject; child2 !== null; child2 = child2.nextobject) {
-         print(child2, object, child2.maxclass);
-      }
-      */
-
       return box_rect;
    }
 
