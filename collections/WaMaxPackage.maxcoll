@@ -1,0 +1,9 @@
+{
+   "name": "WaMaxPackage",
+   "type": "filelist",
+   "contents": [
+      "wa.patch_main.maxsnip",
+      "wa.patch_sub.maxsnip",
+      "wa.transport_manual.maxsnip"
+   ]
+}

@@ -15,6 +15,7 @@ setoutletassist(2, "released");
 
 var toggleEnabled = false;
 var buttonDown = false;
+declareattribute("buttonDown", "getButtonDown", "setButtonDown");
 
 //////////////////////////////////////////
 
@@ -52,3 +53,20 @@ function toggle(enabled) {
    toggleEnabled = enabled;
    buttonDown = false
 }
+
+
+function getButtonDown() {
+
+   return buttonDown;
+}
+
+function setButtonDown(isDown) {
+
+   buttonDown = isDown;
+
+   if (!toggleEnabled)
+      return;
+
+   outlet(0, buttonDown);
+}
+

@@ -1,0 +1,14 @@
+char_clamp(char_value){
+	if(char_value < 0)
+		return 0;
+	else if(char_value > 255)
+		return 255;
+	else
+		return char_value;
+}
+
+scale(char_value, max){
+   fraction = char_clamp(char_value) / 255.0;
+   value = fraction * max;
+   return value;
+}

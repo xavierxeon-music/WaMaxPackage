@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 832.0, 463.0, 1462.0, 703.0 ],
+		"rect" : [ 34.0, 143.0, 3765.0, 1423.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 107.0, 180.0, 115.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "graphics_target.js",
+						"filename" : "graphics_target",
 						"parameter_enable" : 0
 					}
 ,
@@ -143,7 +143,7 @@
 				"box" : 				{
 					"comment" : "matrix",
 					"id" : "obj-2",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -251,16 +251,7 @@
 				}
 
 			}
- ],
-		"dependency_cache" : [ 			{
-				"name" : "graphics_target.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/graphics",
-				"patcherrelativepath" : "../../javascript/graphics",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
- ],
-		"autosave" : 0
+ ]
 	}
 
 }
