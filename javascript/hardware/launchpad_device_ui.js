@@ -2,10 +2,10 @@ autowatch = 1;
 
 // inlets and outlets
 inlets = 1;
-setinletassist(0, "text");
+setinletassist(0, "message");
 
 outlets = 1;
-setoutletassist(0, "text");
+setoutletassist(0, "midi");
 
 include("_mapped_canvas.js");
 
@@ -28,15 +28,10 @@ function MouseHover() {
    this.active = false;
    this.id = 0;
 
-   this.stick = false;
-
    return this;
 }
 
 MouseHover.prototype.update = function (x, y) {
-
-   if (this.stick)
-      return;
 
    var point = mc.screenToCanvas(x, y);
 
@@ -68,11 +63,14 @@ launchpad.buttonSize = 5;
 launchpad.gapSize = 1;
 launchpad.device = null;
 launchpad.buttonMap = null;
+launchpad.nameMap = {};
 
 var deviceSize = (9 * (launchpad.buttonSize + launchpad.gapSize)) + launchpad.gapSize;
 var mc = new MappedCanvas(this, deviceSize, deviceSize);
 
 var mouseHover = new MouseHover();
+var mousePressed = false;
+var createState = false;
 
 //////////////////////////////////////////
 
@@ -116,6 +114,11 @@ function list(id, color) {
    mc.draw();
 }
 
+function setState(newState) {
+
+   createState = newState;
+}
+
 
 function paint() {
 
@@ -135,20 +138,25 @@ function paint() {
 
    if (mouseHover.active) {
 
-      var size = (2 * launchpad.buttonSize) + launchpad.gapSize;
-      var x = (1 * (launchpad.buttonSize + launchpad.gapSize)) + launchpad.gapSize;
-      var y = (1 * (launchpad.buttonSize + launchpad.gapSize)) + launchpad.gapSize;
+      var x = (1 * launchpad.buttonSize) + (2 * launchpad.gapSize);
+      var y = (1 * launchpad.buttonSize) + (2 * launchpad.gapSize);
+      var sizeX = (7 * launchpad.buttonSize) + (6 * launchpad.gapSize);
+      var sizeY = (2 * launchpad.buttonSize) + launchpad.gapSize;
       if (mouseHover.yIndex >= 4)
-         y = (6 * (launchpad.buttonSize + launchpad.gapSize)) + launchpad.gapSize;
+         y = (6 * launchpad.buttonSize) + (7 * launchpad.gapSize);
 
-      if (mouseHover.stick)
-         mc.setColor("222266");
-      else
-         mc.setColor("111111");
-      mc.drawRectangle(x, y, size, size, true);
+      mc.setColor("111111");
+      mc.drawRectangle(x, y, sizeX, sizeY, true);
+
+      var id = mouseHover.id;
+      var text = launchpad.nameMap[id];
+      if (undefined == text)
+         text = id.toString();
+      else if (text.length > 9)
+         text = text.substring(0, 9);
 
       mc.setColor("ffffff");
-      mc.drawText(x + 2, y + 8, mouseHover.id.toString());
+      mc.drawText(x + 2, y + 8, text);
    }
 
 }
@@ -156,12 +164,16 @@ paint.local = 1;
 
 function onclick() {
 
-   mouseHover.stick = !mouseHover.stick;
-   mc.draw();
+   mousePressed = true;
+   if (!createState && mouseHover.active)
+      outlet(0, [mouseHover.id, 127]);
 }
 onclick.local = 1;
 
 function ondblclick(x, y) {
+
+   if (!createState)
+      return;
 
    var topPatcher = this.patcher;
    while (topPatcher.parentpatcher)
@@ -175,19 +187,22 @@ function ondblclick(x, y) {
 }
 onclick.ondblclick = 1;
 
-function onidle(x, y) {
+function onidle(x, y, button) {
 
-   if (mouseHover.update(x, y))
+   if (mousePressed) {
+      mousePressed = false;
+      if (!createState && mouseHover.active)
+         outlet(0, [mouseHover.id, 0]);
+   }
+   else if (mouseHover.update(x, y))
       mc.draw();
 }
 onclick.onidle = 1;
 
 function onidleout(x, y) {
 
-   if (!mouseHover.stick) {
-      mouseHover.active = false;
-      mc.draw();
-   }
+   mouseHover.active = false;
+   mc.draw();
 }
 onclick.onidleout = 1;
 

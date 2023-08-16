@@ -200,11 +200,11 @@ function paint() {
       var x = launchkey.gridSize + (2 * launchkey.gapSize);
       var y = launchkey.gapSize;
 
-      var width = (8 * launchkey.gridSize) + (7 * launchkey.gapSize);
+      var width = (10 * launchkey.gridSize) + (9 * launchkey.gapSize);
       var height = 2 * (launchkey.gridSize + launchkey.gapSize);
 
       if (mouseHover.xIndex < 12)
-         x = (14 * launchkey.gridSize) + (15 * launchkey.gapSize);
+         x = (12 * launchkey.gridSize) + (13 * launchkey.gapSize);
 
       if (mouseHover.stick)
          mc.setColor("222266");

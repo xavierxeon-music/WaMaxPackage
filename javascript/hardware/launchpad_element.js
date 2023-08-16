@@ -2,71 +2,40 @@ autowatch = 1;
 
 // inlets and outlets
 inlets = 1;
-setinletassist(0, "message, value");
+setinletassist(0, "message");
 
-outlets = 3;
-setoutletassist(0, "value");
-setoutletassist(1, "pressed");
-setoutletassist(2, "released");
+outlets = 0;
 
 //////////////////////////////////////////
 
 // set up
 
-var toggleEnabled = false;
-var buttonDown = false;
-declareattribute("buttonDown", "getButtonDown", "setButtonDown");
+var launchpad = new Global("Launchpad");
+
+var padMumber = 0;
+var padName = null;
 
 //////////////////////////////////////////
 
-function msg_int(value) {
+function setPadNumber(value) {
 
-   if (!toggleEnabled) {
-      outlet(0, (0 == value) ? 0 : 1);
-      if (0 != value)
-         outlet(1, "bang");
-      else
-         outlet(2, "bang");
-      return;
-   }
-
-   // released
-   if (0 === value) {
-      outlet(2, "bang");
-      return;
-   }
-   else
-      outlet(1, "bang");
-
-   if (buttonDown) {
-      buttonDown = false;
-      outlet(0, 0);
-   }
-   else {
-      buttonDown = true;
-      outlet(0, 1);
-   }
+   padNumber = value;
+   resend();
 }
 
-function toggle(enabled) {
+function setName(name) {
 
-   toggleEnabled = enabled;
-   buttonDown = false
-}
-
-
-function getButtonDown() {
-
-   return buttonDown;
-}
-
-function setButtonDown(isDown) {
-
-   buttonDown = isDown;
-
-   if (!toggleEnabled)
+   if ("bang" == name)
       return;
 
-   outlet(0, buttonDown);
+   padName = name;
+   resend();
 }
 
+function resend() {
+
+   if (0 == padNumber || null == padName)
+      return;
+
+   launchpad.nameMap[padNumber] = padName;
+}
