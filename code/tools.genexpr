@@ -6,9 +6,3 @@ char_clamp(char_value){
 	else
 		return char_value;
 }
-
-scale(char_value, max){
-   fraction = char_clamp(char_value) / 255.0;
-   value = fraction * max;
-   return value;
-}

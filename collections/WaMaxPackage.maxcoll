@@ -2,6 +2,7 @@
    "name": "WaMaxPackage",
    "type": "filelist",
    "contents": [
+      "wa.jit_project.maxsnip",
       "wa.patch_main.maxsnip",
       "wa.patch_sub.maxsnip",
       "wa.transport_manual.maxsnip"
