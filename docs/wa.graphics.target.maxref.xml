@@ -9,7 +9,7 @@
     </metadatalist>
     <parser inlet_count="0"/>
     <misc name="Outputs">
-        <entry id="0" name="matrix">
+        <entry id="1" name="matrix">
             <digest/>
             <description>the jit matrix</description>
         </entry>

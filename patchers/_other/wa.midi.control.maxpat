@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ -2991.0, 303.0, 1928.0, 1179.0 ],
+		"rect" : [ -3406.0, 275.0, 3372.0, 1291.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 357.0, 210.0, 29.5, 22.0 ],
-					"text" : "24"
+					"text" : "64"
 				}
 
 			}
@@ -436,7 +436,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "releades",
+					"comment" : "released",
 					"id" : "obj-5",
 					"index" : 3,
 					"maxclass" : "outlet",

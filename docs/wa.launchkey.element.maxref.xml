@@ -9,15 +9,15 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry id="0" name="value">
+        <entry id="1" name="value">
             <digest/>
             <description>the button value<br/></description>
         </entry>
-        <entry id="1" name="pressed">
+        <entry id="2" name="pressed">
             <digest/>
             <description>bang when button is pressed.</description>
         </entry>
-        <entry id="2" name="released">
+        <entry id="3" name="released">
             <digest/>
             <description>bang when button is released.</description>
         </entry>

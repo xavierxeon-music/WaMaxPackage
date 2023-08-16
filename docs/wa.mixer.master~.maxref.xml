@@ -20,6 +20,11 @@
     </misc>
     <objarglist/>
     <attributelist/>
-    <methodlist/>
+    <methodlist>
+        <method name="int" standard="1">
+            <digest/>
+            <description>mute</description>
+        </method>
+    </methodlist>
     <seealsolist/>
 </c74object>
