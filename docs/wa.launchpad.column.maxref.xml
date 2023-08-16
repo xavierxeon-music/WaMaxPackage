@@ -32,6 +32,6 @@
     <methodlist/>
     <seealsolist>
         <seealso name="wa.launchpad.button"/>
-        <seealso name="wa.launchpad.device"/>
+        <seealso name="wa.device.launchpad"/>
     </seealsolist>
 </c74object>

@@ -1,0 +1,2 @@
+max objectfile wa.device.launchkey wa.device.launchkey;
+max definesubstitution wa.device.launchkey bpatcher @name wa.device.launchkey.maxpat;

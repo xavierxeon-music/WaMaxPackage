@@ -2,7 +2,7 @@
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 <c74object as_bpatcher="0" name="wa.launchkey.element">
     <digest>launchkey element</digest>
-    <description>User interface element of a launchkey device <o>wa.launchkey.device</o></description>
+    <description>User interface element of a launchkey device <o>wa.device.launchkey</o></description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
@@ -25,7 +25,7 @@
     <objarglist>
         <objarg name="1" optional="1" type="symbol">
             <digest>element name</digest>
-            <description>the name of the user interfae element.<br/><br/>see <o>wa.launchkey.device</o></description>
+            <description>the name of the user interfae element.<br/><br/>see <o>wa.device.launchkey</o></description>
         </objarg>
     </objarglist>
     <attributelist>

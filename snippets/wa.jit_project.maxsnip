@@ -694,7 +694,7 @@
 					"border" : 0,
 					"patching_rect" : [ 10.0, 10.0, 135.0, 135.0 ],
 					"numinlets" : 1,
-					"name" : "wa.launchpad.device.maxpat",
+					"name" : "wa.device.launchpad.maxpat",
 					"numoutlets" : 0,
 					"id" : "obj-10"
 				}
