@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="0" name="wa.launchpad.button">
+<c74object as_bpatcher="0" name="wa.launchpad.element">
     <digest>lauchpad button</digest>
     <description>Interact with a single button of a Novation Launchpad Mini.<br/>Can be used in 2 modes: click and toggle.<br/><br/><i>"click"</i> is active for as long as the button is pressed.<br/><i>"toggle"</i> is active between to consecutive button presses.<br/><br/><b>Needs</b> a <o>wa.device.launchpad</o></description>
     <metadatalist>
@@ -17,11 +17,11 @@
         </entry>
         <entry id="2" name="pressed">
             <digest/>
-            <description>bang when button is pressed.</description>
+            <description>bang if button is pressed.</description>
         </entry>
         <entry id="3" name="released">
             <digest/>
-            <description>bang when button is released.</description>
+            <description>bang if button is released.</description>
         </entry>
     </misc>
     <objarglist>

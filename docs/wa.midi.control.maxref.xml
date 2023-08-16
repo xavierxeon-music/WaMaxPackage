@@ -9,17 +9,17 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry id="0" name="value">
+        <entry id="1" name="value">
             <digest/>
             <description>the captured value</description>
         </entry>
-        <entry id="1" name="pressed">
+        <entry id="2" name="pressed">
             <digest/>
-            <description>value equal to zero</description>
+            <description>bang if value equal to zero</description>
         </entry>
-        <entry id="2" name="released">
+        <entry id="3" name="released">
             <digest/>
-            <description>value not equal to zero</description>
+            <description>bang if  value not equal to zero</description>
         </entry>
     </misc>
     <objarglist>

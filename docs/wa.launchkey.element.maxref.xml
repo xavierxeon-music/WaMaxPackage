@@ -15,11 +15,11 @@
         </entry>
         <entry id="2" name="pressed">
             <digest/>
-            <description>bang when button is pressed.</description>
+            <description>bang if  button is pressed.</description>
         </entry>
         <entry id="3" name="released">
             <digest/>
-            <description>bang when button is released.</description>
+            <description>bang if button is released.</description>
         </entry>
     </misc>
     <objarglist>
