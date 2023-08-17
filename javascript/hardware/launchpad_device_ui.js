@@ -119,7 +119,7 @@ function setState(newState) {
    createState = newState;
 }
 
-
+paint.local = 1;
 function paint() {
 
    mc.setColor("111111");
@@ -160,16 +160,16 @@ function paint() {
    }
 
 }
-paint.local = 1;
 
+onclick.local = 1;
 function onclick() {
 
    mousePressed = true;
    if (!createState && mouseHover.active)
       outlet(0, [mouseHover.id, 127]);
 }
-onclick.local = 1;
 
+ondblclick.local = 1;
 function ondblclick(x, y) {
 
    if (!createState)
@@ -185,8 +185,8 @@ function ondblclick(x, y) {
    var y = my_rect[1] + my_rect[3];
    topPatcher.newdefault(x, y, "wa.launchpad.element", mouseHover.id);
 }
-onclick.ondblclick = 1;
 
+onidle.local = 1;
 function onidle(x, y, button) {
 
    if (mousePressed) {
@@ -197,18 +197,17 @@ function onidle(x, y, button) {
    else if (mouseHover.update(x, y))
       mc.draw();
 }
-onclick.onidle = 1;
 
+onidleout.local = 1;
 function onidleout(x, y) {
 
    mouseHover.active = false;
    mc.draw();
 }
-onclick.onidleout = 1;
 
 
+onresize.local = 1;
 function onresize(w, h) {
 
    mc.draw();
 }
-onresize.local = 1;

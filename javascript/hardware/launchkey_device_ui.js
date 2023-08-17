@@ -5,7 +5,7 @@ inlets = 1;
 setinletassist(0, "message");
 
 outlets = 1;
-setoutletassist(0, "color midi");
+setoutletassist(0, "midi");
 
 include("_mapped_canvas.js");
 include("_launchkey.js");
@@ -37,7 +37,6 @@ function MouseHover() {
    this.yIndex = 0;
 
    this.active = false;
-   this.stick = false;
 
    this.nameId = "none";
    this.type = InputType.Blank;
@@ -105,6 +104,9 @@ var deviceHeight = (3 * (launchkey.gridSize + launchkey.gapSize)) + launchkey.ga
 var mc = new MappedCanvas(this, deviceWidth, deviceHeight);
 
 var mouseHover = new MouseHover();
+var mousePressed = false;
+var createState = false;
+var freezeControl = false;
 
 //////////////////////////////////////////
 
@@ -118,6 +120,10 @@ function bang() {
    launchkey.device = this;
    launchkey.placeMap = {};
    launchkey.indexMap = {};
+
+   mousePressed = false;
+   createState = false;
+   freezeControl = false;
 
    var deviceInfo = readJsonFile(jsarguments[1]);
 
@@ -141,6 +147,7 @@ function bang() {
       }
    }
 
+   setValueVisibility(false);
    mc.draw();
 
 }
@@ -157,7 +164,17 @@ function color(nameId, color) {
    mc.draw();
 }
 
+function setState(newState) {
 
+   createState = newState;
+}
+
+function set(value) {
+
+   outlet(0, [mouseHover.nameId, value]);
+}
+
+paint.local = 1;
 function paint() {
 
    mc.setColor("111111");
@@ -206,7 +223,7 @@ function paint() {
       if (mouseHover.xIndex < 12)
          x = (12 * launchkey.gridSize) + (13 * launchkey.gapSize);
 
-      if (mouseHover.stick)
+      if (freezeControl)
          mc.setColor("222266");
       else
          mc.setColor("111111");
@@ -217,16 +234,50 @@ function paint() {
    }
 
 }
-paint.local = 1;
 
+setValueVisibility.local = 1;
+function setValueVisibility(show) {
+
+   var hidden = (undefined == show) ? !freezeControl : !show;
+   var argument = hidden ? "1" : 0;
+
+   var slider = this.patcher.getnamed("value_slider");
+   slider.message("sendbox", "hidden", argument);
+   slider.message("set", 64);
+
+   var display = this.patcher.getnamed("value_display");
+   display.message("sendbox", "hidden", argument);
+}
+
+onclick.local = 1;
 function onclick() {
 
-   mouseHover.stick = !mouseHover.stick;
-   mc.draw();
-}
-onclick.local = 1;
+   if (freezeControl) {
+      freezeControl = false;
+      setValueVisibility();
+      mc.draw();
+      return;
+   }
 
+   if (!createState && mouseHover.active) {
+
+      if (InputType.ColorButton == mouseHover.type || InputType.GrayButton == mouseHover.type) {
+         mousePressed = true;
+         outlet(0, [mouseHover.nameId, 127]);
+      }
+      else if (InputType.Pot == mouseHover.type || InputType.Fader == mouseHover.type) {
+         freezeControl = true;
+         setValueVisibility();
+         mc.draw();
+      }
+   }
+}
+
+ondblclick.local = 1;
 function ondblclick(x, y) {
+
+   if (!createState)
+      return;
 
    if (!mouseHover.active)
       return;
@@ -247,26 +298,34 @@ function ondblclick(x, y) {
       topPatcher.newdefault(x, y, "wa.launchkey.element", mouseHover.nameId);
    }
 }
-onclick.ondblclick = 1;
 
+onidle.local = 1;
 function onidle(x, y) {
 
-   if (mouseHover.update(x, y))
+   if (mousePressed) {
+      mousePressed = false;
+      if (!createState && mouseHover.active) {
+         if (InputType.ColorButton == mouseHover.type || InputType.GrayButton == mouseHover.type) {
+            outlet(0, [mouseHover.nameId, 0]);
+         }
+      }
+   }
+   else if (!freezeControl && mouseHover.update(x, y))
       mc.draw();
 }
-onclick.onidle = 1;
 
+onidleout.local = 1;
 function onidleout(x, y) {
 
-   if (!mouseHover.stick) {
-      mouseHover.active = false;
-      mc.draw();
-   }
-}
-onclick.onidleout = 1;
+   if (freezeControl)
+      return;
 
+   mouseHover.active = false;
+   mc.draw();
+}
+
+onresize.local = 1;
 function onresize(w, h) {
 
    mc.draw();
 }
-onresize.local = 1;

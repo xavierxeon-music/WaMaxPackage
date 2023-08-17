@@ -22,14 +22,12 @@ var canToggle = false;
 function setName(nameId) {
 
    canToggle = compileCanToggle(nameId);
-   print("canToggle", canToggle, nameId)
    update();
 }
 
 function setToggle(enabled) {
 
    isToggle = enabled;
-   print("isToggle", isToggle);
    update();
 }
 
