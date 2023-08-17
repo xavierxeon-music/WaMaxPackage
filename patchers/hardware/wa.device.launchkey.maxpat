@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 115.0, 3772.0, 1451.0 ],
+		"rect" : [ -3406.0, 275.0, 2463.0, 1291.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -117,7 +117,6 @@
 			}
 , 			{
 				"box" : 				{
-					"hidden" : 1,
 					"id" : "obj-42",
 					"maxclass" : "comment",
 					"numinlets" : 1,
@@ -133,7 +132,6 @@
 			}
 , 			{
 				"box" : 				{
-					"hidden" : 1,
 					"id" : "obj-40",
 					"maxclass" : "live.slider",
 					"numinlets" : 1,
@@ -143,7 +141,7 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 420.0, 50.0, 50.0, 18.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 103.0, 12.0, 180.0, 18.0 ],
+					"presentation_rect" : [ 103.0, 10.0, 180.0, 18.0 ],
 					"saved_attribute_attributes" : 					{
 						"slidercolor" : 						{
 							"expression" : ""

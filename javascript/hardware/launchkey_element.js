@@ -16,11 +16,13 @@ var launchkey = new Global("Launchkey");
 
 var isToggle = false;
 var canToggle = false;
+var elementId = null;
 
 //////////////////////////////////////////
 
 function setName(nameId) {
 
+   elementId = nameId;
    canToggle = compileCanToggle(nameId);
    update();
 }
@@ -29,6 +31,16 @@ function setToggle(enabled) {
 
    isToggle = enabled;
    update();
+}
+
+function valueFeedback(value) {
+
+   if (null == elementId)
+      return;
+   if (undefined == launchkey.valueFeedback)
+      return;
+
+   launchkey.valueFeedback(elementId, value);
 }
 
 

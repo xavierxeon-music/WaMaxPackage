@@ -98,6 +98,11 @@ launchkey.device = null;
 launchkey.placeMap = null;
 launchkey.indexMap = null;
 
+launchkey.valueFeedback = function (nameId, value) {
+
+   this.device.valueFeedback(nameId, value);
+};
+
 var deviceWidth = (23 * (launchkey.gridSize + launchkey.gapSize)) + launchkey.gapSize;
 var deviceHeight = (3 * (launchkey.gridSize + launchkey.gapSize)) + launchkey.gapSize;
 
@@ -107,6 +112,7 @@ var mouseHover = new MouseHover();
 var mousePressed = false;
 var createState = false;
 var freezeControl = false;
+valueMap = {};
 
 //////////////////////////////////////////
 
@@ -124,6 +130,8 @@ function bang() {
    mousePressed = false;
    createState = false;
    freezeControl = false;
+
+   valueMap = {};
 
    var deviceInfo = readJsonFile(jsarguments[1]);
 
@@ -236,17 +244,38 @@ function paint() {
 }
 
 setValueVisibility.local = 1;
-function setValueVisibility(show) {
+function setValueVisibility(show, elementId) {
 
-   var hidden = (undefined == show) ? !freezeControl : !show;
-   var argument = hidden ? "1" : 0;
+   var hidden = show ? "0" : "1";
 
    var slider = this.patcher.getnamed("value_slider");
-   slider.message("sendbox", "hidden", argument);
-   slider.message("set", 64);
+   slider.message("sendbox", "hidden", hidden);
 
    var display = this.patcher.getnamed("value_display");
-   display.message("sendbox", "hidden", argument);
+   display.message("sendbox", "hidden", hidden);
+
+   var value = valueMap[elementId];
+   if (undefined == value)
+      value = 0;
+
+   showValue(value);
+}
+
+valueFeedback.local = 1;
+function valueFeedback(elementId, value) {
+
+   valueMap[elementId] = value;
+   showValue(value);
+}
+
+updateValue.local = 1;
+function showValue(value) {
+
+   var slider = this.patcher.getnamed("value_slider");
+   slider.message("set", value);
+
+   var display = this.patcher.getnamed("value_display");
+   display.message("set", value);
 }
 
 onclick.local = 1;
@@ -254,7 +283,7 @@ function onclick() {
 
    if (freezeControl) {
       freezeControl = false;
-      setValueVisibility();
+      setValueVisibility(freezeControl);
       mc.draw();
       return;
    }
@@ -267,7 +296,7 @@ function onclick() {
       }
       else if (InputType.Pot == mouseHover.type || InputType.Fader == mouseHover.type) {
          freezeControl = true;
-         setValueVisibility();
+         setValueVisibility(freezeControl, mouseHover.nameId);
          mc.draw();
       }
    }
@@ -294,8 +323,11 @@ function ondblclick(x, y) {
       var place = launchkey.placeMap[mouseHover.nameId];
       topPatcher.newdefault(x, y, place.object);
    }
-   else if (InputType.Blank !== mouseHover.type) {
+   else if (InputType.ColorButton === mouseHover.type || InputType.GrayButton === mouseHover.type) {
       topPatcher.newdefault(x, y, "wa.launchkey.element", mouseHover.nameId);
+   }
+   else if (InputType.Pot === mouseHover.type || InputType.Fader === mouseHover.type) {
+      topPatcher.newdefault(x, y, "wa.launchkey.element", mouseHover.nameId, "@downColor", "white");
    }
 }
 
