@@ -26,6 +26,7 @@ function lookup(name) {
    //post("LOOKUP", name, value, "\n");
 }
 
+buildMap.local = 1;
 function buildMap() {
 
    encodermap["encoder1"] = 14;
@@ -40,5 +41,4 @@ function buildMap() {
    encodermap["encoder10"] = 78;
    encodermap["encoder11"] = 79;
 }
-buildMap.local = 1;
 

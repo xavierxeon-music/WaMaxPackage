@@ -34,9 +34,9 @@ function msg_int(midiNote) {
    out(midiNote);
 }
 
+out.local = 1;
 function out(midiNote) {
 
    outlet(0, midiNote);
 }
-out.local = 1;
 

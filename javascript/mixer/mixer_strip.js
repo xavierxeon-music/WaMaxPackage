@@ -16,6 +16,7 @@ var isMute = false;
 var isSolo = false;
 var patcherName = null;
 
+mixerHandle.local = 1;
 function mixerHandle(idList, unmute) {
 
    //print("mixerHandle", idList.length, unmute);
@@ -41,14 +42,13 @@ function mixerHandle(idList, unmute) {
 
    updateVolumeOutlet();
 }
-mixerHandle.local = 1;
 
+setup.local = 1;
 function setup() {
 
    patcherName = patcher.name + "_" + jsarguments[1];
    mixer.addHandle(mixerHandle);
 }
-setup.local = 1;
 
 function updateVolumeOutlet() {
 

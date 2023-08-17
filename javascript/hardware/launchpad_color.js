@@ -54,6 +54,7 @@ function color(id, inColor) {
    outlet(0, [id, color_index]);
 }
 
+findNearestMatchInColorList.local = 1;
 function findNearestMatchInColorList(color) {
 
    if (colorList.length === 0) // need colorList to work with
@@ -83,4 +84,3 @@ function findNearestMatchInColorList(color) {
    indexBuffer[color.hex] = color_index;
    return color_index;
 }
-findNearestMatchInColorList.local = 1;

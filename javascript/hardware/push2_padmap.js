@@ -44,6 +44,7 @@ function fromPush(id, velocity) {
 }
 
 
+buildMap.local = 1;
 function buildMap() {
 
    var value = 36;
@@ -69,5 +70,4 @@ function buildMap() {
    padmap["encoder10"] = 7;
    padmap["encoder11"] = 8;
 }
-buildMap.local = 1;
 

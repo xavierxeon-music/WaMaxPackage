@@ -50,9 +50,9 @@ function fromPush(id) {
    outlet(0, "???" + id);
 }
 
+buildMap.local = 1;
 function buildMap() {
 
    buttonmap = readJsonFile(jsarguments[1]);
 }
-buildMap.local = 1;
 

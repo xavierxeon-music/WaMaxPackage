@@ -57,6 +57,7 @@ function setDeviceName(name) {
    // post("set target device name", deviceName, "\n");
 }
 
+drawCircle.local = 1;
 function getColor(text) {
    var red = 0;
    var green = 0;
@@ -71,8 +72,8 @@ function getColor(text) {
 
    return [red, green, blue];
 }
-drawCircle.local = 1;
 
+checkKeys.local = 1;
 function checkKeys(object, keyList) {
 
    if (object == null)
@@ -86,9 +87,9 @@ function checkKeys(object, keyList) {
 
    return true;
 }
-checkKeys.local = 1;
 
 
+drawCircle.local = 1;
 function drawCircle(object) {
 
    if (!checkKeys(object, ["x", "y", "radius", "color", "fill"]))
@@ -107,8 +108,8 @@ function drawCircle(object) {
    else
       outlet(0, ["frameoval", x - radius, y - radius, x + radius, y + radius, color[0], color[1], color[2]]);
 }
-drawCircle.local = 1;
 
+drawBox.local = 1;
 function drawBox(object) {
 
    if (!checkKeys(object, ["x", "y", "width", "height", "color", "fill"]))
@@ -130,8 +131,8 @@ function drawBox(object) {
    else
       outlet(0, ["framerect", x, y, x + width, y + height]);
 }
-drawBox.local = 1;
 
+drawLine.local = 1;
 function drawLine(object) {
 
    if (!checkKeys(object, ["xStart", "yStart", "xEnd", "yEnd", "color"]))
@@ -150,8 +151,8 @@ function drawLine(object) {
    outlet(0, ["moveto", xStart, yStart]);
    outlet(0, ["lineto", xEnd, yEnd]);
 }
-drawCircle.drawLine = 1;
 
+drawText.local = 1;
 function drawText(object) {
 
    if (!checkKeys(object, ["x", "y", "fontSize", "text", "color"]))
@@ -171,4 +172,3 @@ function drawText(object) {
    outlet(0, ["font", "Arial", fontSize]);
    outlet(0, ["write", text]);
 }
-drawCircle.drawText = 1;

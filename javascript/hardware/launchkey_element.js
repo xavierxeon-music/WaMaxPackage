@@ -32,6 +32,7 @@ function setToggle(enabled) {
 }
 
 
+compileCanToggle.local = 1;
 function compileCanToggle(nameId) {
 
    if (launchkey.placeMap === null)
@@ -46,8 +47,8 @@ function compileCanToggle(nameId) {
 
    return true;
 }
-compileCanToggle.local = 1;
 
+update.local = 1;
 function update() {
 
    if (canToggle && isToggle)
@@ -55,4 +56,3 @@ function update() {
    else
       outlet(0, 1);
 }
-update.local = 1;

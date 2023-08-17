@@ -54,6 +54,7 @@ function list(isColor, id, inColor) {
    }
 }
 
+findNearestMatchInColorList.local = 1;
 function findNearestMatchInColorList(color) {
 
    if (colorList.length === 0) // need colorList to work with
@@ -82,8 +83,8 @@ function findNearestMatchInColorList(color) {
    colorIndexBuffer[color.hex] = color_index;
    return color_index;
 }
-findNearestMatchInColorList.local = 1;
 
+findNearestMatchInWhiteList.local = 1;
 function findNearestMatchInWhiteList(color) {
 
    if (whiteList.length === 0) // need whiteList to work with
@@ -108,5 +109,4 @@ function findNearestMatchInWhiteList(color) {
    whiteIndexBuffer[color.hex] = white__index;
    return white__index;
 }
-findNearestMatchInWhiteList.local = 1;
 

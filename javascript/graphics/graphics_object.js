@@ -53,6 +53,7 @@ function notifydeleted() {
    }
 }
 
+createMyDict.local = 1;
 function createMyDict() {
 
    if (graphics.target === undefined) {
@@ -70,4 +71,3 @@ function createMyDict() {
    //post("new target", id, jsarguments[1], deviceName, "\n")
 
 }
-createMyDict.local = 1;
