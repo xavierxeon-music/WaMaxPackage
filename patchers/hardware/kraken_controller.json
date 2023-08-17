@@ -19,21 +19,23 @@
          53,
          54
       ],
-      "mouth": 55,
       "eyes": [
          56,
          57
       ],
-      "tongue": 58
+      "mouth": [
+         55,
+         58
+      ]
    },
    "hand": {
-      "xy": [
+      "xy_pos": [
          102,
          103
       ],
       "distance": 104,
       "open": 105,
-      "xy_rot": [
+      "xz_rot": [
          106,
          107
       ]
