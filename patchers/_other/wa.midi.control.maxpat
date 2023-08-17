@@ -344,7 +344,7 @@
 				"box" : 				{
 					"comment" : "message",
 					"id" : "obj-14",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -360,8 +360,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 237.0, 75.0, 68.0, 22.0 ],
-					"text" : "route value"
+					"patching_rect" : [ 237.0, 75.0, 80.0, 22.0 ],
+					"text" : "route number"
 				}
 
 			}
@@ -438,7 +438,7 @@
 				"box" : 				{
 					"comment" : "released",
 					"id" : "obj-5",
-					"index" : 3,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -450,7 +450,7 @@
 				"box" : 				{
 					"comment" : "pressed",
 					"id" : "obj-4",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -465,8 +465,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 15.0, 15.0, 241.0, 22.0 ],
-					"text" : "patcherargs \"Internal LaunchKey\" @value 1"
+					"patching_rect" : [ 15.0, 15.0, 253.0, 22.0 ],
+					"text" : "patcherargs \"Internal LaunchKey\" @number 1"
 				}
 
 			}
@@ -474,7 +474,7 @@
 				"box" : 				{
 					"comment" : "value",
 					"id" : "obj-2",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -754,6 +754,7 @@
 
 			}
  ],
+		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.receive",
 				"default" : 				{
