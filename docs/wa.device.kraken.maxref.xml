@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+<c74object as_bpatcher="0" name="wa.device.kraken">
+    <digest>Hello World</digest>
+    <metadatalist>
+        <metadata name="author">Ralf Waspe</metadata>
+        <metadata name="tag">WaMaxPackage</metadata>
+    </metadatalist>
+    <parser inlet_count="1"/>
+    <misc name="Outputs"/>
+    <objarglist>
+        <objarg name="1" optional="1" type="symbol">
+            <digest/>
+        </objarg>
+    </objarglist>
+    <attributelist>
+        <attribute get="1" name="dictname" set="1" size="1" type="symbol">
+            <digest/>
+        </attribute>
+    </attributelist>
+    <methodlist>
+        <method name="bang" standard="1">
+            <digest/>
+        </method>
+    </methodlist>
+    <seealsolist/>
+</c74object>
