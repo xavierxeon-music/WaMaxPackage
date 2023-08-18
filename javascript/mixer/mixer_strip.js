@@ -12,6 +12,11 @@ setoutletassist(2, "unsolo");
 
 include("_mixer.js");
 
+//////////////////////////////////////////
+
+// set up
+
+
 var isMute = false;
 var isSolo = false;
 var patcherName = null;
@@ -50,6 +55,9 @@ function setup() {
    mixer.addHandle(mixerHandle);
 }
 
+//////////////////////////////////////////
+
+updateVolumeOutlet.local = 0;
 function updateVolumeOutlet() {
 
    if (isMute) {
@@ -66,7 +74,6 @@ function updateVolumeOutlet() {
 
    outlet(0, 1);
 }
-updateVolumeOutlet.local = 0;
 
 function loadbang() {
    setup();
