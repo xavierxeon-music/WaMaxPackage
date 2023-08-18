@@ -43,6 +43,6 @@ function notifydeleted() {
 setChannelCount.local = 1;
 function setChannelCount(total) {
 
-   setMultiChannels(this, total);
+   setMultiChannels(this, total, ["mc.mixdown~"]);
 
 }
