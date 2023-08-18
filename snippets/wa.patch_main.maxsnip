@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ -3406.0, 247.0, 3365.0, 1319.0 ],
+		"rect" : [ 346.0, 224.0, 3365.0, 1291.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -56,7 +56,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ -3406.0, 275.0, 3365.0, 1291.0 ],
+						"rect" : [ 346.0, 224.0, 3365.0, 1291.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -84,6 +84,7 @@
 						"style" : "",
 						"subpatcher_template" : "",
 						"assistshowspatchername" : 0,
+						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-5",
@@ -133,6 +134,7 @@
 										"parameter_enable" : 0
 									}
 ,
+									"style" : "wa.patcher",
 									"text" : "js patch_title"
 								}
 
@@ -150,6 +152,7 @@
 										"parameter_enable" : 0
 									}
 ,
+									"style" : "wa.patcher",
 									"text" : "js patch_title"
 								}
 
@@ -275,6 +278,16 @@
 								}
 
 							}
+ ],
+						"styles" : [ 							{
+								"name" : "wa.patcher",
+								"default" : 								{
+									"accentcolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ]
+								}
+,
+								"parentstyle" : "",
+								"multi" : 0
+							}
  ]
 					}
 ,
@@ -304,7 +317,7 @@
 			}
 , 			{
 				"box" : 				{
-					"autorestore" : "strorage_trigger.json",
+					"autorestore" : "wa.patch_main.json",
 					"id" : "obj-32",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -334,28 +347,28 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "audio_device_index.js",
-				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
 				"patcherrelativepath" : "../javascript/setup",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "get_system_device.js",
-				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
 				"patcherrelativepath" : "../javascript/setup",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "patch_title.js",
-				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/_common",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/_common",
 				"patcherrelativepath" : "../javascript/_common",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "wa.setup.audio_device.maxpat",
-				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/setup",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/setup",
 				"patcherrelativepath" : "../patchers/setup",
 				"type" : "JSON",
 				"implicit" : 1
