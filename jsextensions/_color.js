@@ -8,8 +8,8 @@ function Color(text) {
 
    this.hex = "000000";
 
-   if (null === text)
-      return;
+   if (!text)
+      return undefined;
 
    const colorNames = {
       off: "000000",
@@ -27,12 +27,12 @@ function Color(text) {
       text = colorNames[text];
 
    if (text.length != 6)
-      return;
+      return undefined;
 
    // check for hex content
    if (!isHex(text)) {
       print("not a hex value", text);
-      return;
+      return undefined;
    }
 
    this.hex = text;

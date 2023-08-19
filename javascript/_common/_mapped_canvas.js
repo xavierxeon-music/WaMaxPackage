@@ -29,7 +29,11 @@ MappedCanvas.prototype.draw = function () {
 
 MappedCanvas.prototype.setColor = function (color) {
 
-   this.ctx.fillStyle = "#" + Color(color).hex;
+   var fillColor = Color(color);
+   if (undefined == fillColor)
+      return;
+
+   this.ctx.fillStyle = "#" + fillColor.hex;
 }
 
 MappedCanvas.prototype.setFontSize = function (fontSize) {

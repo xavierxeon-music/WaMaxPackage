@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 524.0, 2608.0, 947.0 ],
+		"rect" : [ 34.0, 218.0, 1732.0, 917.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -176,7 +176,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 589.0, 491.0, 70.0, 22.0 ],
-					"text" : "loadmess 9"
+					"text" : "loadmess 1"
 				}
 
 			}
@@ -428,7 +428,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 270.0, 225.0, 108.0, 22.0 ],
+					"patching_rect" : [ 263.0, 266.0, 108.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_recolor"
 				}
