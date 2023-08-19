@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "dsp.gen",
-		"rect" : [ 34.0, 412.0, 3517.0, 1059.0 ],
+		"rect" : [ 34.0, 115.0, 3772.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,42 @@
 		"subpatcher_template" : "OpenGrid",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-18",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 973.5, 90.0, 81.0, 22.0 ],
+					"text" : "param yaw 0."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-19",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 973.5, 60.0, 85.0, 22.0 ],
+					"text" : "param pitch 0."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-20",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 973.5, 30.0, 75.0, 22.0 ],
+					"text" : "param roll 0."
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-17",
 					"maxclass" : "newobj",
@@ -90,7 +126,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 969.0, 90.0, 68.0, 22.0 ],
+					"patching_rect" : [ 870.0, 330.0, 68.0, 22.0 ],
 					"text" : "param lz 0."
 				}
 
@@ -102,7 +138,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 969.0, 60.0, 68.0, 22.0 ],
+					"patching_rect" : [ 870.0, 300.0, 68.0, 22.0 ],
 					"text" : "param ly 1."
 				}
 
@@ -114,14 +150,14 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 969.0, 30.0, 68.0, 22.0 ],
+					"patching_rect" : [ 870.0, 270.0, 68.0, 22.0 ],
 					"text" : "param lx 0."
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"code" : "require(\"tools\");\r\n\r\nperpendicularToLookat(look_x, look_y, look_z){\r\n\tperp_x, perp_y, perp_z = veccross(look_x, look_y, look_z, 0, 0, 1);\r\n\tcheckLength = veclength(perp_x, perp_y, perp_z);\r\n\tif(checkLength > 0.1){\r\n\t\treturn vecnorn(perp_x, perp_y, perp_z);\r\n\t}\r\n\telse {\r\n\t\tperp_x2, perp_y2, perp_z2 = veccross(look_x, look_y, look_z, 0, 1, 0);  \r\n\t\treturn vecnorn(perp_x2, perp_y2, perp_z2);\r\n\t}\t\t\r\n}\r\n\r\naudio = in1;\r\n\r\n// direction to source\r\ndir_x = in2 - x;\r\ndir_y = in3 - y;\r\ndir_z = in4 - z;\r\ndir_x, dir_y, dirz = vecnorn(dir_x, dir_y, dir_z);\r\ndistance = veclength(dir_x, dir_y, dir_z);\r\n\r\n// get attenuation\r\nfactor =   distance / perminability;\r\nfactor2 = factor * factor;\r\ndamp = exp(- factor2) / perminability;\r\n\r\n// angle to lookat\r\nlook_x, look_y, look_z = vecnorn(lx, ly, lz);\r\ndotSide = vecdot(dir_x, dir_y, dir_z, look_x, look_y, look_z);\r\n\r\n\r\n// get left / right\r\nsideAngle = acos(dotSide);\r\nif(sideAngle > HALFPI)\r\n\tsideAngle = PI - sideAngle;\r\n\r\ncross_x, cross_y, cross_z = veccross(look_x, look_y, look_z, dir_x, dir_y, dir_z);\r\nif(cross_z < 0.0)\r\n\tsideAngle *= -1.0;\r\n\r\nleft = scale(sideAngle, -PI, PI, 1., 0.);\r\nright = 1.0 - left;\r\n\r\n\r\n// get front / back\r\nperp_x, perp_y, perp_z = perpendicularToLookat(look_x, look_y, look_z);\r\ndotPerp = vecdot(dir_x, dir_y, dir_z, perp_x, perp_y, perp_z);\t\r\n\r\nperpAngle = acos(dotPerp);\r\n\r\nfront = 1.0;\r\nback = 1.0 - front;\r\n\r\n// out\r\nleftFront = audio * damp * left * front;\r\nrightFront = audio * damp * right * front;\r\nleftBack = audio * damp * left * back;\r\nrightBack = audio * damp * right * back;\r\n\r\nout1 = leftFront;\r\nout2 = rightFront;\r\n\r\nout3 = dotPerp;\r\nout4 = perpAngle;\r\nout5 = front;",
+					"code" : "require(\"linalg\");\r\n\r\nperpendicularToLookat(look_x, look_y, look_z){\r\n\tperp_x, perp_y, perp_z = veccross(look_x, look_y, look_z, 0, 0, 1);\r\n\tcheckLength = veclength(perp_x, perp_y, perp_z);\r\n\tif(checkLength > 0.1){\r\n\t\treturn vecnorn(perp_x, perp_y, perp_z);\r\n\t}\r\n\telse {\r\n\t\tperp_x2, perp_y2, perp_z2 = veccross(look_x, look_y, look_z, 0, 1, 0);  \r\n\t\treturn vecnorn(perp_x2, perp_y2, perp_z2);\r\n\t}\t\t\r\n}\r\n\r\naudio = in1;\r\n\r\n// direction to source\r\ndir_x = in2 - x;\r\ndir_y = in3 - y;\r\ndir_z = in4 - z;\r\ndir_x, dir_y, dirz = vecnorn(dir_x, dir_y, dir_z);\r\ndistance = veclength(dir_x, dir_y, dir_z);\r\n\r\n// get attenuation\r\nfactor =   distance / perminability;\r\nfactor2 = factor * factor;\r\ndamp = exp(- factor2) / perminability;\r\n\r\n// angle to lookat\r\nlook_x, look_y, look_z = vecnorn(lx, ly, lz);\r\ndotSide = vecdot(dir_x, dir_y, dir_z, look_x, look_y, look_z);\r\n\r\n\r\n// get left / right\r\nsideAngle = acos(dotSide);\r\nif(sideAngle > HALFPI)\r\n\tsideAngle = PI - sideAngle;\r\n\r\ncross_x, cross_y, cross_z = veccross(look_x, look_y, look_z, dir_x, dir_y, dir_z);\r\nif(cross_z < 0.0)\r\n\tsideAngle *= -1.0;\r\n\r\nleft = scale(sideAngle, -PI, PI, 1., 0.);\r\nright = 1.0 - left;\r\n\r\n\r\n// get front / back\r\nperp_x, perp_y, perp_z = perpendicularToLookat(look_x, look_y, look_z);\r\ndotPerp = vecdot(dir_x, dir_y, dir_z, perp_x, perp_y, perp_z);\t\r\n\r\nperpAngle = acos(dotPerp);\r\n\r\nfront = 1.0;\r\nback = 1.0 - front;\r\n\r\n// out\r\nleftFront = audio * damp * left * front;\r\nrightFront = audio * damp * right * front;\r\nleftBack = audio * damp * left * back;\r\nrightBack = audio * damp * right * back;\r\n\r\nout1 = leftFront;\r\nout2 = rightFront;\r\n\r\nout3 = dotPerp;\r\nout4 = perpAngle;\r\nout5 = front;",
 					"fontface" : 0,
 					"fontname" : "<Monospaced>",
 					"fontsize" : 12.0,
@@ -304,7 +340,8 @@
 				}
 
 			}
- ]
+ ],
+		"autosave" : 0
 	}
 
 }
