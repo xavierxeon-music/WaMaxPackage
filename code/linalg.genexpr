@@ -14,6 +14,21 @@ vecRotate(x, y, z, roll, pitch, yaw){
 	}
 }
 
+vecInvRotate(x, y, z, roll, pitch, yaw){
+   rot_w, rot_x, rot_y, rot_z = quatFromRPY(roll, pitch, yaw);
+   irot_w, irot_x, irot_y, irot_z = quatInverse(rot_w, rot_x, rot_y, rot_z );
+   front_w, front_x, front_y, front_z = quatMult(rot_w, rot_x, rot_y, rot_z, 0, x, y, z);
+   out_w, out_x, out_y, out_z  = quatMult(front_w, front_x, front_y, front_z , irot_w, irot_x, irot_y, irot_z);
+
+   return vecnorn(out_x, out_y, out_z);
+}
+
+vecManhatan(x, y, z){   
+	mlength = (x * x) + (y * y) + (z * z);
+
+   return mlength;
+}
+
 veclength(x, y, z){   
 	mlength = (x * x) + (y * y) + (z * z);
 	length = sqrt(mlength);
