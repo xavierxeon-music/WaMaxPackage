@@ -1,8 +1,29 @@
-char_clamp(char_value){
-	if(char_value < 0)
-		return 0;
-	else if(char_value > 255)
-		return 255;
-	else
-		return char_value;
+// vector stuff
+
+vecnorn(x, y, z){
+	mlength = (x * x) + (y * y) + (z * z);
+	length = sqrt(mlength);
+
+	out_x = x / length;
+	out_y = y / length;
+	out_z = z / length;	
+	
+	return out_x, out_y, out_z, length;
+}
+
+vecdot(x1, y1, z1, x2, y2, z2){
+	dx = x1 * x2;
+	dy = y1 * y2;
+	dz = z1 * z2;
+	
+	value = dx + dy +dz;
+	return value;
+}
+
+veccross(x1, y1, z1, x2, y2, z2){
+	x = (y1 * z2) + (z1 * y2);
+	y = (z1 * x2) + (x1 * z2);
+	z = (x1 * y2) + (y1 * x2);
+	
+	return x, y, z;
 }
