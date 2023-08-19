@@ -2,10 +2,10 @@ autowatch = 1;
 
 // inlets and outlets
 inlets = 1;
-setinletassist(0, "text");
+setinletassist(0, "message");
 
-outlets = 1;
-setoutletassist(0, "text");
+outlets = 0;
+//setoutletassist(0, "text");
 
 //////////////////////////////////////////
 
@@ -14,6 +14,8 @@ setoutletassist(0, "text");
 var spatial = new Global("SpatialWorld");
 spatial.updateEmiiterCount = updateEmiiterCount;
 spatial.updateReceiverCount = updateReceiverCount;
+
+var perminability = 15.0;
 
 //////////////////////////////////////////
 
@@ -29,8 +31,13 @@ function loadbang() {
 
 function bang() {
 
-   print("hello?");
    updateEmiiterCount();
+}
+
+function setPerminability(value) {
+
+   perminability = value;
+   updateReceiverCount();
 }
 
 updateEmiiterCount.local = 1;
@@ -51,5 +58,6 @@ function updateReceiverCount() {
    for (var index in spatial.receiverList) {
       var receiver = spatial.receiverList[index];
       receiver.setChannelCount(total);
+      receiver.setPerminability(perminability);
    }
 }

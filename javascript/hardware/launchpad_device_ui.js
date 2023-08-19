@@ -12,11 +12,15 @@ include("_mapped_canvas.js");
 
 //////////////////////////////////////////
 
-function Button(x, y) {
+function Button(x, y, xIndex, yIndex) {
    this.x = x;
    this.y = y;
 
    this.color = "444444";
+
+   this.letter = false;
+   if (8 == xIndex || 8 == yIndex)
+      this.letter = true;
 
    return this;
 }
@@ -93,7 +97,7 @@ function bang() {
          y = deviceSize - (y + launchpad.buttonSize);
          var index = (10 * (yIndex + 1)) + xIndex + 1;
 
-         var button = new Button(x, y);
+         var button = new Button(x, y, xIndex, yIndex);
          launchpad.buttonMap[index] = button;
       }
    }
@@ -134,6 +138,11 @@ function paint() {
       var button = launchpad.buttonMap[index];
       mc.setColor(button.color);
       mc.drawRectangle(button.x, button.y, launchpad.buttonSize, launchpad.buttonSize, true);
+
+      if (button.letter) {
+         mc.setColor("111111");
+         mc.drawEllipse(button.x + 1, button.y + 1, launchpad.buttonSize - 2, launchpad.buttonSize - 2, true);
+      }
    }
 
    if (mouseHover.active) {

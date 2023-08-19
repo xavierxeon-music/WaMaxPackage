@@ -4,8 +4,8 @@ autowatch = 1;
 inlets = 1;
 setinletassist(0, "text");
 
-outlets = 0;
-//setoutletassist(0, "channels");
+outlets = 1;
+setoutletassist(0, "perminability");
 
 include("_spatial.js");
 
@@ -44,5 +44,10 @@ setChannelCount.local = 1;
 function setChannelCount(total) {
 
    setMultiChannels(this, total, ["mc.mixdown~"]);
+}
 
+setPerminability.local = 1;
+function setPerminability(value) {
+
+   outlet(0, value);
 }
