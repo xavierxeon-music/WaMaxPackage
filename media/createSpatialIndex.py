@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+import struct
 import wave
 
 maxAz = 360
@@ -20,7 +21,7 @@ def createData():
     data = [None] * maxAz * maxEl
 
     for key, value in inData.items():
-        targetIndex = int(key)
+        targetIndex = int(int(key) / 20)
         az = int(value["az"]) + 180
         el = int(value["el"]) + 90
 
@@ -45,10 +46,23 @@ def fillEmptySpots(data):
             leftIndex = dataIndex(az - 1, el)
             data[index] = data[leftIndex]
 
+    for az in range(maxAz):
+        # map azIndex to exisiting values
+        # sort mapKeys
+        # fill empty vales from indexA to 0.5 (indexB - indexA)
+        # special case 0 and last key
+        pass
+
 
 def convertToBytes(data):
 
-    pass
+    byteData = bytes()
+    for index in range(maxAz * maxEl):
+        targetIndex = data[index]
+        if not targetIndex:
+            targetIndex = 0
+        byteData += struct.pack('<h', targetIndex)
+    return byteData
 
 
 def saveAudio(byteData):
@@ -66,7 +80,7 @@ def main():
     data = createData()
     fillEmptySpots(data)
     byteData = convertToBytes(data)
-    # saveAudio(byteData)
+    saveAudio(byteData)
 
 
 if __name__ == '__main__':

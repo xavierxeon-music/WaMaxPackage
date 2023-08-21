@@ -40,6 +40,66 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-73",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1532.5, 422.0, 50.0, 22.0 ],
+					"text" : "64800."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-71",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "float" ],
+					"patching_rect" : [ 1563.5, 376.0, 29.5, 22.0 ],
+					"text" : "* 1."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-70",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "float" ],
+					"patching_rect" : [ 1511.0, 331.0, 45.0, 22.0 ],
+					"text" : "/ 1000."
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-59",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 9,
+					"outlettype" : [ "float", "list", "float", "float", "float", "float", "float", "", "int" ],
+					"patching_rect" : [ 1511.0, 286.0, 103.0, 22.0 ],
+					"text" : "info~ indexMap"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"buffername" : "indexMap",
+					"id" : "obj-54",
+					"maxclass" : "waveform~",
+					"numinlets" : 5,
+					"numoutlets" : 6,
+					"outlettype" : [ "float", "float", "float", "float", "list", "" ],
+					"patching_rect" : [ 30.0, 855.0, 3555.0, 540.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"cantchange" : 1,
 					"id" : "obj-55",
 					"maxclass" : "number",
@@ -92,7 +152,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1305.0, 391.0, 225.0, 20.0 ],
+					"patching_rect" : [ 1305.0, 211.0, 225.0, 20.0 ],
 					"text" : "360 azimuth * 180 inclination = 64800"
 				}
 
@@ -104,8 +164,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 1305.0, 421.0, 189.0, 22.0 ],
-					"text" : "buffer~ indexMap @samps 64800"
+					"patching_rect" : [ 1305.0, 241.0, 225.0, 22.0 ],
+					"text" : "buffer~ indexMap mixerSpatialIndex.wav"
 				}
 
 			}
@@ -297,7 +357,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 1305.0, 511.0, 272.0, 22.0 ],
+					"patching_rect" : [ 1305.0, 155.0, 272.0, 22.0 ],
 					"text" : "buffer~ spatialSourceRight mixerSpatialRight.wav"
 				}
 
@@ -309,7 +369,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 1305.0, 466.0, 256.0, 22.0 ],
+					"patching_rect" : [ 1305.0, 110.0, 256.0, 22.0 ],
 					"text" : "buffer~ spatialSourceLeft mixerSpatialLeft.wav"
 				}
 
@@ -1176,6 +1236,27 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-59", 0 ],
+					"source" : [ "obj-58", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-70", 0 ],
+					"source" : [ "obj-59", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-71", 1 ],
+					"source" : [ "obj-59", 6 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-23", 1 ],
 					"order" : 2,
 					"source" : [ "obj-6", 1 ]
@@ -1254,6 +1335,20 @@
 				"patchline" : 				{
 					"destination" : [ "obj-9", 0 ],
 					"source" : [ "obj-7", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-71", 0 ],
+					"source" : [ "obj-70", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-73", 1 ],
+					"source" : [ "obj-71", 0 ]
 				}
 
 			}
