@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 115.0, 3765.0, 1313.0 ],
+		"rect" : [ 34.0, 255.0, 2961.0, 1119.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,13 +40,25 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 472.0, 120.0, 133.0, 22.0 ],
+					"text" : "prepend setWorldValue"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-6",
 					"maxclass" : "newobj",
 					"numinlets" : 3,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 179.0, 90.0, 130.0, 22.0 ],
-					"text" : "route bang permiability"
+					"patching_rect" : [ 395.0, 75.0, 96.0, 22.0 ],
+					"text" : "route bang done"
 				}
 
 			}
@@ -57,20 +69,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 30.0, 45.0, 168.0, 22.0 ],
-					"text" : "patcherargs @permiability 15."
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-4",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 179.0, 135.0, 141.0, 22.0 ],
-					"text" : "prepend setPerminability"
+					"patching_rect" : [ 29.0, 15.0, 379.0, 22.0 ],
+					"text" : "patcherargs @permiability 15. @ back 2000. @up 400. @down 1500."
 				}
 
 			}
@@ -81,7 +81,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 29.0, 135.0, 67.0, 22.0 ],
+					"patching_rect" : [ 225.0, 105.0, 67.0, 22.0 ],
 					"text" : "delay 1000"
 				}
 
@@ -93,7 +93,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 29.0, 90.0, 58.0, 22.0 ],
+					"patching_rect" : [ 225.0, 60.0, 58.0, 22.0 ],
 					"text" : "loadbang"
 				}
 
@@ -105,7 +105,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 74.0, 195.0, 91.0, 22.0 ],
+					"patching_rect" : [ 225.0, 180.0, 91.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "spatial_world",
 						"parameter_enable" : 0
@@ -125,7 +125,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 229.0, 30.0, 30.0, 30.0 ]
+					"patching_rect" : [ 435.0, 11.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -134,6 +134,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
 					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-2", 0 ]
 				}
 
 			}
@@ -153,13 +160,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-3", 0 ],
-					"source" : [ "obj-4", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
 					"source" : [ "obj-5", 1 ]
 				}
@@ -167,15 +167,15 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-3", 0 ],
-					"source" : [ "obj-6", 0 ]
+					"destination" : [ "obj-2", 0 ],
+					"source" : [ "obj-6", 2 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-4", 0 ],
-					"source" : [ "obj-6", 1 ]
+					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-6", 0 ]
 				}
 
 			}

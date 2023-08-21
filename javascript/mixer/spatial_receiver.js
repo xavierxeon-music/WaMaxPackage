@@ -5,7 +5,7 @@ inlets = 1;
 setinletassist(0, "text");
 
 outlets = 1;
-setoutletassist(0, "perminability");
+setoutletassist(0, "world value");
 
 include("_spatial.js");
 
@@ -46,8 +46,8 @@ function setChannelCount(total) {
    setMultiChannels(this, total, ["mc.mixdown~"]);
 }
 
-setPerminability.local = 1;
-function setPerminability(value) {
+passWorldValue.local = 1;
+function passWorldValue(name, value) {
 
-   outlet(0, value);
+   outlet(0, [name, value]);
 }

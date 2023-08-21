@@ -15,7 +15,7 @@ var spatial = new Global("SpatialWorld");
 spatial.updateEmiiterCount = updateEmiiterCount;
 spatial.updateReceiverCount = updateReceiverCount;
 
-var perminability = 15.0;
+var valueMap = {}
 
 //////////////////////////////////////////
 
@@ -32,11 +32,12 @@ function loadbang() {
 function bang() {
 
    updateEmiiterCount();
+   updateReceiverCount();
 }
 
-function setPerminability(value) {
+function setWorldValue(key, value) {
 
-   perminability = value;
+   valueMap[key] = value;
    updateReceiverCount();
 }
 
@@ -58,6 +59,9 @@ function updateReceiverCount() {
    for (var index in spatial.receiverList) {
       var receiver = spatial.receiverList[index];
       receiver.setChannelCount(total);
-      receiver.setPerminability(perminability);
+      for (var key in valueMap) {
+         var value = valueMap[key];
+         receiver.passWorldValue(key, value);
+      }
    }
 }

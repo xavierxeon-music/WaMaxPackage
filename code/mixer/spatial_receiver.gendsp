@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "dsp.gen",
-		"rect" : [ 34.0, 171.0, 2856.0, 1395.0 ],
+		"rect" : [ 34.0, 227.0, 3765.0, 1147.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,37 +40,45 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-18",
+					"id" : "obj-10",
 					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 853.5, 165.0, 81.0, 22.0 ],
-					"text" : "param yaw 0."
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 532.0, 900.0, 184.0, 22.0 ],
+					"text" : "out 8 @comment rightDownBack"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-19",
+					"id" : "obj-11",
 					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 853.5, 135.0, 85.0, 22.0 ],
-					"text" : "param pitch 0."
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 460.285714285714278, 930.0, 177.0, 22.0 ],
+					"text" : "out 7 @comment leftDownBack"
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-20",
+					"id" : "obj-12",
 					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 853.5, 105.0, 75.0, 22.0 ],
-					"text" : "param roll 0."
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 390.0, 960.0, 185.0, 22.0 ],
+					"text" : "out 6 @comment rightDownFront"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-13",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 318.0, 990.0, 178.0, 22.0 ],
+					"text" : "out 5 @comment leftDownFront"
 				}
 
 			}
@@ -81,69 +89,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 750.0, 195.0, 133.0, 22.0 ],
+					"patching_rect" : [ 406.5, 30.0, 133.0, 22.0 ],
 					"text" : "param perminability 15."
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-15",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 686.0, 900.0, 153.0, 22.0 ],
-					"text" : "out 4 @comment rightBack"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-4",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 465.0, 900.0, 146.0, 22.0 ],
-					"text" : "out 3 @comment leftBack"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"code" : "require(\"linalg\");\r\n\r\naudio = in1;\r\n\r\n// direction to source\r\ndir_x = in2 - x;\r\ndir_y = in3 - y;\r\ndir_z = in4 - z;\r\ndistance = veclength(dir_x, dir_y, dir_z);\r\n\r\n// get attenuation\r\nfactor =   distance / perminability;\r\nfactor2 = factor * factor;\r\ndamp = exp(- factor2) / perminability;\r\n\r\n// dir in plane\r\ndir_x, dir_y, dirz = vecnorn(dir_x, dir_y, dir_z);\r\nplane_x, plane_y, plane_z = vecInvRotate(dir_x, dir_y, dir_z, roll, pitch, yaw);\r\nif(distance < 0.1)\r\n\tplane_x, plane_y, plane_z = 0, 0 , 0;\r\n\r\n// left / right\r\nright = scale(plane_x, -1, 1, 0, 1);\r\nleft = 1.0 - right;\r\n\r\n// front / back \r\nfront = scale(plane_y, -1, 1, 0, 1);\r\nback = 1.0 - front;\r\n\r\n\r\n// out\r\nleftFront = audio * damp * left * front;\r\nrightFront = audio * damp * right * front;\r\nleftBack = audio * damp * left * back;\r\nrightBack = audio * damp * right * back;\r\n\r\nout1 = leftFront;\r\nout2 = rightFront;\r\nout3 = leftBack;\r\nout4 = rightBack;\r\n",
-					"fontface" : 0,
-					"fontname" : "<Monospaced>",
-					"fontsize" : 12.0,
-					"id" : "obj-3",
-					"maxclass" : "codebox",
-					"numinlets" : 4,
-					"numoutlets" : 4,
-					"outlettype" : [ "", "", "", "" ],
-					"patching_rect" : [ 30.0, 90.0, 675.0, 765.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-11",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 750.0, 165.0, 65.0, 22.0 ],
-					"text" : "param z 0."
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-10",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 750.0, 135.0, 65.0, 22.0 ],
-					"text" : "param y 0."
 				}
 
 			}
@@ -154,8 +101,45 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 750.0, 105.0, 65.0, 22.0 ],
-					"text" : "param x 0."
+					"patching_rect" : [ 155.5, 60.0, 141.0, 22.0 ],
+					"text" : "in 2 @comment distance"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-15",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 245.142857142857139, 1020.0, 169.0, 22.0 ],
+					"text" : "out 4 @comment rightUpBack"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 173.428571428571416, 1050.0, 161.0, 22.0 ],
+					"text" : "out 3 @comment leftUpBack"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"code" : "audio = in1;\r\ndistance = in2;\r\nplane_x, plane_y, plane_z = in3, in4, in5;\r\n\r\n// get attenuation\r\nfactor =   distance / perminability;\r\nfactor2 = factor * factor;\r\ndamp = exp(- factor2) / perminability;\r\n\r\n// snaity check\r\nif(distance < 0.1)\r\n\tplane_x, plane_y, plane_z = 0, 0 , 0;\r\n\r\n// left / right\r\nright = scale(plane_x, -1, 1, 0, 1);\r\nleft = 1.0 - right;\r\n\r\n// front / back \r\nfront = scale(plane_y, -1, 1, 0, 1);\r\nback = 1.0 - front;\r\n\r\n\r\n// up / down\r\nup = scale(plane_z, -1, 1, 0, 1);\r\ndown = 1.0 - up;\r\n\r\n// mix\r\nleftUpFront = audio * damp * left * up * front;\r\nrightUpFront = audio * damp * right * up * front;\r\nleftUpBack = audio * damp * left * up * back;\r\nrightUpBack = audio * damp * right * up * back;\r\n\r\nleftDownFront = audio * damp * left * down * front;\r\nrightDownFront = audio * damp * right * down * front;\r\nleftDownBack = audio * damp * left * down * back;\r\nrightDownBack = audio * damp * right * down * back;\r\n\r\n// out\r\nout1 = leftUpFront;\r\nout2 = rightUpFront;\r\nout3 = leftUpBack;\r\nout4 = rightUpBack;\r\nout5 = leftDownFront;\r\nout6 = rightDownFront;\r\nout7 = leftDownBack;\r\nout8 = rightDownBack;\r\n",
+					"fontface" : 0,
+					"fontname" : "<Monospaced>",
+					"fontsize" : 12.0,
+					"id" : "obj-3",
+					"maxclass" : "codebox",
+					"numinlets" : 5,
+					"numoutlets" : 8,
+					"outlettype" : [ "", "", "", "", "", "", "", "" ],
+					"patching_rect" : [ 30.0, 195.0, 521.0, 690.0 ]
 				}
 
 			}
@@ -165,8 +149,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 248.666666666666629, 900.0, 155.0, 22.0 ],
-					"text" : "out 2 @comment rightFront"
+					"patching_rect" : [ 101.714285714285708, 1080.0, 170.0, 22.0 ],
+					"text" : "out 2 @comment rightUpFront"
 				}
 
 			}
@@ -176,8 +160,8 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 900.0, 147.0, 22.0 ],
-					"text" : "out 1 @comment leftFront"
+					"patching_rect" : [ 30.0, 1110.0, 163.0, 22.0 ],
+					"text" : "out 1 @comment leftUpFront"
 				}
 
 			}
@@ -188,8 +172,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 686.0, 30.0, 145.0, 22.0 ],
-					"text" : "in 4 @comment source_z"
+					"patching_rect" : [ 532.0, 150.0, 138.0, 22.0 ],
+					"text" : "in 5 @comment plane_z"
 				}
 
 			}
@@ -200,8 +184,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 465.0, 30.0, 145.0, 22.0 ],
-					"text" : "in 3 @comment source_y"
+					"patching_rect" : [ 406.5, 120.0, 138.0, 22.0 ],
+					"text" : "in 4 @comment plane_y"
 				}
 
 			}
@@ -212,8 +196,8 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 248.666666666666629, 30.0, 145.0, 22.0 ],
-					"text" : "in 2 @comment source_x"
+					"patching_rect" : [ 281.0, 90.0, 138.0, 22.0 ],
+					"text" : "in 3 @comment plane_x"
 				}
 
 			}
@@ -239,8 +223,36 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-3", 1 ],
+					"destination" : [ "obj-3", 2 ],
 					"source" : [ "obj-2", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-10", 0 ],
+					"source" : [ "obj-3", 7 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-11", 0 ],
+					"source" : [ "obj-3", 6 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-12", 0 ],
+					"source" : [ "obj-3", 5 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-13", 0 ],
+					"source" : [ "obj-3", 4 ]
 				}
 
 			}
@@ -274,15 +286,22 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-3", 2 ],
+					"destination" : [ "obj-3", 3 ],
 					"source" : [ "obj-5", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-3", 3 ],
+					"destination" : [ "obj-3", 4 ],
 					"source" : [ "obj-6", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 1 ],
+					"source" : [ "obj-9", 0 ]
 				}
 
 			}
