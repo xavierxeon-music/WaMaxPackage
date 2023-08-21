@@ -144,3 +144,35 @@ quatInverse(w, x, y, z){
 	
 	return iw, ix, iy, iz;
 }
+
+// polar & shperical
+
+cartToSphere(x, y, z)
+{
+	mlength = (x * x) + (y * y) + (z * z);
+	radius = sqrt(mlength);
+	
+	azimuth = 0;
+	inclination = 0;
+	
+	if(radius < 0.01)
+	{
+		return 0, 0, 0;
+	}
+	
+	inclination = acos(z / radius);
+	
+	plane_radius = sqrt((x * x) + (y * y));
+	if(plane_radius > 0.01)
+	{
+		azimuth = acos(x / plane_radius); 
+	}
+	if(y > 0) 
+	{
+		azimuth = TWOPI - azimuth;
+	}	
+				
+	return radius, azimuth, inclination;
+}
+
+

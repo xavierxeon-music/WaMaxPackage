@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 171.0, 2710.0, 1395.0 ],
+		"rect" : [ 34.0, 171.0, 3270.0, 1395.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -122,7 +122,7 @@
 					"patching_rect" : [ 113.0, 270.0, 56.0, 24.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 61.0, 5.0, 54.999999850988388, 24.0 ],
-					"text" : "01:01",
+					"text" : "109:01",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 				}
 
@@ -179,6 +179,7 @@
 			}
 , 			{
 				"box" : 				{
+					"fontface" : 1,
 					"format" : 6,
 					"id" : "obj-10",
 					"maxclass" : "flonum",
@@ -186,7 +187,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 260.5, 168.0, 57.0, 22.0 ],
+					"patching_rect" : [ 260.5, 168.0, 59.0, 22.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 61.0, 30.0, 55.0, 22.0 ],
 					"style" : "default"

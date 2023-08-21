@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 115.0, 2358.0, 1451.0 ],
+		"rect" : [ 34.0, 171.0, 2358.0, 1395.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -45,7 +45,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 901.0, 541.0, 92.0, 22.0 ],
+					"patching_rect" : [ 751.0, 541.0, 92.0, 22.0 ],
 					"text" : "onepole~ 2000."
 				}
 
@@ -81,7 +81,7 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 900.0, 585.0, 76.0, 22.0 ],
+					"patching_rect" : [ 750.0, 585.0, 76.0, 22.0 ],
 					"text" : "allpass~ 100"
 				}
 
@@ -117,7 +117,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 900.0, 495.0, 84.0, 22.0 ],
+					"patching_rect" : [ 750.0, 495.0, 84.0, 22.0 ],
 					"text" : "mc.unpack~ 1"
 				}
 
@@ -129,7 +129,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "multichannelsignal" ],
-					"patching_rect" : [ 900.0, 450.0, 164.0, 22.0 ],
+					"patching_rect" : [ 750.0, 450.0, 164.0, 22.0 ],
 					"text" : "mc.mixdown~ 1 @autogain 1"
 				}
 
@@ -261,9 +261,9 @@
 					"numinlets" : 4,
 					"numoutlets" : 4,
 					"outlettype" : [ "multichannelsignal", "multichannelsignal", "multichannelsignal", "multichannelsignal" ],
-					"patching_rect" : [ 270.0, 315.0, 319.0, 22.0 ],
+					"patching_rect" : [ 270.0, 315.0, 405.0, 22.0 ],
 					"style" : "wa.patcher",
-					"text" : "mc.gen~ spatial"
+					"text" : "mc.gen~ spatial_receiver"
 				}
 
 			}

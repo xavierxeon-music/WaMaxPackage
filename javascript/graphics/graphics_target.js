@@ -10,9 +10,15 @@ setoutletassist(0, "message");
 var graphics = new Global("graphics");
 var deviceName = null;
 
-function dimensions(x, y) {
+var targetWidth = 0;
+var targetHeight = 0;
 
-   outlet(0, ["dim", x, y]);
+function dimensions(width, height) {
+
+   targetWidth = width;
+   targetHeight = height;
+
+   outlet(0, ["dim", width, height]);
    bang();
 }
 
@@ -96,7 +102,7 @@ function drawCircle(object) {
       return;
 
    const x = parseInt(object["x"]);
-   const y = parseInt(object["y"]);
+   const y = targetHeight - parseInt(object["y"]);
    const radius = parseInt(object["radius"]);
 
    const color = getColor(object["color"]);

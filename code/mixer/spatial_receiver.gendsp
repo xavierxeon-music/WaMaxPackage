@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "dsp.gen",
-		"rect" : [ 34.0, 255.0, 2856.0, 1311.0 ],
+		"rect" : [ 34.0, 171.0, 2856.0, 1395.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -110,7 +110,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "require(\"linalg\");\r\n\r\nperpendicularToLookat(look_x, look_y, look_z){\r\n\tperp_x, perp_y, perp_z = veccross(look_x, look_y, look_z, 0, 0, 1);\r\n\tcheckLength = veclength(perp_x, perp_y, perp_z);\r\n\tif(checkLength > 0.1){\r\n\t\treturn vecnorn(perp_x, perp_y, perp_z);\r\n\t}\r\n\telse {\r\n\t\tperp_x2, perp_y2, perp_z2 = veccross(look_x, look_y, look_z, 0, 1, 0);  \r\n\t\treturn vecnorn(perp_x2, perp_y2, perp_z2);\r\n\t}\t\t\r\n}\r\n\r\naudio = in1;\r\n\r\n// direction to source\r\ndir_x = in2 - x;\r\ndir_y = in3 - y;\r\ndir_z = in4 - z;\r\ndistance = veclength(dir_x, dir_y, dir_z);\r\n\r\n// get attenuation\r\nfactor =   distance / perminability;\r\nfactor2 = factor * factor;\r\ndamp = exp(- factor2) / perminability;\r\n\r\n// dir in plane\r\ndir_x, dir_y, dirz = vecnorn(dir_x, dir_y, dir_z);\r\nplane_x, plane_y, plane_z = vecInvRotate(dir_x, dir_y, dir_z, roll, pitch, yaw);\r\nif(distance < 0.1)\r\n\tplane_x, plane_y, plane_z = 0, 0 , 0;\r\n\r\n// left / right\r\nright = scale(plane_x, -1, 1, 0, 1);\r\nleft = 1.0 - right;\r\n\r\n// front / back \r\nfront = scale(plane_y, -1, 1, 0, 1);\r\nback = 1.0 - front;\r\n\r\n\r\n// out\r\nleftFront = audio * damp * left * front;\r\nrightFront = audio * damp * right * front;\r\nleftBack = audio * damp * left * back;\r\nrightBack = audio * damp * right * back;\r\n\r\nout1 = leftFront;\r\nout2 = rightFront;\r\nout3 = leftBack;\r\nout4 = rightBack;\r\n",
+					"code" : "require(\"linalg\");\r\n\r\naudio = in1;\r\n\r\n// direction to source\r\ndir_x = in2 - x;\r\ndir_y = in3 - y;\r\ndir_z = in4 - z;\r\ndistance = veclength(dir_x, dir_y, dir_z);\r\n\r\n// get attenuation\r\nfactor =   distance / perminability;\r\nfactor2 = factor * factor;\r\ndamp = exp(- factor2) / perminability;\r\n\r\n// dir in plane\r\ndir_x, dir_y, dirz = vecnorn(dir_x, dir_y, dir_z);\r\nplane_x, plane_y, plane_z = vecInvRotate(dir_x, dir_y, dir_z, roll, pitch, yaw);\r\nif(distance < 0.1)\r\n\tplane_x, plane_y, plane_z = 0, 0 , 0;\r\n\r\n// left / right\r\nright = scale(plane_x, -1, 1, 0, 1);\r\nleft = 1.0 - right;\r\n\r\n// front / back \r\nfront = scale(plane_y, -1, 1, 0, 1);\r\nback = 1.0 - front;\r\n\r\n\r\n// out\r\nleftFront = audio * damp * left * front;\r\nrightFront = audio * damp * right * front;\r\nleftBack = audio * damp * left * back;\r\nrightBack = audio * damp * right * back;\r\n\r\nout1 = leftFront;\r\nout2 = rightFront;\r\nout3 = leftBack;\r\nout4 = rightBack;\r\n",
 					"fontface" : 0,
 					"fontname" : "<Monospaced>",
 					"fontsize" : 12.0,

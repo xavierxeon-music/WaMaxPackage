@@ -49,6 +49,7 @@ function bang() {
 function notifydeleted() {
 
    if (myDict !== undefined) {
+      delete graphics.target[deviceName][id];
       delete myDict;
    }
 }
