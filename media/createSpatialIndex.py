@@ -16,24 +16,31 @@ def dataIndex(az, el):
 
 def createData():
 
-    with open('mixerSpatialIndex.json', 'r') as infile:
+    with open('mixerSpatialSampleInfo.json', 'r') as infile:
         inData = json.load(infile)
 
     data = [None] * maxAz * maxEl
 
     for key, value in inData.items():
-        targetIndex = int(key) 
+        targetIndex = int(key)
         az = int(value["az"]) + 180
         el = int(value["el"]) + 90
 
         index = dataIndex(az, el)
         data[index] = targetIndex
-        # print(targetIndex, az, el, index)
+        if 0 == targetIndex:
+            print(targetIndex, az, el, index)
 
     return data
 
 
 def fillEmptySpots(data):
+
+    for el in range(maxEl):
+        index = dataIndex(0, el)
+        value = data[index]
+        if value:
+            print(el, value)
 
     # propagate columns
     for az in range(maxAz):
@@ -92,6 +99,13 @@ def convertToBytes(data):
     return byteData
 
 
+def saveAscii(data):
+
+    with open('mixerSpatialIndex.txt', 'w') as outfile:
+        for entry in data:
+            outfile.write(str(entry) + '\n')
+
+
 def saveAudio(byteData):
 
     audio = wave.open('mixerSpatialIndex.wav', 'wb')
@@ -100,9 +114,6 @@ def saveAudio(byteData):
     audio.setframerate(44100.0)
     audio.writeframesraw(byteData)
     audio.close()
-
-    with open('mixerSpatialIndex.bin', 'wb') as outfile:
-        outfile.write(byteData)
 
 
 def controlAudioFile():
@@ -127,6 +138,10 @@ def main():
 
     data = createData()
     fillEmptySpots(data)
+
+    saveAscii(data)
+    return
+
     byteData = convertToBytes(data)
     saveAudio(byteData)
 
