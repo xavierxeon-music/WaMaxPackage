@@ -35,7 +35,7 @@
 		"description" : "",
 		"digest" : "",
 		"tags" : "",
-		"style" : "",
+		"style" : "wa.buffer",
 		"subpatcher_template" : "OpenGrid",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
@@ -105,6 +105,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
 					"patching_rect" : [ 1305.0, 241.0, 268.0, 22.0 ],
+					"style" : "wa.buffer-1",
 					"text" : "buffer~ indexMap @samps 64800 @format int32"
 				}
 
@@ -274,6 +275,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
 					"patching_rect" : [ 900.0, 750.0, 206.0, 22.0 ],
+					"style" : "wa.buffer-3",
 					"text" : "buffer~ spatialRight @samps 204800"
 				}
 
@@ -286,19 +288,8 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
 					"patching_rect" : [ 900.0, 705.0, 198.0, 22.0 ],
+					"style" : "wa.buffer-2",
 					"text" : "buffer~ spatialLeft @samps 204800"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-16",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 1305.0, 155.0, 272.0, 22.0 ],
-					"text" : "buffer~ spatialSourceRight mixerSpatialRight.wav"
 				}
 
 			}
@@ -309,8 +300,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 1305.0, 110.0, 256.0, 22.0 ],
-					"text" : "buffer~ spatialSourceLeft mixerSpatialLeft.wav"
+					"patching_rect" : [ 1305.0, 165.0, 216.0, 22.0 ],
+					"style" : "wa.buffer-4",
+					"text" : "buffer~ spatialSource mixerSpatial.wav"
 				}
 
 			}
@@ -1322,6 +1314,47 @@
 			}
  ],
 		"styles" : [ 			{
+				"name" : "wa.buffer",
+				"parentstyle" : "",
+				"multi" : 0
+			}
+, 			{
+				"name" : "wa.buffer-1",
+				"default" : 				{
+					"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+				}
+,
+				"parentstyle" : "",
+				"multi" : 0
+			}
+, 			{
+				"name" : "wa.buffer-2",
+				"default" : 				{
+					"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+				}
+,
+				"parentstyle" : "",
+				"multi" : 0
+			}
+, 			{
+				"name" : "wa.buffer-3",
+				"default" : 				{
+					"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+				}
+,
+				"parentstyle" : "",
+				"multi" : 0
+			}
+, 			{
+				"name" : "wa.buffer-4",
+				"default" : 				{
+					"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+				}
+,
+				"parentstyle" : "",
+				"multi" : 0
+			}
+, 			{
 				"name" : "wa.patcher",
 				"default" : 				{
 					"accentcolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ]
