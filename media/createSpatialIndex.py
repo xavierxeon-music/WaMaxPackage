@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+import math
 import struct
 import wave
 
@@ -21,7 +22,7 @@ def createData():
     data = [None] * maxAz * maxEl
 
     for key, value in inData.items():
-        targetIndex = int(int(key) / 20)
+        targetIndex = int(key) 
         az = int(value["az"]) + 180
         el = int(value["el"]) + 90
 
@@ -47,11 +48,37 @@ def fillEmptySpots(data):
             data[index] = data[leftIndex]
 
     for az in range(maxAz):
-        # map azIndex to exisiting values
-        # sort mapKeys
-        # fill empty vales from indexA to 0.5 (indexB - indexA)
-        # special case 0 and last key
-        pass
+        ezMap = {}
+        for el in range(maxEl):
+            index = dataIndex(az, el)
+            value = data[index]
+            if not value:
+                continue
+            ezMap[el] = value
+        if not ezMap:
+            continue
+
+        keys = list(ezMap.keys())
+        ezMap[0] = ezMap[keys[0]]
+        keys = [0] + keys
+        ezMap[180] = ezMap[keys[-1]]
+        keys.append(180)
+
+        for index in range(len(keys) - 1):
+            key = keys[index]
+            keyNext = keys[index + 1]
+
+            diff = keyNext - key
+            lower = math.floor(diff / 2)
+
+            loweValue = ezMap[key]
+            upperValue = ezMap[keyNext]
+
+            for index2 in range(key, key + lower):
+                data[dataIndex(az, index2)] = loweValue
+
+            for index2 in range(key + lower, key + diff):
+                data[dataIndex(az, index2)] = upperValue
 
 
 def convertToBytes(data):
@@ -61,18 +88,39 @@ def convertToBytes(data):
         targetIndex = data[index]
         if not targetIndex:
             targetIndex = 0
-        byteData += struct.pack('<h', targetIndex)
+        byteData += struct.pack('<i', targetIndex)
     return byteData
 
 
 def saveAudio(byteData):
 
-    audio = wave.open('mixerSpatialIndex.wav', 'w')
+    audio = wave.open('mixerSpatialIndex.wav', 'wb')
     audio.setnchannels(1)
-    audio.setsampwidth(2)
+    audio.setsampwidth(4)
     audio.setframerate(44100.0)
     audio.writeframesraw(byteData)
     audio.close()
+
+    with open('mixerSpatialIndex.bin', 'wb') as outfile:
+        outfile.write(byteData)
+
+
+def controlAudioFile():
+
+    audio = wave.open('mixerSpatialIndex.wav', 'rb')
+    frameCount = audio.getnframes()
+    channelCount = audio.getnchannels()
+    sampleWidth = audio.getsampwidth()
+    length = channelCount * sampleWidth * frameCount
+    rawData = audio.readframes(length)
+    audio.close()
+
+    for index in range(frameCount):
+
+        pos = index * 4
+        chunk = rawData[pos: pos + 4]
+        value = struct.unpack('<i', chunk)[0]
+        print(index, value)
 
 
 def main():
@@ -81,6 +129,8 @@ def main():
     fillEmptySpots(data)
     byteData = convertToBytes(data)
     saveAudio(byteData)
+
+    controlAudioFile()
 
 
 if __name__ == '__main__':
