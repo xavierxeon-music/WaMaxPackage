@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 218.0, 1732.0, 917.0 ],
+		"rect" : [ 34.0, 115.0, 3772.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,19 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-46",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 209.0, 472.0, 139.0, 22.0 ],
+					"style" : "wa.receive",
+					"text" : "receive launchpad_input"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-41",
 					"maxclass" : "newobj",
@@ -82,7 +95,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 180.0, 180.0, 30.0, 30.0 ]
+					"patching_rect" : [ 209.0, 517.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -899,15 +912,6 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-23", 0 ],
-					"order" : 1,
-					"source" : [ "obj-28", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-27", 0 ],
-					"order" : 0,
 					"source" : [ "obj-28", 0 ]
 				}
 
@@ -980,6 +984,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-31", 0 ],
 					"source" : [ "obj-44", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-27", 0 ],
+					"source" : [ "obj-46", 0 ]
 				}
 
 			}
@@ -1126,6 +1137,42 @@
 			"inherited_shortname" : 1
 		}
 ,
+		"dependency_cache" : [ 			{
+				"name" : "_mapped_canvas.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/_common",
+				"patcherrelativepath" : "../../javascript/_common",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bpatcher_size.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
+				"patcherrelativepath" : "../../javascript/setup",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "launchpad_color.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/hardware",
+				"patcherrelativepath" : "../../javascript/hardware",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "launchpad_device_ui.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/hardware",
+				"patcherrelativepath" : "../../javascript/hardware",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "wa.setup.bpatcher.maxpat",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/setup",
+				"patcherrelativepath" : "../setup",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+ ],
 		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.patcher",

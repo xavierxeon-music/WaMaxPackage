@@ -268,7 +268,7 @@ function valueFeedback(elementId, value) {
    showValue(value);
 }
 
-updateValue.local = 1;
+showValue.local = 1;
 function showValue(value) {
 
    var slider = this.patcher.getnamed("value_slider");

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 134.0, 1732.0, 1001.0 ],
+		"rect" : [ 34.0, 115.0, 1852.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,25 @@
 		"subpatcher_template" : "",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "" ],
+					"patching_rect" : [ 615.0, 375.0, 65.0, 22.0 ],
+					"restore" : [ 0 ],
+					"saved_object_attributes" : 					{
+						"parameter_enable" : 0,
+						"parameter_mappable" : 0
+					}
+,
+					"text" : "pattr value",
+					"varname" : "value"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-29",
 					"maxclass" : "message",
@@ -92,10 +111,11 @@
 					"id" : "obj-16",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 0,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 278.5, 257.0, 125.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "launchpad_element.js",
+						"filename" : "launchpad_element",
 						"parameter_enable" : 0
 					}
 ,
@@ -125,7 +145,8 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 695.0, 420.0, 50.0, 22.0 ]
+					"patching_rect" : [ 695.0, 420.0, 50.0, 22.0 ],
+					"varname" : "number"
 				}
 
 			}
@@ -326,7 +347,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 500.0, 536.0, 131.0, 22.0 ],
+					"patching_rect" : [ 400.5, 577.0, 131.0, 22.0 ],
 					"text" : "value #0_downColor"
 				}
 
@@ -338,7 +359,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 325.5, 536.0, 100.0, 22.0 ],
+					"patching_rect" : [ 226.0, 577.0, 100.0, 22.0 ],
 					"text" : "value #0_color"
 				}
 
@@ -422,7 +443,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 60.0, 536.0, 29.5, 22.0 ],
+					"patching_rect" : [ 585.0, 581.0, 29.5, 22.0 ],
 					"text" : "off"
 				}
 
@@ -434,7 +455,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 60.0, 495.0, 56.0, 22.0 ],
+					"patching_rect" : [ 585.0, 540.0, 56.0, 22.0 ],
 					"text" : "freebang"
 				}
 
@@ -446,7 +467,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 206.5, 480.0, 61.0, 22.0 ],
+					"patching_rect" : [ 107.0, 521.0, 61.0, 22.0 ],
 					"text" : "delay 100"
 				}
 
@@ -471,7 +492,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 134.0, 439.0, 165.0, 22.0 ],
+					"patching_rect" : [ 34.5, 480.0, 165.0, 22.0 ],
 					"style" : "wa.receive",
 					"text" : "receive #0_button_number"
 				}
@@ -504,11 +525,11 @@
 				"box" : 				{
 					"id" : "obj-24",
 					"maxclass" : "newobj",
-					"numinlets" : 3,
-					"numoutlets" : 3,
-					"outlettype" : [ "bang", "bang", "" ],
-					"patching_rect" : [ 489.5, 480.0, 73.0, 22.0 ],
-					"text" : "select 0 127"
+					"numinlets" : 1,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 386.5, 480.0, 200.0, 22.0 ],
+					"text" : "if $i1 == 0 then out2 bang else bang"
 				}
 
 			}
@@ -531,7 +552,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 324.5, 439.0, 128.0, 22.0 ],
+					"patching_rect" : [ 225.0, 480.0, 128.0, 22.0 ],
 					"style" : "wa.receive",
 					"text" : "receive launchpad_init"
 				}
@@ -568,7 +589,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 134.0, 536.0, 41.0, 22.0 ],
+					"patching_rect" : [ 34.5, 577.0, 41.0, 22.0 ],
 					"text" : "set $1"
 				}
 
@@ -580,7 +601,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 324.5, 599.0, 63.0, 22.0 ],
+					"patching_rect" : [ 225.0, 640.0, 63.0, 22.0 ],
 					"text" : "prepend 0"
 				}
 
@@ -591,7 +612,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 324.5, 651.0, 126.0, 22.0 ],
+					"patching_rect" : [ 225.0, 692.0, 126.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send launchpad_color"
 				}
@@ -759,6 +780,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-63", 0 ],
 					"source" : [ "obj-37", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-45", 0 ],
+					"source" : [ "obj-4", 1 ]
 				}
 
 			}
