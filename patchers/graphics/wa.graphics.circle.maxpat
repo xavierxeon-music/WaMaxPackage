@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 3,
+			"revision" : 5,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 143.0, 3765.0, 1423.0 ],
+		"rect" : [ 34.0, 115.0, 3772.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -83,7 +83,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 93.0, 467.0, 148.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "graphics_object.js",
+						"filename" : "graphics_object",
 						"parameter_enable" : 0
 					}
 ,
