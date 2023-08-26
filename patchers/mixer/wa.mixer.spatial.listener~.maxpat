@@ -40,6 +40,18 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-16",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 645.0, 540.0, 146.0, 22.0 ],
+					"style" : "wa.send",
+					"text" : "mc.send~ spatial_debug5"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"cantchange" : 1,
 					"id" : "obj-55",
 					"maxclass" : "number",
@@ -660,8 +672,8 @@
 					"id" : "obj-6",
 					"maxclass" : "newobj",
 					"numinlets" : 4,
-					"numoutlets" : 4,
-					"outlettype" : [ "multichannelsignal", "multichannelsignal", "multichannelsignal", "multichannelsignal" ],
+					"numoutlets" : 5,
+					"outlettype" : [ "multichannelsignal", "multichannelsignal", "multichannelsignal", "multichannelsignal", "multichannelsignal" ],
 					"patching_rect" : [ 244.722222222222172, 436.0, 465.833333333333485, 22.0 ],
 					"style" : "wa.patcher",
 					"text" : "mc.gen~ spatial_listener"
@@ -1163,6 +1175,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-22", 0 ],
 					"source" : [ "obj-57", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-16", 0 ],
+					"source" : [ "obj-6", 4 ]
 				}
 
 			}

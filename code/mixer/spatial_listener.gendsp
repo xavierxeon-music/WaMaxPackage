@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "dsp.gen",
-		"rect" : [ 34.0, 143.0, 3772.0, 1423.0 ],
+		"rect" : [ 34.0, 115.0, 3368.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,17 @@
 		"subpatcher_template" : "OpenGrid",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 870.0, 1185.0, 171.0, 22.0 ],
+					"text" : "out 5 @comment sourceOffset"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-1",
 					"maxclass" : "newobj",
@@ -110,15 +121,15 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "require(\"linalg\");\r\n\r\nBuffer source(\"spatialSource\");\r\nBuffer targetLeft(\"spatialLeft\");\r\nBuffer targetRight(\"spatialRight\");\r\nBuffer indexMap(\"indexMap\");\r\nHistory index(0);\r\n\r\ndistance = in1;\r\nplane_x, plane_y, plane_z = in2, in3, in4;\r\n\r\n\r\n// get attenuation\r\nfactor =   distance / perminability;\r\nfactor2 = factor * factor;\r\ndamp = exp(- factor2) / perminability;\r\n\r\n// offset \r\ntargetOffset = (mc_channel - 1) * 200;\r\n\r\n// dir in plane\r\nradius, azimuth, elevation = cartToSphere(plane_x, plane_y, plane_z);\r\n\r\n\r\n// azimuth\r\nif(azimuth > (3 * HALFPI))\r\n\tazimuth = azimuth - (3 * HALFPI);\r\nelse\r\n\tazimuth = azimuth + HALFPI;\r\n\t\r\nazimuth = floor(azimuth * radtodeg);\r\n\t\r\n// inclinaton\r\nelevation = PI - elevation;\r\nelevation = round(elevation * radtodeg);\r\n\r\n// index\r\nlookup = (azimuth * 180) + elevation;\r\nsourceOffset = peek(indexMap, lookup);\r\n// sourceOffset = floor(sourceOffset * 3276 * 100);\r\n\r\n// sample copy\r\nleft = peek(source, sourceOffset + index, 1);\r\npoke(targetLeft, left, targetOffset + index);\r\n\r\nright = peek(source, sourceOffset + index, 0);\r\npoke(targetRight, right, targetOffset + index);\r\n\r\nindex += 1;\r\nif(index >= 200)\r\n\tindex = 0;\r\n\r\n// out\r\nout1 = damp;\r\nout2 = targetOffset;\r\nout3 = azimuth;\r\nout4 = elevation;\r\n",
+					"code" : "require(\"linalg\");\r\n\r\nBuffer source(\"spatialSource\");\r\nBuffer targetLeft(\"spatialLeft\");\r\nBuffer targetRight(\"spatialRight\");\r\nBuffer indexMap(\"indexMap\");\r\nHistory index(0);\r\n\r\ndistance = in1;\r\nplane_x, plane_y, plane_z = in2, in3, in4;\r\n\r\n\r\n// get attenuation\r\nfactor =   distance / perminability;\r\nfactor2 = factor * factor;\r\ndamp = exp(- factor2) / perminability;\r\n\r\n// offset \r\ntargetOffset = (mc_channel - 1) * 200;\r\n\r\n// dir in plane\r\nradius, azimuth, elevation = cartToSphere(plane_x, plane_y, plane_z);\r\n\r\n\r\n// azimuth\r\nif(azimuth > (3 * HALFPI))\r\n\tazimuth = azimuth - (3 * HALFPI);\r\nelse\r\n\tazimuth = azimuth + HALFPI;\r\n\t\r\nazimuth = floor(azimuth * radtodeg);\r\n\t\r\n// inclinaton\r\nelevation = PI - elevation;\r\nelevation = round(elevation * radtodeg);\r\n\r\n// index\r\nlookup = (azimuth * 180) + elevation;\r\nsourceOffset = peek(indexMap, lookup);\r\n\r\n// sample copy\r\nleft = peek(source, sourceOffset + index, 1);\r\npoke(targetLeft, left, targetOffset + index);\r\n\r\nright = peek(source, sourceOffset + index, 0);\r\npoke(targetRight, right, targetOffset + index);\r\n\r\nindex += 1;\r\nif(index >= 200)\r\n\tindex = 0;\r\n\r\n// out\r\nout1 = damp;\r\nout2 = targetOffset;\r\n\r\n// debug\r\nout3 = azimuth;\r\nout4 = elevation;\r\nout5 = sourceOffset;\r\n",
 					"fontface" : 0,
 					"fontname" : "<Monospaced>",
 					"fontsize" : 12.0,
 					"id" : "obj-3",
 					"maxclass" : "codebox",
 					"numinlets" : 4,
-					"numoutlets" : 4,
-					"outlettype" : [ "", "", "", "" ],
+					"numoutlets" : 5,
+					"outlettype" : [ "", "", "", "", "" ],
 					"patching_rect" : [ 30.0, 75.0, 675.0, 990.0 ]
 				}
 
@@ -183,6 +194,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-15", 0 ],
 					"source" : [ "obj-3", 3 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-2", 0 ],
+					"source" : [ "obj-3", 4 ]
 				}
 
 			}

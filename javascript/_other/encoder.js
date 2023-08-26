@@ -1,6 +1,6 @@
 //  inlets and outlets
 inlets = 1;
-setinletassist(0, "message(setMin, setMax, increment, decrement, setValue)");
+setinletassist(0, "message(setMin, setMax, increment, decrement, forceValue)");
 
 outlets = 1;
 setoutletassist(0, "value");
@@ -9,6 +9,14 @@ var min = 0;
 var max = 100;
 var current = 0;
 var wrapAround = false;
+
+declareattribute("current");
+
+function restore() {
+   print("restore", current);
+   outlet(0, current);
+}
+
 
 function setMin(value) {
 
