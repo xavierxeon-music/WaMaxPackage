@@ -14,7 +14,6 @@ include("_spatial.js");
 // set up
 
 var spatial = new Global("SpatialWorld");
-var indexMap = new Buffer("indexMap");
 
 //////////////////////////////////////////
 
@@ -26,23 +25,8 @@ function loadbang() {
    spatial.receiverList.push(this);
    if (undefined != spatial.updateReceiverCount)
       spatial.updateReceiverCount();
-
-   bang();
 }
 
-function bang() {
-
-   fileName = jsarguments[1];
-   var file = new File(fileName, "read");
-   index = 0;
-   while (file.isopen && file.position < file.eof) {
-      value = parseInt(file.readline());
-      //print(index, value);
-      indexMap.poke(1, index, value);
-      index++;
-   }
-   file.close();
-}
 
 function notifydeleted() {
 
