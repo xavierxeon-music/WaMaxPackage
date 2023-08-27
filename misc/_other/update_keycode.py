@@ -17,5 +17,5 @@ for key in keyList:
         key = 'space'
     keyDict[key] = code
 
-with open('keycode.json', 'w') as outfile:
+with open('../../patchers/_other/keycode.json', 'w') as outfile:
     json.dump(keyDict, outfile, indent=3)

@@ -35,8 +35,8 @@ for index in range(128):
 fromPush.close()
 toPush.close()
 
-with open('push2_colors.json', 'w') as outfile:
+with open('../../patchers/hardware/push2_colors.json', 'w') as outfile:
     json.dump(colorList, outfile, indent=3)
 
-with open('push2_whites.json', 'w') as outfile:
+with open('../../patchers/hardware/push2_whites.json', 'w') as outfile:
     json.dump(whiteList, outfile, indent=3)
