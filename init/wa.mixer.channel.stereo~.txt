@@ -1,2 +1,2 @@
-max objectfile wa.mixer.stereo~ wa.mixer.stereo~;
-max definesubstitution wa.mixer.stereo~ bpatcher @name wa.mixer.stereo~.maxpat;
+max objectfile wa.mixer.channel.stereo~ wa.mixer.channel.stereo~;
+max definesubstitution wa.mixer.channel.stereo~ bpatcher @name wa.mixer.channel.stereo~.maxpat;

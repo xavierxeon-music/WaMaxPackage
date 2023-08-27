@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 115.0, 2856.0, 1451.0 ],
+		"rect" : [ 1855.0, 203.0, 1951.0, 1339.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -54,11 +54,11 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-4",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 180.0, 195.0, 30.0, 30.0 ]
 				}
 
@@ -124,8 +124,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 60.0, 30.0, 305.0, 22.0 ],
-					"text" : "patcherargs \"Network WaStudio\" @dictname kraken_cc"
+					"patching_rect" : [ 60.0, 30.0, 183.0, 22.0 ],
+					"text" : "patcherargs \"Network WaStudio\""
 				}
 
 			}
@@ -218,6 +218,15 @@
 
 			}
  ],
+		"dependency_cache" : [ 			{
+				"name" : "kraken_device.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/hardware",
+				"patcherrelativepath" : "../../javascript/hardware",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.patcher",
 				"default" : 				{

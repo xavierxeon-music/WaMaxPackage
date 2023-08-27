@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="1" name="wa.mixer.bus_receive~">
+<c74object as_bpatcher="1" name="wa.mixer.bus.receive~">
     <digest>mixer bus receiver</digest>
     <description>mixer bus receiver</description>
     <metadatalist>
