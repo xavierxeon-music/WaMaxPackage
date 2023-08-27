@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "dsp.gen",
-		"rect" : [ 34.0, 171.0, 1951.0, 1395.0 ],
+		"rect" : [ 34.0, 199.0, 1951.0, 1367.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -155,7 +155,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "require(\"linalg\");\r\n\r\nDelay input(256);\r\nBuffer source(\"spatialSource\");\r\n\r\ndistance = in1;\r\nplane_x, plane_y, plane_z = in2, in3, in4;\r\n\r\n\r\n// dir in plane\r\nradius, azimuth, elevation = cartToSphere(plane_x, plane_y, plane_z);\r\n\r\n// azimuth\r\nif(azimuth > (3 * HALFPI))\r\n\tazimuth = azimuth - (3 * HALFPI);\r\nelse\r\n\tazimuth = azimuth + HALFPI;\r\n\t\r\nazimuth = 360 - round(azimuth * radtodeg);\r\nif(360 == azimuth)\r\n\tazimuth = 0;\r\n\t\r\n// inclinaton\r\nelevation = PI - elevation;\r\nelevation = round(elevation * radtodeg);\r\n\r\n// offset\r\nsourceOffset = (azimuth * 180) + elevation;\r\nsourceOffset *= 256;\r\n\r\n// inline comvolution\r\ninput.write(in5);\r\n\r\naudioLeft = 0;\r\naudioRight = 0;\r\n\r\nfor (i = 0; i < 256; i += 1) \r\n{\n\tconvLeft = peek(source, sourceOffset + i, 0);\t\t\n\tconvRight = peek(source, sourceOffset + i, 1);\t\t\n\t\n\taudioTap = input.read(i, interp=\"step\");\t\n\t\n\taudioLeft += (convLeft * audioTap);\r\n\taudioRight += (convRight * audioTap);\n}\n\r\n\r\n// get attenuation\r\nfactor =   distance / permialbility;\r\nfactor2 = -1.0 * factor * factor;\r\ndamp = exp(factor2);\r\n// damp = 1.0;\r\n\r\n// out\r\nout1 = audioLeft * damp;\r\nout2 = audioRight * damp;\r\n\r\n//debug\r\nout3 = azimuth;\r\nout4 = elevation;\r\nout5 = sourceOffset;\r\n",
+					"code" : "require(\"linalg\");\r\n\r\n// data\r\nParam sampleCount(256);\r\nDelay input(sampleCount);\r\nBuffer source(\"spatialSource\");\r\n\r\ndistance = in1;\r\nplane_x, plane_y, plane_z = in2, in3, in4;\r\n\r\n// dir in plane\r\nradius, azimuth, elevation = cartToSphere(plane_x, plane_y, plane_z);\r\n\r\n// azimuth\r\nif(azimuth > (3 * HALFPI))\r\n\tazimuth = azimuth - (3 * HALFPI);\r\nelse\r\n\tazimuth = azimuth + HALFPI;\r\n\t\r\nazimuth = 360 - round(azimuth * radtodeg);\r\nif(360 == azimuth)\r\n\tazimuth = 0;\r\n\t\r\n// inclinaton\r\nelevation = PI - elevation;\r\nelevation = round(elevation * radtodeg);\r\n\r\n// offset\r\nsourceOffset = (azimuth * 180) + elevation;\r\nsourceOffset *= sampleCount;\r\n\r\n// inline comvolution\r\ninput.write(in5);\r\n\r\naudioLeft = 0;\r\naudioRight = 0;\r\n\r\nfor (i = 0; i < sampleCount; i += 1) \r\n{\n\tconvLeft = peek(source, sourceOffset + i, 0);\t\t\n\tconvRight = peek(source, sourceOffset + i, 1);\t\t\n\t\n\taudioTap = input.read(i, interp=\"step\");\t\n\t\n\taudioLeft += (convLeft * audioTap);\r\n\taudioRight += (convRight * audioTap);\n}\n\r\n\r\n// get attenuation\r\nfactor = distance / permialbility;\r\nfactor2 = -1.0 * factor * factor;\r\ndamp = exp(factor2);\r\n// damp = 1.0;\r\n\r\n// out\r\nout1 = audioLeft * damp;\r\nout2 = audioRight * damp;\r\n\r\n//debug\r\nout3 = azimuth;\r\nout4 = elevation;\r\nout5 = sourceOffset;\r\n",
 					"fontface" : 0,
 					"fontname" : "<Monospaced>",
 					"fontsize" : 12.0,
