@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 143.0, 3772.0, 1423.0 ],
+		"rect" : [ 34.0, 143.0, 3368.0, 1423.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -65,9 +65,9 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "out",
 					"id" : "obj-45",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -718,9 +718,9 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "reset, color",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -1057,6 +1057,73 @@
 
 			}
  ],
+		"parameters" : 		{
+			"obj-38" : [ "live.text[3]", "live.text", 0 ],
+			"obj-40" : [ "live.slider", "live.slider", 0 ],
+			"obj-43" : [ "live.text[2]", "live.text[1]", 0 ],
+			"parameterbanks" : 			{
+				"0" : 				{
+					"index" : 0,
+					"name" : "",
+					"parameters" : [ "-", "-", "-", "-", "-", "-", "-", "-" ]
+				}
+
+			}
+,
+			"inherited_shortname" : 1
+		}
+,
+		"dependency_cache" : [ 			{
+				"name" : "_launchkey.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/hardware",
+				"patcherrelativepath" : "../../javascript/hardware",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "bpatcher_size.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
+				"patcherrelativepath" : "../../javascript/setup",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "launchkey_color.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/hardware",
+				"patcherrelativepath" : "../../javascript/hardware",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "launchkey_device.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/hardware",
+				"patcherrelativepath" : "../../javascript/hardware",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "launchkey_device_ui.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/hardware",
+				"patcherrelativepath" : "../../javascript/hardware",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "launchkey_input.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/hardware",
+				"patcherrelativepath" : "../../javascript/hardware",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "wa.setup.bpatcher.maxpat",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/setup",
+				"patcherrelativepath" : "../setup",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.patcher",
 				"default" : 				{

@@ -8,7 +8,12 @@
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="1"/>
-    <misc name="Outputs"/>
+    <misc name="Outputs">
+        <entry id="0" name="out">
+            <digest/>
+            <description>button pressed</description>
+        </entry>
+    </misc>
     <objarglist/>
     <attributelist/>
     <methodlist>

@@ -17,7 +17,7 @@
             <digest/>
             <description>bang if value equal to zero</description>
         </entry>
-        <entry id="3" name="released">
+        <entry id="0" name="released">
             <digest/>
             <description>bang if  value not equal to zero</description>
         </entry>
@@ -29,13 +29,13 @@
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute get="1" name="value" set="1" size="1" type="int">
+        <attribute get="1" name="number" set="1" size="1" type="int">
             <digest>controller number</digest>
             <description>the controller number to capture</description>
         </attribute>
     </attributelist>
     <methodlist>
-        <method name="value" standard="0">
+        <method name="number" standard="0">
             <arglist>
                 <arg name="" optional="0" type="int"/>
             </arglist>

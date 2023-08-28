@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 115.0, 3772.0, 1451.0 ],
+		"rect" : [ 34.0, 115.0, 3368.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -621,7 +621,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "reset",
+					"comment" : "reset, color",
 					"id" : "obj-32",
 					"index" : 0,
 					"maxclass" : "inlet",
