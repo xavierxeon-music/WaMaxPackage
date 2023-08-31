@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ -3406.0, 303.0, 2975.0, 1263.0 ],
+		"rect" : [ 34.0, 143.0, 2975.0, 1181.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -46,7 +46,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "float" ],
 					"patching_rect" : [ 300.0, 255.0, 29.5, 22.0 ],
-					"text" : "* 2."
+					"text" : "/ 2."
 				}
 
 			}
@@ -134,7 +134,7 @@
 						}
 ,
 						"classnamespace" : "dsp.gen",
-						"rect" : [ -3406.0, 275.0, 3372.0, 1291.0 ],
+						"rect" : [ 34.0, 143.0, 2975.0, 1181.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -998,7 +998,7 @@
 				"box" : 				{
 					"id" : "obj-27",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
+					"numinlets" : 3,
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
 					"patching_rect" : [ 192.0, 585.0, 54.0, 22.0 ],
@@ -1037,10 +1037,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 227.0, 630.0, 42.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"attr_comment" : ""
-					}
-,
 					"text" : "out~ 2"
 				}
 
@@ -1138,10 +1134,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 192.0, 660.0, 48.0, 23.0 ],
-					"saved_object_attributes" : 					{
-						"attr_comment" : ""
-					}
-,
 					"text" : "out~ 1"
 				}
 
