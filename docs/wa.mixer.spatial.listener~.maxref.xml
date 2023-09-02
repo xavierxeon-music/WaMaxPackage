@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 <c74object as_bpatcher="0" name="wa.mixer.spatial.listener~">
-    <digest>Hello World</digest>
+    <digest>spatial mixer listener </digest>
+    <description>based on head related transfer functions</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
