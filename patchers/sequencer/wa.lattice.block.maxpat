@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 255.0, 3765.0, 1311.0 ],
+		"rect" : [ 34.0, 311.0, 3765.0, 1255.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,42 @@
 		"subpatcher_template" : "OpenGrid",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-23",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "int", "int" ],
+					"patching_rect" : [ 98.5, 377.0, 48.0, 22.0 ],
+					"text" : "change"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-21",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "int", "int" ],
+					"patching_rect" : [ 1049.5, 377.0, 48.0, 22.0 ],
+					"text" : "change"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-6",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 600.0, 510.0, 60.0, 22.0 ],
+					"text" : "zl.change"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-16",
 					"maxclass" : "newobj",
@@ -106,7 +142,7 @@
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 319.0, 469.0, 71.0, 22.0 ],
-					"restore" : [ 0, 0, 0 ],
+					"restore" : [ 0, 1, 0.291338582677165, 0, 2, 0.37007874015748, 0, 3, 0.47244094488189, 1, 1, 0.393700787401575, 1, 2, 0.401574803149606, 1, 3, 0.511811023622047, 2, 0, 0.31496062992126, 2, 1, 0.511811023622047, 2, 2, 0.488188976377953, 2, 3, 0.346456692913386, 3, 0, 0.299212598425197, 3, 1, 0.401574803149606, 3, 2, 0.125984251968504 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0
@@ -124,7 +160,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 675.0, 516.0, 81.0, 22.0 ],
+					"patching_rect" : [ 675.0, 559.0, 81.0, 22.0 ],
 					"text" : "clear, $1 $2 1"
 				}
 
@@ -220,7 +256,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 35.0, 467.0, 143.0, 22.0 ],
+					"patching_rect" : [ 34.5, 512.0, 143.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_update_index"
 				}
@@ -233,7 +269,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "int" ],
-					"patching_rect" : [ 35.0, 377.0, 59.0, 22.0 ],
+					"patching_rect" : [ 34.5, 422.0, 59.0, 22.0 ],
 					"text" : "trigger b i"
 				}
 
@@ -245,7 +281,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 75.0, 422.0, 109.0, 22.0 ],
+					"patching_rect" : [ 74.5, 467.0, 109.0, 22.0 ],
 					"text" : "value #0_xindex"
 				}
 
@@ -316,7 +352,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 990.0, 467.0, 143.0, 22.0 ],
+					"patching_rect" : [ 990.5, 512.0, 143.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_update_index"
 				}
@@ -329,7 +365,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "int" ],
-					"patching_rect" : [ 990.0, 377.0, 59.0, 22.0 ],
+					"patching_rect" : [ 990.5, 422.0, 59.0, 22.0 ],
 					"text" : "trigger b i"
 				}
 
@@ -341,7 +377,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1030.0, 422.0, 109.0, 22.0 ],
+					"patching_rect" : [ 1030.5, 467.0, 109.0, 22.0 ],
 					"text" : "value #0_yindex"
 				}
 
@@ -413,7 +449,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 780.0, 467.0, 58.0, 22.0 ],
+					"patching_rect" : [ 780.0, 510.0, 58.0, 22.0 ],
 					"text" : "loadbang"
 				}
 
@@ -425,7 +461,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 780.0, 516.0, 35.0, 22.0 ],
+					"patching_rect" : [ 780.0, 559.0, 35.0, 22.0 ],
 					"text" : "0 0 1"
 				}
 
@@ -467,7 +503,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "list", "list" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 780.0, 572.0, 105.0, 105.0 ],
+					"patching_rect" : [ 780.0, 615.0, 105.0, 105.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 135.0, 135.0 ]
 				}
@@ -477,11 +513,11 @@
 				"box" : 				{
 					"comment" : "step",
 					"id" : "obj-5",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 600.0, 512.0, 30.0, 30.0 ]
+					"patching_rect" : [ 600.0, 555.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -489,7 +525,7 @@
 				"box" : 				{
 					"comment" : "y",
 					"id" : "obj-4",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -531,7 +567,7 @@
 				"box" : 				{
 					"comment" : "message, x",
 					"id" : "obj-1",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -544,7 +580,7 @@
 				"box" : 				{
 					"comment" : "value",
 					"id" : "obj-2",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -813,9 +849,16 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-6", 0 ],
+					"source" : [ "obj-44", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-14", 0 ],
 					"order" : 0,
-					"source" : [ "obj-44", 0 ]
+					"source" : [ "obj-6", 0 ]
 				}
 
 			}
@@ -823,7 +866,7 @@
 				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
 					"order" : 1,
-					"source" : [ "obj-44", 0 ]
+					"source" : [ "obj-6", 0 ]
 				}
 
 			}
@@ -872,36 +915,6 @@
 
 			}
  ],
-		"dependency_cache" : [ 			{
-				"name" : "bpatcher_size.js",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
-				"patcherrelativepath" : "../../javascript/setup",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "encoder.js",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/_other",
-				"patcherrelativepath" : "../../javascript/_other",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "wa.encoder.maxpat",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/_other",
-				"patcherrelativepath" : "../_other",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "wa.setup.bpatcher.maxpat",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/setup",
-				"patcherrelativepath" : "../setup",
-				"type" : "JSON",
-				"implicit" : 1
-			}
- ],
-		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.patcher",
 				"default" : 				{

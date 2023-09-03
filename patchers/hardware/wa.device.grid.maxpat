@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 171.0, 3765.0, 1395.0 ],
+		"rect" : [ 34.0, 311.0, 3765.0, 1255.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,50 @@
 		"subpatcher_template" : "OpenGrid",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-38",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 285.0, 435.0, 61.0, 22.0 ],
+					"text" : "print MIDI"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-37",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 1005.0, 165.0, 78.0, 22.0 ],
+					"text" : "print COLOR"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-36",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 645.0, 285.0, 82.0, 22.0 ],
+					"text" : "print RESULT"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-35",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 555.0, 180.0, 78.0, 22.0 ],
+					"text" : "print QUERY"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-28",
 					"maxclass" : "newobj",
@@ -147,14 +191,14 @@
 					"numinlets" : 2,
 					"numoutlets" : 4,
 					"outlettype" : [ "dictionary", "", "", "" ],
-					"patching_rect" : [ 675.0, 167.0, 77.0, 22.0 ],
+					"patching_rect" : [ 675.0, 167.0, 103.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0
 					}
 ,
-					"text" : "dict mapping"
+					"text" : "dict grid_mapping"
 				}
 
 			}
@@ -202,7 +246,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1770.0, 944.5, 117.0, 22.0 ],
+					"patching_rect" : [ 1770.0, 944.5, 123.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_midi_out"
 				}
@@ -214,7 +258,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1029.0, 465.0, 117.0, 22.0 ],
+					"patching_rect" : [ 1029.0, 465.0, 123.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_midi_out"
 				}
@@ -226,7 +270,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 884.5, 465.0, 117.0, 22.0 ],
+					"patching_rect" : [ 884.5, 465.0, 123.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_midi_out"
 				}
@@ -238,7 +282,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 750.0, 465.0, 117.0, 22.0 ],
+					"patching_rect" : [ 750.0, 465.0, 123.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_midi_out"
 				}
@@ -250,7 +294,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 435.0, 315.0, 117.0, 22.0 ],
+					"patching_rect" : [ 435.0, 315.0, 123.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_midi_out"
 				}
@@ -263,7 +307,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 240.0, 390.0, 129.0, 22.0 ],
+					"patching_rect" : [ 240.0, 390.0, 136.0, 22.0 ],
 					"style" : "wa.receive",
 					"text" : "receive #0_midi_out"
 				}
@@ -425,14 +469,14 @@
 					"numinlets" : 2,
 					"numoutlets" : 4,
 					"outlettype" : [ "dictionary", "", "", "" ],
-					"patching_rect" : [ 48.5, 152.0, 77.0, 22.0 ],
+					"patching_rect" : [ 48.5, 152.0, 103.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0
 					}
 ,
-					"text" : "dict mapping"
+					"text" : "dict grid_mapping"
 				}
 
 			}
@@ -460,60 +504,19 @@
 			}
 , 			{
 				"box" : 				{
-					"data" : 					{
-						"midi_to_local" : 						{
-							"0" : 41,
-							"1" : 42,
-							"2" : 43,
-							"3" : 44,
-							"4" : 31,
-							"5" : 32,
-							"6" : 33,
-							"7" : 34,
-							"8" : 21,
-							"9" : 22,
-							"10" : 23,
-							"11" : 24,
-							"12" : 11,
-							"13" : 12,
-							"14" : 13,
-							"15" : 14
-						}
-,
-						"local_to_midi" : 						{
-							"11" : 12,
-							"12" : 13,
-							"13" : 14,
-							"14" : 15,
-							"21" : 8,
-							"22" : 9,
-							"23" : 10,
-							"24" : 11,
-							"31" : 4,
-							"32" : 5,
-							"33" : 6,
-							"34" : 7,
-							"41" : 0,
-							"42" : 1,
-							"43" : 2,
-							"44" : 3
-						}
-
-					}
-,
 					"id" : "obj-4",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 4,
 					"outlettype" : [ "dictionary", "", "", "" ],
-					"patching_rect" : [ 30.0, 523.0, 139.0, 22.0 ],
+					"patching_rect" : [ 30.0, 523.0, 205.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"embed" : 1,
+						"embed" : 0,
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0
 					}
 ,
-					"text" : "dict mapping @embed 1"
+					"text" : "dict grid_mapping grid_mapping.json"
 				}
 
 			}
@@ -753,7 +756,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 231.0, 540.0, 270.0, 74.0 ],
+					"patching_rect" : [ 210.0, 570.0, 270.0, 74.0 ],
 					"text" : "Red(id, value) = NotOff = 128,\nGreen(id, value) = NoteOn = 144,\nBlue(id, value) = AfterTouch = 160,\nState(id, value) = Control Change = 176\nClearAll(0) = ProgramChange =  208"
 				}
 
@@ -910,6 +913,15 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-23", 0 ],
+					"order" : 1,
+					"source" : [ "obj-24", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-38", 0 ],
+					"order" : 0,
 					"source" : [ "obj-24", 0 ]
 				}
 
@@ -1100,6 +1112,14 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-36", 0 ],
+					"order" : 3,
+					"source" : [ "obj-59", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-43", 0 ],
 					"order" : 2,
 					"source" : [ "obj-59", 1 ]
@@ -1124,7 +1144,16 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-35", 0 ],
+					"order" : 1,
+					"source" : [ "obj-60", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-61", 0 ],
+					"order" : 0,
 					"source" : [ "obj-60", 0 ]
 				}
 
@@ -1139,6 +1168,15 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-27", 0 ],
+					"order" : 1,
+					"source" : [ "obj-65", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-37", 0 ],
+					"order" : 0,
 					"source" : [ "obj-65", 0 ]
 				}
 
