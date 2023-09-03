@@ -5,17 +5,23 @@ setinletassist(0, "message(setMin, setMax, increment, decrement, forceValue)");
 outlets = 1;
 setoutletassist(0, "value");
 
+//////////////////////////////////////////
+
 var min = 0;
 var max = 100;
 var current = 0;
 var wrapAround = false;
 
-declareattribute("current");
+function getvalueof() {
+   return current
+}
 
-function restore() {
-   print("restore", current);
+function setvalueof(value) {
+   current = value
    outlet(0, current);
 }
+
+//////////////////////////////////////////
 
 
 function setMin(value) {

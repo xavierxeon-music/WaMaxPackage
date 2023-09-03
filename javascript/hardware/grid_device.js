@@ -12,7 +12,7 @@ setoutletassist(2, "blue");
 function parseColor(name) {
 
    color = new Color(name);
-   outlet(0, color.red / 2);
-   outlet(1, color.green / 2);
    outlet(2, color.blue / 2);
+   outlet(1, color.green / 2);
+   outlet(0, color.red / 2);
 }
