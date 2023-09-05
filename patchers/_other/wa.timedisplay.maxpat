@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 255.0, 3365.0, 1311.0 ],
+		"rect" : [ 34.0, 115.0, 3342.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -42,7 +42,6 @@
 				"box" : 				{
 					"fontname" : "Verdana",
 					"fontsize" : 12.0,
-					"hidden" : 1,
 					"id" : "obj-7",
 					"maxclass" : "comment",
 					"numinlets" : 1,
@@ -209,7 +208,7 @@
 					"patching_rect" : [ 69.0, 510.0, 126.0, 29.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 105.0, 29.0 ],
-					"text" : "00:01:20",
+					"text" : "00:00:00",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 				}
 
