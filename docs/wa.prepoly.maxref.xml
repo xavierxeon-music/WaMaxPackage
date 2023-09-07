@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="0" name="wa.prepoly">
-    <digest>Hello World</digest>
+<c74object name="wa.prepoly" patcher_type="0">
+    <digest>pre poly</digest>
+    <description>to be used before a <o>poly~</o><br/>converts incoming pitch and velocity into poly targets</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
@@ -10,10 +11,16 @@
     <misc name="Outputs">
         <entry id="1" name="">
             <digest/>
+            <description>the poly target</description>
         </entry>
     </misc>
     <objarglist/>
     <attributelist/>
-    <methodlist/>
+    <methodlist>
+        <method name="int" standard="1">
+            <digest/>
+            <description>left: midi note<br/>right: velocity</description>
+        </method>
+    </methodlist>
     <seealsolist/>
 </c74object>

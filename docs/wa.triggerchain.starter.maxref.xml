@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="0" name="wa.triggerchain.starter">
-    <digest>Hello World</digest>
+<c74object name="wa.triggerchain.starter" patcher_type="0">
+    <digest>start trigger chain</digest>
+    <description>wait for next bar and start the connected <o>wa.triggerchain.stage</o></description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
@@ -11,9 +12,18 @@
         <entry id="0" name="">
             <digest/>
         </entry>
+        <entry id="1" name="bus">
+            <digest/>
+            <description>connect to the next stage</description>
+        </entry>
     </misc>
     <objarglist/>
     <attributelist/>
-    <methodlist/>
+    <methodlist>
+        <method name="bang" standard="1">
+            <digest/>
+            <description>start the chain</description>
+        </method>
+    </methodlist>
     <seealsolist/>
 </c74object>

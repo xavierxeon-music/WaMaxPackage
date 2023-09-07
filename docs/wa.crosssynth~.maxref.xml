@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="0" name="wa.crosssynth~">
+<c74object name="wa.crosssynth~" patcher_type="0">
     <digest>crosssynth to signals</digest>
     <description>crosssynth to signals</description>
     <metadatalist>
@@ -11,14 +11,21 @@
     <misc name="Outputs">
         <entry id="1" name="signalBlend">
             <digest/>
-            <description>the blended signal</description>
+            <description>phase from left signal<br/></description>
+        </entry>
+        <entry id="2" name="signalBlend">
+            <digest/>
+            <description>phase from both signals<br/></description>
+        </entry>
+        <entry id="3" name="signalBlend">
+            <digest/>
+            <description> phase from right signal</description>
         </entry>
     </misc>
     <objarglist/>
     <attributelist>
         <attribute get="1" name="mode" set="1" size="1" type="symbol">
-            <digest>mode</digest>
-            <description>0 = use phase from both signals<br/>1 = phase from left input<br/>1 = phase from right input</description>
+            <digest/>
         </attribute>
     </attributelist>
     <methodlist>
