@@ -23,15 +23,11 @@
         </entry>
     </misc>
     <objarglist/>
-    <attributelist>
-        <attribute get="1" name="mode" set="1" size="1" type="symbol">
-            <digest/>
-        </attribute>
-    </attributelist>
+    <attributelist/>
     <methodlist>
         <method name="signal" standard="1">
             <digest/>
-            <description>the 2 signals to cross synthesise</description>
+            <description>lenf, right: the 2 signals to cross synthesise</description>
         </method>
     </methodlist>
     <seealsolist/>

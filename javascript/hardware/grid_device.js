@@ -2,17 +2,29 @@ autowatch = 1;
 
 // inlets and outlets
 inlets = 1;
-setinletassist(0, "color");
+setinletassist(0, "message");
 
-outlets = 3;
-setoutletassist(0, "red");
-setoutletassist(1, "green");
-setoutletassist(2, "blue");
+outlets = 1;
+setoutletassist(0, "midi");
 
-function parseColor(name) {
+var lookup = new Dict("grid_mapping");
+
+var redMidi = 128;
+var greenMidi = 144;
+var blueMidi = 160;
+
+function parseColor(localId, name) {
 
    color = new Color(name);
-   outlet(2, color.blue / 2);
-   outlet(1, color.green / 2);
-   outlet(0, color.red / 2);
+   red = Math.floor(color.red / 2)
+   green = Math.floor(color.green / 2)
+   blue = Math.floor(color.blue / 2)
+
+   id = lookup.get("local_to_midi::" + localId);
+
+   // print(id, name, red, green, blue);
+
+   outlet(0, [redMidi, id, red]);
+   outlet(0, [greenMidi, id, green]);
+   outlet(0, [blueMidi, id, blue]);
 }

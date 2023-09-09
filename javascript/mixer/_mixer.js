@@ -54,7 +54,6 @@ mixer.disableSolo = function (id) {
 }
 
 
-mixer.callHandles.local = 1;
 mixer.callHandles = function (unmute) {
 
    for (var index = 0; index < this.soloHandleList.length; index++) {
