@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 171.0, 2823.0, 1395.0 ],
+		"rect" : [ 34.0, 199.0, 3579.0, 1367.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -143,7 +143,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 853.0, 167.0, 82.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "grid_device.js",
+						"filename" : "grid_device",
 						"parameter_enable" : 0
 					}
 ,

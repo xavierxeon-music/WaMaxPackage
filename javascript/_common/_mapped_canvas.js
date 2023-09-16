@@ -34,6 +34,7 @@ MappedCanvas.prototype.setColor = function (color) {
       return;
 
    this.ctx.fillStyle = "#" + fillColor.hex;
+   this.ctx.strokeStyle = "#" + fillColor.hex;
 }
 
 MappedCanvas.prototype.setFontSize = function (fontSize) {

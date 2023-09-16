@@ -1,0 +1,2 @@
+max objectfile wa.triggerblock wa.triggerblock;
+max definesubstitution wa.triggerblock bpatcher @name wa.triggerblock.maxpat;
