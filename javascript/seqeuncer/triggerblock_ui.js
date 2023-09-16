@@ -4,8 +4,9 @@ autowatch = 1;
 inlets = 1;
 setinletassist(0, "message");
 
-outlets = 1;
+outlets = 2;
 setoutletassist(0, "gate");
+setoutletassist(1, "column");
 
 include("_mapped_canvas.js");
 
@@ -15,11 +16,14 @@ var padSize = 8;
 var margin = 1;
 var mc = new MappedCanvas(this, 8 * padSize, 3 * padSize);
 
-var currentColumn = 0;
+var minColumn = 0;
+var maxColumn = 7;
+var updateOnBang = false;
+
+var currentColumn = minColumn;
 var currentRow = 0;
 var valueList = [];
 
-var updateOnBang = false;
 
 
 //////////////////////////////////////////
@@ -28,13 +32,15 @@ function bang() {
 
    if (updateOnBang) {
       currentColumn += 1;
-      if (currentColumn >= 8) {
-         currentColumn = 0;
+      if (currentColumn > maxColumn) {
+         currentColumn = minColumn;
 
          currentRow += 1;
          if (currentRow >= valueList.length)
             currentRow = 0;
       }
+
+      outlet(1, currentColumn);
    }
 
    mc.draw();
@@ -48,20 +54,50 @@ function bang() {
 }
 
 function add(value) {
+
+   if (value < 0 || value > 255)
+      return;
+
    valueList.push(value);
    mc.draw();
 }
 
 function reset() {
-   currentColumn = 0;
+
+   currentColumn = minColumn
    currentRow = 0;
    updateOnBang = false;
    mc.draw();
 }
 
 function clear() {
+
    valueList = [];
    reset();
+}
+
+function min(value) {
+
+   if (value < 0 || value > 7)
+      return;
+
+   if (value >= maxColumn)
+      return;
+
+   minColumn = value;
+   mc.draw();
+}
+
+function max(value) {
+
+   if (value < 0 || value > 7)
+      return;
+
+   if (value <= minColumn)
+      return;
+
+   maxColumn = value;
+   mc.draw();
 }
 
 paint.local = 1;
@@ -78,7 +114,7 @@ function paint() {
 
          if (0 == rowOffset && col == currentColumn)
             mc.setColor("ffff00");
-         else if (hasContent(rowOffset))
+         else if (hasContent(rowOffset) && col >= minColumn && col <= maxColumn)
             mc.setColor("00ffff");
          else
             mc.setColor("777777");
