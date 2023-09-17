@@ -9,9 +9,9 @@ setoutletassist(0, "pitch");
 
 var values = [];
 
-function setValues(values) {
+function setValues(newValues) {
 
-   values = values.split(" ");
+   values = newValues.split(" ");
 }
 
 function stageIndex(index) {
