@@ -1,2 +1,0 @@
-max objectfile wa.nosferatu.twelve wa.nosferatu.twelve;
-max definesubstitution wa.nosferatu.twelve bpatcher @name wa.nosferatu.twelve.maxpat;

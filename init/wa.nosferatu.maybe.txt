@@ -1,2 +1,0 @@
-max objectfile wa.nosferatu.maybe wa.nosferatu.maybe;
-max definesubstitution wa.nosferatu.maybe bpatcher @name wa.nosferatu.maybe.maxpat;
