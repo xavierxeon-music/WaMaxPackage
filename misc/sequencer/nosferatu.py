@@ -1,4 +1,4 @@
-#/usr/bin/env python3
+#!/usr/bin/env python3
 
 # use [thispatcher] -> path in abstraction to get path of package
 # use [node.script] and node.js to start this python script (arg is name of json file)
