@@ -1,10 +1,18 @@
+const spawn = require('child_process').spawn;
+const maxAPI = require('max-api');
 const path = require('path');
-const Max = require('max-api');
 
-// This will be printed directly to the Max console
-Max.post(`Loaded the ${path.basename(__filename)} script`);
+maxAPI.addHandler("packagePath", () => {
 
-Max.addHandler("launch", (program, ...args) => {
-   Max.outlet(program);
-   Max.outlet(...args);
+   var packagePath = path.resolve(path.dirname(__filename) + "/../../");
+   maxAPI.outlet(["packagePath", packagePath]);
+});
+
+maxAPI.addHandler("launch", (program, ...args) => {
+
+   var appArgs = []
+   for (const item of args)
+      appArgs.push(item);
+
+   spawn(program, appArgs);
 });
