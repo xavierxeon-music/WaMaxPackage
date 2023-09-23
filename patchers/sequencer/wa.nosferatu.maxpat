@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 41.0, 286.0, 1807.0, 1041.0 ],
+		"rect" : [ 34.0, 314.0, 2614.0, 1252.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -57,8 +57,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 825.0, 165.0, 243.0, 22.0 ],
-					"text" : "sprintf %s/misc/sequencer/nosfratu_ui.js %s"
+					"patching_rect" : [ 495.0, 165.0, 316.0, 22.0 ],
+					"text" : "sprintf python %s/misc/sequencer/nosferatu_ui.py \\\"%s\\\"\\\""
 				}
 
 			}
@@ -69,7 +69,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "bang" ],
-					"patching_rect" : [ 825.0, 71.0, 63.0, 22.0 ],
+					"patching_rect" : [ 495.0, 71.0, 63.0, 22.0 ],
 					"text" : "trigger b b"
 				}
 
@@ -81,7 +81,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 825.0, 120.0, 144.0, 22.0 ],
+					"patching_rect" : [ 495.0, 120.0, 144.0, 22.0 ],
 					"style" : "wa.buffer",
 					"text" : "value #0_packagePath"
 				}
@@ -94,7 +94,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1049.0, 120.0, 126.0, 22.0 ],
+					"patching_rect" : [ 734.0, 120.0, 126.0, 22.0 ],
 					"style" : "wa.buffer",
 					"text" : "value #0_file_name"
 				}
@@ -107,7 +107,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 825.0, 30.0, 103.0, 22.0 ],
+					"patching_rect" : [ 495.0, 30.0, 103.0, 22.0 ],
 					"text" : "receive #0_edit"
 				}
 
@@ -181,7 +181,7 @@
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 40.5, 315.0, 71.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "nosferatu.js",
+						"filename" : "nosferatu",
 						"parameter_enable" : 0
 					}
 ,
@@ -222,7 +222,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 1029.0, 354.5, 87.0, 22.0 ],
+					"patching_rect" : [ 699.0, 354.5, 87.0, 22.0 ],
 					"text" : "select success"
 				}
 
@@ -234,7 +234,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 1029.0, 309.5, 63.0, 22.0 ],
+					"patching_rect" : [ 699.0, 309.5, 63.0, 22.0 ],
 					"text" : "route start"
 				}
 
@@ -246,7 +246,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 825.0, 354.5, 144.0, 22.0 ],
+					"patching_rect" : [ 495.0, 354.5, 144.0, 22.0 ],
 					"style" : "wa.buffer",
 					"text" : "value #0_packagePath"
 				}
@@ -259,20 +259,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 825.0, 309.5, 109.0, 22.0 ],
+					"patching_rect" : [ 495.0, 309.5, 109.0, 22.0 ],
 					"text" : "route packagePath"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-12",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 207.0, 369.5, 593.0, 22.0 ],
-					"text" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage"
 				}
 
 			}
@@ -283,31 +271,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1005.0, 210.0, 79.0, 22.0 ],
+					"patching_rect" : [ 735.0, 210.0, 79.0, 22.0 ],
 					"text" : "packagePath"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-18",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 750.0, 264.5, 47.0, 22.0 ],
-					"text" : "print IN"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-14",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 825.0, 210.0, 145.0, 22.0 ],
-					"text" : "prepend launch python -u"
 				}
 
 			}
@@ -318,12 +283,10 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 825.0, 264.5, 223.0, 22.0 ],
+					"patching_rect" : [ 495.0, 264.5, 223.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"autostart" : 1,
 						"defer" : 0,
-						"node_bin_path" : "",
-						"npm_bin_path" : "",
 						"watch" : 1
 					}
 ,
@@ -421,33 +384,8 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-12", 1 ],
-					"order" : 1,
-					"source" : [ "obj-13", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-15", 0 ],
-					"order" : 0,
 					"source" : [ "obj-13", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-11", 0 ],
-					"order" : 0,
-					"source" : [ "obj-14", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-18", 0 ],
-					"order" : 1,
-					"source" : [ "obj-14", 0 ]
 				}
 
 			}
@@ -530,7 +468,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-14", 0 ],
+					"destination" : [ "obj-11", 0 ],
 					"source" : [ "obj-27", 0 ]
 				}
 
@@ -580,7 +518,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
-					"midpoints" : [ 1038.5, 387.5, 1128.0, 387.5, 1128.0, 195.5, 1014.5, 195.5 ],
+					"midpoints" : [ 708.5, 387.5, 833.0, 387.5, 833.0, 195.5, 744.5, 195.5 ],
 					"source" : [ "obj-8", 0 ]
 				}
 
