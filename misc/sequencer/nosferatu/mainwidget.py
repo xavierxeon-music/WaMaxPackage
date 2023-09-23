@@ -38,12 +38,6 @@ class MainWidget(QMainWindow):
 
         _socketName = "nosferatu_editor"
 
-        def serverConnected():
-            socket = self._server.nextPendingConnection()
-            socket.waitForReadyRead()
-            fileName = bytes(socket.readAll()).decode()
-            self.load(fileName)
-
         socket = QLocalSocket()
         socket.connectToServer(_socketName)
         if socket.waitForConnected():  # found server
@@ -52,11 +46,17 @@ class MainWidget(QMainWindow):
             return False
         elif not self._server:
             self._server = QLocalServer()
-            self._server.newConnection.connect(serverConnected)
+            self._server.newConnection.connect(self._serverConnected)
             self._server.listen(_socketName)
 
         self.load(fileName)
         return True
+
+    def _serverConnected(self):
+        socket = self._server.nextPendingConnection()
+        socket.waitForReadyRead()
+        fileName = bytes(socket.readAll()).decode()
+        self.load(fileName)
 
     def load(self, fileName):
 
