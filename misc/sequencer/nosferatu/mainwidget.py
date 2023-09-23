@@ -7,12 +7,16 @@ from PySide6.QtWidgets import QTextEdit
 from PySide6.QtNetwork import QLocalServer, QLocalSocket
 
 
+from .eventdata import EventData
+
+
 class MainWidget(QMainWindow):
 
     def __init__(self):
 
         super().__init__()
         self._server = None
+        self._eventData = EventData()
 
         self.rawView = QTextEdit('Hello')
         self.setCentralWidget(self.rawView)
@@ -61,6 +65,7 @@ class MainWidget(QMainWindow):
     def load(self, fileName):
 
         self.setWindowTitle(f'Nosferatu Editor [{fileName}]')
+        self._eventData.load(fileName)
 
         with open(fileName, 'r') as infile:
             text = infile.read()
