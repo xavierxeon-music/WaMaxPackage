@@ -17,37 +17,32 @@ var events = []
 var length = 0;
 
 var current = 0;
-var lastPitch = {};
+var lastTimePoiint = {};
 
 function bang() {
 
    if (0 == loop && current >= length)
       return;
 
-   activePitch = {};
+   timePoint = events[current]
 
-   currentEventList = events[current]
-   for (var index in currentEventList) {
-      note = currentEventList[index];
-      pitch = parseInt(note[0]);
-      velocity = parseInt(note[1]);
-
-      outlet(0, pitch);
-      outlet(1, velocity);
-
-      activePitch[pitch] = true;
-      //print("active", pitch);
-   }
-
-   for (var pitch in lastPitch) {
-      //print("last", pitch, pitch in activePitch);
-      if (pitch in activePitch)
+   // note off
+   for (var pitch in lastTimePoiint) {
+      if (pitch in timePoint) // only change velocity
          continue;
 
       outlet(0, parseInt(pitch));
       outlet(1, 0);
    }
-   lastPitch = activePitch;
+
+   // note on
+   for (var pitch in timePoint) {
+      var velocity = timePoint[pitch]
+      outlet(0, parseInt(pitch));
+      outlet(1, velocity);
+   }
+
+   lastTimePoiint = timePoint;
 
    current += 1;
    if (1 == loop && current >= length)

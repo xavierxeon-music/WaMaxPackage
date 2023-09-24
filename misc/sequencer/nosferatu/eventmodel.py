@@ -22,11 +22,13 @@ class EventModel(QStandardItemModel):
 
         activeEventList = self._eventData.compileActiveEventList()
         for col in range(self._eventData.length):
-            for entry in activeEventList[col]:
 
-                value1Name = str(entry[0])
+            timePoint = activeEventList[col]
+            for rowNumber, value in timePoint.items():
+                value1Name = rowNumber
+                rowNumber = int(rowNumber)
                 if self._eventData.asNotes:
-                    noteValue = entry[0]
+                    noteValue = rowNumber
                     noteIndex = noteValue % 12
                     octave = int((noteValue - noteIndex) / 12)
 
@@ -37,10 +39,10 @@ class EventModel(QStandardItemModel):
                 timeItem.setEditable(False)
 
                 value1Item = QStandardItem(value1Name)
-                value1Item.setData(entry[0])
+                value1Item.setData(rowNumber)
                 value1Item.setEditable(False)
 
-                value2Item = QStandardItem(str(entry[1]))
+                value2Item = QStandardItem(str(value))
 
                 self.invisibleRootItem().appendRow([timeItem, value1Item, value2Item])
 

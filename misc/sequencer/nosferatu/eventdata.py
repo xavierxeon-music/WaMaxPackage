@@ -102,11 +102,11 @@ class EventData(QObject):
         acticveEventList = []
 
         for col in range(self.length):
-            timePoint = []
+            timePoint = dict()
             for rowNumber in range(128):
                 cell = self.eventList[col][rowNumber]
                 if cell.active:
-                    timePoint.append([rowNumber, cell.value])
+                    timePoint[rowNumber] = cell.value
 
             acticveEventList.append(timePoint)
 
@@ -117,10 +117,9 @@ class EventData(QObject):
         for col in range(self.length):
             if col >= len(activeEventList):
                 break
-            for entry in activeEventList[col]:
-                rowNumber = entry[0]
-                value = entry[1]
-
+            timePoint = activeEventList[col]
+            for rowNumber, value in timePoint.items():
+                rowNumber = int(rowNumber)
                 cell = self.eventList[col][rowNumber]
                 cell.active = True
                 cell.value = value
