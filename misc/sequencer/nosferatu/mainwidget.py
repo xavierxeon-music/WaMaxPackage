@@ -1,8 +1,10 @@
 from PySide6.QtWidgets import QMainWindow
 
+import os
+
 from PySide6.QtCore import QSettings, Qt
-from PySide6.QtGui import QIcon
-from PySide6.QtWidgets import QDockWidget, QWidget, QFileDialog
+from PySide6.QtGui import QIcon,  QKeySequence
+from PySide6.QtWidgets import QDockWidget, QWidget, QFileDialog, QLabel, QCheckBox, QSpinBox
 from PySide6.QtNetwork import QLocalServer, QLocalSocket
 
 
@@ -35,11 +37,7 @@ class MainWidget(QMainWindow):
         self._noteView = NoteView(self._eventData)
         self.setCentralWidget(self._noteView)
 
-        fileToolBar = self.addToolBar('File')
-        fileToolBar.setObjectName('File')
-        fileToolBar.setMovable(False)
-        fileToolBar.addAction(QIcon(), 'Load', self.load)
-        fileToolBar.addAction(QIcon(), 'Save', self.save)
+        self._addControls()
 
         qtsettings = QSettings()
         self.restoreGeometry(qtsettings.value('geometry'))
@@ -89,6 +87,14 @@ class MainWidget(QMainWindow):
         self._eventData.load(fileName)
         self.setWindowModified(False)
 
+        self.asNotesCheck.blockSignals(True)
+        self.asNotesCheck.setChecked(self._eventData.asNotes)
+        self.asNotesCheck.blockSignals(False)
+
+        self.lengthSpin.blockSignals(True)
+        self.lengthSpin.setValue(self._eventData.length)
+        self.lengthSpin.blockSignals(False)
+
     def saveFile(self, fileName):
 
         self._currentFile = fileName
@@ -114,6 +120,50 @@ class MainWidget(QMainWindow):
         fileName = saveLocation[0]
         self.saveFile(fileName)
 
+    def _quickSave(self):
+
+        if not self._currentFile:
+            return
+
+        self._eventData.save(self._currentFile)
+        self.setWindowModified(False)
+
     def _dataModified(self):
 
         self.setWindowModified(True)
+
+    def _addControls(self):
+
+        iconPath = os.path.dirname(__file__) + '/icons/'
+
+        fileToolBar = self.addToolBar('File')
+        fileToolBar.setObjectName('File')
+        fileToolBar.setMovable(False)
+        fileToolBar.addAction(QIcon(iconPath + 'new.svg'), 'New', self.load)
+        fileToolBar.addAction(QIcon(iconPath + 'load.svg'), 'Load', self.load)
+        fileToolBar.addAction(QIcon(iconPath + 'save.svg'), 'Save', self.save)
+
+        self.asNotesCheck = QCheckBox('as note')
+        self.asNotesCheck.clicked.connect(self._eventData.setAsNotes)
+
+        self.lengthSpin = QSpinBox()
+        self.lengthSpin.setRange(1, 256)
+
+        def updateLength():
+
+            value = self.lengthSpin.value()
+            self._eventData.setLength(value)
+
+        self.lengthSpin.editingFinished.connect(updateLength)
+
+        lengthLabel = QLabel('length')
+
+        editToolBar = self.addToolBar('Edit')
+        editToolBar.setObjectName('Edit')
+        editToolBar.addWidget(self.asNotesCheck)
+        editToolBar.addWidget(self.lengthSpin)
+        editToolBar.addWidget(lengthLabel)
+
+        fileMenu = self.menuBar().addMenu('File')
+        quickSaveAction = fileMenu.addAction('QuickSave', self._quickSave)
+        quickSaveAction.setShortcut(QKeySequence(QKeySequence.Save))

@@ -61,6 +61,8 @@ class NoteModel(QStandardItemModel):
                     rowItem.setBackground(QColor(250, 250, 250))
                 elif 0 == col % 4:
                     rowItem.setBackground(QColor(255, 255, 240))
+                else:
+                    rowItem.setBackground(QColor(255, 255, 255))
 
     def toggle(self, index):
 

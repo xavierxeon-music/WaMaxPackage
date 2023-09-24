@@ -1,3 +1,4 @@
+
 from PySide6.QtCore import QObject
 
 import json
@@ -26,6 +27,26 @@ class EventData(QObject):
 
         self.eventList = []
 
+    def setLength(self, value):
+
+        print('setLength', value)
+
+        activeEventList = self.compileActiveEventList()
+        self.length = value
+
+        self._createEmptyEventList()
+        self._applyActiveEventList(activeEventList)
+
+        self.loaded.emit()
+        self.updated.emit()
+
+    def setAsNotes(self, value):
+
+        self.asNotes = value
+
+        self.loaded.emit()
+        self.updated.emit()
+
     def load(self, fileName):
 
         with open(fileName, 'r') as infile:
@@ -42,8 +63,8 @@ class EventData(QObject):
 
     def save(self, fileName):
 
-        acticveEventList = self.compileActiveEventList()
-        content = {'length': self.length, 'events': acticveEventList}
+        activeEventList = self.compileActiveEventList()
+        content = {'length': self.length, 'events': activeEventList}
         with open(fileName, 'w') as outfile:
             json.dump(content, outfile, indent=3)
 
@@ -94,6 +115,8 @@ class EventData(QObject):
     def _applyActiveEventList(self, activeEventList):
 
         for col in range(self.length):
+            if col >= len(activeEventList):
+                break
             for entry in activeEventList[col]:
                 rowNumber = entry[0]
                 value = entry[1]
