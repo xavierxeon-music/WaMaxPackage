@@ -10,3 +10,9 @@ class EventView(QTreeView):
         super().__init__()
         self._model = EventModel(eventData)
         self.setModel(self._model)
+        self._model.modelReset.connect(self.modelUpdate)
+
+    def modelUpdate(self):
+
+        self.resizeColumnToContents(0)
+        self.resizeColumnToContents(1)

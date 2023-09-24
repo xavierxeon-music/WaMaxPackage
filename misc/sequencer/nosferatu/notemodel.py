@@ -3,15 +3,17 @@ from PySide6.QtGui import QStandardItemModel
 from PySide6.QtGui import QStandardItem, QColor
 
 
-class NoteModel(QStandardItemModel):
+class Note:
 
     noteNames = ['C', 'C#', 'D', 'D#',  'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
     blackKeys = [False, True, False, True, False, False, True, False, True, False, True, False]
 
+
+class NoteModel(QStandardItemModel):
+
     def __init__(self, eventData):
 
         super().__init__()
-        self.asNotes = True
         self._eventData = eventData
         self._eventData.loaded.connect(self.create)
         self._eventData.updated.connect(self.updateColors)
@@ -24,10 +26,10 @@ class NoteModel(QStandardItemModel):
         rowHeaders = []
         for row in range(128):
             rowNumber = 127 - row
-            if self.asNotes:
+            if self._eventData.asNotes:
                 rowIndex = rowNumber % 12
                 octave = int((rowNumber - rowIndex) / 12)
-                rowNumber = NoteModel.noteNames[rowIndex]
+                rowNumber = Note.noteNames[rowIndex]
                 rowNumber += str(octave)
             else:
                 rowNumber = str(rowNumber)
@@ -55,7 +57,7 @@ class NoteModel(QStandardItemModel):
 
                 if cell.active:
                     rowItem.setBackground(QColor(200, 200, 255))
-                elif NoteModel.blackKeys[rowIndex]:
+                elif Note.blackKeys[rowIndex]:
                     rowItem.setBackground(QColor(250, 250, 250))
                 elif 0 == col % 4:
                     rowItem.setBackground(QColor(255, 255, 240))

@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QTableView
 
+from PySide6.QtCore import QTimer
 from PySide6.QtWidgets import QAbstractItemView
 
 from .notemodel import NoteModel
@@ -23,3 +24,9 @@ class NoteView(QTableView):
         colCount = self.model().columnCount()
         for col in range(colCount):
             self.setColumnWidth(col, 30)
+
+        def center():
+            index = self._model.index(127 - 24, 0)
+            self.scrollTo(index)
+
+        QTimer.singleShot(100, center)

@@ -22,6 +22,7 @@ class EventData(QObject):
 
         super().__init__()
         self.length = 16
+        self.asNotes = True
 
         self.eventList = []
 
@@ -41,7 +42,7 @@ class EventData(QObject):
 
     def save(self, fileName):
 
-        acticveEventList = self._compileActiveEventList()
+        acticveEventList = self.compileActiveEventList()
         content = {'length': self.length, 'events': acticveEventList}
         with open(fileName, 'w') as outfile:
             json.dump(content, outfile, indent=3)
@@ -64,7 +65,7 @@ class EventData(QObject):
         cell.active = True
         cell.value = value
 
-        # self.updated.emit()
+        self.updated.emit()
 
     def _createEmptyEventList(self):
 
@@ -75,7 +76,7 @@ class EventData(QObject):
                 timePoint.append(Event())
             self.eventList.append(timePoint)
 
-    def _compileActiveEventList(self):
+    def compileActiveEventList(self):
 
         acticveEventList = []
 
