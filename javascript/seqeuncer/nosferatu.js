@@ -5,8 +5,8 @@ inlets = 1;
 setinletassist(0, "message, bang");
 
 outlets = 2;
-setoutletassist(0, "pitch");
-setoutletassist(1, "velocity");
+setoutletassist(0, "pitch / velocity");
+setoutletassist(1, "end");
 
 var loop = 0
 declareattribute("loop");
@@ -29,22 +29,23 @@ function bang() {
       if (pitch in timePoint) // only change velocity
          continue;
 
-      outlet(1, 0);
-      outlet(0, parseInt(pitch));
+      outlet(0, [parseInt(pitch), 0]);
    }
 
    // note on
    for (var pitch in timePoint) {
       var velocity = timePoint[pitch]
-      outlet(1, velocity);
-      outlet(0, parseInt(pitch));
+      outlet(0, [parseInt(pitch), velocity]);
    }
 
    lastTimePoiint = timePoint;
-
    current += 1;
-   if (1 == loop && current >= length)
-      current = 0;
+
+   if (current >= length) {
+      outlet(1, "bang");
+      if (1 == loop)
+         current = 0;
+   }
 }
 
 function load(fileName) {
