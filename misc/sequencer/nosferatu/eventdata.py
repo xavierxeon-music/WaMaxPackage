@@ -2,6 +2,7 @@
 from PySide6.QtCore import QObject
 
 import json
+import os
 
 from PySide6.QtCore import Signal
 
@@ -49,14 +50,17 @@ class EventData(QObject):
 
     def load(self, fileName):
 
-        with open(fileName, 'r') as infile:
-            content = json.load(infile)
+        if os.path.exists(fileName):
+            with open(fileName, 'r') as infile:
+                content = json.load(infile)
 
-        self.length = content['length']
-        self._createEmptyEventList()
+            self.length = content['length']
+            self._createEmptyEventList()
 
-        activeEventList = content["events"]
-        self._applyActiveEventList(activeEventList)
+            activeEventList = content["events"]
+            self._applyActiveEventList(activeEventList)
+        else:
+            self._createEmptyEventList()
 
         self.loaded.emit()
         self.updated.emit()

@@ -4,11 +4,9 @@ autowatch = 1;
 inlets = 1;
 setinletassist(0, "message, bang");
 
-outlets = 3;
+outlets = 2;
 setoutletassist(0, "pitch");
 setoutletassist(1, "velocity");
-setoutletassist(2, "end");
-
 
 var loop = 0
 declareattribute("loop");
@@ -31,15 +29,15 @@ function bang() {
       if (pitch in timePoint) // only change velocity
          continue;
 
-      outlet(0, parseInt(pitch));
       outlet(1, 0);
+      outlet(0, parseInt(pitch));
    }
 
    // note on
    for (var pitch in timePoint) {
       var velocity = timePoint[pitch]
-      outlet(0, parseInt(pitch));
       outlet(1, velocity);
+      outlet(0, parseInt(pitch));
    }
 
    lastTimePoiint = timePoint;
@@ -54,8 +52,6 @@ function load(fileName) {
    data = readJsonFile(fileName);
    length = data['length'];
    events = data['events'];
-
-   restart();
 }
 
 function restart() {

@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QMainWindow
 
 import os
 
-from PySide6.QtCore import QSettings, Qt
+from PySide6.QtCore import QSettings, QStandardPaths, Qt
 from PySide6.QtGui import QIcon,  QKeySequence
 from PySide6.QtWidgets import QDockWidget, QWidget, QFileDialog, QLabel, QCheckBox, QSpinBox
 from PySide6.QtNetwork import QLocalServer, QLocalSocket
@@ -21,6 +21,8 @@ class MainWidget(QMainWindow):
         self.setWindowTitle(f'Nosferatu Editor [*]')
 
         self._server = None
+        self._socketName = QStandardPaths.writableLocation(QStandardPaths.TempLocation) + "/nosferatu_editor"
+
         self._currentFile = ''
         self._eventData = EventData()
         self._eventData.updated.connect(self._dataModified)
@@ -58,19 +60,22 @@ class MainWidget(QMainWindow):
 
     def singletonLoad(self, fileName):
 
-        _socketName = "nosferatu_editor"
-
         socket = QLocalSocket()
-        socket.connectToServer(_socketName)
+        socket.connectToServer(self._socketName)
         if socket.waitForConnected():  # found server
+            # print('socket connected')
             socket.write(fileName.encode())
             socket.waitForBytesWritten()
             return False
         elif not self._server:
+            # print('create server')
+            if os.path.exists(self._socketName):
+                os.remove(self._socketName)
             self._server = QLocalServer()
             self._server.newConnection.connect(self._serverConnected)
-            self._server.listen(_socketName)
+            self._server.listen(self._socketName)
 
+        # print('load file locally', fileName)
         self.loadFile(fileName)
         return True
 

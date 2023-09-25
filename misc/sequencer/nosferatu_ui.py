@@ -29,7 +29,7 @@ def main():
 
     mainWindow = MainWidget()
     if not mainWindow.singletonLoad(fileName):  # other instance of application is running
-        # print("open file in exisiting application")
+        print("open file in exisiting application")
         return 0
 
     signal.signal(signal.SIGINT, signit_handler)
