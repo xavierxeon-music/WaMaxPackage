@@ -57,7 +57,9 @@ class NoteModel(QStandardItemModel):
 
                 if cell.active:
                     rowItem.setBackground(QColor(200, 200, 255))
-                elif Note.blackKeys[rowIndex]:
+                elif 0 == row % 12:
+                    rowItem.setBackground(QColor(240, 255, 255))
+                elif self._eventData.asNotes and Note.blackKeys[rowIndex]:
                     rowItem.setBackground(QColor(250, 250, 250))
                 elif 0 == col % 4:
                     rowItem.setBackground(QColor(255, 255, 240))

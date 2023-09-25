@@ -16,7 +16,7 @@ class NoteView(QTableView):
 
         self.horizontalHeader().hide()
         self._model.modelReset.connect(self.modelUpdate)
-        self.clicked.connect(self._model.toggle)
+        self.doubleClicked.connect(self._model.toggle)
         self.setSelectionMode(QAbstractItemView.NoSelection)
 
     def modelUpdate(self):
