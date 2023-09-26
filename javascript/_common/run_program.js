@@ -19,7 +19,7 @@ function executeProgram(program, appArgs) {
    });
 
    process.stderr.on('data', (data) => {
-      // maxAPI.post(`stderr: ${data}`);
+      maxAPI.post(`stderr: ${data}`);
       maxAPI.outlet(["stderr", data]);
    });
 

@@ -28,8 +28,8 @@ def main():
         index = fileName.find(':')
         if index >= 0:
             frontPart = fileName[:index]
-            if not fronPart.startswith('/Volumes'):
-                frontPart = '/Volumes' + frontPart
+            if not frontPart.startswith('/Volumes'):
+                frontPart = '/Volumes/' + frontPart
             endPart = fileName[index+1:]
             fileName = frontPart + endPart
 
