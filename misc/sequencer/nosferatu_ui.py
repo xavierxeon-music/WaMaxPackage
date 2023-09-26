@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import platform
 import signal
 import sys
 
@@ -23,9 +24,14 @@ def main():
     app.setApplicationName('Nosferatu Editor Tool')
 
     fileName = ' '.join(sys.argv[1:])
-    index = fileName.find(':')
-    if index >= 0:
-        fileName = fileName[index+1:]
+    if 'Darwin' == platform.system():
+        index = fileName.find(':')
+        if index >= 0:
+            frontPart = fileName[:index]
+            if not fronPart.startswith('/Volumes'):
+                frontPart = '/Volumes' + frontPart
+            endPart = fileName[index+1:]
+            fileName = frontPart + endPart
 
     mainWindow = MainWidget()
     if not mainWindow.singletonLoad(fileName):  # other instance of application is running

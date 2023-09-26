@@ -26,8 +26,6 @@ function executeProgram(program, appArgs) {
    process.on('error', (err) => {
       maxAPI.post('Failed to start subprocess.');
    });
-
-
 }
 
 maxAPI.addHandler("launch", (program, ...args) => {
