@@ -8,6 +8,26 @@ maxAPI.addHandler("packagePath", () => {
    maxAPI.outlet(["packagePath", packagePath]);
 });
 
+
+function executeProgram(program, appArgs) {
+
+   var process = spawn(program, appArgs);
+
+   process.stdout.on('data', (data) => {
+      maxAPI.post(`stdout: ${data}`);
+   });
+
+   process.stderr.on('data', (data) => {
+      maxAPI.post(`stderr: ${data}`);
+   });
+
+   process.on('error', (err) => {
+      maxAPI.post('Failed to start subprocess.');
+   });
+
+
+}
+
 maxAPI.addHandler("launch", (program, ...args) => {
 
    var appArgs = []
@@ -38,7 +58,9 @@ maxAPI.addHandler("python", (...args) => {
    for (const item of args)
       appArgs.push(item);
 
-   //maxAPI.post("PYTHON PRE", appArgs);
+   executeProgram("/opt/homebrew/bin/python3", appArgs);
+
+   /*
    var process = spawn("/opt/homebrew/bin/python3", appArgs);
 
    process.stdout.on('data', (data) => {
@@ -52,6 +74,5 @@ maxAPI.addHandler("python", (...args) => {
    process.on('error', (err) => {
       maxAPI.post('Failed to python.');
    });
-
-   // maxAPI.post("PYHON POST", appArgs);
+   */
 });
