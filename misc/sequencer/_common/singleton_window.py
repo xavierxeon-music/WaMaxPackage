@@ -1,10 +1,20 @@
 from PySide6.QtWidgets import QMainWindow
 
 import os
+import platform
+import sys
+import signal
 
 from PySide6.QtCore import QStandardPaths
 from PySide6.QtCore import QSettings
 from PySide6.QtNetwork import QLocalServer, QLocalSocket
+from PySide6.QtWidgets import QApplication
+from PySide6.QtCore import QTimer
+
+
+def signit_handler(*args):
+
+    QApplication.quit()
 
 
 class SingeltonWindow(QMainWindow):
@@ -63,3 +73,35 @@ class SingeltonWindow(QMainWindow):
     def loadFile(self, fileName):
 
         pass
+
+    def start(appName, WindowClass):
+
+        app = QApplication([])
+
+        app.setOrganizationName('Schweinesystem')
+        app.setOrganizationDomain('schweinesystem.eu')
+        app.setApplicationName(appName)
+
+        fileName = ' '.join(sys.argv[1:])
+        if 'Darwin' == platform.system():
+            index = fileName.find(':')
+            if index >= 0:
+                frontPart = fileName[:index]
+                if not frontPart.startswith('/Volumes'):
+                    frontPart = '/Volumes/' + frontPart
+                endPart = fileName[index+1:]
+                fileName = frontPart + endPart
+
+        mainWindow = WindowClass()
+        if not mainWindow.singletonLoad(fileName):  # other instance of application is running
+            print("open file in exisiting application")
+            return 0
+
+        signal.signal(signal.SIGINT, signit_handler)
+        timer = QTimer()
+        timer.start(500)
+        timer.timeout.connect(lambda: None)  # Let the interpreter run each 500 ms.
+
+        mainWindow.show()
+        status = app.exec()
+        sys.exit(status)
