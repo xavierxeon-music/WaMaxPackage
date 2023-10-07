@@ -54,7 +54,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-30",
-					"index" : 3,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -154,8 +154,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 720.0, 165.0, 316.0, 22.0 ],
-					"text" : "sprintf python %s/misc/sequencer/nosferatu_ui.py \\\"%s\\\"\\\""
+					"patching_rect" : [ 720.0, 165.0, 341.0, 22.0 ],
+					"text" : "sprintf python %s/misc/sequencer/nosferatu_cell_ui.py \\\"%s\\\"\\\""
 				}
 
 			}
@@ -214,7 +214,7 @@
 				"box" : 				{
 					"comment" : "velocity",
 					"id" : "obj-22",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -277,14 +277,14 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 175.5, 315.0, 71.0, 22.0 ],
+					"patching_rect" : [ 175.5, 315.0, 95.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "nosferatu.js",
+						"filename" : "nosferatu_cell",
 						"parameter_enable" : 0
 					}
 ,
 					"style" : "wa.patcher",
-					"text" : "js nosferatu"
+					"text" : "js nosferatu_cell"
 				}
 
 			}
@@ -385,6 +385,8 @@
 					"saved_object_attributes" : 					{
 						"autostart" : 1,
 						"defer" : 0,
+						"node_bin_path" : "",
+						"npm_bin_path" : "",
 						"watch" : 1
 					}
 ,
@@ -421,11 +423,11 @@
 				"box" : 				{
 					"comment" : "message, bang",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 165.0, 30.0, 30.0, 30.0 ]
 				}
 
@@ -434,7 +436,7 @@
 				"box" : 				{
 					"comment" : "pitch",
 					"id" : "obj-2",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -499,13 +501,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-15", 0 ],
 					"source" : [ "obj-13", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-30", 0 ],
-					"source" : [ "obj-16", 1 ]
 				}
 
 			}
@@ -710,6 +705,22 @@
 
 			}
  ],
+		"dependency_cache" : [ 			{
+				"name" : "nosferatu_cell.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/seqeuncer",
+				"patcherrelativepath" : "../../javascript/seqeuncer",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "run_program.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/_common",
+				"patcherrelativepath" : "../../javascript/_common",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.buffer",
 				"default" : 				{

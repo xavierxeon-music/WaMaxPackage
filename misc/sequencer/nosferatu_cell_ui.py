@@ -7,7 +7,7 @@ import sys
 from PySide6.QtCore import QTimer
 from PySide6.QtWidgets import QApplication
 
-from nosferatu import MainWidget
+from nosferatu import MainWidgetCell
 
 
 def signit_handler(*args):
@@ -21,7 +21,7 @@ def main():
 
     app.setOrganizationName('Schweinesystem')
     app.setOrganizationDomain('schweinesystem.eu')
-    app.setApplicationName('Nosferatu Editor Tool')
+    app.setApplicationName('Nosferatu Cell Editor')
 
     fileName = ' '.join(sys.argv[1:])
     if 'Darwin' == platform.system():
@@ -33,7 +33,7 @@ def main():
             endPart = fileName[index+1:]
             fileName = frontPart + endPart
 
-    mainWindow = MainWidget()
+    mainWindow = MainWidgetCell()
     if not mainWindow.singletonLoad(fileName):  # other instance of application is running
         print("open file in exisiting application")
         return 0

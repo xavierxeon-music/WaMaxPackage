@@ -1,11 +1,10 @@
-from PySide6.QtWidgets import QMainWindow
+from .singleton_window import SingeltonWindow
 
 import os
 
-from PySide6.QtCore import QSettings, QStandardPaths, Qt
+from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon,  QKeySequence
 from PySide6.QtWidgets import QDockWidget, QWidget, QFileDialog, QLabel, QCheckBox, QSpinBox
-from PySide6.QtNetwork import QLocalServer, QLocalSocket
 
 
 from .eventdata import EventData
@@ -13,15 +12,12 @@ from .eventview import EventView
 from .noteview import NoteView
 
 
-class MainWidget(QMainWindow):
+class MainWidgetCell(SingeltonWindow):
 
     def __init__(self):
 
-        super().__init__()
-        self.setWindowTitle(f'Nosferatu Editor [*]')
-
-        self._server = None
-        self._socketName = QStandardPaths.writableLocation(QStandardPaths.TempLocation) + "/nosferatu_editor"
+        super().__init__('nosferatu_editor')
+        self.setWindowTitle(f'Nosferatu Cell Editor [*]')
 
         self._currentFile = ''
         self._eventData = EventData()
@@ -41,50 +37,6 @@ class MainWidget(QMainWindow):
 
         self._addControls()
 
-        qtsettings = QSettings()
-        self.restoreGeometry(qtsettings.value('geometry'))
-        self.restoreState(qtsettings.value('state'))
-
-    def __del__(self):
-
-        if self._server:
-            self._server.close()
-
-    def closeEvent(self, event):
-
-        qtsettings = QSettings()
-        qtsettings.setValue('geometry', self.saveGeometry())
-        qtsettings.setValue('state', self.saveState())
-
-        super().closeEvent(event)
-
-    def singletonLoad(self, fileName):
-
-        socket = QLocalSocket()
-        socket.connectToServer(self._socketName)
-        if socket.waitForConnected():  # found server
-            # print('socket connected')
-            socket.write(fileName.encode())
-            socket.waitForBytesWritten()
-            return False
-        elif not self._server:
-            # print('create server')
-            if os.path.exists(self._socketName):
-                os.remove(self._socketName)
-            self._server = QLocalServer()
-            self._server.newConnection.connect(self._serverConnected)
-            self._server.listen(self._socketName)
-
-        # print('load file locally', fileName)
-        self.loadFile(fileName)
-        return True
-
-    def _serverConnected(self):
-        socket = self._server.nextPendingConnection()
-        socket.waitForReadyRead()
-        fileName = bytes(socket.readAll()).decode()
-        self.loadFile(fileName)
-
     def loadFile(self, fileName):
 
         self._currentFile = fileName
@@ -103,13 +55,13 @@ class MainWidget(QMainWindow):
     def saveFile(self, fileName):
 
         self._currentFile = fileName
-        self.setWindowTitle(f'Nosferatu Editor - {fileName} [*]')
+        self.setWindowTitle(f'Nosferatu Cell Editor - {fileName} [*]')
         self._eventData.save(fileName)
         self.setWindowModified(False)
 
     def load(self):
 
-        loadLocation = QFileDialog.getOpenFileName(self, 'Nosferatu File', str(), '*.json')
+        loadLocation = QFileDialog.getOpenFileName(self, 'Nosferatu Cell File', str(), '*.json')
         if not loadLocation:
             return
 
@@ -118,7 +70,7 @@ class MainWidget(QMainWindow):
 
     def save(self):
 
-        saveLocation = QFileDialog.getSaveFileName(self, 'Nosferatu File', self._currentFile, '*.json')
+        saveLocation = QFileDialog.getSaveFileName(self, 'Nosferatu Cell File', self._currentFile, '*.json')
         if not saveLocation:
             return
 
