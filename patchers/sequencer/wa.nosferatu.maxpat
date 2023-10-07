@@ -100,43 +100,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-18",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 210.0, 255.0, 133.0, 22.0 ],
-					"style" : "wa.receive",
-					"text" : "receive #0_attributes"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-14",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 521.0, 118.0, 121.0, 22.0 ],
-					"style" : "wa.send",
-					"text" : "send #0_attributes"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-12",
-					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 521.0, 71.0, 87.0, 22.0 ],
-					"text" : "routepass loop"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-7",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -279,7 +242,7 @@
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 175.5, 315.0, 71.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "nosferatu",
+						"filename" : "nosferatu.js",
 						"parameter_enable" : 0
 					}
 ,
@@ -385,6 +348,8 @@
 					"saved_object_attributes" : 					{
 						"autostart" : 1,
 						"defer" : 0,
+						"node_bin_path" : "",
+						"npm_bin_path" : "",
 						"watch" : 1
 					}
 ,
@@ -412,8 +377,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 420.0, 30.0, 120.0, 22.0 ],
-					"text" : "patcherargs @loop 0"
+					"patching_rect" : [ 420.0, 30.0, 72.0, 22.0 ],
+					"text" : "patcherargs"
 				}
 
 			}
@@ -490,13 +455,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-14", 0 ],
-					"source" : [ "obj-12", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-15", 0 ],
 					"source" : [ "obj-13", 0 ]
 				}
@@ -520,13 +478,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-9", 0 ],
 					"source" : [ "obj-17", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-16", 0 ],
-					"source" : [ "obj-18", 0 ]
 				}
 
 			}
@@ -607,13 +558,6 @@
 					"destination" : [ "obj-9", 0 ],
 					"midpoints" : [ 578.5, 240.0, 417.0, 240.0, 417.0, 204.0, 429.5, 204.0 ],
 					"source" : [ "obj-29", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-12", 0 ],
-					"source" : [ "obj-3", 1 ]
 				}
 
 			}

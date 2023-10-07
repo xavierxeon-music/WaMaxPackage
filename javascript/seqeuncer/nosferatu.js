@@ -8,9 +8,8 @@ outlets = 2;
 setoutletassist(0, "pitch / velocity");
 setoutletassist(1, "end");
 
+// from file
 var loop = 0
-declareattribute("loop");
-
 var events = []
 var length = 0;
 
@@ -53,6 +52,7 @@ function load(fileName) {
    data = readJsonFile(fileName);
    length = data['length'];
    events = data['events'];
+   loop = data['loop'];
 }
 
 function restart() {
