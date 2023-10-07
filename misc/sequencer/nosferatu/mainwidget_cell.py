@@ -1,4 +1,4 @@
-from .singleton_window import SingeltonWindow
+from _common import SingeltonWindow
 
 import os
 

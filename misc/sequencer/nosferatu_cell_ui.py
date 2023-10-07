@@ -3,11 +3,17 @@
 import platform
 import signal
 import sys
+import os
 
-from PySide6.QtCore import QTimer
 from PySide6.QtWidgets import QApplication
+from PySide6.QtCore import QTimer
+
+# fmt: off
+from _common import addCommonToSysPath
+addCommonToSysPath()
 
 from nosferatu import MainWidgetCell
+# fmt: on
 
 
 def signit_handler(*args):
