@@ -74,7 +74,8 @@ class SingeltonWindow(QMainWindow):
 
         pass
 
-    def start(appName, WindowClass):
+    @classmethod
+    def start(cls, appName):
 
         app = QApplication([])
 
@@ -92,7 +93,7 @@ class SingeltonWindow(QMainWindow):
                 endPart = fileName[index+1:]
                 fileName = frontPart + endPart
 
-        mainWindow = WindowClass()
+        mainWindow = cls()
         if not mainWindow.singletonLoad(fileName):  # other instance of application is running
             print("open file in exisiting application")
             return 0

@@ -12,7 +12,7 @@ from .eventview import EventView
 from .noteview import NoteView
 
 
-class MainWidgetCell(SingeltonWindow):
+class MainWidget(SingeltonWindow):
 
     def __init__(self):
 
