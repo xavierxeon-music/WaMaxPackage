@@ -46,11 +46,6 @@ class MainWidget(SingeltonWindow):
         self.asNotesCheck.setChecked(self._timeline.asNotes)
         self.asNotesCheck.blockSignals(False)
 
-        self.lengthSpin.blockSignals(True)
-        sequence = self._timeline.currentSequence()
-        self.lengthSpin.setValue(sequence.length)
-        self.lengthSpin.blockSignals(False)
-
     def saveFile(self, fileName):
 
         self._currentFile = fileName
@@ -111,23 +106,9 @@ class MainWidget(SingeltonWindow):
         self.asNotesCheck = QCheckBox('as note')
         self.asNotesCheck.clicked.connect(self._timeline.setAsNotes)
 
-        self.lengthSpin = QSpinBox()
-        self.lengthSpin.setRange(1, 256)
-
-        def updateLength():
-
-            value = self.lengthSpin.value()
-            self._timeline.setLength(value)
-
-        self.lengthSpin.editingFinished.connect(updateLength)
-
-        lengthLabel = QLabel('length')
-
         editToolBar = self.addToolBar('Edit')
         editToolBar.setObjectName('Edit')
         editToolBar.addWidget(self.asNotesCheck)
-        editToolBar.addWidget(self.lengthSpin)
-        editToolBar.addWidget(lengthLabel)
 
         fileMenu = self.menuBar().addMenu('File')
         quickSaveAction = fileMenu.addAction('QuickSave', self._quickSave)

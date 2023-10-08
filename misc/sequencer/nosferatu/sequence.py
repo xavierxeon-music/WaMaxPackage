@@ -27,7 +27,7 @@ class Sequence:
         self._createEmptyEventList()
         self._applyActiveEventList(activeEventList)
 
-        # self.timeline.sequenceUpdated.emit()
+        self.timeline.sequenceUpdated.emit()
 
     def apply(self, content):
 
