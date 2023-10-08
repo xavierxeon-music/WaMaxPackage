@@ -7,9 +7,10 @@ from PySide6.QtGui import QIcon,  QKeySequence
 from PySide6.QtWidgets import QDockWidget, QWidget, QFileDialog, QLabel, QCheckBox, QSpinBox
 
 
-from .eventdata import EventData
 from .eventview import EventView
 from .noteview import NoteView
+from .startview import StartView
+from .timeline import TimeLine
 
 
 class MainWidget(SingeltonWindow):
@@ -20,19 +21,16 @@ class MainWidget(SingeltonWindow):
         self.setWindowTitle(f'Nosferatu Cell Editor [*]')
 
         self._currentFile = ''
-        self._eventData = EventData()
-        self._eventData.updated.connect(self._dataModified)
+        self._timeline = TimeLine()
+        self._timeline.sequenceUpdated.connect(self._dataModified)
 
-        self._eventView = EventView(self._eventData)
+        self._startView = StartView(self._timeline)
+        self._addDockWidget(self._startView, 'Start', Qt.LeftDockWidgetArea)
 
-        dockWidget = QDockWidget()
-        dockWidget.setObjectName('Event')
-        dockWidget.setWidget(self._eventView)
-        dockWidget.setTitleBarWidget(QWidget())
-        dockWidget.setFeatures(QDockWidget.NoDockWidgetFeatures)
-        self.addDockWidget(Qt.RightDockWidgetArea, dockWidget)
+        self._eventView = EventView(self._timeline)
+        self._addDockWidget(self._eventView, 'Event', Qt.RightDockWidgetArea)
 
-        self._noteView = NoteView(self._eventData)
+        self._noteView = NoteView(self._timeline)
         self.setCentralWidget(self._noteView)
 
         self._addControls()
@@ -41,22 +39,23 @@ class MainWidget(SingeltonWindow):
 
         self._currentFile = fileName
         self.setWindowTitle(f'Nosferatu Editor - {fileName} [*]')
-        self._eventData.load(fileName)
+        self._timeline.load(fileName)
         self.setWindowModified(False)
 
         self.asNotesCheck.blockSignals(True)
-        self.asNotesCheck.setChecked(self._eventData.asNotes)
+        self.asNotesCheck.setChecked(self._timeline.asNotes)
         self.asNotesCheck.blockSignals(False)
 
         self.lengthSpin.blockSignals(True)
-        self.lengthSpin.setValue(self._eventData.length)
+        sequence = self._timeline.currentSequence()
+        self.lengthSpin.setValue(sequence.length)
         self.lengthSpin.blockSignals(False)
 
     def saveFile(self, fileName):
 
         self._currentFile = fileName
         self.setWindowTitle(f'Nosferatu Cell Editor - {fileName} [*]')
-        self._eventData.save(fileName)
+        self._timeline.save(fileName)
         self.setWindowModified(False)
 
     def load(self):
@@ -77,12 +76,21 @@ class MainWidget(SingeltonWindow):
         fileName = saveLocation[0]
         self.saveFile(fileName)
 
+    def _addDockWidget(self, payload, name, area):
+
+        dockWidget = QDockWidget()
+        dockWidget.setObjectName(name)
+        dockWidget.setWidget(payload)
+        dockWidget.setTitleBarWidget(QWidget())
+        dockWidget.setFeatures(QDockWidget.NoDockWidgetFeatures)
+        self.addDockWidget(area, dockWidget)
+
     def _quickSave(self):
 
         if not self._currentFile:
             return
 
-        self._eventData.save(self._currentFile)
+        self._timeline.save(self._currentFile)
         self.setWindowModified(False)
 
     def _dataModified(self):
@@ -101,7 +109,7 @@ class MainWidget(SingeltonWindow):
         fileToolBar.addAction(QIcon(iconPath + 'save.svg'), 'Save', self.save)
 
         self.asNotesCheck = QCheckBox('as note')
-        self.asNotesCheck.clicked.connect(self._eventData.setAsNotes)
+        self.asNotesCheck.clicked.connect(self._timeline.setAsNotes)
 
         self.lengthSpin = QSpinBox()
         self.lengthSpin.setRange(1, 256)
@@ -109,7 +117,7 @@ class MainWidget(SingeltonWindow):
         def updateLength():
 
             value = self.lengthSpin.value()
-            self._eventData.setLength(value)
+            self._timeline.setLength(value)
 
         self.lengthSpin.editingFinished.connect(updateLength)
 

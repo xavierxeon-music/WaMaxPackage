@@ -1,32 +1,21 @@
+# nothing to import
 
-from PySide6.QtCore import QObject
+class Sequence:
 
-import json
-import os
+    class Event:
 
-from PySide6.QtCore import Signal
+        def __init__(self):
 
+            self.active = False
+            self.value = 0
 
-class Event:
+    def __init__(self, timeline):
 
-    def __init__(self):
-
-        self.active = False
-        self.value = 0
-
-
-class EventData(QObject):
-
-    updated = Signal()
-    loaded = Signal()
-
-    def __init__(self):
-
-        super().__init__()
         self.length = 16
-        self.asNotes = True
+        self.loop = False
+        self.timeline = timeline
 
-        self.eventList = []
+        self.eventList = []  # (127 * length) matrix
 
     def setLength(self, value):
 
@@ -38,39 +27,23 @@ class EventData(QObject):
         self._createEmptyEventList()
         self._applyActiveEventList(activeEventList)
 
-        self.loaded.emit()
-        self.updated.emit()
+        # self.timeline.sequenceUpdated.emit()
 
-    def setAsNotes(self, value):
+    def apply(self, content):
 
-        self.asNotes = value
+        self.length = content['length']
+        self.loop = content['loop']
+        self._createEmptyEventList()
 
-        self.loaded.emit()
-        self.updated.emit()
+        activeEventList = content["events"]
+        self._applyActiveEventList(activeEventList)
 
-    def load(self, fileName):
-
-        if os.path.exists(fileName):
-            with open(fileName, 'r') as infile:
-                content = json.load(infile)
-
-            self.length = content['length']
-            self._createEmptyEventList()
-
-            activeEventList = content["events"]
-            self._applyActiveEventList(activeEventList)
-        else:
-            self._createEmptyEventList()
-
-        self.loaded.emit()
-        self.updated.emit()
-
-    def save(self, fileName):
+    def compile(self):
 
         activeEventList = self.compileActiveEventList()
-        content = {'length': self.length, 'events': activeEventList}
-        with open(fileName, 'w') as outfile:
-            json.dump(content, outfile, indent=3)
+        content = {'length': self.length, 'loop': self.loop, 'events': activeEventList}
+
+        return content
 
     def toggle(self, timePoint, rowNumber):
 
@@ -82,7 +55,7 @@ class EventData(QObject):
             if 0 == cell.value:
                 cell.value = 127
 
-        self.updated.emit()
+        self.timeline.sequenceUpdated.emit()
 
     def setValue(self, timePoint, rowNumber, value):
 
@@ -90,7 +63,7 @@ class EventData(QObject):
         cell.active = True
         cell.value = value
 
-        self.updated.emit()
+        self.timeline.sequenceUpdated.emit()
 
     def _createEmptyEventList(self):
 
@@ -98,7 +71,7 @@ class EventData(QObject):
         for col in range(self.length):
             timePoint = []
             for row in range(128):
-                timePoint.append(Event())
+                timePoint.append(Sequence.Event())
             self.eventList.append(timePoint)
 
     def compileActiveEventList(self):

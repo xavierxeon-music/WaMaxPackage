@@ -8,26 +8,28 @@ from .notemodel import Note
 
 class EventModel(QStandardItemModel):
 
-    def __init__(self, eventData):
+    def __init__(self, timeline):
 
         super().__init__()
-        self._eventData = eventData
-        # self._eventData.loaded.connect(self.create)
-        self._eventData.updated.connect(self.create)
+        self._timeline = timeline
+        # self._timeline.loaded.connect(self.create)
+        self._timeline.sequenceUpdated.connect(self.create)
 
     def create(self):
 
         self.beginResetModel()
         self.clear()
 
-        activeEventList = self._eventData.compileActiveEventList()
-        for col in range(self._eventData.length):
+        sequence = self._timeline.currentSequence()
+
+        activeEventList = sequence.compileActiveEventList()
+        for col in range(sequence.length):
 
             timePoint = activeEventList[col]
             for rowNumber, value in timePoint.items():
                 value1Name = rowNumber
                 rowNumber = int(rowNumber)
-                if self._eventData.asNotes:
+                if self._timeline.asNotes:
                     noteValue = rowNumber
                     noteIndex = noteValue % 12
                     octave = int((noteValue - noteIndex) / 12)
@@ -51,6 +53,8 @@ class EventModel(QStandardItemModel):
 
     def setData(self, index, value, role):
 
+        sequence = self._timeline.currentSequence()
+
         result = super().setData(index, value, role)
         if Qt.EditRole == role and 2 == index.column():
             row = index.row()
@@ -61,6 +65,6 @@ class EventModel(QStandardItemModel):
             value1Item = self.invisibleRootItem().child(row, 1)
             rowNumber = value1Item.data()
 
-            self._eventData.setValue(timePoint, rowNumber, value)
+            sequence.setValue(timePoint, rowNumber, value)
 
         return result

@@ -11,22 +11,24 @@ class Note:
 
 class NoteModel(QStandardItemModel):
 
-    def __init__(self, eventData):
+    def __init__(self, timeline):
 
         super().__init__()
-        self._eventData = eventData
-        self._eventData.loaded.connect(self.create)
-        self._eventData.updated.connect(self.updateColors)
+        self._timeline = timeline
+        self._timeline.loaded.connect(self.create)
+        self._timeline.sequenceUpdated.connect(self.updateColors)
 
     def create(self):
 
         self.beginResetModel()
         self.clear()
 
+        sequence = self._timeline.currentSequence()
+
         rowHeaders = []
         for row in range(128):
             rowNumber = 127 - row
-            if self._eventData.asNotes:
+            if self._timeline.asNotes:
                 rowIndex = rowNumber % 12
                 octave = int((rowNumber - rowIndex) / 12)
                 rowNumber = Note.noteNames[rowIndex]
@@ -36,7 +38,7 @@ class NoteModel(QStandardItemModel):
             rowHeaders.append(rowNumber)
 
             rowItems = []
-            for col in range(self._eventData.length):
+            for col in range(sequence.length):
                 rowItem = QStandardItem()
                 rowItem.setEditable(False)
                 rowItems.append(rowItem)
@@ -48,18 +50,20 @@ class NoteModel(QStandardItemModel):
 
     def updateColors(self):
 
+        sequence = self._timeline.currentSequence()
+
         for row in range(128):
             rowNumber = 127 - row
             rowIndex = rowNumber % 12
-            for col in range(self._eventData.length):
+            for col in range(sequence.length):
                 rowItem = self.invisibleRootItem().child(row, col)
-                cell = self._eventData.eventList[col][rowNumber]
+                cell = sequence.eventList[col][rowNumber]
 
                 if cell.active:
                     rowItem.setBackground(QColor(200, 200, 255))
                 elif 0 == rowIndex:
                     rowItem.setBackground(QColor(240, 255, 255))
-                elif self._eventData.asNotes and Note.blackKeys[rowIndex]:
+                elif self._timeline.asNotes and Note.blackKeys[rowIndex]:
                     rowItem.setBackground(QColor(250, 250, 250))
                 elif 0 == col % 4:
                     rowItem.setBackground(QColor(255, 255, 240))
@@ -71,4 +75,5 @@ class NoteModel(QStandardItemModel):
         rowNumber = 127 - index.row()
         timePoint = index.column()
 
-        self._eventData.toggle(timePoint, rowNumber)
+        sequence = self._timeline.currentSequence()
+        sequence.toggle(timePoint, rowNumber)
