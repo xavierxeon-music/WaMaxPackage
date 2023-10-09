@@ -17,6 +17,8 @@ class Sequence:
 
         self.eventList = []  # (127 * length) matrix
 
+        self._createEmptyEventList()
+
     def setLength(self, value):
 
         print('setLength', value)

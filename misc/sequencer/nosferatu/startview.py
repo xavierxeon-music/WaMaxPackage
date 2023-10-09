@@ -10,6 +10,8 @@ class StartView(QTreeView):
         super().__init__()
         self._model = StartModel(timeline)
         self.setModel(self._model)
+
+        self.setRootIsDecorated(False)
         self._model.modelReset.connect(self.modelUpdate)
 
     def modelUpdate(self):

@@ -17,14 +17,15 @@ class TimeLine(QObject):
     def __init__(self):
 
         super().__init__()
-        self.sequence = Sequence(self)
+
+        self.sequences = dict()  # timestamp vs sequence
         self.asNotes = True
 
-        self.eventList = []
+        self.currentKey = '1.1'
 
     def currentSequence(self):
 
-        return self.sequence
+        return self.sequences[self.currentKey]
 
     def setAsNotes(self, value):
 
@@ -41,7 +42,7 @@ class TimeLine(QObject):
 
             self.sequence.apply(content)
         else:
-            self._createEmptyEventList()
+            self.sequences['1.1'] = Sequence(self)
 
         self.loaded.emit()
         self.updated.emit()

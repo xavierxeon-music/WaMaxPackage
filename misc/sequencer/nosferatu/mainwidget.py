@@ -108,6 +108,7 @@ class MainWidget(SingeltonWindow):
 
         editToolBar = self.addToolBar('Edit')
         editToolBar.setObjectName('Edit')
+        editToolBar.setMovable(False)
         editToolBar.addWidget(self.asNotesCheck)
 
         fileMenu = self.menuBar().addMenu('File')
