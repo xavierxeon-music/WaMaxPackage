@@ -6,6 +6,8 @@ from PySide6.QtGui import QStandardItem
 
 class StartModel(QStandardItemModel):
 
+    LengthRole = Qt.UserRole + 2
+
     def __init__(self, timeline):
 
         super().__init__()
@@ -23,22 +25,50 @@ class StartModel(QStandardItemModel):
             timeStampItem = QStandardItem(timeStamp)
 
             lengthItem = QStandardItem(str(sequence.length))
-            lengthItem.setData(sequence.length)
+            lengthItem.setData(sequence.length, StartModel.LengthRole)
             lengthItem.setCheckable(True)
             lengthItem.setCheckState(Qt.Checked if sequence.loop else Qt.Unchecked)
 
             self.invisibleRootItem().appendRow([timeStampItem, lengthItem])
 
-        self.setHorizontalHeaderLabels(['bar.div', 'length'])
+        self.setHorizontalHeaderLabels(['bar.div', 'loop / length'])
         self.endResetModel()
 
     def setData(self, index, value, role):
 
-        oldValue = self.data(index)
-        result = super().setData(index, value, role)
         if Qt.EditRole == role:
-            print('EDIT', index.row(), oldValue, ' = > ', value)
+            if 0 == index.column():
+                if not self._setTimeStamp(index.row(), value):
+                    return False
+            elif 1 == index.column():
+                if not self._setLength(index.row(), value):
+                    return False
         elif Qt.CheckStateRole == role:
             loop = (value == 2)  # Qt::Checked
-            print('LOOP', index.row(), loop)
-        return result
+            if not self._setLoop(index.row(), loop):
+                return False
+
+        return super().setData(index, value, role)
+
+    def _setTimeStamp(self, row, value):
+
+        print('TIMESTAMP', row, value)
+        return True
+
+    def _setLength(self, row, value):
+
+        try:
+            length = int(value)
+        except ValueError:
+            return False
+
+        if length < 1:
+            return False
+
+        print('LENGTH', row, value)
+        return True
+
+    def _setLoop(self, row, loop):
+
+        print('LOOP', row, loop)
+        return True
