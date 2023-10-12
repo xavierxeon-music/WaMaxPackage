@@ -18,3 +18,11 @@ class StartView(QTreeView):
 
         self.resizeColumnToContents(0)
         self.resizeColumnToContents(1)
+
+    def add(self):
+
+        print('add time')
+
+    def remove(self):
+
+        print('remove time')

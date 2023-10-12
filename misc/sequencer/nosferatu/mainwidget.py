@@ -4,10 +4,10 @@ import os
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon,  QKeySequence
-from PySide6.QtWidgets import QDockWidget, QWidget, QFileDialog, QLabel, QCheckBox, QSpinBox
+from PySide6.QtWidgets import QDockWidget, QWidget, QFileDialog, QCheckBox
 
 
-from .eventview import EventView
+from .velocityview import VelocityView
 from .noteview import NoteView
 from .startview import StartView
 from .timeline import TimeLine
@@ -27,7 +27,7 @@ class MainWidget(SingeltonWindow):
         self._startView = StartView(self._timeline)
         self._addDockWidget(self._startView, 'Start', Qt.LeftDockWidgetArea)
 
-        self._eventView = EventView(self._timeline)
+        self._eventView = VelocityView(self._timeline)
         self._addDockWidget(self._eventView, 'Event', Qt.RightDockWidgetArea)
 
         self._noteView = NoteView(self._timeline)
@@ -37,9 +37,11 @@ class MainWidget(SingeltonWindow):
 
     def loadFile(self, fileName):
 
+        if not self._timeline.load(fileName):
+            return
+
         self._currentFile = fileName
         self.setWindowTitle(f'Nosferatu Editor - {fileName} [*]')
-        self._timeline.load(fileName)
         self.setWindowModified(False)
 
         self.asNotesCheck.blockSignals(True)
@@ -96,21 +98,21 @@ class MainWidget(SingeltonWindow):
 
         iconPath = os.path.dirname(__file__) + '/icons/'
 
-        fileToolBar = self.addToolBar('File')
-        fileToolBar.setObjectName('File')
-        fileToolBar.setMovable(False)
-        fileToolBar.addAction(QIcon(iconPath + 'new.svg'), 'New', self.load)
-        fileToolBar.addAction(QIcon(iconPath + 'load.svg'), 'Load', self.load)
-        fileToolBar.addAction(QIcon(iconPath + 'save.svg'), 'Save', self.save)
-
         self.asNotesCheck = QCheckBox('as note')
         self.asNotesCheck.clicked.connect(self._timeline.setAsNotes)
 
         editToolBar = self.addToolBar('Edit')
         editToolBar.setObjectName('Edit')
         editToolBar.setMovable(False)
+        editToolBar.addAction(QIcon(iconPath + 'new.svg'), 'Add', self._startView .add)
+        editToolBar.addAction(QIcon(iconPath + 'load.svg'), 'Remove', self._startView .remove)
         editToolBar.addWidget(self.asNotesCheck)
 
         fileMenu = self.menuBar().addMenu('File')
+        fileMenu.addAction('New', self.load)
+        fileMenu.addAction('Load', self.load)
+
+        fileMenu.addSeparator()
+        fileMenu.addAction(QIcon(iconPath + 'save.svg'), 'Save', self.save)
         quickSaveAction = fileMenu.addAction('QuickSave', self._quickSave)
         quickSaveAction.setShortcut(QKeySequence(QKeySequence.Save))

@@ -6,7 +6,7 @@ from PySide6.QtGui import QStandardItem
 from .notemodel import Note
 
 
-class EventModel(QStandardItemModel):
+class VelocityModel(QStandardItemModel):
 
     def __init__(self, timeline):
 

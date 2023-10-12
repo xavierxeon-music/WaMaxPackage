@@ -1,14 +1,14 @@
 from PySide6.QtWidgets import QTreeView
 
-from .eventmodel import EventModel
+from .veclocitymodel import VelocityModel
 
 
-class EventView(QTreeView):
+class VelocityView(QTreeView):
 
     def __init__(self, timeline):
 
         super().__init__()
-        self._model = EventModel(timeline)
+        self._model = VelocityModel(timeline)
         self.setModel(self._model)
         self._model.modelReset.connect(self.modelUpdate)
 
