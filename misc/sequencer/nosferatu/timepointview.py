@@ -1,14 +1,14 @@
 from PySide6.QtWidgets import QTreeView
 
-from .startmodel import StartModel
+from .timepointmodel import TimePointModel
 
 
-class StartView(QTreeView):
+class TimePointView(QTreeView):
 
     def __init__(self, timeline):
 
         super().__init__()
-        self._model = StartModel(timeline)
+        self._model = TimePointModel(timeline)
         self.setModel(self._model)
 
         self.setRootIsDecorated(False)

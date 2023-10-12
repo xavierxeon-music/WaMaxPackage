@@ -4,7 +4,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtGui import QStandardItem
 
 
-class StartModel(QStandardItemModel):
+class TimePointModel(QStandardItemModel):
 
     LengthRole = Qt.UserRole + 2
 
@@ -25,7 +25,7 @@ class StartModel(QStandardItemModel):
             timeStampItem = QStandardItem(timeStamp)
 
             lengthItem = QStandardItem(str(sequence.length))
-            lengthItem.setData(sequence.length, StartModel.LengthRole)
+            lengthItem.setData(sequence.length, TimePointModel.LengthRole)
             lengthItem.setCheckable(True)
             lengthItem.setCheckState(Qt.Checked if sequence.loop else Qt.Unchecked)
 

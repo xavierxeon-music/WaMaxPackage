@@ -9,7 +9,7 @@ from PySide6.QtWidgets import QDockWidget, QWidget, QFileDialog, QCheckBox
 
 from .velocityview import VelocityView
 from .noteview import NoteView
-from .startview import StartView
+from .timepointview import TimePointView
 from .timeline import TimeLine
 
 
@@ -24,8 +24,8 @@ class MainWidget(SingeltonWindow):
         self._timeline = TimeLine()
         self._timeline.sequenceUpdated.connect(self._dataModified)
 
-        self._startView = StartView(self._timeline)
-        self._addDockWidget(self._startView, 'Start', Qt.LeftDockWidgetArea)
+        self._timePointView = TimePointView(self._timeline)
+        self._addDockWidget(self._timePointView, 'Start', Qt.LeftDockWidgetArea)
 
         self._eventView = VelocityView(self._timeline)
         self._addDockWidget(self._eventView, 'Event', Qt.RightDockWidgetArea)
@@ -104,8 +104,8 @@ class MainWidget(SingeltonWindow):
         editToolBar = self.addToolBar('Edit')
         editToolBar.setObjectName('Edit')
         editToolBar.setMovable(False)
-        editToolBar.addAction(QIcon(iconPath + 'new.svg'), 'Add', self._startView .add)
-        editToolBar.addAction(QIcon(iconPath + 'load.svg'), 'Remove', self._startView .remove)
+        editToolBar.addAction(QIcon(iconPath + 'new.svg'), 'Add TimePoint', self._timePointView.add)
+        editToolBar.addAction(QIcon(iconPath + 'load.svg'), 'Remove TimePoint', self._timePointView.remove)
         editToolBar.addWidget(self.asNotesCheck)
 
         fileMenu = self.menuBar().addMenu('File')
