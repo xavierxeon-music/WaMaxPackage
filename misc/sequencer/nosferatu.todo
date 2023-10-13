@@ -1,0 +1,20 @@
+how to handle timepoints in timeline
+   add new timepoint (where to add timepoint - pre/post add to model?)
+   add save icon to toolbar
+   remove timepoint
+   sort timepoints in view
+
+update notifications
+   file loaded
+   timepoint added?
+   sequence event added/removed
+   note velocity changed
+
+settings dialog
+
+midi input
+   have time axis marker   
+   show current noteon
+   on event 
+      use noteon for current time
+      advance time
