@@ -3,8 +3,8 @@ from _common import SingeltonWindow
 import os
 
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QIcon, QKeySequence, QAction
-from PySide6.QtWidgets import QDockWidget, QWidget, QFileDialog, QCheckBox
+from PySide6.QtGui import QIcon, QKeySequence
+from PySide6.QtWidgets import QDockWidget, QWidget, QFileDialog, QCheckBox, QLineEdit
 
 
 from .velocityview import VelocityView
@@ -102,28 +102,28 @@ class MainWidget(SingeltonWindow):
 
         iconPath = os.path.dirname(__file__) + '/icons/'
 
+        # widgets
         self.asNotesCheck = QCheckBox('as note')
         self.asNotesCheck.clicked.connect(self._timeline.setAsNotes)
 
         fileToolBar = self.addToolBar('File')
         fileToolBar.setObjectName('File')
         fileToolBar.setMovable(False)
-        fileToolBar.addAction(QIcon(iconPath + 'save.svg'), 'Save', self._quickSave)
 
-        editToolBar = self.addToolBar('Edit')
-        editToolBar.setObjectName('Edit')
-        editToolBar.setMovable(False)
-        editToolBar.addAction(QIcon(iconPath + 'new.svg'), 'Add TimePoint', self._timePointView.add)
-        editToolBar.addAction(QIcon(iconPath + 'load.svg'), 'Remove TimePoint', self._timePointView.remove)
+        self._timePointView.addControls(self)
 
         settingsToolBar = self.addToolBar('Settings')
         settingsToolBar.setObjectName('Settings')
         settingsToolBar.setMovable(False)
-        settingsToolBar.addWidget(self.asNotesCheck)
 
         fileMenu = self.menuBar().addMenu('File')
         fileMenu.addAction('New', self.newFile)
         fileMenu.addAction('Load', self.load)
+
+        # actions
+        fileToolBar.addAction(QIcon(iconPath + 'save.svg'), 'Save', self._quickSave)
+
+        settingsToolBar.addWidget(self.asNotesCheck)
 
         fileMenu.addSeparator()
         fileMenu.addAction('Save', self.save)
