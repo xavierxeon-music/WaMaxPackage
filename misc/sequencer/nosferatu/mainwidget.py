@@ -3,7 +3,7 @@ from _common import SingeltonWindow
 import os
 
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QIcon,  QKeySequence
+from PySide6.QtGui import QIcon, QKeySequence, QAction
 from PySide6.QtWidgets import QDockWidget, QWidget, QFileDialog, QCheckBox
 
 
@@ -73,6 +73,10 @@ class MainWidget(SingeltonWindow):
         fileName = saveLocation[0]
         self.saveFile(fileName)
 
+    def newFile(self):
+
+        pass
+
     def _addDockWidget(self, payload, name, area):
 
         dockWidget = QDockWidget()
@@ -101,18 +105,27 @@ class MainWidget(SingeltonWindow):
         self.asNotesCheck = QCheckBox('as note')
         self.asNotesCheck.clicked.connect(self._timeline.setAsNotes)
 
+        fileToolBar = self.addToolBar('File')
+        fileToolBar.setObjectName('File')
+        fileToolBar.setMovable(False)
+        fileToolBar.addAction(QIcon(iconPath + 'save.svg'), 'Save', self._quickSave)
+
         editToolBar = self.addToolBar('Edit')
         editToolBar.setObjectName('Edit')
         editToolBar.setMovable(False)
         editToolBar.addAction(QIcon(iconPath + 'new.svg'), 'Add TimePoint', self._timePointView.add)
         editToolBar.addAction(QIcon(iconPath + 'load.svg'), 'Remove TimePoint', self._timePointView.remove)
-        editToolBar.addWidget(self.asNotesCheck)
+
+        settingsToolBar = self.addToolBar('Settings')
+        settingsToolBar.setObjectName('Settings')
+        settingsToolBar.setMovable(False)
+        settingsToolBar.addWidget(self.asNotesCheck)
 
         fileMenu = self.menuBar().addMenu('File')
-        fileMenu.addAction('New', self.load)
+        fileMenu.addAction('New', self.newFile)
         fileMenu.addAction('Load', self.load)
 
         fileMenu.addSeparator()
-        fileMenu.addAction(QIcon(iconPath + 'save.svg'), 'Save', self.save)
-        quickSaveAction = fileMenu.addAction('QuickSave', self._quickSave)
+        fileMenu.addAction('Save', self.save)
+        quickSaveAction = fileMenu.addAction(QIcon(iconPath + 'save.svg'), 'QuickSave', self._quickSave)
         quickSaveAction.setShortcut(QKeySequence(QKeySequence.Save))
