@@ -1,26 +1,28 @@
+
 from PySide6.QtGui import QStandardItemModel
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QStandardItem
+
+from .timeline import TimeLine
 
 
 class TimePointModel(QStandardItemModel):
 
     LengthRole = Qt.UserRole + 2
 
-    def __init__(self, timeline):
+    def __init__(self):
 
         super().__init__()
-        self._timeline = timeline
 
-        self._timeline.sequenceUpdated.connect(self.create)
+        TimeLine.the.sequenceUpdated.connect(self.create)
 
     def create(self):
 
         self.beginResetModel()
         self.clear()
 
-        for timeStamp, sequence in self._timeline.sequences.items():
+        for timeStamp, sequence in TimeLine.the.sequences.items():
 
             timeStampItem = QStandardItem(timeStamp)
 

@@ -24,13 +24,13 @@ class MainWidget(SingeltonWindow):
         self._timeline = TimeLine()
         self._timeline.sequenceUpdated.connect(self._dataModified)
 
-        self._timePointView = TimePointView(self._timeline)
+        self._timePointView = TimePointView()
         self._addDockWidget(self._timePointView, 'Start', Qt.LeftDockWidgetArea)
 
-        self._eventView = VelocityView(self._timeline)
+        self._eventView = VelocityView()
         self._addDockWidget(self._eventView, 'Event', Qt.RightDockWidgetArea)
 
-        self._noteView = NoteView(self._timeline)
+        self._noteView = NoteView()
         self.setCentralWidget(self._noteView)
 
         self._addControls()

@@ -8,10 +8,10 @@ from .notemodel import NoteModel
 
 class NoteView(QTableView):
 
-    def __init__(self, timeline):
+    def __init__(self):
 
         super().__init__()
-        self._model = NoteModel(timeline)
+        self._model = NoteModel()
         self.setModel(self._model)
 
         self.horizontalHeader().hide()

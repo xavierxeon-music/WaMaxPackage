@@ -4,23 +4,23 @@ from PySide6.QtCore import Qt
 from PySide6.QtGui import QStandardItem
 
 from .notemodel import Note
+from .timeline import TimeLine
 
 
 class VelocityModel(QStandardItemModel):
 
-    def __init__(self, timeline):
+    def __init__(self):
 
         super().__init__()
-        self._timeline = timeline
-        # self._timeline.loaded.connect(self.create)
-        self._timeline.sequenceUpdated.connect(self.create)
+        # TimeLine.the.loaded.connect(self.create)
+        TimeLine.the.sequenceUpdated.connect(self.create)
 
     def create(self):
 
         self.beginResetModel()
         self.clear()
 
-        sequence = self._timeline.currentSequence()
+        sequence = TimeLine.the.currentSequence()
 
         activeEventList = sequence.compileActiveEventList()
         for col in range(sequence.length):
@@ -29,7 +29,7 @@ class VelocityModel(QStandardItemModel):
             for rowNumber, value in timePoint.items():
                 value1Name = rowNumber
                 rowNumber = int(rowNumber)
-                if self._timeline.asNotes:
+                if TimeLine.the.asNotes:
                     noteValue = rowNumber
                     noteIndex = noteValue % 12
                     octave = int((noteValue - noteIndex) / 12)
@@ -53,7 +53,7 @@ class VelocityModel(QStandardItemModel):
 
     def setData(self, index, value, role):
 
-        sequence = self._timeline.currentSequence()
+        sequence = TimeLine.the.currentSequence()
 
         result = super().setData(index, value, role)
         if Qt.EditRole == role and 2 == index.column():

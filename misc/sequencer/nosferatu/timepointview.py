@@ -6,6 +6,7 @@ from PySide6.QtWidgets import QAbstractItemView, QLineEdit
 from PySide6.QtGui import QIcon
 from PySide6.QtCore import QSortFilterProxyModel
 
+from .timeline import TimeLine
 from .timepointmodel import TimePointModel
 
 
@@ -36,10 +37,10 @@ class TimePointSortModel(QSortFilterProxyModel):
 
 class TimePointView(QTreeView):
 
-    def __init__(self, timeline):
+    def __init__(self):
 
         super().__init__()
-        self._model = TimePointModel(timeline)
+        self._model = TimePointModel()
 
         self._proxyModel = TimePointSortModel(self._model)
         self.setModel(self._proxyModel)
@@ -92,7 +93,7 @@ class TimePointView(QTreeView):
         item = self._model.item(row, 0)
         timePoint = item.text()
 
-        self._model._timeline.remove(timePoint)
+        TimeLine.the.remove(timePoint)
         self._checkTimeLine()
 
     def _checkTimeLine(self):

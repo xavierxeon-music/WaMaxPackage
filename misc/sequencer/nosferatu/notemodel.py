@@ -3,6 +3,9 @@ from PySide6.QtGui import QStandardItemModel
 from PySide6.QtGui import QStandardItem, QColor
 
 
+from .timeline import TimeLine
+
+
 class Note:
 
     noteNames = ['C', 'C#', 'D', 'D#',  'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
@@ -11,24 +14,23 @@ class Note:
 
 class NoteModel(QStandardItemModel):
 
-    def __init__(self, timeline):
+    def __init__(self):
 
         super().__init__()
-        self._timeline = timeline
-        self._timeline.loaded.connect(self.create)
-        self._timeline.sequenceUpdated.connect(self.updateColors)
+        TimeLine.the.loaded.connect(self.create)
+        TimeLine.the.sequenceUpdated.connect(self.updateColors)
 
     def create(self):
 
         self.beginResetModel()
         self.clear()
 
-        sequence = self._timeline.currentSequence()
+        sequence = TimeLine.the.currentSequence()
 
         rowHeaders = []
         for row in range(128):
             rowNumber = 127 - row
-            if self._timeline.asNotes:
+            if TimeLine.the.asNotes:
                 rowIndex = rowNumber % 12
                 octave = int((rowNumber - rowIndex) / 12)
                 rowNumber = Note.noteNames[rowIndex]
@@ -50,7 +52,7 @@ class NoteModel(QStandardItemModel):
 
     def updateColors(self):
 
-        sequence = self._timeline.currentSequence()
+        sequence = TimeLine.the.currentSequence()
 
         for row in range(128):
             rowNumber = 127 - row
@@ -63,7 +65,7 @@ class NoteModel(QStandardItemModel):
                     rowItem.setBackground(QColor(200, 200, 255))
                 elif 0 == rowIndex:
                     rowItem.setBackground(QColor(240, 255, 255))
-                elif self._timeline.asNotes and Note.blackKeys[rowIndex]:
+                elif TimeLine.the.asNotes and Note.blackKeys[rowIndex]:
                     rowItem.setBackground(QColor(250, 250, 250))
                 elif 0 == col % 4:
                     rowItem.setBackground(QColor(255, 255, 240))
@@ -75,5 +77,5 @@ class NoteModel(QStandardItemModel):
         rowNumber = 127 - index.row()
         timePoint = index.column()
 
-        sequence = self._timeline.currentSequence()
+        sequence = TimeLine.the.currentSequence()
         sequence.toggle(timePoint, rowNumber)

@@ -14,9 +14,12 @@ class TimeLine(QObject):
     loaded = Signal()
     sequenceUpdated = Signal()
 
+    the = None
+
     def __init__(self):
 
         super().__init__()
+        TimeLine.the = self
 
         self.sequences = dict()  # timestamp vs sequence
         self.asNotes = True
