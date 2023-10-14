@@ -4,8 +4,34 @@ import os
 
 from PySide6.QtWidgets import QAbstractItemView, QLineEdit
 from PySide6.QtGui import QIcon
+from PySide6.QtCore import QSortFilterProxyModel
 
 from .timepointmodel import TimePointModel
+
+
+class TimePointSortModel(QSortFilterProxyModel):
+
+    def __init__(self, timeModel):
+
+        super().__init__()
+        self._timeModel = timeModel
+        self.setSourceModel(timeModel)
+
+    def lessThan(self, leftIndex, rightIndex):
+
+        leftData = self.sourceModel().data(leftIndex)
+        rightData = self.sourceModel().data(rightIndex)
+
+        leftContent = leftData.split('.')
+        rightContent = rightData.split('.')
+
+        if leftContent[0] > rightContent[0]:
+            return True
+        elif leftContent[0] == rightContent[0]:
+            if leftContent[1] > rightContent[1]:
+                return True
+
+        return False
 
 
 class TimePointView(QTreeView):
@@ -14,10 +40,14 @@ class TimePointView(QTreeView):
 
         super().__init__()
         self._model = TimePointModel(timeline)
-        self.setModel(self._model)
+
+        self._proxyModel = TimePointSortModel(self._model)
+        self.setModel(self._proxyModel)
 
         self.setRootIsDecorated(False)
         self.setSelectionMode(QAbstractItemView.SingleSelection)
+        self.setSortingEnabled(True)
+
         self._model.modelReset.connect(self.modelUpdate)
         self.clicked.connect(self._itemClicked)
 
