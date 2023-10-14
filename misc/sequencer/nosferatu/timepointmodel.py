@@ -15,7 +15,7 @@ class TimePointModel(QStandardItemModel):
 
         super().__init__()
 
-        TimeLine.the.sequenceUpdated.connect(self.create)
+        TimeLine.the.loaded.connect(self.create)
 
     def create(self):
 

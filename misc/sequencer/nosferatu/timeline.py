@@ -10,9 +10,9 @@ from .sequence import Sequence
 
 class TimeLine(QObject):
 
-    updated = Signal()
     loaded = Signal()
     sequenceUpdated = Signal()
+    sequenceChanged = Signal()
 
     the = None
 
@@ -24,14 +24,17 @@ class TimeLine(QObject):
         self.sequences = dict()  # timestamp vs sequence
         self.asNotes = True
 
-        self.currentKey = '1.1'
+        self.currentKey = None
 
     def setCurrent(self, key):
 
         self.currentKey = key
-        self.sequenceUpdated.emit()
+        self.sequenceChanged.emit()
 
     def currentSequence(self):
+
+        if not self.currentKey:
+            return None
 
         return self.sequences[self.currentKey]
 
@@ -57,7 +60,6 @@ class TimeLine(QObject):
             self.sequences['1.1'] = Sequence(self)
 
         self.loaded.emit()
-        self.updated.emit()
         self.sequenceUpdated.emit()
 
         return loaded

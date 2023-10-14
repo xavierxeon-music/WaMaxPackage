@@ -18,6 +18,7 @@ class NoteModel(QStandardItemModel):
 
         super().__init__()
         TimeLine.the.loaded.connect(self.create)
+        TimeLine.the.sequenceChanged.connect(self.create)
         TimeLine.the.sequenceUpdated.connect(self.updateColors)
 
     def create(self):
@@ -48,6 +49,7 @@ class NoteModel(QStandardItemModel):
             self.invisibleRootItem().appendRow(rowItems)
 
         self.setVerticalHeaderLabels(rowHeaders)
+        self.updateColors()
         self.endResetModel()
 
     def updateColors(self):

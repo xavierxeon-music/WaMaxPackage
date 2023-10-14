@@ -114,4 +114,4 @@ class TimePointView(QTreeView):
         item = self._model.item(row, 0)
         timePoint = item.text()
 
-        self._model._timeline.setCurrent(timePoint)
+        TimeLine.the.setCurrent(timePoint)
