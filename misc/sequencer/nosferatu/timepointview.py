@@ -19,6 +19,7 @@ class TimePointView(QTreeView):
         self.setRootIsDecorated(False)
         self.setSelectionMode(QAbstractItemView.SingleSelection)
         self._model.modelReset.connect(self.modelUpdate)
+        self.clicked.connect(self._itemClicked)
 
     def modelUpdate(self):
 
@@ -45,7 +46,9 @@ class TimePointView(QTreeView):
 
     def add(self):
 
-        print('add', self.timePointEdit.text())
+        timePoint = self.timePointEdit.text()
+        self._model._timeline.add(timePoint)
+
         self._checkTimeLine()
 
     def remove(self):
@@ -56,15 +59,28 @@ class TimePointView(QTreeView):
 
         row = indices[0].row()
 
-        print('remove time', row)
+        item = self._model.item(row, 0)
+        timePoint = item.text()
+
+        self._model._timeline.remove(timePoint)
+        self._checkTimeLine()
 
     def _checkTimeLine(self):
 
         timePoint = self.timePointEdit.text()
 
-        if self._model.validTimePoint(timePoint):
-            self.timePointEdit.setStyleSheet("color: #ff0000")
-            self.addAction.setEnabled(False)
-        else:
+        if self._model.isValidTimePoint(timePoint):
             self.timePointEdit.setStyleSheet("color: #000000")
             self.addAction.setEnabled(True)
+        else:
+            self.timePointEdit.setStyleSheet("color: #ff0000")
+            self.addAction.setEnabled(False)
+
+    def _itemClicked(self, index):
+
+        row = index.row()
+
+        item = self._model.item(row, 0)
+        timePoint = item.text()
+
+        self._model._timeline.setCurrent(timePoint)

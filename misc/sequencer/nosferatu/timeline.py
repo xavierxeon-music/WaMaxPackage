@@ -23,6 +23,11 @@ class TimeLine(QObject):
 
         self.currentKey = '1.1'
 
+    def setCurrent(self, key):
+
+        self.currentKey = key
+        self.sequenceUpdated.emit()
+
     def currentSequence(self):
 
         return self.sequences[self.currentKey]
@@ -40,8 +45,10 @@ class TimeLine(QObject):
         if os.path.exists(fileName):
             with open(fileName, 'r') as infile:
                 content = json.load(infile)
-
-            self.sequence.apply(content)
+            for key, values in content.items():
+                sequence = Sequence(self)
+                sequence.apply(values)
+                self.sequences[key] = sequence
         else:
             loaded = False
             self.sequences['1.1'] = Sequence(self)
@@ -54,6 +61,20 @@ class TimeLine(QObject):
 
     def save(self, fileName):
 
-        content = self.sequence.compile()
+        content = dict()
+        for key, seqeunce in self.sequences.items():
+            content[key] = seqeunce.compile()
+
         with open(fileName, 'w') as outfile:
             json.dump(content, outfile, indent=3)
+
+    def add(self, timePoint):
+
+        self.sequences[timePoint] = Sequence(self)
+        self.currentKey = timePoint
+
+        self.sequenceUpdated.emit()
+
+    def remove(self, timePoint):
+
+        print('remove time point', timePoint)

@@ -50,6 +50,23 @@ class TimePointModel(QStandardItemModel):
 
         return super().setData(index, value, role)
 
+    def isValidTimePoint(self, timePoint):
+
+        content = timePoint.split('.')
+        if 2 != len(content):
+            return False
+
+        try:
+            bar = int(content[0])
+            beat = int(content[1])
+        except ValueError:
+            return False
+
+        if timePoint in self._timeline.sequences:
+            return False
+
+        return True
+
     def _setTimeStamp(self, row, value):
 
         print('TIMESTAMP', row, value)
