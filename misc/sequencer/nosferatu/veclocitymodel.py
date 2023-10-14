@@ -12,7 +12,7 @@ class VelocityModel(QStandardItemModel):
     def __init__(self):
 
         super().__init__()
-        TimeLine.the.sequenceChanged.connect(self.create)
+        TimeLine.the.currentSequenceChanged.connect(self.create)
         TimeLine.the.sequenceUpdated.connect(self.create)
 
     def create(self):

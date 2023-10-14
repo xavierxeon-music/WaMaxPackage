@@ -71,7 +71,14 @@ class TimePointModel(QStandardItemModel):
 
     def _setTimeStamp(self, row, value):
 
-        print('TIMESTAMP', row, value)
+        if not self.isValidTimePoint(value):
+            return False
+
+        item = self.item(row, 0)
+        timePoint = item.text()
+        sequnece = TimeLine.the.sequences[timePoint]
+
+        print('TIMESTAMP', timePoint, value)
         return True
 
     def _setLength(self, row, value):
@@ -84,10 +91,23 @@ class TimePointModel(QStandardItemModel):
         if length < 1:
             return False
 
-        print('LENGTH', row, value)
+        item = self.item(row, 0)
+        timePoint = item.text()
+
+        print('LENGTH', timePoint, length)
+
+        sequnece = TimeLine.the.sequences[timePoint]
+        sequnece.setLength(length)
+
         return True
 
     def _setLoop(self, row, loop):
 
-        print('LOOP', row, loop)
+        item = self.item(row, 0)
+        timePoint = item.text()
+        sequnece = TimeLine.the.sequences[timePoint]
+
+        sequnece.loop = loop
+        TimeLine.the.sequenceUpdated.emit()
+
         return True

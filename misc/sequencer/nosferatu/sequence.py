@@ -1,5 +1,6 @@
 # nothing to import
 
+
 class Sequence:
 
     class Event:
@@ -21,14 +22,15 @@ class Sequence:
 
     def setLength(self, value):
 
-        print('setLength', value)
-
         activeEventList = self.compileActiveEventList()
         self.length = value
 
         self._createEmptyEventList()
         self._applyActiveEventList(activeEventList)
 
+        from .timeline import TimeLine
+
+        self.timeline.sequenceLengthChanged.emit()
         self.timeline.sequenceUpdated.emit()
 
     def apply(self, content):

@@ -18,7 +18,8 @@ class NoteModel(QStandardItemModel):
 
         super().__init__()
         TimeLine.the.loaded.connect(self.create)
-        TimeLine.the.sequenceChanged.connect(self.create)
+        TimeLine.the.currentSequenceChanged.connect(self.create)
+        TimeLine.the.sequenceLengthChanged.connect(self.create)
         TimeLine.the.sequenceUpdated.connect(self.updateColors)
 
     def create(self):
@@ -27,6 +28,7 @@ class NoteModel(QStandardItemModel):
         self.clear()
 
         sequence = TimeLine.the.currentSequence()
+        print('note create', sequence)
 
         rowHeaders = []
         for row in range(128):
@@ -55,12 +57,16 @@ class NoteModel(QStandardItemModel):
     def updateColors(self):
 
         sequence = TimeLine.the.currentSequence()
+        print('note update color', sequence, self.rowCount())
 
         for row in range(128):
             rowNumber = 127 - row
             rowIndex = rowNumber % 12
             for col in range(sequence.length):
                 rowItem = self.invisibleRootItem().child(row, col)
+                if not rowItem:
+                    continue
+
                 cell = sequence.eventList[col][rowNumber]
 
                 if cell.active:

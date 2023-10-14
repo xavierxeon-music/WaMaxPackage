@@ -32,8 +32,9 @@ class SingeltonWindow(QMainWindow):
 
     def __del__(self):
 
-        if self._server:
-            self._server.close()
+        # if self._server:
+        #    self._server.close()
+        pass
 
     def closeEvent(self, event):
 
