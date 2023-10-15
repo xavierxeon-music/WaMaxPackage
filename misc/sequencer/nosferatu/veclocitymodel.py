@@ -17,10 +17,13 @@ class VelocityModel(QStandardItemModel):
 
     def create(self):
 
+        sequence = TimeLine.the.currentSequence()
+        if not sequence:
+            self.clear()
+            return
+
         self.beginResetModel()
         self.clear()
-
-        sequence = TimeLine.the.currentSequence()
 
         activeEventList = sequence.compileActiveEventList()
         for col in range(sequence.length):

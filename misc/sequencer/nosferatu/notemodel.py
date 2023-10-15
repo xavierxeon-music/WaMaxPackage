@@ -28,7 +28,6 @@ class NoteModel(QStandardItemModel):
         self.clear()
 
         sequence = TimeLine.the.currentSequence()
-        print('note create', sequence)
 
         rowHeaders = []
         for row in range(128):
@@ -41,6 +40,9 @@ class NoteModel(QStandardItemModel):
             else:
                 rowNumber = str(rowNumber)
             rowHeaders.append(rowNumber)
+
+            if not sequence:
+                continue
 
             rowItems = []
             for col in range(sequence.length):
@@ -57,7 +59,8 @@ class NoteModel(QStandardItemModel):
     def updateColors(self):
 
         sequence = TimeLine.the.currentSequence()
-        print('note update color', sequence, self.rowCount())
+        if not sequence:
+            return
 
         for row in range(128):
             rowNumber = 127 - row

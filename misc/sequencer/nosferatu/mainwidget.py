@@ -13,6 +13,12 @@ from .timepointview import TimePointView
 from .timeline import TimeLine
 
 
+def icon(iconName):
+
+    path = os.path.dirname(__file__) + '/icons/' + iconName + '.svg'
+    return QIcon(path)
+
+
 class MainWidget(SingeltonWindow):
 
     def __init__(self):
@@ -121,11 +127,12 @@ class MainWidget(SingeltonWindow):
         fileMenu.addAction('Load', self.load)
 
         # actions
-        fileToolBar.addAction(QIcon(iconPath + 'save.svg'), 'Save', self._quickSave)
+        fileToolBar.addAction(icon('save'), 'Save', self._quickSave)
+        fileToolBar.addSeparator()
 
         settingsToolBar.addWidget(self.asNotesCheck)
 
         fileMenu.addSeparator()
         fileMenu.addAction('Save', self.save)
-        quickSaveAction = fileMenu.addAction(QIcon(iconPath + 'save.svg'), 'QuickSave', self._quickSave)
+        quickSaveAction = fileMenu.addAction(icon('save'), 'QuickSave', self._quickSave)
         quickSaveAction.setShortcut(QKeySequence(QKeySequence.Save))

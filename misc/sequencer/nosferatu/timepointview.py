@@ -59,7 +59,7 @@ class TimePointView(QTreeView):
 
     def addControls(self, mainWindow):
 
-        iconPath = os.path.dirname(__file__) + '/icons/'
+        from .mainwidget import icon
 
         self.timePointEdit = QLineEdit()
         self.timePointEdit.setStyleSheet("color: #ff0000")
@@ -70,19 +70,27 @@ class TimePointView(QTreeView):
         editToolBar.setMovable(False)
 
         editToolBar.addWidget(self.timePointEdit)
-        self.addAction = editToolBar.addAction(QIcon(iconPath + 'new.svg'), 'Add TimePoint', self.add)
+        self.addAction = editToolBar.addAction(icon('new'), 'Add TimePoint', self._add)
         self.addAction.setEnabled(False)
 
-        editToolBar.addAction(QIcon(iconPath + 'load.svg'), 'Remove TimePoint', self.remove)
+        editToolBar.addAction(icon('load'), 'Remove TimePoint', self._remove)
 
-    def add(self):
+        editToolBar.addSeparator()
+
+        editToolBar.addAction(icon('copy'), 'Copy Sequence', self._copy)
+        editToolBar.addAction(icon('paste'), 'Paste Sequence', self._paste)
+        editToolBar.addAction(icon('clear'), 'Clear Sequence', self._clear)
+
+        editToolBar.addSeparator()
+
+    def _add(self):
 
         timePoint = self.timePointEdit.text()
         self._model._timeline.add(timePoint)
 
         self._checkTimeLine()
 
-    def remove(self):
+    def _remove(self):
 
         indices = self.selectionModel().selectedRows()
         if not indices:
@@ -95,6 +103,18 @@ class TimePointView(QTreeView):
 
         TimeLine.the.remove(timePoint)
         self._checkTimeLine()
+
+    def _copy(self):
+
+        print('copy')
+
+    def _paste(self):
+
+        print('paste')
+
+    def _clear(self):
+
+        print('clear')
 
     def _checkTimeLine(self):
 
