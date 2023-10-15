@@ -22,15 +22,39 @@ class Sequence:
 
     def setLength(self, value):
 
+        from .timeline import TimeLine
+
         activeEventList = self.compileActiveEventList()
         self.length = value
 
         self._createEmptyEventList()
         self._applyActiveEventList(activeEventList)
 
+        self.timeline.sequenceLengthChanged.emit()
+        self.timeline.sequenceUpdated.emit()
+
+    def copy(self):
+
+        activeEventList = self.compileActiveEventList()
+        return activeEventList
+
+    def paste(self, activeEventList):
+
         from .timeline import TimeLine
 
+        self._createEmptyEventList()
+        self._applyActiveEventList(activeEventList)
+
         self.timeline.sequenceLengthChanged.emit()
+        self.timeline.sequenceUpdated.emit()
+
+    def clear(self):
+
+        from .timeline import TimeLine
+
+        self._createEmptyEventList()
+        from .timeline import TimeLine
+
         self.timeline.sequenceUpdated.emit()
 
     def apply(self, content):

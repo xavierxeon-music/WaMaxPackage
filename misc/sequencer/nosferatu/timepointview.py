@@ -52,6 +52,8 @@ class TimePointView(QTreeView):
         self._model.modelReset.connect(self.modelUpdate)
         self.clicked.connect(self._itemClicked)
 
+        self._clipboard = None
+
     def modelUpdate(self):
 
         self.resizeColumnToContents(0)
@@ -92,29 +94,44 @@ class TimePointView(QTreeView):
 
     def _remove(self):
 
-        indices = self.selectionModel().selectedRows()
-        if not indices:
+        timePoint = self._selectedTimePoint()
+        if not timePoint:
             return
-
-        row = indices[0].row()
-
-        item = self._model.item(row, 0)
-        timePoint = item.text()
 
         TimeLine.the.remove(timePoint)
         self._checkTimeLine()
 
     def _copy(self):
 
-        print('copy')
+        timePoint = self._selectedTimePoint()
+        if not timePoint:
+            return
+
+        sequence = TimeLine.the.sequences[timePoint]
+        self._clipboard = sequence.copy()
 
     def _paste(self):
 
-        print('paste')
+        if not self._clipboard:
+            return
+
+        timePoint = self._selectedTimePoint()
+        if not timePoint:
+            return
+
+        sequence = TimeLine.the.sequences[timePoint]
+        sequence.paste(self._clipboard)
+
+        self._clipboard = None
 
     def _clear(self):
 
-        print('clear')
+        timePoint = self._selectedTimePoint()
+        if not timePoint:
+            return
+
+        sequence = TimeLine.the.sequences[timePoint]
+        sequence.clear()
 
     def _checkTimeLine(self):
 
@@ -135,3 +152,16 @@ class TimePointView(QTreeView):
         timePoint = item.text()
 
         TimeLine.the.setCurrent(timePoint)
+
+    def _selectedTimePoint(self):
+
+        indices = self.selectionModel().selectedRows()
+        if not indices:
+            return None
+
+        row = indices[0].row()
+
+        item = self._model.item(row, 0)
+        timePoint = item.text()
+
+        return timePoint
