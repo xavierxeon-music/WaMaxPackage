@@ -43,12 +43,13 @@ class MainWidget(SingeltonWindow):
 
     def loadFile(self, fileName):
 
-        if not self._timeline.load(fileName):
-            return
+        loaded = self._timeline.load(fileName)
+        if not loaded:
+            self._timeline.clear()
 
         self._currentFile = fileName
         self.setWindowTitle(f'Nosferatu Editor - {fileName} [*]')
-        self.setWindowModified(False)
+        self.setWindowModified(not loaded)
 
         self.asNotesCheck.blockSignals(True)
         self.asNotesCheck.setChecked(self._timeline.asNotes)
@@ -81,7 +82,8 @@ class MainWidget(SingeltonWindow):
 
     def newFile(self):
 
-        pass
+        self._currentFile = ''
+        self._timeline.clear()
 
     def _addDockWidget(self, payload, name, area):
 

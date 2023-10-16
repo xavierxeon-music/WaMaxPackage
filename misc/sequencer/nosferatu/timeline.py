@@ -52,22 +52,31 @@ class TimeLine(QObject):
 
     def load(self, fileName):
 
-        loaded = True
-        if os.path.exists(fileName):
-            with open(fileName, 'r') as infile:
-                content = json.load(infile)
-            for key, values in content.items():
-                sequence = Sequence(self)
-                sequence.apply(values)
-                self.sequences[key] = sequence
-        else:
-            loaded = False
-            self.sequences['1.1'] = Sequence(self)
+        if not os.path.exists(fileName):
+            return False
+
+        with open(fileName, 'r') as infile:
+            content = json.load(infile)
+        self._currentKey = None
+        for key, values in content.items():
+            if not self._currentKey:
+                self._currentKey = key
+            sequence = Sequence(self)
+            sequence.apply(values)
+            self.sequences[key] = sequence
 
         self.loaded.emit()
         self.sequenceUpdated.emit()
 
-        return loaded
+        return True
+
+    def clear(self):
+
+        self.sequences = {'1.1':  Sequence(self)}
+        self._currentKey = '1.1'
+
+        self.loaded.emit()
+        self.sequenceUpdated.emit()
 
     def save(self, fileName):
 
