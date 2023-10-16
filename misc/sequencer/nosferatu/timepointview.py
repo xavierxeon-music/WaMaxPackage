@@ -6,6 +6,8 @@ from PySide6.QtWidgets import QAbstractItemView, QLineEdit
 from PySide6.QtGui import QIcon
 from PySide6.QtCore import QSortFilterProxyModel
 
+from _common import icon
+
 from .timeline import TimeLine
 from .timepointmodel import TimePointModel
 
@@ -60,8 +62,6 @@ class TimePointView(QTreeView):
         self.resizeColumnToContents(1)
 
     def addControls(self, mainWindow):
-
-        from .mainwidget import icon
 
         self.timePointEdit = QLineEdit()
         self.timePointEdit.setStyleSheet("color: #ff0000")

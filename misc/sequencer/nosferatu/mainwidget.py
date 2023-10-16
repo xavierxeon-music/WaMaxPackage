@@ -6,17 +6,12 @@ from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon, QKeySequence
 from PySide6.QtWidgets import QDockWidget, QWidget, QFileDialog, QCheckBox, QLineEdit
 
+from _common import icon
 
 from .velocityview import VelocityView
 from .noteview import NoteView
 from .timepointview import TimePointView
 from .timeline import TimeLine
-
-
-def icon(iconName):
-
-    path = os.path.dirname(__file__) + '/icons/' + iconName + '.svg'
-    return QIcon(path)
 
 
 class MainWidget(SingeltonWindow):
