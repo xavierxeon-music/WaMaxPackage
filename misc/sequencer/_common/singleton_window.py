@@ -17,7 +17,7 @@ def icon(iconName):
     return QIcon(path)
 
 
-def signit_handler(*args):
+def __signit_handler(*args):
 
     QApplication.quit()
 
@@ -104,7 +104,7 @@ class SingeltonWindow(QMainWindow):
             print("open file in exisiting application")
             return 0
 
-        signal.signal(signal.SIGINT, signit_handler)
+        signal.signal(signal.SIGINT, __signit_handler)
         timer = QTimer()
         timer.start(500)
         timer.timeout.connect(lambda: None)  # Let the interpreter run each 500 ms.

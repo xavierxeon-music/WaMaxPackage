@@ -3,7 +3,7 @@
 from .singleton_window import SingeltonWindow, icon
 
 
-def _addCommonToSysPath():
+def __addCommonToSysPath():
 
     import os
     import sys
@@ -12,4 +12,4 @@ def _addCommonToSysPath():
 
 
 if __name__ == '_common':
-    _addCommonToSysPath()
+    __addCommonToSysPath()
