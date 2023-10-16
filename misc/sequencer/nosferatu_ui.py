@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from nosferatu import MainWidget
+from nosferatu import NosferatuMainWidget
 
 if __name__ == '__main__':
-    MainWidget.start('Nosferatu Editor')
+    NosferatuMainWidget.start('Nosferatu Editor')

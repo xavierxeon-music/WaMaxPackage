@@ -14,7 +14,7 @@ from .timepointview import TimePointView
 from .timeline import TimeLine
 
 
-class MainWidget(SingeltonWindow):
+class NosferatuMainWidget(SingeltonWindow):
 
     def __init__(self):
 
@@ -26,10 +26,10 @@ class MainWidget(SingeltonWindow):
         self._timeline.sequenceUpdated.connect(self._dataModified)
 
         self._timePointView = TimePointView()
-        self._addDockWidget(self._timePointView, 'Start', Qt.LeftDockWidgetArea)
+        self.addAndCreateDockWidget(self._timePointView, 'Start', Qt.LeftDockWidgetArea)
 
         self._eventView = VelocityView()
-        self._addDockWidget(self._eventView, 'Event', Qt.RightDockWidgetArea)
+        self.addAndCreateDockWidget(self._eventView, 'Event', Qt.RightDockWidgetArea)
 
         self._noteView = NoteView()
         self.setCentralWidget(self._noteView)
@@ -79,15 +79,6 @@ class MainWidget(SingeltonWindow):
 
         self._currentFile = ''
         self._timeline.clear()
-
-    def _addDockWidget(self, payload, name, area):
-
-        dockWidget = QDockWidget()
-        dockWidget.setObjectName(name)
-        dockWidget.setWidget(payload)
-        dockWidget.setTitleBarWidget(QWidget())
-        dockWidget.setFeatures(QDockWidget.NoDockWidgetFeatures)
-        self.addDockWidget(area, dockWidget)
 
     def _quickSave(self):
 

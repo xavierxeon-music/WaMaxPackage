@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from nosferatu import MainWidget
+from pulsar import PulsarMainWidget
 
 if __name__ == '__main__':
-    MainWidget.start('Nosferatu Editor')
+    PulsarMainWidget.start('Pulsar Editor')

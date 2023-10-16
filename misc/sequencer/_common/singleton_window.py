@@ -8,7 +8,7 @@ import signal
 from PySide6.QtCore import QSettings, QStandardPaths, QTimer
 from PySide6.QtGui import QIcon
 from PySide6.QtNetwork import QLocalServer, QLocalSocket
-from PySide6.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication, QDockWidget, QWidget
 
 
 def icon(iconName):
@@ -64,6 +64,15 @@ class SingeltonWindow(QMainWindow):
         # print('load file locally', fileName)
         self.loadFile(fileName)
         return True
+
+    def addAndCreateDockWidget(self, payload, name, area):
+
+        dockWidget = QDockWidget()
+        dockWidget.setObjectName(name)
+        dockWidget.setWidget(payload)
+        dockWidget.setTitleBarWidget(QWidget())
+        dockWidget.setFeatures(QDockWidget.NoDockWidgetFeatures)
+        self.addDockWidget(area, dockWidget)
 
     def _serverConnected(self):
         socket = self._server.nextPendingConnection()
