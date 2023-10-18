@@ -30,16 +30,20 @@ class PulsarMainWidget(SingeltonWindow):
 
     def loadFile(self, fileName):
 
-        self._currentFile = fileName
-        self._calendar.load(fileName)
+        loaded = self._calendar.load(fileName)
+        if not loaded:
+            self._calendar.clear()
 
-        self.setWindowModified(False)
+        self._currentFile = fileName
+        self.setWindowTitle(f'Pulsar Editor - {fileName} [*]')
+        self.setWindowModified(not loaded)
 
     def saveFile(self, fileName):
 
-        self._currentFile = fileName
         self._calendar.save(fileName)
 
+        self._currentFile = fileName
+        self.setWindowTitle(f'Pulsar Editor - {fileName} [*]')
         self.setWindowModified(False)
 
     def load(self):
@@ -69,7 +73,7 @@ class PulsarMainWidget(SingeltonWindow):
         if not self._currentFile:
             return
 
-        self._timeline.save(self._currentFile)
+        self._calendar.save(self._currentFile)
         self.setWindowModified(False)
 
     def _dataModified(self):

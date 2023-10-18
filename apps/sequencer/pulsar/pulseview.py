@@ -69,6 +69,7 @@ class PulseView(QTreeView):
         self.timePointEdit.textChanged.connect(self._checkTimeLine)
 
         self.tagSelectCombo = QComboBox()
+        self.tagSelectCombo.setModel(Calendar.the.tagModel)
 
         editToolBar = mainWindow.addToolBar('TimePoint')
         editToolBar.setObjectName('TimePoint')
@@ -76,16 +77,16 @@ class PulseView(QTreeView):
 
         editToolBar.addWidget(self.timePointEdit)
         editToolBar.addWidget(self.tagSelectCombo)
-        self.addAction = editToolBar.addAction(icon('new'), 'Add TimePoint', self._add)
+        self.addAction = editToolBar.addAction(icon('new'), 'Add Pattern', self._add)
         self.addAction.setEnabled(False)
 
-        editToolBar.addAction(icon('delete'), 'Remove TimePoint', self._remove)
+        editToolBar.addAction(icon('delete'), 'Remove Pattern', self._remove)
 
         editToolBar.addSeparator()
 
-        editToolBar.addAction(icon('copy'), 'Copy Sequence', self._copy)
-        editToolBar.addAction(icon('paste'), 'Paste Sequence', self._paste)
-        editToolBar.addAction(icon('clear'), 'Clear Sequence', self._clear)
+        editToolBar.addAction(icon('copy'), 'Copy Pattern', self._copy)
+        editToolBar.addAction(icon('paste'), 'Paste Pattern', self._paste)
+        editToolBar.addAction(icon('clear'), 'Clear Pattern', self._clear)
 
         editToolBar.addSeparator()
 

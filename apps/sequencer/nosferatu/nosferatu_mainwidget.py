@@ -52,9 +52,10 @@ class NosferatuMainWidget(SingeltonWindow):
 
     def saveFile(self, fileName):
 
+        self._timeline.save(fileName)
+
         self._currentFile = fileName
         self.setWindowTitle(f'Nosferatu Cell Editor - {fileName} [*]')
-        self._timeline.save(fileName)
         self.setWindowModified(False)
 
     def load(self):
