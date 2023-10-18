@@ -74,7 +74,7 @@ class TimePointView(QTreeView):
         self.addAction = editToolBar.addAction(icon('new'), 'Add TimePoint', self._add)
         self.addAction.setEnabled(False)
 
-        editToolBar.addAction(icon('load'), 'Remove TimePoint', self._remove)
+        editToolBar.addAction(icon('delete'), 'Remove TimePoint', self._remove)
 
         editToolBar.addSeparator()
 

@@ -1,12 +1,16 @@
 from PySide6.QtWidgets import QTreeView
 
-from PySide6.QtWidgets import QAbstractItemView, QLineEdit
+import os
+
+from PySide6.QtWidgets import QAbstractItemView, QLineEdit, QComboBox
 from PySide6.QtCore import QSortFilterProxyModel
+from PySide6.QtGui import QIcon
 
 from _common import icon
 
 from .calendar import Calendar
 from .pulsemodel import PusleModel
+from .tagdialog import TagDialog
 
 
 class PulseSortModel(QSortFilterProxyModel):
@@ -64,15 +68,18 @@ class PulseView(QTreeView):
         self.timePointEdit.setStyleSheet("color: #ff0000")
         self.timePointEdit.textChanged.connect(self._checkTimeLine)
 
+        self.tagSelectCombo = QComboBox()
+
         editToolBar = mainWindow.addToolBar('TimePoint')
         editToolBar.setObjectName('TimePoint')
         editToolBar.setMovable(False)
 
         editToolBar.addWidget(self.timePointEdit)
+        editToolBar.addWidget(self.tagSelectCombo)
         self.addAction = editToolBar.addAction(icon('new'), 'Add TimePoint', self._add)
         self.addAction.setEnabled(False)
 
-        editToolBar.addAction(icon('load'), 'Remove TimePoint', self._remove)
+        editToolBar.addAction(icon('delete'), 'Remove TimePoint', self._remove)
 
         editToolBar.addSeparator()
 
@@ -81,6 +88,9 @@ class PulseView(QTreeView):
         editToolBar.addAction(icon('clear'), 'Clear Sequence', self._clear)
 
         editToolBar.addSeparator()
+
+        iconPath = os.path.dirname(__file__) + '/icons/'
+        editToolBar.addAction(QIcon(iconPath + 'tags.svg'), 'Edit Tags', self._editTags)
 
     def _add(self):
 
@@ -140,6 +150,11 @@ class PulseView(QTreeView):
         else:
             self.timePointEdit.setStyleSheet("color: #ff0000")
             self.addAction.setEnabled(False)
+
+    def _editTags(self):
+
+        dlg = TagDialog()
+        dlg.exec()
 
     def _selectedTimePoint(self):
 
