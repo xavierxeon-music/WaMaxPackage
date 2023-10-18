@@ -8,6 +8,9 @@ from PySide6.QtWidgets import QWidget, QFileDialog, QCheckBox, QLineEdit
 
 from _common import icon
 
+from .calendar import Calendar
+from .pulseview import PulseView
+
 
 class PulsarMainWidget(SingeltonWindow):
 
@@ -17,14 +20,27 @@ class PulsarMainWidget(SingeltonWindow):
         self.setWindowTitle('Pulsar Editor [*]')
 
         self._currentFile = ''
+        self._calendar = Calendar()
+        self._calendar.updated.connect(self._dataModified)
+
+        self._pulseVieww = PulseView()
+        self.setCentralWidget(self._pulseVieww)
+
+        self._addControls()
 
     def loadFile(self, fileName):
 
-        pass
+        self._currentFile = fileName
+        self._calendar.load(fileName)
+
+        self.setWindowModified(False)
 
     def saveFile(self, fileName):
 
-        pass
+        self._currentFile = fileName
+        self._calendar.save(fileName)
+
+        self.setWindowModified(False)
 
     def load(self):
 
@@ -47,3 +63,41 @@ class PulsarMainWidget(SingeltonWindow):
     def newFile(self):
 
         pass
+
+    def _quickSave(self):
+
+        if not self._currentFile:
+            return
+
+        self._timeline.save(self._currentFile)
+        self.setWindowModified(False)
+
+    def _dataModified(self):
+
+        self.setWindowModified(True)
+
+    def _addControls(self):
+
+        # widgets
+        fileToolBar = self.addToolBar('File')
+        fileToolBar.setObjectName('File')
+        fileToolBar.setMovable(False)
+
+        self._pulseVieww.addControls(self)
+
+        settingsToolBar = self.addToolBar('Settings')
+        settingsToolBar.setObjectName('Settings')
+        settingsToolBar.setMovable(False)
+
+        fileMenu = self.menuBar().addMenu('File')
+        fileMenu.addAction('New', self.newFile)
+        fileMenu.addAction('Load', self.load)
+
+        # actions
+        fileToolBar.addAction(icon('save'), 'Save', self._quickSave)
+        fileToolBar.addSeparator()
+
+        fileMenu.addSeparator()
+        fileMenu.addAction('Save', self.save)
+        quickSaveAction = fileMenu.addAction(icon('save'), 'QuickSave', self._quickSave)
+        quickSaveAction.setShortcut(QKeySequence(QKeySequence.Save))

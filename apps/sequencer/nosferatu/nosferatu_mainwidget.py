@@ -94,8 +94,6 @@ class NosferatuMainWidget(SingeltonWindow):
 
     def _addControls(self):
 
-        iconPath = os.path.dirname(__file__) + '/icons/'
-
         # widgets
         self.asNotesCheck = QCheckBox('as note')
         self.asNotesCheck.clicked.connect(self._timeline.setAsNotes)

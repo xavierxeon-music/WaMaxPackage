@@ -1,23 +1,21 @@
 from PySide6.QtWidgets import QTreeView
 
-import os
-
 from PySide6.QtWidgets import QAbstractItemView, QLineEdit
 from PySide6.QtCore import QSortFilterProxyModel
 
 from _common import icon
 
-from .timeline import TimeLine
-from .timepointmodel import TimePointModel
+from .calendar import Calendar
+from .pulsemodel import PusleModel
 
 
-class TimePointSortModel(QSortFilterProxyModel):
+class PulseSortModel(QSortFilterProxyModel):
 
-    def __init__(self, timeModel):
+    def __init__(self, pulseModel):
 
         super().__init__()
-        self._timeModel = timeModel
-        self.setSourceModel(timeModel)
+        self._pulseModel = pulseModel
+        self.setSourceModel(pulseModel)
 
     def lessThan(self, leftIndex, rightIndex):
 
@@ -36,14 +34,15 @@ class TimePointSortModel(QSortFilterProxyModel):
         return False
 
 
-class TimePointView(QTreeView):
+class PulseView(QTreeView):
 
     def __init__(self):
 
         super().__init__()
-        self._model = TimePointModel()
 
-        self._proxyModel = TimePointSortModel(self._model)
+        self._model = PusleModel()
+
+        self._proxyModel = PulseSortModel(self._model)
         self.setModel(self._proxyModel)
 
         self.setRootIsDecorated(False)
@@ -51,7 +50,6 @@ class TimePointView(QTreeView):
         self.setSortingEnabled(True)
 
         self._model.modelReset.connect(self.modelUpdate)
-        self.clicked.connect(self._itemClicked)
 
         self._clipboard = None
 
@@ -97,8 +95,8 @@ class TimePointView(QTreeView):
         if not timePoint:
             return
 
-        TimeLine.the.remove(timePoint)
-        self._checkTimeLine()
+        # TimeLine.the.remove(timePoint)
+        # self._checkTimeLine()
 
     def _copy(self):
 
@@ -106,8 +104,8 @@ class TimePointView(QTreeView):
         if not timePoint:
             return
 
-        sequence = TimeLine.the.sequences[timePoint]
-        self._clipboard = sequence.copy()
+        # sequence = TimeLine.the.sequences[timePoint]
+        # self._clipboard = sequence.copy()
 
     def _paste(self):
 
@@ -118,8 +116,8 @@ class TimePointView(QTreeView):
         if not timePoint:
             return
 
-        sequence = TimeLine.the.sequences[timePoint]
-        sequence.paste(self._clipboard)
+        # sequence = TimeLine.the.sequences[timePoint]
+        # sequence.paste(self._clipboard)
 
         self._clipboard = None
 
@@ -129,8 +127,8 @@ class TimePointView(QTreeView):
         if not timePoint:
             return
 
-        sequence = TimeLine.the.sequences[timePoint]
-        sequence.clear()
+        # sequence = TimeLine.the.sequences[timePoint]
+        # sequence.clear()
 
     def _checkTimeLine(self):
 
@@ -142,15 +140,6 @@ class TimePointView(QTreeView):
         else:
             self.timePointEdit.setStyleSheet("color: #ff0000")
             self.addAction.setEnabled(False)
-
-    def _itemClicked(self, index):
-
-        row = index.row()
-
-        item = self._model.item(row, 0)
-        timePoint = item.text()
-
-        TimeLine.the.setCurrent(timePoint)
 
     def _selectedTimePoint(self):
 
