@@ -4,6 +4,8 @@ from PySide6.QtGui import QStandardItemModel
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QStandardItem
 
+from _common import TimePoint
+
 from .timeline import TimeLine
 
 
@@ -54,14 +56,8 @@ class TimePointModel(QStandardItemModel):
 
     def isValidTimePoint(self, timePoint):
 
-        content = timePoint.split('.')
-        if 2 != len(content):
-            return False
-
-        try:
-            bar = int(content[0])
-            beat = int(content[1])
-        except ValueError:
+        tp = TimePoint.fromString(timePoint)
+        if not tp.valid():
             return False
 
         if timePoint in self._timeline.sequences:

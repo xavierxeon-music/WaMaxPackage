@@ -5,7 +5,7 @@ import os
 from PySide6.QtWidgets import QAbstractItemView, QLineEdit
 from PySide6.QtCore import QSortFilterProxyModel
 
-from _common import icon
+from _common import TimePoint, icon
 
 from .timeline import TimeLine
 from .timepointmodel import TimePointModel
@@ -24,16 +24,10 @@ class TimePointSortModel(QSortFilterProxyModel):
         leftData = self.sourceModel().data(leftIndex)
         rightData = self.sourceModel().data(rightIndex)
 
-        leftContent = leftData.split('.')
-        rightContent = rightData.split('.')
+        tpLeft = TimePoint.fromString(leftData)
+        tpRight = TimePoint.fromString(rightData)
 
-        if leftContent[0] > rightContent[0]:
-            return True
-        elif leftContent[0] == rightContent[0]:
-            if leftContent[1] > rightContent[1]:
-                return True
-
-        return False
+        return tpLeft < tpRight
 
 
 class TimePointView(QTreeView):
