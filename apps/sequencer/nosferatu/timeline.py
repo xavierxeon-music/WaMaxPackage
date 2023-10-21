@@ -94,8 +94,14 @@ class TimeLine(QObject):
         self.sequences[timePoint] = Sequence(self)
         self._currentKey = timePoint
 
+        self.loaded.emit()
         self.sequenceUpdated.emit()
 
     def remove(self, timePoint):
 
-        print('remove time point', timePoint)
+        del self.sequences[timePoint]
+        if timePoint == self._currentKey:
+            self._currentKey = None
+
+        self.loaded.emit()
+        self.sequenceUpdated.emit()

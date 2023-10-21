@@ -2,10 +2,20 @@
 
 class TimePoint:
 
-    def __init__(self):
+    def __init__(self, text=None):
 
         self.bar = None
         self.beat = None
+
+        content = text.split('.')
+        if 2 != len(content):
+            return
+
+        try:
+            self.bar = int(content[0])
+            self.beat = int(content[1])
+        except ValueError:
+            pass
 
     def __str__(self):
 
@@ -13,23 +23,6 @@ class TimePoint:
             return '0.0'
 
         return f'{self.bar}.{self.beat}'
-
-    @staticmethod
-    def fromString(text):
-
-        tp = TimePoint()
-
-        content = text.split('.')
-        if 2 != len(content):
-            return tp
-
-        try:
-            tp.bar = int(content[0])
-            tp.beat = int(content[1])
-        except ValueError:
-            return tp
-
-        return tp
 
     def valid(self):
 

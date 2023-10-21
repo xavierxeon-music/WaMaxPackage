@@ -3,7 +3,7 @@ from PySide6.QtWidgets import QTreeView
 import os
 
 from PySide6.QtWidgets import QAbstractItemView, QLineEdit
-from PySide6.QtCore import QSortFilterProxyModel
+from PySide6.QtCore import QSortFilterProxyModel, Qt
 
 from _common import TimePoint, icon
 
@@ -24,8 +24,8 @@ class TimePointSortModel(QSortFilterProxyModel):
         leftData = self.sourceModel().data(leftIndex)
         rightData = self.sourceModel().data(rightIndex)
 
-        tpLeft = TimePoint.fromString(leftData)
-        tpRight = TimePoint.fromString(rightData)
+        tpLeft = TimePoint(leftData)
+        tpRight = TimePoint(rightData)
 
         return tpLeft < tpRight
 
@@ -53,12 +53,14 @@ class TimePointView(QTreeView):
 
         self.resizeColumnToContents(0)
         self.resizeColumnToContents(1)
+        self.sortByColumn(0, Qt.AscendingOrder)
 
     def addControls(self, mainWindow):
 
         self.timePointEdit = QLineEdit()
         self.timePointEdit.setStyleSheet("color: #ff0000")
         self.timePointEdit.textChanged.connect(self._checkTimeLine)
+        self.timePointEdit.returnPressed.connect(self._add)
 
         editToolBar = mainWindow.addToolBar('TimePoint')
         editToolBar.setObjectName('TimePoint')
@@ -81,7 +83,8 @@ class TimePointView(QTreeView):
     def _add(self):
 
         timePoint = self.timePointEdit.text()
-        self._model._timeline.add(timePoint)
+        if self._model.isValidTimePoint(timePoint):
+            TimeLine.the.add(timePoint)
 
         self._checkTimeLine()
 

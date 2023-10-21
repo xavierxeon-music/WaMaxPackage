@@ -11,6 +11,7 @@ from _common import icon
 from .calendar import Calendar
 from .pulsemodel import PusleModel
 from .tagdialog import TagDialog
+from .tagmodel import TagModel
 
 
 class PulseSortModel(QSortFilterProxyModel):
@@ -53,7 +54,7 @@ class PulseView(QTreeView):
         self.setSelectionMode(QAbstractItemView.SingleSelection)
         self.setSortingEnabled(True)
 
-        self._model.modelReset.connect(self.modelUpdate)
+        TagModel.the.modelReset.connect(self.modelUpdate)
 
         self._clipboard = None
 
@@ -67,9 +68,11 @@ class PulseView(QTreeView):
         self.timePointEdit = QLineEdit()
         self.timePointEdit.setStyleSheet("color: #ff0000")
         self.timePointEdit.textChanged.connect(self._checkTimeLine)
+        self.timePointEdit.returnPressed.connect(self._add)
 
         self.tagSelectCombo = QComboBox()
-        self.tagSelectCombo.setModel(Calendar.the.tagModel)
+        self.tagSelectCombo.setModel(TagModel.the)
+        self.tagSelectCombo.currentIndexChanged.connect(self._checkTimeLine)
 
         editToolBar = mainWindow.addToolBar('TimePoint')
         editToolBar.setObjectName('TimePoint')
@@ -96,22 +99,26 @@ class PulseView(QTreeView):
     def _add(self):
 
         timePoint = self.timePointEdit.text()
-        self._model._timeline.add(timePoint)
+        tag = self.tagSelectCombo.currentText()
+
+        if Calendar.the.available(tag, timePoint):
+            Calendar.the.add(tag, timePoint)
 
         self._checkTimeLine()
 
     def _remove(self):
 
-        timePoint = self._selectedTimePoint()
+        timePoint, tag = self._selectedTimePointAndTag()
         if not timePoint:
             return
 
-        # TimeLine.the.remove(timePoint)
-        # self._checkTimeLine()
+        Calendar.the.remove(tag, timePoint)
+
+        self._checkTimeLine()
 
     def _copy(self):
 
-        timePoint = self._selectedTimePoint()
+        timePoint, tag = self._selectedTimePointAndTag()
         if not timePoint:
             return
 
@@ -123,7 +130,7 @@ class PulseView(QTreeView):
         if not self._clipboard:
             return
 
-        timePoint = self._selectedTimePoint()
+        timePoint, tag = self._selectedTimePointAndTag()
         if not timePoint:
             return
 
@@ -134,7 +141,7 @@ class PulseView(QTreeView):
 
     def _clear(self):
 
-        timePoint = self._selectedTimePoint()
+        timePoint, tag = self._selectedTimePointAndTag()
         if not timePoint:
             return
 
@@ -143,9 +150,10 @@ class PulseView(QTreeView):
 
     def _checkTimeLine(self):
 
+        tag = self.tagSelectCombo.currentText()
         timePoint = self.timePointEdit.text()
 
-        if self._model.isValidTimePoint(timePoint):
+        if Calendar.the.available(tag, timePoint):
             self.timePointEdit.setStyleSheet("color: #000000")
             self.addAction.setEnabled(True)
         else:
@@ -157,15 +165,18 @@ class PulseView(QTreeView):
         dlg = TagDialog()
         dlg.exec()
 
-    def _selectedTimePoint(self):
+    def _selectedTimePointAndTag(self):
 
         indices = self.selectionModel().selectedRows()
         if not indices:
-            return None
+            return [None, None]
 
         row = indices[0].row()
 
-        item = self._model.item(row, 0)
-        timePoint = item.text()
+        timePointItem = self._model.item(row, 0)
+        timePoint = timePointItem.text()
 
-        return timePoint
+        tagItem = self._model.item(row, 0)
+        tag = tagItem.text()
+
+        return [timePoint, tag]

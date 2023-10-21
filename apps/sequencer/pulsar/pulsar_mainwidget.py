@@ -10,6 +10,7 @@ from _common import icon
 
 from .calendar import Calendar
 from .pulseview import PulseView
+from .tagmodel import TagModel
 
 
 class PulsarMainWidget(SingeltonWindow):
@@ -22,6 +23,8 @@ class PulsarMainWidget(SingeltonWindow):
         self._currentFile = ''
         self._calendar = Calendar()
         self._calendar.updated.connect(self._dataModified)
+
+        self._tagModel = TagModel()
 
         self._pulseVieww = PulseView()
         self.setCentralWidget(self._pulseVieww)

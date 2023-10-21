@@ -1,10 +1,27 @@
 from PySide6.QtWidgets import QDialog
 
+from PySide6.QtCore import QSortFilterProxyModel, Qt
 from PySide6.QtWidgets import QTreeView, QToolBar, QVBoxLayout, QLineEdit
 
 from _common import icon
 
 from .calendar import Calendar
+from .tagmodel import TagModel
+
+
+class TagSortModel(QSortFilterProxyModel):
+
+    def __init__(self):
+
+        super().__init__()
+        self.setSourceModel(TagModel.the)
+
+    def lessThan(self, leftIndex, rightIndex):
+
+        leftData = self.sourceModel().data(leftIndex)
+        rightData = self.sourceModel().data(rightIndex)
+
+        return leftData < rightData
 
 
 class TagDialog(QDialog):
@@ -21,6 +38,7 @@ class TagDialog(QDialog):
         self.tagEdit = QLineEdit()
         self.tagEdit.setStyleSheet("color: #ff0000")
         self.tagEdit.textChanged.connect(self._checkTag)
+        self.tagEdit.returnPressed.connect(self._add)
         toolBar.addWidget(self.tagEdit)
 
         self.addAction = toolBar.addAction(icon('new'), 'Add Tag', self._add)
@@ -30,8 +48,11 @@ class TagDialog(QDialog):
 
         self.tagView = QTreeView()
         self.tagView.setRootIsDecorated(False)
-        self.tagView.setModel(Calendar.the.tagModel)
-        print(Calendar.the.tagModel)
+        self.tagView.setSortingEnabled(True)
+
+        self._proxyModel = TagSortModel()
+        self.tagView.setModel(self._proxyModel)
+        TagModel.the.modelReset.connect(self.modelUpdate)
 
         masterLayout = QVBoxLayout()
         masterLayout.setContentsMargins(0, 0, 0, 0)
@@ -42,12 +63,19 @@ class TagDialog(QDialog):
 
         self.setLayout(masterLayout)
 
+    def modelUpdate(self):
+
+        self.tagView.resizeColumnToContents(0)
+        self.tagView.sortByColumn(0, Qt.AscendingOrder)
+
     def _add(self):
 
         tag = self.tagEdit.text()
-        Calendar.the.tags[tag] = dict()
 
-        Calendar.the.tagsUpdated.emit()
+        if not tag in Calendar.the.tags:
+            Calendar.the.tags[tag] = dict()
+            Calendar.the.tagsUpdated.emit()
+
         self._checkTag()
 
     def _remove(self):
@@ -57,7 +85,7 @@ class TagDialog(QDialog):
             return
 
         row = indices[0].row()
-        item = Calendar.the.tagModel.item(row, 0)
+        item = Calendar.the.item(row, 0)
 
         tag = item.text()
         del Calendar.the.tags[tag]

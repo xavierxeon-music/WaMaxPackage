@@ -56,11 +56,11 @@ class TimePointModel(QStandardItemModel):
 
     def isValidTimePoint(self, timePoint):
 
-        tp = TimePoint.fromString(timePoint)
+        tp = TimePoint(timePoint)
         if not tp.valid():
             return False
 
-        if timePoint in self._timeline.sequences:
+        if timePoint in TimeLine.the.sequences:
             return False
 
         return True

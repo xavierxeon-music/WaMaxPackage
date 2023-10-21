@@ -2,22 +2,26 @@ from PySide6.QtGui import QStandardItemModel
 
 from PySide6.QtGui import QStandardItem
 
+from .calendar import Calendar
+
 
 class TagModel(QStandardItemModel):
 
-    def __init__(self, calendar):
+    the = None
+
+    def __init__(self):
 
         super().__init__()
-        self._calendar = calendar
+        TagModel.the = self
 
-        calendar.tagsUpdated.connect(self.create)
+        Calendar.the.tagsUpdated.connect(self.create)
 
     def create(self):
 
         self.beginResetModel()
         self.clear()
 
-        for key in self._calendar.tags.keys():
+        for key in Calendar.the.tags.keys():
             nameItem = QStandardItem(key)
             self.invisibleRootItem().appendRow(nameItem)
 
