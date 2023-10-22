@@ -1,6 +1,7 @@
 {
    "test": {
       "1.1": {
+         "loop": true,
          "length": 16,
          "values": [
             255,
@@ -8,19 +9,22 @@
          ]
       },
       "2.1": {
-         "length": 16,
+         "loop": true,
+         "length": 18,
          "values": [
             0,
-            0
+            0,
+            1
          ]
       }
    },
    "other": {
       "2.1": {
+         "loop": true,
          "length": 16,
          "values": [
             0,
-            0
+            255
          ]
       }
    }

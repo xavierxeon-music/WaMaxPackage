@@ -30,3 +30,7 @@ class TagModel(QStandardItemModel):
 
         self.setHorizontalHeaderLabels(['name'])
         self.endResetModel()
+
+    def setData(self, index, value, role):
+
+        return super().setData(index, value, role)

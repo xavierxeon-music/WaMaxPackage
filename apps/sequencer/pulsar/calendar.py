@@ -95,3 +95,28 @@ class Calendar(QObject):
         del pulses[timePoint]
 
         self.beatCountChange.emit()
+
+    def changeLength(self, tag, timePoint, value):
+
+        try:
+            length = int(value)
+            if length < 0:
+                return False
+        except ValueError:
+            return False
+
+        pulses = self.tags[tag]
+        pattern = pulses[timePoint]
+
+        pattern.setLength(length)
+        self.beatModified.emit()
+
+        return True
+
+    def changeLoop(self, tag, timePoint, loop):
+
+        pulses = self.tags[tag]
+        pattern = pulses[timePoint]
+        pattern.loop = loop
+
+        self.beatModified.emit()

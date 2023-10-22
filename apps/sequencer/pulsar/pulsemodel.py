@@ -2,6 +2,7 @@ from PySide6.QtGui import QStandardItemModel
 from PySide6.QtCore import QSortFilterProxyModel
 
 from PySide6.QtGui import QStandardItem
+from PySide6.QtCore import Qt
 
 from _common import TimePoint
 
@@ -72,6 +73,8 @@ class PusleModel(QStandardItemModel):
 
                 length = str(pattern.length)
                 lengthItem = QStandardItem(length)
+                lengthItem.setCheckable(True)
+                lengthItem.setCheckState(Qt.Checked if pattern.loop else Qt.Unchecked)
 
                 patternItem = QStandardItem('***')
                 patternItem.setData(pattern, Pattern.Role)
@@ -80,3 +83,26 @@ class PusleModel(QStandardItemModel):
 
         self.setHorizontalHeaderLabels(['bar.beat', 'tag', 'length', 'pattern'])
         self.endResetModel()
+
+    def setData(self, index, value, role):
+
+        column = index.column()
+        if 2 != column:
+            return
+
+        row = index.row()
+
+        tpItem = self.invisibleRootItem().child(row, 0)
+        timePoint = tpItem.text()
+
+        tagItem = self.invisibleRootItem().child(row, 1)
+        tag = tagItem.text()
+
+        if Qt.EditRole == role:
+            if not Calendar.the.changeLength(tag, timePoint, value):
+                return False
+        elif Qt.CheckStateRole == role:
+            loop = (value == 2)  # Qt::Checked
+            Calendar.the.changeLoop(tag, timePoint, loop)
+
+        return super().setData(index, value, role)

@@ -1,6 +1,6 @@
 #
 
-from PySide6.QtGui import QPainter, QPalette
+from PySide6.QtGui import QPainter, QPalette, QPen, QBrush
 from PySide6.QtCore import QSize, Qt
 
 
@@ -13,24 +13,47 @@ class Pattern:
 
         super().__init__()
 
+        self.loop = True
         self.length = 16
         self.values = [0, 0]
 
     def toDict(self):
 
-        return {'length': self.length, 'values': self.values}
+        return {'loop': self.loop, 'length': self.length, 'values': self.values}
 
     @staticmethod
     def fromDict(dictIn):
 
         p = Pattern()
 
+        if 'loop' in dictIn:
+            p.loop = dictIn['loop']
         if 'length' in dictIn:
             p.length = dictIn['length']
         if 'values' in dictIn:
             p.values = dictIn['values']
 
         return p
+
+    def setLength(self, length):
+
+        byteCount = 0
+        while (8 * byteCount) < length:
+            byteCount += 1
+
+        while byteCount > len(self.values):
+            self.values.append(0)
+
+        while byteCount < len(self.values):
+            self.values.pop()
+
+        for index in range(8 * byteCount):
+            if index < length:
+                continue
+            if self.readBit(index):
+                self.toggleBit(index)
+
+        self.length = length
 
     def readBit(self, index):
 
@@ -70,14 +93,16 @@ class Pattern:
 
         return Pattern.scale * QSize(self.length, 1)
 
-    def paint(self, painter, rect, palette, isEditable=False):
+    def paint(self, painter, rect, palette, isEditable, isHighlight):
 
         painter.save()
 
         painter.setRenderHint(QPainter.Antialiasing, True)
 
         if isEditable:
-            painter.setPen(palette.color(QPalette.Highlight))
+            painter.setPen(QPen(Qt.cyan))
+        elif isHighlight:
+            painter.setPen(palette.color(QPalette.HighlightedText))
         else:
             painter.setPen(palette.color(QPalette.WindowText))
 
@@ -89,7 +114,12 @@ class Pattern:
 
         for index in range(self.length):
             if self.readBit(index):
-                painter.setBrush(palette.windowText())
+                if isEditable:
+                    painter.setBrush(QBrush(Qt.cyan))
+                elif isHighlight:
+                    painter.setBrush(palette.highlightedText())
+                else:
+                    painter.setBrush(palette.text())
             else:
                 painter.setBrush(Qt.NoBrush)
 
