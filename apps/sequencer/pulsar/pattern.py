@@ -21,19 +21,41 @@ class Pattern:
 
         return {'loop': self.loop, 'length': self.length, 'values': self.values}
 
+    def copy(self):
+
+        pattern = Pattern()
+
+        pattern.loop = self.loop
+        pattern.length = self.length
+        pattern.values = list()
+
+        for value in self.values:
+            pattern.values.append(value)
+
+        return pattern
+
+    def paste(self, pattern):
+
+        self.loop = pattern.loop
+        self.length = pattern.length
+        self.values = list()
+
+        for value in pattern.values:
+            self.values.append(value)
+
     @staticmethod
     def fromDict(dictIn):
 
-        p = Pattern()
+        pattern = Pattern()
 
         if 'loop' in dictIn:
-            p.loop = dictIn['loop']
+            pattern.loop = dictIn['loop']
         if 'length' in dictIn:
-            p.length = dictIn['length']
+            pattern.length = dictIn['length']
         if 'values' in dictIn:
-            p.values = dictIn['values']
+            pattern.values = dictIn['values']
 
-        return p
+        return pattern
 
     def setLength(self, length):
 

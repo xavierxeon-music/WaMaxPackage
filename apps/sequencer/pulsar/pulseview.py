@@ -13,6 +13,7 @@ from .pulsemodel import PusleModel, PulseSortModel
 from .patterndelegate import PatternDelegate
 from .tagdialog import TagDialog
 from .tagmodel import TagModel
+from .pattern import Pattern
 
 
 class PulseView(QTreeView):
@@ -106,8 +107,8 @@ class PulseView(QTreeView):
         if not timePoint:
             return
 
-        # sequence = TimeLine.the.sequences[timePoint]
-        # self._clipboard = sequence.copy()
+        pattern = Calendar.the.tags[tag][timePoint]
+        self._clipboard = pattern.copy()
 
     def _paste(self):
 
@@ -118,10 +119,12 @@ class PulseView(QTreeView):
         if not timePoint:
             return
 
-        # sequence = TimeLine.the.sequences[timePoint]
-        # sequence.paste(self._clipboard)
+        pattern = Calendar.the.tags[tag][timePoint]
+        pattern.paste(self._clipboard)
 
         self._clipboard = None
+        Calendar.the.loaded.emit()
+        Calendar.the.beatModified.emit()
 
     def _clear(self):
 
@@ -129,8 +132,9 @@ class PulseView(QTreeView):
         if not timePoint:
             return
 
-        # sequence = TimeLine.the.sequences[timePoint]
-        # sequence.clear()
+        Calendar.the.tags[tag][timePoint] = Pattern()
+        Calendar.the.loaded.emit()
+        Calendar.the.beatModified.emit()
 
     def _checkTimeLine(self):
 
@@ -155,12 +159,13 @@ class PulseView(QTreeView):
         if not indices:
             return [None, None]
 
-        row = indices[0].row()
+        orgIndex = self._proxyModel.mapToSource(indices[0])
+        row = orgIndex.row()
 
         timePointItem = self._model.item(row, 0)
         timePoint = timePointItem.text()
 
-        tagItem = self._model.item(row, 0)
+        tagItem = self._model.item(row, 1)
         tag = tagItem.text()
 
         return [timePoint, tag]

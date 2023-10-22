@@ -60,7 +60,11 @@ class Calendar(QObject):
 
     def clear(self):
 
-        pass
+        self.tags = dict()
+
+        self.loaded.emit()
+        self.tagsUpdated.emit()
+        self.beatCountChange.emit()
 
     def available(self, tag, timePoint):
 

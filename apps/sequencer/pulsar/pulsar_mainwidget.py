@@ -70,7 +70,10 @@ class PulsarMainWidget(SingeltonWindow):
 
     def newFile(self):
 
-        pass
+        self._calendar.clear()
+
+        self._currentFile = ''
+        self.setWindowModified(False)
 
     def _quickSave(self):
 
