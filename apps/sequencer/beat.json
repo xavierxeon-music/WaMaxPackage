@@ -1,9 +1,27 @@
 {
    "test": {
       "1.1": {
-         "length": 0,
-         "values": []
+         "length": 16,
+         "values": [
+            255,
+            0
+         ]
+      },
+      "2.1": {
+         "length": 16,
+         "values": [
+            0,
+            0
+         ]
       }
    },
-   "other": {}
+   "other": {
+      "2.1": {
+         "length": 16,
+         "values": [
+            0,
+            0
+         ]
+      }
+   }
 }

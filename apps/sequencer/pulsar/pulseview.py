@@ -3,40 +3,16 @@ from PySide6.QtWidgets import QTreeView
 import os
 
 from PySide6.QtWidgets import QAbstractItemView, QLineEdit, QComboBox
-from PySide6.QtCore import QSortFilterProxyModel
+from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon
 
 from _common import icon
 
 from .calendar import Calendar
-from .pulsemodel import PusleModel
+from .pulsemodel import PusleModel, PulseSortModel
+from .patterndelegate import PatternDelegate
 from .tagdialog import TagDialog
 from .tagmodel import TagModel
-
-
-class PulseSortModel(QSortFilterProxyModel):
-
-    def __init__(self, pulseModel):
-
-        super().__init__()
-        self._pulseModel = pulseModel
-        self.setSourceModel(pulseModel)
-
-    def lessThan(self, leftIndex, rightIndex):
-
-        leftData = self.sourceModel().data(leftIndex)
-        rightData = self.sourceModel().data(rightIndex)
-
-        leftContent = leftData.split('.')
-        rightContent = rightData.split('.')
-
-        if leftContent[0] > rightContent[0]:
-            return True
-        elif leftContent[0] == rightContent[0]:
-            if leftContent[1] > rightContent[1]:
-                return True
-
-        return False
 
 
 class PulseView(QTreeView):
@@ -54,7 +30,11 @@ class PulseView(QTreeView):
         self.setSelectionMode(QAbstractItemView.SingleSelection)
         self.setSortingEnabled(True)
 
+        self.setItemDelegateForColumn(3, PatternDelegate())
+
         TagModel.the.modelReset.connect(self.modelUpdate)
+        Calendar.the.beatCountChange.connect(self.modelUpdate)
+        Calendar.the.loaded.connect(self.modelUpdate)
 
         self._clipboard = None
 
@@ -62,6 +42,10 @@ class PulseView(QTreeView):
 
         self.resizeColumnToContents(0)
         self.resizeColumnToContents(1)
+        self.resizeColumnToContents(2)
+        self.resizeColumnToContents(3)
+
+        self.sortByColumn(0, Qt.AscendingOrder)
 
     def addControls(self, mainWindow):
 

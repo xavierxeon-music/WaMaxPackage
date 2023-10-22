@@ -1,27 +1,12 @@
 from PySide6.QtWidgets import QDialog
 
-from PySide6.QtCore import QSortFilterProxyModel, Qt
+from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QTreeView, QToolBar, QVBoxLayout, QLineEdit
 
 from _common import icon
 
 from .calendar import Calendar
 from .tagmodel import TagModel
-
-
-class TagSortModel(QSortFilterProxyModel):
-
-    def __init__(self):
-
-        super().__init__()
-        self.setSourceModel(TagModel.the)
-
-    def lessThan(self, leftIndex, rightIndex):
-
-        leftData = self.sourceModel().data(leftIndex)
-        rightData = self.sourceModel().data(rightIndex)
-
-        return leftData < rightData
 
 
 class TagDialog(QDialog):
@@ -48,10 +33,8 @@ class TagDialog(QDialog):
 
         self.tagView = QTreeView()
         self.tagView.setRootIsDecorated(False)
-        self.tagView.setSortingEnabled(True)
 
-        self._proxyModel = TagSortModel()
-        self.tagView.setModel(self._proxyModel)
+        self.tagView.setModel(TagModel.the)
         TagModel.the.modelReset.connect(self.modelUpdate)
 
         masterLayout = QVBoxLayout()
@@ -66,7 +49,6 @@ class TagDialog(QDialog):
     def modelUpdate(self):
 
         self.tagView.resizeColumnToContents(0)
-        self.tagView.sortByColumn(0, Qt.AscendingOrder)
 
     def _add(self):
 

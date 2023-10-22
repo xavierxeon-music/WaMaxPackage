@@ -22,7 +22,8 @@ class PulsarMainWidget(SingeltonWindow):
 
         self._currentFile = ''
         self._calendar = Calendar()
-        self._calendar.updated.connect(self._dataModified)
+        self._calendar.beatModified.connect(self._dataModified)
+        self._calendar.beatCountChange.connect(self._dataModified)
 
         self._tagModel = TagModel()
 

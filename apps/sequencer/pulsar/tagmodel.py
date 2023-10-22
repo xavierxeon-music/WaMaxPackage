@@ -21,7 +21,10 @@ class TagModel(QStandardItemModel):
         self.beginResetModel()
         self.clear()
 
-        for key in Calendar.the.tags.keys():
+        keyList = list(Calendar.the.tags.keys())
+        keyList.sort()
+
+        for key in keyList:
             nameItem = QStandardItem(key)
             self.invisibleRootItem().appendRow(nameItem)
 
