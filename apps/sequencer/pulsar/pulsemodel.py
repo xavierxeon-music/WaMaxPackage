@@ -48,6 +48,7 @@ class PusleModel(QStandardItemModel):
 
         Calendar.the.loaded.connect(self._create)
         Calendar.the.beatCountChange.connect(self._create)
+        Calendar.the.tagsUpdated.connect(self._create)
 
     def _create(self):
 

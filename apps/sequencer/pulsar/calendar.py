@@ -96,6 +96,16 @@ class Calendar(QObject):
 
         self.beatCountChange.emit()
 
+    def changeTag(self, tag, oldTag):
+
+        if tag in self.tags:
+            return False
+
+        self.tags[tag] = self.tags[oldTag]
+        del self.tags[oldTag]
+
+        return True
+
     def changeLength(self, tag, timePoint, value):
 
         try:

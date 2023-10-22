@@ -14,9 +14,9 @@ class TagModel(QStandardItemModel):
         super().__init__()
         TagModel.the = self
 
-        Calendar.the.tagsUpdated.connect(self.create)
+        Calendar.the.tagsUpdated.connect(self._create)
 
-    def create(self):
+    def _create(self):
 
         self.beginResetModel()
         self.clear()
@@ -33,4 +33,13 @@ class TagModel(QStandardItemModel):
 
     def setData(self, index, value, role):
 
-        return super().setData(index, value, role)
+        row = index.row()
+        item = self.invisibleRootItem().child(row, 0)
+        oldValue = item.text()
+
+        if Calendar.the.changeTag(value, oldValue):
+            result = super().setData(index, value, role)
+            Calendar.the.tagsUpdated.emit()
+            return result
+
+        return False
