@@ -38,6 +38,7 @@ class NosferatuMainWidget(SingeltonWindow):
 
     def loadFile(self, fileName):
 
+        print(fileName)
         loaded = self._timeline.load(fileName)
         if not loaded:
             self._timeline.clear()

@@ -13,7 +13,7 @@ class Sequence:
     def __init__(self, timeline):
 
         self.length = 16
-        self.loop = False
+        self.loop = True
         self.timeline = timeline
 
         self.eventList = []  # (127 * length) matrix

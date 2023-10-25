@@ -57,8 +57,12 @@ class TimeLine(QObject):
         if not os.path.exists(fileName):
             return False
 
-        with open(fileName, 'r') as infile:
-            content = json.load(infile)
+        try:
+            with open(fileName, 'r') as infile:
+                content = json.load(infile)
+        except json.JSONDecodeError:
+            return False
+
         self._currentKey = None
         for key, values in content.items():
             if not self._currentKey:

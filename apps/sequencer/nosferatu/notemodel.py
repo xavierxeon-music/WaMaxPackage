@@ -34,7 +34,7 @@ class NoteModel(QStandardItemModel):
             rowNumber = 127 - row
             if TimeLine.the.asNotes:
                 rowIndex = rowNumber % 12
-                octave = int((rowNumber - rowIndex) / 12)
+                octave = int((rowNumber - rowIndex) / 12) - 2
                 rowNumber = Note.noteNames[rowIndex]
                 rowNumber += str(octave)
             else:
