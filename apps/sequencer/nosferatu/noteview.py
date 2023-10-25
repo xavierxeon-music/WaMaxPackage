@@ -26,7 +26,7 @@ class NoteView(QTableView):
             self.setColumnWidth(col, 30)
 
         def center():
-            index = self._model.index(127 - 24, 0)
+            index = self._model.index(127 - 48, 0)
             self.scrollTo(index)
 
         QTimer.singleShot(100, center)
