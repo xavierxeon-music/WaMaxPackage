@@ -6,7 +6,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon, QKeySequence
 from PySide6.QtWidgets import QWidget, QFileDialog, QCheckBox, QLineEdit
 
-from _common import icon
+from _common import resource
 
 
 class MaestroMainWidget(SingeltonWindow):

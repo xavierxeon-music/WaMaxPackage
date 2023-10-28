@@ -6,7 +6,7 @@ from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon, QKeySequence
 from PySide6.QtWidgets import QWidget, QFileDialog, QCheckBox, QLineEdit
 
-from _common import icon
+from _common import Icon
 
 from .calendar import Calendar
 from .pulseview import PulseView
@@ -105,10 +105,10 @@ class PulsarMainWidget(SingeltonWindow):
         fileMenu.addAction('Load', self.load)
 
         # actions
-        fileToolBar.addAction(icon('save'), 'Save', self._quickSave)
+        fileToolBar.addAction(Icon.common('save'), 'Save', self._quickSave)
         fileToolBar.addSeparator()
 
         fileMenu.addSeparator()
         fileMenu.addAction('Save', self.save)
-        quickSaveAction = fileMenu.addAction(icon('save'), 'QuickSave', self._quickSave)
+        quickSaveAction = fileMenu.addAction(Icon.common('save'), 'QuickSave', self._quickSave)
         quickSaveAction.setShortcut(QKeySequence(QKeySequence.Save))

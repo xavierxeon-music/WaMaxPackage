@@ -6,7 +6,7 @@ from PySide6.QtWidgets import QAbstractItemView, QLineEdit, QComboBox
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon
 
-from _common import icon
+from _common import Icon
 
 from .calendar import Calendar
 from .pulsemodel import PusleModel, PulseSortModel
@@ -65,21 +65,20 @@ class PulseView(QTreeView):
 
         editToolBar.addWidget(self.timePointEdit)
         editToolBar.addWidget(self.tagSelectCombo)
-        self.addAction = editToolBar.addAction(icon('new'), 'Add Pattern', self._add)
+        self.addAction = editToolBar.addAction(Icon.common('new'), 'Add Pattern', self._add)
         self.addAction.setEnabled(False)
 
-        editToolBar.addAction(icon('delete'), 'Remove Pattern', self._remove)
+        editToolBar.addAction(Icon.common('delete'), 'Remove Pattern', self._remove)
 
         editToolBar.addSeparator()
 
-        editToolBar.addAction(icon('copy'), 'Copy Pattern', self._copy)
-        editToolBar.addAction(icon('paste'), 'Paste Pattern', self._paste)
-        editToolBar.addAction(icon('clear'), 'Clear Pattern', self._clear)
+        editToolBar.addAction(Icon.common('copy'), 'Copy Pattern', self._copy)
+        editToolBar.addAction(Icon.common('paste'), 'Paste Pattern', self._paste)
+        editToolBar.addAction(Icon.common('clear'), 'Clear Pattern', self._clear)
 
         editToolBar.addSeparator()
 
-        iconPath = os.path.dirname(__file__) + '/icons/'
-        editToolBar.addAction(QIcon(iconPath + 'tags.svg'), 'Edit Tags', self._editTags)
+        editToolBar.addAction(Icon.app('tags'), 'Edit Tags', self._editTags)
 
     def _add(self):
 

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-from .singleton_window import SingeltonWindow, icon
 from .delegate_combobox import DelegateCompbBox
+from .resource import Icon, Resource
+from .singleton_window import SingeltonWindow
 from .timepoint import TimePoint
 
 

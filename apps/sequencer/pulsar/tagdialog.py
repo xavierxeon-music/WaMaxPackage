@@ -3,7 +3,7 @@ from PySide6.QtWidgets import QDialog
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QTreeView, QToolBar, QVBoxLayout, QLineEdit
 
-from _common import icon
+from _common import Icon
 
 from .calendar import Calendar
 from .tagmodel import TagModel
@@ -26,10 +26,10 @@ class TagDialog(QDialog):
         self.tagEdit.returnPressed.connect(self._add)
         toolBar.addWidget(self.tagEdit)
 
-        self.addAction = toolBar.addAction(icon('new'), 'Add Tag', self._add)
+        self.addAction = toolBar.addAction(Icon.common('new'), 'Add Tag', self._add)
         self.addAction.setEnabled(False)
 
-        toolBar.addAction(icon('delete'), 'Remove Remove', self._remove)
+        toolBar.addAction(Icon.common('delete'), 'Remove Remove', self._remove)
 
         self.tagView = QTreeView()
         self.tagView.setRootIsDecorated(False)

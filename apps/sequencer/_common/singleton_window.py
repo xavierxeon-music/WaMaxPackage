@@ -6,15 +6,8 @@ import sys
 import signal
 
 from PySide6.QtCore import QSettings, QStandardPaths, QTimer
-from PySide6.QtGui import QIcon
 from PySide6.QtNetwork import QLocalServer, QLocalSocket
 from PySide6.QtWidgets import QApplication, QDockWidget, QWidget
-
-
-def icon(iconName):
-
-    path = os.path.dirname(__file__) + '/icons/' + iconName + '.svg'
-    return QIcon(path)
 
 
 class SingeltonWindow(QMainWindow):

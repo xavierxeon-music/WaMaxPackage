@@ -5,7 +5,7 @@ import os
 from PySide6.QtWidgets import QAbstractItemView, QLineEdit
 from PySide6.QtCore import QSortFilterProxyModel, Qt
 
-from _common import TimePoint, icon
+from _common import TimePoint, resource
 
 from .timeline import TimeLine
 from .timepointmodel import TimePointModel
@@ -67,16 +67,16 @@ class TimePointView(QTreeView):
         editToolBar.setMovable(False)
 
         editToolBar.addWidget(self.timePointEdit)
-        self.addAction = editToolBar.addAction(icon('new'), 'Add TimePoint', self._add)
+        self.addAction = editToolBar.addAction(Icon.common('new'), 'Add TimePoint', self._add)
         self.addAction.setEnabled(False)
 
-        editToolBar.addAction(icon('delete'), 'Remove TimePoint', self._remove)
+        editToolBar.addAction(Icon.common('delete'), 'Remove TimePoint', self._remove)
 
         editToolBar.addSeparator()
 
-        editToolBar.addAction(icon('copy'), 'Copy Sequence', self._copy)
-        editToolBar.addAction(icon('paste'), 'Paste Sequence', self._paste)
-        editToolBar.addAction(icon('clear'), 'Clear Sequence', self._clear)
+        editToolBar.addAction(Icon.common('copy'), 'Copy Sequence', self._copy)
+        editToolBar.addAction(Icon.common('paste'), 'Paste Sequence', self._paste)
+        editToolBar.addAction(Icon.common('clear'), 'Clear Sequence', self._clear)
 
         editToolBar.addSeparator()
 
