@@ -26,10 +26,10 @@ class TagDialog(QDialog):
         self.tagEdit.returnPressed.connect(self._add)
         toolBar.addWidget(self.tagEdit)
 
-        self.addAction = toolBar.addAction(Icon.common('new'), 'Add Tag', self._add)
+        self.addAction = toolBar.addAction(Icon.app('new_tag'), 'Add Tag', self._add)
         self.addAction.setEnabled(False)
 
-        toolBar.addAction(Icon.common('delete'), 'Remove Remove', self._remove)
+        toolBar.addAction(Icon.app('delete_tag'), 'Remove Remove', self._remove)
 
         self.tagView = QTreeView()
         self.tagView.setRootIsDecorated(False)
