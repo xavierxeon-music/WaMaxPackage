@@ -1,17 +1,14 @@
 from PySide6.QtWidgets import QTreeView
 
-import os
 
 from PySide6.QtWidgets import QAbstractItemView, QLineEdit, QComboBox
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QIcon
 
 from _common import Icon
 
 from .calendar import Calendar
 from .pulsemodel import PusleModel, PulseSortModel
 from .patterndelegate import PatternDelegate
-from .tagdialog import TagDialog
 from .tagmodel import TagModel
 from .pattern import Pattern
 
@@ -75,10 +72,6 @@ class PulseView(QTreeView):
         editToolBar.addAction(Icon.common('copy'), 'Copy Pattern', self._copy)
         editToolBar.addAction(Icon.common('paste'), 'Paste Pattern', self._paste)
         editToolBar.addAction(Icon.common('clear'), 'Clear Pattern', self._clear)
-
-        editToolBar.addSeparator()
-
-        editToolBar.addAction(Icon.app('tags'), 'Edit Tags', self._editTags)
 
     def _add(self):
 

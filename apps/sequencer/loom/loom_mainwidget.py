@@ -11,6 +11,7 @@ from _common import Icon
 from .calendar import Calendar
 from .pulseview import PulseView
 from .tagmodel import TagModel
+from .tagwidget import TagWidget
 
 
 class LoomMainWidget(SingeltonWindow):
@@ -29,6 +30,9 @@ class LoomMainWidget(SingeltonWindow):
 
         self._pulseVieww = PulseView()
         self.setCentralWidget(self._pulseVieww)
+
+        self._tagWidget = TagWidget()
+        self.addAndCreateDockWidget(self._tagWidget, 'Tags', Qt.LeftDockWidgetArea)
 
         self._addControls()
 
@@ -89,11 +93,11 @@ class LoomMainWidget(SingeltonWindow):
 
     def _addControls(self):
 
-        # widgets
         fileToolBar = self.addToolBar('File')
         fileToolBar.setObjectName('File')
         fileToolBar.setMovable(False)
 
+        self._tagWidget.addControls(self)
         self._pulseVieww.addControls(self)
 
         settingsToolBar = self.addToolBar('Settings')

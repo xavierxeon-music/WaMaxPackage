@@ -1,2 +1,0 @@
-max objectfile wa.maestro.groove_visu wa.maestro.groove_visu;
-max definesubstitution wa.maestro.groove_visu bpatcher @name wa.maestro.groove_visu.maxpat;
