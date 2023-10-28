@@ -13,7 +13,7 @@ from .pulseview import PulseView
 from .tagmodel import TagModel
 
 
-class PulsarMainWidget(SingeltonWindow):
+class LoomMainWidget(SingeltonWindow):
 
     def __init__(self):
 
