@@ -5,7 +5,7 @@ inlets = 1;
 setinletassist(0, "message, bang");
 
 outlets = 1;
-setoutletassist(0, "text");
+setoutletassist(0, "on");
 
 function Pattern(data) {
 
@@ -16,7 +16,19 @@ function Pattern(data) {
    if (data) {
       this.length = data['length'];
       this.loop = (1 == data['loop']);
-      this.values = data['values'];
+
+      var content = data['values'];
+      for (var byteIndex in content) {
+         var value = content[byteIndex];
+
+         for (var index = 0; index < 8; index++) {
+            var bitIndex = (8 * byteIndex) + index;
+            var mask = (1 << index);
+            var on = (0 != (value & mask));
+            this.values.push(on);
+         }
+
+      }
    }
 
    this.current = 0;
@@ -29,7 +41,7 @@ Pattern.prototype.advance = function () {
    if (!this.loop && this.current >= this.length)
       return;
 
-   // bang
+   on = this.values[this.current];
 
    this.current += 1;
    if (this.current >= this.length) {
@@ -37,6 +49,7 @@ Pattern.prototype.advance = function () {
          this.current = 0;
    }
 
+   return on;
 }
 
 
@@ -53,7 +66,8 @@ function bang() {
 
    for (var tag in patternCurrent) {
       pattern = patternCurrent[tag];
-      pattern.advance();
+      on = pattern.advance();
+      outlet(0, [tag, on]);
    }
 }
 
