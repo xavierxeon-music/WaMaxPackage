@@ -32,8 +32,11 @@ class Calendar(QObject):
         if not os.path.exists(fileName):
             return False
 
-        with open(fileName, 'r') as infile:
-            content = json.load(infile)
+        try:
+            with open(fileName, 'r') as infile:
+                content = json.load(infile)
+        except json.JSONDecodeError:
+            return False
 
         self.tags = dict()
         for tag, tagData in content.items():
@@ -90,7 +93,7 @@ class Calendar(QObject):
             self.tags[tag] = dict()
 
         pulses = self.tags[tag]
-        pulses[timePoint] = Pattern().toDict()
+        pulses[timePoint] = Pattern()
         self.beatCountChange.emit()
 
     def remove(self, tag, timePoint):

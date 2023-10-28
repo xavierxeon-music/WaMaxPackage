@@ -11,14 +11,14 @@ setoutletassist(1, "end");
 // from file
 function Sequence(data) {
 
-   this.loop = 0;
+   this.loop = false;
    this.length = 0;
    this.events = [];
 
    if (data) {
       this.length = data['length'];
+      this.loop = (1 == data['loop']);
       this.events = data['events'];
-      this.loop = data['loop'];
    }
 
    return this;
@@ -56,8 +56,8 @@ function bang() {
    }
 
    lastEvent = currentEvent;
-   current += 1;
 
+   current += 1;
    if (current >= sequence.length) {
       outlet(1, "bang");
       if (sequence.loop)

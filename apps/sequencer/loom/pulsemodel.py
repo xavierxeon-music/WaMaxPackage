@@ -62,9 +62,12 @@ class PusleModel(QStandardItemModel):
                 if not tp in tpDict:
                     tpDict[tp] = dict()
                 tpDict[tp][tag] = pattern
+                print(pattern)
 
         for tp, tagData in tpDict.items():
             for tag, pattern in tagData.items():
+
+                print(pattern)
 
                 tpItem = QStandardItem(tp)
                 tpItem.setEditable(False)
