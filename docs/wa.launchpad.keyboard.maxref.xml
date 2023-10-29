@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 <c74object name="wa.launchpad.keyboard" patcher_type="0">
-    <digest>Hello World</digest>
+    <digest>midi keyboard</digest>
+    <description>use 2 launchpad rows as a midi keyboard</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
@@ -10,16 +11,18 @@
     <misc name="Outputs">
         <entry id="1" name="pitch">
             <digest/>
+            <description>the midi note</description>
         </entry>
     </misc>
     <objarglist>
         <objarg name="1" optional="1" type="symbol">
-            <digest/>
+            <digest>row</digest>
+            <description>the row of the keyboard</description>
         </objarg>
     </objarglist>
     <attributelist>
         <attribute get="1" name="offset" set="1" size="1" type="symbol">
-            <digest/>
+            <digest>midi offset</digest>
         </attribute>
     </attributelist>
     <methodlist/>

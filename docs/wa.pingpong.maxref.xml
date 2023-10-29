@@ -7,17 +7,8 @@
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="1"/>
-    <misc name="Outputs">
-        <entry id="1" name="">
-            <digest/>
-            <description>left signal</description>
-        </entry>
-        <entry id="2" name="">
-            <digest/>
-            <description>right signal</description>
-        </entry>
-    </misc>
+    <parser inlet_count="0"/>
+    <misc name="Outputs"/>
     <objarglist>
         <objarg name="1" optional="1" type="symbol">
             <digest/>
