@@ -9,18 +9,30 @@ maxAPI.addHandler("packagePath", () => {
 });
 
 
+function printData(tag, data) {
+   var text = `${data}`;
+   var lines = text.split("\n");
+
+   for (var index in lines) {
+      line = lines[index];
+      if (!line)
+         continue;
+
+      maxAPI.outlet([tag, line]);
+   }
+}
+
 function executeProgram(program, appArgs) {
 
    var process = spawn(program, appArgs);
 
    process.stdout.on('data', (data) => {
-      // maxAPI.post(`stdout: ${data}`);
-      maxAPI.outlet(["stdout", data]);
+      printData("stdout", data)
    });
 
    process.stderr.on('data', (data) => {
       maxAPI.post(`stderr: ${data}`);
-      maxAPI.outlet(["stderr", data]);
+      printData("stderr", data)
    });
 
    process.on('error', (err) => {
