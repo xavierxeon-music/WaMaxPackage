@@ -5,7 +5,7 @@ import os
 from PySide6.QtWidgets import QAbstractItemView, QLineEdit
 from PySide6.QtCore import QSortFilterProxyModel, Qt
 
-from _common import TimePoint, resource
+from _common import TimePoint, Icon
 
 from .timeline import TimeLine
 from .timepointmodel import TimePointModel

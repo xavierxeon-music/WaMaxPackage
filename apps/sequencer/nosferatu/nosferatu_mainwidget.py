@@ -3,10 +3,10 @@ from _common import SingeltonWindow
 import os
 
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QIcon, QKeySequence
-from PySide6.QtWidgets import QDockWidget, QWidget, QFileDialog, QCheckBox, QLineEdit
+from PySide6.QtGui import QKeySequence
+from PySide6.QtWidgets import QFileDialog, QCheckBox
 
-from _common import resource
+from _common import Icon
 
 from .velocityview import VelocityView
 from .noteview import NoteView
