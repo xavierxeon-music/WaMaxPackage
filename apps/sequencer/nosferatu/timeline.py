@@ -5,8 +5,6 @@ import os
 
 from PySide6.QtCore import Signal
 
-from _common import TimePoint
-
 from .sequence import Sequence
 
 
