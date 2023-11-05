@@ -8,7 +8,7 @@ from PySide6.QtWidgets import QWidget, QFileDialog, QCheckBox, QLineEdit
 
 from _common import Icon
 
-from .calendar import Calendar
+from .loom import Loom
 from .pulseview import PulseView
 from .tagmodel import TagModel
 from .tagwidget import TagWidget
@@ -22,9 +22,9 @@ class LoomMainWidget(SingeltonWindow):
         self.setWindowTitle('Pulsar Editor [*]')
 
         self._currentFile = ''
-        self._calendar = Calendar()
-        self._calendar.beatModified.connect(self._dataModified)
-        self._calendar.beatCountChange.connect(self._dataModified)
+        self._loom = Loom()
+        self._loom.beatModified.connect(self._dataModified)
+        self._loom.beatCountChange.connect(self._dataModified)
 
         self._tagModel = TagModel()
 
@@ -38,9 +38,9 @@ class LoomMainWidget(SingeltonWindow):
 
     def loadFile(self, fileName):
 
-        loaded = self._calendar.load(fileName)
+        loaded = self._loom.load(fileName)
         if not loaded:
-            self._calendar.clear()
+            self._loom.clear()
 
         self._currentFile = fileName
         self.setWindowTitle(f'Pulsar Editor - {fileName} [*]')
@@ -48,7 +48,7 @@ class LoomMainWidget(SingeltonWindow):
 
     def saveFile(self, fileName):
 
-        self._calendar.save(fileName)
+        self._loom.save(fileName)
 
         self._currentFile = fileName
         self.setWindowTitle(f'Pulsar Editor - {fileName} [*]')
@@ -74,7 +74,7 @@ class LoomMainWidget(SingeltonWindow):
 
     def newFile(self):
 
-        self._calendar.clear()
+        self._loom.clear()
 
         self._currentFile = ''
         self.setWindowModified(False)
@@ -84,7 +84,7 @@ class LoomMainWidget(SingeltonWindow):
         if not self._currentFile:
             return
 
-        self._calendar.save(self._currentFile)
+        self._loom.save(self._currentFile)
         self.setWindowModified(False)
 
     def _dataModified(self):

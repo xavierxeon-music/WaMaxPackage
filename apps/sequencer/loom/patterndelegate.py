@@ -4,7 +4,7 @@ from PySide6.QtWidgets import QStyle
 from PySide6.QtCore import Signal, Qt
 from PySide6.QtGui import QPainter, QBrush
 
-from .calendar import Calendar
+from .loom import Loom
 from .pattern import Pattern
 
 
@@ -39,7 +39,7 @@ class PatternEditor(QWidget):
         self.pattern.toggleBit(index)
         self.update()
 
-        Calendar.the.beatModified.emit()
+        Loom.the.beatModified.emit()
 
     def mouseDoubleClickEvent(self, event):
 

@@ -6,7 +6,7 @@ from PySide6.QtCore import Qt
 
 from _common import TimePoint
 
-from .calendar import Calendar
+from .loom import Loom
 from .pattern import Pattern
 
 
@@ -46,9 +46,9 @@ class PusleModel(QStandardItemModel):
 
         super().__init__()
 
-        Calendar.the.loaded.connect(self._create)
-        Calendar.the.beatCountChange.connect(self._create)
-        Calendar.the.tagsUpdated.connect(self._create)
+        Loom.the.loaded.connect(self._create)
+        Loom.the.beatCountChange.connect(self._create)
+        Loom.the.tagsUpdated.connect(self._create)
 
     def _create(self):
 
@@ -57,7 +57,7 @@ class PusleModel(QStandardItemModel):
 
         # resort
         tpDict = dict()
-        for tag, tpData in Calendar.the.tags.items():
+        for tag, tpData in Loom.the.tags.items():
             for tp, pattern in tpData.items():
                 if not tp in tpDict:
                     tpDict[tp] = dict()
@@ -103,10 +103,10 @@ class PusleModel(QStandardItemModel):
         tag = tagItem.text()
 
         if Qt.EditRole == role:
-            if not Calendar.the.changeLength(tag, timePoint, value):
+            if not Loom.the.changeLength(tag, timePoint, value):
                 return False
         elif Qt.CheckStateRole == role:
             loop = (value == 2)  # Qt::Checked
-            Calendar.the.changeLoop(tag, timePoint, loop)
+            Loom.the.changeLoop(tag, timePoint, loop)
 
         return super().setData(index, value, role)

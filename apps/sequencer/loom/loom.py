@@ -11,7 +11,7 @@ from _common import TimePoint
 from .pattern import Pattern
 
 
-class Calendar(QObject):
+class Loom(QObject):
 
     loaded = Signal()
     beatModified = Signal()
@@ -23,7 +23,7 @@ class Calendar(QObject):
     def __init__(self):
 
         super().__init__()
-        Calendar.the = self
+        Loom.the = self
 
         self.tags = dict()
 

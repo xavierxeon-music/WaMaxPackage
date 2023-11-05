@@ -2,7 +2,7 @@ from PySide6.QtGui import QStandardItemModel
 
 from PySide6.QtGui import QStandardItem
 
-from .calendar import Calendar
+from .loom import Loom
 
 
 class TagModel(QStandardItemModel):
@@ -14,14 +14,14 @@ class TagModel(QStandardItemModel):
         super().__init__()
         TagModel.the = self
 
-        Calendar.the.tagsUpdated.connect(self._create)
+        Loom.the.tagsUpdated.connect(self._create)
 
     def _create(self):
 
         self.beginResetModel()
         self.clear()
 
-        keyList = list(Calendar.the.tags.keys())
+        keyList = list(Loom.the.tags.keys())
         keyList.sort()
 
         for key in keyList:
@@ -37,9 +37,9 @@ class TagModel(QStandardItemModel):
         item = self.invisibleRootItem().child(row, 0)
         oldValue = item.text()
 
-        if Calendar.the.changeTag(value, oldValue):
+        if Loom.the.changeTag(value, oldValue):
             result = super().setData(index, value, role)
-            Calendar.the.tagsUpdated.emit()
+            Loom.the.tagsUpdated.emit()
             return result
 
         return False

@@ -6,7 +6,7 @@ from PySide6.QtCore import Qt
 
 from _common import Icon
 
-from .calendar import Calendar
+from .loom import Loom
 from .pulsemodel import PusleModel, PulseSortModel
 from .patterndelegate import PatternDelegate
 from .tagmodel import TagModel
@@ -31,8 +31,8 @@ class PulseView(QTreeView):
         self.setItemDelegateForColumn(3, PatternDelegate())
 
         TagModel.the.modelReset.connect(self.modelUpdate)
-        Calendar.the.beatCountChange.connect(self.modelUpdate)
-        Calendar.the.loaded.connect(self.modelUpdate)
+        Loom.the.beatCountChange.connect(self.modelUpdate)
+        Loom.the.loaded.connect(self.modelUpdate)
 
         self._clipboard = None
 
@@ -78,8 +78,8 @@ class PulseView(QTreeView):
         timePoint = self.timePointEdit.text()
         tag = self.tagSelectCombo.currentText()
 
-        if Calendar.the.available(tag, timePoint):
-            Calendar.the.add(tag, timePoint)
+        if Loom.the.available(tag, timePoint):
+            Loom.the.add(tag, timePoint)
 
         self._checkTimeLine()
 
@@ -89,7 +89,7 @@ class PulseView(QTreeView):
         if not timePoint:
             return
 
-        Calendar.the.remove(tag, timePoint)
+        Loom.the.remove(tag, timePoint)
 
         self._checkTimeLine()
 
@@ -99,7 +99,7 @@ class PulseView(QTreeView):
         if not timePoint:
             return
 
-        pattern = Calendar.the.tags[tag][timePoint]
+        pattern = Loom.the.tags[tag][timePoint]
         self._clipboard = pattern.copy()
 
     def _paste(self):
@@ -111,12 +111,12 @@ class PulseView(QTreeView):
         if not timePoint:
             return
 
-        pattern = Calendar.the.tags[tag][timePoint]
+        pattern = Loom.the.tags[tag][timePoint]
         pattern.paste(self._clipboard)
 
         self._clipboard = None
-        Calendar.the.loaded.emit()
-        Calendar.the.beatModified.emit()
+        Loom.the.loaded.emit()
+        Loom.the.beatModified.emit()
 
     def _clear(self):
 
@@ -124,16 +124,16 @@ class PulseView(QTreeView):
         if not timePoint:
             return
 
-        Calendar.the.tags[tag][timePoint] = Pattern()
-        Calendar.the.loaded.emit()
-        Calendar.the.beatModified.emit()
+        Loom.the.tags[tag][timePoint] = Pattern()
+        Loom.the.loaded.emit()
+        Loom.the.beatModified.emit()
 
     def _checkTimeLine(self):
 
         tag = self.tagSelectCombo.currentText()
         timePoint = self.timePointEdit.text()
 
-        if Calendar.the.available(tag, timePoint):
+        if Loom.the.available(tag, timePoint):
             self.timePointEdit.setStyleSheet("color: #000000")
             self.addAction.setEnabled(True)
         else:

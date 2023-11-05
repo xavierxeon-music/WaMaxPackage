@@ -5,7 +5,7 @@ from PySide6.QtWidgets import QLineEdit
 
 from _common import Icon
 
-from .calendar import Calendar
+from .loom import Loom
 from .tagmodel import TagModel
 
 
@@ -47,9 +47,9 @@ class TagWidget(QTreeView):
 
         tag = self.tagEdit.text()
 
-        if not tag in Calendar.the.tags:
-            Calendar.the.tags[tag] = dict()
-            Calendar.the.tagsUpdated.emit()
+        if not tag in Loom.the.tags:
+            Loom.the.tags[tag] = dict()
+            Loom.the.tagsUpdated.emit()
 
         self._checkTag()
 
@@ -60,19 +60,19 @@ class TagWidget(QTreeView):
             return
 
         row = indices[0].row()
-        item = Calendar.the.item(row, 0)
+        item = Loom.the.item(row, 0)
 
         tag = item.text()
-        del Calendar.the.tags[tag]
+        del Loom.the.tags[tag]
 
-        Calendar.the.tagsUpdated.emit()
+        Loom.the.tagsUpdated.emit()
         self._checkTag()
 
     def _checkTag(self):
 
         tag = self.tagEdit.text()
 
-        if tag in Calendar.the.tags:
+        if tag in Loom.the.tags:
             self.tagEdit.setStyleSheet("color: #ff0000")
             self.addAction.setEnabled(False)
         else:
