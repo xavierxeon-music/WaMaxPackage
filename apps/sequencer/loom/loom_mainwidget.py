@@ -1,10 +1,8 @@
 from _common import SingeltonWindow
 
-import os
-
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QIcon, QKeySequence
-from PySide6.QtWidgets import QWidget, QFileDialog, QCheckBox, QLineEdit
+from PySide6.QtGui import QKeySequence
+from PySide6.QtWidgets import QFileDialog
 
 from _common import Icon
 
@@ -18,7 +16,7 @@ class LoomMainWidget(SingeltonWindow):
 
     def __init__(self):
 
-        super().__init__('pulsar_editor')
+        super().__init__('loom_editor')
         self.setWindowTitle('Pulsar Editor [*]')
 
         self._currentFile = ''
@@ -56,7 +54,7 @@ class LoomMainWidget(SingeltonWindow):
 
     def load(self):
 
-        loadLocation = QFileDialog.getOpenFileName(self, 'Pulsar File', str(), '*.json')
+        loadLocation = QFileDialog.getOpenFileName(self, 'Loom File', str(), '*.json')
         if not loadLocation:
             return
 

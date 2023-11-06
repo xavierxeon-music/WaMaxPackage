@@ -7,23 +7,18 @@ setinletassist(0, "message");
 outlets = 1;
 setoutletassist(0, "event");
 
-var scheduleFile = null;
-var schedule = {};
+var schedule = null;
 
-function create() {
 
-   dummy = { "1.1": ["A", "B"] };
-   saveJsonFile(dummy, scheduleFile);
-   // print("create", scheduleFile);
-}
+function load(fileName) {
 
-function read(fileName) {
-
-   scheduleFile = fileName;
-   reload();
+   schedule = readJsonFile(fileName);
 }
 
 function time(bars, beats) {
+
+   if (!schedule)
+      return;
 
    var key = bars + "." + beats;
    eventList = schedule[key]
@@ -36,12 +31,3 @@ function time(bars, beats) {
       outlet(0, event);
    }
 }
-
-function reload() {
-
-   if (!scheduleFile)
-      return;
-
-   schedule = readJsonFile(scheduleFile);
-}
-
