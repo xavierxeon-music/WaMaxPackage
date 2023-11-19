@@ -1,7 +1,5 @@
 from PySide6.QtWidgets import QTreeView
 
-import os
-
 from PySide6.QtWidgets import QAbstractItemView, QLineEdit
 from PySide6.QtCore import QSortFilterProxyModel, Qt
 

@@ -1,8 +1,8 @@
 from PySide6.QtWidgets import QStyledItemDelegate, QWidget
 
 from PySide6.QtWidgets import QStyle
-from PySide6.QtCore import Signal, Qt
-from PySide6.QtGui import QPainter, QBrush
+from PySide6.QtCore import Signal
+from PySide6.QtGui import QPainter
 
 from .loom import Loom
 from .pattern import Pattern

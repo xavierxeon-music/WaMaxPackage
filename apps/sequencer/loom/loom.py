@@ -4,7 +4,6 @@ import json
 import os
 
 from PySide6.QtCore import Signal
-from PySide6.QtGui import QStandardItem
 
 from _common import TimePoint
 

@@ -54,7 +54,8 @@ class LoomMainWidget(SingeltonWindow):
 
     def load(self):
 
-        loadLocation = QFileDialog.getOpenFileName(self, 'Loom File', str(), '*.json')
+        loadLocation = QFileDialog.getOpenFileName(
+            self, 'Loom File', str(), '*.json')
         if not loadLocation:
             return
 

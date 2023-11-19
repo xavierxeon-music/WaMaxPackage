@@ -1,13 +1,13 @@
 from PySide6.QtWidgets import QTreeView
 
-from .tagmodel import TagModel
+from .eventmodel import EventModel
 
 
-class TagFilterView(QTreeView):
+class EventView(QTreeView):
 
     def __init__(self):
 
         super().__init__()
-        self._model = TagModel()
+        self._model = EventModel()
 
         self.setModel(self._model)

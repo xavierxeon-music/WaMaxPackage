@@ -7,6 +7,11 @@ from PySide6.QtWidgets import QWidget, QFileDialog, QCheckBox, QLineEdit
 
 from _common import Icon
 
+from .calendar import Calender
+from .tagfilterview import TagFilterView
+from .timepointview import TimePointView
+from .eventview import EventView
+
 
 class TaskmasterMainWidget(SingeltonWindow):
 
@@ -16,14 +21,24 @@ class TaskmasterMainWidget(SingeltonWindow):
         self.setWindowTitle('Taskmaster Editor [*]')
 
         self._currentFile = ''
+        self._calendar = Calender()
+
+        self._timePointView = TimePointView()
+        self.addAndCreateDockWidget(self._timePointView, 'TimePoints', Qt.LeftDockWidgetArea)
+
+        self._eventView = EventView()
+        self.setCentralWidget(self._eventView)
+
+        self._tagFilterView = TagFilterView()
+        self.addAndCreateDockWidget(self._tagFilterView, 'Tags', Qt.RightDockWidgetArea)
+
         self._addControls()
 
     def loadFile(self, fileName):
 
-        loaded = False
-        # loaded = self._loom.load(fileName)
-        # if not loaded:
-        # self._loom.clear()
+        loaded = self._calendar.load(fileName)
+        if not loaded:
+            self._calendar.clear()
 
         self._currentFile = fileName
         self.setWindowTitle(f'Taskmaster Editor - {fileName} [*]')
@@ -31,7 +46,7 @@ class TaskmasterMainWidget(SingeltonWindow):
 
     def saveFile(self, fileName):
 
-        # self._loom.save(fileName)
+        self._calendar.save(fileName)
 
         self._currentFile = fileName
         self.setWindowTitle(f'Taskmaster Editor - {fileName} [*]')
@@ -39,7 +54,8 @@ class TaskmasterMainWidget(SingeltonWindow):
 
     def load(self):
 
-        loadLocation = QFileDialog.getOpenFileName(self, 'Taskmaster File', str(), '*.json')
+        loadLocation = QFileDialog.getOpenFileName(
+            self, 'Taskmaster File', str(), '*.json')
         if not loadLocation:
             return
 
@@ -57,7 +73,7 @@ class TaskmasterMainWidget(SingeltonWindow):
 
     def newFile(self):
 
-        self._loom.clear()
+        self._calendar.clear()
 
         self._currentFile = ''
         self.setWindowModified(False)
@@ -67,7 +83,7 @@ class TaskmasterMainWidget(SingeltonWindow):
         if not self._currentFile:
             return
 
-        self._loom.save(self._currentFile)
+        self._calendar.save(self._currentFile)
         self.setWindowModified(False)
 
     def _dataModified(self):
