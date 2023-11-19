@@ -16,12 +16,10 @@ class NosferatuMainWidget(SingeltonWindow):
 
     def __init__(self):
 
-        super().__init__('nosferatu_editor')
-        self.setWindowTitle(f'Nosferatu Cell Editor [*]')
+        super().__init__()
 
-        self._currentFile = ''
         self._timeline = TimeLine()
-        self._timeline.sequenceUpdated.connect(self._dataModified)
+        self._timeline.sequenceUpdated.connect(self.dataModified)
 
         self._timePointView = TimePointView()
         self.addAndCreateDockWidget(self._timePointView, 'Start', Qt.LeftDockWidgetArea)
@@ -36,14 +34,11 @@ class NosferatuMainWidget(SingeltonWindow):
 
     def loadFile(self, fileName):
 
-        print(fileName)
         loaded = self._timeline.load(fileName)
         if not loaded:
             self._timeline.clear()
 
-        self._currentFile = fileName
-        self.setWindowTitle(f'Nosferatu Editor - {fileName} [*]')
-        self.setWindowModified(not loaded)
+        self.updateWindowTitle(not loaded, fileName)
 
         self.asNotesCheck.blockSignals(True)
         self.asNotesCheck.setChecked(self._timeline.asNotes)
@@ -53,9 +48,7 @@ class NosferatuMainWidget(SingeltonWindow):
 
         self._timeline.save(fileName)
 
-        self._currentFile = fileName
-        self.setWindowTitle(f'Nosferatu Cell Editor - {fileName} [*]')
-        self.setWindowModified(False)
+        self.updateWindowTitle(False, fileName)
 
     def load(self):
 
@@ -87,10 +80,6 @@ class NosferatuMainWidget(SingeltonWindow):
 
         self._timeline.save(self._currentFile)
         self.setWindowModified(False)
-
-    def _dataModified(self):
-
-        self.setWindowModified(True)
 
     def _addControls(self):
 

@@ -13,7 +13,7 @@ class MaestroMainWidget(SingeltonWindow):
 
     def __init__(self):
 
-        super().__init__('maestro_editor')
+        super().__init__()
         self.setWindowTitle('Maestro Editor [*]')
 
         self._currentFile = ''

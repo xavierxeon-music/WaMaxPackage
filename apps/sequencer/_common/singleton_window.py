@@ -12,12 +12,18 @@ from PySide6.QtWidgets import QApplication, QDockWidget, QWidget
 
 class SingeltonWindow(QMainWindow):
 
-    def __init__(self, socketName):
+    def __init__(self):
 
         super().__init__()
 
+        self._currentFile = ''
+        self.updateWindowTitle(False)
+
+        appName = QApplication.applicationName()
+
         self._server = None
-        self._socketName = QStandardPaths.writableLocation(QStandardPaths.TempLocation) + '/' + socketName
+        self._socketName = QStandardPaths.writableLocation(
+            QStandardPaths.TempLocation) + '/' + appName.replace(" ", "_")
 
         qtsettings = QSettings()
         self.restoreGeometry(qtsettings.value('geometry'))
@@ -77,6 +83,24 @@ class SingeltonWindow(QMainWindow):
 
         pass
 
+    def updateWindowTitle(self, isModified, fileName=None):
+
+        if fileName:
+            self._currentFile = fileName
+
+        appName = QApplication.applicationName()
+        if not self._currentFile:
+            self.setWindowTitle(f'{appName} [*]')
+        else:
+            fileName = os.path.basename(self._currentFile)
+            self.setWindowTitle(f'{appName} - {fileName} [*]')
+
+        self.setWindowModified(isModified)
+
+    def dataModified(self):
+
+        self.setWindowModified(True)
+
     @staticmethod
     def _signit_handler(*args):
 
@@ -85,11 +109,11 @@ class SingeltonWindow(QMainWindow):
     @classmethod
     def start(cls, appName):
 
-        app = QApplication([])
+        QApplication.setOrganizationName('Schweinesystem')
+        QApplication.setOrganizationDomain('schweinesystem.eu')
+        QApplication.setApplicationName(appName)
 
-        app.setOrganizationName('Schweinesystem')
-        app.setOrganizationDomain('schweinesystem.eu')
-        app.setApplicationName(appName)
+        app = QApplication([])
 
         fileName = ' '.join(sys.argv[1:])
         if 'Darwin' == platform.system():

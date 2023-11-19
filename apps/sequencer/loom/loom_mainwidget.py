@@ -16,10 +16,8 @@ class LoomMainWidget(SingeltonWindow):
 
     def __init__(self):
 
-        super().__init__('loom_editor')
-        self.setWindowTitle('Pulsar Editor [*]')
+        super().__init__()
 
-        self._currentFile = ''
         self._loom = Loom()
         self._loom.beatModified.connect(self._dataModified)
         self._loom.beatCountChange.connect(self._dataModified)
@@ -40,17 +38,13 @@ class LoomMainWidget(SingeltonWindow):
         if not loaded:
             self._loom.clear()
 
-        self._currentFile = fileName
-        self.setWindowTitle(f'Pulsar Editor - {fileName} [*]')
-        self.setWindowModified(not loaded)
+        self.updateWindowTitle(not loaded, fileName)
 
     def saveFile(self, fileName):
 
         self._loom.save(fileName)
 
-        self._currentFile = fileName
-        self.setWindowTitle(f'Pulsar Editor - {fileName} [*]')
-        self.setWindowModified(False)
+        self.updateWindowTitle(False, fileName)
 
     def load(self):
 

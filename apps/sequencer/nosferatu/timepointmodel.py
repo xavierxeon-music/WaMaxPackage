@@ -74,7 +74,7 @@ class TimePointModel(QStandardItemModel):
         timePoint = item.text()
         sequnece = TimeLine.the.sequences[timePoint]
 
-        print('TIMESTAMP', timePoint, value)
+        # print('TIMESTAMP', timePoint, value)
         return True
 
     def _setLength(self, row, value):
@@ -90,7 +90,7 @@ class TimePointModel(QStandardItemModel):
         item = self.item(row, 0)
         timePoint = item.text()
 
-        print('LENGTH', timePoint, length)
+        # print('LENGTH', timePoint, length)
 
         sequnece = TimeLine.the.sequences[timePoint]
         sequnece.setLength(length)

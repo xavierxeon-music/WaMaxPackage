@@ -17,10 +17,8 @@ class TaskmasterMainWidget(SingeltonWindow):
 
     def __init__(self):
 
-        super().__init__('Taskmaster_editor')
-        self.setWindowTitle('Taskmaster Editor [*]')
+        super().__init__()
 
-        self._currentFile = ''
         self._calendar = Calender()
 
         self._timePointView = TimePointView()
@@ -40,22 +38,17 @@ class TaskmasterMainWidget(SingeltonWindow):
         if not loaded:
             self._calendar.clear()
 
-        self._currentFile = fileName
-        self.setWindowTitle(f'Taskmaster Editor - {fileName} [*]')
-        self.setWindowModified(not loaded)
+        self.updateWindowTitle(not loaded, fileName)
 
     def saveFile(self, fileName):
 
         self._calendar.save(fileName)
 
-        self._currentFile = fileName
-        self.setWindowTitle(f'Taskmaster Editor - {fileName} [*]')
-        self.setWindowModified(False)
+        self.updateWindowTitle(False, fileName)
 
     def load(self):
 
-        loadLocation = QFileDialog.getOpenFileName(
-            self, 'Taskmaster File', str(), '*.json')
+        loadLocation = QFileDialog.getOpenFileName(self, 'Taskmaster File', str(), '*.json')
         if not loadLocation:
             return
 
@@ -85,10 +78,6 @@ class TaskmasterMainWidget(SingeltonWindow):
 
         self._calendar.save(self._currentFile)
         self.setWindowModified(False)
-
-    def _dataModified(self):
-
-        self.setWindowModified(True)
 
     def _addControls(self):
 
