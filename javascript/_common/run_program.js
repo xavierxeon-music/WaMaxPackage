@@ -57,3 +57,23 @@ maxAPI.addHandler("python", (...args) => {
 
    executeProgram("/opt/homebrew/bin/python3", appArgs);
 });
+
+maxAPI.addHandler("open", (...args) => {
+
+   var appArgs = []
+   for (var item of args) {
+      if (item.includes(":")) {
+         content = item.split('/');
+         item = "";
+         for (var entry of content) {
+            if (entry.includes(":"))
+               entry = "Volumes/" + entry.replace(":", "")
+            item = item + "/" + entry
+         }
+      }
+      //maxAPI.post(`arg: ${item}`);
+      appArgs.push(item);
+   }
+
+   executeProgram("/usr/bin/open", appArgs);
+});
