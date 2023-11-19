@@ -11,3 +11,5 @@ class EventView(QTreeView):
         self._model = EventModel()
 
         self.setModel(self._model)
+
+        self.setRootIsDecorated(False)
