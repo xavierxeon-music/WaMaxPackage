@@ -5,9 +5,13 @@ from .tagmodel import TagModel
 
 class TagFilterView(QTreeView):
 
-    def __init__(self):
+   def __init__(self):
 
-        super().__init__()
-        self._model = TagModel()
+      super().__init__()
+      self._model = TagModel()
 
-        self.setModel(self._model)
+      self.setModel(self._model)
+
+   def addControls(self, mainWindow):
+
+      pass
