@@ -12,129 +12,131 @@ from PySide6.QtWidgets import QApplication, QDockWidget, QWidget
 
 class SingeltonWindow(QMainWindow):
 
-    def __init__(self):
+   def __init__(self):
 
-        super().__init__()
+      super().__init__()
 
-        self._currentFile = ''
-        self.updateWindowTitle(False)
+      self._currentFile = ''
+      self.updateWindowTitle(False)
 
-        appName = QApplication.applicationName()
+      appName = QApplication.applicationName()
 
-        self._server = None
-        self._socketName = QStandardPaths.writableLocation(
-            QStandardPaths.TempLocation) + '/' + appName.replace(" ", "_")
+      self._server = None
+      self._socketName = QStandardPaths.writableLocation(
+          QStandardPaths.TempLocation) + '/' + appName.replace(" ", "_")
 
-        qtsettings = QSettings()
-        self.restoreGeometry(qtsettings.value('geometry'))
-        self.restoreState(qtsettings.value('state'))
+      qtsettings = QSettings()
+      self.restoreGeometry(qtsettings.value('geometry'))
+      self.restoreState(qtsettings.value('state'))
 
-    def __del__(self):
+      # print(qtsettings.fileName())
 
-        # if self._server:
-        #    self._server.close()
-        pass
+   def __del__(self):
 
-    def closeEvent(self, event):
+      # if self._server:
+      #    self._server.close()
+      pass
 
-        qtsettings = QSettings()
-        qtsettings.setValue('geometry', self.saveGeometry())
-        qtsettings.setValue('state', self.saveState())
+   def closeEvent(self, event):
 
-        super().closeEvent(event)
+      qtsettings = QSettings()
+      qtsettings.setValue('geometry', self.saveGeometry())
+      qtsettings.setValue('state', self.saveState())
 
-    def singletonLoad(self, fileName):
+      super().closeEvent(event)
 
-        socket = QLocalSocket()
-        socket.connectToServer(self._socketName)
-        if socket.waitForConnected():  # found server
-            # print('socket connected')
-            socket.write(fileName.encode())
-            socket.waitForBytesWritten()
-            return False
-        elif not self._server:
-            # print('create server')
-            if os.path.exists(self._socketName):
-                os.remove(self._socketName)
-            self._server = QLocalServer()
-            self._server.newConnection.connect(self._serverConnected)
-            self._server.listen(self._socketName)
+   def singletonLoad(self, fileName):
 
-        # print('load file locally', fileName)
-        self.loadFile(fileName)
-        return True
+      socket = QLocalSocket()
+      socket.connectToServer(self._socketName)
+      if socket.waitForConnected():  # found server
+         # print('socket connected')
+         socket.write(fileName.encode())
+         socket.waitForBytesWritten()
+         return False
+      elif not self._server:
+         # print('create server')
+         if os.path.exists(self._socketName):
+            os.remove(self._socketName)
+         self._server = QLocalServer()
+         self._server.newConnection.connect(self._serverConnected)
+         self._server.listen(self._socketName)
 
-    def addAndCreateDockWidget(self, payload, name, area):
+      # print('load file locally', fileName)
+      self.loadFile(fileName)
+      return True
 
-        dockWidget = QDockWidget()
-        dockWidget.setObjectName(name)
-        dockWidget.setWidget(payload)
-        dockWidget.setTitleBarWidget(QWidget())
-        dockWidget.setFeatures(QDockWidget.NoDockWidgetFeatures)
-        self.addDockWidget(area, dockWidget)
+   def addAndCreateDockWidget(self, payload, name, area):
 
-    def _serverConnected(self):
-        socket = self._server.nextPendingConnection()
-        socket.waitForReadyRead()
-        fileName = bytes(socket.readAll()).decode()
-        self.loadFile(fileName)
+      dockWidget = QDockWidget()
+      dockWidget.setObjectName(name)
+      dockWidget.setWidget(payload)
+      dockWidget.setTitleBarWidget(QWidget())
+      dockWidget.setFeatures(QDockWidget.NoDockWidgetFeatures)
+      self.addDockWidget(area, dockWidget)
 
-    def loadFile(self, fileName):
+   def _serverConnected(self):
+      socket = self._server.nextPendingConnection()
+      socket.waitForReadyRead()
+      fileName = bytes(socket.readAll()).decode()
+      self.loadFile(fileName)
 
-        pass
+   def loadFile(self, fileName):
 
-    def updateWindowTitle(self, isModified, fileName=None):
+      pass
 
-        if fileName:
-            self._currentFile = fileName
+   def updateWindowTitle(self, isModified, fileName=None):
 
-        appName = QApplication.applicationName()
-        if not self._currentFile:
-            self.setWindowTitle(f'{appName} [*]')
-        else:
-            fileName = os.path.basename(self._currentFile)
-            self.setWindowTitle(f'{appName} - {fileName} [*]')
+      if fileName:
+         self._currentFile = fileName
 
-        self.setWindowModified(isModified)
+      appName = QApplication.applicationName()
+      if not self._currentFile:
+         self.setWindowTitle(f'{appName} [*]')
+      else:
+         fileName = os.path.basename(self._currentFile)
+         self.setWindowTitle(f'{appName} - {fileName} [*]')
 
-    def dataModified(self):
+      self.setWindowModified(isModified)
 
-        self.setWindowModified(True)
+   def dataModified(self):
 
-    @staticmethod
-    def _signit_handler(*args):
+      self.setWindowModified(True)
 
-        QApplication.quit()
+   @staticmethod
+   def _signit_handler(*args):
 
-    @classmethod
-    def start(cls, appName):
+      QApplication.quit()
 
-        QApplication.setOrganizationName('Schweinesystem')
-        QApplication.setOrganizationDomain('schweinesystem.eu')
-        QApplication.setApplicationName(appName)
+   @classmethod
+   def start(cls, appName):
 
-        app = QApplication([])
+      QApplication.setOrganizationName('Schweinesystem')
+      QApplication.setOrganizationDomain('schweinesystem.eu')
+      QApplication.setApplicationName(appName)
 
-        fileName = ' '.join(sys.argv[1:])
-        if 'Darwin' == platform.system():
-            index = fileName.find(':')
-            if index >= 0:
-                frontPart = fileName[:index]
-                if not frontPart.startswith('/Volumes'):
-                    frontPart = '/Volumes/' + frontPart
-                endPart = fileName[index+1:]
-                fileName = frontPart + endPart
+      app = QApplication([])
 
-        mainWindow = cls()
-        if not mainWindow.singletonLoad(fileName):  # other instance of application is running
-            print("open file in exisiting application")
-            return 0
+      fileName = ' '.join(sys.argv[1:])
+      if 'Darwin' == platform.system():
+         index = fileName.find(':')
+         if index >= 0:
+            frontPart = fileName[:index]
+            if not frontPart.startswith('/Volumes'):
+               frontPart = '/Volumes/' + frontPart
+            endPart = fileName[index + 1:]
+            fileName = frontPart + endPart
 
-        signal.signal(signal.SIGINT, SingeltonWindow._signit_handler)
-        timer = QTimer()
-        timer.start(500)
-        timer.timeout.connect(lambda: None)  # Let the interpreter run each 500 ms.
+      mainWindow = cls()
+      if not mainWindow.singletonLoad(fileName):  # other instance of application is running
+         print("open file in exisiting application")
+         return 0
 
-        mainWindow.show()
-        status = app.exec()
-        sys.exit(status)
+      signal.signal(signal.SIGINT, SingeltonWindow._signit_handler)
+      timer = QTimer()
+      timer.start(500)
+      timer.timeout.connect(lambda: None)  # Let the interpreter run each 500 ms.
+
+      mainWindow.show()
+      status = app.exec()
+      sys.exit(status)

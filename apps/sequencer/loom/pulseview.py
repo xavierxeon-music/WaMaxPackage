@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QTreeView
+from _common import DataView
 
 
 from PySide6.QtWidgets import QAbstractItemView, QLineEdit, QComboBox
@@ -13,19 +13,17 @@ from .tagmodel import TagModel
 from .pattern import Pattern
 
 
-class PulseView(QTreeView):
+class PulseView(DataView):
 
    def __init__(self):
 
       super().__init__()
 
-      self._model = PusleModel()
+      self.setItemModel(PusleModel())
 
       self._proxyModel = PulseSortModel(self._model)
       self.setModel(self._proxyModel)
 
-      self.setRootIsDecorated(False)
-      self.setSelectionMode(QAbstractItemView.SingleSelection)
       self.setSortingEnabled(True)
 
       self.setItemDelegateForColumn(3, PatternDelegate())

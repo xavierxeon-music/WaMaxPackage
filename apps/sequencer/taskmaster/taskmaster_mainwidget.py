@@ -2,10 +2,10 @@ from _common import SingeltonWindow
 
 
 from PySide6.QtCore import Qt
-from PySide6.QtGui import QIcon, QKeySequence
-from PySide6.QtWidgets import QWidget, QFileDialog, QCheckBox, QLineEdit
+from PySide6.QtGui import QKeySequence
+from PySide6.QtWidgets import QFileDialog
 
-from _common import Icon
+from _common import Icon, StretcherWidget
 
 from .calendar import Calender
 from .tagfilterview import TagFilterView
@@ -20,6 +20,8 @@ class TaskmasterMainWidget(SingeltonWindow):
       super().__init__()
 
       self._calendar = Calender()
+      self._calendar.timePointEdited.connect(self.dataModified)
+      self._calendar.eventEdited.connect(self.dataModified)
 
       self._timePointView = TimePointView()
       self.addAndCreateDockWidget(self._timePointView, 'TimePoints', Qt.LeftDockWidgetArea)
@@ -91,3 +93,12 @@ class TaskmasterMainWidget(SingeltonWindow):
       self._timePointView.addControls(self)
       self._eventView.addControls(self)
       self._tagFilterView.addControls(self)
+
+      fileMenu = self.menuBar().addMenu('File')
+      fileMenu.addAction('New', self.newFile)
+      fileMenu.addAction('Load', self.load)
+      fileMenu.addSeparator()
+
+      fileMenu.addAction('Save', self.save)
+      quickSaveAction = fileMenu.addAction(Icon.common('save'), 'QuickSave', self._quickSave)
+      quickSaveAction.setShortcut(QKeySequence(QKeySequence.Save))

@@ -19,8 +19,8 @@ class LoomMainWidget(SingeltonWindow):
       super().__init__()
 
       self._loom = Loom()
-      self._loom.beatModified.connect(self._dataModified)
-      self._loom.beatCountChange.connect(self._dataModified)
+      self._loom.beatModified.connect(self.dataModified)
+      self._loom.beatCountChange.connect(self.dataModified)
 
       self._tagModel = TagModel()
 
@@ -79,10 +79,6 @@ class LoomMainWidget(SingeltonWindow):
 
       self._loom.save(self._currentFile)
       self.setWindowModified(False)
-
-   def _dataModified(self):
-
-      self.setWindowModified(True)
 
    def _addControls(self):
 

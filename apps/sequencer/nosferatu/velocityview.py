@@ -1,18 +1,17 @@
-from PySide6.QtWidgets import QTreeView
+from _common import DataView
 
 from .veclocitymodel import VelocityModel
 
 
-class VelocityView(QTreeView):
+class VelocityView(DataView):
 
-    def __init__(self):
+   def __init__(self):
 
-        super().__init__()
-        self._model = VelocityModel()
-        self.setModel(self._model)
-        self._model.modelReset.connect(self.modelUpdate)
+      super().__init__()
+      self.setItemModel(self._model)
+      self._model.modelReset.connect(self.modelUpdate)
 
-    def modelUpdate(self):
+   def modelUpdate(self):
 
-        self.resizeColumnToContents(0)
-        self.resizeColumnToContents(1)
+      self.resizeColumnToContents(0)
+      self.resizeColumnToContents(1)

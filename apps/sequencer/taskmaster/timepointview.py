@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QTreeView
+from _common import DataView
 
 from PySide6.QtCore import QSortFilterProxyModel, Qt
 from PySide6.QtWidgets import QAbstractItemView, QLineEdit
@@ -28,22 +28,19 @@ class TimePointSortModel(QSortFilterProxyModel):
       return tpLeft < tpRight
 
 
-class TimePointView(QTreeView):
+class TimePointView(DataView):
 
    def __init__(self):
 
       super().__init__()
-      self._model = TimePointModel()
+      self.setItemModel(TimePointModel())
 
       self._proxyModel = TimePointSortModel(self._model)
       self.setModel(self._proxyModel)
 
-      self.setRootIsDecorated(False)
-      self.setSelectionMode(QAbstractItemView.SingleSelection)
       self.setSortingEnabled(True)
 
       self._model.modelReset.connect(self.modelUpdate)
-      self.clicked.connect(self._itemClicked)
 
    def modelUpdate(self):
 
@@ -55,34 +52,49 @@ class TimePointView(QTreeView):
 
       self.timePointEdit = QLineEdit()
       self.timePointEdit.setStyleSheet("color: #ff0000")
-      # self.timePointEdit.textChanged.connect(self._checkTimeLine)
+      self.timePointEdit.textChanged.connect(self._checkTimeLine)
       self.timePointEdit.returnPressed.connect(self._add)
 
-      editToolBar = mainWindow.addToolBar('TimePoint')
-      editToolBar.setObjectName('TimePoint')
-      editToolBar.setMovable(False)
+      timePointBar = mainWindow.addToolBar('TimePoint')
+      timePointBar.setObjectName('TimePoint')
+      timePointBar.setMovable(False)
 
-      editToolBar.addWidget(self.timePointEdit)
-      self.addAction = editToolBar.addAction(Icon.common('new'), 'Add Pattern', self._add)
+      timePointBar.addWidget(self.timePointEdit)
+      self.addAction = timePointBar.addAction(Icon.app('new_timepoint'), 'Add Time Point', self._add)
       self.addAction.setEnabled(False)
 
-      editToolBar.addAction(Icon.common('delete'), 'Remove Pattern', self._remove)
+      timePointBar.addAction(Icon.app('delete_timepoint'), 'Remove Time Point', self._remove)
 
-      editToolBar.addSeparator()
+      timePointBar.addSeparator()
 
-   def _itemClicked(self, index):
+   def itemClicked(self, timePoint):
 
-      row = index.row()
+      Calender.the.setCurrentTimePoint(timePoint)
 
-      item = self._model.item(row, 0)
-      timePoint = item.text()
+   def _checkTimeLine(self):
 
-      Calender.the.setCurrent(timePoint)
+      timePoint = self.timePointEdit.text()
+
+      if Calender.the.isValidTimePoint(timePoint):
+         self.timePointEdit.setStyleSheet("color: #000000")
+         self.addAction.setEnabled(True)
+      else:
+         self.timePointEdit.setStyleSheet("color: #ff0000")
+         self.addAction.setEnabled(False)
 
    def _add(self):
 
-      print('add timepoint')
+      timePoint = self.timePointEdit.text()
+      if Calender.the.isValidTimePoint(timePoint):
+         Calender.the.addTimePoint(timePoint)
+
+      self._checkTimeLine()
 
    def _remove(self):
 
-      print('remove timepoint')
+      timePoint = self.selectedText()
+      if not timePoint:
+         return
+
+      Calender.the.removeTimePoint(timePoint)
+      self._checkTimeLine()
