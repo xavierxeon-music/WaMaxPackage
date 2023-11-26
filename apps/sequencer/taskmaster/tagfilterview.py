@@ -21,7 +21,7 @@ class TagFilterView(DataView):
 
       self.tagEdit = QLineEdit()
       self.tagEdit.setStyleSheet("color: #ff0000")
-      # self.tagEdit.textChanged.connect(self._checkTimeLine)
+      self.tagEdit.textChanged.connect(self._checkTag)
       self.tagEdit.returnPressed.connect(self._add)
 
       tagBar = mainWindow.addToolBar('Tag')
@@ -42,3 +42,13 @@ class TagFilterView(DataView):
 
       tag = self.tagEdit.text()
       Calender.the.addTag(tag)
+
+   def _checkTag(self):
+
+      tag = self.tagEdit.text()
+      if tag in Calender.the.tagDict:
+         self.addAction.setEnabled(False)
+         self.tagEdit.setStyleSheet("color: #ff0000")
+      else:
+         self.addAction.setEnabled(True)
+         self.tagEdit.setStyleSheet("color: #000000")
