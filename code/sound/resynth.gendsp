@@ -52,7 +52,7 @@
 			}
 , 			{
 				"box" : 				{
-					"code" : "Param voices(20);\r\nParam bufferSize(1024);\r\nData fft_buffer(bufferSize, 4);\r\nindex = in3;\r\n\r\npoke(fft_buffer, in1, index, 0);\r\npoke(fft_buffer, in2, index, 1);\r\n\r\n\r\nif(index == 0) \r\n{\r\n\tfor(cindex = 0; cindex < FFTSIZE; cindex += 1)\r\n\t{\t\t\r\n\t\t//a = peek(fft_buffer, cindex, 0);\r\n\t\t//poke(fft_buffer, a, cindex, 2);\r\n\t\tpoke(fft_buffer, 0.0, cindex, 2);\r\n\t\t\r\n\t\tp = peek(fft_buffer, cindex, 1);\r\n\t\tpoke(fft_buffer, p, cindex, 3);\t\t\t\t\r\n\t}\t\t\r\n\t\r\n\tfor(vindex = 0; vindex < voices; vindex += 1)\r\n\t{\r\n\t\tmaxValue = 0.0;\r\n\t\tmaxIndex = 0;\r\n\t\tfor(tindex = 0; tindex < FFTSIZE; tindex += 1)\r\n\t\t{\r\n\t\t\ta = peek(fft_buffer, tindex, 0);\r\n\t\t\tif(a > maxValue)\r\n\t\t\t{\t\t\t\r\n\t\t\t\tmaxValue = a;\r\n\t\t\t\tmaxIndex = tindex;\r\n\t\t\t}\r\n\t\t}\r\n\t\t\r\n\t\tpoke(fft_buffer, 0.0, maxIndex, 0);\r\n\t\tpoke(fft_buffer, maxValue, maxIndex, 2);\r\n\r\n\t}\r\n}\r\n\r\n\r\nout1 = peek(fft_buffer, index, 2);\r\nout2 = peek(fft_buffer, index, 3);\r\n",
+					"code" : "Param voices(20);\r\nParam bufferSize(1024);\r\nData fft_buffer(bufferSize, 4);\r\nindex = in3;\r\n\r\npoke(fft_buffer, in1, index, 0);\r\npoke(fft_buffer, in2, index, 1);\r\n\r\n\r\nif(index == 0) \r\n{\r\n\tfor(cindex = 0; cindex < bufferSize; cindex += 1)\r\n\t{\t\t\r\n\t\t//a = peek(fft_buffer, cindex, 0);\r\n\t\t//poke(fft_buffer, a, cindex, 2);\r\n\t\tpoke(fft_buffer, 0.0, cindex, 2);\r\n\t\t\r\n\t\tp = peek(fft_buffer, cindex, 1);\r\n\t\tpoke(fft_buffer, p, cindex, 3);\t\t\t\t\r\n\t}\t\t\r\n\t\r\n\tfor(vindex = 0; vindex < voices; vindex += 1)\r\n\t{\r\n\t\tmaxValue = 0.0;\r\n\t\tmaxIndex = 0;\r\n\t\tfor(tindex = 0; tindex < bufferSize; tindex += 1)\r\n\t\t{\r\n\t\t\ta = peek(fft_buffer, tindex, 0);\r\n\t\t\tif(a > maxValue)\r\n\t\t\t{\t\t\t\r\n\t\t\t\tmaxValue = a;\r\n\t\t\t\tmaxIndex = tindex;\r\n\t\t\t}\r\n\t\t}\r\n\t\t\r\n\t\tpoke(fft_buffer, 0.0, maxIndex, 0);\r\n\t\tpoke(fft_buffer, maxValue, maxIndex, 2);\r\n\r\n\t}\r\n}\r\n\r\n\r\nout1 = peek(fft_buffer, index, 2);\r\nout2 = peek(fft_buffer, index, 3);\r\n",
 					"fontface" : 0,
 					"fontname" : "<Monospaced>",
 					"fontsize" : 12.0,
@@ -147,8 +147,7 @@
 				}
 
 			}
- ],
-		"autosave" : 0
+ ]
 	}
 
 }
