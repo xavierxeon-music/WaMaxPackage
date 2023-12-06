@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.l4m.project" patcher_type="0">
-    <digest>Hello World</digest>
+<c74object name="wa.live.project" patcher_type="0">
+    <digest>open ableton project</digest>
+    <description>open ableton project</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
@@ -11,7 +12,8 @@
     <objarglist/>
     <attributelist>
         <attribute get="1" name="autostart" set="1" size="1" type="symbol">
-            <digest/>
+            <digest>open on start</digest>
+            <description>open on start</description>
         </attribute>
     </attributelist>
     <methodlist/>
