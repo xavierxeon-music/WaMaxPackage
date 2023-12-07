@@ -1,2 +1,0 @@
-max objectfile wa.ir_creator wa.ir_creator;
-max definesubstitution wa.ir_creator bpatcher @name wa.ir_creator.maxpat;

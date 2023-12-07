@@ -95,7 +95,7 @@
 					"outlettype" : [ "float", "bang" ],
 					"patching_rect" : [ 120.0, 150.0, 209.0, 22.0 ],
 					"style" : "wa.buffer",
-					"text" : "buffer~ #0_amplitude @samps 128"
+					"text" : "buffer~ #0_amplitude @samps 256"
 				}
 
 			}
