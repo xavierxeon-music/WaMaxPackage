@@ -7,8 +7,8 @@ class VelocityView(DataView):
 
    def __init__(self):
 
-      super().__init__()
-      self.setItemModel(self._model)
+      super().__init__(VelocityModel())
+
       self._model.modelReset.connect(self.modelUpdate)
 
    def modelUpdate(self):

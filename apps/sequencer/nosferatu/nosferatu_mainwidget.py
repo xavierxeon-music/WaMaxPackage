@@ -2,9 +2,9 @@ from _common import SingeltonWindow
 
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QKeySequence
-from PySide6.QtWidgets import QFileDialog, QCheckBox
+from PySide6.QtWidgets import QFileDialog, QCheckBox, QComboBox
 
-from _common import Icon
+from _common import Icon, Scale
 
 from .velocityview import VelocityView
 from .noteview import NoteView
@@ -43,6 +43,10 @@ class NosferatuMainWidget(SingeltonWindow):
       self.asNotesCheck.blockSignals(True)
       self.asNotesCheck.setChecked(self._timeline.asNotes)
       self.asNotesCheck.blockSignals(False)
+
+      self.scaleCombo.blockSignals(True)
+      self.scaleCombo.setCurrentIndex(self._timeline.scaleIndex)
+      self.scaleCombo.blockSignals(False)
 
    def saveFile(self, fileName):
 
@@ -87,6 +91,13 @@ class NosferatuMainWidget(SingeltonWindow):
       self.asNotesCheck = QCheckBox('as note')
       self.asNotesCheck.clicked.connect(self._timeline.setAsNotes)
 
+      self.scaleCombo = QComboBox()
+      for scale in Scale.all:
+         self.scaleCombo.addItem(scale.majorName, scale.offset)
+
+      self.scaleCombo.setCurrentIndex(self._timeline.scaleIndex)
+      self.scaleCombo.currentIndexChanged.connect(self._timeline.setScaleIndex)
+
       fileToolBar = self.addToolBar('File')
       fileToolBar.setObjectName('File')
       fileToolBar.setMovable(False)
@@ -102,6 +113,7 @@ class NosferatuMainWidget(SingeltonWindow):
       settingsToolBar.setMovable(False)
 
       settingsToolBar.addWidget(self.asNotesCheck)
+      settingsToolBar.addWidget(self.scaleCombo)
 
       fileMenu = self.menuBar().addMenu('File')
       fileMenu.addAction('New', self.newFile)

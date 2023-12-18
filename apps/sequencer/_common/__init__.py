@@ -3,6 +3,7 @@
 from .delegate_combobox import DelegateCompbBox
 from .dataview import DataView
 from .resource import Icon, Resource
+from .music import Note, Scale
 from .singleton_window import SingeltonWindow
 from .stretcher_widget import StretcherWidget
 from .timepoint import TimePoint

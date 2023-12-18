@@ -17,9 +17,7 @@ class PulseView(DataView):
 
    def __init__(self):
 
-      super().__init__()
-
-      self.setItemModel(PusleModel())
+      super().__init__(PusleModel())
 
       self._proxyModel = PulseSortModel(self._model)
       self.setModel(self._proxyModel)

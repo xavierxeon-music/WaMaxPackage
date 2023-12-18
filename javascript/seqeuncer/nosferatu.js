@@ -45,14 +45,18 @@ function bang() {
    for (var pitch in lastEvent) {
       if (pitch in currentEvent) // only change velocity
          continue;
-
       outlet(0, [parseInt(pitch), 0]);
    }
 
    // note on
    for (var pitch in currentEvent) {
-      var velocity = currentEvent[pitch]
-      outlet(0, [parseInt(pitch), velocity]);
+      var velocity = currentEvent[pitch];
+      var lastVelolcity = 0;
+      if (pitch in lastEvent)
+         lastVelolcity = lastEvent[pitch];
+
+      if (velocity != lastVelolcity)
+         outlet(0, [parseInt(pitch), velocity]);
    }
 
    lastEvent = currentEvent;
@@ -79,6 +83,8 @@ function load(fileName) {
 
    var content = readJsonFile(fileName);
    for (var timePoint in content) {
+      if ("settings" == timePoint)
+         continue;
       var data = content[timePoint];
       sequences[timePoint] = new Sequence(data)
    }

@@ -6,20 +6,16 @@ from PySide6.QtGui import QStandardItemModel
 
 class DataView(QTreeView):
 
-   def __init__(self):
+   def __init__(self, model):
 
       super().__init__()
-      self._model = None
+      self._model = model
+      self.setModel(model)
 
       self.setRootIsDecorated(False)
       self.setSelectionMode(QAbstractItemView.SingleSelection)
 
       self.clicked.connect(self._itemClicked)
-
-   def setItemModel(self, model: QStandardItemModel):
-
-      self._model = model
-      self.setModel(model)
 
    def _itemClicked(self, index):
 

@@ -6,9 +6,10 @@ setinletassist(0, "list");
 
 var buffer = new Buffer(jsarguments[1]);
 
-var maxStep = 1024 / 16;
 
 function list() {
+
+   var maxStep = buffer.framecount() / (arguments.length - 1);
 
    for (var index = 1; index < arguments.length; index++) {
       var valueA = arguments[index - 1];

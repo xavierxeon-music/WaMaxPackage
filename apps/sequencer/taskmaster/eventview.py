@@ -37,8 +37,7 @@ class EventView(DataView):
 
    def __init__(self):
 
-      super().__init__()
-      self.setItemModel(EventModel())
+      super().__init__(EventModel())
 
       self._proxyModel = EventFilterModel(self._model)
       self.setModel(self._proxyModel)

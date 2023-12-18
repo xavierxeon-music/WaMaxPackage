@@ -32,8 +32,7 @@ class TimePointView(DataView):
 
    def __init__(self):
 
-      super().__init__()
-      self.setItemModel(TimePointModel())
+      super().__init__(TimePointModel())
 
       self._proxyModel = TimePointSortModel(self._model)
       self.setModel(self._proxyModel)

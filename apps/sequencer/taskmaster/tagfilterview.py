@@ -13,9 +13,7 @@ class TagFilterView(DataView):
 
    def __init__(self):
 
-      super().__init__()
-
-      self.setItemModel(TagFilterModel())
+      super().__init__(TagFilterModel())
 
    def addControls(self, mainWindow):
 

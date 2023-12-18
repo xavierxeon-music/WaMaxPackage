@@ -13,9 +13,8 @@ class TagWidget(DataView):
 
    def __init__(self):
 
-      super().__init__()
+      super().__init__(TagModel.the)
 
-      self.setItemModel(TagModel.the)
       TagModel.the.modelReset.connect(self.modelUpdate)
 
    def modelUpdate(self):
