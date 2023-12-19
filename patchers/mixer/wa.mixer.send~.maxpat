@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 5,
+			"revision" : 6,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 283.0, 2856.0, 1283.0 ],
+		"rect" : [ 795.0, 171.0, 2230.0, 1339.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -40,12 +40,48 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-11",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "" ],
+					"patching_rect" : [ 334.5, 90.0, 66.0, 22.0 ],
+					"restore" : [ 0 ],
+					"saved_object_attributes" : 					{
+						"parameter_enable" : 0,
+						"parameter_mappable" : 0
+					}
+,
+					"text" : "pattr mono",
+					"varname" : "mono"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"bgcolor" : [ 0.2, 0.2, 0.2, 0.0 ],
+					"id" : "obj-13",
+					"maxclass" : "led",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"parameter_enable" : 0,
+					"patching_rect" : [ 358.0, 141.0, 24.0, 24.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 9.0, 19.0, 12.0, 12.0 ],
+					"varname" : "led"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-30",
 					"maxclass" : "message",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 522.5, 525.0, 193.0, 22.0 ]
+					"patching_rect" : [ 522.5, 525.0, 193.0, 22.0 ],
+					"text" : "set bus_right_verb"
 				}
 
 			}
@@ -56,7 +92,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 235.0, 510.0, 193.0, 22.0 ]
+					"patching_rect" : [ 235.0, 510.0, 193.0, 22.0 ],
+					"text" : "set bus_left_verb"
 				}
 
 			}
@@ -139,7 +176,7 @@
 ,
 						"valueof" : 						{
 							"parameter_enum" : [ "val1", "val2" ],
-							"parameter_longname" : "live.text[9]",
+							"parameter_longname" : "live.text[15]",
 							"parameter_mmax" : 1,
 							"parameter_shortname" : "mute",
 							"parameter_type" : 2
@@ -159,9 +196,9 @@
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 360.0, 195.0, 42.0, 22.0 ],
-					"text" : "gate 1"
+					"outlettype" : [ "signal" ],
+					"patching_rect" : [ 360.0, 195.0, 49.0, 22.0 ],
+					"text" : "gate~ 1"
 				}
 
 			}
@@ -187,12 +224,12 @@
 					"parameter_enable" : 1,
 					"patching_rect" : [ 255.0, 90.0, 27.0, 37.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 30.0, 30.0, 37.0 ],
+					"presentation_rect" : [ 0.0, 33.0, 30.0, 37.0 ],
 					"saved_attribute_attributes" : 					{
 						"valueof" : 						{
 							"parameter_initial" : [ -70.0 ],
 							"parameter_initial_enable" : 1,
-							"parameter_longname" : "live.dial[4]",
+							"parameter_longname" : "live.dial[7]",
 							"parameter_mmax" : 0.0,
 							"parameter_mmin" : -70.0,
 							"parameter_shortname" : "live.dial[4]",
@@ -242,7 +279,7 @@
 					"patching_rect" : [ 705.0, 255.0, 46.0, 17.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 30.0, 17.0 ],
-					"text" : "bus",
+					"text" : "verb",
 					"textjustification" : 1
 				}
 
@@ -333,11 +370,11 @@
 				"box" : 				{
 					"id" : "obj-10",
 					"maxclass" : "newobj",
-					"numinlets" : 3,
-					"numoutlets" : 3,
-					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 555.0, 150.0, 103.0, 22.0 ],
-					"text" : "route name mono"
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 555.0, 150.0, 69.0, 22.0 ],
+					"text" : "route name"
 				}
 
 			}
@@ -371,8 +408,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 378.0, 45.0, 196.0, 22.0 ],
-					"text" : "patcherargs @name bus @mono 0"
+					"patching_rect" : [ 378.0, 45.0, 140.0, 22.0 ],
+					"text" : "patcherargs @name bus"
 				}
 
 			}
@@ -380,7 +417,7 @@
 				"box" : 				{
 					"comment" : "inRight",
 					"id" : "obj-3",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -393,7 +430,7 @@
 				"box" : 				{
 					"comment" : "outRight",
 					"id" : "obj-4",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -405,11 +442,11 @@
 				"box" : 				{
 					"comment" : "inLeft",
 					"id" : "obj-1",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "signal" ],
 					"patching_rect" : [ 165.0, 135.0, 30.0, 30.0 ]
 				}
 
@@ -418,7 +455,7 @@
 				"box" : 				{
 					"comment" : "outLeft",
 					"id" : "obj-2",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -453,13 +490,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-20", 0 ],
-					"source" : [ "obj-10", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-21", 0 ],
 					"order" : 2,
 					"source" : [ "obj-10", 0 ]
@@ -484,8 +514,22 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-13", 0 ],
+					"source" : [ "obj-11", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-19", 0 ],
 					"source" : [ "obj-12", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-20", 0 ],
+					"source" : [ "obj-13", 0 ]
 				}
 
 			}
@@ -646,38 +690,7 @@
 				}
 
 			}
- ],
-		"parameters" : 		{
-			"obj-12" : [ "live.dial[4]", "live.dial[4]", 0 ],
-			"obj-22" : [ "live.text[9]", "mute", 0 ],
-			"parameterbanks" : 			{
-				"0" : 				{
-					"index" : 0,
-					"name" : "",
-					"parameters" : [ "-", "-", "-", "-", "-", "-", "-", "-" ]
-				}
-
-			}
-,
-			"inherited_shortname" : 1
-		}
-,
-		"dependency_cache" : [ 			{
-				"name" : "bpatcher_size.js",
-				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
-				"patcherrelativepath" : "../../javascript/setup",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "wa.setup.bpatcher.maxpat",
-				"bootpath" : "/Volumes/DATA/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/setup",
-				"patcherrelativepath" : "../setup",
-				"type" : "JSON",
-				"implicit" : 1
-			}
- ],
-		"autosave" : 0
+ ]
 	}
 
 }
