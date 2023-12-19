@@ -1,2 +1,0 @@
-max objectfile wa.mixer.channel.mono~ wa.mixer.channel.mono~;
-max definesubstitution wa.mixer.channel.mono~ bpatcher @name wa.mixer.channel.mono~.maxpat;

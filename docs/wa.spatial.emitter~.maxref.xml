@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="0" name="wa.mixer.spatial.emitter~">
+<c74object name="wa.spatial.emitter~" patcher_type="0">
     <digest>spatial mixer emitter</digest>
+    <description>locate a sound source in 3d space</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>

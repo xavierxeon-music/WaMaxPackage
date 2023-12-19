@@ -1,0 +1,2 @@
+max objectfile wa.mixer.send~ wa.mixer.send~;
+max definesubstitution wa.mixer.send~ bpatcher @name wa.mixer.send~.maxpat;

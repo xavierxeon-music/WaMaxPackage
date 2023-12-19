@@ -1,2 +1,0 @@
-max objectfile wa.mixer.bus.send~ wa.mixer.bus.send~;
-max definesubstitution wa.mixer.bus.send~ bpatcher @name wa.mixer.bus.send~.maxpat;
