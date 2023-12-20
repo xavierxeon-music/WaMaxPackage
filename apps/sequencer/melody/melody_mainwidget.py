@@ -12,7 +12,7 @@ from .timepointview import TimePointView
 from .timeline import TimeLine
 
 
-class NosferatuMainWidget(SingeltonWindow):
+class MelodyMainWidget(SingeltonWindow):
 
    def __init__(self):
 
@@ -56,7 +56,7 @@ class NosferatuMainWidget(SingeltonWindow):
 
    def load(self):
 
-      loadLocation = QFileDialog.getOpenFileName(self, 'Nosferatu Cell File', str(), '*.json')
+      loadLocation = QFileDialog.getOpenFileName(self, 'Melody File', str(), '*.json')
       if not loadLocation:
          return
 
@@ -65,7 +65,7 @@ class NosferatuMainWidget(SingeltonWindow):
 
    def save(self):
 
-      saveLocation = QFileDialog.getSaveFileName(self, 'Nosferatu Cell File', self._currentFile, '*.json')
+      saveLocation = QFileDialog.getSaveFileName(self, 'Melody File', self._currentFile, '*.json')
       if not saveLocation:
          return
 

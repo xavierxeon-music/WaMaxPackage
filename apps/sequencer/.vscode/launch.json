@@ -5,10 +5,10 @@
    "version": "0.2.0",
    "configurations": [
       {
-         "name": "Nosferatu",
+         "name": "Melody",
          "type": "python",
          "request": "launch",
-         "program": "${workspaceFolder}/nosferatu_ui.py",
+         "program": "${workspaceFolder}/melody_ui.py",
          "args": [
             "${workspaceFolder}/_data/melody.json"
          ],
@@ -16,10 +16,10 @@
          "justMyCode": true
       },
       {
-         "name": "Loom",
+         "name": "Pattern",
          "type": "python",
          "request": "launch",
-         "program": "${workspaceFolder}/loom_ui.py",
+         "program": "${workspaceFolder}/pattern_trigger_ui.py",
          "args": [
             "${workspaceFolder}/_data/beat.json"
          ],

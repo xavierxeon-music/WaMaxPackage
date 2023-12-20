@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 5,
-			"revision" : 6,
+			"revision" : 7,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 115.0, 2416.0, 1451.0 ],
+		"rect" : [ 795.0, 199.0, 2794.0, 1311.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -45,8 +45,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 165.0, 300.0, 174.0, 22.0 ],
-					"text" : "_wa.sequencer.edit taskmaster"
+					"patching_rect" : [ 165.0, 300.0, 155.0, 22.0 ],
+					"text" : "_sequencer.edit taskmaster"
 				}
 
 			}
@@ -57,7 +57,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 320.0, 255.0, 57.0, 22.0 ],
+					"patching_rect" : [ 300.0, 251.0, 57.0, 22.0 ],
 					"text" : "unpack s"
 				}
 
@@ -69,7 +69,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 320.0, 214.0, 72.0, 22.0 ],
+					"patching_rect" : [ 300.0, 210.0, 72.0, 22.0 ],
 					"text" : "patcherargs"
 				}
 

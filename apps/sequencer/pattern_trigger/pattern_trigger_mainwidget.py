@@ -12,7 +12,7 @@ from .tagmodel import TagModel
 from .tagwidget import TagWidget
 
 
-class LoomMainWidget(SingeltonWindow):
+class PatternTriggerMainWidget(SingeltonWindow):
 
    def __init__(self):
 
@@ -49,7 +49,7 @@ class LoomMainWidget(SingeltonWindow):
    def load(self):
 
       loadLocation = QFileDialog.getOpenFileName(
-          self, 'Loom File', str(), '*.json')
+          self, 'Pattern File', str(), '*.json')
       if not loadLocation:
          return
 
@@ -58,7 +58,7 @@ class LoomMainWidget(SingeltonWindow):
 
    def save(self):
 
-      saveLocation = QFileDialog.getSaveFileName(self, 'Pulsar File', self._currentFile, '*.json')
+      saveLocation = QFileDialog.getSaveFileName(self, 'Pattern File', self._currentFile, '*.json')
       if not saveLocation:
          return
 
