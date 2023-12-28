@@ -3,6 +3,7 @@
    "type": "filelist",
    "contents": [
       "wa.jit_project.maxsnip",
+      "wa.jit_project.launchpad.maxsnip",
       "wa.output.maxsnip",
       "wa.patch_main.maxsnip",
       "wa.patch_sub.maxsnip",
