@@ -27,16 +27,21 @@ function executeProgram(program, appArgs) {
    var process = spawn(program, appArgs);
 
    process.stdout.on('data', (data) => {
-      printData("stdout", data)
+      // maxAPI.post(`stdout: ${data}`);
+      printData("stdout", data);
    });
 
    process.stderr.on('data', (data) => {
-      maxAPI.post(`stderr: ${data}`);
-      printData("stderr", data)
+      // maxAPI.post(`stderr: ${data}`);
+      printData("stderr", data);
    });
 
    process.on('error', (err) => {
-      maxAPI.post('Failed to start subprocess.');
+      maxAPI.outlet(["exit", -1]);
+   });
+
+   process.on('exit', (code) => {
+      maxAPI.outlet(["exit", code]);
    });
 }
 
