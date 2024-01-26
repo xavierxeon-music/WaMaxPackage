@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 5,
-			"revision" : 4,
+			"minor" : 6,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 367.0, 3218.0, 1199.0 ],
+		"rect" : [ 1811.0, 873.0, 1768.0, 424.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -51,6 +51,7 @@
 						"parameter_enable" : 0
 					}
 ,
+					"style" : "wa.patcher",
 					"text" : "js qunantize"
 				}
 
@@ -353,49 +354,59 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "_canvas.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/jsui/_commmon",
-				"patcherrelativepath" : "../../jsui/_commmon",
+				"name" : "_mapped_canvas.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/_common",
+				"patcherrelativepath" : "../../javascript/_common",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "_scale.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/seqeuncer",
-				"patcherrelativepath" : "../../javascript/seqeuncer",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/tuning",
+				"patcherrelativepath" : "../../javascript/tuning",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "bpatcher_size.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/setup",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
 				"patcherrelativepath" : "../../javascript/setup",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "named_scale_ui.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/jsui/sequencer",
-				"patcherrelativepath" : "../../jsui/sequencer",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/tuning",
+				"patcherrelativepath" : "../../javascript/tuning",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "qunantize.js",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/javascript/seqeuncer",
-				"patcherrelativepath" : "../../javascript/seqeuncer",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/tuning",
+				"patcherrelativepath" : "../../javascript/tuning",
 				"type" : "TEXT",
 				"implicit" : 1
 			}
 , 			{
 				"name" : "wa.setup.bpatcher.maxpat",
-				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/patchers/setup",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/setup",
 				"patcherrelativepath" : "../setup",
 				"type" : "JSON",
 				"implicit" : 1
 			}
  ],
-		"autosave" : 0
+		"autosave" : 0,
+		"styles" : [ 			{
+				"name" : "wa.patcher",
+				"default" : 				{
+					"accentcolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ]
+				}
+,
+				"parentstyle" : "",
+				"multi" : 0
+			}
+ ]
 	}
 
 }
