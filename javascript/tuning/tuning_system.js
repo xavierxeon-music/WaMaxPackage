@@ -14,12 +14,12 @@ var tuning = new Global("Tuning");
 
 var myName = "main";
 
-function setup(notesPerOctave, baseFrequency, name) {
+function setup(name, notesPerOctave, baseFrequency) {
 
    myName = name;
    tuning[myName] = new Tuning(notesPerOctave, baseFrequency);
 
-   // print("SETUP", name, notesPerOctave, baseFrequency);
+   print("SETUP", name, notesPerOctave, baseFrequency);
 }
 
 function lookup(index) {

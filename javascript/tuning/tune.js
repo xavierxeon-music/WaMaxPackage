@@ -4,8 +4,9 @@ autowatch = 1;
 inlets = 1;
 setinletassist(0, "lookup/nearest");
 
-outlets = 1;
+outlets = 2;
 setoutletassist(0, "frequency");
+setoutletassist(1, "notesPerOctave");
 
 // data
 
@@ -17,6 +18,15 @@ var myName = "main";
 function setName(name) {
 
    myName = name;
+}
+
+function bang() {
+
+   if (tuning[myName] == undefined)
+      return;
+
+   outlet(1, tuning[myName].notesPerOctave);
+
 }
 
 function lookup(index) {
