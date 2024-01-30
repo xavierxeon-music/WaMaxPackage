@@ -1,63 +1,108 @@
 #!/usr/bin/env python3
 
+import math
 import os
-import wave
+import pickle
 
-from multiprocessing.pool import ThreadPool
-import pyfar as pf
+import matplotlib.pyplot as plt
+import numpy as np
 
-
-data_ir, source_coordinates, _ = pf.io.read_sofa('NF150.sofa')
-bufferMap = {}
-
-
-def processAz(az):
-   print(az)
-   subBuffer = bytes()
-   for el in range(180):
-      el = el - 90
-      index, _ = source_coordinates.find_nearest_k(az, el, 1.5, k=1, domain='sph', convention='top_elev', unit='deg')
-      signal = data_ir[index]
-      signal.sampling_rate = int(signal.sampling_rate)
-
-      fileName = f'{az}_{el}_ir.wav'
-      pf.io.write_audio(signal, fileName)
-
-      audio = wave.open(fileName, 'rb')
-      channelCount = audio.getnchannels()
-      sampleWidth = audio.getsampwidth()
-      frameCount = audio.getnframes()
-      data = audio.readframes(channelCount * sampleWidth * frameCount)
-      audio.close()
-
-      os.remove(fileName)
-      subBuffer += data
-
-      # print(az, el, channelCount, sampleWidth, frameCount)
-
-   bufferMap[az] = subBuffer
+# https://pyfar.readthedocs.io/en/latest/concepts/pyfar.coordinates.html
+# https://pyfar.readthedocs.io/en/latest/classes/pyfar.coordinates.html#pyfar.classes.coordinates.Coordinates
 
 
-def writeAudio():
+class Data:
 
-   buffer = bytes()
-   for az in range(360):
-      buffer += bufferMap[az]
+   def __init__(self):
 
-   audio = wave.open('../../media/mixerSpatialNF.wav', 'wb')
-   audio.setnchannels(2)
-   audio.setsampwidth(2)
-   audio.setframerate(data_ir.sampling_rate)
-   audio.writeframesraw(buffer)
-   audio.close()
+      self.leftBuffer = list()
+      self.rightBuffer = list()
+
+      self._loadInternal()
+      self.sampleCount = int(len(self.leftBuffer) / (360 * 180))
+
+   def index(self, az, el):
+
+      return (az * self.sampleCount) + el
+
+   def _loadInternal(self):
+
+      if os.path.exists('_lf.bin') and os.path.exists('_rf.bin'):
+         with open('_lf.bin', 'rb') as infile:
+            self.leftBuffer = pickle.load(infile)
+         with open('_rf.bin', 'rb') as infile:
+            self.rightBuffer = pickle.load(infile)
+         return
+
+      from multiprocessing.pool import ThreadPool
+      import pyfar as pf
+
+      data_ir, source_coordinates, _ = pf.io.read_sofa('NF150.sofa')
+      bufferMapLeft = dict()
+      bufferMapRight = dict()
+
+      def _processAz(az):
+
+         print(az)
+
+         subBufferLeft = list()
+         subBufferRight = list()
+
+         azR = math.radians(az)
+         for el in range(180):
+            el = el - 90
+            elR = math.radians(el)
+            to_find = pf.Coordinates(azR, elR, 1.5, domain='sph', convention='top_elev')
+            index, _ = source_coordinates.find_nearest(to_find)
+            signal = data_ir[index]
+
+            leftData = signal[0].time.tolist()[0]
+            subBufferLeft += leftData
+
+            rightData = signal[1].time.tolist()[0]
+            subBufferRight += rightData
+
+         bufferMapLeft[az] = subBufferLeft
+         bufferMapRight[az] = subBufferRight
+
+      with ThreadPool() as pool:
+         for _ in pool.map(_processAz, range(360)):
+            pass
+
+      for az in range(360):
+         self.leftBuffer += bufferMapLeft[az]
+         self.rightBuffer += bufferMapRight[az]
+
+      with open('_lf.bin', 'wb') as outfile:
+         pickle.dump(self.leftBuffer, outfile)
+      with open('_rf.bin', 'wb') as outfile:
+         pickle.dump(self.rightBuffer, outfile)
 
 
 def main():
-   with ThreadPool() as pool:
-      for _ in pool.map(processAz, range(360)):
-         pass
 
-   writeAudio()
+   data = Data()
+
+   # print(len(data.leftBuffer), sampleCount)
+
+   azList = list()
+   elList = list()
+   valueList = np.zeros((180, 360))
+
+   for az in range(360):
+      azList.append(az)
+      for el in range(180):
+         if 0 == az:
+            elList.append(el)
+         index = data.index(az, el)
+         value = data.leftBuffer[index + 0]
+         valueList[el, az] = value
+
+   # print(len(azList), len(elList), len(valueList), len(azList) * len(elList))
+
+   fig, ax = plt.subplots()
+   ax.pcolormesh(azList, elList, valueList)
+   plt.show()
 
 
 if __name__ == '__main__':

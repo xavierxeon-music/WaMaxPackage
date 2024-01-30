@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 5,
-			"revision" : 5,
+			"minor" : 6,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 283.0, 1951.0, 1283.0 ],
+		"rect" : [ 34.0, 199.0, 1990.0, 1367.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -190,9 +190,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 766.833333333333485, 495.0, 216.0, 22.0 ],
+					"patching_rect" : [ 766.833333333333485, 495.0, 231.0, 22.0 ],
 					"style" : "wa.buffer-4",
-					"text" : "buffer~ spatialSource mixerSpatial.wav"
+					"text" : "buffer~ spatialSource mixerSpatialNF.wav"
 				}
 
 			}
