@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import math
 import os
 import wave
 
@@ -14,10 +15,20 @@ bufferMap = {}
 def processAz(az):
    print(az)
    subBuffer = bytes()
+
+   radius = 1.5
+   azR = math.radians(az)
+
    for el in range(180):
-      el = el - 90
-      to_find = pf.Coordinates(az, el, 5.0, domain='sph', convention='top_elev', unit='deg')
+      # el = el - 90
+      elR = math.radians(el)
+      x = radius * math.sin(azR) * math.cos(elR)
+      y = radius * math.sin(azR) * math.sin(elR)
+      z = radius * math.cos(azR)
+
+      to_find = pf.Coordinates(x, y, z, domain='cart')
       index, _ = source_coordinates.find_nearest(to_find)
+
       signal = data_ir[index]
       signal.sampling_rate = int(signal.sampling_rate)
 

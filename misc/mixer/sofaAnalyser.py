@@ -48,11 +48,17 @@ class Data:
          subBufferLeft = list()
          subBufferRight = list()
 
+         radius = 1.5
          azR = math.radians(az)
+
          for el in range(180):
-            el = el - 90
+            # el = el - 90
             elR = math.radians(el)
-            to_find = pf.Coordinates(azR, elR, 1.5, domain='sph', convention='top_elev')
+            x = radius * math.sin(azR) * math.cos(elR)
+            y = radius * math.sin(azR) * math.sin(elR)
+            z = radius * math.cos(azR)
+
+            to_find = pf.Coordinates(x, y, z, domain='cart')
             index, _ = source_coordinates.find_nearest(to_find)
             signal = data_ir[index]
 
