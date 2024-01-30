@@ -19,7 +19,7 @@ function setup(name, notesPerOctave, baseFrequency) {
    myName = name;
    tuning[myName] = new Tuning(notesPerOctave, baseFrequency);
 
-   print("SETUP", name, notesPerOctave, baseFrequency);
+   // print("SETUP", name, notesPerOctave, baseFrequency);
 }
 
 function lookup(index) {

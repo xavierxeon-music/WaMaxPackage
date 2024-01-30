@@ -15,6 +15,10 @@ var tuning = new Global("Tuning");
 
 var myName = "main";
 
+var octave = 0;
+declareattribute("octave");
+
+
 function setName(name) {
 
    myName = name;
@@ -33,6 +37,8 @@ function lookup(index) {
 
    if (tuning[myName] == undefined)
       return 0.0;
+
+   index += (octave * tuning[myName].notesPerOctave);
 
    var frequency = tuning[myName].lookupIndex(index);
    outlet(0, frequency);

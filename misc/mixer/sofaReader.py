@@ -33,6 +33,8 @@ def processAz(az):
         os.remove(fileName)
         subBuffer += data
 
+        #print(channelCount , sampleWidth , frameCount, az, el)
+
     bufferMap[az] = subBuffer
 
 
