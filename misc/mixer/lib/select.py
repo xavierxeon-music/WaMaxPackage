@@ -11,6 +11,8 @@ class Select:
    @staticmethod
    def fileName():
 
+      os.makedirs(os.getcwd() + '/data', exist_ok=True)
+
       with open('files.json', 'r') as infile:
          data = json.load(infile)
 
