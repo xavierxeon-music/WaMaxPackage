@@ -49,6 +49,8 @@ class WaveFile(Crawler):
 
    def write(self):
 
+      os.makedirs('../../media', exist_ok=True)
+
       audio = wave.open('../../media/mixerSpatial_' + self.name + '.wav', 'wb')
       audio.setnchannels(2)
       audio.setsampwidth(2)
