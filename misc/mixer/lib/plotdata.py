@@ -5,7 +5,7 @@ import os
 import pickle
 
 
-from lib import Crawler
+from .crawler import Crawler
 
 
 class PlotData(Crawler):
@@ -51,11 +51,7 @@ class PlotData(Crawler):
          rightData = signal[1].time.tolist()[0]
          bufferMapRight[az] += rightData
 
-      def _endSection(az):
-
-         print('process', az)
-
-      self.execute(_process, _endSection)
+      self.execute(_process)
 
       for az in range(360):
          self.leftBuffer += bufferMapLeft[az]

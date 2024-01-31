@@ -40,6 +40,8 @@ class Crawler:
 
          if endSectionFunction:
             endSectionFunction(az)
+         else:
+            print('AZ = ', az)
 
       with ThreadPool() as pool:
          for _ in pool.map(_processAz, range(360)):

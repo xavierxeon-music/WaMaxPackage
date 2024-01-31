@@ -190,9 +190,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 766.833333333333485, 495.0, 231.0, 22.0 ],
+					"patching_rect" : [ 766.833333333333485, 495.0, 257.0, 22.0 ],
 					"style" : "wa.buffer-4",
-					"text" : "buffer~ spatialSource mixerSpatialNF.wav"
+					"text" : "buffer~ spatialSource mixerSpatial_NIR50.wav"
 				}
 
 			}
