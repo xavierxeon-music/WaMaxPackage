@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 
+from lib import Select
+
 import math
 import os
 import pickle
 
 import matplotlib.pyplot as plt
 import numpy as np
+from pathlib import Path
 
 # https://pyfar.readthedocs.io/en/latest/concepts/pyfar.coordinates.html
 # https://pyfar.readthedocs.io/en/latest/classes/pyfar.coordinates.html#pyfar.classes.coordinates.Coordinates
@@ -13,31 +16,35 @@ import numpy as np
 
 class Data:
 
-   def __init__(self):
+   def __init__(self, fileName):
 
       self.leftBuffer = list()
       self.rightBuffer = list()
 
-      self._loadInternal()
+      self._loadInternal(fileName)
       self.sampleCount = int(len(self.leftBuffer) / (360 * 180))
 
    def index(self, az, el):
 
       return (az * self.sampleCount) + el
 
-   def _loadInternal(self):
+   def _loadInternal(self, fileName):
 
-      if os.path.exists('_lf.bin') and os.path.exists('_rf.bin'):
-         with open('_lf.bin', 'rb') as infile:
+      name = Path(fileName).name.replace(Path(fileName).suffix, '')
+      leftBufferName = 'data/' + name + '_LeftBuffer.bin'
+      rightBufferName = 'data/' + name + '_RightBuffer.bin'
+
+      if os.path.exists(leftBufferName) and os.path.exists(rightBufferName):
+         with open(leftBufferName, 'rb') as infile:
             self.leftBuffer = pickle.load(infile)
-         with open('_rf.bin', 'rb') as infile:
+         with open(rightBufferName, 'rb') as infile:
             self.rightBuffer = pickle.load(infile)
          return
 
       from multiprocessing.pool import ThreadPool
       import pyfar as pf
 
-      data_ir, source_coordinates, _ = pf.io.read_sofa('ClubFritz11.sofa')
+      data_ir, source_coordinates, _ = pf.io.read_sofa(fileName)
       bufferMapLeft = dict()
       bufferMapRight = dict()
 
@@ -79,15 +86,16 @@ class Data:
          self.leftBuffer += bufferMapLeft[az]
          self.rightBuffer += bufferMapRight[az]
 
-      with open('_lf.bin', 'wb') as outfile:
+      with open(leftBufferName, 'wb') as outfile:
          pickle.dump(self.leftBuffer, outfile)
-      with open('_rf.bin', 'wb') as outfile:
+      with open(rightBufferName, 'wb') as outfile:
          pickle.dump(self.rightBuffer, outfile)
 
 
 def main():
 
-   data = Data()
+   fileName = Select.fileName()
+   data = Data(fileName)
 
    # print(len(data.leftBuffer), sampleCount)
 
