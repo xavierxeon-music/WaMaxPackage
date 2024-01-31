@@ -37,7 +37,7 @@ class Data:
       from multiprocessing.pool import ThreadPool
       import pyfar as pf
 
-      data_ir, source_coordinates, _ = pf.io.read_sofa('NF150.sofa')
+      data_ir, source_coordinates, _ = pf.io.read_sofa('ClubFritz11.sofa')
       bufferMapLeft = dict()
       bufferMapRight = dict()
 
