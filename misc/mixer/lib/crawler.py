@@ -1,7 +1,7 @@
 #
-import math
 
-from typing import Callable
+import math
+from pathlib import Path
 
 
 class Crawler:
@@ -9,8 +9,11 @@ class Crawler:
    def __init__(self, fileName):
 
       self.fileName = fileName
+      self.name = Path(fileName).name.replace(Path(fileName).suffix, '')
 
-   def execute(self, processFunction):
+      print(self.name)
+
+   def execute(self, processFunction, endSectionFunction=None):
 
       from multiprocessing.pool import ThreadPool
       import pyfar as pf
@@ -18,8 +21,6 @@ class Crawler:
       data_ir, source_coordinates, _ = pf.io.read_sofa(self.fileName)
 
       def _processAz(az):
-
-         print(az)
 
          radius = 1.5
          azR = math.radians(az)
@@ -36,6 +37,9 @@ class Crawler:
             signal = data_ir[index]
 
             processFunction(signal, az, el)
+
+         if endSectionFunction:
+            endSectionFunction(az)
 
       with ThreadPool() as pool:
          for _ in pool.map(_processAz, range(360)):

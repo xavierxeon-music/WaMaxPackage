@@ -6,6 +6,10 @@
 https://www.sofaconventions.org
 https://pypi.org/project/pyfar/
 
+https://pyfar.readthedocs.io/en/latest/concepts/pyfar.coordinates.html
+https://pyfar.readthedocs.io/en/latest/classes/pyfar.coordinates.html#pyfar.classes.coordinates.Coordinates
+
+
 ## data
 
 http://sofacoustics.org
