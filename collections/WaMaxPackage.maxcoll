@@ -2,12 +2,12 @@
    "name": "WaMaxPackage",
    "type": "filelist",
    "contents": [
-      "wa.device_main.maxsnip",
       "wa.jit_project.maxsnip",
       "wa.jit_project.launchpad.maxsnip",
       "wa.output.maxsnip",
       "wa.patch_main.maxsnip",
       "wa.patch_sub.maxsnip",
-      "wa.transport_manual.maxsnip"
+      "wa.transport_manual.maxsnip",
+      "walive.device_main.maxsnip"
    ]
 }
