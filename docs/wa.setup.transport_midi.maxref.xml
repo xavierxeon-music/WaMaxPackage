@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 <c74object name="wa.setup.transport_midi" patcher_type="0">
-    <digest>Hello World</digest>
+    <digest>midi transport</digest>
+    <description>control transport via external midi clock</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
@@ -10,7 +11,8 @@
     <misc name="Outputs"/>
     <objarglist>
         <objarg name="1" optional="1" type="symbol">
-            <digest/>
+            <digest>devce name (Internal Max)</digest>
+            <description>the name of the external MIDI device</description>
         </objarg>
     </objarglist>
     <attributelist/>
