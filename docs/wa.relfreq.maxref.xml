@@ -7,9 +7,9 @@
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="1"/>
+    <parser inlet_count="0"/>
     <misc name="Outputs">
-        <entry id="1" name="">
+        <entry id="0" name="relfreq">
             <digest/>
             <description>the relative frequency</description>
         </entry>
@@ -22,14 +22,6 @@
         </attribute>
     </attributelist>
     <methodlist>
-        <method name="float" standard="1">
-            <digest/>
-            <description>the frequency to measure</description>
-        </method>
-        <method name="int" standard="1">
-            <digest/>
-            <description>the frequency to measure</description>
-        </method>
         <method name="signal" standard="1">
             <digest/>
             <description>the frequency to measure</description>

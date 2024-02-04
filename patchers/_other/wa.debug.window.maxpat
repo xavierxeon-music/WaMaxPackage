@@ -105,8 +105,6 @@
 					"bgcolor" : [ 0.0, 0.0, 0.0, 1.0 ],
 					"bordercolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ],
 					"id" : "obj-16",
-					"linecount" : 17,
-					"lines" : 10,
 					"maxclass" : "textedit",
 					"numinlets" : 1,
 					"numoutlets" : 4,
@@ -115,11 +113,8 @@
 					"parameter_mappable" : 0,
 					"patching_rect" : [ 50.0, 244.0, 192.0, 208.0 ],
 					"presentation" : 1,
-					"presentation_linecount" : 17,
 					"presentation_rect" : [ 424.0, 40.0, 152.0, 120.0 ],
 					"readonly" : 1,
-					"separator" : "ø",
-					"text" : "grainsize 350.62406\rstartpos 0.385185\rspray 112\rspread 1\rINIT\rspread 1\rspray 112\rgrainsize 350.62406\rstartpos 0.385185\rgrainsize 350.62406\rstartpos 0.385185\rspray 112\rspread 1\rspread 1\rspray 112\rgrainsize 350.62406\rstartpos 0.385185\r",
 					"textcolor" : [ 1.0, 1.0, 1.0, 1.0 ]
 				}
 
@@ -128,7 +123,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-32",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -188,13 +183,8 @@
 
 			}
  ],
-		"saved_attribute_attributes" : 		{
-			"default_plcolor" : 			{
-				"expression" : ""
-			}
-
-		}
-
+		"dependency_cache" : [  ],
+		"autosave" : 0
 	}
 
 }
