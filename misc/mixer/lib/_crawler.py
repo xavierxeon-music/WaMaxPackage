@@ -13,12 +13,15 @@ class Crawler:
 
       print(self.name)
 
-   def execute(self, processFunction, endSectionFunction=None):
+   def execute(self, processFunction, endSectionFunction=None, sofaDataFunction=None):
 
       from multiprocessing.pool import ThreadPool
       import pyfar as pf
 
       data_ir, source_coordinates, _ = pf.io.read_sofa(self.fileName)
+
+      if sofaDataFunction:
+         sofaDataFunction(data_ir)
 
       def _processAz(az):
 

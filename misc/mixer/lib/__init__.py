@@ -1,6 +1,6 @@
 #
 
 from .plot import Plot
-from .plotdata import PlotData
+from .plotcrawler import PlotCrawler
 from .select import Select
 from .wavefile import WaveFile

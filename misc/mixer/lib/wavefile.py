@@ -5,7 +5,7 @@ import os
 import pyfar as pf
 import wave
 
-from .crawler import Crawler
+from ._crawler import Crawler
 
 
 class WaveFile(Crawler):

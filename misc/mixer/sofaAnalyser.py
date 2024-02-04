@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-from lib import Plot, PlotData, Select
+from lib import Plot, PlotCrawler, Select
 
 
 def main():
 
    fileName = Select.fileName()
-   data = PlotData(fileName)
+   data = PlotCrawler(fileName).data
 
    plot = Plot(data)
    plot.startValue()
