@@ -11,6 +11,11 @@
     <misc name="Outputs">
         <entry id="0" name="passR">
             <digest/>
+            <description>pass right signal</description>
+        </entry>
+        <entry id="1" name="passL">
+            <digest/>
+            <description>pass left signal</description>
         </entry>
     </misc>
     <objarglist/>

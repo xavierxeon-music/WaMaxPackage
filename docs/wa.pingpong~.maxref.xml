@@ -13,6 +13,10 @@
             <digest/>
             <description>left signal out</description>
         </entry>
+        <entry id="1" name="right">
+            <digest/>
+            <description>right signal out</description>
+        </entry>
     </misc>
     <objarglist>
         <objarg name="1" optional="1" type="symbol">

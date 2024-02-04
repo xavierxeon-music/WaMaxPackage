@@ -7,7 +7,7 @@
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="0"/>
+    <parser inlet_count="1"/>
     <misc name="Outputs"/>
     <objarglist/>
     <attributelist>
@@ -16,6 +16,11 @@
             <description>open on start</description>
         </attribute>
     </attributelist>
-    <methodlist/>
+    <methodlist>
+        <method name="bang" standard="1">
+            <digest/>
+            <description>open the score</description>
+        </method>
+    </methodlist>
     <seealsolist/>
 </c74object>

@@ -11,17 +11,9 @@
     <misc name="Outputs"/>
     <objarglist/>
     <attributelist>
-        <attribute get="1" name="" set="1" size="1" type="symbol">
-            <digest/>
-        </attribute>
-        <attribute get="1" name="down" set="1" size="1" type="symbol">
-            <digest/>
-        </attribute>
-        <attribute get="1" name="permiability" set="1" size="1" type="symbol">
-            <digest/>
-        </attribute>
-        <attribute get="1" name="up" set="1" size="1" type="symbol">
-            <digest/>
+        <attribute get="1" name="permiability" set="1" size="1" type="float">
+            <digest>permaibility (5)</digest>
+            <description>how good sound travels</description>
         </attribute>
     </attributelist>
     <methodlist>

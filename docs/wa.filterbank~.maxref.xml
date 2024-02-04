@@ -2,18 +2,25 @@
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 <c74object name="wa.filterbank~" patcher_type="1">
     <digest>fft filterbank</digest>
+    <description>a filterbank using FFT</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="1"/>
+    <parser inlet_count="0"/>
     <misc name="Outputs">
-        <entry id="1" name="">
+        <entry id="0" name="signal">
             <digest/>
+            <description>filtered signal</description>
         </entry>
     </misc>
     <objarglist/>
     <attributelist/>
-    <methodlist/>
+    <methodlist>
+        <method name="signal" standard="1">
+            <digest/>
+            <description>input signal</description>
+        </method>
+    </methodlist>
     <seealsolist/>
 </c74object>

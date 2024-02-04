@@ -3,8 +3,8 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 5,
-			"revision" : 6,
+			"minor" : 6,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -174,7 +174,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "singal",
 					"id" : "obj-1",
 					"index" : 0,
 					"maxclass" : "inlet",
@@ -187,7 +187,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "signal",
 					"id" : "obj-2",
 					"index" : 0,
 					"maxclass" : "outlet",

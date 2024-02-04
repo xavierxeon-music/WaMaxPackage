@@ -9,12 +9,27 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry id="1" name="">
+        <entry id="0" name="signal">
             <digest/>
+            <description>the output signal</description>
         </entry>
     </misc>
     <objarglist/>
-    <attributelist/>
-    <methodlist/>
+    <attributelist>
+        <attribute get="1" name="length" set="1" size="1" type="symbol">
+            <digest>filter length</digest>
+            <description>set the  filter length</description>
+        </attribute>
+    </attributelist>
+    <methodlist>
+        <method name="int" standard="1">
+            <digest/>
+            <description>set the  filter length</description>
+        </method>
+        <method name="signal" standard="1">
+            <digest/>
+            <description>the input signal</description>
+        </method>
+    </methodlist>
     <seealsolist/>
 </c74object>

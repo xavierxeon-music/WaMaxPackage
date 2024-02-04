@@ -7,12 +7,8 @@
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="4"/>
-    <misc name="Outputs">
-        <entry id="0" name="">
-            <digest/>
-        </entry>
-    </misc>
+    <parser inlet_count="0"/>
+    <misc name="Outputs"/>
     <objarglist/>
     <attributelist/>
     <methodlist>

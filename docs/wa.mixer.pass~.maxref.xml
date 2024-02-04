@@ -13,9 +13,9 @@
             <digest/>
             <description>right signal out </description>
         </entry>
-        <entry id="1" name="lefttOut">
+        <entry id="1" name="leftOut">
             <digest/>
-            <description>left signal out </description>
+            <description>pass left signal</description>
         </entry>
     </misc>
     <objarglist/>

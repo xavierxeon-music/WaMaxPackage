@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 <c74object name="walive.route_input" patcher_type="0">
-    <digest>Hello World</digest>
+    <digest>live input routing</digest>
+    <description>route the audio of a live channel to a plugin</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry id="1" name="">
+        <entry id="0" name="trackNames">
             <digest/>
+            <description>list of availabel tracks</description>
         </entry>
     </misc>
     <objarglist>
         <objarg name="1" optional="1" type="symbol">
-            <digest/>
+            <digest>plugin index</digest>
+            <description>the index of the plugin port (always stereo!)</description>
         </objarg>
     </objarglist>
     <attributelist>
         <attribute get="1" name="from" set="1" size="1" type="symbol">
-            <digest/>
+            <digest>audio name</digest>
+            <description>name of audio source</description>
         </attribute>
     </attributelist>
     <methodlist>
@@ -27,7 +31,8 @@
             <arglist>
                 <arg name="" optional="0" type="symbol"/>
             </arglist>
-            <digest/>
+            <digest>audio name</digest>
+            <description>name of audio source</description>
         </method>
     </methodlist>
     <seealsolist/>

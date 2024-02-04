@@ -66,7 +66,7 @@
 				"box" : 				{
 					"comment" : "passL",
 					"id" : "obj-31",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,

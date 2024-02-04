@@ -40,13 +40,13 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "trackNames",
 					"id" : "obj-2",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 88.0, 300.0, 30.0, 30.0 ]
+					"patching_rect" : [ 28.0, 302.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -57,7 +57,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "bang" ],
-					"patching_rect" : [ 360.0, 105.0, 63.0, 22.0 ],
+					"patching_rect" : [ 300.0, 107.0, 63.0, 22.0 ],
 					"text" : "trigger b b"
 				}
 
@@ -69,7 +69,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 210.0, 105.0, 62.0, 22.0 ],
+					"patching_rect" : [ 150.0, 107.0, 62.0, 22.0 ],
 					"text" : "trigger b s"
 				}
 
@@ -81,7 +81,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 210.0, 150.0, 77.0, 22.0 ],
+					"patching_rect" : [ 150.0, 152.0, 77.0, 22.0 ],
 					"text" : "value ---from"
 				}
 
@@ -93,7 +93,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 210.0, 195.0, 117.0, 22.0 ],
+					"patching_rect" : [ 150.0, 197.0, 117.0, 22.0 ],
 					"text" : "prepend setChannel"
 				}
 
@@ -105,7 +105,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 90.0, 165.0, 109.0, 22.0 ],
+					"patching_rect" : [ 30.0, 167.0, 109.0, 22.0 ],
 					"text" : "prepend setInputId"
 				}
 
@@ -117,9 +117,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 88.0, 255.0, 102.0, 22.0 ],
+					"patching_rect" : [ 28.0, 257.0, 102.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "live.route_input.js",
+						"filename" : "live.route_input",
 						"parameter_enable" : 0
 					}
 ,
@@ -135,7 +135,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
-					"patching_rect" : [ 90.0, 67.0, 53.0, 22.0 ],
+					"patching_rect" : [ 30.0, 69.0, 53.0, 22.0 ],
 					"text" : "unpack i"
 				}
 
@@ -147,7 +147,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 210.0, 67.0, 63.0, 22.0 ],
+					"patching_rect" : [ 150.0, 69.0, 63.0, 22.0 ],
 					"text" : "route from"
 				}
 
@@ -159,7 +159,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 90.0, 28.0, 131.0, 22.0 ],
+					"patching_rect" : [ 30.0, 30.0, 131.0, 22.0 ],
 					"text" : "patcherargs 1 @from 1"
 				}
 
@@ -174,7 +174,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "bang", "int", "int" ],
-					"patching_rect" : [ 360.0, 71.0, 85.0, 22.0 ],
+					"patching_rect" : [ 300.0, 73.0, 85.0, 22.0 ],
 					"text" : "live.thisdevice"
 				}
 
@@ -183,12 +183,12 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 255.0, 20.0, 30.0, 30.0 ]
+					"patching_rect" : [ 195.0, 22.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -231,7 +231,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
-					"midpoints" : [ 413.5, 240.0, 97.5, 240.0 ],
+					"midpoints" : [ 353.5, 242.0, 37.5, 242.0 ],
 					"source" : [ "obj-18", 1 ]
 				}
 
@@ -293,6 +293,15 @@
 
 			}
  ],
+		"dependency_cache" : [ 			{
+				"name" : "live.route_input.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/external_software",
+				"patcherrelativepath" : "../../javascript/external_software",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.patcher",
 				"default" : 				{
@@ -302,14 +311,7 @@
 				"parentstyle" : "",
 				"multi" : 0
 			}
- ],
-		"saved_attribute_attributes" : 		{
-			"default_plcolor" : 			{
-				"expression" : ""
-			}
-
-		}
-
+ ]
 	}
 
 }
