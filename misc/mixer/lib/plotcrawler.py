@@ -26,12 +26,12 @@ class PlotCrawler(Crawler):
          return
 
       def _sofaDataFunction(data_ir):
-         self.data = np.zeros((180, 360, 2, data_ir.n_samples))
+         self.data = np.zeros((360, 180, 2, data_ir.n_samples))
 
       def _process(signal, az, el):
 
-         self.data[el, az, 0] = signal[0].time
-         self.data[el, az, 1] = signal[1].time
+         self.data[az, el, 0] = signal[0].time
+         self.data[az, el, 1] = signal[1].time
 
       self.execute(_process, None, _sofaDataFunction)
 
