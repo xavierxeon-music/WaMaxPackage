@@ -10,6 +10,8 @@ https://pyfar.readthedocs.io/en/latest/concepts/pyfar.coordinates.html
 https://pyfar.readthedocs.io/en/latest/classes/pyfar.coordinates.html#pyfar.classes.coordinates.Coordinates
 
 
+https://pyfar.readthedocs.io/en/stable/classes/pyfar.audio.html
+
 ## data
 
 http://sofacoustics.org

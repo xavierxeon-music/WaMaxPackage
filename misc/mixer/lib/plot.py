@@ -12,13 +12,16 @@ class Plot:
    def __init__(self, data):
 
       self.data = data
+      self.fileName = 'data/_tmp.png'
 
    def startValue(self):
 
-      valueList = self.data[:, :, 1, 0]
+      valueList = self.data[:, :, 0, 0]
       valueList = np.transpose(valueList)
       print(self.data.shape, valueList.shape)
 
       fig, ax = plt.subplots()
       ax.pcolormesh(valueList)
-      plt.show()
+
+      # plt.axis('off')
+      plt.savefig(self.fileName, dpi=600)
