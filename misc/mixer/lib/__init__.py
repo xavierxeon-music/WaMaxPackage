@@ -1,6 +1,5 @@
 #
 
-from .plot import Plot
-from .plotcrawler import PlotCrawler
+from .mainwindow import MainWindow
 from .select import Select
 from .wavefile import WaveFile
