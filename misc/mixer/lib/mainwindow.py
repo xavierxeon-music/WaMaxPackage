@@ -16,15 +16,11 @@ class MainWindow(QWidget):
       crawler = PlotCrawler(fileName)
       self.setWindowTitle('SofaAnalyser - ' + crawler.name)
 
-      self.data = crawler.data
-
-      self.timeView = TimeView()
-      self.pointView = PointView()
+      self.timeView = TimeView(crawler)
+      self.pointView = PointView(crawler)
 
       masterLayout = QVBoxLayout()
+      masterLayout.setContentsMargins(0, 0, 0, 0)
       masterLayout.addWidget(self.timeView)
       masterLayout.addWidget(self.pointView)
       self.setLayout(masterLayout)
-
-      # plot = Plot(data)
-      # plot.startValue()
