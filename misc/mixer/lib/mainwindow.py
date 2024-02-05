@@ -1,6 +1,6 @@
 #
 
-from PySide6.QtWidgets import QWidget, QVBoxLayout
+from PySide6.QtWidgets import QWidget, QHBoxLayout
 
 from .plotcrawler import PlotCrawler
 from .pointview import PointView
@@ -19,7 +19,9 @@ class MainWindow(QWidget):
       self.timeView = TimeView(crawler)
       self.pointView = PointView(crawler)
 
-      masterLayout = QVBoxLayout()
+      self.timeView.pointSelected.connect(self.pointView.pointSelected)
+
+      masterLayout = QHBoxLayout()
       masterLayout.setContentsMargins(0, 0, 0, 0)
       masterLayout.addWidget(self.timeView)
       masterLayout.addWidget(self.pointView)

@@ -3,27 +3,9 @@
 import os
 import pickle
 
-from PySide6.QtCore import Qt, QByteArray, QIODevice, QDataStream
-from PySide6.QtGui import QPixmap
+from PySide6.QtCore import Qt
 
-
-class Pixmap(QPixmap):
-
-   def __reduce__(self):
-
-      return type(self), (), self.__getstate__()
-
-   def __getstate__(self):
-
-      ba = QByteArray()
-      stream = QDataStream(ba, QIODevice.WriteOnly)
-      stream << self
-      return ba
-
-   def __setstate__(self, ba):
-
-      stream = QDataStream(ba, QIODevice.ReadOnly)
-      stream >> self
+from .pixmap import Pixmap
 
 
 class TimeData:
@@ -62,6 +44,7 @@ class TimeData:
       def _update(side, index):
          valueList = data[:, :, side, index]
          valueList = np.transpose(valueList)
+         valueList = np.flipud(valueList)
 
          fig, ax = plt.subplots()
          plt.axis('off')

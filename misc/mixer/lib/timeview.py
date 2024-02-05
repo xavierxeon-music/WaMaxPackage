@@ -1,14 +1,15 @@
 #
 
 
-from PySide6.QtCore import Qt
-from PySide6.QtGui import QPixmap
-from PySide6.QtWidgets import QWidget, QLabel, QSlider, QSpinBox, QGridLayout, QFrame, QSizePolicy
+from PySide6.QtCore import Qt, QEvent, Signal
+from PySide6.QtWidgets import QWidget, QLabel, QSlider, QSpinBox, QGridLayout, QFrame
 
 from .timedata import TimeData
 
 
 class TimeView(QWidget):
+
+   pointSelected = Signal(int, int)
 
    def __init__(self, crawler):
 
@@ -20,6 +21,8 @@ class TimeView(QWidget):
 
          label.setFixedSize(360 * TimeData.scale, 180 * TimeData.scale)
          label.setFrameShape(QFrame.Box)
+
+         label.installEventFilter(self)
 
       self.leftLabel = QLabel()
       _initLabel(self.leftLabel)
@@ -46,6 +49,15 @@ class TimeView(QWidget):
       self.setLayout(masterLayout)
 
       self._updateImages(0)
+
+   def eventFilter(self, object, event) -> bool:
+
+      if event.type() == QEvent.MouseButtonDblClick:
+         az = int(event.position().x() / TimeData.scale)
+         el = int(event.position().y() / TimeData.scale)
+         self.pointSelected.emit(az, el)
+
+      return super().eventFilter(object, event)
 
    def _sliderChange(self, index):
 

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 199.0, 1990.0, 1367.0 ],
+		"rect" : [ 34.0, 227.0, 3204.0, 1339.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -126,7 +126,7 @@
 				"box" : 				{
 					"comment" : "rightOut",
 					"id" : "obj-66",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -138,7 +138,7 @@
 				"box" : 				{
 					"comment" : "leftOut",
 					"id" : "obj-67",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -190,9 +190,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 766.833333333333485, 495.0, 257.0, 22.0 ],
+					"patching_rect" : [ 766.833333333333485, 495.0, 297.0, 22.0 ],
 					"style" : "wa.buffer-4",
-					"text" : "buffer~ spatialSource mixerSpatial_NIR50.wav"
+					"text" : "buffer~ spatialSource mixerSpatial_HatoModelled.wav"
 				}
 
 			}
@@ -571,7 +571,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-1",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -1014,43 +1014,6 @@
 
 			}
  ],
-		"dependency_cache" : [ 			{
-				"name" : "_spatial.js",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/mixer",
-				"patcherrelativepath" : "../../javascript/mixer",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "linalg.genexpr",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/code/_common",
-				"patcherrelativepath" : "../../code/_common",
-				"type" : "GenX",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "spatial_listener.gendsp",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/code/mixer",
-				"patcherrelativepath" : "../../code/mixer",
-				"type" : "gDSP",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "spatial_listener.js",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/mixer",
-				"patcherrelativepath" : "../../javascript/mixer",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "spatial_plane.gendsp",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/code/mixer",
-				"patcherrelativepath" : "../../code/mixer",
-				"type" : "gDSP",
-				"implicit" : 1
-			}
- ],
-		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.buffer",
 				"parentstyle" : "",
@@ -1119,7 +1082,14 @@
 				"parentstyle" : "",
 				"multi" : 0
 			}
- ]
+ ],
+		"saved_attribute_attributes" : 		{
+			"default_plcolor" : 			{
+				"expression" : ""
+			}
+
+		}
+
 	}
 
 }
