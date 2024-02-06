@@ -14,12 +14,16 @@ class MainWindow(QWidget):
       super().__init__()
 
       crawler = PlotCrawler(fileName)
-      self.setWindowTitle('SofaAnalyser - ' + crawler.name)
+      self.name = 'SofaAnalyser - ' + crawler.name
 
       self.timeView = TimeView(crawler)
       self.pointView = PointView(crawler)
 
       self.timeView.pointSelected.connect(self.pointView.pointSelected)
+      self.timeView.pointSelected.connect(self.pointSelected)
+
+      self.pointView.pointSelected(0, 0)
+      self.pointSelected(0, 0)
 
       masterLayout = QHBoxLayout()
       masterLayout.setContentsMargins(0, 0, 0, 0)
@@ -27,3 +31,8 @@ class MainWindow(QWidget):
       masterLayout.addWidget(self.timeView)
       masterLayout.addWidget(self.pointView)
       self.setLayout(masterLayout)
+
+   def pointSelected(self, az, el):
+
+      title = f'{self.name} [ {az}, {el} ]'
+      self.setWindowTitle(title)

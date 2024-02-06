@@ -1,55 +1,15 @@
 #
 
-import math
-
-from matplotlib.backends.backend_qtagg import FigureCanvas
 from matplotlib.figure import Figure
 import numpy as np
+# from scipy import stats
+# https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fit.html
+
 
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLineEdit
+from matplotlib.backends.backend_qtagg import FigureCanvas
 
-
-def filter(series):
-
-   factor = 0.2
-   cutoff = 0.01
-
-   maxIn = 0.0
-   maxOut = 0.0
-
-   length = series.shape[0]
-   out = np.zeros(series.shape)
-   for index in range(length):
-      # rectiy input
-      inValue = math.fabs(series[index])
-      if inValue < cutoff:
-         inValue = 0.0
-      if inValue > maxIn:
-         maxIn = inValue
-
-      # filter
-      if 0 == index:
-         out[0] = factor * inValue
-      else:
-         lastOut = out[index - 1]
-         outValue = lastOut + factor * (inValue - lastOut)
-         if outValue > maxOut:
-            maxOut = outValue
-         out[index] = outValue
-
-   if maxIn > 1.0:
-      maxIn = 1.0
-
-   boost = maxIn / maxOut
-
-   for index in range(length):
-      outValue = out[index] * boost
-      if outValue < cutoff:
-         out[index] = 0.0
-      else:
-         out[index] = outValue
-
-   return out
+from .filter import filterData
 
 
 class PointView(QWidget):
@@ -94,8 +54,8 @@ class PointView(QWidget):
       self.timeCanvas.draw()
 
       # fit plot
-      filterLeft = filter(valuesLeft)
-      filterRight = filter(valuesRight)
+      filterLeft = filterData(valuesLeft)
+      filterRight = filterData(valuesRight)
 
       fitFigure = self.fitCanvas.figure
       fitFigure.clf()

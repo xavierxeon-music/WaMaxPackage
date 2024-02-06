@@ -1,14 +1,11 @@
 #
 
-from matplotlib.backends.backend_qtagg import FigureCanvas
 from matplotlib.figure import Figure
 import numpy as np
 
-from PySide6.QtCore import Qt, QEvent, Signal
-from PySide6.QtWidgets import QWidget, QLabel, QSlider, QSpinBox, QGridLayout, QFrame
-
-
-# https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fit.html
+from PySide6.QtCore import Qt, Signal
+from PySide6.QtWidgets import QWidget, QSlider, QSpinBox, QGridLayout
+from matplotlib.backends.backend_qtagg import FigureCanvas
 
 
 class TimeView(QWidget):
