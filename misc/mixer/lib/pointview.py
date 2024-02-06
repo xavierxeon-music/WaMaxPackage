@@ -2,14 +2,13 @@
 
 from matplotlib.figure import Figure
 import numpy as np
-# from scipy import stats
-# https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fit.html
 
 
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLineEdit
 from matplotlib.backends.backend_qtagg import FigureCanvas
 
-from .filter import filterData
+from .filter import lowpass
+from .fit import normalFit
 
 
 class PointView(QWidget):
@@ -39,8 +38,7 @@ class PointView(QWidget):
       valuesLeft = self.data[az, el, 0, :]
       valuesRight = self.data[az, el, 1, :]
 
-      sampleCount = int(self.data.shape[3])
-      samples = range(sampleCount)
+      samples = np.arange(self.data.shape[3])
 
       # time plot
       timeFigure = self.timeCanvas.figure
@@ -54,8 +52,11 @@ class PointView(QWidget):
       self.timeCanvas.draw()
 
       # fit plot
-      filterLeft = filterData(valuesLeft)
-      filterRight = filterData(valuesRight)
+      filterLeft = lowpass(valuesLeft)
+      filterRight = lowpass(valuesRight)
+
+      fitLeft = normalFit(filterLeft)
+      fitRight = normalFit(filterRight)
 
       fitFigure = self.fitCanvas.figure
       fitFigure.clf()

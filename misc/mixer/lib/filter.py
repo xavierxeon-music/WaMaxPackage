@@ -5,7 +5,7 @@ import math
 import numpy as np
 
 
-def filterData(series):
+def lowpass(series):
 
    factor = 0.2
    cutoff = 0.01
