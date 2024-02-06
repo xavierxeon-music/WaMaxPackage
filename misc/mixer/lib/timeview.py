@@ -1,10 +1,12 @@
 #
 
+from matplotlib.backends.backend_qtagg import FigureCanvas
+from matplotlib.figure import Figure
+import numpy as np
 
 from PySide6.QtCore import Qt, QEvent, Signal
 from PySide6.QtWidgets import QWidget, QLabel, QSlider, QSpinBox, QGridLayout, QFrame
 
-from .timedata import TimeData
 from .pixmap import Pixmap
 
 
@@ -16,22 +18,14 @@ class TimeView(QWidget):
 
       super().__init__()
 
-      self.timeData = TimeData(crawler)
+      self.data = crawler.data
+      maxSampleIndex = self.data.shape[3] - 1
 
-      def _initLabel(label):
+      self.leftCanvas = FigureCanvas(Figure(layout="compressed"))
+      self.leftCanvas.mpl_connect('button_release_event', self._onClick)
 
-         label.setFixedSize(360 * Pixmap.scale, 180 * Pixmap.scale)
-         label.setFrameShape(QFrame.Box)
-
-         label.installEventFilter(self)
-
-      self.leftLabel = QLabel()
-      _initLabel(self.leftLabel)
-
-      self.rightLabel = QLabel()
-      _initLabel(self.rightLabel)
-
-      maxSampleIndex = self.timeData.sampleCount - 1
+      self.rightCanvas = FigureCanvas(Figure(layout="compressed"))
+      self.rightCanvas.mpl_connect('button_release_event', self._onClick)
 
       self.timeSlider = QSlider()
       self.timeSlider.setRange(0, maxSampleIndex)
@@ -43,22 +37,20 @@ class TimeView(QWidget):
       self.timeSpin.valueChanged.connect(self._spinChange)
 
       masterLayout = QGridLayout()
-      masterLayout.addWidget(self.leftLabel, 0, 0, 1, 2)
-      masterLayout.addWidget(self.rightLabel, 1, 0, 1, 2)
+      masterLayout.addWidget(self.leftCanvas, 0, 0, 1, 2)
+      masterLayout.addWidget(self.rightCanvas, 1, 0, 1, 2)
       masterLayout.addWidget(self.timeSlider, 2, 0)
       masterLayout.addWidget(self.timeSpin, 2, 1)
       self.setLayout(masterLayout)
 
       self._updateImages(0)
 
-   def eventFilter(self, object, event) -> bool:
+   def _onClick(self, event):
 
-      if event.type() == QEvent.MouseButtonDblClick:
-         az = int(event.position().x() / Pixmap.scale)
-         el = int(event.position().y() / Pixmap.scale)
-         self.pointSelected.emit(az, el)
-
-      return super().eventFilter(object, event)
+      az = int(event.xdata)
+      el = int(180 - event.ydata)
+      # print(az, el)
+      self.pointSelected.emit(az, el)
 
    def _sliderChange(self, index):
 
@@ -78,8 +70,19 @@ class TimeView(QWidget):
 
    def _updateImages(self, index):
 
-      pixmap = self.timeData.pixmaps[0][index]
-      self.leftLabel.setPixmap(pixmap)
+      def _fill(side, canvas):
 
-      pixmap = self.timeData.pixmaps[1][index]
-      self.rightLabel.setPixmap(pixmap)
+         valueList = self.data[:, :, side, index]
+         valueList = np.transpose(valueList)
+         valueList = np.flipud(valueList)
+
+         canvas.figure.clf()
+         ax = canvas.figure.subplots()
+
+         ax.pcolormesh(valueList)
+
+         ax.set_axis_off()
+         canvas.draw()
+
+      _fill(0, self.leftCanvas)
+      _fill(1, self.rightCanvas)

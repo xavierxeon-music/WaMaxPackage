@@ -2,10 +2,10 @@
 
 import math
 
-from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QWidget, QLabel, QVBoxLayout, QFrame, QLineEdit
+from matplotlib.backends.backend_qtagg import FigureCanvas
+from matplotlib.figure import Figure
 
-from .pixmap import Pixmap
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QLineEdit
 
 
 class PointView(QWidget):
@@ -16,22 +16,17 @@ class PointView(QWidget):
 
       self.data = crawler.data
 
-      def _initLabel(label):
+      timeFigure = Figure(figsize=(5, 3))
+      self.timeCanvas = FigureCanvas(timeFigure)
 
-         label.setFixedSize(360 * Pixmap.scale, 180 * Pixmap.scale)
-         label.setFrameShape(QFrame.Box)
-
-      self.timeLabel = QLabel()
-      _initLabel(self.timeLabel)
-
-      self.fitLabel = QLabel()
-      _initLabel(self.fitLabel)
+      fitFigure = Figure(figsize=(5, 3))
+      self.fitCanvas = FigureCanvas(fitFigure)
 
       self.coeffShow = QLineEdit()
 
       masterLayout = QVBoxLayout()
-      masterLayout.addWidget(self.timeLabel)
-      masterLayout.addWidget(self.fitLabel)
+      masterLayout.addWidget(self.timeCanvas)
+      masterLayout.addWidget(self.fitCanvas)
       masterLayout.addWidget(self.coeffShow)
       self.setLayout(masterLayout)
 
@@ -48,15 +43,18 @@ class PointView(QWidget):
       sampleCount = int(self.data.shape[3])
       samples = range(sampleCount)
 
-      def timePlot(ax):
-
-         ax.plot(samples, valuesLeft, label='data left')
-         ax.plot(samples, valuesRight, label='data right')
-
-         ax.legend(handlelength=4)
-
       # time plot
+      timeFigure = self.timeCanvas.figure
+      timeFigure.clf()
+      ax = timeFigure.subplots()
 
+      ax.plot(samples, valuesLeft, label='data left')
+      ax.plot(samples, valuesRight, label='data right')
+
+      ax.legend(handlelength=4)
+      self.timeCanvas.draw()
+
+      # fit plot
       def filter(series):
 
          factor = 0.2
@@ -81,24 +79,15 @@ class PointView(QWidget):
 
          return out
 
-      def fitPlot(ax):
+      filterLeft = filter(valuesLeft)
+      filterRight = filter(valuesRight)
 
-         filterLeft = filter(valuesLeft)
-         filterRight = filter(valuesRight)
+      fitFigure = self.fitCanvas.figure
+      fitFigure.clf()
+      ax = fitFigure.subplots()
 
-         ax.plot(samples, filterLeft, label='filter left')
-         ax.plot(samples, filterRight, label='filter right')
-         """
-         fitLeft = np.polyfit(samples, filterLeft, 11)
-         fitRight = np.polyfit(samples, filterRight, 11)
+      ax.plot(samples, filterLeft, label='filter left')
+      ax.plot(samples, filterRight, label='filter right')
 
-         polyLeft = np.poly1d(fitLeft)
-         polyRight = np.poly1d(fitRight)
-
-         ax.plot(samples, polyLeft(samples), label='fit left')
-         ax.plot(samples, polyRight(samples), label='fit right')
-         """
-         ax.legend(handlelength=4)
-
-      Pixmap.plotToLabel(timePlot, self.timeLabel)
-      Pixmap.plotToLabel(fitPlot, self.fitLabel)
+      ax.legend(handlelength=4)
+      self.fitCanvas.draw()
