@@ -4,8 +4,52 @@ import math
 
 from matplotlib.backends.backend_qtagg import FigureCanvas
 from matplotlib.figure import Figure
+import numpy as np
 
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLineEdit
+
+
+def filter(series):
+
+   factor = 0.2
+   cutoff = 0.01
+
+   maxIn = 0.0
+   maxOut = 0.0
+
+   length = series.shape[0]
+   out = np.zeros(series.shape)
+   for index in range(length):
+      # rectiy input
+      inValue = math.fabs(series[index])
+      if inValue < cutoff:
+         inValue = 0.0
+      if inValue > maxIn:
+         maxIn = inValue
+
+      # filter
+      if 0 == index:
+         out[0] = factor * inValue
+      else:
+         lastOut = out[index - 1]
+         outValue = lastOut + factor * (inValue - lastOut)
+         if outValue > maxOut:
+            maxOut = outValue
+         out[index] = outValue
+
+   if maxIn > 1.0:
+      maxIn = 1.0
+
+   boost = maxIn / maxOut
+
+   for index in range(length):
+      outValue = out[index] * boost
+      if outValue < cutoff:
+         out[index] = 0.0
+      else:
+         out[index] = outValue
+
+   return out
 
 
 class PointView(QWidget):
@@ -32,11 +76,6 @@ class PointView(QWidget):
 
    def pointSelected(self, az, el):
 
-      import matplotlib.pyplot as plt
-      import numpy as np
-
-      fileName = 'data/_tmp.png'
-
       valuesLeft = self.data[az, el, 0, :]
       valuesRight = self.data[az, el, 1, :]
 
@@ -55,30 +94,6 @@ class PointView(QWidget):
       self.timeCanvas.draw()
 
       # fit plot
-      def filter(series):
-
-         factor = 0.2
-         cutoff = 0.01
-
-         length = series.shape[0]
-         for index in range(length):
-            series[index] = math.fabs(series[index])
-            if series[index] < cutoff:
-               series[index] = 0.0
-
-         out = np.zeros(series.shape)
-         for index in range(length):
-            if 0 == index:
-               out[0] = factor * series[0]
-            else:
-               out[index] = out[index - 1] + factor * (series[index] - out[index - 1])
-
-         for index in range(length):
-            if out[index] < cutoff:
-               out[index] = 0.0
-
-         return out
-
       filterLeft = filter(valuesLeft)
       filterRight = filter(valuesRight)
 
