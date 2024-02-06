@@ -9,6 +9,8 @@ from PySide6.QtWidgets import QWidget, QLabel, QSlider, QSpinBox, QGridLayout, Q
 
 from .pixmap import Pixmap
 
+# https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fit.html
+
 
 class TimeView(QWidget):
 
