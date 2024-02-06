@@ -8,7 +8,7 @@ from PySide6.QtWidgets import QWidget, QVBoxLayout, QLineEdit
 from matplotlib.backends.backend_qtagg import FigureCanvas
 
 from .filter import lowpass
-from .fit import normalFit
+from .fit import normalFit, gauss
 
 
 class PointView(QWidget):
@@ -38,7 +38,8 @@ class PointView(QWidget):
       valuesLeft = self.data[az, el, 0, :]
       valuesRight = self.data[az, el, 1, :]
 
-      samples = np.arange(self.data.shape[3])
+      sampleCount = self.data.shape[3]
+      samples = np.arange(sampleCount)
 
       # time plot
       timeFigure = self.timeCanvas.figure
@@ -55,15 +56,24 @@ class PointView(QWidget):
       filterLeft = lowpass(valuesLeft)
       filterRight = lowpass(valuesRight)
 
-      fitLeft = normalFit(filterLeft)
-      fitRight = normalFit(filterRight)
+      paramLeft = normalFit(filterLeft)
+      paramRight = normalFit(filterRight)
+
+      fitLeft = np.zeros(sampleCount)
+      fitRight = np.zeros(sampleCount)
+      for index in range(sampleCount):
+         fitLeft[index] = gauss(index, paramLeft[0], paramLeft[1], paramLeft[2])
+         fitRight[index] = gauss(index, paramRight[0], paramRight[1], paramRight[2])
 
       fitFigure = self.fitCanvas.figure
       fitFigure.clf()
       ax = fitFigure.subplots()
 
-      ax.plot(samples, filterLeft, label='filter left')
-      ax.plot(samples, filterRight, label='filter right')
+      ax.plot(samples, fitLeft, label='fit left')
+      ax.plot(samples, fitRight, label='fit right')
+
+      ax.plot(samples, filterLeft, label='filter left', linestyle='dotted')
+      ax.plot(samples, filterRight, label='filter right', linestyle='dotted')
 
       ax.legend(handlelength=4)
       self.fitCanvas.draw()
