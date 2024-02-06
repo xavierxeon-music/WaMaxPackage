@@ -23,6 +23,7 @@ class MainWindow(QWidget):
 
       masterLayout = QHBoxLayout()
       masterLayout.setContentsMargins(0, 0, 0, 0)
+      masterLayout.setSpacing(0)
       masterLayout.addWidget(self.timeView)
       masterLayout.addWidget(self.pointView)
       self.setLayout(masterLayout)

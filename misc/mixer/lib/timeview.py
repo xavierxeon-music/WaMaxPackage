@@ -5,6 +5,7 @@ from PySide6.QtCore import Qt, QEvent, Signal
 from PySide6.QtWidgets import QWidget, QLabel, QSlider, QSpinBox, QGridLayout, QFrame
 
 from .timedata import TimeData
+from .pixmap import Pixmap
 
 
 class TimeView(QWidget):
@@ -19,7 +20,7 @@ class TimeView(QWidget):
 
       def _initLabel(label):
 
-         label.setFixedSize(360 * TimeData.scale, 180 * TimeData.scale)
+         label.setFixedSize(360 * Pixmap.scale, 180 * Pixmap.scale)
          label.setFrameShape(QFrame.Box)
 
          label.installEventFilter(self)
@@ -53,8 +54,8 @@ class TimeView(QWidget):
    def eventFilter(self, object, event) -> bool:
 
       if event.type() == QEvent.MouseButtonDblClick:
-         az = int(event.position().x() / TimeData.scale)
-         el = int(event.position().y() / TimeData.scale)
+         az = int(event.position().x() / Pixmap.scale)
+         el = int(event.position().y() / Pixmap.scale)
          self.pointSelected.emit(az, el)
 
       return super().eventFilter(object, event)

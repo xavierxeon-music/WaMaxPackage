@@ -10,8 +10,6 @@ from .pixmap import Pixmap
 
 class TimeData:
 
-   scale = 2
-
    def __init__(self, crawler):
 
       self.pixmaps = list()
@@ -30,7 +28,7 @@ class TimeData:
          self.sampleCount = len(self.pixmaps[side])
          for index in range(self.sampleCount):
             pixmap = self.pixmaps[side][index]
-            pixmap = pixmap.scaled(360 * TimeData.scale, 180 * TimeData.scale, Qt.IgnoreAspectRatio, Qt.SmoothTransformation)
+            pixmap = pixmap.scaled(360 * Pixmap.scale, 180 * Pixmap.scale, Qt.IgnoreAspectRatio, Qt.SmoothTransformation)
             self.pixmaps[side][index] = pixmap
 
    def _loadInternal(self, data, bufferName):

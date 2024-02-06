@@ -1,15 +1,14 @@
 #
 
+import math
+
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QWidget, QLabel, QVBoxLayout, QFrame
+from PySide6.QtWidgets import QWidget, QLabel, QVBoxLayout, QFrame, QLineEdit
 
 from .pixmap import Pixmap
-from .timedata import TimeData
 
 
 class PointView(QWidget):
-
-   scale = 3
 
    def __init__(self, crawler):
 
@@ -17,13 +16,23 @@ class PointView(QWidget):
 
       self.data = crawler.data
 
-      self.timeLabel = QLabel()
+      def _initLabel(label):
 
-      self.timeLabel.setFixedSize(360 * PointView.scale, 180 * PointView.scale)
-      # self.timeLabel.setFrameShape(QFrame.Box)
+         label.setFixedSize(360 * Pixmap.scale, 180 * Pixmap.scale)
+         label.setFrameShape(QFrame.Box)
+
+      self.timeLabel = QLabel()
+      _initLabel(self.timeLabel)
+
+      self.fitLabel = QLabel()
+      _initLabel(self.fitLabel)
+
+      self.coeffShow = QLineEdit()
 
       masterLayout = QVBoxLayout()
       masterLayout.addWidget(self.timeLabel)
+      masterLayout.addWidget(self.fitLabel)
+      masterLayout.addWidget(self.coeffShow)
       self.setLayout(masterLayout)
 
    def pointSelected(self, az, el):
@@ -36,32 +45,60 @@ class PointView(QWidget):
       valuesLeft = self.data[az, el, 0, :]
       valuesRight = self.data[az, el, 1, :]
 
-      fig, ax = plt.subplots()
-      # plt.axis('off')
-
       sampleCount = int(self.data.shape[3])
       samples = range(sampleCount)
 
-      ax.plot(samples, valuesLeft, label='data left')
-      ax.plot(samples, valuesRight, label='data right')
-      """
-      fitLeft = np.polyfit(samples, valuesLeft, 30)
-      fitRight = np.polyfit(samples, valuesRight, 30)
+      def timePlot(ax):
 
-      polyLeft = np.poly1d(fitLeft)
-      polyRight = np.poly1d(fitRight)
+         ax.plot(samples, valuesLeft, label='data left')
+         ax.plot(samples, valuesRight, label='data right')
 
-      ax.plot(samples, polyLeft(samples), label='fit left')
-      ax.plot(samples, polyRight(samples), label='fit right')
-      """
-      ax.legend(handlelength=4)
+         ax.legend(handlelength=4)
 
-      plt.savefig(fileName, dpi=300, bbox_inches='tight', pad_inches=0)
-      plt.close()
+      # time plot
 
-      pixmap = Pixmap()
-      pixmap.load(fileName)
+      def filter(series):
 
-      pixmap = pixmap.scaled(360 * PointView.scale, 180 * PointView.scale, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+         factor = 0.2
+         cutoff = 0.01
 
-      self.timeLabel.setPixmap(pixmap)
+         length = series.shape[0]
+         for index in range(length):
+            series[index] = math.fabs(series[index])
+            if series[index] < cutoff:
+               series[index] = 0.0
+
+         out = np.zeros(series.shape)
+         for index in range(length):
+            if 0 == index:
+               out[0] = factor * series[0]
+            else:
+               out[index] = out[index - 1] + factor * (series[index] - out[index - 1])
+
+         for index in range(length):
+            if out[index] < cutoff:
+               out[index] = 0.0
+
+         return out
+
+      def fitPlot(ax):
+
+         filterLeft = filter(valuesLeft)
+         filterRight = filter(valuesRight)
+
+         ax.plot(samples, filterLeft, label='filter left')
+         ax.plot(samples, filterRight, label='filter right')
+         """
+         fitLeft = np.polyfit(samples, filterLeft, 11)
+         fitRight = np.polyfit(samples, filterRight, 11)
+
+         polyLeft = np.poly1d(fitLeft)
+         polyRight = np.poly1d(fitRight)
+
+         ax.plot(samples, polyLeft(samples), label='fit left')
+         ax.plot(samples, polyRight(samples), label='fit right')
+         """
+         ax.legend(handlelength=4)
+
+      Pixmap.plotToLabel(timePlot, self.timeLabel)
+      Pixmap.plotToLabel(fitPlot, self.fitLabel)
