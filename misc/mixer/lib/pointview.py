@@ -8,7 +8,7 @@ from PySide6.QtWidgets import QWidget, QVBoxLayout, QLineEdit
 from matplotlib.backends.backend_qtagg import FigureCanvas
 
 from .filter import lowpass
-from .fit import normalFit, gauss
+from .fit import normalFit, fitFunction
 
 
 class PointView(QWidget):
@@ -59,11 +59,8 @@ class PointView(QWidget):
       paramLeft = normalFit(filterLeft)
       paramRight = normalFit(filterRight)
 
-      fitLeft = np.zeros(sampleCount)
-      fitRight = np.zeros(sampleCount)
-      for index in range(sampleCount):
-         fitLeft[index] = gauss(index, paramLeft[0], paramLeft[1], paramLeft[2])
-         fitRight[index] = gauss(index, paramRight[0], paramRight[1], paramRight[2])
+      fitLeft = fitFunction(samples, paramLeft[0], paramLeft[1], paramLeft[2], paramLeft[3])
+      fitRight = fitFunction(samples, paramRight[0], paramRight[1], paramRight[2], paramRight[3])
 
       fitFigure = self.fitCanvas.figure
       fitFigure.clf()

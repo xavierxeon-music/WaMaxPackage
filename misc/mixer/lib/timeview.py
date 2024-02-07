@@ -43,7 +43,22 @@ class TimeView(QWidget):
 
       self._updateImages(0)
 
+   def setIndex(self, index):
+
+      self.timeSpin.blockSignals(True)
+      self.timeSpin.setValue(index)
+      self.timeSpin.blockSignals(False)
+
+      self.timeSlider.blockSignals(True)
+      self.timeSlider.setValue(index)
+      self.timeSlider.blockSignals(False)
+
+      self._updateImages(index)
+
    def _onClick(self, event):
+
+      if None == event.xdata or None == event.ydata:
+         return
 
       az = int(event.xdata)
       el = int(180 - event.ydata)

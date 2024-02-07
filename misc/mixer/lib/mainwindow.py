@@ -20,10 +20,14 @@ class MainWindow(QWidget):
       self.pointView = PointView(crawler)
 
       self.timeView.pointSelected.connect(self.pointView.pointSelected)
-      self.timeView.pointSelected.connect(self.pointSelected)
+      self.timeView.pointSelected.connect(self.changeTitle)
 
-      self.pointView.pointSelected(0, 0)
-      self.pointSelected(0, 0)
+      az = 284
+      el = 151
+      self.changeTitle(az, el)
+      self.pointView.pointSelected(az, el)
+
+      self.timeView.setIndex(100)
 
       masterLayout = QHBoxLayout()
       masterLayout.setContentsMargins(0, 0, 0, 0)
@@ -32,7 +36,7 @@ class MainWindow(QWidget):
       masterLayout.addWidget(self.pointView)
       self.setLayout(masterLayout)
 
-   def pointSelected(self, az, el):
+   def changeTitle(self, az, el):
 
       title = f'{self.name} [ {az}, {el} ]'
       self.setWindowTitle(title)
