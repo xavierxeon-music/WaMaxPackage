@@ -5,6 +5,7 @@ from PySide6.QtWidgets import QWidget, QHBoxLayout
 from .plotcrawler import PlotCrawler
 from .pointview import PointView
 from .timeview import TimeView
+from .waveexport import WaveExport
 
 
 class MainWindow(QWidget):
@@ -19,15 +20,17 @@ class MainWindow(QWidget):
       self.timeView = TimeView(crawler)
       self.pointView = PointView(crawler)
 
+      self.waveExport = WaveExport(crawler)
+
       self.timeView.pointSelected.connect(self.pointView.pointSelected)
       self.timeView.pointSelected.connect(self.changeTitle)
+
+      self.pointView.exportData.connect(self.waveExport.exportData)
 
       az = 284
       el = 151
       self.changeTitle(az, el)
       self.pointView.pointSelected(az, el)
-
-      self.timeView.setIndex(100)
 
       masterLayout = QHBoxLayout()
       masterLayout.setContentsMargins(0, 0, 0, 0)

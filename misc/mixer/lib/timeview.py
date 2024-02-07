@@ -3,8 +3,8 @@
 from matplotlib.figure import Figure
 import numpy as np
 
-from PySide6.QtCore import Qt, Signal
-from PySide6.QtWidgets import QWidget, QSlider, QSpinBox, QGridLayout
+from PySide6.QtCore import QTimer, Qt, Signal
+from PySide6.QtWidgets import QWidget, QLabel, QToolButton, QSlider, QSpinBox, QGridLayout
 from matplotlib.backends.backend_qtagg import FigureCanvas
 
 
@@ -17,7 +17,8 @@ class TimeView(QWidget):
       super().__init__()
 
       self.data = crawler.data
-      maxSampleIndex = self.data.shape[3] - 1
+      self.maxSampleIndex = self.data.shape[3] - 1
+      self.currentIndex = 0
 
       self.leftCanvas = FigureCanvas(Figure(layout="compressed"))
       self.leftCanvas.mpl_connect('button_release_event', self._onClick)
@@ -25,20 +26,35 @@ class TimeView(QWidget):
       self.rightCanvas = FigureCanvas(Figure(layout="compressed"))
       self.rightCanvas.mpl_connect('button_release_event', self._onClick)
 
+      timeLabel = QLabel('Time')
+
+      self.playText = '\u25B6'
+      self.pauseText = '\u23F8'
+      self.animateTimeButton = QToolButton()
+      self.animateTimeButton.setText(self.playText)
+      self.animateTimeButton.setCheckable(True)
+      self.animateTimeButton.clicked.connect(self._animateClicked)
+
+      self.animationTimer = QTimer()
+      self.animationTimer.setInterval(100)
+      self.animationTimer.timeout.connect(self._animate)
+
       self.timeSlider = QSlider()
-      self.timeSlider.setRange(0, maxSampleIndex)
+      self.timeSlider.setRange(0, self.maxSampleIndex)
       self.timeSlider.setOrientation(Qt.Horizontal)
       self.timeSlider.valueChanged.connect(self._sliderChange)
 
       self.timeSpin = QSpinBox()
-      self.timeSpin.setRange(0, maxSampleIndex)
+      self.timeSpin.setRange(0, self.maxSampleIndex)
       self.timeSpin.valueChanged.connect(self._spinChange)
 
       masterLayout = QGridLayout()
-      masterLayout.addWidget(self.leftCanvas, 0, 0, 1, 2)
-      masterLayout.addWidget(self.rightCanvas, 1, 0, 1, 2)
-      masterLayout.addWidget(self.timeSlider, 2, 0)
-      masterLayout.addWidget(self.timeSpin, 2, 1)
+      masterLayout.addWidget(self.leftCanvas, 0, 0, 1, 4)
+      masterLayout.addWidget(self.rightCanvas, 1, 0, 1, 4)
+      masterLayout.addWidget(timeLabel, 2, 0)
+      masterLayout.addWidget(self.animateTimeButton, 2, 1)
+      masterLayout.addWidget(self.timeSlider, 2, 2)
+      masterLayout.addWidget(self.timeSpin, 2, 3)
       self.setLayout(masterLayout)
 
       self._updateImages(0)
@@ -53,7 +69,25 @@ class TimeView(QWidget):
       self.timeSlider.setValue(index)
       self.timeSlider.blockSignals(False)
 
+      self.currentIndex = index
       self._updateImages(index)
+
+   def _animateClicked(self, enabled):
+
+      if enabled:
+         self.animateTimeButton.setText(self.pauseText)
+         self.animationTimer.start()
+      else:
+         self.animateTimeButton.setText(self.playText)
+         self.animationTimer.stop()
+
+   def _animate(self):
+
+      index = self.currentIndex + 1
+      if index >= self.maxSampleIndex:
+         index = 0
+
+      self.setIndex(index)
 
    def _onClick(self, event):
 
@@ -71,6 +105,7 @@ class TimeView(QWidget):
       self.timeSpin.setValue(index)
       self.timeSpin.blockSignals(False)
 
+      self.currentIndex = index
       self._updateImages(index)
 
    def _spinChange(self, index):
@@ -79,6 +114,7 @@ class TimeView(QWidget):
       self.timeSlider.setValue(index)
       self.timeSlider.blockSignals(False)
 
+      self.currentIndex = index
       self._updateImages(index)
 
    def _updateImages(self, index):
@@ -87,14 +123,14 @@ class TimeView(QWidget):
 
          valueList = self.data[:, :, side, index]
          valueList = np.transpose(valueList)
-         valueList = np.flipud(valueList)
 
          canvas.figure.clf()
          ax = canvas.figure.subplots()
 
          ax.pcolormesh(valueList)
 
-         ax.set_axis_off()
+         ax.invert_yaxis()
+         ax.title.set_text('left ear' if 0 == side else 'right ear')
          canvas.draw()
 
       _fill(0, self.leftCanvas)

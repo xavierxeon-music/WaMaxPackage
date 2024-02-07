@@ -4,14 +4,18 @@ from matplotlib.figure import Figure
 import numpy as np
 
 
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QLineEdit
+from PySide6.QtCore import Signal
+from PySide6.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QFileDialog
 from matplotlib.backends.backend_qtagg import FigureCanvas
 
 from .filter import lowpass
-from .fit import normalFit, fitFunction
+from .fit import fitAmplitude, amplitudeFunction
+from .paramview import ParamView
 
 
 class PointView(QWidget):
+
+   exportData = Signal(str)
 
    def __init__(self, crawler):
 
@@ -24,14 +28,30 @@ class PointView(QWidget):
 
       fitFigure = Figure(figsize=(5, 3))
       self.fitCanvas = FigureCanvas(fitFigure)
+      self.fitCanvas.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
-      self.coeffShow = QLineEdit()
+      self.leftParamView = ParamView('left ear')
+      self.rightParamView = ParamView('right ear')
 
-      masterLayout = QVBoxLayout()
-      masterLayout.addWidget(self.timeCanvas)
-      masterLayout.addWidget(self.fitCanvas)
-      masterLayout.addWidget(self.coeffShow)
+      self.exportButton = QPushButton('Export Wav')
+      self.exportButton.clicked.connect(self._exportClicked)
+
+      masterLayout = QGridLayout()
+      masterLayout.addWidget(self.timeCanvas, 0, 0, 1, 2)
+      masterLayout.addWidget(self.fitCanvas, 1, 0, 1, 2)
+      masterLayout.addWidget(self.leftParamView, 2, 0)
+      masterLayout.addWidget(self.rightParamView, 2, 1)
+      masterLayout.addWidget(self.exportButton, 3, 0, 1, 2)
       self.setLayout(masterLayout)
+
+   def _exportClicked(self):
+
+      fileName = QFileDialog.getSaveFileName(None, 'Wave File', None, '*.wav')
+      fileName = fileName[0]
+      if not fileName:
+         return
+
+      self.exportData.emit(fileName)
 
    def pointSelected(self, az, el):
 
@@ -50,17 +70,21 @@ class PointView(QWidget):
       ax.plot(samples, valuesRight, label='data right')
 
       ax.legend(handlelength=4)
+      ax.title.set_text('impulse data')
       self.timeCanvas.draw()
 
       # fit plot
       filterLeft = lowpass(valuesLeft)
       filterRight = lowpass(valuesRight)
 
-      paramLeft = normalFit(filterLeft)
-      paramRight = normalFit(filterRight)
+      paramLeft = fitAmplitude(filterLeft)
+      self.leftParamView.setParams(paramLeft)
 
-      fitLeft = fitFunction(samples, paramLeft[0], paramLeft[1], paramLeft[2], paramLeft[3])
-      fitRight = fitFunction(samples, paramRight[0], paramRight[1], paramRight[2], paramRight[3])
+      paramRight = fitAmplitude(filterRight)
+      self.rightParamView.setParams(paramRight)
+
+      fitLeft = amplitudeFunction(samples, paramLeft[0], paramLeft[1], paramLeft[2], paramLeft[3])
+      fitRight = amplitudeFunction(samples, paramRight[0], paramRight[1], paramRight[2], paramRight[3])
 
       fitFigure = self.fitCanvas.figure
       fitFigure.clf()
@@ -73,4 +97,5 @@ class PointView(QWidget):
       ax.plot(samples, filterRight, label='filter right', linestyle='dotted')
 
       ax.legend(handlelength=4)
+      ax.title.set_text('amplitude')
       self.fitCanvas.draw()

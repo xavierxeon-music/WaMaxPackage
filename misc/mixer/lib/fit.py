@@ -4,14 +4,15 @@ from scipy.optimize import curve_fit
 # https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html
 
 
-def fitFunction(x, max, start, peak, end):
+def amplitudeFunction(x, max, start, peak, end):
+
    width = np.where(x < peak, 2 * (peak - start), 2 * (end - peak))
    exponent = ((x - peak) / width)**2
    y = max * np.exp(-exponent)
    return y
 
 
-def normalFit(series):
+def fitAmplitude(series):
 
    start = None
    end = 0
@@ -32,8 +33,8 @@ def normalFit(series):
 
    samples = np.arange(series.shape[0])
    try:
-      parameters, _ = curve_fit(fitFunction, samples, series, estimate)
+      parameters, _ = curve_fit(amplitudeFunction, samples, series, estimate)
    except RuntimeError:
-      parameters, _ = curve_fit(fitFunction, samples, series, estimate, maxfev=5000)
+      parameters, _ = curve_fit(amplitudeFunction, samples, series, estimate, maxfev=5000)
 
    return parameters
