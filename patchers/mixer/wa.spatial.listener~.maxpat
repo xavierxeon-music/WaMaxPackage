@@ -190,9 +190,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 766.833333333333485, 495.0, 297.0, 22.0 ],
+					"patching_rect" : [ 766.833333333333485, 495.0, 216.0, 22.0 ],
 					"style" : "wa.buffer-4",
-					"text" : "buffer~ spatialSource mixerSpatial_HatoModelled.wav"
+					"text" : "buffer~ spatialSource mixerSpatial.wav"
 				}
 
 			}
