@@ -33,8 +33,9 @@ def lowpass(series):
             maxOut = outValue
          out[index] = outValue
 
-   if maxIn > 1.0:
-      maxIn = 1.0
+   valueMax = 1.0
+   if maxIn > valueMax:
+      maxIn = valueMax
 
    # boost and smooth
    boost = maxIn / maxOut

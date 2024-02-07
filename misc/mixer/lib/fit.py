@@ -35,6 +35,6 @@ def fitAmplitude(series):
    try:
       parameters, _ = curve_fit(amplitudeFunction, samples, series, estimate)
    except RuntimeError:
-      parameters, _ = curve_fit(amplitudeFunction, samples, series, estimate, maxfev=5000)
+      parameters, _ = curve_fit(amplitudeFunction, samples, series, estimate, maxfev=50000)
 
    return parameters

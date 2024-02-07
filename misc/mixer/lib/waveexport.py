@@ -1,6 +1,12 @@
 #
 
-from PySide6.QtCore import QObject
+from PySide6.QtCore import QObject, Signal
+
+from scipy.io import wavfile
+import numpy as np
+
+from .filter import lowpass
+from .fit import fitAmplitude, amplitudeFunction
 
 
 class WaveExport(QObject):
@@ -13,4 +19,50 @@ class WaveExport(QObject):
 
    def exportData(self, fileName):
 
-      print(fileName)
+      from multiprocessing.pool import ThreadPool
+
+      sampleCount = self.data.shape[3]
+      if sampleCount > 128:
+         sampleCount = 128
+      samples = np.arange(sampleCount)
+
+      wavdata = np.zeros((2, sampleCount * 360 * 180))
+
+      def _processAz(az):
+
+         for el in range(180):
+
+            startIndex = sampleCount * (az + (el * 360))
+            endIndex = startIndex + sampleCount
+            try:
+               valuesLeft = self.data[az, el, 0, :]
+               filterLeft = lowpass(valuesLeft)
+               paramLeft = fitAmplitude(filterLeft)
+               fitLeft = amplitudeFunction(samples, paramLeft[0], paramLeft[1], paramLeft[2], paramLeft[3])
+
+               valuesRight = self.data[az, el, 1, :]
+               filterRight = lowpass(valuesRight)
+               paramRight = fitAmplitude(filterRight)
+               fitRight = amplitudeFunction(samples, paramRight[0], paramRight[1], paramRight[2], paramRight[3])
+
+               wavdata[0, startIndex:endIndex] = fitLeft
+               wavdata[1, startIndex:endIndex] = fitRight
+
+               """
+               for index in range(sampleCount):
+                  wavdata[0, index + startIndex] = valuesLeft[index]
+                  wavdata[1, index + startIndex] = valuesRight[index]
+               """
+            except RuntimeError:
+               print('error @ ', az, el)
+
+         print('AZ = ', az)
+
+      with ThreadPool() as pool:
+         for _ in pool.map(_processAz, range(360)):
+            pass
+
+      print('write to ', fileName, end=None)
+      wavdata = np.transpose(wavdata)  # interleave
+      wavfile.write(fileName, 48000, wavdata.astype(np.float32))
+      print(' done')
