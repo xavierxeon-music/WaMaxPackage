@@ -40,25 +40,31 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-71",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 809.5, 570.0, 146.0, 22.0 ],
-					"style" : "wa.send",
-					"text" : "mc.send~ spatial_debug2"
+					"chans" : 2,
+					"fontface" : 0,
+					"fontname" : "Arial",
+					"fontsize" : 12.0,
+					"id" : "obj-25",
+					"maxclass" : "mc.number~",
+					"mode" : 2,
+					"numinlets" : 2,
+					"numoutlets" : 3,
+					"outlettype" : [ "multichannelsignal", "float", "int" ],
+					"patching_rect" : [ 645.0, 594.0, 125.0, 34.0 ],
+					"sig" : [ 0.0, 0.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-70",
+					"id" : "obj-2",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 644.5, 570.0, 146.0, 22.0 ],
-					"style" : "wa.send",
-					"text" : "mc.send~ spatial_debug1"
+					"numoutlets" : 1,
+					"outlettype" : [ "multichannelsignal" ],
+					"patching_rect" : [ 930.0, 390.0, 155.0, 22.0 ],
+					"style" : "wa.receive",
+					"text" : "mc.receive~ spatial_normal"
 				}
 
 			}
@@ -136,24 +142,12 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-54",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 31.0, 330.0, 144.0, 22.0 ],
-					"text" : "if $f1 < 1. then 1. else $f1"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-57",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 30.0, 286.0, 100.0, 22.0 ],
+					"patching_rect" : [ 30.0, 285.0, 100.0, 22.0 ],
 					"text" : "route permiability"
 				}
 
@@ -178,7 +172,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 766.833333333333485, 495.0, 216.0, 22.0 ],
+					"patching_rect" : [ 825.0, 585.0, 216.0, 22.0 ],
 					"style" : "wa.buffer-4",
 					"text" : "buffer~ spatialSource mixerSpatial.wav"
 				}
@@ -489,9 +483,9 @@
 				"box" : 				{
 					"id" : "obj-6",
 					"maxclass" : "newobj",
-					"numinlets" : 5,
-					"numoutlets" : 4,
-					"outlettype" : [ "multichannelsignal", "multichannelsignal", "multichannelsignal", "multichannelsignal" ],
+					"numinlets" : 6,
+					"numoutlets" : 2,
+					"outlettype" : [ "multichannelsignal", "multichannelsignal" ],
 					"patching_rect" : [ 240.0, 495.0, 465.833333333333485, 22.0 ],
 					"style" : "wa.patcher",
 					"text" : "mc.gen~ spatial_listener"
@@ -577,7 +571,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"parameter_enable" : 0,
-					"patching_rect" : [ 30.0, 375.0, 150.0, 22.0 ]
+					"patching_rect" : [ 30.0, 420.0, 150.0, 22.0 ]
 				}
 
 			}
@@ -635,6 +629,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-3", 2 ],
 					"source" : [ "obj-19", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-6", 5 ],
+					"source" : [ "obj-2", 0 ]
 				}
 
 			}
@@ -857,13 +858,6 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-22", 0 ],
-					"source" : [ "obj-54", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-54", 0 ],
 					"source" : [ "obj-57", 0 ]
 				}
 
@@ -886,20 +880,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-65", 0 ],
 					"source" : [ "obj-6", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-70", 0 ],
-					"source" : [ "obj-6", 2 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-71", 0 ],
-					"source" : [ "obj-6", 3 ]
 				}
 
 			}
