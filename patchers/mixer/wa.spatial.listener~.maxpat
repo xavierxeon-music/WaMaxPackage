@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 227.0, 3204.0, 1339.0 ],
+		"rect" : [ 823.0, 115.0, 1980.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -39,18 +39,6 @@
 		"subpatcher_template" : "OpenGrid",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
-				"box" : 				{
-					"id" : "obj-2",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 974.5, 570.0, 146.0, 22.0 ],
-					"style" : "wa.send",
-					"text" : "mc.send~ spatial_debug3"
-				}
-
-			}
-, 			{
 				"box" : 				{
 					"id" : "obj-71",
 					"maxclass" : "newobj",
@@ -165,8 +153,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 30.0, 286.0, 103.0, 22.0 ],
-					"text" : "route permialbility"
+					"patching_rect" : [ 30.0, 286.0, 100.0, 22.0 ],
+					"text" : "route permiability"
 				}
 
 			}
@@ -502,8 +490,8 @@
 					"id" : "obj-6",
 					"maxclass" : "newobj",
 					"numinlets" : 5,
-					"numoutlets" : 5,
-					"outlettype" : [ "multichannelsignal", "multichannelsignal", "multichannelsignal", "multichannelsignal", "multichannelsignal" ],
+					"numoutlets" : 4,
+					"outlettype" : [ "multichannelsignal", "multichannelsignal", "multichannelsignal", "multichannelsignal" ],
 					"patching_rect" : [ 240.0, 495.0, 465.833333333333485, 22.0 ],
 					"style" : "wa.patcher",
 					"text" : "mc.gen~ spatial_listener"
@@ -556,7 +544,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 30.0, 225.0, 101.0, 22.0 ],
+					"patching_rect" : [ 30.0, 240.0, 101.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "spatial_listener",
 						"parameter_enable" : 0
@@ -889,13 +877,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-2", 0 ],
-					"source" : [ "obj-6", 4 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-60", 0 ],
 					"source" : [ "obj-6", 0 ]
 				}
@@ -1082,14 +1063,7 @@
 				"parentstyle" : "",
 				"multi" : 0
 			}
- ],
-		"saved_attribute_attributes" : 		{
-			"default_plcolor" : 			{
-				"expression" : ""
-			}
-
-		}
-
+ ]
 	}
 
 }

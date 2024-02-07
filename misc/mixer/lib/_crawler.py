@@ -3,6 +3,8 @@
 import math
 from pathlib import Path
 
+# https://en.wikipedia.org/wiki/Spherical_coordinate_system
+
 
 class Crawler:
 
@@ -29,11 +31,11 @@ class Crawler:
          azR = math.radians(az)
 
          for el in range(180):
-            # el = el - 90
+
             elR = math.radians(el)
-            x = radius * math.sin(azR) * math.cos(elR)
-            y = radius * math.sin(azR) * math.sin(elR)
-            z = radius * math.cos(azR)
+            x = radius * math.sin(elR) * math.cos(azR)
+            y = radius * math.sin(elR) * math.sin(azR)
+            z = radius * math.cos(elR)
 
             to_find = pf.Coordinates(x, y, z, domain='cart')
             index, _ = source_coordinates.find_nearest(to_find)

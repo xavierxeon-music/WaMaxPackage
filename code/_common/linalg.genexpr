@@ -169,7 +169,8 @@ cartToSphere(x, y, z)
 	}
 	if(y > 0) 
 	{
-		azimuth = TWOPI - azimuth;
+		//azimuth = TWOPI - azimuth;
+      azimuth = -azimuth;
 	}	
 				
 	return radius, azimuth, inclination;

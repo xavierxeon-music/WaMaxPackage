@@ -32,27 +32,20 @@ class WaveExport(QObject):
 
          for el in range(180):
 
-            startIndex = sampleCount * (az + (el * 360))
+            startIndex = (az + (el * 360))
+            startIndex *= sampleCount
             endIndex = startIndex + sampleCount
             try:
                valuesLeft = self.data[az, el, 0, :]
                filterLeft = lowpass(valuesLeft)
                paramLeft = fitAmplitude(filterLeft)
-               fitLeft = amplitudeFunction(samples, paramLeft[0], paramLeft[1], paramLeft[2], paramLeft[3])
+               wavdata[0, startIndex:endIndex] = amplitudeFunction(samples, paramLeft[0], paramLeft[1], paramLeft[2], paramLeft[3])
 
                valuesRight = self.data[az, el, 1, :]
                filterRight = lowpass(valuesRight)
                paramRight = fitAmplitude(filterRight)
-               fitRight = amplitudeFunction(samples, paramRight[0], paramRight[1], paramRight[2], paramRight[3])
+               wavdata[1, startIndex:endIndex] = amplitudeFunction(samples, paramRight[0], paramRight[1], paramRight[2], paramRight[3])
 
-               wavdata[0, startIndex:endIndex] = fitLeft
-               wavdata[1, startIndex:endIndex] = fitRight
-
-               """
-               for index in range(sampleCount):
-                  wavdata[0, index + startIndex] = valuesLeft[index]
-                  wavdata[1, index + startIndex] = valuesRight[index]
-               """
             except RuntimeError:
                print('error @ ', az, el)
 
