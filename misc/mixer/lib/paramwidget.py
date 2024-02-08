@@ -1,9 +1,10 @@
 #
 
+from PySide6.QtCore import QSettings
 from PySide6.QtWidgets import QGroupBox, QLabel, QLineEdit, QGridLayout, QSizePolicy
 
 
-class ParamView(QGroupBox):
+class ParamWidget(QGroupBox):
 
    def __init__(self, name):
 

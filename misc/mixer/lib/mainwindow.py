@@ -3,6 +3,7 @@
 from PySide6.QtCore import QSettings
 from PySide6.QtWidgets import QWidget, QHBoxLayout
 
+from .peakview import PeakView
 from .plotcrawler import PlotCrawler
 from .pointview import PointView
 from .timeview import TimeView
@@ -20,24 +21,28 @@ class MainWindow(QWidget):
 
       self.timeView = TimeView(crawler)
       self.pointView = PointView(crawler)
+      self.peakView = PeakView(crawler)
 
       self.waveExport = WaveExport(crawler)
 
       self.timeView.pointSelected.connect(self.pointView.pointSelected)
       self.timeView.pointSelected.connect(self.changeTitle)
 
-      self.pointView.exportData.connect(self.waveExport.exportData)
+      self.peakView.exportData.connect(self.waveExport.exportData)
 
       az = 80
       el = 75
       self.changeTitle(az, el)
       self.pointView.pointSelected(az, el)
 
+      self.timeView.setIndex(50)
+
       masterLayout = QHBoxLayout()
       masterLayout.setContentsMargins(0, 0, 0, 0)
       masterLayout.setSpacing(0)
       masterLayout.addWidget(self.timeView)
       masterLayout.addWidget(self.pointView)
+      masterLayout.addWidget(self.peakView)
       self.setLayout(masterLayout)
 
       settings = QSettings()
@@ -50,7 +55,7 @@ class MainWindow(QWidget):
    def closeEvent(self, event):
 
       settings = QSettings()
-      settings.value('geometry', self.saveGeometry())
+      settings.setValue('geometry', self.saveGeometry())
 
       event.accept()
 

@@ -4,24 +4,31 @@ from matplotlib.figure import Figure
 import numpy as np
 
 
-from PySide6.QtCore import Signal
-from PySide6.QtWidgets import QWidget, QGridLayout, QPushButton, QSizePolicy, QFileDialog, QProgressBar
+from PySide6.QtCore import Signal, QSettings
+from PySide6.QtWidgets import QWidget, QGridLayout, QSizePolicy, QCheckBox
 from matplotlib.backends.backend_qtagg import FigureCanvas
 
 from .filter import lowpass
-from .fit import fitAmplitude, amplitudeFunction
-from .paramview import ParamView
+from .fit import fitAmplitude, amplitudeFunction, estimateParams
+from .paramwidget import ParamWidget
 
 
 class PointView(QWidget):
 
-   exportData = Signal(str)
+   usePeakChanged = Signal(bool)
 
    def __init__(self, crawler):
 
       super().__init__()
 
       self.data = crawler.data
+
+      settings = QSettings()
+      self.usePeak = settings.value('usePeak', True)
+
+      self.peakCheck = QCheckBox('Use Peak')
+      self.peakCheck.setChecked(self.usePeak)
+      self.peakCheck.clicked.connect(self._usePeackChecked)
 
       timeFigure = Figure(figsize=(5, 3))
       self.timeCanvas = FigureCanvas(timeFigure)
@@ -30,30 +37,36 @@ class PointView(QWidget):
       self.fitCanvas = FigureCanvas(fitFigure)
       self.fitCanvas.setSizePolicy(QSizePolicy.Minimum, QSizePolicy.MinimumExpanding)
 
-      self.leftParamView = ParamView('left ear')
-      self.rightParamView = ParamView('right ear')
-
-      self.exportButton = QPushButton('Export Wav')
-      self.exportButton.clicked.connect(self._exportClicked)
+      self.leftParamWidget = ParamWidget('left ear')
+      self.rightParamWidget = ParamWidget('right ear')
 
       masterLayout = QGridLayout()
       masterLayout.addWidget(self.timeCanvas, 0, 0, 1, 2)
-      masterLayout.addWidget(self.fitCanvas, 1, 0, 1, 2)
-      masterLayout.addWidget(self.leftParamView, 2, 0)
-      masterLayout.addWidget(self.rightParamView, 2, 1)
-      masterLayout.addWidget(self.exportButton, 3, 0, 1, 2)
+      masterLayout.addWidget(self.peakCheck, 1, 0, 1, 2)
+      masterLayout.addWidget(self.fitCanvas, 2, 0, 1, 2)
+      masterLayout.addWidget(self.leftParamWidget, 3, 0)
+      masterLayout.addWidget(self.rightParamWidget, 3, 1)
       self.setLayout(masterLayout)
 
-   def _exportClicked(self):
+   def _usePeackChecked(self, enabled):
 
-      fileName = QFileDialog.getSaveFileName(None, 'Wave File', None, '*.wav')
-      fileName = fileName[0]
-      if not fileName:
-         return
+      self.usePeak = enabled
 
-      self.exportData.emit(fileName)
+      settings = QSettings()
+      settings.setValue('usePeak', self.usePeak)
+
+      self.usePeakChanged.emit(enabled)
+
+      self._update()
 
    def pointSelected(self, az, el):
+
+      self.az = az
+      self.el = el
+
+      self._update()
+
+   def _update(self):
 
       sampleCount = self.data.shape[3]
       samples = np.arange(sampleCount)
@@ -63,10 +76,10 @@ class PointView(QWidget):
       timeFigure.clf()
       ax = timeFigure.subplots()
 
-      valuesLeft = self.data[az, el, 0, :]
+      valuesLeft = self.data[self.az, self.el, 0, :]
       ax.plot(samples, valuesLeft, label='data left')
 
-      valuesRight = self.data[az, el, 1, :]
+      valuesRight = self.data[self.az, self.el, 1, :]
       ax.plot(samples, valuesRight, label='data right')
 
       ax.legend(handlelength=4)
@@ -81,21 +94,36 @@ class PointView(QWidget):
       filterLeft = lowpass(valuesLeft)
       filterRight = lowpass(valuesRight)
 
-      try:
-         paramLeft = fitAmplitude(filterLeft)
-         self.leftParamView.setParams(paramLeft)
-         fitLeft = amplitudeFunction(samples, paramLeft[0], paramLeft[1], paramLeft[2], paramLeft[3])
-         ax.plot(samples, fitLeft, label='fit left')
-      except RuntimeError:
-         self.leftParamView.setParams([-1, -1, -1, -1])
+      if self.usePeak:
+         estimateLeft = estimateParams(filterLeft)
+         self.leftParamWidget.setParams(estimateLeft)
 
-      try:
-         paramRight = fitAmplitude(filterRight)
-         self.rightParamView.setParams(paramRight)
-         fitRight = amplitudeFunction(samples, paramRight[0], paramRight[1], paramRight[2], paramRight[3])
-         ax.plot(samples, fitRight, label='fit right')
-      except RuntimeError:
-         self.rightParamView.setParams([-1, -1, -1, -1])
+         peakLeft = np.zeros(sampleCount)
+         peakLeft[estimateLeft[2]] = estimateLeft[0]
+         ax.plot(samples, peakLeft, label='peak left')
+
+         estimateRight = estimateParams(filterRight)
+         self.rightParamWidget.setParams(estimateRight)
+
+         peakRight = np.zeros(sampleCount)
+         peakRight[estimateRight[2]] = estimateRight[0]
+         ax.plot(samples, peakRight, label='peak right')
+      else:
+         try:
+            paramLeft = fitAmplitude(filterLeft)
+            self.leftParamWidget.setParams(paramLeft)
+            fitLeft = amplitudeFunction(samples, paramLeft[0], paramLeft[1], paramLeft[2], paramLeft[3])
+            ax.plot(samples, fitLeft, label='fit left')
+         except RuntimeError:
+            self.leftParamWidget.setParams([-1, -1, -1, -1])
+
+         try:
+            paramRight = fitAmplitude(filterRight)
+            self.rightParamWidget.setParams(paramRight)
+            fitRight = amplitudeFunction(samples, paramRight[0], paramRight[1], paramRight[2], paramRight[3])
+            ax.plot(samples, fitRight, label='fit right')
+         except RuntimeError:
+            self.rightParamWidget.setParams([-1, -1, -1, -1])
 
       ax.plot(samples, filterLeft, label='filter left', linestyle='dotted')
       ax.plot(samples, filterRight, label='filter right', linestyle='dotted')

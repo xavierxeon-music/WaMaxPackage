@@ -12,7 +12,7 @@ def amplitudeFunction(x, max, start, peak, end):
    return y
 
 
-def fitAmplitude(series):
+def estimateParams(series):
 
    start = None
    end = 0
@@ -30,6 +30,12 @@ def fitAmplitude(series):
             start = index
 
    estimate = [max, start, peak, end]
+   return estimate
+
+
+def fitAmplitude(series):
+
+   estimate = estimateParams(series)
 
    samples = np.arange(series.shape[0])
    try:

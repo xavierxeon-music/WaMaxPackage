@@ -18,7 +18,7 @@ def main():
 
    QApplication.setOrganizationName('Schweinesystem')
    QApplication.setOrganizationDomain('schweinesystem.ddns.net')
-   QApplication.setApplicationName('Sofa Analyser')
+   QApplication.setApplicationName('SofaAnalyser')
 
    fileName = Select.fileName()
 

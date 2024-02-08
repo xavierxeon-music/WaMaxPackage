@@ -23,7 +23,7 @@ def main():
    try:
       match command:
          case None:
-            print('coammnd error')
+            print('command error')
             sys.exit(1)
          case 'state':
             state = device.isOn()
@@ -38,7 +38,7 @@ def main():
             if command.startswith('0x'):
                device.setColor(command)
             else:
-               print('coammnd error')
+               print('command error')
                sys.exit(1)
    except AttributeError:
       print('dervice error')
