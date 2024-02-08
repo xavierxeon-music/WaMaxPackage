@@ -1,31 +1,49 @@
 #!/usr/bin/env python3
 
-import json
-import requests
+import sys
 
-from pathlib import Path
+from lib import Bridge
 
 
-settingsFileName = str(Path.home()) + '/.hue.json'
-with open(settingsFileName, 'r') as infile:
-   settings = json.load(infile)
+def main():
 
-baseUrl = f"http://{settings['bridge']}/api/{settings['username']}/"
+   if len(sys.argv) > 1:
+      command = sys.argv[1]
+   else:
+      command = None
 
-light = requests.get(baseUrl + 'lights/1').json()
-with open(str(Path.home()) + '/tmp/debug.json', 'w') as outfile:
-   json.dump(light, outfile, indent=3)
+   if len(sys.argv) > 2:
+      name = sys.argv[2]
+   else:
+      name = None
 
-state = light['state']
-print(state)
+   bridge = Bridge()
+   device = bridge.getDeviceId(name)
 
-onOff = state['on']
-if onOff:
-   payload = {'on': False}
-else:
-   payload = {"on": True}
+   try:
+      match command:
+         case None:
+            print('coammnd error')
+            sys.exit(1)
+         case 'state':
+            state = device.isOn()
+            print('state', state)
+         case 'on':
+            device.turnOn()
+         case 'off':
+            device.turnOff()
+         case 'list':
+            bridge.listDevices()
+         case _:
+            if command.startswith('0x'):
+               device.setColor(command)
+            else:
+               print('coammnd error')
+               sys.exit(1)
+   except AttributeError:
+      print('dervice error')
+      sys.exit(1)
 
-print(payload)
 
-response = requests.put(baseUrl + 'lights/1/state', json=payload)
-print(response.text)
+if __name__ == '__main__':
+   main()

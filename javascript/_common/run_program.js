@@ -2,12 +2,8 @@ const spawn = require('child_process').spawn;
 const maxAPI = require('max-api');
 const path = require('path');
 
-maxAPI.addHandler("packagePath", () => {
 
-   var packagePath = path.resolve(path.dirname(__filename) + "/../../");
-   maxAPI.outlet(["packagePath", packagePath]);
-});
-
+// functions
 
 function printData(tag, data) {
    var text = `${data}`;
@@ -44,6 +40,8 @@ function executeProgram(program, appArgs) {
       maxAPI.outlet(["exit", code]);
    });
 }
+
+// handlers
 
 maxAPI.addHandler("launch", (program, ...args) => {
 
@@ -82,3 +80,8 @@ maxAPI.addHandler("open", (...args) => {
 
    executeProgram("/usr/bin/open", appArgs);
 });
+
+// main
+
+var packagePath = path.resolve(path.dirname(__filename) + "/../../");
+maxAPI.outlet(["packagePath", packagePath]);
