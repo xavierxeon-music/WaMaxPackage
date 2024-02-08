@@ -48,4 +48,4 @@ class Bridge:
    def setState(self, deviceId, payload):
 
       response = requests.put(self.baseUrl + 'lights/' + deviceId + '/state', json=payload)
-      # print(response.text)
+      print(deviceId, payload,response.text)
