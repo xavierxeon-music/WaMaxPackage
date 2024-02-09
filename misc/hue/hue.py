@@ -7,18 +7,24 @@ from lib import Bridge
 
 def main():
 
-   if len(sys.argv) > 1:
-      command = sys.argv[1]
-   else:
-      command = None
+   if len(sys.argv) == 1:
+      print('command error')
+      sys.exit(1)
+
+   command = sys.argv[1]
 
    if len(sys.argv) > 2:
-      name = sys.argv[2]
+      deviceName = sys.argv[2]
    else:
-      name = None
+      deviceName = None
+
+   if len(sys.argv) > 3:
+      parameter = sys.argv[3]
+   else:
+      parameter = None
 
    bridge = Bridge()
-   device = bridge.getDeviceId(name)
+   device = bridge.getDeviceId(deviceName)
 
    try:
       match command:
@@ -33,13 +39,19 @@ def main():
          case 'off':
             device.turnOff()
          case 'list':
-            bridge.listDevices()
-         case _:
-            if command.startswith('0x'):
-               device.setColor(command)
+            if not device:
+               bridge.listDevices()
             else:
-               print('command error')
-               sys.exit(1)
+               state = device.getState()
+               print(state)
+         case 'color':
+            device.setColor(parameter)
+         case 'bright':
+            device.setBrightness(parameter)
+         case _:
+            print('command error')
+            sys.exit(1)
+
    except AttributeError:
       print('dervice error')
       sys.exit(1)

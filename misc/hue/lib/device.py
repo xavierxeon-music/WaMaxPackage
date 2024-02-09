@@ -1,6 +1,5 @@
-#
+import colorsys
 
-import numpy as np
 
 class Device:
 
@@ -19,6 +18,10 @@ class Device:
       else:
          return 0
 
+   def getState(self):
+
+      return self.bridge.getState(self.deviceId)
+
    def turnOn(self):
 
       payload = {"on": True}
@@ -29,23 +32,40 @@ class Device:
       payload = {'on': False}
       self.bridge.setState(self.deviceId, payload)
 
-   def setColor(self, color):
+   def setColor(self, hexColor):
 
-      # bri (uint8) for white light
       # sat (uint8)
-      # xy [float, float]
+      # hue (int16)
+      # bri (uint8)
 
-      red = int(color[2:4], 16) / 255
-      green = int(color[4:6], 16) / 255
-      blue = int(color[6:8], 16) / 255
+      red = int(hexColor[0:2], 16) / 255
+      green = int(hexColor[2:4], 16) / 255
+      blue = int(hexColor[4:6], 16) / 255
 
-      rgb = [red, green, blue] 
-      rgbToCIE = [[0.412453, 0.357580, 0.180423], [0.212671, 0.715160, 0.072169], [0.019334, 0.119193, 0.950227]]
-      cie = np.dot(rgbToCIE, rgb)
+      [hue, sat, bright] = colorsys.rgb_to_hsv(red, green, blue)
 
-      xy = [cie[0], cie[1]]
-      sat = int(cie[2] * 255)
+      hue = int(hue * 65535)
+      sat = int(sat * 255)
+      bright = int(bright * 255)
 
-      payload = {"on": True, "xy": xy, "sat": sat}
+      payload = {"hue": hue, "sat": sat, "bri": bright, "transitiontime": 0, "alert": "none"}
       self.bridge.setState(self.deviceId, payload)
 
+   def setBrightness(self, value):
+
+      # bri (uint8) for white light
+      payload = {"bri": int(value), "transitiontime": 0, "alert": "none"}
+      self.bridge.setState(self.deviceId, payload)
+
+   def _transform(self, rgb):
+
+      rgb = [self.correction.transform(rgb[0]), self.correction.transform(rgb[1]), self.correction.transform(rgb[2])]
+      xyz = np.dot(self.matrix, rgb)
+
+      sum = xyz[0] + xyz[1] + xyz[2]
+
+      x = xyz[0] / sum
+      y = xyz[1] / sum
+      Y = xyz[1]
+
+      return [x, y, Y]
