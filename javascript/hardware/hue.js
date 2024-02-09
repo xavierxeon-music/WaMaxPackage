@@ -9,43 +9,119 @@ outlets = 2;
 setoutletassist(0, "state");
 setoutletassist(1, "request");
 
+
 var baseUrl;
+var deviceId;
 
-function init(settingsFileName) {
+// see https://kinsta.com/knowledgebase/javascript-http-request/
 
-   var settings = readJsonFile(settingsFileName)
-   for (var key in settings) {
-      value = settings[key];
-      print(key, value);
+
+function init(deviceName, settingsFileName) {
+
+   var settings = readJsonFile(settingsFileName);
+   baseUrl = "http://" + settings["bridge"] + "/api/" + settings["username"] + "/";
+
+   var initResponse = function () {
+
+      if (request.status != 200)
+         return;
+
+      var response = JSON.parse(request.responseText);
+      for (var key in response) {
+         var device = response[key];
+         if (device["name"] == deviceName)
+            deviceId = key;
+      }
+
+      if (deviceId)
+         state();
    }
 
-
+   var request = new XMLHttpRequest();
+   request.open("GET", baseUrl + 'lights');
+   request.onreadystatechange = initResponse;
+   request.send();
 }
 
 function state() {
-   print('state');
+
+   var request = new XMLHttpRequest();
+
+   var stateResponse = function () {
+
+      if (request.status != 200)
+         return;
+
+      var response = JSON.parse(request.responseText);
+      var on = response["state"]["on"];
+      outlet(0, on);
+   }
+
+   request.open("GET", baseUrl + 'lights/' + deviceId);
+   request.onreadystatechange = stateResponse;
+   request.send();
+}
+
+sendToBridge.local = 1;
+function sendToBridge(payload) {
+
+   var request = new XMLHttpRequest();
+
+
+   var sendResponse = function () {
+      if (request.status == 200)
+         return;
+
+      // print(request.responseText);
+   }
+
+   request.open("PUT", baseUrl + 'lights/' + deviceId + '/state');
+   request.onreadystatechange = sendResponse;
+
+   var content = JSON.stringify(payload);
+   // print(content)
+   request.send(content);
 }
 
 function on() {
-   print('on');
+
+   var payload = { "on": true };
+   sendToBridge(payload);
 }
 
 function off() {
-   print('off');
+
+   var payload = { "on": false };
+   sendToBridge(payload);
 }
 
-function color(value) {
-   print('color', value);
+function color(hexColor) {
+
+   hexColor = hexColor.substring(1);
+   var color = new Color(hexColor);
+
+   [hue, sat, bright] = color.toHSV();
+   hue *= 256;
+
+   var payload = { "hue": hue, "sat": sat, "transitiontime": 0, "alert": "none" };
+   sendToBridge(payload);
+
 }
 
-function colorbright(value) {
-   print('colorbright', value);
+function colorbright(hexColor) {
+
+   hexColor = hexColor.substring(1);
+   var color = new Color(hexColor);
+
+   [hue, sat, bright] = color.toHSV();
+   hue *= 256;
+
+   var payload = { "hue": hue, "sat": sat, "bri": bright, "transitiontime": 0, "alert": "none" };
+   sendToBridge(payload);
 }
 
 function brightness(value) {
-   print('brightness', value);
-}
 
-function dictionary(data) {
-
+   var payload = { "bri": value, "transitiontime": 0, "alert": "none" };
+   sendToBridge(payload);
 }
