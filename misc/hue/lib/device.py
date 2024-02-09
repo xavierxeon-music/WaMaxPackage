@@ -27,7 +27,7 @@ class Device:
       payload = {"on": on}
       self.bridge.setState(self.deviceId, payload)
 
-   def setColor(self, hexColor):
+   def _compileHSL(self, hexColor):
 
       # sat (uint8)
       # hue (int16)
@@ -43,12 +43,24 @@ class Device:
       sat = int(sat * 255)
       bright = int(bright * 255)
 
+      return [hue, sat, bright]
+
+   def setColor(self, hexColor):
+
+      [hue, sat, _] = self._compileHSL(hexColor)
+
+      payload = {"hue": hue, "sat": sat, "transitiontime": 0, "alert": "none"}
+      self.bridge.setState(self.deviceId, payload)
+
+   def setColorBrightness(self, hexColor):
+
+      [hue, sat, bright] = self._compileHSL(hexColor)
+
       payload = {"hue": hue, "sat": sat, "bri": bright, "transitiontime": 0, "alert": "none"}
       self.bridge.setState(self.deviceId, payload)
 
    def setBrightness(self, value):
 
-      # bri (uint8) for white light
       payload = {"bri": int(value), "transitiontime": 0, "alert": "none"}
       self.bridge.setState(self.deviceId, payload)
 

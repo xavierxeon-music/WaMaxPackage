@@ -30,8 +30,9 @@ def main():
    commandMap['state'] = [device.isOn if device else None, None, 'check id device is on or off']
    commandMap['on'] = [device.swtich if device else None, True, 'turn device on']
    commandMap['off'] = [device.swtich if device else None, False, 'turn device off']
-   commandMap['color'] = [device.setColor if device else None, parameter, 'turn device off']
-   commandMap['bright'] = [device.setBrightness if device else None, parameter, 'turn device off']
+   commandMap['color'] = [device.setColor if device else None, parameter, 'set color, ignore brightness']
+   commandMap['bright'] = [device.setBrightness if device else None, parameter, 'set brightness']
+   commandMap['colorbright'] = [device.setColorBrightness if device else None, parameter, 'set color and brightness']
 
    if not command in commandMap:
       print('command error')
