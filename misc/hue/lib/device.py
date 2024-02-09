@@ -22,14 +22,9 @@ class Device:
 
       return self.bridge.getState(self.deviceId)
 
-   def turnOn(self):
+   def swtich(self, on):
 
-      payload = {"on": True}
-      self.bridge.setState(self.deviceId, payload)
-
-   def turnOff(self):
-
-      payload = {'on': False}
+      payload = {"on": on}
       self.bridge.setState(self.deviceId, payload)
 
    def setColor(self, hexColor):

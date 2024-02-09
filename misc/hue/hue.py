@@ -26,35 +26,29 @@ def main():
    bridge = Bridge()
    device = bridge.getDeviceId(deviceName)
 
-   try:
-      match command:
-         case None:
-            print('command error')
-            sys.exit(1)
-         case 'state':
-            state = device.isOn()
-            print('state', state)
-         case 'on':
-            device.turnOn()
-         case 'off':
-            device.turnOff()
-         case 'list':
-            if not device:
-               bridge.listDevices()
-            else:
-               state = device.getState()
-               print(state)
-         case 'color':
-            device.setColor(parameter)
-         case 'bright':
-            device.setBrightness(parameter)
-         case _:
-            print('command error')
-            sys.exit(1)
+   commandMap = {'list': [bridge.listDevices, None, 'list devices']}
+   commandMap['state'] = [device.isOn if device else None, None, 'check id device is on or off']
+   commandMap['on'] = [device.swtich if device else None, True, 'turn device on']
+   commandMap['off'] = [device.swtich if device else None, False, 'turn device off']
+   commandMap['color'] = [device.setColor if device else None, parameter, 'turn device off']
+   commandMap['bright'] = [device.setBrightness if device else None, parameter, 'turn device off']
 
-   except AttributeError:
-      print('dervice error')
+   if not command in commandMap:
+      print('command error')
+      for name, item in commandMap.items():
+         help = item[2]
+         print(name, ': ', help)
       sys.exit(1)
+   else:
+      function = commandMap[command][0]
+      if not function:
+         print('dervice error')
+         sys.exit(1)
+      fp = commandMap[command][1]
+      if None == fp:
+         function()
+      else:
+         function(fp)
 
 
 if __name__ == '__main__':
