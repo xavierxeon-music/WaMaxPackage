@@ -10,8 +10,9 @@ setoutletassist(0, "state");
 setoutletassist(1, "request");
 
 
-var baseUrl;
-var deviceId;
+var baseUrl = undefined;
+var deviceId = undefined;
+var targetState = None;
 
 // see https://kinsta.com/knowledgebase/javascript-http-request/
 
@@ -33,8 +34,18 @@ function init(deviceName, settingsFileName) {
             deviceId = key;
       }
 
-      if (deviceId)
-         state();
+      if (!deviceId)
+         return;
+
+      if (targetState != undefined) {
+         if (targetState)
+            on();
+         else
+            off();
+         targetState == undefined;
+      }
+      state();
+
    }
 
    var request = new XMLHttpRequest();
@@ -44,6 +55,9 @@ function init(deviceName, settingsFileName) {
 }
 
 function state() {
+
+   if (!deviceId)
+      return;
 
    var request = new XMLHttpRequest();
 
@@ -65,8 +79,10 @@ function state() {
 sendToBridge.local = 1;
 function sendToBridge(payload) {
 
-   var request = new XMLHttpRequest();
+   if (!deviceId)
+      return;
 
+   var request = new XMLHttpRequest();
 
    var sendResponse = function () {
       if (request.status == 200)
@@ -85,11 +101,21 @@ function sendToBridge(payload) {
 
 function on() {
 
+   if (!deviceId) {
+      targetState = true;
+      return;
+   }
+
    var payload = { "on": true };
    sendToBridge(payload);
 }
 
 function off() {
+
+   if (!deviceId) {
+      targetState = false;
+      return;
+   }
 
    var payload = { "on": false };
    sendToBridge(payload);
