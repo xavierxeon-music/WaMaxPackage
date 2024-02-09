@@ -13,7 +13,7 @@ class Bridge:
 
    def __init__(self):
 
-      settingsFileName = str(Path.home()) + '/.hue2.json'
+      settingsFileName = str(Path.home()) + '/.hue_v2.json'
       if not os.path.exists(settingsFileName):
          settings = self.getCredentials(settingsFileName)
          with open(settingsFileName, 'w') as outfile:
@@ -22,8 +22,8 @@ class Bridge:
          with open(settingsFileName, 'r') as infile:
             settings = json.load(infile)
 
-      self.baseUrl = f"http://{settings['bridge']}/clip/v2/resource/"
-      self.header = {"hue-application-key": settings["username"]}
+      self.baseUrl = f'http://{settings["bridge"]}/clip/v2/resource/'
+      self.header = {'hue-application-key': settings["username"]}
 
    def getCredentials(self):
 
@@ -34,7 +34,7 @@ class Bridge:
       settings = {'bridge': ip, 'devicetype': 'odense_hue'}
       print(ip)
 
-      keyUrl = f"http://{ip}/api"
+      keyUrl = f'http://{ip}/api'
       keyRequest = {'devicetype': 'odense_hue', 'generateclientkey': True}
       print(keyUrl, keyRequest)
       data = requests.post(keyUrl, json=keyRequest).json()

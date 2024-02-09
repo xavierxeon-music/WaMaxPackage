@@ -2,8 +2,16 @@
 
 ## credentials and configuration
 seee https://developers.meethue.com/develop/get-started-2/
+https://developers.meethue.com/develop/hue-api-v2/getting-started/
 
-https://discovery.meethue.com
+get bridge ip: https://discovery.meethue.com
+
+http://192.168.1.116/debug/clip.html
+/api
+{"devicetype": "odense_hue", "generateclientkey": true}
+POST
+
+
 
 save to ~/.hue.bridge
 {
@@ -12,4 +20,4 @@ save to ~/.hue.bridge
    "devicetype": "odense_hue"
 }
 
-
+# v2
