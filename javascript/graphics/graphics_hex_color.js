@@ -9,7 +9,7 @@ setoutletassist(0, "hex color");
 
 makeHex.local = 1;
 function makeHex(number) {
-   var hex = Math.round(number * 127).toString(16);
+   var hex = Math.round(number).toString(16);
    if (1 === hex.length)
       hex = "0" + hex;
 

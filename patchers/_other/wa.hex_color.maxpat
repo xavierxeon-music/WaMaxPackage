@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 5,
-			"revision" : 3,
+			"minor" : 6,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 919.0, 249.0, 2880.0, 1001.0 ],
+		"rect" : [ 34.0, 190.0, 1732.0, 945.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -45,12 +45,13 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 20.0, 75.0, 136.0, 22.0 ],
+					"patching_rect" : [ 30.0, 75.0, 136.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "graphics_hex_color.js",
+						"filename" : "graphics_hex_color",
 						"parameter_enable" : 0
 					}
 ,
+					"style" : "wa.patcher",
 					"text" : "js graphics_hex_color"
 				}
 
@@ -64,7 +65,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 20.0, 20.0, 30.0, 30.0 ]
+					"patching_rect" : [ 30.0, 30.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -76,7 +77,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 20.0, 120.0, 30.0, 30.0 ]
+					"patching_rect" : [ 30.0, 120.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -94,6 +95,16 @@
 					"source" : [ "obj-3", 0 ]
 				}
 
+			}
+ ],
+		"styles" : [ 			{
+				"name" : "wa.patcher",
+				"default" : 				{
+					"accentcolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ]
+				}
+,
+				"parentstyle" : "",
+				"multi" : 0
 			}
  ]
 	}

@@ -12,7 +12,15 @@ setoutletassist(1, "request");
 
 var baseUrl = undefined;
 var deviceId = undefined;
-var targetState = None;
+
+var sendQueue = {};
+var sendTask = new Task(processQueue);
+sendTask.intervall = 10;
+sendTask.repeat();
+
+var stateTask = new Task(state);
+stateTask.intervall = 500;
+stateTask.repeat();
 
 // see https://kinsta.com/knowledgebase/javascript-http-request/
 
@@ -33,19 +41,6 @@ function init(deviceName, settingsFileName) {
          if (device["name"] == deviceName)
             deviceId = key;
       }
-
-      if (!deviceId)
-         return;
-
-      if (targetState != undefined) {
-         if (targetState)
-            on();
-         else
-            off();
-         targetState == undefined;
-      }
-      state();
-
    }
 
    var request = new XMLHttpRequest();
@@ -54,6 +49,7 @@ function init(deviceName, settingsFileName) {
    request.send();
 }
 
+state.local = 1;
 function state() {
 
    if (!deviceId)
@@ -99,55 +95,62 @@ function sendToBridge(payload) {
    request.send(content);
 }
 
-function on() {
+addToQueue.local = 1;
+function processQueue() {
 
-   if (!deviceId) {
-      targetState = true;
-      return;
+   for (var key in sendQueue) {
+      payload = sendQueue[key];
+      if (!payload)
+         continue;
+
+      sendQueue[key] = undefined;
+      sendToBridge(payload);
    }
 
+}
+
+addToQueue.local = 1;
+function addToQueue(key, paylod) {
+
+   sendQueue[key] = paylod;
+}
+
+function on() {
+
    var payload = { "on": true };
-   sendToBridge(payload);
+   addToQueue('state', payload);
 }
 
 function off() {
 
-   if (!deviceId) {
-      targetState = false;
-      return;
-   }
-
    var payload = { "on": false };
-   sendToBridge(payload);
+   addToQueue('stae', payload);
 }
 
 function color(hexColor) {
 
-   hexColor = hexColor.substring(1);
    var color = new Color(hexColor);
 
    [hue, sat, bright] = color.toHSV();
    hue *= 256;
 
    var payload = { "hue": hue, "sat": sat, "transitiontime": 0, "alert": "none" };
-   sendToBridge(payload);
-
+   addToQueue('color', payload);
 }
 
 function colorbright(hexColor) {
 
-   hexColor = hexColor.substring(1);
    var color = new Color(hexColor);
 
    [hue, sat, bright] = color.toHSV();
    hue *= 256;
 
    var payload = { "hue": hue, "sat": sat, "bri": bright, "transitiontime": 0, "alert": "none" };
-   sendToBridge(payload);
+   addToQueue('colorbright', payload);
 }
 
 function brightness(value) {
 
    var payload = { "bri": value, "transitiontime": 0, "alert": "none" };
-   sendToBridge(payload);
+   addToQueue('bright', payload);
 }
