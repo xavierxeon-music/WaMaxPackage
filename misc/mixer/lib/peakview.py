@@ -29,3 +29,7 @@ class PeakView(QWidget):
          return
 
       self.exportData.emit(fileName)
+
+   def exportProgress(self, value, max):
+
+      print('EXPORT', value, max)

@@ -29,6 +29,7 @@ class MainWindow(QWidget):
       self.timeView.pointSelected.connect(self.changeTitle)
 
       self.peakView.exportData.connect(self.waveExport.exportData)
+      self.waveExport.exportProgress.connect(self.peakView.exportProgress)
 
       az = 80
       el = 75

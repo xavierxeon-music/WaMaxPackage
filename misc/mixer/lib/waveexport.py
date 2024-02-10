@@ -11,16 +11,18 @@ from .fit import fitAmplitude, amplitudeFunction, estimateParams
 
 class WaveExport(QObject):
 
+   exportProgress = Signal(int, int)
+
    def __init__(self, crawler):
 
       super().__init__()
 
       self.data = crawler.data
 
-      settings = QSettings()
-      self.usePeak = settings.value('usePeak')
-
    def exportData(self, fileName):
+
+      settings = QSettings()
+      usePeak = settings.value('usePeak')
 
       from multiprocessing.pool import ThreadPool
 
@@ -31,7 +33,11 @@ class WaveExport(QObject):
 
       wavdata = np.zeros((2, sampleCount * 360 * 180))
 
+      counter = 0
+
       def _processAz(az):
+
+         nonlocal counter
 
          for el in range(180):
 
@@ -45,7 +51,7 @@ class WaveExport(QObject):
             valuesRight = self.data[az, el, 1, :]
             filterRight = lowpass(valuesRight)
 
-            if self.usePeak:
+            if usePeak:
                estimateLeft = estimateParams(filterLeft)
                peakLeft = np.zeros(sampleCount)
                peakLeft[estimateLeft[2]] = estimateLeft[0]
@@ -55,7 +61,7 @@ class WaveExport(QObject):
                peakRight = np.zeros(sampleCount)
                peakRight[estimateRight[2]] = estimateRight[0]
                wavdata[1, startIndex:endIndex] = peakRight
-            else:
+            else:  # fit
                try:
                   paramLeft = fitAmplitude(filterLeft)
                   wavdata[0, startIndex:endIndex] = amplitudeFunction(samples, paramLeft[0], paramLeft[1], paramLeft[2], paramLeft[3])
@@ -65,13 +71,21 @@ class WaveExport(QObject):
                except RuntimeError:
                   print('error @ ', az, el)
 
-         print('AZ = ', az)
+         # print('AZ = ', counter, az)
+         # self.exportProgress.emit(counter, 360)
+         counter += 1
+
+      self.exportProgress.emit(0, 360)
 
       with ThreadPool() as pool:
          for _ in pool.map(_processAz, range(360)):
             pass
 
+      self.exportProgress.emit(360, 360)
+
       print('write to ', fileName, end=None)
       wavdata = np.transpose(wavdata)  # interleave
       wavfile.write(fileName, 48000, wavdata.astype(np.float32))
       print(' done')
+
+      self.exportProgress.emit(0, 0)
