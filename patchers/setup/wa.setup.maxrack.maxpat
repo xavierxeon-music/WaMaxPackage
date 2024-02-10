@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 143.0, 3765.0, 1423.0 ],
+		"rect" : [ 34.0, 106.0, 1335.0, 1029.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -93,7 +93,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 495.0, 165.0, 107.0, 22.0 ],
+					"patching_rect" : [ 420.0, 195.0, 107.0, 22.0 ],
 					"text" : "wa.setup.bpatcher"
 				}
 
@@ -108,7 +108,7 @@
 					"parameter_enable" : 0,
 					"patching_rect" : [ 330.0, 375.0, 24.0, 24.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 126.0, 0.0, 24.0, 24.0 ]
+					"presentation_rect" : [ 90.0, 120.0, 24.0, 24.0 ]
 				}
 
 			}
@@ -126,26 +126,11 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-53",
-					"linecount" : 4,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 52.0, 175.0, 150.0, 60.0 ],
-					"presentation" : 1,
-					"presentation_linecount" : 4,
-					"presentation_rect" : [ 0.0, 0.0, 150.0, 60.0 ],
-					"text" : "Max Rack Channels\n\ninput adc (3 - 6) ( 7 -14)\noutput dac (3-10) (11 - 18)"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-1",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 52.0, 253.0, 131.0, 22.0 ],
+					"patching_rect" : [ 420.0, 165.0, 131.0, 22.0 ],
 					"text" : "wa.setup.audio_device"
 				}
 
@@ -182,6 +167,20 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 248.5, 420.0, 106.0, 22.0 ],
 					"text" : "wa.midi.clocksend"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-9",
+					"maxclass" : "fpic",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "jit_matrix" ],
+					"patching_rect" : [ 420.0, 235.0, 195.0, 150.0 ],
+					"pic" : "MaxRack.png",
+					"presentation" : 1,
+					"presentation_rect" : [ 0.0, 0.0, 195.0, 150.0 ]
 				}
 
 			}
@@ -241,56 +240,6 @@
 					"source" : [ "obj-90", 0 ]
 				}
 
-			}
- ],
-		"dependency_cache" : [ 			{
-				"name" : "audio_device_index.js",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
-				"patcherrelativepath" : "../../javascript/setup",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "bpatcher_size.js",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
-				"patcherrelativepath" : "../../javascript/setup",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "hue.device.js",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/hardware",
-				"patcherrelativepath" : "../../javascript/hardware",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "wa.hue.device.maxpat",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/hardware",
-				"patcherrelativepath" : "../hardware",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "wa.midi.clocksend.maxpat",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/_other",
-				"patcherrelativepath" : "../_other",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "wa.setup.audio_device.maxpat",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/setup",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "wa.setup.bpatcher.maxpat",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/setup",
-				"patcherrelativepath" : ".",
-				"type" : "JSON",
-				"implicit" : 1
 			}
  ],
 		"autosave" : 0
