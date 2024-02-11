@@ -15,15 +15,16 @@ include("_mapped_canvas.js");
 
 var padding = 5;
 var indicatorSize = 15;
-var textWidth = 85;
+var textWidth = 80;
 
-var deviceWidth = (4 * (indicatorSize + textWidth)) + (2 * padding);
-var deviceHeight = (4 * indicatorSize) + (2 * padding);
+var deviceWidth = (4 * textWidth) + (2 * padding);
+var deviceHeight = (8 * indicatorSize) + (2 * padding);
 
 var mc = new MappedCanvas(this, deviceWidth, deviceHeight);
 
 var colorMap = {};
 var nameMap = {};
+var valueMap = {};
 
 //////////////////////////////////////////
 
@@ -34,7 +35,7 @@ function loadbang() {
 
 function bang() {
 
-   // print(deviceWidth, deviceHeight);
+   print(deviceWidth, deviceHeight);
    mc.draw();
 }
 
@@ -54,6 +55,12 @@ function name(id, text) {
    mc.draw();
 }
 
+function gridInput(id, value) {
+
+   valueMap[id] = value;
+   mc.draw();
+}
+
 paint.local = 1;
 function paint() {
 
@@ -64,8 +71,8 @@ function paint() {
 
    for (var row = 0; row < 4; row++) {
       for (var col = 0; col < 4; col++) {
-         var x = padding + row * (indicatorSize + textWidth);
-         var y = padding + col * indicatorSize;
+         var x = padding + row * textWidth;
+         var y = padding + col * 2 * indicatorSize;
 
          var id = (row + 1) + 10 * (4 - col);
 
@@ -79,10 +86,24 @@ function paint() {
          mc.drawEllipse(x + 1.5, y + 1.5, 0.7 * indicatorSize, 0.7 * indicatorSize, true);
 
          mc.setColor("eeeeee");
-         if (id in nameMap)
-            mc.drawText(x + indicatorSize, y + (0.7 * indicatorSize), " " + nameMap[id]);
+
+         var lineLength = 30;
+         if (id in valueMap) {
+            var text = valueMap[id].toString();
+            mc.drawText(x + indicatorSize + padding, y + (0.7 * indicatorSize), text)
+
+            var length = valueMap[id] * lineLength / 127;
+            mc.drawRectangle((x + textWidth) - (lineLength + 5), y + 3, length, 5, true);
+         }
          else
-            mc.drawText(x + indicatorSize, y + (0.7 * indicatorSize), " " + "---");
+            mc.drawText(x + indicatorSize + padding, y + (0.7 * indicatorSize), "???")
+
+
+
+         if (id in nameMap)
+            mc.drawText(x, y + (1.7 * indicatorSize), nameMap[id]);
+         else
+            mc.drawText(x, y + (1.7 * indicatorSize), "---");
       }
    }
 
