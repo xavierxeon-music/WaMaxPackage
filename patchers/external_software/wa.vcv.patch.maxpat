@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 227.0, 3204.0, 1339.0 ],
+		"rect" : [ 34.0, 199.0, 3204.0, 1367.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -155,9 +155,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1125.0, 510.0, 129.0, 22.0 ],
+					"patching_rect" : [ 1125.0, 510.0, 132.0, 22.0 ],
 					"style" : "wa.buffer",
-					"text" : "value #0_liveSetFile"
+					"text" : "value #0_vcvPatchtFile"
 				}
 
 			}
@@ -181,8 +181,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 660.0, 510.0, 302.0, 22.0 ],
-					"text" : "sprintf \\\"%s/misc/external_software/empty_live_set.py\\\""
+					"patching_rect" : [ 660.0, 510.0, 276.0, 22.0 ],
+					"text" : "sprintf \\\"%s/misc/external_software/vcv_patch.py\\\""
 				}
 
 			}
@@ -230,9 +230,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 105.0, 180.0, 129.0, 22.0 ],
+					"patching_rect" : [ 105.0, 180.0, 132.0, 22.0 ],
 					"style" : "wa.buffer",
-					"text" : "value #0_liveSetFile"
+					"text" : "value #0_vcvPatchtFile"
 				}
 
 			}
@@ -310,6 +310,8 @@
 					"saved_object_attributes" : 					{
 						"autostart" : 1,
 						"defer" : 0,
+						"node_bin_path" : "",
+						"npm_bin_path" : "",
 						"watch" : 1
 					}
 ,
@@ -360,8 +362,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 255.0, 124.0, 95.0, 22.0 ],
-					"text" : "sprintf \\\"%s.als\\\""
+					"patching_rect" : [ 255.0, 124.0, 98.0, 22.0 ],
+					"text" : "sprintf \\\"%s.vcv\\\""
 				}
 
 			}
