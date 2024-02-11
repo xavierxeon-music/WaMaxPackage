@@ -40,12 +40,49 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-31",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1020.0, 405.0, 64.0, 22.0 ],
+					"text" : "append ---"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-29",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1020.0, 361.0, 142.0, 22.0 ],
+					"style" : "wa.buffer",
+					"text" : "value #0_port_number"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-30",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 1020.0, 315.0, 56.0, 22.0 ],
+					"text" : "freebang"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-23",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 825.0, 361.0, 141.0, 22.0 ],
+					"patching_rect" : [ 825.0, 361.0, 142.0, 22.0 ],
 					"style" : "wa.buffer",
 					"text" : "value #0_port_number"
 				}
@@ -119,7 +156,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 825.0, 266.0, 103.0, 22.0 ],
+					"patching_rect" : [ 825.0, 266.0, 104.0, 22.0 ],
 					"style" : "wa.buffer",
 					"text" : "value #0_name"
 				}
@@ -156,7 +193,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 240.0, 421.0, 141.0, 22.0 ],
+					"patching_rect" : [ 240.0, 421.0, 142.0, 22.0 ],
 					"style" : "wa.buffer",
 					"text" : "value #0_port_number"
 				}
@@ -169,7 +206,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 390.0, 361.0, 141.0, 22.0 ],
+					"patching_rect" : [ 390.0, 361.0, 142.0, 22.0 ],
 					"style" : "wa.buffer",
 					"text" : "value #0_port_number"
 				}
@@ -182,7 +219,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 165.0, 210.0, 141.0, 22.0 ],
+					"patching_rect" : [ 165.0, 210.0, 142.0, 22.0 ],
 					"style" : "wa.buffer",
 					"text" : "value #0_port_number"
 				}
@@ -709,8 +746,29 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-31", 0 ],
+					"source" : [ "obj-29", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-14", 0 ],
 					"source" : [ "obj-3", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-29", 0 ],
+					"source" : [ "obj-30", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-25", 0 ],
+					"source" : [ "obj-31", 0 ]
 				}
 
 			}
