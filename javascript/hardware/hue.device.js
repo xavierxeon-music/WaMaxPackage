@@ -9,9 +9,13 @@ outlets = 2;
 setoutletassist(0, "state");
 setoutletassist(1, "request");
 
+var initRequest = new XMLHttpRequest();
+var stateRequest = new XMLHttpRequest();
+var sendRequest = new XMLHttpRequest();
 
 var baseUrl = undefined;
 var deviceId = undefined;
+var deviceName = undefined;
 
 var sendQueue = {};
 var sendTask = new Task(processQueue);
@@ -19,101 +23,27 @@ sendTask.intervall = 10;
 sendTask.repeat();
 
 var stateTask = new Task(state);
-stateTask.intervall = 500;
+stateTask.intervall = 5000;
 stateTask.repeat();
 
 // see https://kinsta.com/knowledgebase/javascript-http-request/
 
 
-function init(deviceName, settingsFileName) {
+function init(_deviceName, settingsFileName) {
+
+   deviceName = _deviceName;
+   initRequest.onreadystatechange = initResponse;
+   stateRequest.onreadystatechange = stateResponse;
+   sendRequest.onreadystatechange = sendResponse;
 
    var settings = readJsonFile(settingsFileName);
    baseUrl = "http://" + settings["bridge"] + "/api/" + settings["username"] + "/";
 
-   var initResponse = function () {
-
-      if (request.status != 200)
-         return;
-
-      var response = JSON.parse(request.responseText);
-      for (var key in response) {
-         var device = response[key];
-         if (device["name"] == deviceName)
-            deviceId = key;
-      }
-   }
-
-   var request = new XMLHttpRequest();
-   request.open("GET", baseUrl + 'lights');
-   request.onreadystatechange = initResponse;
-   request.send();
+   initRequest.open("GET", baseUrl + 'lights');
+   initRequest.send();
 }
 
-state.local = 1;
-function state() {
 
-   if (!deviceId)
-      return;
-
-   var request = new XMLHttpRequest();
-
-   var stateResponse = function () {
-
-      if (request.status != 200)
-         return;
-
-      var response = JSON.parse(request.responseText);
-      var on = response["state"]["on"];
-      outlet(0, on);
-   }
-
-   request.open("GET", baseUrl + 'lights/' + deviceId);
-   request.onreadystatechange = stateResponse;
-   request.send();
-}
-
-sendToBridge.local = 1;
-function sendToBridge(payload) {
-
-   if (!deviceId)
-      return;
-
-   var request = new XMLHttpRequest();
-
-   var sendResponse = function () {
-      if (request.status == 200)
-         return;
-
-      // print(request.responseText);
-   }
-
-   request.open("PUT", baseUrl + 'lights/' + deviceId + '/state');
-   request.onreadystatechange = sendResponse;
-
-   var content = JSON.stringify(payload);
-   // print(content)
-   request.send(content);
-}
-
-addToQueue.local = 1;
-function processQueue() {
-
-   for (var key in sendQueue) {
-      payload = sendQueue[key];
-      if (!payload)
-         continue;
-
-      sendQueue[key] = undefined;
-      sendToBridge(payload);
-   }
-
-}
-
-addToQueue.local = 1;
-function addToQueue(key, paylod) {
-
-   sendQueue[key] = paylod;
-}
 
 function on() {
 
@@ -153,4 +83,84 @@ function brightness(value) {
 
    var payload = { "bri": value, "transitiontime": 0, "alert": "none" };
    addToQueue('bright', payload);
+}
+
+initResponse.local = 1;
+function initResponse() {
+
+   if (initRequest.status != 200)
+      return;
+
+   var response = JSON.parse(initRequest.responseText);
+   for (var key in response) {
+      var device = response[key];
+      if (device["name"] == deviceName)
+         deviceId = key;
+   }
+
+   state();
+}
+
+state.local = 1;
+function state() {
+
+   if (!deviceId)
+      return;
+
+   stateRequest.open("GET", baseUrl + 'lights/' + deviceId);
+   stateRequest.send();
+}
+
+stateResponse.local = 1;
+function stateResponse() {
+
+   if (stateRequest.status != 200)
+      return;
+
+   var response = JSON.parse(stateRequest.responseText);
+   var on = response["state"]["on"];
+   outlet(0, on);
+}
+
+sendToBridge.local = 1;
+function sendToBridge(payload) {
+
+   if (!deviceId)
+      return;
+
+   sendRequest.open("PUT", baseUrl + 'lights/' + deviceId + '/state');
+
+   var content = JSON.stringify(payload);
+   // print(content)
+   sendRequest.send(content);
+}
+
+sendResponse.local = 1;
+function sendResponse() {
+
+   if (sendRequest.status == 200)
+      return;
+
+   print(sendRequest.responseText);
+}
+
+processQueue.local = 1;
+function processQueue() {
+
+   for (var key in sendQueue) {
+
+      payload = sendQueue[key];
+      if (!payload)
+         continue;
+
+      sendQueue[key] = undefined;
+      sendToBridge(payload);
+   }
+
+}
+
+addToQueue.local = 1;
+function addToQueue(key, payload) {
+
+   sendQueue[key] = payload;
 }

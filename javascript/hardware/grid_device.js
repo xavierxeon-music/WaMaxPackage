@@ -16,15 +16,12 @@ var blueMidi = 160;
 function parseColor(localId, name) {
 
    color = new Color(name);
-   red = Math.floor(color.red / 2)
-   green = Math.floor(color.green / 2)
-   blue = Math.floor(color.blue / 2)
+   midiRed = Math.floor(color.red / 2);
+   midiGreen = Math.floor(color.green / 2)
+   midBlue = Math.floor(color.blue / 2);
 
    id = lookup.get("local_to_midi::" + localId);
-
-   // print(id, name, red, green, blue);
-
-   outlet(0, [redMidi, id, red]);
-   outlet(0, [greenMidi, id, green]);
-   outlet(0, [blueMidi, id, blue]);
+   outlet(0, [redMidi, id, midiRed]);
+   outlet(0, [greenMidi, id, midiGreen]);
+   outlet(0, [blueMidi, id, midBlue]);
 }
