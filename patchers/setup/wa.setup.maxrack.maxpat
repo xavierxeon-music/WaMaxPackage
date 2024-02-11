@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 3204.0, 1479.0 ],
+		"rect" : [ 34.0, 115.0, 3211.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -39,18 +39,6 @@
 		"subpatcher_template" : "wa.main_template",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
-				"box" : 				{
-					"id" : "obj-10",
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 120.0, 120.0, 29.5, 22.0 ],
-					"text" : "1"
-				}
-
-			}
-, 			{
 				"box" : 				{
 					"id" : "obj-14",
 					"maxclass" : "newobj",
@@ -146,7 +134,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 29.0, 435.0, 107.0, 22.0 ],
+					"patching_rect" : [ 29.5, 390.0, 107.0, 22.0 ],
 					"text" : "wa.setup.bpatcher"
 				}
 
@@ -175,17 +163,6 @@
 					"outlettype" : [ "bang" ],
 					"patching_rect" : [ 30.0, 70.0, 67.0, 22.0 ],
 					"text" : "delay 1000"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-1",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 29.0, 405.0, 131.0, 22.0 ],
-					"text" : "wa.setup.audio_device"
 				}
 
 			}
@@ -240,13 +217,6 @@
 			}
  ],
 		"lines" : [ 			{
-				"patchline" : 				{
-					"destination" : [ "obj-89", 0 ],
-					"source" : [ "obj-10", 0 ]
-				}
-
-			}
-, 			{
 				"patchline" : 				{
 					"destination" : [ "obj-9", 0 ],
 					"source" : [ "obj-12", 0 ]
@@ -334,13 +304,6 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "audio_device_index.js",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
-				"patcherrelativepath" : "../../javascript/setup",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
 				"name" : "bpatcher_size.js",
 				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
 				"patcherrelativepath" : "../../javascript/setup",
@@ -365,13 +328,6 @@
 				"name" : "wa.midi.clocksend.maxpat",
 				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/_other",
 				"patcherrelativepath" : "../_other",
-				"type" : "JSON",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "wa.setup.audio_device.maxpat",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/setup",
-				"patcherrelativepath" : ".",
 				"type" : "JSON",
 				"implicit" : 1
 			}

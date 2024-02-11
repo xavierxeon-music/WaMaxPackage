@@ -1,0 +1,2 @@
+max objectfile wa.device.grid wa.device.grid;
+max definesubstitution wa.device.grid bpatcher @name wa.device.grid.maxpat;

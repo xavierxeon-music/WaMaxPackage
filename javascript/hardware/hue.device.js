@@ -19,11 +19,11 @@ var deviceName = undefined;
 
 var sendQueue = {};
 var sendTask = new Task(processQueue);
-sendTask.intervall = 10;
+sendTask.interval = 10;
 sendTask.repeat();
 
 var stateTask = new Task(state);
-stateTask.intervall = 5000;
+stateTask.interval = 5000;
 stateTask.repeat();
 
 // see https://kinsta.com/knowledgebase/javascript-http-request/
@@ -97,8 +97,6 @@ function initResponse() {
       if (device["name"] == deviceName)
          deviceId = key;
    }
-
-   state();
 }
 
 state.local = 1;

@@ -13,6 +13,10 @@
             <digest/>
             <description>the value of the element (on change)</description>
         </entry>
+        <entry id="2" name="rgb">
+            <digest/>
+            <description>rgb value of current color as float</description>
+        </entry>
     </misc>
     <objarglist>
         <objarg name="1" optional="1" type="symbol">

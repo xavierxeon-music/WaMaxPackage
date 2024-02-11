@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 <c74object name="wa.hue.device" patcher_type="0">
-    <digest>Hello World</digest>
+    <digest>hue device</digest>
+    <description>a hue light or switch</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="1"/>
+    <parser inlet_count="0"/>
     <misc name="Outputs">
-        <entry id="1" name="">
+        <entry id="0" name="state">
             <digest/>
+            <description>the state</description>
         </entry>
     </misc>
     <objarglist/>

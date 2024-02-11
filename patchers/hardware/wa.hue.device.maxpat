@@ -126,9 +126,9 @@
 				"box" : 				{
 					"id" : "obj-3",
 					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 150.0, 375.0, 79.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "hue.device",
@@ -180,20 +180,20 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 360.0, 210.0, 30.0, 30.0 ]
 				}
 
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "state",
 					"id" : "obj-2",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -317,6 +317,15 @@
 
 			}
  ],
+		"dependency_cache" : [ 			{
+				"name" : "hue.device.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/hardware",
+				"patcherrelativepath" : "../../javascript/hardware",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.buffer",
 				"default" : 				{

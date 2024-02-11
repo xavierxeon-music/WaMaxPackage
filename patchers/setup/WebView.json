@@ -1,0 +1,23 @@
+{
+	"pattrstorage" : 	{
+		"name" : "main",
+		"slots" : 		{
+			"1" : 			{
+				"id" : 1,
+				"data" : 				{
+					"path" : [ 78 ],
+					"branch[1]" : [ 41 ],
+					"mutation" : [ 0 ],
+					"bdmix" : [ 32 ],
+					"wa.mixer.master~::main_gain" : [ 0.0 ],
+					"wa.mixer.stereo~[1]::gain" : [ 0.0 ],
+					"wa.mixer.stereo~[2]::gain" : [ 0.0 ]
+				}
+
+			}
+
+		}
+
+	}
+
+}
