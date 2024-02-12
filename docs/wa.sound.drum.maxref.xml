@@ -16,8 +16,9 @@
     </misc>
     <objarglist/>
     <attributelist>
-        <attribute get="1" name="basefreq" set="1" size="1" type="symbol">
-            <digest/>
+        <attribute get="1" name="basefreq" set="1" size="1" type="float">
+            <digest>base freq (100)</digest>
+            <description>frequency at end of sound</description>
         </attribute>
         <attribute get="1" name="filter" set="1" size="1" type="symbol">
             <digest/>
@@ -62,7 +63,8 @@
             <arglist>
                 <arg name="" optional="0" type="symbol"/>
             </arglist>
-            <digest/>
+            <digest>base freq (100)</digest>
+            <description>frequency at end of sound</description>
         </method>
         <method name="filter" standard="0">
             <arglist>

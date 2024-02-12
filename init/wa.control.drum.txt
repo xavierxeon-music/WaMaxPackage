@@ -1,0 +1,2 @@
+max objectfile wa.control.drum wa.control.drum;
+max definesubstitution wa.control.drum bpatcher @name wa.control.drum.maxpat;
