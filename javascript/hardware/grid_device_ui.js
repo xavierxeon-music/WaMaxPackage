@@ -35,7 +35,7 @@ function loadbang() {
 
 function bang() {
 
-   print(deviceWidth, deviceHeight);
+   // print(deviceWidth, deviceHeight);
    mc.draw();
 }
 
