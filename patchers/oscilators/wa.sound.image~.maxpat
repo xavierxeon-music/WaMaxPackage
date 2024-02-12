@@ -107,7 +107,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 122.0, 30.0, 107.0, 22.0 ],
-					"text" : "wa.setup.bpatcher"
+					"text" : "wa.patch.bpatcher"
 				}
 
 			}
@@ -839,7 +839,7 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "wa.setup.bpatcher.maxpat",
+				"name" : "wa.patch.bpatcher.maxpat",
 				"bootpath" : "~/GitHub/MusicProjects/WaMaxPackage/patchers/setup",
 				"patcherrelativepath" : "../setup",
 				"type" : "JSON",

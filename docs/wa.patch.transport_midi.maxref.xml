@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.setup.transport_midi" patcher_type="0">
+<c74object name="wa.patch.transport_midi" patcher_type="0">
     <digest>midi transport</digest>
     <description>control transport via external midi clock</description>
     <metadatalist>

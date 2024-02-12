@@ -52,7 +52,7 @@ function compileContentSize() {
    var right = -1;
    var bottom = -1;
 
-   // patch where the wa.setup.bpatcher is included
+   // patch where the wa.patch.bpatcher is included
    var contentPatch = patcher.parentpatcher;
 
    for (var obj = contentPatch.firstobject; obj !== null; obj = obj.nextobject) {
@@ -94,7 +94,7 @@ compileContentSize.local = 1;
 
 function findBPatchers() {
 
-   // patch where the wa.setup.bpatcher is included
+   // patch where the wa.patch.bpatcher is included
    var contentPatch = patcher.parentpatcher;
 
    var bpatcherList = [];

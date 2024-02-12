@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="0" name="wa.setup.poly">
-    <digest>load as poly</digest>
-    <description>load parent patch into poly~</description>
+<c74object name="wa.patch.maxrack" patcher_type="1">
+    <digest>use max rack</digest>
+    <description>turn on rack and init midi clock sync</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>

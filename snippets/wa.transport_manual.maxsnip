@@ -71,7 +71,7 @@
 , 			{
 				"box" : 				{
 					"maxclass" : "newobj",
-					"text" : "wa.setup.transport_manual 100",
+					"text" : "wa.patch.transport_manual 100",
 					"numinlets" : 1,
 					"patching_rect" : [ 10.0, 145.0, 177.0, 22.0 ],
 					"numoutlets" : 0,

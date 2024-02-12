@@ -1,2 +1,0 @@
-max objectfile wa.setup.maxrack wa.setup.maxrack;
-max definesubstitution wa.setup.maxrack bpatcher @name wa.setup.maxrack.maxpat;

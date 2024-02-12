@@ -46,7 +46,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1425.0, 165.0, 82.0, 22.0 ],
-					"text" : "wa.setup.poly"
+					"text" : "wa.patch.poly"
 				}
 
 			}

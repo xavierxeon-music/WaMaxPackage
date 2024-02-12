@@ -385,7 +385,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1560.0, 420.0, 107.0, 22.0 ],
-					"text" : "wa.setup.bpatcher"
+					"text" : "wa.patch.bpatcher"
 				}
 
 			}

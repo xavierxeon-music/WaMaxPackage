@@ -789,7 +789,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 30.0, 155.0, 177.0, 22.0 ],
-					"text" : "wa.setup.transport_manual 100"
+					"text" : "wa.patch.transport_manual 100"
 				}
 
 			}
@@ -947,14 +947,14 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "wa.setup.bpatcher.maxpat",
+				"name" : "wa.patch.bpatcher.maxpat",
 				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/setup",
 				"patcherrelativepath" : "../patchers/setup",
 				"type" : "JSON",
 				"implicit" : 1
 			}
 , 			{
-				"name" : "wa.setup.transport_manual.maxpat",
+				"name" : "wa.patch.transport_manual.maxpat",
 				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/setup",
 				"patcherrelativepath" : "../patchers/setup",
 				"type" : "JSON",
