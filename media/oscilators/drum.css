@@ -1,55 +1,77 @@
 /* Style the tab */
-.tabbar {
+div.tabbar {
    overflow: hidden;
    border: 1px solid #ccc;
-   background-color: #999999;
-   width: 260px;
-   height: 20px;
+   background-color: #777777;
+   width: 190px;
+   height: 16px;
 }
 
 /* Style the buttons that are used to open the tab content */
-.tabbar button {
+div.tabbar button {
    background-color: inherit;
    float: left;
    border: none;
    outline: none;
    cursor: pointer;
    padding: 2px 8px;
+   font-size: 12px;
 }
 
 /* Change background color of buttons on hover */
-.tabbar button:hover {
+div.tabbar button:hover {
    background-color: #ddd;
 }
 
 /* Create an active/current tablink class */
-.tabbar button.active {
+div.tabbar button.active {
    background-color: #ccc;
 }
 
 /* Style the tab content */
-.tabcontent {
+div.tabcontent {
    display: grid;
    grid-template-columns: auto auto auto;
    padding: 6px 6px;
    border: 1px solid #ccc;
+   background: #373737;
    border-top: none;
-   width: 248px;
-   height: 90px;
+   width: 178px;
+   height: 70px;
+   font-size: 14px;
 }
 
-.valuedisplay {
+div.valuedisplay {
    width: 55px;
    text-align: right;
+   font-size: 14px;
 }
 
-.blank {
-   color: #111111;
+div.blank {
+   color: #373737;
+}
+
+input.slider {
+   -webkit-appearance: none;
+   appearance: none;
+   background: #dddddd;
+   width: 100%;
+   height: 2px;
+   vertical-align: middle;
+}
+
+input.slider::-webkit-slider-thumb {
+   -webkit-appearance: none;
+   appearance: none;
+   width: 5px;
+   height: 10px;
+   background: #aaaaaa;
+   cursor: pointer;
 }
 
 canvas {
-   background: #111111;
+   background: #373737;
    border: 1px solid #eeeeee;
-   width: 260px;
-   height: 100px;
+   width: 190px;
+   height: 40px;
 }
