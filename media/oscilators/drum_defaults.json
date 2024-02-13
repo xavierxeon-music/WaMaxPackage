@@ -1,0 +1,16 @@
+{
+	"filter_Q" : 0,
+	"filter_curve" : -1,
+	"filter_freq" : 1261,
+	"filter_length" : 494,
+	"noise_curve" : -1,
+	"noise_length" : 10,
+	"noise_mix" : 100,
+	"pitch_base" : 50,
+	"pitch_curve" : 0,
+	"pitch_length" : 494,
+	"pitch_peak" : 1000,
+	"source_curve" : -1,
+	"source_length" : 11,
+	"source_mix" : 100
+}
