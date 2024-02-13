@@ -1,4 +1,55 @@
+/* Style the tab */
+.tabbar {
+   overflow: hidden;
+   border: 1px solid #ccc;
+   background-color: #f1f1f1;
+   width: 260px;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tabbar button {
+   background-color: inherit;
+   float: left;
+   border: none;
+   outline: none;
+   cursor: pointer;
+   padding: 14px 16px;
+   transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tabbar button:hover {
+   background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tabbar button.active {
+   background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+   display: grid;
+   grid-template-columns: auto auto auto;
+   padding: 6px 6px;
+   border: 1px solid #ccc;
+   border-top: none;
+   width: 248px;
+   height: 90px;
+}
+
+.valuedisplay {
+   width: 55px;
+   text-align: right;
+}
+
+.blank {
+   color: #111111;
+}
+
 canvas {
-   background: #000000;
+   background: #111111;
    border: 1px solid #eeeeee;
+   width: 260px;
+   height: 100px;
 }

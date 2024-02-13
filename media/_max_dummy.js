@@ -1,9 +1,14 @@
-function MaxDummy() {
+// https://docs.cycling74.com/max8/vignettes/jwebcommunication
 
-   this.bindInlet = function (name, location) { }
-   this.outlet = function () { }
+class MaxDummy {
 
-   return this;
+   constructor() {
+   }
+
+   bindInlet(name, functionName) { }
+   outlet(message, args) { }
+   getDict(name, functionName) { }
+   setDict(name, value) { }
 }
 
 if (window.max == undefined)

@@ -10,8 +10,85 @@
 </head>
 
 <body>
-   <h1>GRID controller</h1>
-   <canvas id="knob_canvas" width="200" height="200" />
+   <div class="tabbar" width="200">
+      <button class="tablinks" onclick="showTab(event, 'Pitch')" id="defaultOpen">Pitch</button>
+      <button class="tablinks" onclick="showTab(event, 'Sound')">Sound</button>
+      <button class="tablinks" onclick="showTab(event, 'Noise')">Noise</button>
+      <button class="tablinks" onclick="showTab(event, 'Filter')">Filter</button>
+   </div>
+
+   <div id="Pitch" class="tabcontent">
+      <div>peak</div>
+      <div><input type="range" class="slider" id="pitch_peak"></div>
+      <div class="valuedisplay"><span id="pitch_peak">0</span> Hz</div>
+
+      <div>base</div>
+      <div><input type="range" class="slider" id="pitch_base"></div>
+      <div class="valuedisplay"><span id="pitch_base">0</span> Hz</div>
+
+      <div>length</div>
+      <div><input type="range" class="slider" id="pitch_length"></div>
+      <div class="valuedisplay"><span id="pitch_length">0</span> ms</div>
+
+      <div>curve</div>
+      <div><input type="range" class="slider" id="pitch_curve"></div>
+      <div class="valuedisplay"><span id="pitch_curve">0</span></div>
+
+   </div>
+
+   <div id="Sound" class="tabcontent">
+      <div>mix</div>
+      <div><input type="range" class="slider" id="source_mix"></div>
+      <div class="valuedisplay"><span id="source_mix">0</span> %</div>
+
+
+      <div>length</div>
+      <div><input type="range" class="slider" id="source_length"></div>
+      <div class="valuedisplay"><span id="source_length">0</span> ms</div>
+
+      <div>curve</div>
+      <div><input type="range" class="slider" id="source_curve"></div>
+      <div class="valuedisplay"><span id="source_curve">0</span></div>
+
+      <div class="blank"> - </div>
+
+   </div>
+
+   <div id="Noise" class="tabcontent">
+      <div>mix</div>
+      <div><input type="range" class="slider" id="noise_mix"></div>
+      <div class="valuedisplay"><span id="noise_mix">0</span> %</div>
+
+      <div>length</div>
+      <div><input type="range" class="slider" id="noise_length"></div>
+      <div class="valuedisplay"><span id="noise_length">0</span> ms</div>
+
+      <div>curve</div>
+      <div><input type="range" class="slider" id="noise_curve"></div>
+      <div class="valuedisplay"><span id="noise_curve">0</span></div>
+
+      <div class="blank"> - </div>
+   </div>
+
+   <div id="Filter" class="tabcontent">
+      <div>frequency</div>
+      <div><input type="range" class="slider" id="filter_freq"></div>
+      <div class="valuedisplay"><span id="filter_freq">0</span> Hz</div>
+
+      <div>Q</div>
+      <div><input type="range" class="slider" id="filter_Q"></div>
+      <div class="valuedisplay"><span id="filter_Q">0</span> %</div>
+
+      <div>length</div>
+      <div><input type="range" class="slider" id="filter_length"></div>
+      <div class="valuedisplay"><span id="filter_length">0</span> ms</div>
+
+      <div>curve</div>
+      <div><input type="range" class="slider" id="filter_curve"></div>
+      <div class="valuedisplay"><span id="filter_curve">0</span> </div>
+   </div>
+
+   <canvas id="envelope_canvas" />
    <script type="text/javascript" src="./drum.js"></script>
 </body>
 

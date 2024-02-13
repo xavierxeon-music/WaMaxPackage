@@ -1,8 +1,29 @@
-const canvas = document.querySelector('#knob_canvas');
+const canvas = document.querySelector('canvas#envelope_canvas');
 const ctx = canvas.getContext("2d");
+
+function showTab(evt, tabName) {
+
+   // Get all elements with class="tabcontent" and hide them
+   let tabcontent = document.getElementsByClassName("tabcontent");
+   for (let i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+   }
+
+   // Get all elements with class="tablinks" and remove the class "active"
+   let tablinks = document.getElementsByClassName("tablinks");
+   for (let i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+   }
+
+   // Show the current tab, and add an "active" class to the button that opened the tab
+   document.getElementById(tabName).style.display = "grid";
+   evt.currentTarget.className += " active";
+}
 
 let x = 100;
 let y = 100;
+
+let values = {};
 
 
 max.bindInlet('doSomething', doSomething);
@@ -25,5 +46,40 @@ function update() {
    ctx.fill();
 }
 
+function connect(name, minValue, maxValue, expo) {
+
+   let slider = document.querySelector("input#" + name);
+   slider.min = 0;
+   slider.max = Math.pow(maxValue - minValue, 1.0 / expo);
+   slider.value = 0;
+
+   let output = document.querySelector("span#" + name);
+   let setValue = function (value) {
+      value = minValue + Math.pow(value, expo);
+      output.innerHTML = Math.round(value);
+
+      values[name] = value;
+
+      max.setDict("dictName", values);
+   }
+
+   slider.oninput = function () {
+      setValue(this.value);
+   }
+   setValue(slider.value);
+}
+
+// init
+
+max.getDict("dictName", function (dict) {
+   values = dict;
+});
+
+connect("pitch_peak", 100.0, 1000.0, 2.0);
+connect("pitch_base", 50.0, 500.0, 2.0);
+connect("pitch_length", 10.0, 500.0, 2.0);
+connect("pitch_curve", -1.0, 1.0, 1.0);
+
 update();
+document.getElementById("defaultOpen").click();
 
