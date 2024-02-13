@@ -46,39 +46,50 @@ function update() {
    ctx.fill();
 }
 
-function connect(name, minValue, maxValue, expo) {
+max.bindInlet('init', init);
+function init(dictName) {
 
-   let slider = document.querySelector("input#" + name);
-   slider.min = 0;
-   slider.max = Math.pow(maxValue - minValue, 1.0 / expo);
-   slider.value = 0;
+   max.outlet("debug", dictName);
+   let connect = function (name, minValue, maxValue, expo) {
 
-   let output = document.querySelector("span#" + name);
-   let setValue = function (value) {
-      value = minValue + Math.pow(value, expo);
-      output.innerHTML = Math.round(value);
+      let slider = document.querySelector("input#" + name);
+      slider.min = 0;
+      slider.max = Math.pow(maxValue - minValue, 1.0 / expo);
+      if (name in values)
+         slider.value = Math.pow(values[name] - minValue, 1.0 / expo);
+      else
+         slider.value = 0.0;
 
-      values[name] = value;
+      let output = document.querySelector("span#" + name);
+      let setValue = function (value) {
+         value = minValue + Math.pow(value, expo);
+         output.innerHTML = Math.round(value);
 
-      max.setDict("dictName", values);
+         values[name] = value;
+
+         max.setDict(dictName, values);
+         max.outlet("bang");
+      }
+
+      slider.oninput = function () {
+         setValue(this.value);
+      }
+      setValue(slider.value);
    }
 
-   slider.oninput = function () {
-      setValue(this.value);
-   }
-   setValue(slider.value);
+   max.getDict(dictName, function (dict) {
+      values = dict;
+      connect("pitch_peak", 100.0, 1000.0, 2.0);
+      connect("pitch_base", 50.0, 500.0, 2.0);
+      connect("pitch_length", 10.0, 500.0, 2.0);
+      connect("pitch_curve", -1.0, 1.0, 1.0);
+   });
 }
 
 // init
 
-max.getDict("dictName", function (dict) {
-   values = dict;
-});
-
-connect("pitch_peak", 100.0, 1000.0, 2.0);
-connect("pitch_base", 50.0, 500.0, 2.0);
-connect("pitch_length", 10.0, 500.0, 2.0);
-connect("pitch_curve", -1.0, 1.0, 1.0);
+if (max.dummy != undefined)
+   init("dummy");
 
 update();
 document.getElementById("defaultOpen").click();

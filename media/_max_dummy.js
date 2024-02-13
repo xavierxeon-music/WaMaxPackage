@@ -3,11 +3,23 @@
 class MaxDummy {
 
    constructor() {
+      this.dummy = true;
    }
 
    bindInlet(name, functionName) { }
-   outlet(message, args) { }
-   getDict(name, functionName) { }
+
+   outlet(message, args) {
+      let text = "";
+      for (let i = 1; i < arguments.length; i++) {
+         text += " " + arguments[i];
+      }
+      console.log(message, text);
+   }
+
+   getDict(name, functionName) {
+      values = {};
+      functionName(values);
+   }
    setDict(name, value) { }
 }
 

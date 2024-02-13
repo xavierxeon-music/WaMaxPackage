@@ -2,8 +2,9 @@
 .tabbar {
    overflow: hidden;
    border: 1px solid #ccc;
-   background-color: #f1f1f1;
+   background-color: #999999;
    width: 260px;
+   height: 20px;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -13,8 +14,7 @@
    border: none;
    outline: none;
    cursor: pointer;
-   padding: 14px 16px;
-   transition: 0.3s;
+   padding: 2px 8px;
 }
 
 /* Change background color of buttons on hover */
