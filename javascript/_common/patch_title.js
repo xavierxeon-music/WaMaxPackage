@@ -2,19 +2,24 @@ autowatch = 1;
 
 // inlets and outlets
 inlets = 1;
-setinletassist(0, "bang");
+setinletassist(0, "me / top");
 
 outlets = 1;
 setoutletassist(0, "title");
 
-var embedded = false;
-declareattribute("embedded");
 
-function bang() {
+function me() {
 
-   if (embedded)
-      outlet(0, patcher.parentpatcher.name);
-   else
-      outlet(0, patcher.name);
+   outlet(0, patcher.name);
+}
+
+function top() {
+
+   topPatcher = patcher;
+   while (topPatcher.parentpatcher)
+      topPatcher = topPatcher.parentpatcher;
+
+   outlet(0, topPatcher.name);
+
 }
 
