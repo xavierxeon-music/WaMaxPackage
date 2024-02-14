@@ -6,8 +6,8 @@ dictName = undefined;
 
 let connectionMap = {};
 let graphCategories = {};
-var minLength = 10;
-var maxLength = 500;
+const minLength = 10;
+const maxLength = 500;
 
 class Connection {
 
@@ -17,6 +17,8 @@ class Connection {
       this.minValue = minValue;
       this.maxValue = maxValue;
       this.expo = expo;
+
+
 
       connectionMap[key] = this;
 
@@ -38,12 +40,12 @@ class Connection {
       this.applySliderValue();
    }
 
-   readFromDict() {
+   setSliderValue(value) {
 
-      if (this.key in valueDict)
-         this.slider.value = Math.pow(valueDict[this.key] - this.minValue, 1.0 / this.expo);
+      this.slider.value = Math.pow(value - this.minValue, 1.0 / this.expo);
 
-      applySliderValue();
+      // apply to output
+      this.output.innerHTML = Math.round(value);
    }
 
    applySliderValue() {
@@ -59,7 +61,7 @@ class Connection {
          max.outlet("bang");
       }
 
-      update();
+      updateGraphs();
    }
 }
 
@@ -83,7 +85,7 @@ function showTab(evt, tabName) {
 }
 
 
-function update() {
+function updateGraphs() {
    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
    let padding = 5;
@@ -157,21 +159,26 @@ function update() {
 max.bindInlet('load', load);
 function load(maxDictName) {
 
+   max.outlet("debug", maxDictName);
    dictName = maxDictName;
 
    max.getDict(dictName, function (maxDict) {
 
       for (let key in maxDict) {
-         valueDict[key] = maxDict[key];
+         let value = maxDict[key];
+         valueDict[key] = value;
+         max.outlet("debug", "READ", key, value);
 
          let connection = connectionMap[key];
-         connection.readFromDict();
+         connection.setSliderValue(value);
       }
 
       if (0 == Object.keys(maxDict).length) {
          max.setDict(dictName, valueDict);
          max.outlet("bang");
       }
+
+      updateGraphs();
    });
 }
 
