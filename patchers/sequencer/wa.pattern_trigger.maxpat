@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 5,
-			"revision" : 7,
+			"minor" : 6,
+			"revision" : 1,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 795.0, 199.0, 2794.0, 1311.0 ],
+		"rect" : [ 34.0, 115.0, 2953.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -76,7 +76,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "message",
+					"comment" : "edit /reload",
 					"id" : "obj-1",
 					"index" : 3,
 					"maxclass" : "inlet",
@@ -119,7 +119,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 170.0, 30.0, 30.0, 30.0 ]
 				}
 
@@ -132,7 +132,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 30.0, 30.0, 30.0, 30.0 ]
 				}
 
