@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 227.0, 3426.0, 1339.0 ],
+		"rect" : [ 34.0, 367.0, 3765.0, 1199.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -94,25 +94,7 @@
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 300.0, 405.0, 105.0, 22.0 ],
 					"restore" : [ 						{
-							"filter_curve" : -100,
-							"filter_end" : 300,
-							"filter_length" : 10,
-							"filter_start" : 300,
-							"noise_curve" : -100,
-							"noise_end" : 0,
-							"noise_length" : 10,
-							"noise_start" : 0,
-							"pitch_curve" : -100,
-							"pitch_end" : 50,
-							"pitch_length" : 10,
-							"pitch_start" : 100,
-							"q_curve" : -100,
-							"q_end" : 0,
-							"q_length" : 10,
-							"q_start" : 0,
-							"source_curve" : -100,
-							"source_length" : 10,
-							"source_mix" : 0
+
 						}
  ],
 					"saved_object_attributes" : 					{
@@ -204,8 +186,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 30.0, 75.0, 105.0, 22.0 ],
-					"text" : "readfile drum.html"
+					"patching_rect" : [ 30.0, 75.0, 147.0, 22.0 ],
+					"text" : "readfile drum_control.html"
 				}
 
 			}
