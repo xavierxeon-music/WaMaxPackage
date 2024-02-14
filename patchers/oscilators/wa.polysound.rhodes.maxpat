@@ -990,7 +990,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
 					"patching_rect" : [ 192.0, 585.0, 54.0, 22.0 ],
-					"text" : "wa.pan~"
+					"text" : "wa.crossfade~"
 				}
 
 			}

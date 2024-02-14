@@ -95,7 +95,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
 					"patching_rect" : [ 105.0, 435.0, 54.0, 22.0 ],
-					"text" : "wa.pan~"
+					"text" : "wa.crossfade~"
 				}
 
 			}
@@ -107,7 +107,7 @@
 					"numoutlets" : 2,
 					"outlettype" : [ "signal", "signal" ],
 					"patching_rect" : [ 280.0, 435.0, 54.0, 22.0 ],
-					"text" : "wa.pan~"
+					"text" : "wa.crossfade~"
 				}
 
 			}
