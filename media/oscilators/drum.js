@@ -93,14 +93,20 @@ function update() {
    let fullHeight = canvas.height - 2 * padding;
    let heightScale = fullHeight / 1.0;
 
-   let drawCurve = function (startHeight, endHeight, length, color) {
+   let drawCurve = function (startHeight, endHeight, length, curve, color) {
 
-      length = length - minLength;
+      length = (length - minLength) * lengthScale;
+      startHeight = (1.0 - startHeight) * heightScale;
+      endHeight = (1.0 - endHeight) * heightScale;
+
+      let midScale = (curve + 100.0) / 200.0;
+      let midX = 0 + midScale * length;
+      let midY = endHeight + midScale * (startHeight - endHeight)
 
       ctx.beginPath();
-      // ctx.moveTo(padding, padding + fullHeight);
-      ctx.lineTo(padding, padding + ((1.0 - startHeight) * heightScale));
-      ctx.lineTo(padding + (length * lengthScale), padding + ((1.0 - endHeight) * heightScale));
+      ctx.moveTo(padding, padding + startHeight);
+      ctx.lineTo(midX, midY);
+      ctx.lineTo(padding + length, padding + endHeight);
       ctx.lineWidth = 5;
       ctx.strokeStyle = color;
       ctx.stroke();
@@ -111,7 +117,7 @@ function update() {
    if (soundCategory) {
       let startHeight = 1.0;
       let endHeight = 0.0;
-      drawCurve(startHeight, endHeight, valueDict["source_length"], soundCategory[2]);
+      drawCurve(startHeight, endHeight, valueDict["source_length"], valueDict["source_curve"], soundCategory[2]);
    }
 
    let pitchCategory = graphCategories["pitch"];
@@ -119,7 +125,7 @@ function update() {
       let scale = 1.0 / (pitchCategory[1] - pitchCategory[0]);
       let startHeight = valueDict["pitch_start"] * scale;
       let endHeight = valueDict["pitch_end"] * scale;
-      drawCurve(startHeight, endHeight, valueDict["pitch_length"], pitchCategory[2]);
+      drawCurve(startHeight, endHeight, valueDict["pitch_length"], valueDict["pitch_curve"], pitchCategory[2]);
    }
 
    let noiseCategory = graphCategories["noise"];
@@ -127,7 +133,7 @@ function update() {
       let scale = 1.0 / (noiseCategory[1] - noiseCategory[0]);
       let startHeight = valueDict["noise_start"] * scale;
       let endHeight = valueDict["noise_end"] * scale;
-      drawCurve(startHeight, endHeight, valueDict["noise_length"], noiseCategory[2]);
+      drawCurve(startHeight, endHeight, valueDict["noise_length"], valueDict["noise_curve"], noiseCategory[2]);
    }
 
    let filterCategory = graphCategories["filter"];
@@ -135,7 +141,7 @@ function update() {
       let scale = 1.0 / (filterCategory[1] - filterCategory[0]);
       let startHeight = valueDict["filter_start"] * scale;
       let endHeight = valueDict["filter_end"] * scale;
-      drawCurve(startHeight, endHeight, valueDict["filter_length"], filterCategory[2]);
+      drawCurve(startHeight, endHeight, valueDict["filter_length"], valueDict["filter_curve"], filterCategory[2]);
    }
 
    let qCategory = graphCategories["q"];
@@ -143,7 +149,7 @@ function update() {
       let scale = 1.0 / (qCategory[1] - qCategory[0]);
       let startHeight = valueDict["q_start"] * scale;
       let endHeight = valueDict["q_end"] * scale;
-      drawCurve(startHeight, endHeight, valueDict["q_length"], qCategory[2]);
+      drawCurve(startHeight, endHeight, valueDict["q_length"], valueDict["q_curve"], qCategory[2]);
    }
 
 }
