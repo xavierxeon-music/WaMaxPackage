@@ -3,7 +3,7 @@
 
 <head>
    <meta charset="UTF-8">
-   <title>Test</title>
+   <title>Drum Control</title>
    <link rel="stylesheet" type="text/css" href="./../_max_gui.css" />
    <script type="text/javascript" src="./../_max_dummy.js"></script>
    <link rel="stylesheet" type="text/css" href="./drum_control.css" />
@@ -11,11 +11,12 @@
 
 <body>
    <div class="tabbar" width="200">
-      <button class="tablinks" onclick="showTab(event, 'Sound')" style=" color:#ff0000;" id="defaultOpen">Sound</button>
-      <button class="tablinks" onclick="showTab(event, 'Pitch')" style=" color:#0000ff;">Pitch</button>
-      <button class="tablinks" onclick="showTab(event, 'Noise')" style="color:#00ff00;">Noise</button>
-      <button class="tablinks" onclick="showTab(event, 'Filter' )" style=" color:#ffff00;">Filter</button>
-      <button class="tablinks" onclick="showTab(event, 'Q' )" style=" color:#00ffff;">Q</button>
+      <button class="tabbutton" onclick="showTab(event, 'Sound')" style=" color:#ff0000;"
+         id="defaultOpen">Sound</button>
+      <button class="tabbutton" onclick="showTab(event, 'Pitch')" style=" color:#0000ff;">Pitch</button>
+      <button class="tabbutton" onclick="showTab(event, 'Noise')" style="color:#00ff00;">Noise</button>
+      <button class="tabbutton" onclick="showTab(event, 'Filter' )" style=" color:#ffff00;">Filter</button>
+      <button class="tabbutton" onclick="showTab(event, 'Q' )" style=" color:#00ffff;">Q</button>
    </div>
 
    <div id="Pitch" class="tabcontent">
@@ -38,9 +39,15 @@
    </div>
 
    <div id="Sound" class="tabcontent">
+
+      <div class="blank"> - </div>
+      <div> sine / saw </div>
+      <div class="blank"> - </div>
+
       <div>mix</div>
       <div><input type="range" class="slider" id="source_mix"></div>
       <div class="valuedisplay"><span id="source_mix">0</span> %</div>
+
 
       <div>length</div>
       <div><input type="range" class="slider" id="source_length"></div>
@@ -49,8 +56,6 @@
       <div>curve</div>
       <div><input type="range" class="slider" id="source_curve"></div>
       <div class="valuedisplay"><span id="source_curve">0</span></div>
-
-      <div class="blank"> - </div>
 
    </div>
 
@@ -110,7 +115,16 @@
    </div>
 
    <canvas id="envelope_canvas" />
+
    <script type="text/javascript" src="./drum_control.js"></script>
+   <script type="text/javascript">
+      init();
+      if (max.dummy != undefined)
+         load("dummy");
+
+      update();
+      document.getElementById("defaultOpen").click();
+   </script>
 </body>
 
 </html>
