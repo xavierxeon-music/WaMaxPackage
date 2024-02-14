@@ -1,0 +1,9 @@
+{
+	"default" : 	{
+		"accentcolor" : [ 0.784314, 0.145098, 0.023529, 1.0 ]
+	}
+,
+	"parentstyle" : "",
+	"name" : "wa.admin",
+	"multi" : 0
+}

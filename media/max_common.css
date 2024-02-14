@@ -1,0 +1,74 @@
+body {
+   overflow: hidden;
+   background: #111111;
+   color: #eeeeee;
+}
+
+/* tabs */
+
+div.tabbar {
+   overflow: hidden;
+   border: 1px solid #ccc;
+   background-color: #777777;
+   box-sizing: border-box;
+}
+
+div.tabbar button {
+   background-color: inherit;
+   float: left;
+   border: none;
+   outline: none;
+   cursor: pointer;
+   padding: 2px 8px;
+   font-size: 12px;
+}
+
+div.tabbar button:hover {
+   background-color: #999999;
+}
+
+div.tabbar button.active {
+   background-color: #ccc;
+}
+
+div.tabcontent {
+   display: grid;
+   padding: 6px 6px;
+   border: 1px solid #ccc;
+   background: #373737;
+   border-top: none;
+   font-size: 14px;
+   box-sizing: border-box;
+}
+
+div.blank {
+   color: #373737;
+}
+
+/* slider */
+
+input.slider {
+   -webkit-appearance: none;
+   appearance: none;
+   background: #dddddd;
+   width: 100%;
+   height: 2px;
+   vertical-align: middle;
+}
+
+input.slider::-webkit-slider-thumb {
+   -webkit-appearance: none;
+   appearance: none;
+   width: 5px;
+   height: 10px;
+   background: #aaaaaa;
+   cursor: pointer;
+}
+
+/* canvas */
+
+canvas {
+   background: #373737;
+   border: 1px solid #eeeeee;
+   box-sizing: border-box;
+}

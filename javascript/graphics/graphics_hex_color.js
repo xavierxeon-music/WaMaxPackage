@@ -17,9 +17,9 @@ function makeHex(number) {
 }
 
 function list(red, green, blue) {
-   var hex = makeHex(red);
-   hex += makeHex(green);
-   hex += makeHex(blue);
+   var hex = makeHex(red * 255);
+   hex += makeHex(green * 255);
+   hex += makeHex(blue * 255);
 
    outlet(0, hex);
 }

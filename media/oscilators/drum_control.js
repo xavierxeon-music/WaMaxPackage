@@ -18,8 +18,6 @@ class Connection {
       this.maxValue = maxValue;
       this.expo = expo;
 
-
-
       connectionMap[key] = this;
 
       this.slider = document.querySelector("input#" + key);
@@ -159,7 +157,6 @@ function updateGraphs() {
 max.bindInlet('load', load);
 function load(maxDictName) {
 
-   max.outlet("debug", maxDictName);
    dictName = maxDictName;
 
    max.getDict(dictName, function (maxDict) {
@@ -167,7 +164,6 @@ function load(maxDictName) {
       for (let key in maxDict) {
          let value = maxDict[key];
          valueDict[key] = value;
-         max.outlet("debug", "READ", key, value);
 
          let connection = connectionMap[key];
          connection.setSliderValue(value);
@@ -184,13 +180,10 @@ function load(maxDictName) {
 
 function init() {
 
-   try {
-      const request = new XMLHttpRequest();
-      request.open('GET', './drum_defaults.json', false);
-      request.send(null);
-      valueDict = JSON.parse(request.responseText);
-   }
-   catch (err) { }
+   const request = new XMLHttpRequest();
+   request.open('GET', './drum_defaults.json', false);
+   request.send(null);
+   valueDict = JSON.parse(request.responseText);
 
    const sm = new Connection("source_mix", 0.0, 100.0, 2.0);
    const sl = new Connection("source_length", minLength, maxLength, 2.0);
@@ -221,7 +214,4 @@ function init() {
    const qc = new Connection("q_curve", -100.0, 100.0, 1.0);
    graphCategories["q"] = [0.0, 100.0, "#00ffff"];
 }
-
-// main
-
 
