@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 339.0, 3765.0, 1227.0 ],
+		"rect" : [ 34.0, 395.0, 3048.0, 1171.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -509,7 +509,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 339.0, 3765.0, 1227.0 ],
+						"rect" : [ 34.0, 395.0, 3048.0, 1171.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -536,6 +536,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "OpenGrid",
+						"showontab" : 0,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
@@ -840,7 +841,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 255.0, 3765.0, 1311.0 ],
+						"rect" : [ 34.0, 395.0, 3048.0, 1171.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -867,6 +868,7 @@
 						"tags" : "",
 						"style" : "",
 						"subpatcher_template" : "OpenGrid",
+						"showontab" : 0,
 						"assistshowspatchername" : 0,
 						"boxes" : [ 							{
 								"box" : 								{
@@ -1426,7 +1428,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 34.0, 339.0, 3765.0, 1227.0 ],
+						"rect" : [ 34.0, 367.0, 3765.0, 1199.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1454,7 +1456,6 @@
 						"style" : "",
 						"subpatcher_template" : "OpenGrid",
 						"assistshowspatchername" : 0,
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-1",
@@ -1717,10 +1718,11 @@
 , 			{
 				"box" : 				{
 					"id" : "obj-17",
+					"linecount" : 4,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 135.0, 226.0, 188.0, 20.0 ],
+					"patching_rect" : [ 135.0, 195.0, 75.0, 60.0 ],
 					"text" : "freq / mix / noise / envelope / filter"
 				}
 
