@@ -17,8 +17,8 @@ class MaxDummy {
    }
 
    getDict(name, functionName) {
-      values = {};
-      functionName(values);
+      let localDict = {};
+      functionName(localDict);
    }
    setDict(name, value) { }
 }

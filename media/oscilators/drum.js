@@ -1,6 +1,60 @@
 const canvas = document.querySelector('canvas#envelope_canvas');
 const ctx = canvas.getContext("2d");
 
+let valueDict = {}; // the main dictionary
+dictName = undefined;
+
+let connectionMap = {}
+
+class Connection {
+
+   constructor(key, minValue, maxValue, expo) {
+
+      this.key = key;
+      this.minValue = minValue;
+      this.maxValue = maxValue;
+      this.expo = expo;
+
+      connectionMap[key] = this;
+      valueDict[key] = minValue;
+
+      this.slider = document.querySelector("input#" + key);
+      this.slider.min = 0;
+      this.slider.max = Math.pow(maxValue - minValue, 1.0 / expo);
+      this.slider.value = 0.0;
+
+      this.output = document.querySelector("span#" + key);
+
+      // arrow function do not have their own context
+      this.slider.oninput = () => {
+         this.applySliderValue();
+      }
+   }
+
+   readFromDict() {
+      if (this.key in valueDict)
+         slider.value = Math.pow(valueDict[this.key] - this.minValue, 1.0 / this.expo);
+
+      applySliderValue();
+   }
+
+   applySliderValue() {
+      let value = this.slider.value;
+
+      value = this.minValue + Math.pow(value, this.expo);
+      this.output.innerHTML = Math.round(value);
+
+      valueDict[this.key] = value;
+
+      if (dictName) {
+         max.setDict(dictName, valueDict);
+         max.outlet("bang");
+      }
+
+      update();
+   }
+}
+
 function showTab(evt, tabName) {
 
    // Get all elements with class="tabcontent" and hide them
@@ -20,22 +74,21 @@ function showTab(evt, tabName) {
    evt.currentTarget.className += " active";
 }
 
-let values = {};
 
 function update() {
    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
    let padding = 5;
    let fullLength = canvas.width - 2 * padding;
-   let lengthScale = fullLength / 1000.0;
+   let lengthScale = fullLength / 500.0;
 
    let fullHeight = canvas.height - 2 * padding;
    let heightScale = fullHeight / 1.0;
 
    let drawCurve = function (heightKey, lengthKey, color) {
 
-      let length = lengthKey in values ? values[lengthKey] : fullLength;
-      let height = heightKey in values ? values[heightKey] / 100.0 : 0.0;
+      let length = lengthKey in valueDict ? valueDict[lengthKey] : fullLength;
+      let height = heightKey in valueDict ? valueDict[heightKey] / 100.0 : 0.0;
 
       ctx.beginPath();
       ctx.moveTo(padding, padding + fullHeight);
@@ -48,68 +101,52 @@ function update() {
    }
 
    drawCurve("source_mix", "source_length", "#ff0000");
-   drawCurve("noise_mix", "noise_length", "#00ff00");
+   drawCurve("noise_start", "noise_length", "#00ff00");
    // drawCurve("filter_length", "source_length", "#0000ff");
 
 }
 
 max.bindInlet('init', init);
-function init(dictName) {
+function init(maxDictName) {
 
-   max.outlet("debug", dictName);
-   let connect = function (name, minValue, maxValue, expo) {
-
-      let slider = document.querySelector("input#" + name);
-      slider.min = 0;
-      slider.max = Math.pow(maxValue - minValue, 1.0 / expo);
-      if (name in values)
-         slider.value = Math.pow(values[name] - minValue, 1.0 / expo);
-      else
-         slider.value = 0.0;
-
-      let output = document.querySelector("span#" + name);
-      let setValue = function (value) {
-         value = minValue + Math.pow(value, expo);
-         output.innerHTML = Math.round(value);
-
-         values[name] = value;
-
-         max.setDict(dictName, values);
-         max.outlet("bang");
-
-         update();
-      }
-
-      slider.oninput = function () {
-         setValue(this.value);
-      }
-      setValue(slider.value);
-   }
+   dictName = maxDictName;
 
    max.getDict(dictName, function (dict) {
-      values = dict;
 
-      connect("pitch_peak", 100.0, 1000.0, 2.0);
-      connect("pitch_base", 50.0, 500.0, 2.0);
-      connect("pitch_length", 10.0, 500.0, 2.0);
-      connect("pitch_curve", -100.0, 100.0, 1.0);
+      for (let key in dict) {
+         valueDict[key] = dict[key];
 
-      connect("source_mix", 0.0, 100.0, 2.0);
-      connect("source_length", 10.0, 500.0, 2.0);
-      connect("source_curve", -100.0, 100.0, 1.0);
-
-      connect("noise_mix", 0.0, 100.0, 2.0);
-      connect("noise_length", 10.0, 500.0, 2.0);
-      connect("noise_curve", -100.0, 100.0, 1.0);
-
-      connect("filter_freq", 300.0, 1300.0, 2.0);
-      connect("filter_Q", 0.0, 100.0, 2.0);
-      connect("filter_length", 10.0, 500.0, 2.0);
-      connect("filter_curve", -100.0, 100.0, 1.0);
+         let connection = dict[key];
+         connection.readFromDict();
+      }
    });
 }
 
 // init
+
+const sm = new Connection("source_mix", 0.0, 100.0, 2.0);
+const sl = new Connection("source_length", 10.0, 500.0, 2.0);
+const sc = new Connection("source_curve", -100.0, 100.0, 1.0);
+
+const ps = new Connection("pitch_start", 100.0, 1000.0, 2.0);
+const pe = new Connection("pitch_end", 50.0, 500.0, 2.0);
+const pl = new Connection("pitch_length", 10.0, 500.0, 2.0);
+const pc = new Connection("pitch_curve", -100.0, 100.0, 1.0);
+
+const ns = new Connection("noise_start", 0.0, 100.0, 2.0);
+const ne = new Connection("noise_end", 0.0, 100.0, 2.0);
+const nl = new Connection("noise_length", 10.0, 500.0, 2.0);
+const nc = new Connection("noise_curve", -100.0, 100.0, 1.0);
+
+const fs = new Connection("filter_start", 300.0, 3000.0, 2.0);
+const fe = new Connection("filter_end", 300.0, 3000.0, 2.0);
+const fl = new Connection("filter_length", 10.0, 500.0, 2.0);
+const fc = new Connection("filter_curve", -100.0, 100.0, 1.0);
+
+const qs = new Connection("q_start", 0.0, 99.0, 2.0);
+const qe = new Connection("q_end", 0.0, 99.0, 2.0);
+const ql = new Connection("q_length", 10.0, 500.0, 2.0);
+const qc = new Connection("q_curve", -100.0, 100.0, 1.0);
 
 if (max.dummy != undefined)
    init("dummy");

@@ -1,9 +1,14 @@
+body {
+   margin-top: 11px;
+   margin-left: 14px;
+}
+
 /* Style the tab */
 div.tabbar {
    overflow: hidden;
    border: 1px solid #ccc;
    background-color: #777777;
-   width: 190px;
+   width: 210px;
    height: 16px;
 }
 
@@ -36,7 +41,7 @@ div.tabcontent {
    border: 1px solid #ccc;
    background: #373737;
    border-top: none;
-   width: 178px;
+   width: 198px;
    height: 70px;
    font-size: 14px;
 }
@@ -72,6 +77,6 @@ input.slider::-webkit-slider-thumb {
 canvas {
    background: #373737;
    border: 1px solid #eeeeee;
-   width: 190px;
+   width: 210px;
    height: 40px;
 }

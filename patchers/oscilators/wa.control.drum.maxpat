@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 6,
-			"revision" : 0,
+			"revision" : 1,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 199.0, 3048.0, 1367.0 ],
+		"rect" : [ 34.0, 227.0, 3048.0, 1339.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -45,8 +45,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 300.0, 315.0, 138.0, 22.0 ],
-					"presentation_linecount" : 2,
+					"patching_rect" : [ 344.0, 328.0, 138.0, 22.0 ],
 					"text" : "name #0_drumValues"
 				}
 
@@ -58,7 +57,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "bang" ],
-					"patching_rect" : [ 256.0, 270.0, 63.0, 22.0 ],
+					"patching_rect" : [ 300.0, 283.0, 63.0, 22.0 ],
 					"text" : "trigger b b"
 				}
 
@@ -70,7 +69,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 256.0, 225.0, 58.0, 22.0 ],
+					"patching_rect" : [ 300.0, 238.0, 58.0, 22.0 ],
 					"text" : "loadbang"
 				}
 
@@ -82,22 +81,10 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 256.0, 407.0, 99.0, 22.0 ],
+					"patching_rect" : [ 300.0, 420.0, 99.0, 22.0 ],
 					"restore" : [ 						{
-							"filter_Q" : 0,
-							"filter_curve" : -1,
-							"filter_freq" : 300,
-							"filter_length" : 10,
-							"noise_curve" : -1,
-							"noise_length" : 410,
-							"noise_mix" : 49,
-							"pitch_base" : 50,
-							"pitch_curve" : 0,
-							"pitch_length" : 494,
-							"pitch_peak" : 100,
-							"source_curve" : -1,
-							"source_length" : 371,
-							"source_mix" : 64
+							"filter_curve" : -50,
+							"source_mix" : 0
 						}
  ],
 					"saved_object_attributes" : 					{
@@ -117,7 +104,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 5,
 					"outlettype" : [ "dictionary", "", "", "", "" ],
-					"patching_rect" : [ 256.0, 360.0, 61.0, 22.0 ],
+					"patching_rect" : [ 300.0, 373.0, 61.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"legacy" : 0,
@@ -125,6 +112,7 @@
 						"parameter_mappable" : 0
 					}
 ,
+					"style" : "wa.buffer",
 					"text" : "dict",
 					"varname" : "dict"
 				}
@@ -134,11 +122,11 @@
 				"box" : 				{
 					"id" : "obj-61",
 					"maxclass" : "newobj",
-					"numinlets" : 2,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 29.0, 304.0, 95.0, 22.0 ],
-					"text" : "route onloadend"
+					"numinlets" : 3,
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "" ],
+					"patching_rect" : [ 29.0, 304.0, 125.0, 22.0 ],
+					"text" : "route onloadend bang"
 				}
 
 			}
@@ -173,9 +161,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 30.0, 120.0, 210.0, 165.0 ],
+					"patching_rect" : [ 30.0, 120.0, 240.0, 165.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 210.0, 165.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 240.0, 165.0 ],
 					"rendermode" : 0,
 					"url" : "file://drum.html"
 				}
@@ -213,7 +201,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 376.0, 407.0, 30.0, 30.0 ]
+					"patching_rect" : [ 420.0, 420.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -308,10 +296,20 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-65", 0 ],
-					"midpoints" : [ 265.5, 450.0, 237.0, 450.0, 237.0, 356.0, 265.5, 356.0 ],
+					"midpoints" : [ 309.5, 463.0, 281.0, 463.0, 281.0, 369.0, 309.5, 369.0 ],
 					"source" : [ "obj-68", 0 ]
 				}
 
+			}
+ ],
+		"styles" : [ 			{
+				"name" : "wa.buffer",
+				"default" : 				{
+					"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+				}
+,
+				"parentstyle" : "",
+				"multi" : 0
 			}
  ]
 	}

@@ -11,20 +11,21 @@
 
 <body>
    <div class="tabbar" width="200">
-      <button class="tablinks" onclick="showTab(event, 'Pitch')" style=" color:#0000ff;" id="defaultOpen">Pitch</button>
-      <button class="tablinks" onclick="showTab(event, 'Sound')" style=" color:#ff0000;">Sound</button>
+      <button class="tablinks" onclick="showTab(event, 'Sound')" style=" color:#ff0000;" id="defaultOpen">Sound</button>
+      <button class="tablinks" onclick="showTab(event, 'Pitch')" style=" color:#0000ff;">Pitch</button>
       <button class="tablinks" onclick="showTab(event, 'Noise')" style="color:#00ff00;">Noise</button>
       <button class="tablinks" onclick="showTab(event, 'Filter' )" style=" color:#ffff00;">Filter</button>
+      <button class="tablinks" onclick="showTab(event, 'Q' )" style=" color:#00ffff;">Q</button>
    </div>
 
    <div id="Pitch" class="tabcontent">
-      <div>peak</div>
-      <div><input type="range" class="slider" id="pitch_peak"></div>
-      <div class="valuedisplay"><span id="pitch_peak">0</span> Hz</div>
+      <div>start</div>
+      <div><input type="range" class="slider" id="pitch_start"></div>
+      <div class="valuedisplay"><span id="pitch_start">0</span> Hz</div>
 
-      <div>base</div>
-      <div><input type="range" class="slider" id="pitch_base"></div>
-      <div class="valuedisplay"><span id="pitch_base">0</span> Hz</div>
+      <div>end</div>
+      <div><input type="range" class="slider" id="pitch_end"></div>
+      <div class="valuedisplay"><span id="pitch_end">0</span> Hz</div>
 
       <div>length</div>
       <div><input type="range" class="slider" id="pitch_length"></div>
@@ -55,8 +56,12 @@
 
    <div id="Noise" class="tabcontent">
       <div>mix</div>
-      <div><input type="range" class="slider" id="noise_mix"></div>
-      <div class="valuedisplay"><span id="noise_mix">0</span> %</div>
+      <div><input type="range" class="slider" id="noise_start"></div>
+      <div class="valuedisplay"><span id="noise_start">0</span> %</div>
+
+      <div>mix</div>
+      <div><input type="range" class="slider" id="noise_end"></div>
+      <div class="valuedisplay"><span id="noise_end">0</span> %</div>
 
       <div>length</div>
       <div><input type="range" class="slider" id="noise_length"></div>
@@ -66,17 +71,16 @@
       <div><input type="range" class="slider" id="noise_curve"></div>
       <div class="valuedisplay"><span id="noise_curve">0</span></div>
 
-      <div class="blank"> - </div>
    </div>
 
    <div id="Filter" class="tabcontent">
-      <div>frequency</div>
-      <div><input type="range" class="slider" id="filter_freq"></div>
-      <div class="valuedisplay"><span id="filter_freq">0</span> Hz</div>
+      <div>start</div>
+      <div><input type="range" class="slider" id="filter_start"></div>
+      <div class="valuedisplay"><span id="filter_start">0</span> Hz</div>
 
-      <div>Q</div>
-      <div><input type="range" class="slider" id="filter_Q"></div>
-      <div class="valuedisplay"><span id="filter_Q">0</span> %</div>
+      <div>end</div>
+      <div><input type="range" class="slider" id="filter_end"></div>
+      <div class="valuedisplay"><span id="filter_end">0</span> Hz</div>
 
       <div>length</div>
       <div><input type="range" class="slider" id="filter_length"></div>
@@ -85,6 +89,24 @@
       <div>curve</div>
       <div><input type="range" class="slider" id="filter_curve"></div>
       <div class="valuedisplay"><span id="filter_curve">0</span> </div>
+   </div>
+
+   <div id="Q" class="tabcontent">
+      <div>start</div>
+      <div><input type="range" class="slider" id="q_start"></div>
+      <div class="valuedisplay"><span id="q_start">0</span> %</div>
+
+      <div>end</div>
+      <div><input type="range" class="slider" id="q_end"></div>
+      <div class="valuedisplay"><span id="q_end">0</span> %</div>
+
+      <div>length</div>
+      <div><input type="range" class="slider" id="q_length"></div>
+      <div class="valuedisplay"><span id="q_length">0</span> ms</div>
+
+      <div>curve</div>
+      <div><input type="range" class="slider" id="q_curve"></div>
+      <div class="valuedisplay"><span id="q_curve">0</span> </div>
    </div>
 
    <canvas id="envelope_canvas" />
