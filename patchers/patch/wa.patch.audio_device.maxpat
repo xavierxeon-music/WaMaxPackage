@@ -116,8 +116,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 622.0, 392.0, 69.0, 35.0 ],
-					"text" : ";\rdsp iovs 32"
+					"patching_rect" : [ 622.0, 392.0, 76.0, 35.0 ],
+					"text" : ";\rdsp iovs 128"
 				}
 
 			}
@@ -197,7 +197,7 @@
 				"box" : 				{
 					"comment" : "start",
 					"id" : "obj-3",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -1284,6 +1284,15 @@
 
 			}
  ],
+		"dependency_cache" : [ 			{
+				"name" : "audio_device_index.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
+				"patcherrelativepath" : "../../javascript/setup",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+ ],
+		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.patcher",
 				"default" : 				{

@@ -13,6 +13,10 @@
             <digest/>
             <description>bang on time</description>
         </entry>
+        <entry id="2" name="click">
+            <digest/>
+            <description>signal clock</description>
+        </entry>
     </misc>
     <objarglist>
         <objarg name="1" optional="1" type="symbol">
