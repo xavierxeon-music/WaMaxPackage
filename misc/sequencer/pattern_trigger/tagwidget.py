@@ -36,7 +36,7 @@ class TagWidget(DataView):
       self.addAction = tagToolBar.addAction(Icon.app('new_tag'), 'Add Tag', self._add)
       self.addAction.setEnabled(False)
 
-      tagToolBar.addAction(Icon.app('delete_tag'), 'Remove Remove', self._remove)
+      tagToolBar.addAction(Icon.app('delete_tag'), 'Remove Tag', self._remove)
 
       tagToolBar.addSeparator()
 
