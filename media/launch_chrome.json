@@ -5,7 +5,8 @@
    "version": "0.2.0",
    "configurations": [
       {
-         "name": "Launch Chrome",
+         "name": "Rack Small",
+         "file": "${workspaceFolder}/maxgui.html?content=mixer/rack_small_ui",
          "request": "launch",
          "type": "chrome",
          "includeLaunchArgs": true,
@@ -13,8 +14,7 @@
             "--allow-file-access-from-files"
          ],
          "url": "http://localhost:8080",
-         "webRoot": "${workspaceFolder}",
-         "file": "${workspaceFolder}/maxgui.html?content=mixer/rack_small_ui",
+         "webRoot": "${workspaceFolder}"
       }
    ]
 }

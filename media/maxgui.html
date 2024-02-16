@@ -3,27 +3,28 @@
 
 <head>
    <meta charset="UTF-8">
-   <title>DAW Ports</title>
+   <title>Max gui</title>
    <link rel="stylesheet" type="text/css" href="./maxgui.css" />
    <script type="text/javascript" src="./maxgui.js"></script>
 </head>
 
 <body>
-   <h2>MAX GUI</h2>
-
    <script>
       let myUrl = new URL(window.location.href);
-      let content = myUrl.searchParams.get("content");
 
-      const style = document.createElement("link");
-      style.setAttribute("rel", "stylesheet");
-      style.setAttribute("type", "text/css");
-      style.setAttribute("href", content + ".css");
-      document.body.appendChild(style);
+      let stylePath = myUrl.searchParams.get("style");
+      if (stylePath) {
+         const style = document.createElement("link");
+         style.setAttribute("rel", "stylesheet");
+         style.setAttribute("type", "text/css");
+         style.setAttribute("href", stylePath + ".css");
+         document.body.appendChild(style);
+      }
 
+      let jsPath = myUrl.searchParams.get("content");
       const script = document.createElement("script");
       script.setAttribute("type", "text/javascript");
-      script.setAttribute("src", content + ".js");
+      script.setAttribute("src", jsPath + ".js");
       document.body.appendChild(script);
    </script>
 </body>

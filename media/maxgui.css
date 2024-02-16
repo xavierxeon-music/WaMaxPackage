@@ -44,7 +44,7 @@ div.tabbar button.active {
 
 div.tabcontent {
    display: grid;
-   padding: 6px 6px;
+   padding: 5px 5px;
    border: 1px solid #ccc;
    background: #373737;
    border-top: none;
