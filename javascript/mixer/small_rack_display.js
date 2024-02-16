@@ -13,14 +13,14 @@ include("_portDevice.js");
 
 // set up
 
-var daw = new PortDevice("daw");
-var portDict = new Dict("dawDisplay", updateFunction);
+var rack = new PortDevice("small_rack");
+var portDict = new Dict("smallRackDisplay", updateFunction);
 
 //////////////////////////////////////////
 
 function loadbang() {
 
-   daw.register(updateFunction);
+   rack.register(updateFunction);
 
    portDict.clear();
    updateFunction();
@@ -28,15 +28,15 @@ function loadbang() {
 
 function notifydeleted() {
 
-   daw.deregister();
+   rack.deregister();
 }
 
 updateFunction.local = 1;
 function updateFunction() {
 
-   // print("update"); daw.debug();
+   // print("update"); rack.debug();
 
-   daw.copyTo(portDict);
+   rack.copyTo(portDict);
    outlet(0, "bang");
 }
 

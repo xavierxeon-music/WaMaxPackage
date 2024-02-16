@@ -1,19 +1,20 @@
-createTitle("small rack", 180, 0, 0);
+createTitle("small rack", 178, 1, 1);
 
 let tabBar = new TabBar([70, 30, 70]);
 let tabA = tabBar.addTab("ES8", true);
 let tabB = tabBar.addTab("Optix");
 
+// content
+
 let portDict = {};
 
-const es8Ports = [1, 2, 3, 4, 5, 6, 7, 8];
-for (let index in es8Ports) {
+for (let index = 1; index <= 8; index++) {
 
    let sendKey = "se" + index.toString();
    let sendPort = createContent(tabA, "&#9675;", "right", sendKey);
    portDict[sendKey] = sendPort;
 
-   let center = createContent(tabA, es8Ports[index], "center");
+   let center = createContent(tabA, index, "center");
    center.style.fontWeight = "bold";
 
    if (index < 4) {
@@ -24,27 +25,25 @@ for (let index in es8Ports) {
    else
       createContent(tabA, "", "left");
 
-}
-
-const optixPorts = [1, 2, 3, 4, 5, 6, 7, 8];
-for (let index in es8Ports) {
-   let sendKey = "so" + index.toString();
-   let sendPort = createContent(tabB, "&#9675;", "right", sendKey);
+   sendKey = "so" + index.toString();
+   sendPort = createContent(tabB, "&#9675;", "right", sendKey);
    portDict[sendKey] = sendPort;
 
-   let center = createContent(tabB, es8Ports[index], "center");
+   center = createContent(tabB, index, "center");
    center.style.fontWeight = "bold";
 
-   let receiveKey = "ro" + index.toString();
-   let receivePort = createContent(tabB, "&#9675;", "left", receiveKey);
+   receiveKey = "ro" + index.toString();
+   receivePort = createContent(tabB, "&#9675;", "left", receiveKey);
    portDict[receiveKey] = receivePort;
 }
 
+// functionality
+
 function blank() {
 
-   let portLabels = document.getElementsByClassName("port_name");
-   for (let i = 0; i < portLabels.length; i++) {
-      portLabels[i].innerHTML = "&#9675;";
+   for (var key in portDict) {
+      let output = portDict[key];
+      output.innerHTML = "&#9675;";
    }
 }
 
@@ -53,7 +52,7 @@ function loadDict() {
 
    blank();
 
-   max.getDict("smallRackPorts", function (maxDict) {
+   max.getDict("smallRackDisplay", function (maxDict) {
 
       for (key in maxDict) {
 

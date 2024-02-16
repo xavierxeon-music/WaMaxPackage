@@ -2,17 +2,19 @@ autowatch = 1;
 
 // inlets and outlets
 inlets = 1;
-setinletassist(0, "inletIndex/outletIndex/name");
+setinletassist(0, "int/name");
 
 outlets = 2;
 setoutletassist(0, "leftId");
 setoutletassist(1, "rightId");
 
-include("_daw.js");
+include("_portDevice.js");
 
 //////////////////////////////////////////
 
 // set up
+
+var daw = new PortDevice("daw");
 
 var portIndex = undefined;
 var portName = undefined;
