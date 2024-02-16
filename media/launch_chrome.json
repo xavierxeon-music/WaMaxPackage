@@ -14,7 +14,7 @@
          ],
          "url": "http://localhost:8080",
          "webRoot": "${workspaceFolder}",
-         "file": "${workspaceFolder}/drum_control.html"
+         "file": "${workspaceFolder}/maxgui.html?content=mixer/rack_small_ui",
       }
    ]
 }

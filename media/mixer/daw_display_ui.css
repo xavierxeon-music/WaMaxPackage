@@ -4,18 +4,18 @@ body {
 }
 
 div.title {
-   width: 148px;
+   width: 168px;
 }
 
 div.tabbar {
-   width: 148px;
+   width: 168px;
    height: 16px;
 }
 
 div.tabcontent {
-   grid-template-columns: 50px 30px 50px;
-   width: 148px;
-   height: 146px;
+   grid-template-columns: 65px 30px 65px;
+   width: 168px;
+   height: 160px;
 }
 
 div.valueinput {

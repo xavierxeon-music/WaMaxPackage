@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <title>DAW Ports</title>
+   <link rel="stylesheet" type="text/css" href="./maxgui.css" />
+   <script type="text/javascript" src="./maxgui.js"></script>
+</head>
+
+<body>
+   <h2>MAX GUI</h2>
+
+   <script>
+      let myUrl = new URL(window.location.href);
+      let content = myUrl.searchParams.get("content");
+
+      const style = document.createElement("link");
+      style.setAttribute("rel", "stylesheet");
+      style.setAttribute("type", "text/css");
+      style.setAttribute("href", content + ".css");
+      document.body.appendChild(style);
+
+      const script = document.createElement("script");
+      script.setAttribute("type", "text/javascript");
+      script.setAttribute("src", content + ".js");
+      document.body.appendChild(script);
+   </script>
+</body>
+
+</html>
