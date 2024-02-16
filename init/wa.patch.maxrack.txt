@@ -1,2 +1,0 @@
-max objectfile wa.patch.maxrack wa.patch.maxrack;
-max definesubstitution wa.patch.maxrack bpatcher @name wa.patch.maxrack.maxpat;

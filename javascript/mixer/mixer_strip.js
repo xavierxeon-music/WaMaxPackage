@@ -16,7 +16,6 @@ include("_mixer.js");
 
 // set up
 
-
 var isMute = false;
 var isSolo = false;
 var patcherName = null;

@@ -1,0 +1,28 @@
+body {
+   margin-top: 1px;
+   margin-left: 1px;
+}
+
+div.tabbar {
+   width: 148px;
+   height: 16px;
+}
+
+div.tabcontent {
+   grid-template-columns: 50px 30px 50px;
+   width: 148px;
+   height: 146px;
+}
+
+div.valueinput {
+   text-align: right;
+}
+
+div.valuecounter {
+   text-align: center;
+   font-weight: bold;
+}
+
+div.valueoutput {
+   text-align: left;
+}

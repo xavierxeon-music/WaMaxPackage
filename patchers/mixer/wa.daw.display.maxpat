@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1314.0, 143.0, 2485.0, 1423.0 ],
+		"rect" : [ 1314.0, 171.0, 2485.0, 1395.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -40,12 +40,47 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-7",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 45.0, 315.0, 32.0, 22.0 ],
+					"text" : "print"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-11",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 240.0, 75.0, 52.0, 22.0 ],
+					"text" : "loadDict"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"comment" : "",
+					"id" : "obj-8",
+					"index" : 0,
+					"maxclass" : "outlet",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 375.0, 120.0, 30.0, 30.0 ]
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-6",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 780.0, 165.0, 87.0, 22.0 ],
+					"patching_rect" : [ 375.0, 30.0, 87.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "daw_display",
 						"parameter_enable" : 0
@@ -63,7 +98,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 5,
 					"outlettype" : [ "dictionary", "", "", "", "" ],
-					"patching_rect" : [ 30.0, 75.0, 92.0, 22.0 ],
+					"patching_rect" : [ 375.0, 75.0, 92.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"legacy" : 0,
@@ -83,7 +118,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 180.0, 75.0, 159.0, 22.0 ],
+					"patching_rect" : [ 30.0, 75.0, 159.0, 22.0 ],
 					"text" : "readfile daw_display_ui.html"
 				}
 
@@ -95,7 +130,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 180.0, 30.0, 58.0, 22.0 ],
+					"patching_rect" : [ 30.0, 30.0, 58.0, 22.0 ],
 					"text" : "loadbang"
 				}
 
@@ -107,9 +142,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 180.0, 120.0, 320.0, 240.0 ],
+					"patching_rect" : [ 30.0, 120.0, 150.0, 165.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 320.0, 240.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 150.0, 165.0 ],
 					"rendermode" : 0,
 					"url" : "file://daw_display_ui.html"
 				}
@@ -122,7 +157,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 30.0, 30.0, 107.0, 22.0 ],
+					"patching_rect" : [ 120.0, 30.0, 107.0, 22.0 ],
 					"text" : "wa.patch.bpatcher"
 				}
 
@@ -130,8 +165,29 @@
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
+					"destination" : [ "obj-7", 0 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-11", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-5", 0 ],
 					"source" : [ "obj-2", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-8", 0 ],
+					"source" : [ "obj-4", 0 ]
 				}
 
 			}
@@ -142,8 +198,31 @@
 				}
 
 			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-11", 0 ],
+					"order" : 1,
+					"source" : [ "obj-6", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-4", 0 ],
+					"order" : 0,
+					"source" : [ "obj-6", 0 ]
+				}
+
+			}
  ],
 		"dependency_cache" : [ 			{
+				"name" : "_daw.js",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/mixer",
+				"patcherrelativepath" : "../../javascript/mixer",
+				"type" : "TEXT",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "bpatcher_size.js",
 				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/patch",
 				"patcherrelativepath" : "../../javascript/patch",

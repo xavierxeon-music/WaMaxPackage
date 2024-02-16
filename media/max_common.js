@@ -55,3 +55,23 @@ function margin(left, top) {
    document.body.style.marginLeft = left.toString() + "px";
    document.body.style.marginTop = top.toString() + "px";
 }
+
+// tabs
+function showTab(evt, tabName) {
+
+   // hide all tabs
+   let tabcontent = document.getElementsByClassName("tabcontent");
+   for (let i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+   }
+
+   // deactivae all tab buttons
+   let tabbutton = document.getElementsByClassName("tabbutton");
+   for (let i = 0; i < tabbutton.length; i++) {
+      tabbutton[i].className = tabbutton[i].className.replace(" active", "");
+   }
+
+   // show current tab and active corresponfing button
+   document.getElementById(tabName).style.display = "grid";
+   evt.currentTarget.className += " active";
+}
