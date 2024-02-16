@@ -4,6 +4,17 @@ body {
    color: #eeeeee;
 }
 
+div.title {
+   padding-left: 5px;
+   text-align: left;
+   font-weight: bold;
+   font-size: 12px;
+   border: 1px solid #ccc;
+   box-sizing: border-box;
+   background: #ccc;
+   color: #111111;
+}
+
 /* tabs */
 
 div.tabbar {

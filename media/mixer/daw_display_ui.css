@@ -3,6 +3,10 @@ body {
    margin-left: 1px;
 }
 
+div.title {
+   width: 148px;
+}
+
 div.tabbar {
    width: 148px;
    height: 16px;

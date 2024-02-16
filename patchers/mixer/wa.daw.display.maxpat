@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1314.0, 171.0, 2485.0, 1395.0 ],
+		"rect" : [ 1314.0, 199.0, 1768.0, 1367.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -39,17 +39,6 @@
 		"subpatcher_template" : "OpenGrid",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
-				"box" : 				{
-					"id" : "obj-7",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 45.0, 315.0, 32.0, 22.0 ],
-					"text" : "print"
-				}
-
-			}
-, 			{
 				"box" : 				{
 					"id" : "obj-11",
 					"maxclass" : "message",
@@ -142,9 +131,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 30.0, 120.0, 150.0, 165.0 ],
+					"patching_rect" : [ 30.0, 120.0, 150.0, 180.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 150.0, 165.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 150.0, 180.0 ],
 					"rendermode" : 0,
 					"url" : "file://daw_display_ui.html"
 				}
@@ -164,13 +153,6 @@
 			}
  ],
 		"lines" : [ 			{
-				"patchline" : 				{
-					"destination" : [ "obj-7", 0 ],
-					"source" : [ "obj-1", 0 ]
-				}
-
-			}
-, 			{
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-11", 0 ]
