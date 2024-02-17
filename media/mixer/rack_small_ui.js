@@ -17,13 +17,14 @@ for (let index = 1; index <= 8; index++) {
    let center = createContent(tabA, index, "center");
    center.style.fontWeight = "bold";
 
-   if (index < 4) {
+   if (index <= 4) {
       let receiveKey = "re" + index.toString();
       let receivePort = createContent(tabA, "&#9675;", "left", receiveKey);
       portDict[receiveKey] = receivePort;
    }
-   else
+   else {
       createContent(tabA, "", "left");
+   }
 
    sendKey = "so" + index.toString();
    sendPort = createContent(tabB, "&#9675;", "right", sendKey);

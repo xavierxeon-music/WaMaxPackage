@@ -79,7 +79,7 @@ function compileOminbusIndex(indexText) {
 
    var maxId = destination == "re" ? 4 : 8;
    // print("setIndex", destination, portId, maxId);
-   if (portId <= 0 || portId >= maxId)
+   if (portId <= 0 || portId > maxId)
       return 0;
 
    portIndex = destination + portId.toString();

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 685.0, 145.0, 2869.0, 1367.0 ],
+		"rect" : [ 685.0, 173.0, 2872.0, 1339.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -178,8 +178,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 285.0, 165.0, 275.0, 22.0 ],
-					"text" : "readfile maxgui.html?content=mixer/rack_small_ui"
+					"patching_rect" : [ 285.0, 165.0, 287.0, 22.0 ],
+					"text" : "readfile maxgui.html?content=mixer/rack_small_ui.js"
 				}
 
 			}
@@ -349,7 +349,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 180.0, 195.0 ],
 					"rendermode" : 2,
-					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/media/maxgui.html?content=mixer/rack_small_ui"
+					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/media/maxgui.html?content=mixer/rack_small_ui.js"
 				}
 
 			}
@@ -414,14 +414,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-22", 1 ],
 					"order" : 1,
-					"source" : [ "obj-26", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-24", 0 ],
-					"order" : 2,
 					"source" : [ "obj-26", 0 ]
 				}
 

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 685.0, 145.0, 2152.0, 1367.0 ],
+		"rect" : [ 685.0, 173.0, 2152.0, 1339.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -40,12 +40,27 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-1",
+					"maxclass" : "jweb",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 30.0, 210.0, 180.0, 195.0 ],
+					"presentation" : 1,
+					"presentation_rect" : [ 0.0, 0.0, 180.0, 195.0 ],
+					"rendermode" : 2,
+					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/media/maxgui.html?content=mixer/daw_ui.js"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-13",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 230.0, 90.0, 42.0, 22.0 ],
+					"patching_rect" : [ 320.0, 90.0, 42.0, 22.0 ],
 					"text" : "gate 1"
 				}
 
@@ -69,7 +84,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "int" ],
-					"patching_rect" : [ 225.0, 30.0, 63.0, 22.0 ],
+					"patching_rect" : [ 315.0, 30.0, 63.0, 22.0 ],
 					"text" : "trigger b 1"
 				}
 
@@ -93,7 +108,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 225.0, 165.0, 52.0, 22.0 ],
+					"patching_rect" : [ 315.0, 165.0, 52.0, 22.0 ],
 					"text" : "loadDict"
 				}
 
@@ -106,7 +121,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 315.0, 120.0, 30.0, 30.0 ]
+					"patching_rect" : [ 405.0, 120.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -117,7 +132,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 315.0, 30.0, 87.0, 22.0 ],
+					"patching_rect" : [ 405.0, 30.0, 87.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "daw_display",
 						"parameter_enable" : 0
@@ -135,7 +150,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 5,
 					"outlettype" : [ "dictionary", "", "", "", "" ],
-					"patching_rect" : [ 315.0, 75.0, 92.0, 22.0 ],
+					"patching_rect" : [ 405.0, 75.0, 92.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"legacy" : 0,
@@ -155,8 +170,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 30.0, 165.0, 159.0, 22.0 ],
-					"text" : "readfile daw_display_ui.html"
+					"patching_rect" : [ 30.0, 165.0, 252.0, 22.0 ],
+					"text" : "readfile maxgui.html?content=mixer/daw_ui.js"
 				}
 
 			}
@@ -169,21 +184,6 @@
 					"outlettype" : [ "bang" ],
 					"patching_rect" : [ 30.0, 120.0, 58.0, 22.0 ],
 					"text" : "loadbang"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-1",
-					"maxclass" : "jweb",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 30.0, 210.0, 165.0, 195.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 170.0, 195.0 ],
-					"rendermode" : 0,
-					"url" : "file://daw_display_ui.html"
 				}
 
 			}
@@ -223,15 +223,8 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
-					"source" : [ "obj-11", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-10", 0 ],
-					"midpoints" : [ 39.5, 513.0, 210.0, 513.0, 210.0, 24.0, 234.5, 24.0 ],
+					"midpoints" : [ 39.5, 513.0, 210.0, 513.0, 210.0, 24.0, 324.5, 24.0 ],
 					"source" : [ "obj-12", 0 ]
 				}
 
@@ -261,14 +254,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-5", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-11", 0 ],
-					"order" : 2,
-					"source" : [ "obj-6", 0 ]
 				}
 
 			}
