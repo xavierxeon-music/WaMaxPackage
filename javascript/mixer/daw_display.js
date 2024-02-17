@@ -14,7 +14,7 @@ include("_portDevice.js");
 // set up
 
 var daw = new PortDevice("daw");
-var portDict = new Dict("dawDisplay", updateFunction);
+var portDict = new Dict("dawDisplay");
 
 //////////////////////////////////////////
 

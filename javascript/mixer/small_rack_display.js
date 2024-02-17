@@ -14,7 +14,7 @@ include("_portDevice.js");
 // set up
 
 var rack = new PortDevice("small_rack");
-var portDict = new Dict("smallRackDisplay", updateFunction);
+var portDict = new Dict("smallRackDisplay");
 
 //////////////////////////////////////////
 

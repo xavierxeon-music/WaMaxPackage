@@ -78,13 +78,13 @@ function compileOminbusIndex(indexText) {
    var portId = parseInt(indexText.substring(1));
 
    var maxId = destination == "re" ? 4 : 8;
-   // print("setIndex", destination, portId, maxId);
+   print("setIndex", destination, portId, maxId);
    if (portId <= 0 || portId > maxId)
       return 0;
 
    portIndex = destination + portId.toString();
 
-   if (destination == "0") {
+   if (destination == "o") {
       if (isSender)
          return portId + 10;
       else
