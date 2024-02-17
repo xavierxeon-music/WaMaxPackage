@@ -15,21 +15,38 @@ function createTitle(text, docWidth, leftMargin, topMargin) {
 }
 
 // div
-function createContent(parent, value, alignment, id) {
+class Div {
 
-   let content = document.createElement("div");
-   if (id) {
-      let span = document.createElement("span");
-      span.setAttribute("id", id);
-      span.innerHTML = value.toString();
-      content.appendChild(span);
+   constructor(parent, value, alignment, id) {
+
+      this.element = document.createElement("div");
+
+      if (id) {
+         let span = document.createElement("span");
+         span.setAttribute("id", id);
+         if (value)
+            span.innerHTML = value.toString();
+         this.element.appendChild(span);
+      }
+      else if (value) {
+         this.element.innerHTML = value.toString();
+      }
+
+      if (alignment)
+         this.element.style.textAlign = alignment;
+      parent.appendChild(this.element);
    }
-   else {
-      content.innerHTML = value.toString();
+
+   setAttribute(key, value) {
+      return this.element.setAttribute(key, value);
    }
 
-   content.style.textAlign = alignment;
-   parent.appendChild(content);
+   setStyle(key, value) {
+      this.element.style[key] = value;
+   }
 
-   return content;
+   appendChild(element) {
+      this.element.appendChild(element);
+   }
 }
+

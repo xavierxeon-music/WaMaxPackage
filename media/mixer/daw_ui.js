@@ -1,7 +1,8 @@
 createTitle("daw", 178, 1, 1);
 
 let tabBar = new TabBar([70, 30, 70]);
-let tabA = tabBar.addTab("1-8", true);
+let tabA = tabBar.addTab("1-8");
+tabA.setDefault();
 let tabB = tabBar.addTab("9-16");
 let tabC = tabBar.addTab("17-22");
 

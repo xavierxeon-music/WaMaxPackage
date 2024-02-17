@@ -1,3 +1,9 @@
+* {
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+}
+
 body {
    overflow: hidden;
    background: rgba(0, 0, 0, 0);
@@ -10,7 +16,6 @@ div.title {
    font-weight: bold;
    font-size: 12px;
    border: 1px solid #ccc;
-   box-sizing: border-box;
    background: #ccc;
    color: #111111;
 }
@@ -21,7 +26,6 @@ div.tabbar {
    overflow: hidden;
    border: 1px solid #ccc;
    background-color: #777777;
-   box-sizing: border-box;
 }
 
 div.tabbar button {
@@ -49,7 +53,6 @@ div.tabcontent {
    background: #373737;
    border-top: none;
    font-size: 14px;
-   box-sizing: border-box;
 }
 
 div.blank {
@@ -65,6 +68,7 @@ input.slider {
    width: 100%;
    height: 2px;
    vertical-align: middle;
+
 }
 
 input.slider::-webkit-slider-thumb {
@@ -81,5 +85,5 @@ input.slider::-webkit-slider-thumb {
 canvas {
    background: #373737;
    border: 1px solid #eeeeee;
-   box-sizing: border-box;
+
 }

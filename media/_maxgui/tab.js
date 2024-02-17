@@ -2,85 +2,98 @@
 
 class TabContainer {
 
+   constructor(tabbar, title) {
+
+      // this.tabbar = tabbar;
+
+      let id = btoa(title);
+
+      this.tabbutton = document.createElement("button");
+      this.tabbutton.setAttribute("class", "tabbutton");
+      this.tabbutton.innerText = title;
+      this.tabbutton.addEventListener("click", (clickEvent) => { tabbar.showTab(clickEvent.currentTarget, id); });
+      tabbar.appendChild(this.tabbutton);
+
+      this.tabcontent = document.createElement("div");
+      this.tabcontent.setAttribute("class", "tabcontent");
+      this.tabcontent.setAttribute("id", id);
+      document.body.appendChild(this.tabcontent);
+
+      this.tabcontent.style.display = "none";
+   }
+
+   appendChild(element) {
+      this.tabcontent.appendChild(element);
+   }
+
+   setDefault() {
+      this.tabbutton.className += " active";
+      this.tabcontent.style.display = "grid";
+   }
+
+   setColor(hexColor) {
+      this.tabbutton.style["color"] = hexColor;
+   }
 }
 
 class TabBar {
 
    constructor(defaultLayout, height) {
 
-      this.layouttext = TabBar.#extractLayout(defaultLayout);
+      this.layouttext = TabBar.extractLayout(defaultLayout);
       this.height = height;
 
       this.element = document.createElement("div");
       this.element.setAttribute("class", "tabbar");
       document.body.appendChild(this.element);
 
-      this.buttonDict = {};
+      this.containerList = [];
    }
 
-   addTab(title, defaultOpen, localLayout, color) {
+   appendChild(element) {
+      this.element.appendChild(element);
+   }
 
-      let id = btoa(title);
+   setAttribute(key, value) {
+      return this.element.setAttribute(key, value);
+   }
 
-      let tabbutton = document.createElement("button");
-      tabbutton.setAttribute("class", "tabbutton");
-      tabbutton.addEventListener("click", (evt) => { this.#showTab(evt, id); });
-      if (color) {
-         tabbutton.style["color"] = color;
-      }
-      //tabbutton.setAttribute("onclick", "TabBar.showTab(event, '" + id + "')");
-      tabbutton.innerText = title;
-      this.element.appendChild(tabbutton);
+   addTab(title, localLayout) {
 
-      let tabcontent = document.createElement("div");
-      tabcontent.setAttribute("class", "tabcontent");
-      tabcontent.setAttribute("id", id);
+      let container = new TabContainer(this, title);
+      this.containerList.push(container);
+
       if (this.height)
-         tabcontent.style["height"] = this.height.toString() + "px";
-      document.body.appendChild(tabcontent);
-
-      this.buttonDict[tabcontent] = tabbutton;
-      debug(tabcontent, typeof tabcontent);
+         container.tabcontent.style["height"] = this.height.toString() + "px";
 
       if (localLayout) {
-         let locallayouttext = TabBar.#extractLayout(localLayout);
-         tabcontent.style.gridTemplateColumns = locallayouttext;
+         let locallayouttext = TabBar.extractLayout(localLayout);
+         container.tabcontent.style.gridTemplateColumns = locallayouttext;
       }
       else if (this.layouttext) {
-         tabcontent.style.gridTemplateColumns = this.layouttext;
+         container.tabcontent.style.gridTemplateColumns = this.layouttext;
       }
-
-      if (defaultOpen) {
-         tabbutton.className += " active";
-         tabcontent.style.display = "grid";
-      }
-      else {
-         tabcontent.style.display = "none";
-      }
-
-      return tabcontent;
+      return container;
    }
 
-   #showTab(evt, tabName) {
+   showTab(clickedButton, tabName) {
 
-      // hide all tabs
-      let tabcontent = document.getElementsByClassName("tabcontent");
-      for (let i = 0; i < tabcontent.length; i++) {
-         tabcontent[i].style.display = "none";
+      for (let index in this.containerList) {
+
+         let tabcontent = this.containerList[index].tabcontent;
+         if (tabcontent.id == tabName)
+            tabcontent.style.display = "grid";
+         else
+            tabcontent.style.display = "none";
+
+         let tabbutton = this.containerList[index].tabbutton;
+         tabbutton.className = tabbutton.className.replace(" active", "");
+         if (tabbutton == clickedButton)
+            tabbutton.className += " active";
       }
-
-      // deactivae all tab buttons
-      let tabbutton = document.getElementsByClassName("tabbutton");
-      for (let i = 0; i < tabbutton.length; i++) {
-         tabbutton[i].className = tabbutton[i].className.replace(" active", "");
-      }
-
-      // show current tab and active corresponfing button
-      document.getElementById(tabName).style.display = "grid";
-      evt.currentTarget.className += " active";
    }
 
-   static #extractLayout(layout) {
+   static extractLayout(layout) {
 
       if (!layout)
          return undefined;

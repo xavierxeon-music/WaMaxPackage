@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ -3406.0, 303.0, 3372.0, 1263.0 ],
+		"rect" : [ -3406.0, 303.0, 2655.0, 1263.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -57,7 +57,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 345.0, 94.0, 22.0 ],
+					"patching_rect" : [ 30.0, 405.0, 94.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_loaded"
 				}
@@ -69,7 +69,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 135.0, 345.0, 32.0, 22.0 ],
+					"patching_rect" : [ 135.0, 405.0, 32.0, 22.0 ],
 					"text" : "print"
 				}
 
@@ -81,7 +81,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 314.0, 300.0, 138.0, 22.0 ],
+					"patching_rect" : [ 344.0, 360.0, 138.0, 22.0 ],
 					"text" : "name #0_drumValues"
 				}
 
@@ -93,7 +93,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "bang" ],
-					"patching_rect" : [ 270.0, 255.0, 63.0, 22.0 ],
+					"patching_rect" : [ 300.0, 315.0, 63.0, 22.0 ],
 					"text" : "trigger b b"
 				}
 
@@ -105,7 +105,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 270.0, 210.0, 58.0, 22.0 ],
+					"patching_rect" : [ 300.0, 270.0, 58.0, 22.0 ],
 					"text" : "loadbang"
 				}
 
@@ -117,7 +117,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 270.0, 392.0, 105.0, 22.0 ],
+					"patching_rect" : [ 300.0, 452.0, 105.0, 22.0 ],
 					"restore" : [ 						{
 							"filter_curve" : 0,
 							"filter_end" : 661,
@@ -157,7 +157,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 5,
 					"outlettype" : [ "dictionary", "", "", "", "" ],
-					"patching_rect" : [ 270.0, 345.0, 61.0, 22.0 ],
+					"patching_rect" : [ 300.0, 405.0, 61.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"legacy" : 0,
@@ -178,7 +178,7 @@
 					"numinlets" : 4,
 					"numoutlets" : 4,
 					"outlettype" : [ "", "", "", "" ],
-					"patching_rect" : [ 30.0, 300.0, 171.0, 22.0 ],
+					"patching_rect" : [ 30.0, 360.0, 171.0, 22.0 ],
 					"text" : "route onloadend bang DEBUG"
 				}
 
@@ -214,11 +214,11 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 30.0, 120.0, 225.0, 150.0 ],
+					"patching_rect" : [ 46.5, 135.0, 225.0, 195.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 225.0, 150.0 ],
-					"rendermode" : 0,
-					"url" : "file://drum_control.html"
+					"presentation_rect" : [ 0.0, 0.0, 225.0, 195.0 ],
+					"rendermode" : 2,
+					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/media/maxgui.html?content=oscilators/drum_control_ui.js"
 				}
 
 			}
@@ -255,7 +255,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 390.0, 392.0, 30.0, 30.0 ]
+					"patching_rect" : [ 420.0, 452.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -363,7 +363,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-65", 0 ],
-					"midpoints" : [ 279.5, 435.0, 251.0, 435.0, 251.0, 341.0, 279.5, 341.0 ],
+					"midpoints" : [ 309.5, 495.0, 281.0, 495.0, 281.0, 401.0, 309.5, 401.0 ],
 					"source" : [ "obj-68", 0 ]
 				}
 
