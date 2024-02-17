@@ -41,6 +41,11 @@ function executeProgram(program, appArgs) {
    });
 }
 
+function isOpen(appName, fileName) {
+   // lsof +D /Users/waspe/Artwork/SpatialTest  | grep Ableton | wc -l
+   return false;
+}
+
 // handlers
 
 maxAPI.addHandler("launch", (program, ...args) => {

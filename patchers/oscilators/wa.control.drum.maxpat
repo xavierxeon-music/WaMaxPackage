@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 87.0, 1212.0, 1479.0 ],
+		"rect" : [ -3406.0, 303.0, 3372.0, 1263.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -45,7 +45,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 195.0, 30.0, 107.0, 22.0 ],
+					"patching_rect" : [ 465.0, 15.0, 107.0, 22.0 ],
 					"style" : "wa.receive",
 					"text" : "receive #0_loaded"
 				}
@@ -190,7 +190,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 195.0, 75.0, 118.0, 22.0 ],
+					"patching_rect" : [ 465.0, 60.0, 118.0, 22.0 ],
 					"text" : "load #0_drumValues"
 				}
 
@@ -229,8 +229,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 30.0, 75.0, 147.0, 22.0 ],
-					"text" : "readfile drum_control.html"
+					"patching_rect" : [ 30.0, 75.0, 321.0, 22.0 ],
+					"text" : "readfile maxgui.html?content=oscilators/drum_control_ui.js"
 				}
 
 			}
@@ -371,8 +371,8 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "bpatcher_size.js",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
-				"patcherrelativepath" : "../../javascript/setup",
+				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/patch",
+				"patcherrelativepath" : "../../javascript/patch",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

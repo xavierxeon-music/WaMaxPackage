@@ -70,23 +70,34 @@ function createTitle(text, docWidth, leftMargin, topMargin) {
 
 // tabs
 
+class TabContainer {
+
+}
+
 class TabBar {
-   constructor(defaultLayout) {
+
+   constructor(defaultLayout, height) {
 
       this.layouttext = TabBar.#extractLayout(defaultLayout);
+      this.height = height;
 
       this.element = document.createElement("div");
       this.element.setAttribute("class", "tabbar");
       document.body.appendChild(this.element);
+
+      this.buttonDict = {};
    }
 
-   addTab(title, defaultOpen, localLayout) {
+   addTab(title, defaultOpen, localLayout, color) {
 
       let id = btoa(title);
 
       let tabbutton = document.createElement("button");
       tabbutton.setAttribute("class", "tabbutton");
       tabbutton.addEventListener("click", (evt) => { this.#showTab(evt, id); });
+      if (color) {
+         tabbutton.style["color"] = color;
+      }
       //tabbutton.setAttribute("onclick", "TabBar.showTab(event, '" + id + "')");
       tabbutton.innerText = title;
       this.element.appendChild(tabbutton);
@@ -94,7 +105,12 @@ class TabBar {
       let tabcontent = document.createElement("div");
       tabcontent.setAttribute("class", "tabcontent");
       tabcontent.setAttribute("id", id);
+      if (this.height)
+         tabcontent.style["height"] = this.height.toString() + "px";
       document.body.appendChild(tabcontent);
+
+      this.buttonDict[tabcontent] = tabbutton;
+      debug(tabcontent, typeof tabcontent);
 
       if (localLayout) {
          let locallayouttext = TabBar.#extractLayout(localLayout);
