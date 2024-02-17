@@ -36,16 +36,15 @@ class TabContainer {
    }
 }
 
-class TabBar {
+class TabBar extends BaseElement {
 
    constructor(defaultLayout, height) {
 
+      super(document.body, "div");
       this.layouttext = TabBar.extractLayout(defaultLayout);
       this.height = height;
 
-      this.element = document.createElement("div");
       this.element.setAttribute("class", "tabbar");
-      document.body.appendChild(this.element);
 
       this.containerList = [];
    }

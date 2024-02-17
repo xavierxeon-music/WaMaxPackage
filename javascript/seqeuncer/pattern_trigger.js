@@ -81,7 +81,7 @@ function time(bar, beat) {
    for (var tag in tpData) {
       pattern = tpData[tag];
       patternCurrent[tag] = pattern;
-      print(pattern, tag);
+      // print(pattern, tag);
    }
 }
 

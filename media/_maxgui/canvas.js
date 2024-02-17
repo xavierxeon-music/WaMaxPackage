@@ -1,11 +1,11 @@
 // canvas
 
-class Canvas {
+class Canvas extends BaseElement {
 
    constructor(parent, width, height) {
 
-      this.element = document.createElement("canvas");
-      parent.appendChild(this.element);
+      super(parent, "canvas");
+      debug("Canvas", parent, width, height, this.element);
 
       this.ctx = this.element.getContext("2d");
 

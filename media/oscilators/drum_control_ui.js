@@ -16,10 +16,11 @@ class GraphCategory {
    }
 }
 
-class EnveloperCanvas extends Canvas {
+class EnvelopeCanvas extends Canvas {
 
    constructor() {
 
+      debug("EnvelopeCanvas");
       super(document.body, undefined, 50);
 
       this.padding = 5;
@@ -279,6 +280,6 @@ let curveSlider = new Slider(container, "sound_mix", "%");
 initSlider(curveSlider);
 
 createTabWidgets();
-let canvas = new EnveloperCanvas();
+let canvas = new EnvelopeCanvas();
 
 

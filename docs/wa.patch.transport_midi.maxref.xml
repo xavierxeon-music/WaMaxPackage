@@ -12,7 +12,7 @@
     <objarglist>
         <objarg name="1" optional="1" type="symbol">
             <digest>devce name (Internal Max)</digest>
-            <description>the name of the external MIDI device</description>
+            <description>the name of the external MIDI device <br/></description>
         </objarg>
     </objarglist>
     <attributelist/>

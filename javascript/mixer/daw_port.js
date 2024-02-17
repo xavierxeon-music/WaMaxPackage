@@ -41,11 +41,11 @@ function msg_int(index) {
    var leftIndex = 0; // turn off
    var rightIndex = 0;
 
-   if (index > 0 && index <= 22) {
+   if (index > 0 && index <= 23) {
       portIndex = index;
 
       var baseIndex = 2 * (index - 1);
-      baseIndex += 20;
+      baseIndex += 19;
 
       leftIndex = baseIndex + 0;
       rightIndex = baseIndex + 1;
