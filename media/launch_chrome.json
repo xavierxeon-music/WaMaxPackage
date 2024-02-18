@@ -6,7 +6,7 @@
    "configurations": [
       {
          "name": "Rack Small",
-         "file": "${workspaceFolder}/maxgui.html?content=mixer/rack_small_ui",
+         "file": "${workspaceFolder}/maxgui.html?content=mixer/rack_small_ui.js",
          "request": "launch",
          "type": "chrome",
          "includeLaunchArgs": true,
