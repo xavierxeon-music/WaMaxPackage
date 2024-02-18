@@ -2,22 +2,24 @@
 
 class Table extends BaseElement {
 
-   constructor(parent, headers, widths) {
+   constructor(parent, widths) {
 
       super("table", parent);
-      this.headers = headers;
 
       if (widths)
          this.widths = widths;
       else {
-
+         for (let index in headers)
+            this.widths.push("auto");
       }
-      for (let index in headers)
-         this.widths.push("auto");
 
-      this.#addRowInternal("th", this.headers);
+
    }
 
+   addHeader(headerList) {
+
+      return this.#addRowInternal("th", headerList);
+   }
 
    addRow(contentList) {
 

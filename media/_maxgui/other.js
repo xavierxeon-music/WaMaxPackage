@@ -41,5 +41,12 @@ class Div extends BaseElement {
    setText(text) {
       this.textNode.innerHTML = text;
    }
+
+   forceHeigth(height) {
+      scroll.setStyle("height", height);
+      scroll.setStyle("overflow-x", "hidden");
+      scroll.setStyle("overflow-y", "auto");
+
+   }
 }
 

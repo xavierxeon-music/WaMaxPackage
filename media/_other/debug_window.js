@@ -1,8 +1,6 @@
 //
 
-var numberOfColumns = 10;
-
-
+var numberOfColumns = 50;
 
 const messageBuffer = new RingBuffer(numberOfColumns, [".", ""]);
 const tableElements = new Array(length).fill(undefined);
@@ -50,14 +48,20 @@ function clearMessages() {
 
 // gui
 setupDocument(250, 1, 1);
-let table = new Table(undefined, ["time", "message"], ["60px", "auto"]);
 
+let tableHeaders = new Table(undefined, ["60px", "auto"]);
+tableHeaders.addHeader(["time", "message"]);
 
+let scroll = new Div();
+scroll.forceHeigth("200px");
+
+let table = new Table(scroll, ["60px", "auto"]);
 for (let index = 0; index < numberOfColumns; index++) {
    let rows = table.addRow(["", ""]);
    tableElements[numberOfColumns - (1 + index)] = rows;
 }
 
 createTitle("console");
+
 
 updateTable();
