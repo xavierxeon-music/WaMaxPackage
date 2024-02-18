@@ -8,13 +8,13 @@ body {
    overflow: hidden;
    background: rgba(0, 0, 0, 0);
    color: #eeeeee;
+   font-size: 14px;
 }
 
 div.title {
    padding-left: 5px;
    text-align: left;
    font-weight: bold;
-   font-size: 12px;
    border: 1px solid #ccc;
    background: #ccc;
    color: #111111;
@@ -35,7 +35,6 @@ div.tabbar button {
    outline: none;
    cursor: pointer;
    padding: 2px 8px;
-   font-size: 12px;
 }
 
 div.tabbar button:hover {
@@ -52,7 +51,6 @@ div.tabcontent {
    border: 1px solid #ccc;
    background: #373737;
    border-top: none;
-   font-size: 14px;
 }
 
 div.blank {
@@ -85,5 +83,28 @@ input.slider::-webkit-slider-thumb {
 canvas {
    background: #373737;
    border: 1px solid #eeeeee;
+}
 
+/* table */
+
+table {
+   background: #373737;
+   border: 1px solid #eeeeee;
+   border-collapse: collapse;
+   width: 100%;
+   border-spacing: 5px;
+}
+
+th {
+   border-collapse: collapse;
+   border: 1px solid #ccc;
+   background: #ccc;
+   color: #000000;
+   padding-left: 1px;
+}
+
+td {
+   border: 1px solid #373737;
+   border-bottom: 1px solid #ddd;
+   border-collapse: collapse;
 }

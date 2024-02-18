@@ -8,16 +8,14 @@ class TabContainer {
 
       let id = btoa(title);
 
-      this.tabbutton = document.createElement("button");
+      this.tabbutton = createAndAppend("button", tabbar);
       this.tabbutton.setAttribute("class", "tabbutton");
       this.tabbutton.innerText = title;
       this.tabbutton.addEventListener("click", (clickEvent) => { tabbar.showTab(clickEvent.currentTarget, id); });
-      tabbar.appendChild(this.tabbutton);
 
-      this.tabcontent = document.createElement("div");
+      this.tabcontent = createAndAppend("div");
       this.tabcontent.setAttribute("class", "tabcontent");
       this.tabcontent.setAttribute("id", id);
-      document.body.appendChild(this.tabcontent);
 
       this.tabcontent.style.display = "none";
    }
@@ -40,7 +38,7 @@ class TabBar extends BaseElement {
 
    constructor(defaultLayout, height) {
 
-      super(document.body, "div");
+      super("div", document.body);
       this.layouttext = TabBar.extractLayout(defaultLayout);
       this.height = height;
 

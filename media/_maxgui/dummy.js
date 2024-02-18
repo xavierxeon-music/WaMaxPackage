@@ -8,7 +8,9 @@ class MaxDummy {
       this.dummy = true;
    }
 
-   bindInlet(name, functionName) { }
+   bindInlet(name, functionName) {
+      debug("DUMMY bindInlet", name);
+   }
 
    outlet() {
       let text = "";
@@ -51,3 +53,4 @@ max.bindInlet('bodyStyle', bodyStyle);
 function bodyStyle(name, value) {
    document.body.style[name] = value;
 }
+

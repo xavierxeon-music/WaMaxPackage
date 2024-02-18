@@ -14,18 +14,16 @@
 
       let stylePath = myUrl.searchParams.get("style");
       if (stylePath) {
-         const style = document.createElement("link");
+         const style = createAndAppend("link");
          style.setAttribute("rel", "stylesheet");
          style.setAttribute("type", "text/css");
          style.setAttribute("href", stylePath);
-         document.body.appendChild(style);
       }
 
       let jsPath = myUrl.searchParams.get("content");
-      const script = document.createElement("script");
+      const script = createAndAppend("script");
       script.setAttribute("type", "text/javascript");
       script.setAttribute("src", jsPath);
-      document.body.appendChild(script);
    </script>
 </body>
 

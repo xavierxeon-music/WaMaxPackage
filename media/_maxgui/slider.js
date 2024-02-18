@@ -11,17 +11,26 @@ class Slider {
       this.maxValue = 100.0;
       this.expo = 1.0;
 
-      this.slider = document.createElement("input");
+      // slider
+      let divSlider = createAndAppend("div", parent);
+      divSlider.style["margin-left"] = "5px";
+      divSlider.style["margin-right"] = "5px";
+
+      this.slider = createAndAppend("input", divSlider);
       this.slider.type = "range";
       this.slider.className = "slider";
       this.slider.id = id;
       this.slider.value = 0.0;
       this.slider.setAttribute("orient", "vertical");
 
+      // span
+      let divSpan = createAndAppend("div", parent);
+      divSpan.style.textAlign = "right";
+      divSpan.style["margin-right"] = "5px";
 
-      this.span = document.createElement("span");
-      this.setVavlue(0);
+      this.span = createAndAppend("span", divSpan);
 
+      // admin
       this.setVavlue(0);
       this.applySliderValue();
 
@@ -29,17 +38,6 @@ class Slider {
          this.applySliderValue();
       }
 
-      let divSlider = document.createElement("div");
-      divSlider.style["margin-left"] = "5px";
-      divSlider.style["margin-right"] = "5px";
-      divSlider.appendChild(this.slider);
-      parent.appendChild(divSlider);
-
-      let divSpan = document.createElement("div");
-      divSpan.style.textAlign = "right";
-      divSpan.style["margin-right"] = "5px";
-      divSpan.appendChild(this.span);
-      parent.appendChild(divSpan);
 
    }
 

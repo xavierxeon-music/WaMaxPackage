@@ -1,5 +1,5 @@
 // header
-function createTitle(text, docWidth, leftMargin, topMargin) {
+function setupDocument(docWidth, leftMargin, topMargin) {
 
    if (docWidth)
       document.body.style["width"] = docWidth.toString() + "px";
@@ -7,11 +7,13 @@ function createTitle(text, docWidth, leftMargin, topMargin) {
       document.body.style.marginLeft = leftMargin.toString() + "px";
    if (topMargin)
       document.body.style.marginTop = topMargin.toString() + "px";
+}
 
-   const title = document.createElement("div");
+function createTitle(text) {
+
+   const title = createAndAppend("div");
    title.className = "title";
    title.innerText = text;
-   document.body.appendChild(title);
 }
 
 // div
@@ -19,15 +21,14 @@ class Div extends BaseElement {
 
    constructor(parent, value, alignment, id) {
 
-      super(parent, "div");
+      super("div", parent);
 
       this.textNode = this.element;
 
       if (id) {
-         let span = document.createElement("span");
+         let span = createAndAppend("span", this.element);
          span.setAttribute("id", id);
          this.textNode = span;
-         this.element.appendChild(span);
       }
 
       if (value)

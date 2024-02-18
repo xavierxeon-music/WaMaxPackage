@@ -4,7 +4,7 @@ class Canvas extends BaseElement {
 
    constructor(parent, width, height) {
 
-      super(parent, "canvas");
+      super("canvas", parent);
       debug("Canvas", parent, width, height, this.element);
 
       this.ctx = this.element.getContext("2d");
