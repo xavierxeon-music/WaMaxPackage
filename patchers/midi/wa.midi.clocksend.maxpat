@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 171.0, 3765.0, 1395.0 ],
+		"rect" : [ 34.0, 115.0, 1852.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -45,7 +45,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 93.0, 165.0, 82.0, 22.0 ],
+					"patching_rect" : [ 93.0, 167.0, 82.0, 22.0 ],
 					"text" : "prepend state"
 				}
 
@@ -57,7 +57,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 216.0, 165.0, 74.0, 22.0 ],
+					"patching_rect" : [ 216.0, 167.0, 74.0, 22.0 ],
 					"text" : "prepend tick"
 				}
 
@@ -69,7 +69,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 93.0, 210.0, 74.0, 22.0 ],
+					"patching_rect" : [ 93.0, 212.0, 74.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "clocksend.js",
 						"parameter_enable" : 0
@@ -138,7 +138,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 180.0, 300.0, 30.0, 30.0 ]
+					"patching_rect" : [ 178.0, 315.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -235,7 +235,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
 					"patching_rect" : [ 29.0, 30.0, 106.0, 22.0 ],
-					"text" : "metro 1 @active 1"
+					"text" : "metro 5 @active 1"
 				}
 
 			}
@@ -246,7 +246,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
-					"patching_rect" : [ 180.0, 255.0, 86.0, 22.0 ],
+					"patching_rect" : [ 178.0, 270.0, 86.0, 22.0 ],
 					"text" : "wa.midi.output"
 				}
 

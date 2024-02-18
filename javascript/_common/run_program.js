@@ -1,4 +1,5 @@
 const spawn = require('child_process').spawn;
+const exec = require('child_process').exec;
 const maxAPI = require('max-api');
 const path = require('path');
 
@@ -42,11 +43,54 @@ function executeProgram(program, appArgs) {
 }
 
 function isOpen(appName, fileName) {
-   // lsof +D /Users/waspe/Artwork/SpatialTest  | grep Ableton | wc -l
+
+   var filePath = path.dirname(fileName);
+   filePath = cleanItem(filePath);
+   var command = "lsof +D " + filePath + " | grep " + appName + " | wc -l";
+
+   console.log("Hello");
+
+
+   // bash -c "lsof +D /Users/waspe/Artwork/SpatialTest  2> /dev/null | grep Ableton | wc -l"
+   exec(command, (error, stdout, stderr) => {
+
+      if (error)
+         maxAPI.outlet(["isopen", 0]);
+
+      var result = stdout.trim();
+      result = parseInt(result);
+
+      maxAPI.outlet(["isopen", result]);
+
+   });
    return false;
 }
 
+function cleanItem(item) {
+
+   if (!item.includes(":"))
+      return item;
+
+   var content = item.split('/');
+   item = "";
+   for (var entry of content) {
+      if ("Macintosh HD:" == entry)
+         continue;
+      if (entry.includes(":"))
+         entry = "Volumes/" + entry.replace(":", "")
+      item = item + "/" + entry
+   }
+
+   return item;
+
+}
+
 // handlers
+
+maxAPI.addHandler("checkOpen", (fileName, appName) => {
+
+   isOpen(fileName, appName);
+});
 
 maxAPI.addHandler("launch", (program, ...args) => {
 
@@ -70,16 +114,7 @@ maxAPI.addHandler("open", (...args) => {
 
    var appArgs = []
    for (var item of args) {
-      if (item.includes(":")) {
-         content = item.split('/');
-         item = "";
-         for (var entry of content) {
-            if (entry.includes(":"))
-               entry = "Volumes/" + entry.replace(":", "")
-            item = item + "/" + entry
-         }
-      }
-      //maxAPI.post(`arg: ${item}`);
+      item = cleanItem(item);
       appArgs.push(item);
    }
 

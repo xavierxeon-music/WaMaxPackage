@@ -8,7 +8,6 @@ outlets = 2;
 setoutletassist(0, "on/off");
 setoutletassist(1, "ticks");
 
-
 var clockCounter = 0;
 
 function clock() {
@@ -20,8 +19,14 @@ function clock() {
 
 function start() {
 
+   outlet(0, 1); // start
+
    clockCounter = 0;
-   outlet(0, 1);
+   outlet(1, 0); // zero tick
+
+   //clock();
+   //clock();
+   //clock();
 }
 
 function cont() {

@@ -10,14 +10,18 @@ setoutletassist(0, "midi");
 var lastPulse = -1;
 var wasReset = false;
 
+var ticksPerPulse = 20;
+
 function state(value) {
 
    if (0 == value)
       outlet(0, 252); // stop
    else if (1 == value) {
       if (wasReset) {
-         outlet(0, 250); // start
          wasReset = false;
+
+         outlet(0, 250); // start
+         outlet(0, 248); // clock
       }
       else {
          outlet(0, 251); // continue
@@ -27,8 +31,8 @@ function state(value) {
 
 function tick(value) {
 
-   var reminder = value % 20;
-   var pulse = (value - reminder) / 20;
+   var reminder = value % ticksPerPulse;
+   var pulse = (value - reminder) / ticksPerPulse;
 
    if (pulse < lastPulse) {
       lastPulse = pulse - 1;

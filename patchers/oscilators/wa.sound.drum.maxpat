@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ -3406.0, 307.0, 3372.0, 1207.0 ],
+		"rect" : [ 134.0, 215.0, 3372.0, 1151.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -46,7 +46,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "dictionary" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 300.0, 375.0, 30.0, 30.0 ]
 				}
 
@@ -1143,7 +1143,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ -3406.0, 307.0, 3372.0, 1207.0 ],
+						"rect" : [ 134.0, 215.0, 3372.0, 1151.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1171,7 +1171,6 @@
 						"style" : "",
 						"subpatcher_template" : "OpenGrid",
 						"assistshowspatchername" : 0,
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-3",
@@ -1429,7 +1428,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ -3406.0, 307.0, 3372.0, 1207.0 ],
+						"rect" : [ 134.0, 215.0, 3372.0, 1151.0 ],
 						"bglocked" : 0,
 						"openinpresentation" : 0,
 						"default_fontsize" : 12.0,
@@ -1457,7 +1456,6 @@
 						"style" : "",
 						"subpatcher_template" : "OpenGrid",
 						"assistshowspatchername" : 0,
-						"visible" : 1,
 						"boxes" : [ 							{
 								"box" : 								{
 									"id" : "obj-2",
