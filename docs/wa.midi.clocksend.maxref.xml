@@ -15,7 +15,12 @@
         </entry>
     </misc>
     <objarglist/>
-    <attributelist/>
+    <attributelist>
+        <attribute get="1" name="timecode" set="1" size="1" type="symbol">
+            <digest>send timecode (0)</digest>
+            <description>send timecode</description>
+        </attribute>
+    </attributelist>
     <methodlist/>
     <seealsolist/>
 </c74object>

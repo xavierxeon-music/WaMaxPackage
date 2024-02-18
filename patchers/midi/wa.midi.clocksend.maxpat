@@ -40,6 +40,32 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-12",
+					"linecount" : 2,
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 990.0, 315.0, 346.0, 35.0 ],
+					"presentation_linecount" : 2,
+					"text" : ";\rmax launchbrowser https://en.wikipedia.org/wiki/MIDI_timecode"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-6",
+					"linecount" : 2,
+					"maxclass" : "comment",
+					"numinlets" : 1,
+					"numoutlets" : 0,
+					"patching_rect" : [ 990.0, 360.0, 150.0, 33.0 ],
+					"text" : "https://en.wikipedia.org/wiki/MIDI_timecode"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-30",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -71,7 +97,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 93.0, 212.0, 74.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "clocksend.js",
+						"filename" : "clocksend",
 						"parameter_enable" : 0
 					}
 ,
@@ -87,7 +113,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 420.0, 240.0, 150.0, 47.0 ],
+					"patching_rect" : [ 600.0, 240.0, 150.0, 47.0 ],
 					"text" : "24 pulses / quarter = \n24 pulses / 480 ticks =>\n20 ticks / pulse"
 				}
 
@@ -100,7 +126,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 420.0, 195.0, 431.0, 35.0 ],
+					"patching_rect" : [ 600.0, 195.0, 431.0, 35.0 ],
 					"text" : ";\rmax launchbrowser https://docs.cycling74.com/max8/vignettes/maxtime_syntax"
 				}
 
@@ -112,7 +138,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 420.0, 75.0, 345.0, 114.0 ],
+					"patching_rect" : [ 600.0, 75.0, 345.0, 114.0 ],
 					"text" : "Start: outputs a pulse at each Midi Start or Continue message or generates a gate signal that remains in the high state until a Midi Stop message occurs \n\nStop: outputs a pulse at each Midi Stop message\n\nReset: outputs a pulse at each Midi Start message that follows a Midi Stop message"
 				}
 
@@ -125,7 +151,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 420.0, 30.0, 269.0, 35.0 ],
+					"patching_rect" : [ 600.0, 30.0, 269.0, 35.0 ],
 					"text" : ";\rmax launchbrowser https://doepfer.de/a1908.htm"
 				}
 
@@ -134,7 +160,7 @@
 				"box" : 				{
 					"comment" : "available",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -161,8 +187,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 180.0, 30.0, 202.0, 22.0 ],
-					"text" : "patcherargs \"USB MIDI A190-8       \""
+					"patching_rect" : [ 180.0, 30.0, 276.0, 22.0 ],
+					"text" : "patcherargs \"USB MIDI A190-8       \" @timecode 0"
 				}
 
 			}
@@ -186,7 +212,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 420.0, 315.0, 355.0, 35.0 ],
+					"patching_rect" : [ 600.0, 315.0, 355.0, 35.0 ],
 					"text" : ";\rmax launchbrowser https://en.wikipedia.org/wiki/MIDI_beat_clock"
 				}
 
@@ -198,7 +224,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 420.0, 358.0, 187.0, 87.0 ],
+					"patching_rect" : [ 600.0, 358.0, 187.0, 87.0 ],
 					"text" : "clock (decimal 248, hex 0xF8)\nstart (decimal 250, hex 0xFA)\ncontinue (decimal 251, hex 0xFB)\nstop (decimal 252, hex 0xFC)\n\nsong position  242"
 				}
 
@@ -330,6 +356,7 @@
 
 			}
  ],
+		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.patcher",
 				"default" : 				{
