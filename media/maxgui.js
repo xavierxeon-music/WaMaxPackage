@@ -11,18 +11,37 @@ function createAndAppend(type, parent) {
    return thing;
 }
 
-function include(file, path) {
+function include(jsFile, toHeader, path) {
+
+   if (undefined == toHeader)
+      toHeader = true;
 
    let script = document.createElement('script');
    if (path)
-      script.src = path + "/" + file;
+      script.src = path + "/" + jsFile;
    else
-      script.src = "./_maxgui/" + file;
+      script.src = "./_maxgui/" + jsFile;
 
    script.type = 'text/javascript';
    // script.defer = true;
 
-   document.getElementsByTagName('head').item(0).appendChild(script);
+   if (toHeader)
+      document.getElementsByTagName('head').item(0).appendChild(script);
+   else
+      document.body.appendChild(script);
+}
+
+function addStyle(styleFile) {
+
+   if (styleFile == undefined)
+      return;
+
+   let link = document.createElement("link");
+   style.setAttribute("rel", "stylesheet");
+   style.setAttribute("type", "text/css");
+   style.setAttribute("href", styleFile);
+
+   document.getElementsByTagName('head').item(0).append(link);
 }
 
 class BaseElement {

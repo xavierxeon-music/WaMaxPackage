@@ -12,18 +12,11 @@
    <script>
       let myUrl = new URL(window.location.href);
 
-      let stylePath = myUrl.searchParams.get("style");
-      if (stylePath) {
-         const style = createAndAppend("link");
-         style.setAttribute("rel", "stylesheet");
-         style.setAttribute("type", "text/css");
-         style.setAttribute("href", stylePath);
-      }
+      let styleFile = myUrl.searchParams.get("style");
+      addStyle(styleFile);
 
-      let jsPath = myUrl.searchParams.get("content");
-      const script = createAndAppend("script");
-      script.setAttribute("type", "text/javascript");
-      script.setAttribute("src", jsPath);
+      let jsFile = myUrl.searchParams.get("content");
+      include(jsFile, false, ".");
    </script>
 </body>
 

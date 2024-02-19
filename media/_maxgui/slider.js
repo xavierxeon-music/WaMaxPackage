@@ -94,3 +94,14 @@ class Slider {
          this.slider.style["transform"] = "rotate(0)";
    }
 }
+
+/*
+<div id="dark-bg" class="grid">
+   <svg class="slider" id="slider-dark1" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 20 100">
+      <path d="M 1,95 L 19,95 M 1,72.5 L 19,72.5 M 1,50 L 19,50 M 1,27.5 L 19,27.5 M 1,5 L 19,5 " stroke="#999" stroke-width="1" stroke-linecap="butt" class="slider-markers"></path>
+      <rect x="6" y="2" width="8" height="96" rx="3" ry="3" stroke="#000" stroke-width="2" fill="#555" class="slider-track-bg"></rect>
+      <rect x="7" width="6" rx="3" ry="3" stroke-width="0" fill="#bbb" class="slider-track" y="54.2" height="43.8"></rect>
+      <rect x="3" width="14" height="6" rx="2" ry="2" stroke-width="0" fill="#d3d347" class="slider-cursor" y="54.2"></rect>
+   </svg>
+</div>
+*/
