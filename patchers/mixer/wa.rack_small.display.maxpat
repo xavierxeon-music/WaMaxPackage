@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ -3406.0, 275.0, 2226.0, 1291.0 ],
+		"rect" : [ 34.0, 115.0, 1852.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -215,24 +215,6 @@
 			}
 , 			{
 				"box" : 				{
-					"bgcolor" : [ 0.802913963794708, 0.802913963794708, 0.802913963794708, 1.0 ],
-					"id" : "obj-1",
-					"ignoreclick" : 1,
-					"maxclass" : "led",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"offcolor" : [ 0.011765, 0.396078, 0.752941, 1.0 ],
-					"oncolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ],
-					"outlettype" : [ "int" ],
-					"parameter_enable" : 0,
-					"patching_rect" : [ 30.0, 390.0, 24.0, 24.0 ],
-					"presentation" : 1,
-					"presentation_rect" : [ 153.5625, 1.375, 16.125, 16.125 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-7",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
@@ -329,26 +311,14 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-70",
-					"maxclass" : "newobj",
-					"numinlets" : 0,
-					"numoutlets" : 1,
-					"outlettype" : [ "int" ],
-					"patching_rect" : [ 30.0, 345.0, 106.0, 22.0 ],
-					"text" : "wa.midi.clocksend"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-8",
 					"maxclass" : "jweb",
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 510.0, 210.0, 180.0, 195.0 ],
+					"patching_rect" : [ 510.0, 210.0, 180.0, 165.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 180.0, 195.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 180.0, 165.0 ],
 					"rendermode" : 2,
 					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/media/maxgui.html?content=mixer/rack_small_ui.js"
 				}
@@ -491,13 +461,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-3", 0 ],
 					"source" : [ "obj-7", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
-					"source" : [ "obj-70", 0 ]
 				}
 
 			}
