@@ -1,6 +1,6 @@
 //
 setupDocument(178, 1, 1);
-createTitle("small rack");
+new Title("small rack");
 
 let tabBar = new TabBar([70, 30, 70]);
 let tabA = tabBar.addTab("ES8");

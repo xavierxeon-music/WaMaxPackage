@@ -270,7 +270,7 @@ function load(maxDictName) {
 
 // main
 setupDocument(215, 1, 1);
-createTitle("drum control");
+new Title("drum control");
 
 let container = new Div(document.body);
 container.setAttribute("class", "tabcontent");

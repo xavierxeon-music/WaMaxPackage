@@ -37,8 +37,6 @@ class Slider {
       this.slider.oninput = () => {
          this.applySliderValue();
       }
-
-
    }
 
    setRange(minValue, maxValue, expo) {

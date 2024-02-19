@@ -1,22 +1,5 @@
-// header
-function setupDocument(docWidth, leftMargin, topMargin) {
-
-   if (docWidth)
-      document.body.style["width"] = docWidth.toString() + "px";
-   if (leftMargin)
-      document.body.style.marginLeft = leftMargin.toString() + "px";
-   if (topMargin)
-      document.body.style.marginTop = topMargin.toString() + "px";
-}
-
-function createTitle(text) {
-
-   const title = createAndAppend("div");
-   title.className = "title";
-   title.innerText = text;
-}
-
 // div
+
 class Div extends BaseElement {
 
    constructor(parent, value, alignment, id) {
@@ -50,3 +33,13 @@ class Div extends BaseElement {
    }
 }
 
+class Title extends BaseElement {
+
+   constructor(text) {
+
+      super("div");
+
+      this.element.className = "title";
+      this.element.innerText = text;
+   }
+}

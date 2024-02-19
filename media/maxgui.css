@@ -95,16 +95,42 @@ table {
    border-spacing: 5px;
 }
 
+tr {
+   border-collapse: collapse;
+   height: 18px;
+}
+
+tr:nth-child(odd) {
+   background-color: #444444;
+}
+
 th {
    border-collapse: collapse;
    border: 1px solid #ccc;
    background: #ccc;
-   color: #000000;
-   padding-left: 1px;
+   color: #111111;
+   padding-left: 2px;
 }
 
 td {
-   border: 1px solid #373737;
-   border-bottom: 1px solid #ddd;
-   border-collapse: collapse;
+   padding-left: 2px;
+}
+
+
+/* button */
+button {
+   border: 1px solid #111111;
+   background: #bbbbbb;
+   color: #111111;
+   padding: 0px 5px;
+   height: 18px;
+   cursor: pointer;
+}
+
+button:hover {
+   background: #ccc;
+}
+
+button.active {
+   background-color: #fcc;
 }

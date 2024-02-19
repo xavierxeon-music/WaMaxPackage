@@ -1,3 +1,4 @@
+// maxgui
 
 function createAndAppend(type, parent) {
 
@@ -42,13 +43,32 @@ class BaseElement {
    appendChild(element) {
       this.element.appendChild(element);
    }
+
+   move(x, y) {
+
+      this.element.style["position"] = "absolute";
+      this.element.style["left"] = x.toString() + "px";
+      this.element.style["top"] = y.toString() + "px";
+   }
 }
 
-include("dummy.js");
+// header
+function setupDocument(docWidth, leftMargin, topMargin) {
+
+   if (docWidth)
+      document.body.style["width"] = docWidth.toString() + "px";
+   if (leftMargin)
+      document.body.style.marginLeft = leftMargin.toString() + "px";
+   if (topMargin)
+      document.body.style.marginTop = topMargin.toString() + "px";
+}
+
+// includes
+include("maxdummy.js");
 include("ringbuffer.js");
 
-include("other.js");
-
+include("div.js");
+include("button.js");
 include("tab.js");
 include("slider.js");
 include("canvas.js");

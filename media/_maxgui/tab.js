@@ -11,7 +11,9 @@ class TabContainer {
       this.tabbutton = createAndAppend("button", tabbar);
       this.tabbutton.setAttribute("class", "tabbutton");
       this.tabbutton.innerText = title;
-      this.tabbutton.addEventListener("click", (clickEvent) => { tabbar.showTab(clickEvent.currentTarget, id); });
+      this.tabbutton.addEventListener("click", (clickEvent) => {
+         tabbar.showTab(clickEvent.currentTarget, id);
+      });
 
       this.tabcontent = createAndAppend("div");
       this.tabcontent.setAttribute("class", "tabcontent");

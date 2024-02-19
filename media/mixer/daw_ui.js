@@ -1,6 +1,6 @@
 //
 setupDocument(178, 1, 1);
-createTitle("daw",);
+new Title("daw",);
 
 let tabBar = new TabBar([70, 30, 70]);
 let tabA = tabBar.addTab("1-8");

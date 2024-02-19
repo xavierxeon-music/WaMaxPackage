@@ -2,7 +2,7 @@
 
 var numberOfColumns = 50;
 
-const messageBuffer = new RingBuffer(numberOfColumns, [".", ""]);
+const messageBuffer = new RingBuffer(numberOfColumns, ["", ""]);
 const tableElements = new Array(length).fill(undefined);
 
 function updateTable() {
@@ -52,6 +52,7 @@ setupDocument(250, 1, 1);
 let tableHeaders = new Table(undefined, ["60px", "auto"]);
 tableHeaders.addHeader(["time", "message"]);
 
+
 let scroll = new Div();
 scroll.forceHeigth("200px");
 
@@ -61,7 +62,11 @@ for (let index = 0; index < numberOfColumns; index++) {
    tableElements[numberOfColumns - (1 + index)] = rows;
 }
 
-createTitle("console");
+let title = new Title("console");
+title.setStyle("height", "20px");
 
+let clearButton = new Button(undefined, "clear");
+clearButton.move(208, 220);
+clearButton.onClicked(clearMessages);
 
 updateTable();

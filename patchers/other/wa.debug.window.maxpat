@@ -212,8 +212,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 240.0, 516.0, 298.0, 22.0 ],
-					"text" : "readfile maxgui.html?content=_other/debug_window.js"
+					"patching_rect" : [ 240.0, 516.0, 291.0, 22.0 ],
+					"text" : "readfile maxgui.html?content=other/debug_window.js"
 				}
 
 			}
@@ -228,7 +228,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 255.0, 240.0 ],
 					"rendermode" : 2,
-					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/media/maxgui.html?content=_other/debug_window.js"
+					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/media/maxgui.html?content=other/debug_window.js"
 				}
 
 			}
