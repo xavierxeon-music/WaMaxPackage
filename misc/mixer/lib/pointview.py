@@ -24,7 +24,7 @@ class PointView(QWidget):
       self.data = crawler.data
 
       settings = QSettings()
-      self.usePeak = settings.value('usePeak', True)
+      self.usePeak = settings.value('usePeak', 'true') == 'true'
 
       self.peakCheck = QCheckBox('Use Peak')
       self.peakCheck.setChecked(self.usePeak)
