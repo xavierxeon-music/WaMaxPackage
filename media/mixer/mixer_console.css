@@ -1,0 +1,18 @@
+/* layout table */
+
+table.mixer {
+   width: 100%;
+   background-color: #373737;
+   border: 1px solid #ccc;
+
+}
+
+
+table.mixer tr.mixer_header {
+   background-color: #777777;
+}
+
+table.mixer td {
+   padding-left: 5px;
+   border: 1px solid #ccc;
+}

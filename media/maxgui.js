@@ -11,16 +11,13 @@ function createAndAppend(type, parent) {
    return thing;
 }
 
-function include(jsFile, toHeader, path) {
+function include(jsFile, toHeader) {
 
    if (undefined == toHeader)
       toHeader = true;
 
    let script = document.createElement('script');
-   if (path)
-      script.src = path + "/" + jsFile;
-   else
-      script.src = "./_maxgui/" + jsFile;
+   script.src = jsFile;
 
    script.type = 'text/javascript';
    // script.defer = true;
@@ -37,9 +34,9 @@ function addStyle(styleFile) {
       return;
 
    let link = document.createElement("link");
-   style.setAttribute("rel", "stylesheet");
-   style.setAttribute("type", "text/css");
-   style.setAttribute("href", styleFile);
+   link.setAttribute("rel", "stylesheet");
+   link.setAttribute("type", "text/css");
+   link.setAttribute("href", styleFile);
 
    document.getElementsByTagName('head').item(0).append(link);
 }
@@ -82,13 +79,15 @@ function setupDocument(docWidth, leftMargin, topMargin) {
       document.body.style.marginTop = topMargin.toString() + "px";
 }
 
-// includes
-include("maxdummy.js");
-include("ringbuffer.js");
+// standard includes
+include("./_maxgui/maxdummy.js");
+include("./_maxgui/ringbuffer.js");
 
-include("div.js");
-include("button.js");
-include("tab.js");
-include("slider.js");
-include("canvas.js");
-include('table.js');
+include("./_maxgui/inline_html.js");
+
+include("./_maxgui/div.js");
+include("./_maxgui/button.js");
+include("./_maxgui/tab.js");
+include("./_maxgui/slider.js");
+include("./_maxgui/canvas.js");
+include('./_maxgui/table.js');

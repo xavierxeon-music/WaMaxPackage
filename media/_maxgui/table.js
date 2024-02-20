@@ -12,8 +12,6 @@ class Table extends BaseElement {
          for (let index in headers)
             this.widths.push("auto");
       }
-
-
    }
 
    addHeader(headerList) {
