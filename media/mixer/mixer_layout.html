@@ -1,48 +1,54 @@
 <table class="mixer" id="mixer_top">
    <tr class="mixer_header">
-      <td style="width:60px;">Send</td>
-      <td style="width:400px;" id="channel_names"></td>
-      <td style="width:150px;">Transport</td>
+      <td style="width:40px;">Send</td>
+      <td style="width:400px;">
+         <div id="channel_names" style="overflow-x:auto; overflow-y:hidden;"></div>
+      </td>
+      <td style=" width:150px;">Transport
+      </td>
    </tr>
    <tr style="height:100px;">
-      <td id="send_names"></td>
-      <td id="send_dials"></td>
-      <td id="transport"></td>
+      <td>
+         <div id="send_names" style="overflow-x:hidden; overflow-y:auto;"></div>
+      </td>
+      <td>
+         <div id="send_dials" style="overflow-x:auto; overflow-y:auto;"></div>
+      </td>
+      <td>
+         <div id="transport"></div>
+      </td>
    </tr>
    <tr style="height:100px;">
-      <td id="master_eq"></td>
-      <td id="channel_eq"></td>
-      <td id="return_eq"></td>
+      <td>
+         <div id="master_eq"></div>
+      </td>
+      <td>
+         <div id="channel_eq" style="overflow-x:auto; overflow-y:hidden;"></div>
+      </td>
+      <td>
+         <div id="return_eq" style="overflow-x:auto; overflow-y:hidden;"></div>
+      </td>
    </tr>
 
    <tr class="mixer_header">
-      <td style="width:60px;">Master</td>
-      <td style="width:400px;" id="channel_names"></td>
-      <td style="width:150px;" id="return_names"></td>
-   </tr>
-   <tr style="height:200px;">
+      <td>Master</td>
       <td>
-
-         <div id="master_fader" style="height:100%;overflow-x:hidden; overflow-y:auto;">
-            <svg width="20px" heigth="100px">
-               <!--lines-->
-               <path d="M 1,95 L 19,95 M 1,72.5 L 19,72.5 M 1,50 L 19,50 M 1,27.5 L 19,27.5 M 1,5 L 19,5 " stroke="#999"
-                  stroke-width="1" stroke-linecap="butt"></path>
-               <!--fader box-->
-               <rect x="6" y="2" width="8" height="96" rx="3" ry="3" stroke="#000" stroke-width="2" fill="#555"></rect>
-               <!--indicator-->
-               <rect x="7" width="6" rx="3" ry="3" stroke-width="0" fill="#ff0000" class="slider-track" y="54.2"
-                  height="43.8"></rect>
-               <!--knob-->
-               <rect x="3" width="14" height="6" rx="2" ry="2" stroke-width="0" fill="#d3d347" class="slider-cursor"
-                  y="54.2"></rect>
-
-            </svg>
-         </div>
-
-
+         <div id="channel_names" style="overflow-x:auto; overflow-y:hidden;"></div>
       </td>
-      <td id="channel_faders"></td>
-      <td id="return_faders"></td>
+      <td>
+         <div id=" return_names" style="overflow-x:auto; overflow-y:hidden;"></div>
+      </td>
+   </tr>
+   <tr style=" height:200px;">
+      <td>
+         <div id="master_fader">
+         </div>
+      </td>
+      <td>
+         <div id="channel_faders" style="overflow-x:auto; overflow-y:hidden;"></div>
+      </td>
+      <td>
+         <div id="return_faders" style="overflow-x:auto; overflow-y:hidden;"></div>
+      </td>
    </tr>
 </table>
