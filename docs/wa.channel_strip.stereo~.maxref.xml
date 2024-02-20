@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.mixer.mono~" patcher_type="1">
-    <digest>a mixer mono chanel</digest>
-    <description>a mixer mono chanel</description>
+<c74object name="wa.channel_strip.stereo~" patcher_type="1">
+    <digest>a mixer stereo channel</digest>
+    <description>a mixer stereo channel</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
@@ -11,24 +11,21 @@
     <misc name="Outputs">
         <entry id="0" name="passR">
             <digest/>
-            <description>right output</description>
+            <description>pass right signal</description>
         </entry>
         <entry id="1" name="passL">
             <digest/>
-            <description>left output</description>
+            <description>pass left signal</description>
         </entry>
     </misc>
     <objarglist/>
     <attributelist>
         <attribute get="1" name="name" set="1" size="1" type="symbol">
-            <digest>channel name</digest>
+            <digest>the channel name</digest>
+            <description>the channel name</description>
         </attribute>
     </attributelist>
     <methodlist>
-        <method name="float" standard="1">
-            <digest/>
-            <description>panning left (-1) to right (+1)</description>
-        </method>
         <method name="int" standard="1">
             <digest/>
             <description>mute the mixer</description>
