@@ -20,9 +20,7 @@ class EnvelopeCanvas extends Canvas {
 
    constructor() {
 
-      debug("EnvelopeCanvas");
       super(document.body, undefined, 50);
-
       this.padding = 5;
    }
 
@@ -283,4 +281,5 @@ initSlider(curveSlider);
 createTabWidgets();
 let canvas = new EnvelopeCanvas();
 
-
+// debug arrays
+assocDict("test", "oscilators/drum_defaults.json");

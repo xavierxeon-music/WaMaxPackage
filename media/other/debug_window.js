@@ -39,8 +39,7 @@ function addMessage(text) {
 max.bindInlet('clearMessages', clearMessages);
 function clearMessages() {
 
-   for (let index = 0; index < numberOfColumns; index++)
-      messageBuffer.push([".", ""]);
+   messageBuffer.clear();
 
    updateTable();
 }

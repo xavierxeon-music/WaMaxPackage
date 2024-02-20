@@ -6,45 +6,90 @@ class MaxDummy {
 
    constructor() {
       this.dummy = true;
+
+      this.ineltMap = {};
+      this.dictMap = {};
+
+      console.log("DUMMY METHODS");
+      console.log("execInlet(name, ...args)");
+      console.log("assocDict(name, fileName)");
+
+      const pathname = location.pathname;
+      const workingDirectory = pathname.substring(0, (pathname.lastIndexOf("/") || 1));
+      console.log("@", workingDirectory);
    }
 
-   bindInlet(name, functionName) {
-      debug("DUMMY bindInlet", name);
+   bindInlet(name, functionPointer) {
+      this.ineltMap[name] = functionPointer;
+      console.log("DUMMY INLET", name);
    }
 
-   outlet() {
-      let text = "";
-      for (let i = 0; i < arguments.length; i++) {
-         if (i != 0)
-            text += " ";
-         text += arguments[i];
+   outlet(id, ...args) {
+      console.log("DUMMY OUTLET:", id, ...args);
+   }
+
+   getDict(name, functionPointer) {
+
+
+      async function loadJson(fileName) {
+         let response = await fetch(fileName);
+         let text = await response.text();
+         let remoteDict = JSON.parse(text);
+         console.log("LOADED DICTIONARY", name);
+         console.log(text);
+         functionPointer(remoteDict);
       }
-      console.log("MAX OUTLET:", text);
+
+      let fileName = this.dictMap[name];
+      if (fileName) {
+         loadJson(fileName);
+      }
+      else {
+         let localDict = {};
+         functionPointer(localDict);
+      }
    }
 
-   getDict(name, functionName) {
-      let localDict = {};
-      functionName(localDict);
+   setDict(name, value) {
+      let fileName = this.dictMap[name];
+      if (fileName) {
+
+      }
    }
-   setDict(name, value) { }
+
+}
+
+function execInlet(name, ...args) {
+
+   if (window.max.dummy == undefined)
+      return;
+
+   let func = window.max.ineltMap[name];
+   if (func)
+      func(...args);
+   else
+      console.log("unable to find function", name);
+}
+
+function assocDict(name, fileName) {
+
+   if (window.max.dummy == undefined)
+      return;
+
+   window.max.dictMap[name] = fileName;
+   console.log("DUMMY DICTIONARY", name, "@", fileName);
 }
 
 if (window.max == undefined)
    window.max = new MaxDummy();
 
-function debug() {
-   let text = "";
-   for (let i = 0; i < arguments.length; i++) {
-      if (i != 0)
-         text += " ";
-      text += arguments[i];
-   }
+function debug(...args) {
 
    if (window.max.dummy != undefined) {
-      console.log("DEBUG:", text);
+      console.log("DEBUG:", ...args);
    }
    else {
-      max.outlet("DEBUG", text);
+      max.outlet("DEBUG", args);
    }
 }
 
