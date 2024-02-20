@@ -282,4 +282,4 @@ createTabWidgets();
 let canvas = new EnvelopeCanvas();
 
 // debug arrays
-assocDict("test", "oscilators/drum_defaults.json");
+assocDict("test", ".vscode/drum_map.json");

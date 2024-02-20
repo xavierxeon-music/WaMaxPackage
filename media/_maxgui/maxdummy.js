@@ -35,8 +35,13 @@ class MaxDummy {
          let response = await fetch(fileName);
          let text = await response.text();
          let remoteDict = JSON.parse(text);
+
+         text = text.replace(/(\r\n|\n|\r)/gm, " ");
+         text = text.replace(/\s+/g, "");
+
          console.log("LOADED DICTIONARY", name);
          console.log(text);
+
          functionPointer(remoteDict);
       }
 
@@ -51,10 +56,16 @@ class MaxDummy {
    }
 
    setDict(name, value) {
-      let fileName = this.dictMap[name];
-      if (fileName) {
 
-      }
+      let fileName = this.dictMap[name];
+      if (!fileName)
+         return;
+
+      let text = JSON.stringify(value);
+      console.log("SAVE DICTIONARY", name);
+      console.log(text);
+
+      // https://www.tutorialspoint.com/how-to-create-and-save-text-file-in-javascript
    }
 
 }
