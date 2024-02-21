@@ -102,7 +102,7 @@ class TabBar extends BaseElement {
          if (0 != text.length)
             text += " ";
 
-         var value = layout[index];
+         let value = layout[index];
          if ("number" == typeof value)
             value = value.toString() + "px";
 

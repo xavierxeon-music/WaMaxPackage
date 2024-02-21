@@ -11,33 +11,62 @@ function createAndAppend(type, parent) {
    return thing;
 }
 
-function include(jsFile, toHeader) {
+scriptCount = 0;
+scriptLoadCount = 0;
 
-   if (undefined == toHeader)
-      toHeader = true;
+function loadContent(contentDict) {
+   console.log(contentDict);
 
-   let script = document.createElement('script');
-   script.src = jsFile;
-   script.type = 'text/javascript';
+   let mainScript = contentDict["script"];
 
+   function delayLoadMainScript() {
 
-   if (toHeader)
-      document.getElementsByTagName('head').item(0).appendChild(script);
-   else
+      if (!mainScript)
+         return;
+
+      let script = document.createElement('script');
+      script.src = mainScript;
+      script.type = 'text/javascript';
+
       document.body.appendChild(script);
-}
+   }
 
-function addStyle(styleFile) {
+   let includes = contentDict["includes"];
+   for (let index in includes) {
 
-   if (styleFile == undefined)
-      return;
+      let jsFile = includes[index];
+      scriptCount++;
 
-   let link = document.createElement("link");
-   link.setAttribute("rel", "stylesheet");
-   link.setAttribute("type", "text/css");
-   link.setAttribute("href", styleFile);
+      let script = document.createElement('script');
+      script.src = jsFile;
+      script.type = 'text/javascript';
 
-   document.getElementsByTagName('head').item(0).append(link);
+      script.addEventListener("load", () => {
+
+         scriptLoadCount++;
+         if (scriptCount != scriptLoadCount)
+            return;
+
+         //console.log(scriptCount, scriptLoadCount);
+         delayLoadMainScript();
+      });
+
+      document.getElementsByTagName('head').item(0).appendChild(script);
+
+   }
+
+   let styles = contentDict["styles"];
+   for (let index in styles) {
+
+      let styleFile = styles[index];
+
+      let link = document.createElement("link");
+      link.setAttribute("rel", "stylesheet");
+      link.setAttribute("type", "text/css");
+      link.setAttribute("href", styleFile);
+
+      document.getElementsByTagName('head').item(0).append(link);
+   }
 }
 
 class BaseElement {
@@ -77,16 +106,3 @@ function setupDocument(docWidth, leftMargin, topMargin) {
    if (topMargin)
       document.body.style.marginTop = topMargin.toString() + "px";
 }
-
-// standard includes
-include("./_maxgui/maxdummy.js");
-include("./_maxgui/ringbuffer.js");
-
-include("./_maxgui/inline_html.js");
-
-include("./_maxgui/div.js");
-include("./_maxgui/button.js");
-include("./_maxgui/tab.js");
-include("./_maxgui/slider.js");
-include("./_maxgui/canvas.js");
-include('./_maxgui/table.js');

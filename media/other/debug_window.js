@@ -1,6 +1,6 @@
 //
 
-var numberOfColumns = 50;
+let numberOfColumns = 50;
 
 const messageBuffer = new RingBuffer(numberOfColumns, ["", ""]);
 const tableElements = new Array(length).fill(undefined);

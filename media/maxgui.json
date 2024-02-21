@@ -18,12 +18,25 @@
    "mixer": {
       "name": "Mixer",
       "script": "./mixer/mixer_console_ui.js",
-      "style": [
+      "styles": [
          "./mixer/mixer_console_ui.css"
       ],
       "includes": [
          "./mixer/_mixer_fader.js",
          "./mixer/_mixer_knob.js"
+      ]
+   },
+   "_default": {
+      "includes": [
+         "./_maxgui/button.js",
+         "./_maxgui/canvas.js",
+         "./_maxgui/div.js",
+         "./_maxgui/inline_html.js",
+         "./_maxgui/maxdummy.js",
+         "./_maxgui/ringbuffer.js",
+         "./_maxgui/slider.js",
+         "./_maxgui/tab.js",
+         "./_maxgui/table.js"
       ]
    }
 }

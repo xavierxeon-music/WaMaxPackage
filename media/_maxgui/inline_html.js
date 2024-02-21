@@ -6,13 +6,10 @@ class InlineHTML extends BaseElement {
 
       super("div", parent);
 
-      var request = new XMLHttpRequest();
-
-      request.onreadystatechange = () => {
-         this.element.innerHTML = request.responseText;
-      };
-
+      let request = new XMLHttpRequest();
       request.open("GET", fileName, false);
       request.send(null);
+
+      this.element.innerHTML = request.responseText;
    }
 } 

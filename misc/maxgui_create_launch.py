@@ -1,20 +1,40 @@
-{
-   // Use IntelliSense to learn about possible attributes.
-   // Hover to view descriptions of existing attributes.
-   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-   "version": "0.2.0",
-   "configurations": [
-      {
-         "name": "Rack Small",
-         "file": "${workspaceFolder}/maxgui.html?content=mixer/rack_small_ui.js",
-         "request": "launch",
-         "type": "chrome",
-         "includeLaunchArgs": true,
-         "runtimeArgs": [
-            "--allow-file-access-from-files"
-         ],
-         "url": "http://localhost:8080",
-         "webRoot": "${workspaceFolder}"
-      }
-   ]
+#!/usr/bin/env python3
+
+import json
+import os
+
+os.makedirs('../media/.vscode', exist_ok=True)
+
+launch = {
+   'version': '0.2.0',
+   'configurations': []
 }
+
+standardConfig = {
+    'request': 'launch',
+    'type': 'chrome',
+    'includeLaunchArgs': True,
+    'runtimeArgs': [
+            '--allow-file-access-from-files'
+    ],
+    'url': 'http://localhost:8080',
+    'webRoot': '${workspaceFolder}'
+}
+
+
+with open('../media/maxgui.json', 'r') as infile:
+   content = json.load(infile)
+
+for key, configDict in content.items():
+
+   if (key == '_default'):
+      continue
+
+   config = standardConfig.copy()
+   config['name'] = configDict['name']
+   config['file'] = '${workspaceFolder}/maxgui.html?content=' + key
+
+   launch['configurations'].append(config)
+
+with open('../media/.vscode/launch.json', 'w') as outfile:
+   json.dump(launch, outfile, indent=3)

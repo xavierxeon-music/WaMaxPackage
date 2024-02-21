@@ -45,7 +45,7 @@ for (let index = 1; index <= 8; index++) {
 
 function blank() {
 
-   for (var key in portDict) {
+   for (let key in portDict) {
       let output = portDict[key];
       output.setText("&#9675;");
    }

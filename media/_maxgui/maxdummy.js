@@ -20,34 +20,28 @@ class MaxDummy {
    }
 
    bindInlet(name, functionPointer) {
+
       this.ineltMap[name] = functionPointer;
       console.log("DUMMY INLET", name);
    }
 
    outlet(id, ...args) {
+
       console.log("DUMMY OUTLET:", id, ...args);
    }
 
    getDict(name, functionPointer) {
 
-
-      async function loadJson(fileName) {
-         let response = await fetch(fileName);
-         let text = await response.text();
-         let remoteDict = JSON.parse(text);
-
-         text = text.replace(/(\r\n|\n|\r)/gm, " ");
-         text = text.replace(/\s+/g, "");
-
-         console.log("LOADED DICTIONARY", name);
-         console.log(text);
-
-         functionPointer(remoteDict);
-      }
-
       let fileName = this.dictMap[name];
       if (fileName) {
-         loadJson(fileName);
+         let request = new XMLHttpRequest();
+         request.open("GET", fileName, false);
+         request.send(null);
+
+         let remoteDict = JSON.parse(request.responseText);
+         console.log("LOADED DICTIONARY", name);
+
+         functionPointer(remoteDict);
       }
       else {
          let localDict = {};

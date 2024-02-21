@@ -52,16 +52,16 @@ for (let index = 1; index <= 8; index++) {
       portDict[receiveKey] = receivePort;
    }
    else {
-      var bgColor = "#373737";
+      let bgColor = "#373737";
 
-      var right = new Div(tabC, "&#9675;", "right");
+      let right = new Div(tabC, "&#9675;", "right");
       right.setStyle("color", bgColor);
 
       center = new Div(tabC, "XXX", "center");
       center.setStyle("color", bgColor);
       center.setStyle("font-weight", "bold");
 
-      var left = new Div(tabC, "&#9675;", "left");
+      let left = new Div(tabC, "&#9675;", "left");
       left.setStyle("color", bgColor);
    }
 }
@@ -70,7 +70,7 @@ for (let index = 1; index <= 8; index++) {
 
 function blank() {
 
-   for (var key in portDict) {
+   for (let key in portDict) {
       let output = portDict[key];
       output.setText("&#9675;");
    }
