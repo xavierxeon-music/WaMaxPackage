@@ -1,0 +1,29 @@
+{
+   "drums": {
+      "name": "Drum Control",
+      "script": "./oscilators/drum_control.js"
+   },
+   "daw": {
+      "name": "Daw",
+      "script": "./mixer/daw_ui.js"
+   },
+   "console": {
+      "name": "Debug Console",
+      "script": "./other/debug_window.js"
+   },
+   "rack_small": {
+      "name": "Small Rack",
+      "script": "./mixer/rack_small_ui.js"
+   },
+   "mixer": {
+      "name": "Mixer",
+      "script": "./mixer/mixer_console_ui.js",
+      "style": [
+         "./mixer/mixer_console_ui.css"
+      ],
+      "includes": [
+         "./mixer/_mixer_fader.js",
+         "./mixer/_mixer_knob.js"
+      ]
+   }
+}
