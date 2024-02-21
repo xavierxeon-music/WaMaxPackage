@@ -18,9 +18,8 @@ function include(jsFile, toHeader) {
 
    let script = document.createElement('script');
    script.src = jsFile;
-
    script.type = 'text/javascript';
-   // script.defer = true;
+
 
    if (toHeader)
       document.getElementsByTagName('head').item(0).appendChild(script);

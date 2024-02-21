@@ -1,12 +1,16 @@
 // fader
 
-class Fader {
+class MixerFader {
 
-   constructor() {
+   constructor(parent) {
+
+      let svg = createAndAppend("svg", parent);
 
    }
 
 }
+
+console.log("Hello");
 
 /*
 <svg width="20px" heigth="100px">
