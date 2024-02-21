@@ -1,0 +1,2 @@
+max objectfile wa.mixer.console wa.mixer.console;
+max definesubstitution wa.mixer.console bpatcher @name wa.mixer.console.maxpat;
