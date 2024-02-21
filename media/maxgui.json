@@ -1,13 +1,13 @@
 {
    "drums": {
       "name": "Drum Control",
-      "script": "./oscilators/drum_control.js"
+      "script": "./oscilators/drum_control_ui.js"
    },
    "daw": {
       "name": "Daw",
       "script": "./mixer/daw_ui.js"
    },
-   "console": {
+   "debug_window": {
       "name": "Debug Console",
       "script": "./other/debug_window.js"
    },
@@ -31,7 +31,6 @@
          "./_maxgui/button.js",
          "./_maxgui/canvas.js",
          "./_maxgui/div.js",
-         "./_maxgui/inline_html.js",
          "./_maxgui/maxdummy.js",
          "./_maxgui/ringbuffer.js",
          "./_maxgui/slider.js",

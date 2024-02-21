@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ -3406.0, 275.0, 2226.0, 1291.0 ],
+		"rect" : [ 34.0, 115.0, 3772.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -201,7 +201,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 225.0, 195.0 ],
 					"rendermode" : 2,
-					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/media/maxgui.html?content=oscilators/drum_control_ui.js"
+					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/media/maxgui.html?content=drums"
 				}
 
 			}
@@ -213,7 +213,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 311.600002408027649, 75.60000067949295, 321.0, 22.0 ],
-					"text" : "readfile maxgui.html?content=oscilators/drum_control_ui.js"
+					"text" : "readfile maxgui.html?content=drums"
 				}
 
 			}

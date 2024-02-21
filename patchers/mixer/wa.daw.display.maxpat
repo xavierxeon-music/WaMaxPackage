@@ -74,7 +74,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 180.0, 165.0 ],
 					"rendermode" : 2,
-					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/media/maxgui.html?content=mixer/daw_ui.js"
+					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/media/maxgui.html?content=mixer"
 				}
 
 			}
@@ -196,7 +196,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 240.0, 180.0, 252.0, 22.0 ],
-					"text" : "readfile maxgui.html?content=mixer/daw_ui.js"
+					"text" : "readfile maxgui.html?content=daw"
 				}
 
 			}

@@ -180,7 +180,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 510.0, 165.0, 287.0, 22.0 ],
-					"text" : "readfile maxgui.html?content=mixer/rack_small_ui.js"
+					"text" : "readfile maxgui.html?content=rack_small"
 				}
 
 			}

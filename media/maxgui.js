@@ -11,15 +11,24 @@ function createAndAppend(type, parent) {
    return thing;
 }
 
-scriptCount = 0;
-scriptLoadCount = 0;
+
+
+let scriptCount = 0;
+let scriptLoadCount = 0;
+let mainScript = "";
 
 function loadContent(contentDict) {
-   console.log(contentDict);
 
-   let mainScript = contentDict["script"];
+   // console.log(contentDict);
 
-   function delayLoadMainScript() {
+   mainScript = contentDict["script"];
+
+   function loadMainScriptWhenReady() {
+
+      // console.log(scriptCount, scriptLoadCount, mainScript);
+
+      if (scriptCount != scriptLoadCount)
+         return;
 
       if (!mainScript)
          return;
@@ -44,11 +53,7 @@ function loadContent(contentDict) {
       script.addEventListener("load", () => {
 
          scriptLoadCount++;
-         if (scriptCount != scriptLoadCount)
-            return;
-
-         //console.log(scriptCount, scriptLoadCount);
-         delayLoadMainScript();
+         loadMainScriptWhenReady();
       });
 
       document.getElementsByTagName('head').item(0).appendChild(script);
@@ -67,6 +72,19 @@ function loadContent(contentDict) {
 
       document.getElementsByTagName('head').item(0).append(link);
    }
+
+   loadMainScriptWhenReady();
+}
+
+// inline
+
+function inlineHTML(parent, fileName) {
+
+   let request = new XMLHttpRequest();
+   request.open("GET", fileName, false);
+   request.send(null);
+
+   parent.innerHTML = request.responseText;
 }
 
 class BaseElement {
@@ -94,7 +112,14 @@ class BaseElement {
       this.element.style["left"] = x.toString() + "px";
       this.element.style["top"] = y.toString() + "px";
    }
+
+   inlineHTML(fileName) {
+
+      inlineHTML(this.element, fileName);
+   }
 }
+
+// inline
 
 // header
 function setupDocument(docWidth, leftMargin, topMargin) {

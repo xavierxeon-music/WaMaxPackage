@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 115.0, 3055.0, 1451.0 ],
+		"rect" : [ 34.0, 115.0, 3772.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -212,8 +212,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 240.0, 516.0, 291.0, 22.0 ],
-					"text" : "readfile maxgui.html?content=other/debug_window.js"
+					"patching_rect" : [ 240.0, 516.0, 249.0, 22.0 ],
+					"text" : "readfile maxgui.html?content=debug_window"
 				}
 
 			}
@@ -228,7 +228,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 255.0, 240.0 ],
 					"rendermode" : 2,
-					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/media/maxgui.html?content=other/debug_window.js"
+					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/media/maxgui.html?content=debug_window"
 				}
 
 			}
