@@ -67,12 +67,12 @@
 					"bubble" : 1,
 					"bubbleside" : 3,
 					"id" : "obj-35",
-					"linecount" : 7,
+					"linecount" : 4,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 90.0, 319.0, 79.0, 104.0 ],
-					"text" : "stop imediatly, but wait until phase starts for start"
+					"patching_rect" : [ 45.0, 319.0, 124.0, 64.0 ],
+					"text" : "stop immediatly, but start on beginning of phase"
 				}
 
 			}
@@ -191,7 +191,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 157.0, 495.0, 118.0, 22.0 ],
+					"patching_rect" : [ 165.0, 585.0, 118.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send transport_state"
 				}
