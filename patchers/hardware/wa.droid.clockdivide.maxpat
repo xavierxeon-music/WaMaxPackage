@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1314.0, 115.0, 1212.0, 1451.0 ],
+		"rect" : [ 129.0, 254.0, 2948.0, 1123.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,12 +40,24 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-1",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 196.25, 450.0, 67.0, 22.0 ],
+					"text" : "delay 1000"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-21",
 					"maxclass" : "newobj",
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 183.0, 180.0, 107.0, 22.0 ],
+					"patching_rect" : [ 183.0, 180.0, 121.0, 22.0 ],
 					"style" : "wa.receive",
 					"text" : "receive #0_resend"
 				}
@@ -57,7 +69,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 196.25, 450.0, 95.0, 22.0 ],
+					"patching_rect" : [ 196.25, 495.0, 108.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_resend"
 				}
@@ -165,7 +177,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-8",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -238,7 +250,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-2",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -248,6 +260,13 @@
 			}
  ],
 		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-20", 0 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
 				"patchline" : 				{
 					"destination" : [ "obj-13", 0 ],
 					"source" : [ "obj-12", 0 ]
@@ -344,7 +363,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-20", 0 ],
+					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-6", 0 ]
 				}
 
@@ -380,7 +399,6 @@
 
 			}
  ],
-		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.buffer",
 				"default" : 				{

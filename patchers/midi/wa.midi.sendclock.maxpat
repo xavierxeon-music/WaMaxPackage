@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 129.0, 226.0, 2948.0, 1151.0 ],
+		"rect" : [ 129.0, 254.0, 2948.0, 1123.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -71,31 +71,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 144.0, 257.0, 30.0, 30.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-12",
-					"linecount" : 2,
-					"maxclass" : "message",
-					"numinlets" : 2,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 990.0, 315.0, 346.0, 35.0 ],
-					"text" : ";\rmax launchbrowser https://en.wikipedia.org/wiki/MIDI_timecode"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-6",
-					"linecount" : 3,
-					"maxclass" : "comment",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 990.0, 360.0, 150.0, 47.0 ],
-					"text" : "120 quarter / min =\n120*480 ticks / 60 sec =>\nt = 8 * ticks / bpm"
 				}
 
 			}

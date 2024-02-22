@@ -7,7 +7,7 @@ setinletassist(0, "state / tick");
 outlets = 3;
 setoutletassist(0, "midi");
 setoutletassist(1, "starttick");
-setoutletassist(2, "timecode");
+setoutletassist(2, "songpointer");
 
 var lastPulse = -1;
 var reset = false;
@@ -25,9 +25,11 @@ function state(value) {
       if (reset) {
          reset = false;
 
+         outlet(2, [242, 0, 0]); // song postion pointer
+
          outlet(0, 250); // start
          outlet(0, 248); // clock
-         outlet(1, 248); // clock
+         outlet(1, 248); // extra clock
       }
       else {
          outlet(0, 251); // continue
