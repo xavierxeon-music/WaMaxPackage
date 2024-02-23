@@ -48,10 +48,18 @@ function clearMessages() {
 // gui
 setupDocument(250, 1, 1);
 
-let tableHeaders = new Table(undefined, ["60px", "auto"]);
-tableHeaders.addHeader(["time", "message"]);
+// top
+let title = new Title("console");
+
+let nameEdit = createAndAppend("input", title);
+nameEdit.type = "text";
+nameEdit.className = "lineedit";
+
+let clearButton = new Button(title, "clear");
+clearButton.onClicked(clearMessages);
 
 
+// table
 let scroll = new Div();
 scroll.forceHeigth("200px");
 
@@ -61,11 +69,16 @@ for (let index = 0; index < numberOfColumns; index++) {
    tableElements[numberOfColumns - (1 + index)] = rows;
 }
 
-let title = new Title("console");
-title.setStyle("height", "20px");
-
-let clearButton = new Button(undefined, "clear");
-clearButton.move(208, 220);
-clearButton.onClicked(clearMessages);
-
 updateTable();
+
+// name
+
+max.bindInlet('setName', setName);
+function setName(name) {
+   nameEdit.value = name;
+}
+
+nameEdit.addEventListener("change", () => {
+   max.outlet("updateName", nameEdit.value);
+});
+

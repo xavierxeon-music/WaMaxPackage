@@ -9,7 +9,10 @@
    },
    "debug_window": {
       "name": "Debug Console",
-      "script": "./other/debug_window.js"
+      "script": "./other/debug_window.js",
+      "styles": [
+         "./other/debug_window.css"
+      ]
    },
    "rack_small": {
       "name": "Small Rack",
