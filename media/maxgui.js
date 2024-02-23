@@ -1,8 +1,8 @@
 // maxgui
 
-function createAndAppend(type, parent) {
+function createAndAppend(tag, parent) {
 
-   let thing = document.createElement(type);
+   let thing = document.createElement(tag);
    if (parent)
       parent.appendChild(thing);
    else
@@ -89,9 +89,9 @@ function inlineHTML(parent, fileName) {
 
 class BaseElement {
 
-   constructor(type, parent) {
+   constructor(tag, parent) {
 
-      this.element = createAndAppend(type, parent);
+      this.element = createAndAppend(tag, parent);
    }
 
    setAttribute(key, value) {
