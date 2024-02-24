@@ -1,25 +1,25 @@
 autowatch = 1;
 
 // inlets and outlets
-inlets = 2;
+inlets = 1;
 setinletassist(0, "message");
-setinletassist(1, "response");
 
 outlets = 2;
 setoutletassist(0, "state");
-setoutletassist(1, "request");
+setoutletassist(1, "devices");
 
 var initRequest = new XMLHttpRequest();
 var stateRequest = new XMLHttpRequest();
 var sendRequest = new XMLHttpRequest();
 
 var baseUrl = undefined;
+var header = undefined;
 var deviceId = undefined;
 var deviceName = undefined;
 
 var sendQueue = {};
 var sendTask = new Task(processQueue);
-sendTask.interval = 10;
+sendTask.interval = 100;
 sendTask.repeat();
 
 var stateTask = new Task(state);
@@ -27,6 +27,9 @@ stateTask.interval = 5000;
 stateTask.repeat();
 
 // see https://kinsta.com/knowledgebase/javascript-http-request/
+
+// see https://developers.meethue.com/develop/application-design-guidance/using-https/
+
 
 
 function init(_deviceName, settingsFileName) {
@@ -39,50 +42,46 @@ function init(_deviceName, settingsFileName) {
    var settings = readJsonFile(settingsFileName);
    baseUrl = "http://" + settings["bridge"] + "/api/" + settings["username"] + "/";
 
-   initRequest.open("GET", baseUrl + 'lights');
+   initRequest.open("GET", baseUrl + "lights");
    initRequest.send();
 }
-
-
 
 function on() {
 
    var payload = { "on": true };
-   addToQueue('state', payload);
+   addToQueue("state", payload);
 }
 
 function off() {
 
    var payload = { "on": false };
-   addToQueue('stae', payload);
+   addToQueue("stae", payload);
 }
 
-function color(hexColor) {
+function color(hexColor, index) {
 
    var color = new Color(hexColor);
 
-   [hue, sat, bright] = color.toHSV();
-   hue *= 256;
+   [hue, sat, bright] = color.toHSV(true);
 
    var payload = { "hue": hue, "sat": sat, "transitiontime": 0, "alert": "none" };
-   addToQueue('color', payload);
+   addToQueue("color", payload);
 }
 
-function colorbright(hexColor) {
+function colorbright(hexColor, index) {
 
    var color = new Color(hexColor);
 
-   [hue, sat, bright] = color.toHSV();
-   hue *= 256;
+   [hue, sat, bright] = color.toHSV(true);
 
    var payload = { "hue": hue, "sat": sat, "bri": bright, "transitiontime": 0, "alert": "none" };
-   addToQueue('colorbright', payload);
+   addToQueue("colorbright", payload);
 }
 
-function brightness(value) {
+function brightness(value, index) {
 
    var payload = { "bri": value, "transitiontime": 0, "alert": "none" };
-   addToQueue('bright', payload);
+   addToQueue("bright", payload);
 }
 
 initResponse.local = 1;
@@ -94,7 +93,9 @@ function initResponse() {
    var response = JSON.parse(initRequest.responseText);
    for (var key in response) {
       var device = response[key];
-      if (device["name"] == deviceName)
+      var name = device["name"];
+      outlet(1, name);
+      if (name == deviceName)
          deviceId = key;
    }
 }
@@ -105,7 +106,7 @@ function state() {
    if (!deviceId)
       return;
 
-   stateRequest.open("GET", baseUrl + 'lights/' + deviceId);
+   stateRequest.open("GET", baseUrl + "lights/" + deviceId);
    stateRequest.send();
 }
 
@@ -126,7 +127,7 @@ function sendToBridge(payload) {
    if (!deviceId)
       return;
 
-   sendRequest.open("PUT", baseUrl + 'lights/' + deviceId + '/state');
+   sendRequest.open("PUT", baseUrl + "lights/" + deviceId + "/state");
 
    var content = JSON.stringify(payload);
    // print(content)

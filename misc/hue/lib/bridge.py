@@ -14,36 +14,39 @@ class Bridge:
 
    def __init__(self):
 
-      settingsFileName = str(Path.home()) + '/.hue.json'
+      settingsFileName = str(Path.home()) + '/.hue_v2.json'
       if not os.path.exists(settingsFileName):
-         settings = self.compileCredentials()
+         settings = self.compileCredentialsV2()
          with open(settingsFileName, 'w') as outfile:
             json.dump(settings, outfile, indent=3)
       else:
          with open(settingsFileName, 'r') as infile:
             settings = json.load(infile)
 
-      self.baseUrl = f"http://{settings['bridge']}/api/{settings['username']}/"
+      self.baseUrl = f'https://{settings["bridge"]}/clip/v2/resource/'
+      self.header = {'hue-application-key': settings['username'],
+                     'Accept': 'text/event-stream'}
 
-      self.baseUrl2 = f'http://{settings["bridge"]}/clip/v2/resource/'
-      self.header = {'hue-application-key': settings["username"]}
+      response = requests.get(self.baseUrl + 'light', headers=self.header, verify='huebridge_cacert.pem')
+
+      self.lights = response.json()
+      print(type(self.lights))
+      sys.exit(0)
 
       self.devices = dict()
-      lights = requests.get(self.baseUrl + 'lights').json()
-      for key, device in lights.items():
+      for key, device in self.lights.items():
          name = device['name']
          self.devices[name] = key
-
-         # print(key, name, device['type'])
 
    def compileCredentialsV2(self):
 
       location = requests.get('https://discovery.meethue.com').json()
       location = location[0]  # can be several bridges
       ip = location['internalipaddress']
+      id = location['id']
 
-      settings = {'bridge': ip, 'devicetype': 'odense_hue'}
-      print('bridge @', ip)
+      settings = {'bridge': ip, 'devicetype': 'odense_hue', 'id': id}
+      print('bridge @', ip, id)
 
       keyUrl = f'http://{ip}/api'
       keyRequest = {'devicetype': 'odense_hue', 'generateclientkey': True}
@@ -61,10 +64,16 @@ class Bridge:
 
       return settings
 
-   def listDevices(self):
+   def listDevices(self, deviceName=None):
 
-      nameList = list(self.devices.keys())
-      print(nameList)
+      if deviceName and deviceName in self.devices:
+         key = self.devices[deviceName]
+         device = str(self.lights[key])
+         device = device.replace("'", '"')
+         print(device)
+      else:
+         nameList = list(self.devices.keys())
+         print(nameList)
 
    def getDeviceId(self, name):
 

@@ -78,6 +78,14 @@ function isHex(value) {
    return true;
 }
 
+function makeHex(number) {
+   var hex = Math.round(number).toString(16);
+   if (1 === hex.length)
+      hex = "0" + hex;
+
+   return hex;
+}
+
 function createPseudoUuid() {
 
    var s = [];

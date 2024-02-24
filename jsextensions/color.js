@@ -44,6 +44,12 @@ function Color(text) {
    return this;
 }
 
+Color.fromRGB = function (red, green, blue) {
+
+   var hex = makeHex(red) + makeHex(green) + makeHex(blue);
+   return new Color(hex);
+}
+
 Color.prototype.distance = function (other) {
 
    const diff_red = this.red - other.red;
@@ -62,7 +68,7 @@ Color.prototype.luma = function () {
    return luma;
 }
 
-Color.prototype.toHSV = function () {
+Color.prototype.toHSV = function (extendedHue) {
    // see https://en.wikipedia.org/wiki/HSL_and_HSV#Formal_derivation
 
    // convert r,g,b [0,255] range to [0,1]
@@ -99,9 +105,12 @@ Color.prototype.toHSV = function () {
       hue /= 6.0;
    }
 
-   hue = Math.round(hue * 255);
-   sat = Math.round(sat * 255);
-   lum = Math.round(lum * 255);
+   var h = Math.round(hue * 255);
+   if (extendedHue)
+      h = Math.round(hue * 255 * 256);
 
-   return [hue, sat, lum];
+   var s = Math.round(sat * 255);
+   var l = Math.round(lum * 255);
+
+   return [h, s, l];
 }
