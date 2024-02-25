@@ -130,7 +130,7 @@ function sendToBridge(payload) {
    sendRequest.open("PUT", baseUrl + "lights/" + deviceId + "/state");
 
    var content = JSON.stringify(payload);
-   // print(content)
+   //print(content);
    sendRequest.send(content);
 }
 
