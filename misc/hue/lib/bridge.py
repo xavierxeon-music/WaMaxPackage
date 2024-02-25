@@ -4,6 +4,7 @@ import json
 import os
 import requests
 import sys
+import urllib3
 
 from pathlib import Path
 
@@ -27,16 +28,21 @@ class Bridge:
       self.header = {'hue-application-key': settings['username'],
                      'Accept': 'text/event-stream'}
 
-      response = requests.get(self.baseUrl + 'light', headers=self.header, verify='huebridge_cacert.pem')
+      # get rid of warning tghat connectin is insecure
+      urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+      response = requests.get(self.baseUrl + 'light', headers=self.header, verify=False)
 
       self.lights = response.json()
-      print(type(self.lights))
-      sys.exit(0)
 
       self.devices = dict()
-      for key, device in self.lights.items():
-         name = device['name']
-         self.devices[name] = key
+      for device in self.lights['data']:
+         id = device['id']
+         name = device['metadata']['name']
+         self.devices[name] = id
+
+      print(self.devices)
+      sys.exit(0)
 
    def compileCredentialsV2(self):
 
@@ -51,7 +57,7 @@ class Bridge:
       keyUrl = f'http://{ip}/api'
       keyRequest = {'devicetype': 'odense_hue', 'generateclientkey': True}
 
-      data = requests.post(keyUrl, json=keyRequest).json()
+      data = requests.post(keyUrl, json=keyRequest, verify=False).json()
       data = data[0]
 
       if 'error' in data:
@@ -86,10 +92,10 @@ class Bridge:
 
    def getState(self, deviceId):
 
-      data = requests.get(self.baseUrl + 'lights/' + deviceId).json()
+      data = requests.get(self.baseUrl + 'lights/' + deviceId, verify=False).json()
       return data['state']
 
    def setState(self, deviceId, payload):
 
-      response = requests.put(self.baseUrl + 'lights/' + deviceId + '/state', json=payload)
+      response = requests.put(self.baseUrl + 'lights/' + deviceId + '/state', json=payload, verify=False)
       # print(deviceId, payload, response.text)
