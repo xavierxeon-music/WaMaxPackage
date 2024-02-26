@@ -25,6 +25,7 @@ let commandStack = {};
 function updateStatus(json) {
 
    //console.log(json);
+   maxAPI.outlet("status", 1);
 }
 
 function requestStatus() {

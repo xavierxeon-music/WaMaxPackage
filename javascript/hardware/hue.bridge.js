@@ -7,7 +7,11 @@ setinletassist(0, "text");
 outlets = 1;
 setoutletassist(0, "text");
 
-function bang(){
+function bang() {
    post("bang");
+}
+
+function status(on) {
+
 }
 
