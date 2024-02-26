@@ -316,7 +316,7 @@
 					}
 ,
 					"style" : "wa.patcher",
-					"text" : "node.script run_program.js @autostart 1"
+					"text" : "node.script run_program.node.js @autostart 1"
 				}
 
 			}
@@ -742,7 +742,7 @@
 			}
  ],
 		"dependency_cache" : [ 			{
-				"name" : "run_program.js",
+				"name" : "run_program.node.js",
 				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/_common",
 				"patcherrelativepath" : "../../javascript/_common",
 				"type" : "TEXT",

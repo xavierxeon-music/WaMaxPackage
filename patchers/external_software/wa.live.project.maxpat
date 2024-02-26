@@ -596,7 +596,7 @@
 					}
 ,
 					"style" : "wa.patcher",
-					"text" : "node.script run_program.js @autostart 1"
+					"text" : "node.script run_program.node.js @autostart 1"
 				}
 
 			}

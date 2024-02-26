@@ -87,39 +87,40 @@ function cleanItem(item) {
 
 // handlers
 
-maxAPI.addHandler("checkOpen", (fileName, appName) => {
+const handlers = {
 
-   isOpen(fileName, appName);
-});
+   checkOpen: (fileName, appName) => {
+      isOpen(fileName, appName);
+   },
+   launch: (program, ...args) => {
 
-maxAPI.addHandler("launch", (program, ...args) => {
+      var appArgs = []
+      for (const item of args)
+         appArgs.push(item);
 
-   var appArgs = []
-   for (const item of args)
-      appArgs.push(item);
+      executeProgram(program, appArgs);
+   },
+   python: (...args) => {
 
-   executeProgram(program, appArgs);
-});
+      var appArgs = ["-u"]
+      for (const item of args)
+         appArgs.push(item);
 
-maxAPI.addHandler("python", (...args) => {
+      executeProgram("/opt/homebrew/bin/python3", appArgs);
+   },
+   open: (...args) => {
 
-   var appArgs = ["-u"]
-   for (const item of args)
-      appArgs.push(item);
+      var appArgs = []
+      for (var item of args) {
+         item = cleanItem(item);
+         appArgs.push(item);
+      }
 
-   executeProgram("/opt/homebrew/bin/python3", appArgs);
-});
-
-maxAPI.addHandler("open", (...args) => {
-
-   var appArgs = []
-   for (var item of args) {
-      item = cleanItem(item);
-      appArgs.push(item);
+      executeProgram("/usr/bin/open", appArgs);
    }
+};
 
-   executeProgram("/usr/bin/open", appArgs);
-});
+maxAPI.addHandlers(handlers);
 
 // main
 

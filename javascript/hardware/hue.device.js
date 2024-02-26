@@ -4,162 +4,82 @@ autowatch = 1;
 inlets = 1;
 setinletassist(0, "message");
 
-outlets = 2;
+outlets = 1;
 setoutletassist(0, "state");
-setoutletassist(1, "devices");
 
-var initRequest = new XMLHttpRequest();
-var stateRequest = new XMLHttpRequest();
-var sendRequest = new XMLHttpRequest();
+/////////////////////////////
+// vars / setup
 
-var baseUrl = undefined;
-var header = undefined;
-var deviceId = undefined;
+var hue = new Global("hue");
+
 var deviceName = undefined;
 
-var sendQueue = {};
-var sendTask = new Task(processQueue);
-sendTask.interval = 100;
-sendTask.repeat();
+/////////////////////////////
+// function
 
-var stateTask = new Task(state);
-stateTask.interval = 5000;
-stateTask.repeat();
+stateChange.local = 1;
+function stateChange(state) {
 
-// see https://kinsta.com/knowledgebase/javascript-http-request/
+   var on = state["on"];
+   outlet(0, on);
+}
 
-// see https://developers.meethue.com/develop/application-design-guidance/using-https/
-
-
-
-function init(_deviceName, settingsFileName) {
+function init(_deviceName) {
 
    deviceName = _deviceName;
-   initRequest.onreadystatechange = initResponse;
-   stateRequest.onreadystatechange = stateResponse;
-   sendRequest.onreadystatechange = sendResponse;
 
-   var settings = readJsonFile(settingsFileName);
-   baseUrl = "http://" + settings["bridge"] + "/api/" + settings["username"] + "/";
+   if (!hue.stateChange)
+      hue.stateChange = {};
 
-   initRequest.open("GET", baseUrl + "lights");
-   initRequest.send();
+   hue.stateChange[deviceName] = stateChange;
+
 }
 
 function on() {
 
-   var payload = { "on": true };
-   addToQueue("state", payload);
+   if (!hue.onOff)
+      return;
+
+   hue.onOff(deviceName, true);
 }
 
 function off() {
 
-   var payload = { "on": false };
-   addToQueue("stae", payload);
+   if (!hue.onOff)
+      return;
+
+   hue.onOff(deviceName, false);
 }
 
 function color(hexColor, index) {
 
-   var color = new Color(hexColor);
+   if (!index)
+      index = 0;
 
-   [hue, sat, bright] = color.toHSV(true);
+   if (!hue.onOff)
+      return;
 
-   var payload = { "hue": hue, "sat": sat, "transitiontime": 0, "alert": "none" };
-   addToQueue("color", payload);
+   hue.color(deviceName, hexColor, index);
 }
 
 function colorbright(hexColor, index) {
 
-   var color = new Color(hexColor);
+   if (!index)
+      index = 0;
 
-   [hue, sat, bright] = color.toHSV(true);
+   if (!hue.onOff)
+      return;
 
-   var payload = { "hue": hue, "sat": sat, "bri": bright, "transitiontime": 0, "alert": "none" };
-   addToQueue("colorbright", payload);
+   hue.colorbright(deviceName, hexColor, index);
 }
 
 function brightness(value, index) {
 
-   var payload = { "bri": value, "transitiontime": 0, "alert": "none" };
-   addToQueue("bright", payload);
-}
+   if (!index)
+      index = 0;
 
-initResponse.local = 1;
-function initResponse() {
-
-   if (initRequest.status != 200)
+   if (!hue.onOff)
       return;
 
-   var response = JSON.parse(initRequest.responseText);
-   for (var key in response) {
-      var device = response[key];
-      var name = device["name"];
-      outlet(1, name);
-      if (name == deviceName)
-         deviceId = key;
-   }
-}
-
-state.local = 1;
-function state() {
-
-   if (!deviceId)
-      return;
-
-   stateRequest.open("GET", baseUrl + "lights/" + deviceId);
-   stateRequest.send();
-}
-
-stateResponse.local = 1;
-function stateResponse() {
-
-   if (stateRequest.status != 200)
-      return;
-
-   var response = JSON.parse(stateRequest.responseText);
-   var on = response["state"]["on"];
-   outlet(0, on);
-}
-
-sendToBridge.local = 1;
-function sendToBridge(payload) {
-
-   if (!deviceId)
-      return;
-
-   sendRequest.open("PUT", baseUrl + "lights/" + deviceId + "/state");
-
-   var content = JSON.stringify(payload);
-   //print(content);
-   sendRequest.send(content);
-}
-
-sendResponse.local = 1;
-function sendResponse() {
-
-   if (sendRequest.status == 200)
-      return;
-
-   print(sendRequest.responseText);
-}
-
-processQueue.local = 1;
-function processQueue() {
-
-   for (var key in sendQueue) {
-
-      payload = sendQueue[key];
-      if (!payload)
-         continue;
-
-      sendQueue[key] = undefined;
-      sendToBridge(payload);
-   }
-
-}
-
-addToQueue.local = 1;
-function addToQueue(key, payload) {
-
-   sendQueue[key] = payload;
+   hue.brightness(deviceName, value, index);
 }
