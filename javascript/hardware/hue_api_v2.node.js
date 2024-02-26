@@ -4,13 +4,13 @@ const https = require("https");
 
 //  variables
 
+const verbose = false;
 const settings = require(os.homedir() + '/.hue_v2.json');
 
 const basePath = '/clip/v2/resource';
-const statusOptions = {
+const getOptions = {
    host: settings['bridge'],
    port: 443,
-   path: basePath + '/light',
    method: 'GET',
    rejectUnauthorized: false,
    headers: {
@@ -18,10 +18,9 @@ const statusOptions = {
    }
 };
 
-const sendLightOptions = {
+const putOptions = {
    host: settings['bridge'],
    port: 443,
-   path: basePath + '/light',
    method: 'PUT',
    rejectUnauthorized: false,
    headers: {
@@ -31,15 +30,18 @@ const sendLightOptions = {
 };
 // functions
 
-async function updateStatus(json) {
+async function updateStatus(group, json) {
 
-   await maxAPI.setDict('hue_state', json);
+   await maxAPI.updateDict('hue_state', group, json['data']);
    await maxAPI.outlet("state", 1);
 }
 
-async function requestStatus() {
+async function requestStatus(group) {
 
-   const statusRequest = https.request(statusOptions, (statusResponse) => {
+   let groupGetOptions = Object.assign({}, getOptions);
+   groupGetOptions.path = basePath + '/' + group;
+
+   const statusRequest = https.request(groupGetOptions, (statusResponse) => {
 
       let data = [];
       statusResponse.on('data', (chunk) => {
@@ -48,7 +50,7 @@ async function requestStatus() {
 
       statusResponse.on('end', () => {
          const json = JSON.parse(Buffer.concat(data).toString());
-         updateStatus(json);
+         updateStatus(group, json);
       });
    });
 
@@ -58,41 +60,47 @@ async function requestStatus() {
    statusRequest.end();
 }
 
-async function send(id, payload) {
+async function send(group, id, payload) {
 
-   sendLightOptions.path = basePath + '/light/' + id;
-   const setLightRequest = https.request(sendLightOptions, (setLightResponse) => {
+   let groupSenndOptions = Object.assign({}, putOptions);
+   groupSenndOptions.path = basePath + '/' + group + '/' + id;
+
+   if (verbose)
+      console.log('send', payload);
+
+   const setRequest = https.request(groupSenndOptions, (sendResponse) => {
 
       let data = [];
-      setLightResponse.on('data', (chunk) => {
+      sendResponse.on('data', (chunk) => {
          data.push(chunk);
       });
 
-      setLightResponse.on('end', () => {
-         const text = Buffer.concat(data).toString();
-         // console.log(text);
+      sendResponse.on('end', () => {
+         const json = JSON.parse(Buffer.concat(data).toString());
+         const errors = json['errors'];
+         if (0 != errors.length)
+            console.log(errors);
+         else if (verbose)
+            console.log("ok");
       });
 
    });
 
-   setLightRequest.on('error', (e) => {
+   setRequest.on('error', (e) => {
       console.error(e);
    });
 
-   setLightRequest.write(payload);
-   setLightRequest.end();
-
-   // console.log(payload);
+   setRequest.write(payload);
+   setRequest.end();
 }
 
 
 // handler & main 
+maxAPI.addHandler('send', async (group, id, payload) => {
 
-maxAPI.addHandler("send", async (id, payload) => {
-
-   await send(id, payload);
+   await send(group, id, payload);
 });
 
-setInterval(requestStatus, 5000);
+setInterval(requestStatus, 5000, 'light');
 
 

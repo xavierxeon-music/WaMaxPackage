@@ -4,7 +4,7 @@ autowatch = 1;
 inlets = 1;
 setinletassist(0, "reset/state");
 
-outlets = 1;
+outlets = 2;
 setoutletassist(0, "json");
 setoutletassist(1, "devices");
 
@@ -101,6 +101,7 @@ hue.brightness = function (deviceName, value, index) {
 
 function bang() {
 
+   outlet(1, Object.keys(deviceMap));
 }
 
 defaultStack.local = 1;
@@ -137,7 +138,7 @@ function sendStack() {
       payload = payload.replace('{"on":0}', '{"on":false}');
       payload = payload.replace('{"on":1}', '{"on":true}');
 
-      outlet(0, ["send", id, payload]);
+      outlet(0, ["send", "light", id, payload]);
    }
 
    stackMap = {};
@@ -149,7 +150,7 @@ function state(on) {
       return;
 
    var stateObject = JSON.parse(stateDict.stringify());
-   var data = stateObject["data"];
+   var data = stateObject["light"];
    for (var index in data) {
       var device = data[index];
       var id = device["id"];

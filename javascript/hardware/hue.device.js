@@ -24,6 +24,11 @@ function stateChange(state) {
    outlet(0, on);
 }
 
+function freebang() {
+
+   delete hue.stateChange[deviceName];
+}
+
 function init(_deviceName) {
 
    deviceName = _deviceName;

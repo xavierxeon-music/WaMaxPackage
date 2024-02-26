@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1074.0, 200.0, 2308.0, 1198.0 ],
+		"rect" : [ 1074.0, 284.0, 2308.0, 1114.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,13 +40,25 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-16",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 6,
+					"outlettype" : [ "signal", "bang", "int", "float", "", "list" ],
+					"patching_rect" : [ 30.0, 90.0, 71.5, 22.0 ],
+					"text" : "typeroute~"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"comment" : "devices",
 					"id" : "obj-4",
 					"index" : 2,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 438.0, 360.0, 30.0, 30.0 ]
+					"patching_rect" : [ 195.0, 285.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -57,7 +69,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 5,
 					"outlettype" : [ "dictionary", "", "", "", "" ],
-					"patching_rect" : [ 175.0, 30.0, 83.0, 22.0 ],
+					"patching_rect" : [ 295.0, 240.0, 83.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"legacy" : 0,
@@ -72,24 +84,12 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-10",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "bang", "bang" ],
-					"patching_rect" : [ 76.0, 75.0, 63.0, 22.0 ],
-					"text" : "trigger b b"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-26",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "int", "int" ],
-					"patching_rect" : [ 210.0, 315.0, 48.0, 22.0 ],
+					"patching_rect" : [ 135.0, 240.0, 48.0, 22.0 ],
 					"text" : "change"
 				}
 
@@ -101,7 +101,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 210.0, 210.0, 65.0, 22.0 ],
+					"patching_rect" : [ 135.0, 135.0, 65.0, 22.0 ],
 					"text" : "route state"
 				}
 
@@ -113,7 +113,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 408.0, 255.0, 29.5, 22.0 ],
+					"patching_rect" : [ 226.0, 180.0, 29.5, 22.0 ],
 					"text" : "0"
 				}
 
@@ -125,7 +125,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 408.0, 210.0, 66.0, 22.0 ],
+					"patching_rect" : [ 226.0, 135.0, 66.0, 22.0 ],
 					"text" : "select stop"
 				}
 
@@ -137,7 +137,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 390.0, 120.0, 63.0, 22.0 ],
+					"patching_rect" : [ 315.0, 45.0, 63.0, 22.0 ],
 					"text" : "script stop"
 				}
 
@@ -149,7 +149,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 210.0, 120.0, 125.0, 22.0 ],
+					"patching_rect" : [ 135.0, 45.0, 125.0, 22.0 ],
 					"text" : "script stop, script start"
 				}
 
@@ -162,7 +162,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 465.0, 158.0, 89.0, 37.0 ],
+					"patching_rect" : [ 390.0, 83.0, 89.0, 37.0 ],
 					"text" : "talk with bridge"
 				}
 
@@ -174,7 +174,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 210.0, 165.0, 247.0, 22.0 ],
+					"patching_rect" : [ 135.0, 90.0, 247.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"autostart" : 1,
 						"defer" : 0,
@@ -195,7 +195,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 72.0, 258.0, 85.0, 79.0 ],
+					"patching_rect" : [ 34.0, 165.0, 85.0, 79.0 ],
 					"text" : "communicate with device and sensor patches"
 				}
 
@@ -205,9 +205,9 @@
 					"id" : "obj-3",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
-					"patching_rect" : [ 76.0, 210.0, 77.0, 22.0 ],
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 34.0, 135.0, 77.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "hue.bridge.js",
 						"parameter_enable" : 0
@@ -227,7 +227,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 76.0, 30.0, 30.0, 30.0 ]
+					"patching_rect" : [ 30.0, 30.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -239,29 +239,15 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 210.0, 360.0, 30.0, 30.0 ]
+					"patching_rect" : [ 135.0, 285.0, 30.0, 30.0 ]
 				}
 
 			}
  ],
 		"lines" : [ 			{
 				"patchline" : 				{
-					"destination" : [ "obj-10", 0 ],
+					"destination" : [ "obj-16", 0 ],
 					"source" : [ "obj-1", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-14", 0 ],
-					"source" : [ "obj-10", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-3", 0 ],
-					"source" : [ "obj-10", 0 ]
 				}
 
 			}
@@ -276,6 +262,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
 					"source" : [ "obj-15", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-16", 1 ]
 				}
 
 			}
@@ -309,8 +302,15 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-4", 0 ],
+					"source" : [ "obj-3", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-6", 0 ],
-					"midpoints" : [ 85.5, 243.0, 195.0, 243.0, 195.0, 159.0, 219.5, 159.0 ],
+					"midpoints" : [ 43.5, 168.0, 120.0, 168.0, 120.0, 84.0, 144.5, 84.0 ],
 					"source" : [ "obj-3", 0 ]
 				}
 
@@ -318,7 +318,6 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-21", 0 ],
-					"order" : 1,
 					"source" : [ "obj-6", 1 ]
 				}
 
@@ -336,14 +335,6 @@
 					"destination" : [ "obj-3", 0 ],
 					"order" : 1,
 					"source" : [ "obj-6", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-4", 0 ],
-					"order" : 0,
-					"source" : [ "obj-6", 1 ]
 				}
 
 			}
