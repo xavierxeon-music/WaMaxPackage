@@ -50,6 +50,35 @@ Color.fromRGB = function (red, green, blue) {
    return new Color(hex);
 }
 
+Color.fromCIE = function (x, y, brightness) {
+
+   var z = 1.0 - x - y;
+   var Y = brightness;
+   var X = (Y / y) * x;
+   var Z = (Y / y) * z;
+
+   var r = X * 1.656492 - Y * 0.354851 - Z * 0.255038;
+   var g = -X * 0.707196 + Y * 1.655397 + Z * 0.036152;
+   var b = X * 0.051713 - Y * 0.121364 + Z * 1.011530;
+
+   function gammaCorrection(value) {
+      if (value <= 0.0031308)
+         return 12.92 * value;
+      else
+         return (1.055) * Math.pow(value, (1.0 / 2.4)) - 0.055;
+   }
+
+   r = gammaCorrection(r);
+   g = gammaCorrection(g);
+   b = gammaCorrection(b);
+
+   var red = Math.round(r * 255);
+   var green = Math.round(g * 255);
+   var blue = Math.round(b * 255);
+
+   return fromRGB(red, green, blue);
+}
+
 Color.prototype.distance = function (other) {
 
    const diff_red = this.red - other.red;
@@ -113,4 +142,34 @@ Color.prototype.toHSV = function (extendedHue) {
    var l = Math.round(lum * 255);
 
    return [h, s, l];
+}
+
+Color.prototype.toCIE = function () {
+
+   var red = this.red / 255.0;
+   var green = this.green / 255.0;
+   var blue = this.blue / 255.0;
+
+   // gamma correction
+   function gammaCorrection(value) {
+      if (value > 0.04045)
+         return Math.pow((value + 0.055) / 1.055, 2.4);
+      else
+         return value / 12.92;
+   }
+
+   red = gammaCorrection(red);
+   green = gammaCorrection(green);
+   blue = gammaCorrection(blue);
+
+   var X = red * 0.4124 + green * 0.3576 + blue * 0.1805;
+   var Y = red * 0.2126 + green * 0.7152 + blue * 0.0722;
+   var Z = red * 0.0193 + green * 0.1192 + blue * 0.9505;
+
+   var x = X / (X + Y + Z);
+   var y = Y / (X + Y + Z);
+   var brightness = Y;
+
+   return [x, y, brightness];
+
 }

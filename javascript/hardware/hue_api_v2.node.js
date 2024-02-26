@@ -33,7 +33,6 @@ const sendLightOptions = {
 
 async function updateStatus(json) {
 
-   //console.log(json);
    await maxAPI.setDict('hue_state', json);
    await maxAPI.outlet("state", 1);
 }
@@ -59,43 +58,39 @@ async function requestStatus() {
    statusRequest.end();
 }
 
-async function processStack(stack) {
+async function send(id, payload) {
 
-   for (let id in stack) {
-      let payload = JSON.stringify(stack[id]);
-      payload = payload.replace('{"on":0}', '{"on":false}');
-      payload = payload.replace('{"on":1}', '{"on":true}');
+   sendLightOptions.path = basePath + '/light/' + id;
+   const setLightRequest = https.request(sendLightOptions, (setLightResponse) => {
 
-      sendLightOptions.path = basePath + '/light/' + id;
-      const setLightRequest = https.request(sendLightOptions, (setLightResponse) => {
-
-         let data = [];
-         setLightResponse.on('data', (chunk) => {
-            data.push(chunk);
-         });
-
-         setLightResponse.on('end', () => {
-            const text = Buffer.concat(data).toString();
-            // console.log(text);
-         });
-
+      let data = [];
+      setLightResponse.on('data', (chunk) => {
+         data.push(chunk);
       });
 
-      setLightRequest.on('error', (e) => {
-         console.error(e);
+      setLightResponse.on('end', () => {
+         const text = Buffer.concat(data).toString();
+         // console.log(text);
       });
 
-      setLightRequest.write(payload);
-      setLightRequest.end();
-   }
+   });
+
+   setLightRequest.on('error', (e) => {
+      console.error(e);
+   });
+
+   setLightRequest.write(payload);
+   setLightRequest.end();
+
+   // console.log(payload);
 }
 
 
 // handler & main 
-maxAPI.addHandler(maxAPI.MESSAGE_TYPES.BANG, async () => {
 
-   const stack = await maxAPI.getDict("hue_stack");
-   await processStack(stack);
+maxAPI.addHandler("send", async (id, payload) => {
+
+   await send(id, payload);
 });
 
 setInterval(requestStatus, 5000);

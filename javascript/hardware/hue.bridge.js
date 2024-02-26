@@ -27,27 +27,73 @@ sendTask.repeat();
 /////////////////////////////
 // hue function
 
+// see https://developers.meethue.com/develop/hue-api-v2/api-reference/#resource_light__id__put
+
 hue.onOff = function (deviceName, on) {
 
-   var payload = { "on": { "on": on } };
+   var payload = {
+      "on": {
+         "on": on
+      }
+   };
    addStackPaylod(deviceName, payload);
-
-
 }
 
-hue.color = function (deviceName, hexColor, index) {
+hue.coloronly = function (deviceName, hexColor, index) {
 
-   print("color", deviceName, hexColor, index);
+   var color = new Color(hexColor);
+   [x, y, bright] = color.toCIE();
+
+   // duration not working
+   var payload = {
+      "color": {
+         "xy": {
+            "x": x,
+            "y": y
+         },
+         "dynamics": {
+            "duration": 0
+         }
+      }
+   };
+   addStackPaylod(deviceName, payload);
 }
 
 hue.colorbright = function (deviceName, hexColor, index) {
 
-   print("colorbright", deviceName, hexColor, index);
+   var color = new Color(hexColor);
+   [x, y, bright] = color.toCIE();
+
+   // duration not working
+   var payload = {
+      "dimming": {
+         "brightness": Math.round(bright * 100)
+      },
+      "color": {
+         "xy": {
+            "x": x,
+            "y": y
+         },
+         "dynamics": {
+            "duration": 0
+         }
+      }
+   };
+   addStackPaylod(deviceName, payload);
 }
 
 hue.brightness = function (deviceName, value, index) {
 
-   print("brightness", deviceName, value, index);
+   var payload = {
+      "dimming": {
+         "brightness": value
+      },
+      "dynamics": {
+         "duration": 0
+      }
+   };
+   addStackPaylod(deviceName, payload);
+
 }
 
 /////////////////////////////
@@ -86,8 +132,14 @@ function sendStack() {
    if (0 == Object.keys(stackMap).length)
       return;
 
-   var text = JSON.stringify(stackMap);
-   outlet(0, text);
+   for (var id in stackMap) {
+      var payload = JSON.stringify(stackMap[id]);
+      payload = payload.replace('{"on":0}', '{"on":false}');
+      payload = payload.replace('{"on":1}', '{"on":true}');
+
+      outlet(0, ["send", id, payload]);
+   }
+
    stackMap = {};
 }
 

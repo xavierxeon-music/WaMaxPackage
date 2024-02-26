@@ -59,7 +59,7 @@ function color(hexColor, index) {
    if (!hue.onOff)
       return;
 
-   hue.color(deviceName, hexColor, index);
+   hue.coloronly(deviceName, hexColor, index);
 }
 
 function colorbright(hexColor, index) {
