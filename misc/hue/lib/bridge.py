@@ -25,13 +25,14 @@ class Bridge:
             settings = json.load(infile)
 
       self.baseUrl = f'https://{settings["bridge"]}/clip/v2/resource/'
-      self.header = {'hue-application-key': settings['username'],
-                     'Accept': 'text/event-stream'}
+      self.header = {'hue-application-key': settings['username']}
 
       # get rid of warning tghat connectin is insecure
       urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-      response = requests.get(self.baseUrl + 'light', headers=self.header, verify=False)
+      response = requests.get(self.baseUrl + 'light', verify=False, headers=self.header)
+
+      # response = requests.get(self.baseUrl + 'light', verify=os.getcwd() + '/huebridge_cacert.pem', headers=self.header)
 
       self.lights = response.json()
 
@@ -40,9 +41,6 @@ class Bridge:
          id = device['id']
          name = device['metadata']['name']
          self.devices[name] = id
-
-      print(self.devices)
-      sys.exit(0)
 
    def compileCredentialsV2(self):
 
@@ -57,7 +55,7 @@ class Bridge:
       keyUrl = f'http://{ip}/api'
       keyRequest = {'devicetype': 'odense_hue', 'generateclientkey': True}
 
-      data = requests.post(keyUrl, json=keyRequest, verify=False).json()
+      data = requests.post(keyUrl, json=keyRequest, headers=self.header, verify=False).json()
       data = data[0]
 
       if 'error' in data:
@@ -92,10 +90,10 @@ class Bridge:
 
    def getState(self, deviceId):
 
-      data = requests.get(self.baseUrl + 'lights/' + deviceId, verify=False).json()
+      data = requests.get(self.baseUrl + 'lights/' + deviceId, headers=self.header, verify=False).json()
       return data['state']
 
    def setState(self, deviceId, payload):
 
-      response = requests.put(self.baseUrl + 'lights/' + deviceId + '/state', json=payload, verify=False)
-      # print(deviceId, payload, response.text)
+      response = requests.put(self.baseUrl + 'light/' + deviceId, json=payload, headers=self.header, verify=False)
+      print(self.baseUrl + 'light/' + deviceId, payload, response.text)

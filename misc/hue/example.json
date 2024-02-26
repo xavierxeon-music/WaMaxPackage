@@ -1,0 +1,1498 @@
+{
+   "errors": [],
+   "data": [
+      {
+         "id": "11be849c-6b97-49fe-9d32-84e36d56d2c9",
+         "id_v1": "/lights/6",
+         "owner": {
+            "rid": "4514863e-30c8-4665-a95f-14013e49efc2",
+            "rtype": "device"
+         },
+         "metadata": {
+            "name": "Kitchen",
+            "archetype": "hue_lightstrip",
+            "function": "mixed"
+         },
+         "product_data": {
+            "function": "mixed"
+         },
+         "identify": {},
+         "on": {
+            "on": False
+         },
+         "dimming": {
+            "brightness": 56.13,
+            "min_dim_level": 0.03999999910593033
+         },
+         "dimming_delta": {},
+         "color_temperature": {
+            "mirek": 366,
+            "mirek_valid": True,
+            "mirek_schema": {
+               "mirek_minimum": 153,
+               "mirek_maximum": 500
+            }
+         },
+         "color_temperature_delta": {},
+         "color": {
+            "xy": {
+               "x": 0.4573,
+               "y": 0.41
+            },
+            "gamut": {
+               "red": {
+                  "x": 0.6915,
+                  "y": 0.3083
+               },
+               "green": {
+                  "x": 0.17,
+                  "y": 0.7
+               },
+               "blue": {
+                  "x": 0.1532,
+                  "y": 0.0475
+               }
+            },
+            "gamut_type": "C"
+         },
+         "dynamics": {
+            "status": "none",
+            "status_values": [
+               "none",
+               "dynamic_palette"
+            ],
+            "speed": 0.0,
+            "speed_valid": False
+         },
+         "alert": {
+            "action_values": [
+               "breathe"
+            ]
+         },
+         "signaling": {
+            "signal_values": [
+               "no_signal",
+               "on_off",
+               "on_off_color",
+               "alternating"
+            ]
+         },
+         "mode": "normal",
+         "effects": {
+            "status_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ],
+            "status": "no_effect",
+            "effect_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ]
+         },
+         "powerup": {
+            "preset": "safety",
+            "configured": True,
+            "on": {
+               "mode": "on",
+               "on": {
+                  "on": True
+               }
+            },
+            "dimming": {
+               "mode": "dimming",
+               "dimming": {
+                  "brightness": 100.0
+               }
+            },
+            "color": {
+               "mode": "color_temperature",
+               "color_temperature": {
+                  "mirek": 366
+               }
+            }
+         },
+         "type": "light"
+      },
+      {
+         "id": "1a71750d-c985-42e9-a41e-d7d2fd5440d5",
+         "id_v1": "/lights/9",
+         "owner": {
+            "rid": "ee09a5ad-5f55-497f-9333-41f53a798a01",
+            "rtype": "device"
+         },
+         "metadata": {
+            "name": "SynthCorner",
+            "archetype": "sultan_bulb",
+            "function": "mixed"
+         },
+         "product_data": {
+            "function": "mixed"
+         },
+         "identify": {},
+         "on": {
+            "on": False
+         },
+         "dimming": {
+            "brightness": 0.0,
+            "min_dim_level": 1.0
+         },
+         "dimming_delta": {},
+         "color_temperature": {
+            "mirek": None,
+            "mirek_valid": False,
+            "mirek_schema": {
+               "mirek_minimum": 153,
+               "mirek_maximum": 500
+            }
+         },
+         "color_temperature_delta": {},
+         "color": {
+            "xy": {
+               "x": 0.1532,
+               "y": 0.0475
+            },
+            "gamut": {
+               "red": {
+                  "x": 0.6915,
+                  "y": 0.3083
+               },
+               "green": {
+                  "x": 0.17,
+                  "y": 0.7
+               },
+               "blue": {
+                  "x": 0.1532,
+                  "y": 0.0475
+               }
+            },
+            "gamut_type": "C"
+         },
+         "dynamics": {
+            "status": "none",
+            "status_values": [
+               "none",
+               "dynamic_palette"
+            ],
+            "speed": 0.0,
+            "speed_valid": False
+         },
+         "alert": {
+            "action_values": [
+               "breathe"
+            ]
+         },
+         "signaling": {
+            "signal_values": [
+               "no_signal",
+               "on_off",
+               "on_off_color",
+               "alternating"
+            ]
+         },
+         "mode": "normal",
+         "effects": {
+            "status_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ],
+            "status": "no_effect",
+            "effect_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ]
+         },
+         "powerup": {
+            "preset": "safety",
+            "configured": True,
+            "on": {
+               "mode": "on",
+               "on": {
+                  "on": True
+               }
+            },
+            "dimming": {
+               "mode": "dimming",
+               "dimming": {
+                  "brightness": 100.0
+               }
+            },
+            "color": {
+               "mode": "color_temperature",
+               "color_temperature": {
+                  "mirek": 366
+               }
+            }
+         },
+         "type": "light"
+      },
+      {
+         "id": "29b29172-3da1-4f92-9773-ab41dcd2be8b",
+         "id_v1": "/lights/18",
+         "owner": {
+            "rid": "1a51ef12-e6f6-46f3-99ee-08996c0f4e8f",
+            "rtype": "device"
+         },
+         "metadata": {
+            "name": "EurorackLeft",
+            "archetype": "plug",
+            "function": "functional"
+         },
+         "product_data": {
+            "function": "functional"
+         },
+         "identify": {},
+         "on": {
+            "on": False
+         },
+         "dynamics": {
+            "status": "none",
+            "status_values": [
+               "none"
+            ],
+            "speed": 0.0,
+            "speed_valid": False
+         },
+         "alert": {
+            "action_values": []
+         },
+         "mode": "normal",
+         "powerup": {
+            "preset": "powerfail",
+            "configured": True,
+            "on": {
+               "mode": "previous"
+            }
+         },
+         "type": "light"
+      },
+      {
+         "id": "2eb49677-2a80-409b-adef-2ef7eea9b5ee",
+         "id_v1": "/lights/1",
+         "owner": {
+            "rid": "252535f8-cd2a-4fda-9c08-89f6c35a78f7",
+            "rtype": "device"
+         },
+         "metadata": {
+            "name": "Bedroom",
+            "archetype": "sultan_bulb",
+            "function": "mixed"
+         },
+         "product_data": {
+            "function": "mixed"
+         },
+         "identify": {},
+         "on": {
+            "on": True
+         },
+         "dimming": {
+            "brightness": 11.07,
+            "min_dim_level": 1.0
+         },
+         "dimming_delta": {},
+         "color_temperature": {
+            "mirek": None,
+            "mirek_valid": False,
+            "mirek_schema": {
+               "mirek_minimum": 153,
+               "mirek_maximum": 500
+            }
+         },
+         "color_temperature_delta": {},
+         "color": {
+            "xy": {
+               "x": 0.6915,
+               "y": 0.3083
+            },
+            "gamut": {
+               "red": {
+                  "x": 0.6915,
+                  "y": 0.3083
+               },
+               "green": {
+                  "x": 0.17,
+                  "y": 0.7
+               },
+               "blue": {
+                  "x": 0.1532,
+                  "y": 0.0475
+               }
+            },
+            "gamut_type": "C"
+         },
+         "dynamics": {
+            "status": "none",
+            "status_values": [
+               "none",
+               "dynamic_palette"
+            ],
+            "speed": 0.0,
+            "speed_valid": False
+         },
+         "alert": {
+            "action_values": [
+               "breathe"
+            ]
+         },
+         "signaling": {
+            "signal_values": [
+               "no_signal",
+               "on_off",
+               "on_off_color",
+               "alternating"
+            ]
+         },
+         "mode": "normal",
+         "effects": {
+            "status_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ],
+            "status": "no_effect",
+            "effect_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ]
+         },
+         "powerup": {
+            "preset": "safety",
+            "configured": True,
+            "on": {
+               "mode": "on",
+               "on": {
+                  "on": True
+               }
+            },
+            "dimming": {
+               "mode": "dimming",
+               "dimming": {
+                  "brightness": 100.0
+               }
+            },
+            "color": {
+               "mode": "color_temperature",
+               "color_temperature": {
+                  "mirek": 366
+               }
+            }
+         },
+         "type": "light"
+      },
+      {
+         "id": "44babf8c-e66e-4ceb-8eed-bd3ac546823b",
+         "id_v1": "/lights/7",
+         "owner": {
+            "rid": "6ca24218-6c0b-4ab8-bdab-0371623d2fca",
+            "rtype": "device"
+         },
+         "metadata": {
+            "name": "Fan",
+            "archetype": "plug",
+            "function": "functional"
+         },
+         "product_data": {
+            "function": "functional"
+         },
+         "identify": {},
+         "on": {
+            "on": False
+         },
+         "dynamics": {
+            "status": "none",
+            "status_values": [
+               "none"
+            ],
+            "speed": 0.0,
+            "speed_valid": False
+         },
+         "alert": {
+            "action_values": []
+         },
+         "mode": "normal",
+         "powerup": {
+            "preset": "powerfail",
+            "configured": True,
+            "on": {
+               "mode": "previous"
+            }
+         },
+         "type": "light"
+      },
+      {
+         "id": "5b5cc304-4e6a-4f31-8403-aa7a01a2e226",
+         "id_v1": "/lights/15",
+         "owner": {
+            "rid": "ff34816c-c423-411b-8e7b-c24461bac626",
+            "rtype": "device"
+         },
+         "metadata": {
+            "name": "EurorackRight",
+            "archetype": "plug",
+            "function": "functional"
+         },
+         "product_data": {
+            "function": "functional"
+         },
+         "identify": {},
+         "on": {
+            "on": False
+         },
+         "dynamics": {
+            "status": "none",
+            "status_values": [
+               "none"
+            ],
+            "speed": 0.0,
+            "speed_valid": False
+         },
+         "alert": {
+            "action_values": []
+         },
+         "mode": "normal",
+         "powerup": {
+            "preset": "powerfail",
+            "configured": True,
+            "on": {
+               "mode": "previous"
+            }
+         },
+         "type": "light"
+      },
+      {
+         "id": "643b3d8f-600f-49d0-a01d-8b2a67823bb3",
+         "id_v1": "/lights/21",
+         "owner": {
+            "rid": "a973171c-a844-4156-b2e1-a5bd456dba6a",
+            "rtype": "device"
+         },
+         "metadata": {
+            "name": "LaptopCorner",
+            "archetype": "candle_bulb",
+            "function": "mixed"
+         },
+         "product_data": {
+            "function": "mixed"
+         },
+         "identify": {},
+         "on": {
+            "on": False
+         },
+         "dimming": {
+            "brightness": 0.0,
+            "min_dim_level": 2.0
+         },
+         "dimming_delta": {},
+         "color_temperature": {
+            "mirek": None,
+            "mirek_valid": False,
+            "mirek_schema": {
+               "mirek_minimum": 153,
+               "mirek_maximum": 500
+            }
+         },
+         "color_temperature_delta": {},
+         "color": {
+            "xy": {
+               "x": 0.1532,
+               "y": 0.0475
+            },
+            "gamut": {
+               "red": {
+                  "x": 0.6915,
+                  "y": 0.3083
+               },
+               "green": {
+                  "x": 0.17,
+                  "y": 0.7
+               },
+               "blue": {
+                  "x": 0.1532,
+                  "y": 0.0475
+               }
+            },
+            "gamut_type": "C"
+         },
+         "dynamics": {
+            "status": "none",
+            "status_values": [
+               "none",
+               "dynamic_palette"
+            ],
+            "speed": 0.0,
+            "speed_valid": False
+         },
+         "alert": {
+            "action_values": [
+               "breathe"
+            ]
+         },
+         "signaling": {
+            "signal_values": [
+               "no_signal",
+               "on_off",
+               "on_off_color",
+               "alternating"
+            ]
+         },
+         "mode": "normal",
+         "effects": {
+            "status_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ],
+            "status": "no_effect",
+            "effect_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ]
+         },
+         "powerup": {
+            "preset": "safety",
+            "configured": True,
+            "on": {
+               "mode": "on",
+               "on": {
+                  "on": True
+               }
+            },
+            "dimming": {
+               "mode": "dimming",
+               "dimming": {
+                  "brightness": 100.0
+               }
+            },
+            "color": {
+               "mode": "color_temperature",
+               "color_temperature": {
+                  "mirek": 366
+               }
+            }
+         },
+         "type": "light"
+      },
+      {
+         "id": "78b2b378-2eea-48aa-8b11-acc916bc1e84",
+         "id_v1": "/lights/8",
+         "owner": {
+            "rid": "c8a1ae9b-8c75-4e13-b60f-51949dc58444",
+            "rtype": "device"
+         },
+         "metadata": {
+            "name": "DeskMiddle",
+            "archetype": "sultan_bulb",
+            "function": "mixed"
+         },
+         "product_data": {
+            "function": "mixed"
+         },
+         "identify": {},
+         "on": {
+            "on": False
+         },
+         "dimming": {
+            "brightness": 0.0,
+            "min_dim_level": 1.0
+         },
+         "dimming_delta": {},
+         "color_temperature": {
+            "mirek": None,
+            "mirek_valid": False,
+            "mirek_schema": {
+               "mirek_minimum": 153,
+               "mirek_maximum": 500
+            }
+         },
+         "color_temperature_delta": {},
+         "color": {
+            "xy": {
+               "x": 0.1532,
+               "y": 0.0475
+            },
+            "gamut": {
+               "red": {
+                  "x": 0.6915,
+                  "y": 0.3083
+               },
+               "green": {
+                  "x": 0.17,
+                  "y": 0.7
+               },
+               "blue": {
+                  "x": 0.1532,
+                  "y": 0.0475
+               }
+            },
+            "gamut_type": "C"
+         },
+         "dynamics": {
+            "status": "none",
+            "status_values": [
+               "none",
+               "dynamic_palette"
+            ],
+            "speed": 0.0,
+            "speed_valid": False
+         },
+         "alert": {
+            "action_values": [
+               "breathe"
+            ]
+         },
+         "signaling": {
+            "signal_values": [
+               "no_signal",
+               "on_off",
+               "on_off_color",
+               "alternating"
+            ]
+         },
+         "mode": "normal",
+         "effects": {
+            "status_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ],
+            "status": "no_effect",
+            "effect_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ]
+         },
+         "powerup": {
+            "preset": "safety",
+            "configured": True,
+            "on": {
+               "mode": "on",
+               "on": {
+                  "on": True
+               }
+            },
+            "dimming": {
+               "mode": "dimming",
+               "dimming": {
+                  "brightness": 100.0
+               }
+            },
+            "color": {
+               "mode": "color_temperature",
+               "color_temperature": {
+                  "mirek": 366
+               }
+            }
+         },
+         "type": "light"
+      },
+      {
+         "id": "7c07edb0-7c5e-4e5a-bbcd-a3a760de7543",
+         "id_v1": "/lights/11",
+         "owner": {
+            "rid": "cc443b7b-2c65-4e08-9b15-daa414cba36e",
+            "rtype": "device"
+         },
+         "metadata": {
+            "name": "Gaming",
+            "archetype": "candle_bulb",
+            "function": "mixed"
+         },
+         "product_data": {
+            "function": "mixed"
+         },
+         "identify": {},
+         "on": {
+            "on": False
+         },
+         "dimming": {
+            "brightness": 100.0,
+            "min_dim_level": 2.0
+         },
+         "dimming_delta": {},
+         "color_temperature": {
+            "mirek": None,
+            "mirek_valid": False,
+            "mirek_schema": {
+               "mirek_minimum": 153,
+               "mirek_maximum": 500
+            }
+         },
+         "color_temperature_delta": {},
+         "color": {
+            "xy": {
+               "x": 0.4863,
+               "y": 0.4332
+            },
+            "gamut": {
+               "red": {
+                  "x": 0.6915,
+                  "y": 0.3083
+               },
+               "green": {
+                  "x": 0.17,
+                  "y": 0.7
+               },
+               "blue": {
+                  "x": 0.1532,
+                  "y": 0.0475
+               }
+            },
+            "gamut_type": "C"
+         },
+         "dynamics": {
+            "status": "none",
+            "status_values": [
+               "none",
+               "dynamic_palette"
+            ],
+            "speed": 0.0,
+            "speed_valid": False
+         },
+         "alert": {
+            "action_values": [
+               "breathe"
+            ]
+         },
+         "signaling": {
+            "signal_values": [
+               "no_signal",
+               "on_off",
+               "on_off_color",
+               "alternating"
+            ]
+         },
+         "mode": "normal",
+         "effects": {
+            "status_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ],
+            "status": "no_effect",
+            "effect_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ]
+         },
+         "powerup": {
+            "preset": "safety",
+            "configured": True,
+            "on": {
+               "mode": "on",
+               "on": {
+                  "on": True
+               }
+            },
+            "dimming": {
+               "mode": "dimming",
+               "dimming": {
+                  "brightness": 100.0
+               }
+            },
+            "color": {
+               "mode": "color_temperature",
+               "color_temperature": {
+                  "mirek": 366
+               }
+            }
+         },
+         "type": "light"
+      },
+      {
+         "id": "a8671ad2-94b7-44bd-9d01-e8116f7f0c9e",
+         "id_v1": "/lights/20",
+         "owner": {
+            "rid": "f15e23eb-a379-4f67-9ca7-892dffb75566",
+            "rtype": "device"
+         },
+         "metadata": {
+            "name": "MaxRack",
+            "archetype": "plug",
+            "function": "functional"
+         },
+         "product_data": {
+            "function": "functional"
+         },
+         "identify": {},
+         "on": {
+            "on": False
+         },
+         "dynamics": {
+            "status": "none",
+            "status_values": [
+               "none"
+            ],
+            "speed": 0.0,
+            "speed_valid": False
+         },
+         "alert": {
+            "action_values": []
+         },
+         "mode": "normal",
+         "powerup": {
+            "preset": "powerfail",
+            "configured": True,
+            "on": {
+               "mode": "previous"
+            }
+         },
+         "type": "light"
+      },
+      {
+         "id": "ae682bd0-875a-4712-a981-20e5b2acda45",
+         "id_v1": "/lights/10",
+         "owner": {
+            "rid": "777f4989-b4cd-40e4-adec-fdedafe3b79b",
+            "rtype": "device"
+         },
+         "metadata": {
+            "name": "Reading",
+            "archetype": "candle_bulb",
+            "function": "mixed"
+         },
+         "product_data": {
+            "function": "mixed"
+         },
+         "identify": {},
+         "on": {
+            "on": True
+         },
+         "dimming": {
+            "brightness": 11.86,
+            "min_dim_level": 2.0
+         },
+         "dimming_delta": {},
+         "color_temperature": {
+            "mirek": None,
+            "mirek_valid": False,
+            "mirek_schema": {
+               "mirek_minimum": 153,
+               "mirek_maximum": 500
+            }
+         },
+         "color_temperature_delta": {},
+         "color": {
+            "xy": {
+               "x": 0.6915,
+               "y": 0.3083
+            },
+            "gamut": {
+               "red": {
+                  "x": 0.6915,
+                  "y": 0.3083
+               },
+               "green": {
+                  "x": 0.17,
+                  "y": 0.7
+               },
+               "blue": {
+                  "x": 0.1532,
+                  "y": 0.0475
+               }
+            },
+            "gamut_type": "C"
+         },
+         "dynamics": {
+            "status": "none",
+            "status_values": [
+               "none",
+               "dynamic_palette"
+            ],
+            "speed": 0.0,
+            "speed_valid": False
+         },
+         "alert": {
+            "action_values": [
+               "breathe"
+            ]
+         },
+         "signaling": {
+            "signal_values": [
+               "no_signal",
+               "on_off",
+               "on_off_color",
+               "alternating"
+            ]
+         },
+         "mode": "normal",
+         "effects": {
+            "status_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ],
+            "status": "no_effect",
+            "effect_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ]
+         },
+         "powerup": {
+            "preset": "safety",
+            "configured": True,
+            "on": {
+               "mode": "on",
+               "on": {
+                  "on": True
+               }
+            },
+            "dimming": {
+               "mode": "dimming",
+               "dimming": {
+                  "brightness": 100.0
+               }
+            },
+            "color": {
+               "mode": "color_temperature",
+               "color_temperature": {
+                  "mirek": 366
+               }
+            }
+         },
+         "type": "light"
+      },
+      {
+         "id": "cfeab973-3e50-45d8-86b7-412a6533eabf",
+         "id_v1": "/lights/12",
+         "owner": {
+            "rid": "bcc40ae3-c8b7-43b3-b1a0-21f7e4b56c42",
+            "rtype": "device"
+         },
+         "metadata": {
+            "name": "Portable",
+            "archetype": "hue_go",
+            "function": "decorative"
+         },
+         "product_data": {
+            "name": "Hue go",
+            "archetype": "hue_go",
+            "function": "decorative"
+         },
+         "identify": {},
+         "on": {
+            "on": True
+         },
+         "dimming": {
+            "brightness": 47.83,
+            "min_dim_level": 0.07000000029802322
+         },
+         "dimming_delta": {},
+         "color_temperature": {
+            "mirek": None,
+            "mirek_valid": False,
+            "mirek_schema": {
+               "mirek_minimum": 153,
+               "mirek_maximum": 500
+            }
+         },
+         "color_temperature_delta": {},
+         "color": {
+            "xy": {
+               "x": 0.6915,
+               "y": 0.3083
+            },
+            "gamut": {
+               "red": {
+                  "x": 0.6915,
+                  "y": 0.3083
+               },
+               "green": {
+                  "x": 0.17,
+                  "y": 0.7
+               },
+               "blue": {
+                  "x": 0.1532,
+                  "y": 0.0475
+               }
+            },
+            "gamut_type": "C"
+         },
+         "dynamics": {
+            "status": "none",
+            "status_values": [
+               "none",
+               "dynamic_palette"
+            ],
+            "speed": 0.0,
+            "speed_valid": False
+         },
+         "alert": {
+            "action_values": [
+               "breathe"
+            ]
+         },
+         "signaling": {
+            "signal_values": [
+               "no_signal",
+               "on_off",
+               "on_off_color",
+               "alternating"
+            ]
+         },
+         "mode": "normal",
+         "effects": {
+            "status_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ],
+            "status": "no_effect",
+            "effect_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ]
+         },
+         "powerup": {
+            "preset": "safety",
+            "configured": True,
+            "on": {
+               "mode": "on",
+               "on": {
+                  "on": True
+               }
+            },
+            "dimming": {
+               "mode": "dimming",
+               "dimming": {
+                  "brightness": 100.0
+               }
+            },
+            "color": {
+               "mode": "color_temperature",
+               "color_temperature": {
+                  "mirek": 366
+               }
+            }
+         },
+         "type": "light"
+      },
+      {
+         "id": "d4693b27-08d6-4b5e-92e1-763065e517d9",
+         "id_v1": "/lights/17",
+         "owner": {
+            "rid": "1dec744e-f516-42e4-9d38-2990fd2720d6",
+            "rtype": "device"
+         },
+         "metadata": {
+            "name": "Dry",
+            "archetype": "plug",
+            "function": "functional"
+         },
+         "product_data": {
+            "function": "functional"
+         },
+         "identify": {},
+         "on": {
+            "on": False
+         },
+         "dynamics": {
+            "status": "none",
+            "status_values": [
+               "none"
+            ],
+            "speed": 0.0,
+            "speed_valid": False
+         },
+         "alert": {
+            "action_values": []
+         },
+         "mode": "normal",
+         "powerup": {
+            "preset": "powerfail",
+            "configured": True,
+            "on": {
+               "mode": "previous"
+            }
+         },
+         "type": "light"
+      },
+      {
+         "id": "d7930fb7-cdb4-4e96-99d9-0ec926e09d5f",
+         "id_v1": "/lights/13",
+         "owner": {
+            "rid": "6d87ef03-02de-4ee6-ac29-f695d10dbf92",
+            "rtype": "device"
+         },
+         "metadata": {
+            "name": "StandLamp",
+            "archetype": "sultan_bulb",
+            "function": "mixed"
+         },
+         "product_data": {
+            "function": "mixed"
+         },
+         "identify": {},
+         "on": {
+            "on": False
+         },
+         "dimming": {
+            "brightness": 100.0,
+            "min_dim_level": 1.0
+         },
+         "dimming_delta": {},
+         "color_temperature": {
+            "mirek": 366,
+            "mirek_valid": True,
+            "mirek_schema": {
+               "mirek_minimum": 153,
+               "mirek_maximum": 500
+            }
+         },
+         "color_temperature_delta": {},
+         "color": {
+            "xy": {
+               "x": 0.4573,
+               "y": 0.41
+            },
+            "gamut": {
+               "red": {
+                  "x": 0.6915,
+                  "y": 0.3083
+               },
+               "green": {
+                  "x": 0.17,
+                  "y": 0.7
+               },
+               "blue": {
+                  "x": 0.1532,
+                  "y": 0.0475
+               }
+            },
+            "gamut_type": "C"
+         },
+         "dynamics": {
+            "status": "none",
+            "status_values": [
+               "none",
+               "dynamic_palette"
+            ],
+            "speed": 0.0,
+            "speed_valid": False
+         },
+         "alert": {
+            "action_values": [
+               "breathe"
+            ]
+         },
+         "signaling": {
+            "signal_values": [
+               "no_signal",
+               "on_off",
+               "on_off_color",
+               "alternating"
+            ]
+         },
+         "mode": "normal",
+         "effects": {
+            "status_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ],
+            "status": "no_effect",
+            "effect_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ]
+         },
+         "powerup": {
+            "preset": "safety",
+            "configured": True,
+            "on": {
+               "mode": "on",
+               "on": {
+                  "on": True
+               }
+            },
+            "dimming": {
+               "mode": "dimming",
+               "dimming": {
+                  "brightness": 100.0
+               }
+            },
+            "color": {
+               "mode": "color_temperature",
+               "color_temperature": {
+                  "mirek": 366
+               }
+            }
+         },
+         "type": "light"
+      },
+      {
+         "id": "db379b36-34ee-496a-9d2f-4fc3915a3a4f",
+         "id_v1": "/lights/22",
+         "owner": {
+            "rid": "04a6157c-2925-4de6-94db-3e10de041987",
+            "rtype": "device"
+         },
+         "metadata": {
+            "name": "Rack",
+            "archetype": "hue_lightstrip",
+            "function": "mixed"
+         },
+         "product_data": {
+            "function": "mixed"
+         },
+         "identify": {},
+         "on": {
+            "on": True
+         },
+         "dimming": {
+            "brightness": 27.27,
+            "min_dim_level": 0.009999999776482582
+         },
+         "dimming_delta": {},
+         "color_temperature": {
+            "mirek": None,
+            "mirek_valid": False,
+            "mirek_schema": {
+               "mirek_minimum": 153,
+               "mirek_maximum": 500
+            }
+         },
+         "color_temperature_delta": {},
+         "color": {
+            "xy": {
+               "x": 0.5038,
+               "y": 0.3778
+            },
+            "gamut": {
+               "red": {
+                  "x": 0.6915,
+                  "y": 0.3083
+               },
+               "green": {
+                  "x": 0.17,
+                  "y": 0.7
+               },
+               "blue": {
+                  "x": 0.1532,
+                  "y": 0.0475
+               }
+            },
+            "gamut_type": "C"
+         },
+         "dynamics": {
+            "status": "none",
+            "status_values": [
+               "none",
+               "dynamic_palette"
+            ],
+            "speed": 0.0,
+            "speed_valid": False
+         },
+         "alert": {
+            "action_values": [
+               "breathe"
+            ]
+         },
+         "signaling": {
+            "signal_values": [
+               "no_signal",
+               "on_off",
+               "on_off_color",
+               "alternating"
+            ]
+         },
+         "mode": "normal",
+         "gradient": {
+            "points": [],
+            "mode": "interpolated_palette",
+            "points_capable": 5,
+            "mode_values": [
+               "interpolated_palette",
+               "interpolated_palette_mirrored"
+            ],
+            "pixel_count": 24
+         },
+         "effects": {
+            "status_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ],
+            "status": "no_effect",
+            "effect_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ]
+         },
+         "timed_effects": {
+            "status_values": [
+               "no_effect",
+               "sunrise"
+            ],
+            "status": "no_effect",
+            "effect_values": [
+               "no_effect",
+               "sunrise"
+            ]
+         },
+         "powerup": {
+            "preset": "last_on_state",
+            "configured": True,
+            "on": {
+               "mode": "on",
+               "on": {
+                  "on": True
+               }
+            },
+            "dimming": {
+               "mode": "previous"
+            },
+            "color": {
+               "mode": "previous"
+            }
+         },
+         "type": "light"
+      },
+      {
+         "id": "ec84f3ab-9804-4f74-957b-c5f40f5fd7a5",
+         "id_v1": "/lights/3",
+         "owner": {
+            "rid": "121b6e60-efdb-4ec3-8869-d92d0dd2efc1",
+            "rtype": "device"
+         },
+         "metadata": {
+            "name": "Entree",
+            "archetype": "sultan_bulb",
+            "function": "mixed"
+         },
+         "product_data": {
+            "function": "mixed"
+         },
+         "identify": {},
+         "on": {
+            "on": False
+         },
+         "dimming": {
+            "brightness": 11.07,
+            "min_dim_level": 1.0
+         },
+         "dimming_delta": {},
+         "color_temperature": {
+            "mirek": None,
+            "mirek_valid": False,
+            "mirek_schema": {
+               "mirek_minimum": 153,
+               "mirek_maximum": 500
+            }
+         },
+         "color_temperature_delta": {},
+         "color": {
+            "xy": {
+               "x": 0.165,
+               "y": 0.0534
+            },
+            "gamut": {
+               "red": {
+                  "x": 0.6915,
+                  "y": 0.3083
+               },
+               "green": {
+                  "x": 0.17,
+                  "y": 0.7
+               },
+               "blue": {
+                  "x": 0.1532,
+                  "y": 0.0475
+               }
+            },
+            "gamut_type": "C"
+         },
+         "dynamics": {
+            "status": "none",
+            "status_values": [
+               "none",
+               "dynamic_palette"
+            ],
+            "speed": 0.0,
+            "speed_valid": False
+         },
+         "alert": {
+            "action_values": [
+               "breathe"
+            ]
+         },
+         "signaling": {
+            "signal_values": [
+               "no_signal",
+               "on_off",
+               "on_off_color",
+               "alternating"
+            ]
+         },
+         "mode": "normal",
+         "effects": {
+            "status_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ],
+            "status": "no_effect",
+            "effect_values": [
+               "no_effect",
+               "candle",
+               "fire",
+               "prism"
+            ]
+         },
+         "powerup": {
+            "preset": "safety",
+            "configured": True,
+            "on": {
+               "mode": "on",
+               "on": {
+                  "on": True
+               }
+            },
+            "dimming": {
+               "mode": "dimming",
+               "dimming": {
+                  "brightness": 100.0
+               }
+            },
+            "color": {
+               "mode": "color_temperature",
+               "color_temperature": {
+                  "mirek": 366
+               }
+            }
+         },
+         "type": "light"
+      }
+   ]
+}

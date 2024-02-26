@@ -4,6 +4,8 @@
 seee https://developers.meethue.com/develop/get-started-2/
 v2 (not working) https://developers.meethue.com/develop/hue-api-v2/getting-started/
 
+security add-trusted-cert -d -r trustRoot -k ~/Library/Keychains/login.keychain-db huebridge_cacert.pem
+
 get bridge ip: https://discovery.meethue.com
 
 http://192.168.1.116/debug/clip.html

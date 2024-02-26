@@ -1,5 +1,8 @@
 import colorsys
 
+# https://developers.meethue.com/develop/application-design-guidance/color-conversion-formulas-rgb-to-xy-and-back/#xy-to-rgb-color
+# https://developers.meethue.com/develop/hue-api-v2/api-reference/#resource_light_get
+
 
 class Device:
 
@@ -20,7 +23,7 @@ class Device:
 
    def swtich(self, on):
 
-      payload = {"on": on}
+      payload = {"on": {"on": on}}
       self.bridge.setState(self.deviceId, payload)
 
    def _compileHSV(self, hexColor):
