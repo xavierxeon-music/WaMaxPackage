@@ -27,6 +27,7 @@ sendTask.repeat();
 /////////////////////////////
 // hue function
 
+// see https://developers.meethue.com/develop/hue-api-v2/api-reference/#resource_light_get
 // see https://developers.meethue.com/develop/hue-api-v2/api-reference/#resource_light__id__put
 
 hue.onOff = function (deviceName, on) {
@@ -46,16 +47,15 @@ hue.coloronly = function (deviceName, hexColor) {
    var color = new Color(hexColor);
    [x, y, bright] = color.toCIE();
 
-   // duration not working
    var payload = {
       "color": {
          "xy": {
             "x": x,
             "y": y
-         },
-         "dynamics": {
-            "duration": 0
          }
+      },
+      "dynamics": {
+         "duration": 0
       }
    };
    addStackPaylod(deviceName, payload);
@@ -66,7 +66,6 @@ hue.colorbright = function (deviceName, hexColor) {
    var color = new Color(hexColor);
    [x, y, bright] = color.toCIE();
 
-   // duration not working
    var payload = {
       "dimming": {
          "brightness": Math.round(bright * 100)
@@ -75,10 +74,10 @@ hue.colorbright = function (deviceName, hexColor) {
          "xy": {
             "x": x,
             "y": y
-         },
-         "dynamics": {
-            "duration": 0
          }
+      },
+      "dynamics": {
+         "duration": 0
       }
    };
    addStackPaylod(deviceName, payload);
@@ -177,9 +176,9 @@ function sendStack() {
    stackMap = {};
 }
 
-function state(on) {
+function status(group) {
 
-   if (!on)
+   if ("light" != group) // TODO change for sensors, etc
       return;
 
    var stateObject = JSON.parse(stateDict.stringify());

@@ -33,10 +33,10 @@ const putOptions = {
 async function updateStatus(group, json) {
 
    await maxAPI.updateDict('hue_state', group, json['data']);
-   await maxAPI.outlet("state", 1);
+   await maxAPI.outlet("status", group);
 }
 
-async function requestStatus(group) {
+async function status(group) {
 
    let groupGetOptions = Object.assign({}, getOptions);
    groupGetOptions.path = basePath + '/' + group;
@@ -101,7 +101,7 @@ maxAPI.addHandler('send', async (group, id, payload) => {
    await send(group, id, payload);
 });
 
-requestStatus('light');
-setInterval(requestStatus, 5000, 'light');
+maxAPI.addHandler('status', async (group) => {
 
-
+   await status(group);
+});
