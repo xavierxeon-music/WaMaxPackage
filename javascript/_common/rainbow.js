@@ -9,7 +9,8 @@ setoutletassist(0, "hexcolor");
 setoutletassist(1, "rgb");
 
 var counter = 0;
-var maxCounter = jsarguments[1];
+var offsetFactor = 0.0;
+var maxCounter = 100;
 
 var colorList = [];
 
@@ -45,8 +46,7 @@ function init() {
    segment(0, up, 0, stay, 255, stay);
    segment(255, stay, 0, stay, 255, down);
 
-   counter = 0;
-   // print("L", colorList.length, maxCounter);
+   reset();
 }
 
 function loadbang() {
@@ -68,5 +68,22 @@ function bang() {
    counter += 1;
    if (counter == maxCounter)
       counter = 0;
+}
+
+function steps(value) {
+
+   maxCounter = value;
+   reset();
+}
+
+function offset(value) {
+
+   offsetFactor = value;
+   reset();
+}
+
+function reset() {
+
+   counter = Math.round(maxCounter * offsetFactor);
 }
 

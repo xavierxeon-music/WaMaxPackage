@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1074.0, 284.0, 2689.0, 1114.0 ],
+		"rect" : [ 1074.0, 312.0, 2281.0, 1086.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -81,8 +81,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 30.0, 30.0, 208.0, 22.0 ],
-					"text" : "patcherargs device @gradientcount 0"
+					"patching_rect" : [ 30.0, 30.0, 175.0, 22.0 ],
+					"text" : "patcherargs device @reverse 0"
 				}
 
 			}
@@ -123,8 +123,8 @@
 					"numinlets" : 6,
 					"numoutlets" : 6,
 					"outlettype" : [ "", "", "", "", "", "" ],
-					"patching_rect" : [ 190.0, 120.0, 331.0, 22.0 ],
-					"text" : "routepass color colorbright brightness gradient gradientcount"
+					"patching_rect" : [ 190.0, 120.0, 299.0, 22.0 ],
+					"text" : "routepass color colorbright brightness gradient reverse"
 				}
 
 			}

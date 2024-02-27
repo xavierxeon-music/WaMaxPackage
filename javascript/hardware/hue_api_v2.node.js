@@ -49,8 +49,12 @@ async function status(group) {
       });
 
       statusResponse.on('end', () => {
-         const json = JSON.parse(Buffer.concat(data).toString());
-         updateStatus(group, json);
+         try {
+            const json = JSON.parse(Buffer.concat(data).toString());
+            updateStatus(group, json);
+         }
+         catch (err) {
+         }
       });
    });
 
@@ -76,12 +80,20 @@ async function send(group, id, payload) {
       });
 
       sendResponse.on('end', () => {
-         const json = JSON.parse(Buffer.concat(data).toString());
-         const errors = json['errors'];
-         if (0 != errors.length)
-            console.log(errors);
-         else if (verbose)
-            console.log("ok");
+
+         const text = Buffer.concat(data).toString();
+         try {
+            const json = JSON.parse(text);
+            const errors = json['errors'];
+            if (0 != errors.length)
+               console.log(errors);
+            else if (verbose)
+               console.log("ok");
+         }
+         catch (err) {
+            if (verbose)
+               console.log(text);
+         }
       });
 
    });

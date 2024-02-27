@@ -21,7 +21,7 @@ var deviceMap = {};
 var stackMap = {};
 
 var sendTask = new Task(sendStack);
-sendTask.interval = 100;
+sendTask.interval = 100; // 10 hz update rate
 sendTask.repeat();
 
 /////////////////////////////
@@ -113,7 +113,6 @@ hue.gradient = function (deviceName, gradientList, duration) {
    for (var index = 0; index < gradientList.length; index++) {
 
       var color = new Color(gradientList[index]);
-      print(index, color.hex);
       [x, y, bright] = color.toCIE();
 
       var entry = {

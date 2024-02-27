@@ -13,7 +13,6 @@ setoutletassist(0, "state");
 var hue = new Global("hue");
 
 var deviceName = undefined;
-var gradientList = [];
 var reverseGradient = false;
 
 /////////////////////////////
@@ -84,34 +83,29 @@ function brightness(value, duration) {
    hue.brightness(deviceName, value, duration);
 }
 
-function gradientcount(value) {
+function reverse(value) {
 
-   if (value < 0) {
-      reverseGradient = true;
-      value *= -1;
-   }
-   else
-      reverseGradient = false;
-
-   gradientList = [];
-   for (var index = 0; index < value; index++)
-      gradientList.push("000000");
+   reverseGradient = value;
 }
 
-function gradient(index, hexColor) {
+function gradient() {
 
-   if (index >= gradientList.length)
-      return;
+   var duration = 0;
+   var gradientList = [];
+   for (var index = 0; index < arguments.length; index++) {
+      var value = arguments[index];
+      if ("string" == typeof value)
+         gradientList.push(value);
+      else if ("number" == typeof value) {
+         duration = value;
+      }
+   }
 
    if (!hue.gradient)
       return;
 
-   // print(index, hexColor, reverseGradient);
-
    if (reverseGradient)
-      index = gradientList.length - (1 + index);
+      gradientList = gradientList.reverse();
 
-   gradientList[index] = hexColor;
-   hue.gradient(deviceName, gradientList);
-
+   hue.gradient(deviceName, gradientList, duration);
 }
