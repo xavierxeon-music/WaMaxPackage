@@ -59,29 +59,29 @@ function off() {
    hue.onOff(deviceName, false);
 }
 
-function color(hexColor) {
+function color(hexColor, duration) {
 
    if (!hue.onOff)
       return;
 
-   hue.coloronly(deviceName, hexColor);
+   hue.coloronly(deviceName, hexColor, duration);
 }
 
-function colorbright(hexColor) {
+function colorbright(hexColor, duration) {
 
    if (!hue.onOff)
       return;
 
 
-   hue.colorbright(deviceName, hexColor);
+   hue.colorbright(deviceName, hexColor, duration);
 }
 
-function brightness(value) {
+function brightness(value, duration) {
 
    if (!hue.onOff)
       return;
 
-   hue.brightness(deviceName, value);
+   hue.brightness(deviceName, value, duration);
 }
 
 function gradientcount(value) {

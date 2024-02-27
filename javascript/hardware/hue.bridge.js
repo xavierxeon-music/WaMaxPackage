@@ -42,10 +42,13 @@ hue.onOff = function (deviceName, on) {
    addStackPaylod(deviceName, payload);
 }
 
-hue.coloronly = function (deviceName, hexColor) {
+hue.coloronly = function (deviceName, hexColor, duration) {
 
    var color = new Color(hexColor);
    [x, y, bright] = color.toCIE();
+
+   if (!duration)
+      duration = 0;
 
    var payload = {
       "color": {
@@ -55,16 +58,20 @@ hue.coloronly = function (deviceName, hexColor) {
          }
       },
       "dynamics": {
-         "duration": 0
+         "duration": duration
       }
    };
    addStackPaylod(deviceName, payload);
 }
 
-hue.colorbright = function (deviceName, hexColor) {
+hue.colorbright = function (deviceName, hexColor, duration) {
 
    var color = new Color(hexColor);
    [x, y, bright] = color.toCIE();
+
+   if (!duration)
+      duration = duration;
+
 
    var payload = {
       "dimming": {
@@ -77,26 +84,30 @@ hue.colorbright = function (deviceName, hexColor) {
          }
       },
       "dynamics": {
-         "duration": 0
+         "duration": duration
       }
    };
    addStackPaylod(deviceName, payload);
 }
 
-hue.brightness = function (deviceName, value) {
+hue.brightness = function (deviceName, value, duration) {
+
+   if (!duration)
+      duration = 0;
+
 
    var payload = {
       "dimming": {
          "brightness": value
       },
       "dynamics": {
-         "duration": 0
+         "duration": duration
       }
    };
    addStackPaylod(deviceName, payload);
 }
 
-hue.gradient = function (deviceName, gradientList) {
+hue.gradient = function (deviceName, gradientList, duration) {
 
    var points = []
    for (var index = 0; index < gradientList.length; index++) {
@@ -116,12 +127,16 @@ hue.gradient = function (deviceName, gradientList) {
       points.push(entry)
    }
 
+   if (!duration)
+      duration = 0;
+
+
    var payload = {
       "gradient": {
          "points": points,
       },
       "dynamics": {
-         "duration": 0
+         "duration": duration
       }
    };
    addStackPaylod(deviceName, payload);
