@@ -14,6 +14,7 @@ var hue = new Global("hue");
 
 var deviceName = undefined;
 var gradientList = [];
+var reverseGradient = false;
 
 /////////////////////////////
 // function
@@ -85,6 +86,13 @@ function brightness(value) {
 
 function gradientcount(value) {
 
+   if (value < 0) {
+      reverseGradient = true;
+      value *= -1;
+   }
+   else
+      reverseGradient = false;
+
    gradientList = [];
    for (var index = 0; index < value; index++)
       gradientList.push("000000");
@@ -98,6 +106,12 @@ function gradient(index, hexColor) {
    if (!hue.gradient)
       return;
 
+   // print(index, hexColor, reverseGradient);
+
+   if (reverseGradient)
+      index = gradientList.length - (1 + index);
+
    gradientList[index] = hexColor;
    hue.gradient(deviceName, gradientList);
+
 }

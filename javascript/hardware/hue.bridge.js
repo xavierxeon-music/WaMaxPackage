@@ -31,6 +31,8 @@ sendTask.repeat();
 
 hue.onOff = function (deviceName, on) {
 
+   print(deviceName, on);
+
    var payload = {
       "on": {
          "on": on
@@ -101,6 +103,7 @@ hue.gradient = function (deviceName, gradientList) {
    for (var index = 0; index < gradientList.length; index++) {
 
       var color = new Color(gradientList[index]);
+      print(index, color.hex);
       [x, y, bright] = color.toCIE();
 
       var entry = {
@@ -116,7 +119,7 @@ hue.gradient = function (deviceName, gradientList) {
 
    var payload = {
       "gradient": {
-         "points": points
+         "points": points,
       },
       "dynamics": {
          "duration": 0
@@ -157,6 +160,7 @@ function addStackPaylod(deviceName, payload) {
    }
 }
 
+sendStack.local = 1;
 function sendStack() {
 
    if (0 == Object.keys(stackMap).length)
