@@ -137,7 +137,7 @@
             "on": False
          },
          "dimming": {
-            "brightness": 0.0,
+            "brightness": 60.08,
             "min_dim_level": 1.0
          },
          "dimming_delta": {},
@@ -152,8 +152,8 @@
          "color_temperature_delta": {},
          "color": {
             "xy": {
-               "x": 0.1532,
-               "y": 0.0475
+               "x": 0.4863,
+               "y": 0.4332
             },
             "gamut": {
                "red": {
@@ -290,7 +290,7 @@
          },
          "identify": {},
          "on": {
-            "on": True
+            "on": False
          },
          "dimming": {
             "brightness": 11.07,
@@ -489,13 +489,13 @@
             "on": False
          },
          "dimming": {
-            "brightness": 0.0,
+            "brightness": 41.9,
             "min_dim_level": 2.0
          },
          "dimming_delta": {},
          "color_temperature": {
-            "mirek": None,
-            "mirek_valid": False,
+            "mirek": 435,
+            "mirek_valid": True,
             "mirek_schema": {
                "mirek_minimum": 153,
                "mirek_maximum": 500
@@ -504,8 +504,8 @@
          "color_temperature_delta": {},
          "color": {
             "xy": {
-               "x": 0.1532,
-               "y": 0.0475
+               "x": 0.4953,
+               "y": 0.4152
             },
             "gamut": {
                "red": {
@@ -602,10 +602,10 @@
          },
          "identify": {},
          "on": {
-            "on": False
+            "on": True
          },
          "dimming": {
-            "brightness": 0.0,
+            "brightness": 45.06,
             "min_dim_level": 1.0
          },
          "dimming_delta": {},
@@ -620,8 +620,8 @@
          "color_temperature_delta": {},
          "color": {
             "xy": {
-               "x": 0.1532,
-               "y": 0.0475
+               "x": 0.2855,
+               "y": 0.5479
             },
             "gamut": {
                "red": {
@@ -874,7 +874,7 @@
          },
          "identify": {},
          "on": {
-            "on": True
+            "on": False
          },
          "dimming": {
             "brightness": 11.86,
@@ -1267,7 +1267,7 @@
             "on": True
          },
          "dimming": {
-            "brightness": 27.27,
+            "brightness": 71.94,
             "min_dim_level": 0.009999999776482582
          },
          "dimming_delta": {},
@@ -1282,8 +1282,8 @@
          "color_temperature_delta": {},
          "color": {
             "xy": {
-               "x": 0.5038,
-               "y": 0.3778
+               "x": 0.1549,
+               "y": 0.0984
             },
             "gamut": {
                "red": {
@@ -1325,7 +1325,48 @@
          },
          "mode": "normal",
          "gradient": {
-            "points": [],
+            "points": [
+               {
+                  "color": {
+                     "xy": {
+                        "x": 0.1549,
+                        "y": 0.0984
+                     }
+                  }
+               },
+               {
+                  "color": {
+                     "xy": {
+                        "x": 0.1585,
+                        "y": 0.2427
+                     }
+                  }
+               },
+               {
+                  "color": {
+                     "xy": {
+                        "x": 0.2547,
+                        "y": 0.6364
+                     }
+                  }
+               },
+               {
+                  "color": {
+                     "xy": {
+                        "x": 0.154,
+                        "y": 0.0801
+                     }
+                  }
+               },
+               {
+                  "color": {
+                     "xy": {
+                        "x": 0.4135,
+                        "y": 0.1737
+                     }
+                  }
+               }
+            ],
             "mode": "interpolated_palette",
             "points_capable": 5,
             "mode_values": [
@@ -1413,8 +1454,8 @@
          "color_temperature_delta": {},
          "color": {
             "xy": {
-               "x": 0.165,
-               "y": 0.0534
+               "x": 0.1649,
+               "y": 0.0532
             },
             "gamut": {
                "red": {

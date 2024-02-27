@@ -35,6 +35,8 @@ class Bridge:
       # response = requests.get(self.baseUrl + 'light', verify=os.getcwd() + '/huebridge_cacert.pem', headers=self.header)
 
       self.lights = response.json()
+      print(self.lights)
+      sys.exit(0)
 
       self.devices = dict()
       for device in self.lights['data']:

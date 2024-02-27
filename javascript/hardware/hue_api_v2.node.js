@@ -101,6 +101,7 @@ maxAPI.addHandler('send', async (group, id, payload) => {
    await send(group, id, payload);
 });
 
+requestStatus('light');
 setInterval(requestStatus, 5000, 'light');
 
 

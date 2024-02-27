@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1074.0, 228.0, 2308.0, 1170.0 ],
+		"rect" : [ 1074.0, 284.0, 2689.0, 1114.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,6 +40,30 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-8",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 124.0, 120.0, 37.0, 22.0 ],
+					"text" : "deinit"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-4",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 124.0, 75.0, 56.0, 22.0 ],
+					"text" : "freebang"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-27",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -57,8 +81,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 30.0, 30.0, 110.0, 22.0 ],
-					"text" : "patcherargs device"
+					"patching_rect" : [ 30.0, 30.0, 208.0, 22.0 ],
+					"text" : "patcherargs device @gradientcount 0"
 				}
 
 			}
@@ -69,7 +93,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 30.0, 135.0, 71.0, 22.0 ],
+					"patching_rect" : [ 30.0, 120.0, 71.0, 22.0 ],
 					"text" : "prepend init"
 				}
 
@@ -83,7 +107,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 150.0, 195.0, 79.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "hue.device.js",
+						"filename" : "hue.device",
 						"parameter_enable" : 0
 					}
 ,
@@ -96,11 +120,11 @@
 				"box" : 				{
 					"id" : "obj-12",
 					"maxclass" : "newobj",
-					"numinlets" : 4,
-					"numoutlets" : 4,
-					"outlettype" : [ "", "", "", "" ],
-					"patching_rect" : [ 150.0, 135.0, 209.0, 22.0 ],
-					"text" : "routepass color colorbright brightness"
+					"numinlets" : 6,
+					"numoutlets" : 6,
+					"outlettype" : [ "", "", "", "", "", "" ],
+					"patching_rect" : [ 190.0, 120.0, 331.0, 22.0 ],
+					"text" : "routepass color colorbright brightness gradient gradientcount"
 				}
 
 			}
@@ -111,7 +135,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 381.0, 135.0, 89.0, 22.0 ],
+					"patching_rect" : [ 540.0, 120.0, 89.0, 22.0 ],
 					"text" : "zl.lookup off on"
 				}
 
@@ -123,7 +147,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 6,
 					"outlettype" : [ "signal", "bang", "int", "float", "", "list" ],
-					"patching_rect" : [ 360.0, 90.0, 71.5, 22.0 ],
+					"patching_rect" : [ 519.0, 75.0, 71.5, 22.0 ],
 					"text" : "typeroute~"
 				}
 
@@ -137,7 +161,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
-					"patching_rect" : [ 360.0, 30.0, 30.0, 30.0 ]
+					"patching_rect" : [ 285.0, 26.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -180,6 +204,20 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-12", 4 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-12", 3 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
 					"source" : [ "obj-12", 2 ]
 				}
 
@@ -214,6 +252,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-12", 0 ],
+					"source" : [ "obj-28", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-27", 0 ],
 					"source" : [ "obj-28", 0 ]
 				}
@@ -228,8 +273,22 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-8", 0 ],
+					"source" : [ "obj-4", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-10", 0 ],
 					"source" : [ "obj-7", 2 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-8", 0 ]
 				}
 
 			}

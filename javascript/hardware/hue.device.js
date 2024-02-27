@@ -13,6 +13,7 @@ setoutletassist(0, "state");
 var hue = new Global("hue");
 
 var deviceName = undefined;
+var gradientList = [];
 
 /////////////////////////////
 // function
@@ -24,10 +25,6 @@ function stateChange(state) {
    outlet(0, on);
 }
 
-function freebang() {
-
-   delete hue.stateChange[deviceName];
-}
 
 function init(_deviceName) {
 
@@ -37,8 +34,13 @@ function init(_deviceName) {
       hue.stateChange = {};
 
    hue.stateChange[deviceName] = stateChange;
-
 }
+
+function deinit() {
+
+   delete hue.stateChange[deviceName];
+}
+
 
 function on() {
 
@@ -56,35 +58,46 @@ function off() {
    hue.onOff(deviceName, false);
 }
 
-function color(hexColor, index) {
-
-   if (!index)
-      index = 0;
+function color(hexColor) {
 
    if (!hue.onOff)
       return;
 
-   hue.coloronly(deviceName, hexColor, index);
+   hue.coloronly(deviceName, hexColor);
 }
 
-function colorbright(hexColor, index) {
-
-   if (!index)
-      index = 0;
+function colorbright(hexColor) {
 
    if (!hue.onOff)
       return;
 
-   hue.colorbright(deviceName, hexColor, index);
+
+   hue.colorbright(deviceName, hexColor);
 }
 
-function brightness(value, index) {
-
-   if (!index)
-      index = 0;
+function brightness(value) {
 
    if (!hue.onOff)
       return;
 
-   hue.brightness(deviceName, value, index);
+   hue.brightness(deviceName, value);
+}
+
+function gradientcount(value) {
+
+   gradientList = [];
+   for (var index = 0; index < value; index++)
+      gradientList.push("000000");
+}
+
+function gradient(index, hexColor) {
+
+   if (index >= gradientList.length)
+      return;
+
+   if (!hue.gradient)
+      return;
+
+   gradientList[index] = hexColor;
+   hue.gradient(deviceName, gradientList);
 }

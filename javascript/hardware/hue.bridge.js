@@ -39,7 +39,7 @@ hue.onOff = function (deviceName, on) {
    addStackPaylod(deviceName, payload);
 }
 
-hue.coloronly = function (deviceName, hexColor, index) {
+hue.coloronly = function (deviceName, hexColor) {
 
    var color = new Color(hexColor);
    [x, y, bright] = color.toCIE();
@@ -59,7 +59,7 @@ hue.coloronly = function (deviceName, hexColor, index) {
    addStackPaylod(deviceName, payload);
 }
 
-hue.colorbright = function (deviceName, hexColor, index) {
+hue.colorbright = function (deviceName, hexColor) {
 
    var color = new Color(hexColor);
    [x, y, bright] = color.toCIE();
@@ -82,7 +82,7 @@ hue.colorbright = function (deviceName, hexColor, index) {
    addStackPaylod(deviceName, payload);
 }
 
-hue.brightness = function (deviceName, value, index) {
+hue.brightness = function (deviceName, value) {
 
    var payload = {
       "dimming": {
@@ -93,7 +93,36 @@ hue.brightness = function (deviceName, value, index) {
       }
    };
    addStackPaylod(deviceName, payload);
+}
 
+hue.gradient = function (deviceName, gradientList) {
+
+   var points = []
+   for (var index = 0; index < gradientList.length; index++) {
+
+      var color = new Color(gradientList[index]);
+      [x, y, bright] = color.toCIE();
+
+      var entry = {
+         "color": {
+            "xy": {
+               "x": x,
+               "y": y
+            }
+         }
+      }
+      points.push(entry)
+   }
+
+   var payload = {
+      "gradient": {
+         "points": points
+      },
+      "dynamics": {
+         "duration": 0
+      }
+   };
+   addStackPaylod(deviceName, payload);
 }
 
 /////////////////////////////
@@ -164,7 +193,6 @@ function state(on) {
       var deviceState = {};
       deviceState["on"] = device["on"]["on"];
       deviceState["bright"] = device["dimming"]["brightness"];
-
 
       callback(deviceState);
    }
