@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 129.0, 254.0, 2948.0, 1123.0 ],
+		"rect" : [ 1954.0, 115.0, 1447.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -40,12 +40,24 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-10",
+					"maxclass" : "newobj",
+					"numinlets" : 7,
+					"numoutlets" : 2,
+					"outlettype" : [ "int", "" ],
+					"patching_rect" : [ 57.583333333333343, 315.0, 210.0, 22.0 ],
+					"text" : "midiformat"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-1",
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 196.25, 450.0, 67.0, 22.0 ],
+					"patching_rect" : [ 112.25, 495.0, 67.0, 22.0 ],
 					"text" : "delay 1000"
 				}
 
@@ -69,7 +81,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 196.25, 495.0, 108.0, 22.0 ],
+					"patching_rect" : [ 112.25, 540.0, 108.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_resend"
 				}
@@ -205,7 +217,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 196.25, 405.0, 50.0, 22.0 ],
+					"patching_rect" : [ 112.25, 450.0, 50.0, 22.0 ],
 					"text" : "select 1"
 				}
 
@@ -217,7 +229,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "int", "int" ],
-					"patching_rect" : [ 196.25, 360.0, 48.0, 22.0 ],
+					"patching_rect" : [ 112.25, 405.0, 48.0, 22.0 ],
 					"text" : "change"
 				}
 
@@ -241,7 +253,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
-					"patching_rect" : [ 121.25, 315.0, 183.0, 22.0 ],
+					"patching_rect" : [ 57.583333333333343, 360.0, 183.0, 22.0 ],
 					"text" : "wa.midi.output \"DROID X7 MIDI\""
 				}
 
@@ -254,7 +266,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 120.0, 405.0, 30.0, 30.0 ]
+					"patching_rect" : [ 57.583333333333343, 405.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -263,6 +275,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-20", 0 ],
 					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-10", 0 ]
 				}
 
 			}
@@ -282,14 +301,14 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-3", 0 ],
+					"destination" : [ "obj-10", 2 ],
 					"source" : [ "obj-15", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-3", 0 ],
+					"destination" : [ "obj-10", 2 ],
 					"source" : [ "obj-16", 0 ]
 				}
 

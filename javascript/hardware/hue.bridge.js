@@ -147,6 +147,9 @@ hue.gradient = function (deviceName, gradientList, duration) {
 function bang() {
 
    outlet(1, Object.keys(deviceMap));
+   for (var name in hue.stateChange) {
+      print("state change name", name);
+   }
 }
 
 defaultStack.local = 1;
@@ -209,7 +212,8 @@ function status(group) {
 
       var deviceState = {};
       deviceState["on"] = device["on"]["on"];
-      deviceState["bright"] = device["dimming"]["brightness"];
+      if ("dimming" in deviceState)
+         deviceState["bright"] = device["dimming"]["brightness"];
 
       callback(deviceState);
    }
