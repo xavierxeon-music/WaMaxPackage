@@ -48,9 +48,6 @@ function isOpen(appName, fileName) {
    filePath = cleanItem(filePath);
    var command = "lsof +D " + filePath + " | grep " + appName + " | wc -l";
 
-   console.log("Hello");
-
-
    // bash -c "lsof +D /Users/waspe/Artwork/SpatialTest  2> /dev/null | grep Ableton | wc -l"
    exec(command, (error, stdout, stderr) => {
 

@@ -61,7 +61,7 @@ clearButton.onClicked(clearMessages);
 
 // table
 let scroll = new Div();
-scroll.forceHeigth("200px");
+scroll.forceHeigth("145px");
 
 let table = new Table(scroll, ["60px", "auto"]);
 for (let index = 0; index < numberOfColumns; index++) {

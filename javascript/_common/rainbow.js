@@ -31,6 +31,7 @@ function segment(redBase, redDiff, greenBase, greendDiff, blueBase, blueDiff) {
    }
 }
 
+init.local = 1;
 function init() {
 
    var up = 1;
@@ -54,6 +55,26 @@ function loadbang() {
    init();
 }
 
+// get direct value
+function msg_float(value) {
+
+   value += offsetFactor;
+   while (value < 0.0)
+      value += 1.0;
+   while (value > 1.0)
+      value -= 1.0;
+
+   var index = Math.round(value * 6 * 256);
+
+   var color = colorList[index];
+
+   outlet(0, color.hex);
+   outlet(1, [color.red, color.green, color.blue]);
+
+}
+
+
+// advance on step
 function bang() {
 
    var index = (counter * 6 * 256) / maxCounter;

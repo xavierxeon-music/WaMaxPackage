@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 115.0, 3772.0, 1451.0 ],
+		"rect" : [ 434.0, 295.0, 2967.0, 1095.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -171,7 +171,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 157.0, 930.0, 123.0, 22.0 ],
+					"patching_rect" : [ 157.0, 876.0, 123.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_updaeName"
 				}
@@ -371,7 +371,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 220.0, 894.0, 78.0, 22.0 ],
+					"patching_rect" : [ 220.0, 840.0, 78.0, 22.0 ],
 					"text" : "print DEBUG"
 				}
 
@@ -383,7 +383,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 91.0, 894.0, 63.0, 22.0 ],
+					"patching_rect" : [ 91.0, 840.0, 63.0, 22.0 ],
 					"text" : "select 200"
 				}
 
@@ -395,7 +395,7 @@
 					"numinlets" : 4,
 					"numoutlets" : 4,
 					"outlettype" : [ "", "", "", "" ],
-					"patching_rect" : [ 91.0, 849.0, 213.0, 22.0 ],
+					"patching_rect" : [ 91.0, 795.0, 213.0, 22.0 ],
 					"text" : "route onloadend updateName DEBUG"
 				}
 
@@ -431,9 +431,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 91.0, 585.0, 254.0, 225.0 ],
+					"patching_rect" : [ 91.0, 585.0, 254.0, 180.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 255.0, 225.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 255.0, 180.0 ],
 					"rendermode" : 2,
 					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/media/maxgui.html?content=debug_window"
 				}
