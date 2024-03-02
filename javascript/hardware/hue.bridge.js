@@ -30,15 +30,20 @@ sendTask.repeat();
 // see https://developers.meethue.com/develop/hue-api-v2/api-reference/#resource_light_get
 // see https://developers.meethue.com/develop/hue-api-v2/api-reference/#resource_light__id__put
 
-hue.onOff = function (deviceName, on) {
+hue.onOff = function (deviceName, on, duration) {
 
-   print(deviceName, on);
+   if (!duration)
+      duration = 0;
 
    var payload = {
       "on": {
          "on": on
+      },
+      "dynamics": {
+         "duration": duration
       }
    };
+
    addStackPaylod(deviceName, payload);
 }
 
