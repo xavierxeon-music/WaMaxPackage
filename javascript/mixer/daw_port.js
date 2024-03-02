@@ -27,10 +27,9 @@ function loadbang() {
    daw.register();
 }
 
-function notifydeleted() {
+function cleanup() {
 
    daw.removePortName(portIndex, isSender);
-
    daw.deregister();
 }
 

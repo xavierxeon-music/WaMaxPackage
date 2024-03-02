@@ -11,6 +11,7 @@ class MixerFader {
       this.svg = parent.querySelector("svg");
       this.transform = this.svg.getScreenCTM();
 
+      this.midfader = parent.querySelector("rect.midfader");
       this.levlelIndicatorLeft = parent.querySelector("rect.levlelLeft");
       this.levlelIndicatorRight = parent.querySelector("rect.levlelRight");
       this.handle = parent.querySelector("rect.handle");
@@ -21,11 +22,8 @@ class MixerFader {
       this.handle.addEventListener('mouseup', (event) => { this.#endDrag(event); });
       this.handle.addEventListener('mouseleave', (event) => { this.#endDrag(event); });
 
-      //this.svg.addEventListener('mouseup', (event) => { this.#updateLevel(event); });
-      this.svg.addEventListener('ondblclick', () => {
-         this.level = 0.0;
-         this.update();
-      });
+      this.midfader.addEventListener('click', (event) => { this.#moveSlider(event); });
+      //this.midfader.addEventListener('dblclick', () => { this.#resetSlider(); });
 
       this.handleDrag = false;
       this.handleDragOffset = 0;
@@ -34,7 +32,6 @@ class MixerFader {
       this.volumeLeft = 60.0;
       this.volumeRight = 90.0;
       this.level = 30.0;
-
 
       this.update();
    }
@@ -94,6 +91,15 @@ class MixerFader {
       this.handle.style["cursor"] = "grab";
    }
 
+   #moveSlider(event) {
+      this.handleDragOffset = 7;
+      this.#updateLevel(event);
+   }
+
+   #resetSlider() {
+      this.level = 100.0;
+      this.update();
+   }
 
 }
 

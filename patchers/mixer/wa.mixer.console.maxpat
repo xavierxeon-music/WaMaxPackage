@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 115.0, 2572.0, 1451.0 ],
+		"rect" : [ 34.0, 115.0, 3367.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -106,9 +106,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 165.0, 120.0, 600.0, 465.0 ],
+					"patching_rect" : [ 165.0, 120.0, 600.0, 450.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 600.0, 465.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 600.0, 450.0 ],
 					"rendermode" : 2,
 					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/media/maxgui.html?content=mixer"
 				}
@@ -118,7 +118,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -129,9 +129,9 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "debug",
 					"id" : "obj-2",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -176,6 +176,7 @@
 
 			}
  ],
+		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.admin",
 				"default" : 				{

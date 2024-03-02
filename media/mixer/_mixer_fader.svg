@@ -12,7 +12,8 @@
    <path d="M 1,50 L 13,50 " stroke="#c0c0c0" stroke-width="1" stroke-linecap="butt"></path>
    <path d="M 1,27.5 L 13,27.5 " stroke="#c0c0c0" stroke-width="1" stroke-linecap="butt"></path>
    <path d="M 1,5 L 13,5 " stroke="#c0c0c0" stroke-width="1" stroke-linecap="butt"></path>  
-   <path d="M 7,1 L 7,99 " stroke="#c0c0c0" stroke-width="1" stroke-linecap="butt"></path>
+   <!-- mid line -->
+   <rect x="6" y="0" width="2" height="100.0" rx="1" ry="1" stroke-width="0" fill="#c0c0c0" class="midfader"></rect>
    <!--indicators-->
    <rect x="2" y="0" width="4" height="43.8" rx="1" ry="1" stroke-width="0" fill="url(#level)" class="levlelLeft"></rect>
    <rect x="8" y="0" width="4" height="43.8" rx="1" ry="1" stroke-width="0" fill="url(#level)" class="levlelRight"></rect>
