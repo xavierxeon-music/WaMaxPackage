@@ -1,5 +1,8 @@
 #include "wa.to7bit.h"
 
+#include <inttypes.h>
+#include <vector>
+
 void* To7Bit::create(t_symbol* s, long argc, t_atom* argv)
 {
    Data* x = (Data*)object_alloc((t_class*)to7bit_class);
@@ -23,7 +26,8 @@ void To7Bit::input1(Data* x, long intValue)
       static const char maxSize = sizeof(long);
       t_atom myList[maxSize];
 
-      char maxIndex = 0;
+      std::vector<uint8_t> sevenBits;
+
       int maxValue = 1;
       for (char i = 0; i < maxSize; i++)
       {
@@ -33,12 +37,17 @@ void To7Bit::input1(Data* x, long intValue)
          long value = intValue >> (7 * i);
          value = value & 127;
          maxValue *= 128;
+         sevenBits.insert(sevenBits.begin(), value);
 
          atom_setlong(myList + i, value);
-         maxIndex++;
       }
 
-      outlet_list(x->outlet1, 0L, maxIndex, myList);
+      for (char i = 0; i < sevenBits.size(); i++)
+      {
+         atom_setlong(myList + i, sevenBits[i]);
+      }
+
+      outlet_list(x->outlet1, 0L, sevenBits.size(), myList);
    }
 }
 

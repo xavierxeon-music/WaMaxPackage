@@ -1,11 +1,11 @@
 #include "wa.from7bit.h"
 
+#include <inttypes.h>
+#include <vector>
+
 void* From7Bit::create(t_symbol* s, long argc, t_atom* argv)
 {
    Data* x = (Data*)object_alloc((t_class*)from7bit_class);
-
-   // x->d_inletnum = 0;
-   // x->d_proxy = proxy_new(x, 1, &x->d_inletnum);
    x->m_outlet1 = intout((t_object*)x);
 
    return x;
@@ -14,7 +14,6 @@ void* From7Bit::create(t_symbol* s, long argc, t_atom* argv)
 void From7Bit::destroy(Data* x)
 {
    object_free(x->m_outlet1);
-   // freeobject((t_object*)x->d_proxy);
 }
 
 void From7Bit::input1(Data* x, t_symbol* s, long argc, t_atom* argv)
@@ -22,19 +21,28 @@ void From7Bit::input1(Data* x, t_symbol* s, long argc, t_atom* argv)
    // post("float %.2f received in right inlet", f);
    if (proxy_getinlet((t_object*)x) == 0)
    {
-      long number = 0;
+      std::vector<uint8_t> sevenBits;
+
       t_atom* ap = argv;
-      long power = 1;
       for (char i = 0; i < argc; i++)
       {
          if (atom_gettype(ap) == A_LONG)
          {
-            t_atom_long part = atom_getlong(ap);
-            number += part * power;
+            t_atom_long value = atom_getlong(ap);
+            sevenBits.insert(sevenBits.begin(), value);
          }
-         power *= 128;
          ap++;
       }
+
+      long number = 0;
+      long power = 1;
+
+      for (const uint8_t& value : sevenBits)
+      {
+         number += value * power;
+         power *= 128;
+      }
+
       outlet_int(x->m_outlet1, number);
    }
 }
