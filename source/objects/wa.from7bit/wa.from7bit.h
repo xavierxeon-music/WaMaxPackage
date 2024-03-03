@@ -7,7 +7,6 @@ extern "C"
 #include "ext_obex.h" // required for new style Max object
 }
 
-////////////////////////// object struct
 namespace From7Bit
 {
    struct Data
@@ -15,7 +14,7 @@ namespace From7Bit
       t_object ob; // the object itself (must be first)
       void* m_outlet1;
    };
-   Data* from7bit_class;
+   Data* from7bit_class; // global class pointer variable
 
    void* create(t_symbol* s, long argc, t_atom* argv);
    void destroy(Data* x);
@@ -24,7 +23,5 @@ namespace From7Bit
    void assist(Data* x, void* b, long m, long a, char* s);
 
 } // namespace From7Bit
-
-//////////////////////// global class pointer variable
 
 #endif // wa_from7bit_H

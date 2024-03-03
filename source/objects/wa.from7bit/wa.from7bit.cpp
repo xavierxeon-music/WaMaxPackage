@@ -61,6 +61,8 @@ void From7Bit::assist(Data* x, void* b, long m, long a, char* s)
    }
 }
 
+// main function
+
 void ext_main(void* r)
 {
    t_class* c = class_new("wa.from7Bit", (method)From7Bit::create, (method)From7Bit::destroy, (long)sizeof(From7Bit::Data), 0L, A_GIMME, 0);
