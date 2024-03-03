@@ -7,20 +7,20 @@ extern "C"
 #include "ext_obex.h" // required for new style Max object
 }
 
-////////////////////////// object struct
-struct To7Bit
+namespace To7Bit
 {
-   t_object ob; // the object itself (must be first)
-   void* outlet1;
-};
+   struct Data
+   {
+      t_object ob; // the object itself (must be first)
+      void* outlet1;
+   };
+   Data* to7bit_class; // global class pointer variable
 
-//////////////////////// global class pointer variable
-To7Bit* to7bit_class;
+   void* create(t_symbol* s, long argc, t_atom* argv);
+   void destroy(Data* x);
 
-void* to7bit_new(t_symbol* s, long argc, t_atom* argv);
-void to7bit_free(To7Bit* x);
-
-void to7bit_input1(To7Bit* x, long intValue);
-void to7bit_assist(To7Bit* x, void* b, long m, long a, char* s);
+   void input1(Data* x, long intValue);
+   void assist(Data* x, void* b, long m, long a, char* s);
+}; // namespace To7Bit
 
 #endif // wa_to7bit_H

@@ -8,21 +8,23 @@ extern "C"
 }
 
 ////////////////////////// object struct
-struct From7Bit
+namespace From7Bit
 {
-   t_object ob; // the object itself (must be first)
-   void *m_outlet1;
-   // long d_inletnum;
-   // void* d_proxy;
-};
+   struct Data
+   {
+      t_object ob; // the object itself (must be first)
+      void* m_outlet1;
+   };
+   Data* from7bit_class;
+
+   void* create(t_symbol* s, long argc, t_atom* argv);
+   void destroy(Data* x);
+
+   void input1(Data* x, t_symbol* s, long argc, t_atom* argv);
+   void assist(Data* x, void* b, long m, long a, char* s);
+
+} // namespace From7Bit
 
 //////////////////////// global class pointer variable
-From7Bit *from7bit_class;
-
-void *from7bit_new(t_symbol *s, long argc, t_atom *argv);
-void from7bit_free(From7Bit *x);
-
-void from7bit_list(From7Bit *x, t_symbol *s, long argc, t_atom *argv);
-void from7bit_assist(From7Bit *x, void *b, long m, long a, char *s);
 
 #endif // wa_from7bit_H

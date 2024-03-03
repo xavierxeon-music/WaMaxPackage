@@ -1,6 +1,19 @@
 #include "wa.to7bit.h"
 
-void to7bit_input1(To7Bit* x, long intValue)
+void* To7Bit::create(t_symbol* s, long argc, t_atom* argv)
+{
+   Data* x = (Data*)object_alloc((t_class*)to7bit_class);
+   x->outlet1 = listout((t_object*)x);
+
+   return x;
+}
+
+void To7Bit::destroy(Data* x)
+{
+   object_free(x->outlet1);
+}
+
+void To7Bit::input1(Data* x, long intValue)
 {
    if (intValue < 0)
       return;
@@ -29,7 +42,7 @@ void to7bit_input1(To7Bit* x, long intValue)
    }
 }
 
-void to7bit_assist(To7Bit* x, void* b, long m, long a, char* s)
+void To7Bit::assist(Data* x, void* b, long m, long a, char* s)
 {
    if (m == ASSIST_INLET)
    { // Inlets
@@ -51,29 +64,16 @@ void to7bit_assist(To7Bit* x, void* b, long m, long a, char* s)
    }
 }
 
-void* to7bit_new(t_symbol* s, long argc, t_atom* argv)
-{
-   To7Bit* x = (To7Bit*)object_alloc((t_class*)to7bit_class);
-   x->outlet1 = listout((t_object*)x);
-
-   return x;
-}
-
-void to7bit_free(To7Bit* x)
-{
-   object_free(x->outlet1);
-}
-
 void ext_main(void* r)
 {
-   t_class* c = class_new("wa.to7bit", (method)to7bit_new, (method)to7bit_free, (long)sizeof(To7Bit), 0L, A_GIMME, 0);
+   t_class* c = class_new("wa.to7bit", (method)To7Bit::create, (method)To7Bit::destroy, (long)sizeof(To7Bit::Data), 0L, A_GIMME, 0);
 
    // inlets
-   class_addmethod(c, (method)to7bit_input1, "int", A_LONG, 0);
+   class_addmethod(c, (method)To7Bit::input1, "int", A_LONG, 0);
 
    // other
-   class_addmethod(c, (method)to7bit_assist, "assist", A_CANT, 0);
+   class_addmethod(c, (method)To7Bit::assist, "assist", A_CANT, 0);
 
    class_register(CLASS_BOX, c);
-   to7bit_class = (To7Bit*)c;
+   To7Bit::to7bit_class = (To7Bit::Data*)c;
 }
