@@ -1,14 +1,31 @@
-#ifndef ObjectH
-#define ObjectH
+#ifndef CommonObjectH
+#define CommonObjectH
 
-class Object
+extern "C"
 {
-public:
-   inline Object();
-};
+#include "ext.h"      // standard Max include, always required
+#include "ext_obex.h" // required for new style Max object
+}
 
-#ifndef ObjectHPP
+#include <string>
+
+namespace Common
+{
+   class Object
+   {
+   public:
+      inline Object(const std::string& name);
+
+   public:
+      void init();
+
+   private:
+      std::string name;
+   };
+} // namespace Common
+
+#ifndef CommonObjectHPP
 #include "Object.hpp"
-#endif // NOT ObjectHPP
+#endif // NOT CommonObjectHPP
 
-#endif // NOT ObjectH
+#endif // NOT CommonObjectH
