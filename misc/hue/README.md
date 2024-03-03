@@ -1,10 +1,7 @@
 # HUE INTERFACE
 
 ## credentials and configuration
-seee https://developers.meethue.com/develop/get-started-2/
-v2 (not working) https://developers.meethue.com/develop/hue-api-v2/getting-started/
-
-security add-trusted-cert -d -r trustRoot -k ~/Library/Keychains/login.keychain-db huebridge_cacert.pem
+ https://developers.meethue.com/develop/hue-api-v2/getting-started/
 
 get bridge ip: https://discovery.meethue.com
 
@@ -25,4 +22,3 @@ save to ~/.hue.bridge
 }
 
 
-curl --cacert mybridge_cert.pem --resolve "ecb5fafffe0b1cec:443:192.168.1.116" https://ecb5fafffe0b1cec/api/4F8mgh-oPlsAbjYpBV6jgRwHT55qxIQUQhAao5r9/lights

@@ -30,10 +30,7 @@ class Bridge:
       # get rid of warning tghat connectin is insecure
       urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-      response = requests.get(self.baseUrl + 'light', verify=False, headers=self.header)
-
-      # response = requests.get(self.baseUrl + 'light', verify=os.getcwd() + '/huebridge_cacert.pem', headers=self.header)
-
+      #response = requests.get(self.baseUrl + 'light', verify=False, headers=self.header)
       self.lights = response.json()
       print(self.lights)
       sys.exit(0)
