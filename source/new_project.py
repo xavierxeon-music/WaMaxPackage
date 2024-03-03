@@ -6,7 +6,7 @@ import sys
 
 def createFolder(name):
 
-    folder = os.getcwd() + '/Package/source/' + name
+    folder = os.getcwd() + '/objects/' + name
     try:
         os.makedirs(folder)
     except FileExistsError:

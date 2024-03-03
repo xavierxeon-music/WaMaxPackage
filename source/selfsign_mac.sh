@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd RawMaxPackage/externals
+cd ../externals
 
 for MXO_FILE in $(ls -1  | grep \\.mxo)
 do
