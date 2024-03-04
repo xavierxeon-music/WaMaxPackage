@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 115.0, 3367.0, 1451.0 ],
+		"rect" : [ 34.0, 143.0, 3772.0, 1423.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,18 @@
 		"subpatcher_template" : "OpenGrid",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-7",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 315.0, 39.0, 58.0, 22.0 ],
+					"text" : "loadbang"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-9",
 					"maxclass" : "newobj",
@@ -82,7 +94,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 165.0, 60.0, 125.0, 22.0 ],
+					"patching_rect" : [ 165.0, 75.0, 125.0, 22.0 ],
 					"text" : "prepend addMessage"
 				}
 
@@ -94,7 +106,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 315.0, 60.0, 198.0, 22.0 ],
+					"patching_rect" : [ 315.0, 75.0, 198.0, 22.0 ],
 					"text" : "readfile maxgui.html?content=mixer"
 				}
 
@@ -106,7 +118,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 165.0, 120.0, 600.0, 450.0 ],
+					"patching_rect" : [ 165.0, 135.0, 600.0, 450.0 ],
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 600.0, 450.0 ],
 					"rendermode" : 2,
@@ -165,6 +177,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-8", 0 ],
 					"source" : [ "obj-6", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-5", 0 ],
+					"source" : [ "obj-7", 0 ]
 				}
 
 			}
