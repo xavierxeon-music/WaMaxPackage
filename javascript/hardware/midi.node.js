@@ -1,14 +1,13 @@
 const maxAPI = require('max-api');
-const midi = require("midi");
 
+const midi = require("midi");
 
 const output = new midi.Output();
 
 const input = new midi.Input();
 input.on('message', (deltaTime, message) => {
 
-   console.log(message);
-   maxAPI.outlet("midi", message);
+   maxAPI.outlet(["midi", ...message]);
 });
 
 
@@ -32,6 +31,6 @@ maxAPI.addHandler('open', (deviceName) => {
 });
 
 
-maxAPI.addHandler('send', (...args) => {
-   output.sendMessage([176, 22, 1]);
+maxAPI.addHandler(maxAPI.MESSAGE_TYPES.LIST, (...message) => {
+   output.sendMessage(message);
 });
