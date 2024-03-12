@@ -40,9 +40,6 @@ function setChannel(name) {
 
    print(typeString, routeString);
 
-   // set routing_type
-   // set routing_channel
-
    var api = new LiveAPI(null, "id " + pluginId);
 
    if (api == undefined) {
@@ -53,40 +50,6 @@ function setChannel(name) {
    api.set("routing_type", typeString);
    api.set("routing_channel", routeString);
 
-}
-
-apiPrint.local = 1;
-function apiPrint(api) {
-
-   if (api == undefined) {
-      print("UNDEFINED");
-      return;
-   }
-
-   for (var key in api) {
-      // if ("info" == key)
-      //    continue;
-      var value = api[key]
-      print("KEY", key, "T", typeof value, "V", value);
-   }
-}
-
-dictParse.local = 1;
-function dictParse(api, key) {
-
-   var target = {};
-
-   var channelDict = JSON.parse(api.get(key)[0]);
-   var channelList = channelDict[key];
-   var channelCount = api.getcount(key);
-   for (var channelCounter = 0; channelCounter < channelCount; channelCounter++) {
-      var channelObject = channelList[channelCounter];
-      var name = channelObject["display_name"];
-      var id = channelObject["identifier"];
-      target[name] = id;
-   }
-
-   return target;
 }
 
 createMappings.local = 1;
