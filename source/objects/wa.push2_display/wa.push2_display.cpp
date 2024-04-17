@@ -7,19 +7,35 @@
 
 // see https://github.com/pixsperdavid/imp.push/blob/master/src/imp.push.c
 
-void* Push2Display::create(t_symbol* s, long argc, t_atom* argv)
+// jit
+
+Push2Display::Jit::Data* Push2Display::Jit::create(void)
 {
-   Data* x = (Data*)max_jit_object_alloc((t_class*)push2_display_class, gensym("push2_display"));
+   Data* x;
+
+   // allocate object
+   if (x = (Data*)jit_object_alloc(jit_class))
+   {
+      // if successful, perform any initialization
+   }
+   return x;
+}
+
+void Push2Display::Jit::destroy(Data* x)
+{
+}
+
+// max
+
+void* Push2Display::Max::create(t_symbol* s, long argc, t_atom* argv)
+{
+   Data* x = (Data*)max_jit_object_alloc((t_class*)max_class, gensym("push2_display"));
 
    void* o = jit_object_new(gensym("push2_display"));
    if (o)
    {
       max_jit_mop_setup_simple(x, o, argc, argv);
       max_jit_attr_args(x, argc, argv);
-
-      x->server_name = jit_symbol_unique();
-      jit_object_method(o, _jit_sym_register, x->server_name);
-      jit_object_attach(x->server_name, x);
    }
    else
    {
@@ -36,7 +52,7 @@ void* Push2Display::create(t_symbol* s, long argc, t_atom* argv)
    return x;
 }
 
-void Push2Display::destroy(Data* x)
+void Push2Display::Max::destroy(Data* x)
 {
    if (x->device)
    {
@@ -47,10 +63,12 @@ void Push2Display::destroy(Data* x)
    if (x->context)
       libusb_exit(x->context);
 
-   object_free(x->outlet1);
+   max_jit_mop_free(x);
+   jit_object_free(max_jit_obex_jitob_get(x));
+   max_jit_obex_free(x);
 }
 
-void Push2Display::input1(Data* x, long intValue)
+void Push2Display::Max::input1(Data* x, long intValue)
 {
    if (intValue < 0)
       return;
@@ -85,8 +103,9 @@ void Push2Display::input1(Data* x, long intValue)
    }
 }
 
-void Push2Display::input_notify(Data* x, t_symbol* s, t_symbol* msg, void* ob, void* data)
+void Push2Display::Max::input_notify(Data* x, t_symbol* s, t_symbol* msg, void* ob, void* data)
 {
+   /*
    if (msg == _sym_attr_modified)
    {
       t_jit_attr* attribute = (t_jit_attr*)data;
@@ -102,9 +121,10 @@ void Push2Display::input_notify(Data* x, t_symbol* s, t_symbol* msg, void* ob, v
    {
       max_jit_mop_notify(x, s, msg);
    }
+   */
 }
 
-void Push2Display::assist(Data* x, void* b, long m, long a, char* s)
+void Push2Display::Max::assist(Data* x, void* b, long m, long a, char* s)
 {
    if (m == ASSIST_INLET)
    { // Inlets
@@ -126,7 +146,7 @@ void Push2Display::assist(Data* x, void* b, long m, long a, char* s)
    }
 }
 
-void Push2Display::transfer(Data* x)
+void Push2Display::Max::transfer(Data* x)
 {
    if (!x->device)
    {
@@ -165,22 +185,28 @@ void Push2Display::transfer(Data* x)
 
 void ext_main(void* r)
 {
-   t_class* c = class_new("wa.push2_display", (method)Push2Display::create, (method)Push2Display::destroy, (long)sizeof(Push2Display::Data), 0L, A_GIMME, 0);
+   using namespace Push2Display;
+
+   t_class* c = class_new("wa.push2_display", (method)Max::create, (method)Max::destroy, (long)sizeof(Max::Data), 0L, A_GIMME, 0);
 
    // jit
+   {
+      // create new class named "jit_foo" with constructor + destructor
+      Jit::jit_class = (Jit::Data*)("push2_display", (method)Jit::create, (method)Jit::destroy, sizeof(Jit::Data), 0L);
 
-   max_jit_class_obex_setup(c, calcoffset(Push2Display::Data, obex));
-   t_class* jitclass = (t_class*)jit_class_findbyname(gensym("push2_display"));
-   max_jit_class_mop_wrap(c, jitclass, MAX_JIT_MOP_FLAGS_OWN_ADAPT | MAX_JIT_MOP_FLAGS_OWN_OUTPUTMODE | MAX_JIT_MOP_FLAGS_OWN_NOTIFY);
-   max_jit_class_wrap_standard(c, jitclass, 0);
+      // register class
+      jit_class_register(Jit::jit_class);
 
-   // inlets
-   //class_addmethod(c, (method)Push2Display::input1, "int", A_LONG, 0);
-   class_addmethod(c, (method)Push2Display::input_notify, "notify", A_CANT, 0);
+      max_jit_class_obex_setup(c, calcoffset(Max::Data, obex));
+      t_class* jitclass = (t_class*)jit_class_findbyname(gensym("push2_display"));
+      max_jit_class_mop_wrap(c, jitclass, MAX_JIT_MOP_FLAGS_OWN_ADAPT | MAX_JIT_MOP_FLAGS_OWN_OUTPUTMODE | MAX_JIT_MOP_FLAGS_OWN_NOTIFY);
+      max_jit_class_wrap_standard(c, jitclass, 0);
+   }
 
    // other
-   class_addmethod(c, (method)Push2Display::assist, "assist", A_CANT, 0);
+   class_addmethod(c, (method)Max::assist, "assist", A_CANT, 0);
+   class_addmethod(c, (method)Max::input_notify, "notify", A_CANT, 0);
 
    class_register(CLASS_BOX, c);
-   Push2Display::push2_display_class = (Push2Display::Data*)c;
+   Max::max_class = (Max::Data*)c;
 }

@@ -13,29 +13,44 @@ extern "C"
 
 namespace Push2Display
 {
-   struct Data
+   namespace Jit
    {
-      t_object ob; // the object itself (must be first)
+      struct Data
+      {
+         t_object ob;
+      };
 
-      void* obex;
-      t_symbol* server_name;
+      Data* jit_class;
 
-      void* outlet1;
+      Data* create(void);
+      void destroy(Data* x);
 
-      libusb_context* context;
-      libusb_device_handle* device;
-      uint8_t* data;
-   };
-   Data* push2_display_class; // global class pointer variable
+   } // namespace Jit
 
-   void* create(t_symbol* s, long argc, t_atom* argv);
-   void destroy(Data* x);
+   namespace Max
+   {
+      struct Data
+      {
+         t_object ob; // the object itself (must be first)
 
-   void input1(Data* x, long intValue);
-   void input_notify(Data* x, t_symbol* s, t_symbol* msg, void* ob, void* data);
-   void assist(Data* x, void* b, long m, long a, char* s);
+         void* obex;
+         void* outlet1;
 
-   void transfer(Data* x);
+         libusb_context* context;
+         libusb_device_handle* device;
+         uint8_t* data;
+      };
+      Data* max_class; // global class pointer variable
+
+      void* create(t_symbol* s, long argc, t_atom* argv);
+      void destroy(Data* x);
+
+      void input1(Data* x, long intValue);
+      void input_notify(Data* x, t_symbol* s, t_symbol* msg, void* ob, void* data);
+      void assist(Data* x, void* b, long m, long a, char* s);
+
+      void transfer(Data* x);
+   } // namespace Max
 } // namespace Push2Display
 
 #endif // wa_push2_displayH

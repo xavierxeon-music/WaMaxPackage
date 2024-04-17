@@ -25,6 +25,3 @@ pkg_check_modules(libusb REQUIRED IMPORTED_TARGET libusb-1.0)
 target_link_libraries(${PROJECT_NAME} PRIVATE PkgConfig::libusb)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/../../max-sdk-base/script/max-posttarget.cmake)
-
-# INCLUDEPATH += /opt/homebrew/include/libusb-1.0
-# LIBS += -L/opt/homebrew/lib/ -lusb-1.0
