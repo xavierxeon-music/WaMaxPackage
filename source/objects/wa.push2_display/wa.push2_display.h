@@ -16,6 +16,10 @@ namespace Push2Display
    struct Data
    {
       t_object ob; // the object itself (must be first)
+
+      void* obex;
+      t_symbol* server_name;
+
       void* outlet1;
 
       libusb_context* context;
@@ -28,6 +32,7 @@ namespace Push2Display
    void destroy(Data* x);
 
    void input1(Data* x, long intValue);
+   void input_notify(Data* x, t_symbol* s, t_symbol* msg, void* ob, void* data);
    void assist(Data* x, void* b, long m, long a, char* s);
 
    void transfer(Data* x);

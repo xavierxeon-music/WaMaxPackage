@@ -2,11 +2,31 @@
 
 #include <vector>
 
+#include "jit.common.h"
+#include "max.jit.mop.h"
+
 // see https://github.com/pixsperdavid/imp.push/blob/master/src/imp.push.c
 
 void* Push2Display::create(t_symbol* s, long argc, t_atom* argv)
 {
-   Data* x = (Data*)object_alloc((t_class*)push2_display_class);
+   Data* x = (Data*)max_jit_object_alloc((t_class*)push2_display_class, gensym("push2_display"));
+
+   void* o = jit_object_new(gensym("push2_display"));
+   if (o)
+   {
+      max_jit_mop_setup_simple(x, o, argc, argv);
+      max_jit_attr_args(x, argc, argv);
+
+      x->server_name = jit_symbol_unique();
+      jit_object_method(o, _jit_sym_register, x->server_name);
+      jit_object_attach(x->server_name, x);
+   }
+   else
+   {
+      object_free((t_object*)x);
+      x = nullptr;
+   }
+
    x->outlet1 = listout((t_object*)x);
 
    libusb_init(&x->context);
@@ -62,6 +82,25 @@ void Push2Display::input1(Data* x, long intValue)
       }
 
       outlet_list(x->outlet1, 0L, sevenBits.size(), myList);
+   }
+}
+
+void Push2Display::input_notify(Data* x, t_symbol* s, t_symbol* msg, void* ob, void* data)
+{
+   if (msg == _sym_attr_modified)
+   {
+      t_jit_attr* attribute = (t_jit_attr*)data;
+      t_jit_object* jitobj = (t_jit_object*)max_jit_obex_jitob_get(x);
+      t_atom_long status = jit_attr_getlong(jitobj, attribute->name);
+
+      t_atom av[1];
+      jit_atom_setlong(av, status);
+
+      max_jit_obex_dumpout(x, attribute->name, 1, av);
+   }
+   else
+   {
+      max_jit_mop_notify(x, s, msg);
    }
 }
 
@@ -129,15 +168,15 @@ void ext_main(void* r)
    t_class* c = class_new("wa.push2_display", (method)Push2Display::create, (method)Push2Display::destroy, (long)sizeof(Push2Display::Data), 0L, A_GIMME, 0);
 
    // jit
-   /*
-   max_jit_class_obex_setup(c, calcoffset(Data, obex));
-   t_class* jitclass = (t_class*)jit_class_findbyname(_sym_jit_ndi_send);
+
+   max_jit_class_obex_setup(c, calcoffset(Push2Display::Data, obex));
+   t_class* jitclass = (t_class*)jit_class_findbyname(gensym("push2_display"));
    max_jit_class_mop_wrap(c, jitclass, MAX_JIT_MOP_FLAGS_OWN_ADAPT | MAX_JIT_MOP_FLAGS_OWN_OUTPUTMODE | MAX_JIT_MOP_FLAGS_OWN_NOTIFY);
    max_jit_class_wrap_standard(c, jitclass, 0);
-   */
 
    // inlets
-   class_addmethod(c, (method)Push2Display::input1, "int", A_LONG, 0);
+   //class_addmethod(c, (method)Push2Display::input1, "int", A_LONG, 0);
+   class_addmethod(c, (method)Push2Display::input_notify, "notify", A_CANT, 0);
 
    // other
    class_addmethod(c, (method)Push2Display::assist, "assist", A_CANT, 0);
