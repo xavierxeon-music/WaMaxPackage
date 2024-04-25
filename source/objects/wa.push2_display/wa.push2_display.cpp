@@ -18,8 +18,8 @@ public:
    matrix_type calc_cell(matrix_type input, const matrix_info& info, matrix_coord& position)
    {
       matrix_type output;
-      double fmin = min;
-      double fmax = max;
+      double fmin = 0;
+      double fmax = 1;
 
       for (auto plane = 0; plane < info.plane_count(); ++plane)
       {
