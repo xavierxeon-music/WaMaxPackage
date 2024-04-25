@@ -11,4 +11,8 @@ TheFunction bind(ClassType* instance, int (ClassType::*functionPointer)(int, int
    return std::bind(functionPointer, instance, std::placeholders::_1, std::placeholders::_2);
 }
 
-#endif // WaPackageCommonH
+#ifndef WaPackageCommonHPP
+#include "common.hpp"
+#endif // NOT WaPackageCommonHPP
+
+#endif // NOT WaPackageCommonH
