@@ -9,10 +9,10 @@ class from7bit : public object<from7bit>
 public:
    MIN_DESCRIPTION{"7bit list to int"};
 
-   inlet<> input{this, "(list) values to from7bit"};
-   outlet<> output{this, "(int) result of convolution"};
+   inlet<> input{this, "(list) 7 bit list"};
+   outlet<> output{this, "(int) integer value"};
 
-   atoms listFunction(const atoms &args, const int inlet)
+   atoms listFunction(const atoms& args, const int inlet)
    {
       std::vector<uint8_t> sevenBits;
       for (auto i = 0; i < args.size(); ++i)
@@ -24,7 +24,7 @@ public:
       long number = 0;
       long power = 1;
 
-      for (const uint8_t &value : sevenBits)
+      for (const uint8_t& value : sevenBits)
       {
          number += value * power;
          power *= 128;
@@ -35,9 +35,8 @@ public:
    }
 
    // clang-format off
-   message<> list{this, "list", "Input to the convolution function.", MIN_FUNCTION{return listFunction(args, inlet);}};
+   message<> list{this, "list", "7 bit list.", MIN_FUNCTION{return listFunction(args, inlet);}};
+};
 // clang-format on
-}
-;
 
 MIN_EXTERNAL(from7bit);
