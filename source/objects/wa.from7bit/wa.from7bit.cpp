@@ -1,42 +1,37 @@
-#include "c74_min.h"
-using namespace c74::min;
+#include "wa.from7bit.h"
 
 #include <inttypes.h>
 #include <vector>
 
-class from7bit : public object<from7bit>
+#include "../common.h"
+
+from7bit::from7bit()
+   : input{this, "(list) 7 bit list"}
+   , output{this, "(int) integer value"}
+   , listMessage{this, "list", "7 bit list.", minBind(this, &from7bit::listFunction)}
 {
-public:
-   MIN_DESCRIPTION{"7bit list to int"};
+}
 
-   inlet<> input{this, "(list) 7 bit list"};
-   outlet<> output{this, "(int) integer value"};
-
-   atoms listFunction(const atoms& args, const int inlet)
+atoms from7bit::listFunction(const atoms& args, const int inlet)
+{
+   std::vector<uint8_t> sevenBits;
+   for (auto i = 0; i < args.size(); ++i)
    {
-      std::vector<uint8_t> sevenBits;
-      for (auto i = 0; i < args.size(); ++i)
-      {
-         const int value = args[i];
-         sevenBits.insert(sevenBits.begin(), value);
-      }
-
-      long number = 0;
-      long power = 1;
-
-      for (const uint8_t& value : sevenBits)
-      {
-         number += value * power;
-         power *= 128;
-      }
-
-      output.send(number);
-      return {};
+      const int value = args[i];
+      sevenBits.insert(sevenBits.begin(), value);
    }
 
-   // clang-format off
-   message<> list{this, "list", "7 bit list.", MIN_FUNCTION{return listFunction(args, inlet);}};
-};
-// clang-format on
+   long number = 0;
+   long power = 1;
+
+   for (const uint8_t& value : sevenBits)
+   {
+      number += value * power;
+      power *= 128;
+   }
+
+   output.send(number);
+   return {};
+}
 
 MIN_EXTERNAL(from7bit);

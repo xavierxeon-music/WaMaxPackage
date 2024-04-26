@@ -4,9 +4,6 @@
 #include "c74_min.h"
 using namespace c74::min;
 
-#include <inttypes.h>
-#include <vector>
-
 class to7bit : public object<to7bit>
 {
 public:
@@ -24,4 +21,4 @@ private:
    atoms intFunction(const atoms& args, const int inlet);
 };
 
-#endif // WaTo7BitH
+#endif // NOT WaTo7BitH

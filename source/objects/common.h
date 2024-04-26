@@ -3,10 +3,11 @@
 
 #include <functional>
 
-using TheFunction = std::function<int(int, int)>;
+#include "c74_min.h"
+using namespace c74::min;
 
 template <typename ClassType>
-TheFunction bind(ClassType* instance, int (ClassType::*functionPointer)(int, int))
+function minBind(ClassType* instance, atoms (ClassType::*functionPointer)(const atoms&, const int))
 {
    return std::bind(functionPointer, instance, std::placeholders::_1, std::placeholders::_2);
 }

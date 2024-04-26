@@ -1,9 +1,14 @@
 #include "wa.to7bit.h"
 
+#include <inttypes.h>
+#include <vector>
+
+#include "../common.h"
+
 to7bit::to7bit()
    : input{this, "(int) values to to7bit"}
    , output{this, "(int) 7 bit list"}
-   , intMessage{this, "int", "integer value.", std::bind(&to7bit::intFunction, this, std::placeholders::_1, std::placeholders::_2)}
+   , intMessage{this, "int", "integer value.", minBind(this, &to7bit::intFunction)}
 {
 }
 
