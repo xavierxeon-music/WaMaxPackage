@@ -49,13 +49,16 @@ matrix_type push2_display::calc_cell(matrix_type input, const matrix_info& info,
 pixel push2_display::calc_cell(pixel input, const matrix_info& info, matrix_coord& position)
 {
    pixel output;
+   if (info.plane_count() != 3 && info.plane_count() != 4)
+      return output;
 
-   /*
-   output[alpha] = clamp(input[alpha], cmin, cmax);
-   output[red] = clamp(input[red], cmin, cmax);
-   output[green] = clamp(input[green], cmin, cmax);
-   output[blue] = clamp(input[blue], cmin, cmax);
-   */
+   const char r = input[red];
+   const char g = input[green];
+   const char b = input[blue];
+
+   const long x = position.x();
+   const long y = position.y();
+
    return output;
 }
 
