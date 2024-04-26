@@ -1,6 +1,8 @@
 #ifndef WaPush2DisplayH
 #define WaPush2DisplayH
 
+#include <libusb.h>
+
 #include "c74_min.h"
 using namespace c74::min;
 
@@ -11,6 +13,7 @@ public:
 
 public:
    push2_display();
+   ~push2_display();
 
 public:
    template <typename matrix_type>
@@ -23,8 +26,12 @@ public:
    outlet<> output;
 
 private:
-   uchar cmin;
-   uchar cmax;
+   void transfer();
+
+private:
+   libusb_context* context;
+   libusb_device_handle* device;
+   uchar* data;
 };
 
 #endif // NOT WaPush2DisplayH
