@@ -1,12 +1,13 @@
-include(${CMAKE_CURRENT_SOURCE_DIR}/../../max-sdk-base/script/max-pretarget.cmake)
+cmake_minimum_required(VERSION 3.0)
+
+set(C74_MIN_API_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../min-api)
+include(${C74_MIN_API_DIR}/script/min-pretarget.cmake)
 
 # ############################################################
 # MAX EXTERNAL
 # ############################################################
 include_directories(
-   "${MAX_SDK_INCLUDES}"
-   "${MAX_SDK_MSP_INCLUDES}"
-   "${MAX_SDK_JIT_INCLUDES}"
+   "${C74_INCLUDES}"
 )
 
 file(GLOB PROJECT_SRC
@@ -24,4 +25,4 @@ find_package(PkgConfig REQUIRED)
 pkg_check_modules(libusb REQUIRED IMPORTED_TARGET libusb-1.0)
 target_link_libraries(${PROJECT_NAME} PRIVATE PkgConfig::libusb)
 
-include(${CMAKE_CURRENT_SOURCE_DIR}/../../max-sdk-base/script/max-posttarget.cmake)
+include(${C74_MIN_API_DIR}/script/min-posttarget.cmake)

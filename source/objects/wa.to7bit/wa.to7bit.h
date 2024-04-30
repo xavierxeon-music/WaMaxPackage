@@ -1,26 +1,24 @@
-#ifndef wa_to7bit_H
-#define wa_to7bit_H
+#ifndef WaTo7BitH
+#define WaTo7BitH
 
-extern "C"
+#include "c74_min.h"
+using namespace c74::min;
+
+class to7bit : public object<to7bit>
 {
-#include "ext.h"      // standard Max include, always required
-#include "ext_obex.h" // required for new style Max object
-}
+public:
+   MIN_DESCRIPTION{"int to 7bit list"};
 
-namespace To7Bit
-{
-   struct Data
-   {
-      t_object ob; // the object itself (must be first)
-      void* outlet1;
-   };
-   Data* to7bit_class; // global class pointer variable
+public:
+   to7bit();
 
-   void* create(t_symbol* s, long argc, t_atom* argv);
-   void destroy(Data* x);
+public:
+   inlet<> input;
+   outlet<> output;
+   message<> intMessage;
 
-   void input1(Data* x, long intValue);
-   void assist(Data* x, void* b, long m, long a, char* s);
-} // namespace To7Bit
+private:
+   atoms intFunction(const atoms& args, const int inlet);
+};
 
-#endif // wa_to7bit_H
+#endif // NOT WaTo7BitH
