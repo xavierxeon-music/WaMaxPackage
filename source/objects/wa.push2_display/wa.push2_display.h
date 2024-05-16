@@ -25,10 +25,10 @@ public:
 
 public:
    inlet<> input;
-   outlet<> output;
    timer<> updateTimer;
 
 private:
+   atoms matrixFunction(const atoms& args, const int inlet);
    atoms timerFunction(const atoms& args, const int inlet);
    void updateBuffer();
    void transferBuffer();
@@ -36,7 +36,8 @@ private:
 private:
    libusb_context* context;
    libusb_device_handle* device;
-   QImage image;  // set pixels here
+   QImage image; // set pixels here
+   int updateCounter;
    QImage buffer; // send to push device
 };
 
