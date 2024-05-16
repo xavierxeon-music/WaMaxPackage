@@ -14,6 +14,7 @@ const int maxCounter = 960 * 160;
 
 push2_display::push2_display()
    : input{this, "(matrix) Input", "matrix"}
+   , output{this, "(matrix) output", "matrix"}
    , updateTimer{this, minBind(this, &push2_display::timerFunction)}
    , context(nullptr)
    , device(nullptr)
@@ -21,13 +22,13 @@ push2_display::push2_display()
    , updateCounter(0)
    , buffer(QSize(1024, 160), QImage::Format_RGB16)
 {
-   image.fill(Qt::red);
-   buffer.fill(Qt::red);
+   image.fill(Qt::white);
+   buffer.fill(Qt::black);
 
    libusb_init(&context);
 
    transferBuffer();
-   updateTimer.delay(1000);
+   updateTimer.delay(100);
 }
 
 push2_display::~push2_display()
@@ -45,37 +46,40 @@ push2_display::~push2_display()
 template <typename matrix_type>
 matrix_type push2_display::calc_cell(matrix_type input, const matrix_info& info, matrix_coord& position)
 {
-   matrix_type output;
-   return output;
+   return matrix_type{};
 }
 
 pixel push2_display::calc_cell(pixel input, const matrix_info& info, matrix_coord& position)
 {
-   pixel output;
-   if (info.plane_count() != 3 && info.plane_count() != 4)
-      return output;
-
-   const QColor newColor(input[red], input[green], input[blue]);
    const long x = position.x();
    const long y = position.y();
 
+   // cout << "pixel cell" << x << " " << y << endl;
+
+   if (x < 0 || x >= displaySize.width())
+      return pixel{};
+
+   if (y < 0 || y >= displaySize.height())
+      return pixel{};
+
+   const QColor newColor(input[red], input[green], input[blue]);
    image.setPixelColor(x, y, newColor);
 
-   /*
    updateCounter++;
    if (updateCounter >= maxCounter)
    {
       updateCounter = 0;
       updateBuffer();
    }
-   */
 
-   return output;
+   return pixel{};
 }
 
 atoms push2_display::timerFunction(const atoms& args, const int inlet)
 {
    transferBuffer();
+
+   //cout << "tranfer buffer" << endl;
 
    updateTimer.delay(100);
    return {};

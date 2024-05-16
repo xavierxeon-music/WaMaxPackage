@@ -25,6 +25,7 @@ public:
 
 public:
    inlet<> input;
+   outlet<> output; // needs outut !
    timer<> updateTimer;
 
 private:
