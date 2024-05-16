@@ -1,22 +1,25 @@
 ///  distributed random
 
-function RandomDistribution(densityMap) {
+function RandomDistribution() {
 
-   if (!densityMap) {
-      densityMap = {
-         "2": 1,
-         "3": 2,
-         "4": 13,
-         "5": 4,
-         "6": 5,
-         "7": 6,
-         "8": 5,
-         "9": 4,
-         "10": 3,
-         "11": 2,
-         "12": 1
-      };
-   }
+   var densityMap = {
+      "2": 1,
+      "3": 2,
+      "4": 3,
+      "5": 4,
+      "6": 5,
+      "7": 6,
+      "8": 5,
+      "9": 4,
+      "10": 3,
+      "11": 2,
+      "12": 1
+   };
+
+   this.init(densityMap);
+}
+
+RandomDistribution.prototype.init = function (densityMap) {
 
    this.targets = [];
    for (var key in densityMap) {
@@ -26,10 +29,12 @@ function RandomDistribution(densityMap) {
          this.targets.push(value);
       }
    }
+
+   //print(this.targets);
    this.targetCount = this.targets.length;
 }
 
-RandomDistribution.value = function () {
+RandomDistribution.prototype.value = function () {
 
    var index = Math.floor(Math.random() * this.targetCount);
    var value = this.targets[index];
