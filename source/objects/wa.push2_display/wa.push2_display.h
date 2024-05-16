@@ -6,6 +6,8 @@
 #include "c74_min.h"
 using namespace c74::min;
 
+#include <QImage>
+
 class push2_display : public object<push2_display>, public matrix_operator<>
 {
 public:
@@ -24,14 +26,18 @@ public:
 public:
    inlet<> input;
    outlet<> output;
+   timer<> updateTimer;
 
 private:
-   void transfer();
+   atoms timerFunction(const atoms& args, const int inlet);
+   void updateBuffer();
+   void transferBuffer();
 
 private:
    libusb_context* context;
    libusb_device_handle* device;
-   uchar* data;
+   QImage image;  // set pixels here
+   QImage buffer; // send to push device
 };
 
 #endif // NOT WaPush2DisplayH

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 set(C74_MIN_API_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../min-api)
 include(${C74_MIN_API_DIR}/script/min-pretarget.cmake)
@@ -24,5 +24,9 @@ add_library(
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(libusb REQUIRED IMPORTED_TARGET libusb-1.0)
 target_link_libraries(${PROJECT_NAME} PRIVATE PkgConfig::libusb)
+
+set(CMAKE_AUTOMOC ON)
+find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Gui)
 
 include(${C74_MIN_API_DIR}/script/min-posttarget.cmake)

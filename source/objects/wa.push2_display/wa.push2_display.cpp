@@ -1,5 +1,7 @@
 #include "wa.push2_display.h"
 
+#include <QPainter>
+
 #include "../common.h"
 
 // see https://www.qt.io/blog/2015/12/15/ableton-push-qt-in-music-making
@@ -7,14 +9,18 @@
 // see https://github.com/pixsperdavid/imp.push
 // see https://github.com/xavierxeon-music/MusicHub/blob/master/src/Peripherals/Push2Display.cpp
 
+static const QSize displaySize(960, 160);
+
 push2_display::push2_display()
    : input{this, "(matrix) Input", "matrix"}
    , output{this, "(matrix) Output", "matrix"}
+   , updateTimer{this, minBind(this, &push2_display::timerFunction)}
    , context(nullptr)
    , device(nullptr)
-   , data(nullptr)
+   , image(displaySize, QImage::Format_ARGB32_Premultiplied)
+   , buffer(QSize(1024, 160), QImage::Format_RGB16)
 {
-   data = new uchar[16384];
+   image.fill(Qt::red);
 
    libusb_init(&context);
 
@@ -23,6 +29,8 @@ push2_display::push2_display()
       return;
 
    libusb_claim_interface(device, 0);
+
+   updateTimer.delay(0.1);
 }
 
 push2_display::~push2_display()
@@ -35,8 +43,6 @@ push2_display::~push2_display()
 
    if (context)
       libusb_exit(context);
-
-   delete[] data;
 }
 
 template <typename matrix_type>
@@ -52,17 +58,42 @@ pixel push2_display::calc_cell(pixel input, const matrix_info& info, matrix_coor
    if (info.plane_count() != 3 && info.plane_count() != 4)
       return output;
 
-   const char r = input[red];
-   const char g = input[green];
-   const char b = input[blue];
-
+   const QColor newColor(input[red], input[green], input[blue]);
    const long x = position.x();
    const long y = position.y();
+
+   const QColor oldColor = image.pixelColor(x, y);
+   if (newColor != oldColor)
+   {
+      image.setPixelColor(x, y, newColor);
+      //updateBuffer();
+   }
 
    return output;
 }
 
-void push2_display::transfer()
+atoms push2_display::timerFunction(const atoms& args, const int inlet)
+{
+   transferBuffer();
+
+   updateTimer.delay(0.1);
+   return {};
+}
+
+void push2_display::updateBuffer()
+{
+   const QImage scaledImage = image.scaled(displaySize, Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
+   const QImage formatedImage = scaledImage.convertToFormat(QImage::Format_RGB16).rgbSwapped();
+
+   // padd image
+   QPainter painter;
+   buffer.fill(Qt::black);
+   painter.begin(&buffer);
+   painter.drawImage(QPoint(0, 0), formatedImage);
+   painter.end();
+}
+
+void push2_display::transferBuffer()
 {
    if (!device)
    {
@@ -73,10 +104,13 @@ void push2_display::transfer()
       libusb_claim_interface(device, 0);
    }
 
+   if (buffer.isNull())
+      return;
+
    static uchar header[] = {0xEF, 0xCD, 0xAB, 0x89, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
    static const uchar endpoint = 0x01 | LIBUSB_ENDPOINT_OUT;
    static const uint timeout = 1000;
-   static const int dataLength = 20 * 16384; // ????
+   static const int dataLength = 20 * 16384;
 
    int transferred = 0;
 
@@ -84,6 +118,7 @@ void push2_display::transfer()
    libusb_bulk_transfer(device, endpoint, header, sizeof(header), &transferred, timeout);
 
    // data
+   uchar* data = const_cast<uchar*>(buffer.bits());
    libusb_bulk_transfer(device, endpoint, data, dataLength, &transferred, timeout);
 
    // device no longer available
