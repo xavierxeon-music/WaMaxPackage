@@ -6,7 +6,8 @@
 #include "../common.h"
 
 to7bit::to7bit()
-   : input{this, "(int) values to to7bit"}
+   : object<to7bit>()
+   , input{this, "(int) values to to7bit"}
    , output{this, "(int) 7 bit list"}
    , intMessage{this, "int", "integer value.", minBind(this, &to7bit::intFunction)}
 {

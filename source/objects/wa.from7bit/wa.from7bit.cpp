@@ -6,7 +6,8 @@
 #include "../common.h"
 
 from7bit::from7bit()
-   : input{this, "(list) 7 bit list"}
+   : object<from7bit>()
+   , input{this, "(list) 7 bit list"}
    , output{this, "(int) integer value"}
    , listMessage{this, "list", "7 bit list.", minBind(this, &from7bit::listFunction)}
 {
