@@ -1,7 +1,7 @@
 #ifndef WaPush2DisplayH
 #define WaPush2DisplayH
 
-#include <thread>
+#include <mutex>
 
 #include <libusb.h>
 
@@ -26,14 +26,13 @@ public:
 public:
    inlet<> input;
    outlet<> output; // needs matrix output !
-   timer<> updateTimer;
+   timer<timer_options::defer_delivery> updateTimer;
 
 private:
    ushort rgb16Color(uchar red, uchar green, uchar blue) const;
    void setColor(int x, int y, ushort color);
    atoms timerFunction(const atoms& args, const int inlet);
    void transferBuffer();
-
    void defaultImage();
 
 private:
@@ -41,7 +40,7 @@ private:
    libusb_device_handle* device;
    ushort* bufferData;
    uchar* sendData;
-   std::mutex bufferMutex;
+   mutex bufferMutex;
 };
 
 #endif // NOT WaPush2DisplayH

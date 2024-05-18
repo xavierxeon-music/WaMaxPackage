@@ -20,20 +20,16 @@ push2_display::push2_display()
    , device(nullptr)
    , bufferData(nullptr)
    , sendData(nullptr)
-   //, sendThread(&push2_display::transferBuffer, this)
    , bufferMutex()
 {
    libusb_init(&context);
 
-   transferBuffer();
-   updateTimer.delay(100);
-
    bufferData = new ushort[imageLength];
-   for (int index = 0; index < imageLength; index++)
-      bufferData[index] = 0;
-
+   std::memset(bufferData, 0, dataLength);
    defaultImage();
+
    sendData = new uchar[imageLength];
+   updateTimer.delay(100);
 }
 
 push2_display::~push2_display()
@@ -75,11 +71,11 @@ pixel push2_display::calc_cell(pixel input, const matrix_info& info, matrix_coor
 
 ushort push2_display::rgb16Color(uchar red, uchar green, uchar blue) const
 {
-   const ushort r = red / 8;   // max 32 colors = 5 bit -> shift by 0
-   const ushort g = green / 4; // max 64 colors = 6 bit -> shift by 5
-   const ushort b = blue / 8;  // max 32 colors = 5 bit -> shift by 5 + 6
-   ushort color = (r << 0) + (g << 5) + (b << 11);
+   const ushort r = (red / 8) << 0;   // max 32 colors = 5 bit -> shift by 0
+   const ushort g = (green / 4) << 5; // max 64 colors = 6 bit -> shift by 5
+   const ushort b = (blue / 8) << 11; // max 32 colors = 5 bit -> shift by 5 + 6
 
+   const ushort color = r + g + b;
    return color;
 }
 
@@ -100,10 +96,7 @@ atoms push2_display::timerFunction(const atoms& args, const int inlet)
    std::memcpy(sendData, bufferData, dataLength);
    bufferMutex.unlock();
 
-   //transferBuffer();
-   std::thread sendThread(&push2_display::transferBuffer, this);
-   sendThread.detach();
-
+   transferBuffer();
    updateTimer.delay(100);
 
    return {};
@@ -123,9 +116,9 @@ void push2_display::transferBuffer()
    }
 
    static const uchar endpoint = 0x01 | LIBUSB_ENDPOINT_OUT;
-   static const uint timeout = 100;
+   static const uint timeout = 1000;
 
-   int transferred = -1;
+   int transferred = 0;
 
    // header
    static uchar header[] = {0xEF, 0xCD, 0xAB, 0x89, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
