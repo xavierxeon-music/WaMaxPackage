@@ -11,6 +11,7 @@
 // see https://github.com/xavierxeon-music/MusicHub/blob/master/src/Peripherals/Push2Display.cpp
 
 static const QSize displaySize(960, 160);
+static const int dataLength = 1024 * 160 * 2; // RGB 16 image
 
 push2_display::push2_display()
    : object<push2_display>()
@@ -20,16 +21,19 @@ push2_display::push2_display()
    , updateTimer{this, minBind(this, &push2_display::timerFunction)}
    , context(nullptr)
    , device(nullptr)
+   , data(nullptr)
    , image(displaySize, QImage::Format_ARGB32_Premultiplied)
-   , buffer(QSize(1024, 160), QImage::Format_RGB16)
 {
    defaultImage();
-   buffer.fill(Qt::black);
 
    libusb_init(&context);
 
    transferBuffer();
    updateTimer.delay(100);
+
+   data = new uchar[dataLength];
+   for (int index = 0; index < dataLength; index++)
+      data[index] = 0;
 }
 
 push2_display::~push2_display()
@@ -42,6 +46,8 @@ push2_display::~push2_display()
 
    if (context)
       libusb_exit(context);
+
+   delete[] data;
 }
 
 template <typename matrix_type>
@@ -52,27 +58,48 @@ matrix_type push2_display::calc_cell(matrix_type input, const matrix_info& info,
 
 pixel push2_display::calc_cell(pixel input, const matrix_info& info, matrix_coord& position)
 {
-   const long x = position.x();
+   const int x = position.x();
    if (x < 0 || x >= displaySize.width())
       return pixel{};
 
-   const long y = position.y();
+   const int y = position.y();
    if (y < 0 || y >= displaySize.height())
       return pixel{};
 
-   // const pixel color = info.in_pixel(position);
-   const QColor newColor(input[red], input[green], input[blue]);
-   image.setPixelColor(x, y, newColor);
+   const uchar r = input[red];
+   const uchar g = input[green];
+   const uchar b = input[blue];
+
+   setColor(x, y, r, g, b);
 
    return pixel{};
+}
+
+void push2_display::setColor(int x, int y, uchar red, uchar green, uchar blue)
+{
+   const QColor newColor(red, green, blue);
+   image.setPixelColor(x, y, newColor);
+
+   return;
+
+   const ushort r = red / 8;   // max 32 colors = 5 bit -> shift by 0
+   const ushort g = green / 4; // max 64 colors = 6 bit -> shift by 5
+   const ushort b = blue / 8;  // max 32 colors = 5 bit -> shift by 5 + 6
+   ushort color = (r << 0) + (g << 5) + (b << 11);
+
+   const int index = 2 * (x + (1024 * y));
+   if (index >= dataLength)
+      return;
+   ushort* dst = (ushort*)data;
+   dst += index;
+
+   *dst = color;
 }
 
 atoms push2_display::timerFunction(const atoms& args, const int inlet)
 {
    transferBuffer();
    updateTimer.delay(100);
-
-   std::cout << parallel_breakup_enabled() << std::endl;
 
    return {};
 }
@@ -89,22 +116,11 @@ void push2_display::transferBuffer()
       return;
    }
 
-   {
-      // convert to push 2 display format
-      const QImage formatedImage = image.convertToFormat(QImage::Format_RGB16).rgbSwapped();
-
-      // padd image
-      QPainter painter;
-      buffer.fill(Qt::black);
-      painter.begin(&buffer);
-      painter.drawImage(QPoint(0, 0), formatedImage);
-      painter.end();
-   }
+   updateBuffer();
 
    static uchar header[] = {0xEF, 0xCD, 0xAB, 0x89, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
    static const uchar endpoint = 0x01 | LIBUSB_ENDPOINT_OUT;
    static const uint timeout = 1000;
-   static const int dataLength = 20 * 16384;
 
    int transferred = 0;
 
@@ -112,7 +128,6 @@ void push2_display::transferBuffer()
    libusb_bulk_transfer(device, endpoint, header, sizeof(header), &transferred, timeout);
 
    // data
-   uchar* data = const_cast<uchar*>(buffer.bits());
    libusb_bulk_transfer(device, endpoint, data, dataLength, &transferred, timeout);
 
    // device no longer available
@@ -122,6 +137,24 @@ void push2_display::transferBuffer()
       libusb_close(device);
       device = nullptr;
    }
+}
+
+void push2_display::updateBuffer()
+{
+   // convert to push 2 display format
+   // rgb 565, BGR
+   const QImage formatedImage = image.convertToFormat(QImage::Format_RGB16).rgbSwapped();
+
+   QImage buffer(QSize(1024, 160), QImage::Format_RGB16);
+   buffer.fill(Qt::black);
+
+   // padd image
+   QPainter painter;
+   painter.begin(&buffer);
+   painter.drawImage(QPoint(0, 0), formatedImage);
+   painter.end();
+
+   std::memcpy(data, buffer.bits(), dataLength);
 }
 
 void push2_display::defaultImage()

@@ -25,19 +25,22 @@ public:
 
 public:
    inlet<> input;
-   outlet<> output; // needs output !
+   outlet<> output; // needs matrix output !
    timer<> updateTimer;
 
 private:
+   void setColor(int x, int y, uchar red, uchar green, uchar blue);
    atoms timerFunction(const atoms& args, const int inlet);
    void transferBuffer();
+
+   void updateBuffer();
    void defaultImage();
 
 private:
    libusb_context* context;
    libusb_device_handle* device;
-   QImage image;  // set pixels here
-   QImage buffer; // send to push device
+   uchar* data;
+   QImage image; // set pixels here
 };
 
 #endif // NOT WaPush2DisplayH
