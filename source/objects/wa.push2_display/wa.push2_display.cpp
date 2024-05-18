@@ -1,17 +1,13 @@
 #include "wa.push2_display.h"
 
-#include <QMap>
-#include <QPainter>
+#include <map>
 
 #include "../common.h"
 
 // see https://www.qt.io/blog/2015/12/15/ableton-push-qt-in-music-making
-
 // see https://github.com/pixsperdavid/imp.push
-// see https://github.com/xavierxeon-music/MusicHub/blob/master/src/Peripherals/Push2Display.cpp
 
-static const QSize displaySize(960, 160);
-static const int dataLength = 1024 * 160 * 2; // RGB 16 image
+static const int imageLength = 1024 * 160;
 
 push2_display::push2_display()
    : object<push2_display>()
@@ -22,18 +18,17 @@ push2_display::push2_display()
    , context(nullptr)
    , device(nullptr)
    , data(nullptr)
-   , image(displaySize, QImage::Format_ARGB32_Premultiplied)
 {
-   defaultImage();
-
    libusb_init(&context);
 
    transferBuffer();
    updateTimer.delay(100);
 
-   data = new uchar[dataLength];
-   for (int index = 0; index < dataLength; index++)
+   data = new ushort[imageLength];
+   for (int index = 0; index < imageLength; index++)
       data[index] = 0;
+
+   defaultImage();
 }
 
 push2_display::~push2_display()
@@ -59,41 +54,36 @@ matrix_type push2_display::calc_cell(matrix_type input, const matrix_info& info,
 pixel push2_display::calc_cell(pixel input, const matrix_info& info, matrix_coord& position)
 {
    const int x = position.x();
-   if (x < 0 || x >= displaySize.width())
+   if (x < 0 || x >= 960)
       return pixel{};
 
    const int y = position.y();
-   if (y < 0 || y >= displaySize.height())
+   if (y < 0 || y >= 160)
       return pixel{};
 
-   const uchar r = input[red];
-   const uchar g = input[green];
-   const uchar b = input[blue];
-
-   setColor(x, y, r, g, b);
+   const ushort color = rgb16Color(input[red], input[green], input[blue]);
+   setColor(x, y, color);
 
    return pixel{};
 }
 
-void push2_display::setColor(int x, int y, uchar red, uchar green, uchar blue)
+ushort push2_display::rgb16Color(uchar red, uchar green, uchar blue) const
 {
-   const QColor newColor(red, green, blue);
-   image.setPixelColor(x, y, newColor);
-
-   return;
-
    const ushort r = red / 8;   // max 32 colors = 5 bit -> shift by 0
    const ushort g = green / 4; // max 64 colors = 6 bit -> shift by 5
    const ushort b = blue / 8;  // max 32 colors = 5 bit -> shift by 5 + 6
    ushort color = (r << 0) + (g << 5) + (b << 11);
 
-   const int index = 2 * (x + (1024 * y));
-   if (index >= dataLength)
-      return;
-   ushort* dst = (ushort*)data;
-   dst += index;
+   return color;
+}
 
-   *dst = color;
+void push2_display::setColor(int x, int y, ushort color)
+{
+   const int index = x + (1024 * y);
+   if (index >= imageLength)
+      return;
+
+   data[index] = color;
 }
 
 atoms push2_display::timerFunction(const atoms& args, const int inlet)
@@ -116,8 +106,6 @@ void push2_display::transferBuffer()
       return;
    }
 
-   updateBuffer();
-
    static const uchar endpoint = 0x01 | LIBUSB_ENDPOINT_OUT;
    static const uint timeout = 1000;
 
@@ -128,7 +116,8 @@ void push2_display::transferBuffer()
    libusb_bulk_transfer(device, endpoint, header, sizeof(header), &transferred, timeout);
 
    // data
-   libusb_bulk_transfer(device, endpoint, data, dataLength, &transferred, timeout);
+   static const int dataLength = imageLength * 2; // RGB 16 image
+   libusb_bulk_transfer(device, endpoint, (uchar*)data, dataLength, &transferred, timeout);
 
    // device no longer available
    if (0 == transferred)
@@ -139,52 +128,32 @@ void push2_display::transferBuffer()
    }
 }
 
-void push2_display::updateBuffer()
-{
-   // convert to push 2 display format
-   // rgb 565, BGR
-   const QImage formatedImage = image.convertToFormat(QImage::Format_RGB16).rgbSwapped();
-
-   QImage buffer(QSize(1024, 160), QImage::Format_RGB16);
-   buffer.fill(Qt::black);
-
-   // padd image
-   QPainter painter;
-   painter.begin(&buffer);
-   painter.drawImage(QPoint(0, 0), formatedImage);
-   painter.end();
-
-   std::memcpy(data, buffer.bits(), dataLength);
-}
-
 void push2_display::defaultImage()
 {
-   using PaddingMap = QMap<int, QColor>;
+   using PaddingMap = std::map<int, ushort>;
    static const PaddingMap paddingMap = {
-      {0, QColor(0, 0, 0)},
-      {10, QColor(255, 0, 0)},
-      {20, QColor(255, 255, 0)},
-      {30, QColor(0, 255, 0)},
-      {40, QColor(0, 255, 255)},
-      {50, QColor(0, 0, 255)},
-      {60, QColor(255, 0, 255)},
-      {70, QColor(255, 255, 255)},
+      {0, rgb16Color(0, 0, 0)},
+      {10, rgb16Color(255, 0, 0)},
+      {20, rgb16Color(255, 255, 0)},
+      {30, rgb16Color(0, 255, 0)},
+      {40, rgb16Color(0, 255, 255)},
+      {50, rgb16Color(0, 0, 255)},
+      {60, rgb16Color(255, 0, 255)},
+      {70, rgb16Color(255, 255, 255)},
    };
 
-   QPainter painter;
-   painter.begin(&image);
-
-   for (PaddingMap::const_iterator it = paddingMap.constBegin(); it != paddingMap.constEnd(); it++)
+   for (PaddingMap::const_iterator it = paddingMap.cbegin(); it != paddingMap.cend(); it++)
    {
-      const QBrush brush(it.value());
-
-      const int padding = it.key();
-      const QRect rect(padding, padding, displaySize.width() - (2 * padding), displaySize.height() - (2 * padding));
-
-      painter.fillRect(rect, brush);
+      const int padding = it->first;
+      const ushort color = it->second;
+      for (int x = padding; x < 960 - padding; x++)
+      {
+         for (int y = padding; y < 160 - padding; y++)
+         {
+            setColor(x, y, color);
+         }
+      }
    }
-
-   painter.end();
 }
 
 MIN_EXTERNAL(push2_display);

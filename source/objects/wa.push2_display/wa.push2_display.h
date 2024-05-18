@@ -6,8 +6,6 @@
 #include "c74_min.h"
 using namespace c74::min;
 
-#include <QImage>
-
 class push2_display : public object<push2_display>, public matrix_operator<>
 {
 public:
@@ -29,18 +27,17 @@ public:
    timer<> updateTimer;
 
 private:
-   void setColor(int x, int y, uchar red, uchar green, uchar blue);
+   ushort rgb16Color(uchar red, uchar green, uchar blue) const;
+   void setColor(int x, int y, ushort color);
    atoms timerFunction(const atoms& args, const int inlet);
    void transferBuffer();
 
-   void updateBuffer();
    void defaultImage();
 
 private:
    libusb_context* context;
    libusb_device_handle* device;
-   uchar* data;
-   QImage image; // set pixels here
+   ushort* data;
 };
 
 #endif // NOT WaPush2DisplayH
