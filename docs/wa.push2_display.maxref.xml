@@ -28,11 +28,6 @@
 
 	<methodlist>
 
-		<method name='bang'>
-			<digest>send to push2 </digest>
-			<description>send to push2 </description>
-		</method>
-
 	</methodlist>
 
 

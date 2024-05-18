@@ -8,6 +8,7 @@
 // see https://github.com/pixsperdavid/imp.push
 
 static const int imageLength = 1024 * 160;
+static const int dataLength = imageLength * 2; // RGB 16 image
 
 push2_display::push2_display()
    : object<push2_display>()
@@ -17,18 +18,22 @@ push2_display::push2_display()
    , updateTimer{this, minBind(this, &push2_display::timerFunction)}
    , context(nullptr)
    , device(nullptr)
-   , data(nullptr)
+   , bufferData(nullptr)
+   , sendData(nullptr)
+   //, sendThread(&push2_display::transferBuffer, this)
+   , bufferMutex()
 {
    libusb_init(&context);
 
    transferBuffer();
    updateTimer.delay(100);
 
-   data = new ushort[imageLength];
+   bufferData = new ushort[imageLength];
    for (int index = 0; index < imageLength; index++)
-      data[index] = 0;
+      bufferData[index] = 0;
 
    defaultImage();
+   sendData = new uchar[imageLength];
 }
 
 push2_display::~push2_display()
@@ -42,7 +47,8 @@ push2_display::~push2_display()
    if (context)
       libusb_exit(context);
 
-   delete[] data;
+   delete[] bufferData;
+   delete[] sendData;
 }
 
 template <typename matrix_type>
@@ -83,12 +89,21 @@ void push2_display::setColor(int x, int y, ushort color)
    if (index >= imageLength)
       return;
 
-   data[index] = color;
+   bufferMutex.lock();
+   bufferData[index] = color;
+   bufferMutex.unlock();
 }
 
 atoms push2_display::timerFunction(const atoms& args, const int inlet)
 {
-   transferBuffer();
+   bufferMutex.lock();
+   std::memcpy(sendData, bufferData, dataLength);
+   bufferMutex.unlock();
+
+   //transferBuffer();
+   std::thread sendThread(&push2_display::transferBuffer, this);
+   sendThread.detach();
+
    updateTimer.delay(100);
 
    return {};
@@ -103,21 +118,21 @@ void push2_display::transferBuffer()
          return;
 
       libusb_claim_interface(device, 0);
+      cout << "claim interface" << endl;
       return;
    }
 
    static const uchar endpoint = 0x01 | LIBUSB_ENDPOINT_OUT;
-   static const uint timeout = 1000;
+   static const uint timeout = 100;
 
-   int transferred = 0;
+   int transferred = -1;
 
    // header
    static uchar header[] = {0xEF, 0xCD, 0xAB, 0x89, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
    libusb_bulk_transfer(device, endpoint, header, sizeof(header), &transferred, timeout);
 
    // data
-   static const int dataLength = imageLength * 2; // RGB 16 image
-   libusb_bulk_transfer(device, endpoint, (uchar*)data, dataLength, &transferred, timeout);
+   libusb_bulk_transfer(device, endpoint, sendData, dataLength, &transferred, timeout);
 
    // device no longer available
    if (0 == transferred)

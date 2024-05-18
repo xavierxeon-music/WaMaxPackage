@@ -1,6 +1,8 @@
 #ifndef WaPush2DisplayH
 #define WaPush2DisplayH
 
+#include <thread>
+
 #include <libusb.h>
 
 #include "c74_min.h"
@@ -37,7 +39,9 @@ private:
 private:
    libusb_context* context;
    libusb_device_handle* device;
-   ushort* data;
+   ushort* bufferData;
+   uchar* sendData;
+   std::mutex bufferMutex;
 };
 
 #endif // NOT WaPush2DisplayH
