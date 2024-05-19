@@ -119,7 +119,7 @@ void push2_display::transferBuffer()
    }
 
    static const uchar endpoint = 0x01 | LIBUSB_ENDPOINT_OUT;
-   static const uint timeout = 1000;
+   static const uint timeout = 200;
 
    int transferred = 0;
 
