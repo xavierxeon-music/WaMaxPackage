@@ -23,9 +23,7 @@ push2_display::push2_display()
    , bufferMutex()
 {
    libusb_init(&context);
-   device = libusb_open_device_with_vid_pid(context, 0x2982, 0x1967);
-   if (device)
-      libusb_claim_interface(device, 0);
+   bindDevice();
 
    bufferData = new ushort[imageLength];
    std::memset(bufferData, 0, dataLength);
@@ -37,11 +35,7 @@ push2_display::push2_display()
 
 push2_display::~push2_display()
 {
-   if (device)
-   {
-      libusb_release_interface(device, 0);
-      libusb_close(device);
-   }
+   unbindDevice();
 
    if (context)
       libusb_exit(context);
@@ -95,29 +89,49 @@ void push2_display::setColor(int x, int y, ushort color)
 
 atoms push2_display::timerFunction(const atoms& args, const int inlet)
 {
+   if (!bindDevice())
+   {
+      updateTimer.delay(1000);
+      return {};
+   }
+
    bufferMutex.lock();
    std::memcpy(sendData, bufferData, dataLength);
    bufferMutex.unlock();
 
-   transferBuffer();
+   if (0 == transferBuffer())
+      unbindDevice(); // device no longer available
+
    updateTimer.delay(100);
 
    return {};
 }
 
-void push2_display::transferBuffer()
+bool push2_display::bindDevice()
+{
+   if (device)
+      return true;
+
+   device = libusb_open_device_with_vid_pid(context, 0x2982, 0x1967);
+   if (device)
+      libusb_claim_interface(device, 0);
+
+   return false;
+}
+
+void push2_display::unbindDevice()
 {
    if (!device)
-   {
-      device = libusb_open_device_with_vid_pid(context, 0x2982, 0x1967);
-      if (!device)
-         return;
-
-      libusb_claim_interface(device, 0);
-      cout << "claim interface" << endl;
       return;
-   }
 
+   libusb_release_interface(device, 0);
+   libusb_close(device);
+
+   device = nullptr;
+}
+
+int push2_display::transferBuffer()
+{
    static const uchar endpoint = 0x01 | LIBUSB_ENDPOINT_OUT;
    static const uint timeout = 200;
 
@@ -130,13 +144,7 @@ void push2_display::transferBuffer()
    // data
    libusb_bulk_transfer(device, endpoint, sendData, dataLength, &transferred, timeout);
 
-   // device no longer available
-   if (0 == transferred)
-   {
-      libusb_release_interface(device, 0);
-      libusb_close(device);
-      device = nullptr;
-   }
+   return transferred;
 }
 
 void push2_display::defaultImage()
