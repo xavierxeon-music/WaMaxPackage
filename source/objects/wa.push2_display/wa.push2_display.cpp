@@ -23,13 +23,16 @@ push2_display::push2_display()
    , bufferMutex()
 {
    libusb_init(&context);
+   device = libusb_open_device_with_vid_pid(context, 0x2982, 0x1967);
+   if (device)
+      libusb_claim_interface(device, 0);
 
    bufferData = new ushort[imageLength];
    std::memset(bufferData, 0, dataLength);
    defaultImage();
 
-   sendData = new uchar[imageLength];
-   updateTimer.delay(100);
+   sendData = new uchar[dataLength];
+   updateTimer.delay(1000);
 }
 
 push2_display::~push2_display()
