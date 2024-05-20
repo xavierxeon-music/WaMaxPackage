@@ -63,6 +63,7 @@ function setDeviceName(name) {
    // post("set target device name", deviceName, "\n");
 }
 
+/*
 drawCircle.local = 1;
 function getColor(text) {
    var red = 0;
@@ -78,6 +79,7 @@ function getColor(text) {
 
    return [red, green, blue];
 }
+*/
 
 checkKeys.local = 1;
 function checkKeys(object, keyList) {
@@ -105,14 +107,14 @@ function drawCircle(object) {
    const y = targetHeight - parseInt(object["y"]);
    const radius = parseInt(object["radius"]);
 
-   const color = getColor(object["color"]);
+   const color = new Color(object["color"]);
 
    const filled = ("1" == object["fill"]);
 
    if (filled)
-      outlet(0, ["paintoval", x - radius, y - radius, x + radius, y + radius, color[0], color[1], color[2]]);
+      outlet(0, ["paintoval", x - radius, y - radius, x + radius, y + radius, color.red, color.green, color.blue]);
    else
-      outlet(0, ["frameoval", x - radius, y - radius, x + radius, y + radius, color[0], color[1], color[2]]);
+      outlet(0, ["frameoval", x - radius, y - radius, x + radius, y + radius, color.red, color.green, color.blue]);
 }
 
 drawBox.local = 1;
@@ -126,11 +128,11 @@ function drawBox(object) {
    const width = parseInt(object["width"]);
    const height = parseInt(object["height"]);
 
-   const color = getColor(object["color"]);
+   const color = new Color(object["color"]);
 
    const filled = ("1" == object["fill"]);
 
-   outlet(0, ["frgb", color[0], color[1], color[2]]);
+   outlet(0, ["frgb", color.red, color.green, color.blue]);
 
    if (filled)
       outlet(0, ["paintrect", x, y, x + width, y + height]);
@@ -150,9 +152,9 @@ function drawLine(object) {
    const xEnd = parseInt(object["xEnd"]);
    const yEnd = parseInt(object["yEnd"]);
 
-   const color = getColor(object["color"]);
+   const color = new Color(object["color"]);
 
-   outlet(0, ["frgb", color[0], color[1], color[2]]);
+   outlet(0, ["frgb", color.red, color.green, color.blue]);
 
    outlet(0, ["moveto", xStart, yStart]);
    outlet(0, ["lineto", xEnd, yEnd]);
@@ -170,9 +172,9 @@ function drawText(object) {
    const fontSize = parseInt(object["fontSize"]);
    const text = object["text"].replace("\,", " ");
 
-   const color = getColor(object["color"]);
+   const color = new Color(object["color"]);
 
-   outlet(0, ["frgb", color[0], color[1], color[2]]);
+   outlet(0, ["frgb", color.red, color.green, color.blue]);
 
    outlet(0, ["moveto", x, y + fontSize]);
    outlet(0, ["font", "Arial", fontSize]);

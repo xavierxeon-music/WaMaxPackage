@@ -40,25 +40,13 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"comment" : "control",
-					"id" : "obj-5",
-					"index" : 3,
-					"maxclass" : "outlet",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 150.0, 420.0, 30.0, 30.0 ]
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"comment" : "signalR",
-					"id" : "obj-4",
+					"comment" : "singlaR",
+					"id" : "obj-3",
 					"index" : 2,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 90.0, 420.0, 30.0, 30.0 ]
+					"patching_rect" : [ 90.0, 135.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -70,7 +58,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 420.0, 30.0, 30.0 ]
+					"patching_rect" : [ 30.0, 135.0, 30.0, 30.0 ]
 				}
 
 			}

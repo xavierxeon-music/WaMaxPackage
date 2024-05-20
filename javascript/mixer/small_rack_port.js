@@ -16,9 +16,6 @@ ES8
 to computer: 3-6 , 1-4
 from computer (isSender): 3-10 , 1-8
 
-Optix
-to computer: 7-14 , 1-8
-from computer (isSender): 11-18 , 1-8
 */
 
 //////////////////////////////////////////
@@ -72,7 +69,7 @@ compileOminbusIndex.local = 1;
 function compileOminbusIndex(indexText) {
 
    var destination = indexText[0].toLowerCase();
-   if (destination != "e" && destination != "o")
+   if (destination != "e")
       return 0;
 
    var portId = parseInt(indexText.substring(1));
@@ -84,13 +81,7 @@ function compileOminbusIndex(indexText) {
 
    portIndex = destination + portId.toString();
 
-   if (destination == "o") {
-      if (isSender)
-         return portId + 10;
-      else
-         return portId + 6;
-   }
-   else {
+   if (destination == "e") {
       if (isSender)
          return portId + 2;
       else

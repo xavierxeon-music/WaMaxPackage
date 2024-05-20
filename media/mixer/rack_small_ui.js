@@ -5,7 +5,6 @@ new Title("small rack");
 let tabBar = new TabBar([70, 30, 70]);
 let tabA = tabBar.addTab("ES8");
 tabA.setDefault();
-let tabB = tabBar.addTab("Optix");
 
 // content
 
@@ -28,17 +27,6 @@ for (let index = 1; index <= 8; index++) {
    else {
       new Div(tabA, "", "left");
    }
-
-   sendKey = "so" + index.toString();
-   sendPort = new Div(tabB, "&#9675;", "right", sendKey);
-   portDict[sendKey] = sendPort;
-
-   center = new Div(tabB, index, "center");
-   center.setStyle("font-weight", "bold");
-
-   receiveKey = "ro" + index.toString();
-   receivePort = new Div(tabB, "&#9675;", "left", receiveKey);
-   portDict[receiveKey] = receivePort;
 }
 
 // functionality
