@@ -45,7 +45,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 30.0, 390.0, 107.0, 22.0 ],
+					"patching_rect" : [ 32.5, 450.0, 107.0, 22.0 ],
 					"text" : "prepend nameDict"
 				}
 
@@ -57,7 +57,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 150.0, 390.0, 107.0, 22.0 ],
+					"patching_rect" : [ 152.5, 450.0, 107.0, 22.0 ],
 					"text" : "routepass DEBUG"
 				}
 
@@ -70,7 +70,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 450.0, 30.0, 30.0 ]
+					"patching_rect" : [ 32.5, 510.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -81,7 +81,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 270.0, 435.0, 63.0, 22.0 ],
+					"patching_rect" : [ 270.0, 495.0, 63.0, 22.0 ],
 					"text" : "select 200"
 				}
 
@@ -93,7 +93,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 270.0, 390.0, 95.0, 22.0 ],
+					"patching_rect" : [ 270.0, 450.0, 95.0, 22.0 ],
 					"text" : "route onloadend"
 				}
 
@@ -191,8 +191,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 270.0, 150.0, 188.0, 22.0 ],
-					"text" : "readfile maxgui.html?content=es9"
+					"patching_rect" : [ 270.0, 150.0, 218.0, 22.0 ],
+					"text" : "readfile maxgui.html?content=rack_es9"
 				}
 
 			}
@@ -216,11 +216,11 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 270.0, 195.0, 180.0, 165.0 ],
+					"patching_rect" : [ 270.0, 195.0, 180.0, 225.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 180.0, 165.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 180.0, 225.0 ],
 					"rendermode" : 2,
-					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/WaMaxPackage/media/maxgui.html?content=es8"
+					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/WaMaxPackage/media/maxgui.html?content=rack_es9"
 				}
 
 			}
@@ -300,7 +300,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-23", 0 ],
-					"midpoints" : [ 279.5, 483.0, 483.0, 483.0, 483.0, 24.0, 189.5, 24.0 ],
+					"midpoints" : [ 279.5, 543.0, 483.0, 543.0, 483.0, 24.0, 189.5, 24.0 ],
 					"source" : [ "obj-28", 0 ]
 				}
 

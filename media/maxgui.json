@@ -14,16 +14,16 @@
          "./other/debug_window.css"
       ]
    },
-   "es8": {
-      "name": "es8",
+   "rack_es8": {
+      "name": "rack_es8",
       "script": "./rack/es8_ui.js"
    },
-   "es9": {
-      "name": "es9",
+   "rack_es9": {
+      "name": "device_es9",
       "script": "./rack/es9_ui.js"
    },
-   "acdc": {
-      "name": "acdc",
+   "rack_acdc": {
+      "name": "rack_acdc",
       "script": "./rack/acdc_ui.js"
    },
    "mixer": {

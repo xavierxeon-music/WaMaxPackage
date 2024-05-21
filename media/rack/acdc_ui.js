@@ -3,14 +3,16 @@ setupDocument(178, 1, 1);
 new Title("audio device");
 
 let tabBar = new TabBar([70, 30, 70]);
-let tabA = tabBar.addTab("ES8");
+let tabA = tabBar.addTab("ACDC");
 tabA.setDefault();
+
+let tabB = tabBar.addTab("Midi");
 
 // content
 
 let portDict = {};
 
-for (let index = 1; index <= 8; index++) {
+for (let index = 1; index <= 4; index++) {
 
    let sendKey = "s" + index.toString();
    let sendPort = new Div(tabA, "&#9675;", "right", sendKey);
@@ -19,14 +21,15 @@ for (let index = 1; index <= 8; index++) {
    let center = new Div(tabA, index, "center");
    center.setStyle("font-weight", "bold");
 
-   if (index <= 4) {
-      let receiveKey = "r" + index.toString();
-      let receivePort = new Div(tabA, "&#9675;", "left", receiveKey);
-      portDict[receiveKey] = receivePort;
-   }
-   else {
-      new Div(tabA, "", "left");
-   }
+
+   let receiveKey = "r" + index.toString();
+   let receivePort = new Div(tabA, "&#9675;", "left", receiveKey);
+   portDict[receiveKey] = receivePort;
+
+   // dummy
+   new Div(tabB, "&#9675;", "right");
+   new Div(tabB, "b", "center");
+   new Div(tabB, "value", "left");
 }
 
 // functionality
@@ -44,7 +47,7 @@ function loadDict() {
 
    blank();
 
-   max.getDict("es8Display", function (maxDict) {
+   max.getDict("acdcDisplay", function (maxDict) {
 
       for (key in maxDict) {
 

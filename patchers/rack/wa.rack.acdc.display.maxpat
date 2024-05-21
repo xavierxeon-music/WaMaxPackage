@@ -191,8 +191,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 270.0, 150.0, 194.0, 22.0 ],
-					"text" : "readfile maxgui.html?content=acdc"
+					"patching_rect" : [ 270.0, 150.0, 224.0, 22.0 ],
+					"text" : "readfile maxgui.html?content=rack_acdc"
 				}
 
 			}
@@ -216,11 +216,11 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 270.0, 195.0, 180.0, 165.0 ],
+					"patching_rect" : [ 270.0, 195.0, 165.0, 105.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 180.0, 165.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 180.0, 105.0 ],
 					"rendermode" : 2,
-					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/WaMaxPackage/media/maxgui.html?content=es8"
+					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/WaMaxPackage/media/maxgui.html?content=rack_acdc"
 				}
 
 			}
