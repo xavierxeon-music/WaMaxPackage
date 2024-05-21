@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.audio.footswitch" patcher_type="0">
-    <digest>footswitch</digest>
-    <description>a foot switch attached to the audio device</description>
+<c74object name="wa.mixer.output~" patcher_type="0">
+    <digest>Hello World</digest>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="0"/>
     <misc name="Outputs">
-        <entry id="0" name="pressed">
+        <entry id="1" name="signalL">
             <digest/>
-            <description>pressed</description>
+        </entry>
+        <entry id="2" name="singlaR">
+            <digest/>
         </entry>
     </misc>
     <objarglist/>

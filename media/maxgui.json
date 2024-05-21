@@ -14,9 +14,9 @@
          "./other/debug_window.css"
       ]
    },
-   "rack_small": {
-      "name": "Small Rack",
-      "script": "./mixer/rack_small_ui.js"
+   "es8": {
+      "name": "es8",
+      "script": "./rack/es8_ui.js"
    },
    "mixer": {
       "name": "Mixer",

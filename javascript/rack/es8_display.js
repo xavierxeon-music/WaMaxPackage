@@ -13,8 +13,8 @@ include("_portDevice.js");
 
 // set up
 
-var rack = new PortDevice("small_rack");
-var portDict = new Dict("smallRackDisplay");
+var rack = new PortDevice("es8");
+var portDict = new Dict("es8Display");
 
 //////////////////////////////////////////
 
