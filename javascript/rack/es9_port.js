@@ -14,7 +14,7 @@ include("_portDevice.js");
 
 // set up
 
-var es8 = new PortDevice("es8");
+var es9 = new PortDevice("es9");
 
 var portIndex = undefined;
 var portName = undefined;
@@ -31,22 +31,22 @@ function loadbang() {
    from computer (isSender): omni 3-10 = 1-8
    */
 
-   es8.register();
-   es8.setup(3, 4, 3, 8);
+   es9.register();
+   es9.setup(3, 4, 3, 8);
 }
 
 function notifydeleted() {
 
-   es8.removePortName(portIndex, isSender);
-   es8.deregister();
+   es9.removePortName(portIndex, isSender);
+   es9.deregister();
 }
 
 function setIndex(index) {
 
    // turn off old index
-   es8.removePortName(portIndex, isSender);
+   es9.removePortName(portIndex, isSender);
 
-   var omniIndex = es8.omniIndex(index, isSender);
+   var omniIndex = es9.omniIndex(index, isSender);
    portIndex = index;
 
    if (isSender) {
@@ -56,12 +56,12 @@ function setIndex(index) {
       outlet(0, ["set", 1, omniIndex]);
    }
 
-   es8.addPortName(portIndex, portName, isSender);
+   es9.addPortName(portIndex, portName, isSender);
 }
 
 
 function name(text) {
 
    portName = text;
-   es8.addPortName(portIndex, portName, isSender);
+   es9.addPortName(portIndex, portName, isSender);
 }

@@ -9,12 +9,11 @@ setoutletassist(0, "id");
 
 include("_portDevice.js");
 
-
 //////////////////////////////////////////
 
 // set up
 
-var es8 = new PortDevice("es8");
+var acdc = new PortDevice("acdc");
 
 var portIndex = undefined;
 var portName = undefined;
@@ -31,22 +30,22 @@ function loadbang() {
    from computer (isSender): omni 3-10 = 1-8
    */
 
-   es8.register();
-   es8.setup(3, 4, 3, 8);
+   acdc.register();
+   acdc.setup(3, 4, 3, 8);
 }
 
 function notifydeleted() {
 
-   es8.removePortName(portIndex, isSender);
-   es8.deregister();
+   acdc.removePortName(portIndex, isSender);
+   acdc.deregister();
 }
 
 function setIndex(index) {
 
    // turn off old index
-   es8.removePortName(portIndex, isSender);
+   acdc.removePortName(portIndex, isSender);
 
-   var omniIndex = es8.omniIndex(index, isSender);
+   var omniIndex = acdc.omniIndex(index, isSender);
    portIndex = index;
 
    if (isSender) {
@@ -56,12 +55,12 @@ function setIndex(index) {
       outlet(0, ["set", 1, omniIndex]);
    }
 
-   es8.addPortName(portIndex, portName, isSender);
+   acdc.addPortName(portIndex, portName, isSender);
 }
 
 
 function name(text) {
 
    portName = text;
-   es8.addPortName(portIndex, portName, isSender);
+   acdc.addPortName(portIndex, portName, isSender);
 }

@@ -143,12 +143,12 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 30.0, 45.0, 84.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "es8_display",
+						"filename" : "es9_display",
 						"parameter_enable" : 0
 					}
 ,
 					"style" : "wa.patcher",
-					"text" : "js es8_display"
+					"text" : "js es9_display"
 				}
 
 			}
@@ -168,7 +168,7 @@
 					}
 ,
 					"style" : "wa.buffer",
-					"text" : "dict es8Display"
+					"text" : "dict es9Display"
 				}
 
 			}
@@ -192,7 +192,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 270.0, 150.0, 188.0, 22.0 ],
-					"text" : "readfile maxgui.html?content=es8"
+					"text" : "readfile maxgui.html?content=es9"
 				}
 
 			}

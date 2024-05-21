@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.rack.es8.display" patcher_type="1">
-    <digest>es8 device</digest>
-    <description>show es8 connections<br/></description>
+<c74object name="wa.rack.acdc.display" patcher_type="1">
+    <digest>acdc device</digest>
+    <description>show acdc connections</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
@@ -10,9 +10,6 @@
     <parser inlet_count="0"/>
     <misc name="Outputs">
         <entry id="0" name="debug">
-            <digest/>
-        </entry>
-        <entry id="1" name="">
             <digest/>
         </entry>
     </misc>

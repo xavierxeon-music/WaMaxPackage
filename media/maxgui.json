@@ -18,6 +18,14 @@
       "name": "es8",
       "script": "./rack/es8_ui.js"
    },
+   "es9": {
+      "name": "es9",
+      "script": "./rack/es9_ui.js"
+   },
+   "acdc": {
+      "name": "acdc",
+      "script": "./rack/acdc_ui.js"
+   },
    "mixer": {
       "name": "Mixer",
       "script": "./mixer/mixer_console_ui.js",

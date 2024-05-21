@@ -13,14 +13,14 @@ include("_portDevice.js");
 
 // set up
 
-var es8 = new PortDevice("es8");
-var portDict = new Dict("es8Display");
+var acdc = new PortDevice("acdc");
+var portDict = new Dict("acdcDisplay");
 
 //////////////////////////////////////////
 
 function loadbang() {
 
-   es8.register(updateFunction);
+   acdc.register(updateFunction);
 
    portDict.clear();
    updateFunction();
@@ -28,15 +28,15 @@ function loadbang() {
 
 function notifydeleted() {
 
-   es8.deregister();
+   acdc.deregister();
 }
 
 updateFunction.local = 1;
 function updateFunction() {
 
-   // print("update"); es8.debug();
+   // print("update"); acdc.debug();
 
-   es8.copyTo(portDict);
+   acdc.copyTo(portDict);
    outlet(0, "bang");
 }
 
