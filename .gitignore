@@ -3,3 +3,4 @@
 **/node_modules
 media/mixer/*.wav
 source/build
+externals
