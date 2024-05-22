@@ -25,14 +25,14 @@ var isSender = jsarguments[1];
 function loadbang() {
 
    /*
-   ES8
+   ES9
    (omnibus id) = (port)
-   to computer: oni 3-6 =  1-4
-   from computer (isSender): omni 3-10 = 1-8
+   to computer: oni 3-14 =  1-12
+   from computer (isSender): omni 3-10 = 1-8 (9-10 on device)
    */
 
    es9.register();
-   es9.setup(3, 4, 3, 8);
+   es9.setup(3, 12, 3, 8);
 }
 
 function notifydeleted() {

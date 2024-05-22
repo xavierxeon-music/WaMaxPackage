@@ -24,14 +24,14 @@ var isSender = jsarguments[1];
 function loadbang() {
 
    /*
-   ES8
+   ACDC
    (omnibus id) = (port)
-   to computer: oni 3-6 =  1-4
-   from computer (isSender): omni 3-10 = 1-8
+   to computer: oni 17-20 =  1-4
+   from computer (isSender): omni 11-14 = 1-4
    */
 
    acdc.register();
-   acdc.setup(3, 4, 3, 8);
+   acdc.setup(17, 4, 11, 4);
 }
 
 function notifydeleted() {
