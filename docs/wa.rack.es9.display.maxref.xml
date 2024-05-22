@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.audio.footswitch" patcher_type="0">
-    <digest>footswitch</digest>
-    <description>a foot switch attached to the audio device</description>
+<c74object name="wa.rack.es9.display" patcher_type="1">
+    <digest>es9 device</digest>
+    <description>show es9 connections<br/></description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
     <parser inlet_count="0"/>
     <misc name="Outputs">
-        <entry id="0" name="pressed">
+        <entry id="0" name="debug">
             <digest/>
-            <description>pressed</description>
         </entry>
     </misc>
     <objarglist/>

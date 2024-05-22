@@ -3,7 +3,7 @@
 import json
 import os
 
-os.makedirs('../media/.vscode', exist_ok=True)
+os.makedirs('.vscode', exist_ok=True)
 
 launch = {
    'version': '0.2.0',
@@ -22,7 +22,7 @@ standardConfig = {
 }
 
 
-with open('../media/maxgui.json', 'r') as infile:
+with open('maxgui.json', 'r') as infile:
    content = json.load(infile)
 
 for key, configDict in content.items():
@@ -36,5 +36,5 @@ for key, configDict in content.items():
 
    launch['configurations'].append(config)
 
-with open('../media/.vscode/launch.json', 'w') as outfile:
+with open('.vscode/launch.json', 'w') as outfile:
    json.dump(launch, outfile, indent=3)

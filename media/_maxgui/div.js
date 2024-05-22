@@ -26,10 +26,14 @@ class Div extends BaseElement {
    }
 
    forceHeigth(height) {
-      scroll.setStyle("height", height);
-      scroll.setStyle("overflow-x", "hidden");
-      scroll.setStyle("overflow-y", "auto");
+      this.setStyle("height", height);
+      this.setStyle("overflow-x", "hidden");
+      this.setStyle("overflow-y", "auto");
+   }
 
+   makeHorizontal() {
+      this.setStyle("float", "left");
+      this.setStyle("clear", "none");
    }
 }
 

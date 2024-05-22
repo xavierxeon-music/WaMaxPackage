@@ -10,8 +10,34 @@ function PortDevice(name) {
    if (!this.core.useCounter)
       this.core.useCounter = 0;
 
+   this.receiverStart = 0;
+   this.receiverLength = 0;
+
+   this.senderStart = 0;
+   this.senderLength = 0;
+
    return this;
 }
+
+PortDevice.prototype.setup = function (receiverStart, receiverLength, senderStart, senderLength) {
+
+   this.receiverStart = receiverStart;
+   this.receiverLength = receiverLength;
+
+   this.senderStart = senderStart;
+   this.senderLength = senderLength;
+}
+
+PortDevice.prototype.omniIndex = function (index, isSender) {
+
+   var maxId = isSender ? this.senderLength : this.receiverLength;
+   if (index <= 0 || index > maxId)
+      return 0;
+
+   var offset = isSender ? this.senderStart : this.receiverStart;
+   return index + (offset - 1);
+}
+
 
 PortDevice.prototype.debug = function () {
 

@@ -13,14 +13,14 @@ include("_portDevice.js");
 
 // set up
 
-var rack = new PortDevice("small_rack");
-var portDict = new Dict("smallRackDisplay");
+var es8 = new PortDevice("es8");
+var portDict = new Dict("es8Display");
 
 //////////////////////////////////////////
 
 function loadbang() {
 
-   rack.register(updateFunction);
+   es8.register(updateFunction);
 
    portDict.clear();
    updateFunction();
@@ -28,15 +28,15 @@ function loadbang() {
 
 function notifydeleted() {
 
-   rack.deregister();
+   es8.deregister();
 }
 
 updateFunction.local = 1;
 function updateFunction() {
 
-   // print("update"); rack.debug();
+   // print("update"); es8.debug();
 
-   rack.copyTo(portDict);
+   es8.copyTo(portDict);
    outlet(0, "bang");
 }
 

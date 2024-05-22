@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 6,
-			"revision" : 1,
+			"revision" : 2,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 1954.0, 115.0, 1845.0, 1451.0 ],
+		"rect" : [ 1954.0, 115.0, 1440.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -88,13 +88,13 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "",
+					"comment" : "pressed",
 					"id" : "obj-45",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 247.0, 30.0, 30.0 ]
+					"patching_rect" : [ 30.0, 210.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -127,7 +127,8 @@
 				}
 
 			}
- ]
+ ],
+		"autosave" : 0
 	}
 
 }
