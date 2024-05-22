@@ -1,10 +1,10 @@
-#ifndef wa.qml_guiH
-#define wa.qml_guiH
+#ifndef WaQmlGUIH
+#define WaQmlGUIH
 
-class wa.qml_gui
+class QmlGui
 {
 public:
-   wa.qml_gui();
+   QmlGui();
 };
 
-#endif // NOT wa.qml_guiH
+#endif // NOT WaQmlGUIH
