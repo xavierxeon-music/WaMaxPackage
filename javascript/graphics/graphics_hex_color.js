@@ -8,10 +8,8 @@ outlets = 1;
 setoutletassist(0, "hex color");
 
 function list(red, green, blue) {
-   var hex = makeHex(red * 255);
-   hex += makeHex(green * 255);
-   hex += makeHex(blue * 255);
 
-   outlet(0, hex);
+   var color = Color.fromRGB(red * 255, green * 255, blue * 255);
+   outlet(0, color.hex);
 }
 
