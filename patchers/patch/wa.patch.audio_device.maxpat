@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 6,
-			"revision" : 1,
+			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 143.0, 3055.0, 1423.0 ],
+		"rect" : [ 34.0, 143.0, 3772.0, 1423.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -197,7 +197,7 @@
 				"box" : 				{
 					"comment" : "start",
 					"id" : "obj-3",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -345,7 +345,7 @@
 						"appversion" : 						{
 							"major" : 8,
 							"minor" : 6,
-							"revision" : 1,
+							"revision" : 3,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -1067,8 +1067,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 390.0, 30.0, 330.0, 22.0 ],
-					"text" : "patcherargs \"Max Internal\" @input_enabled 1 @auto_start 1"
+					"patching_rect" : [ 390.0, 30.0, 318.0, 22.0 ],
+					"text" : "patcherargs MaxInternal @input_enabled 1 @auto_start 1"
 				}
 
 			}
@@ -1284,7 +1284,6 @@
 
 			}
  ],
-		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.patcher",
 				"default" : 				{
