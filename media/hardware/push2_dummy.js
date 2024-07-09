@@ -6,7 +6,7 @@
 setupDocument(320, 1, 1);
 let title = new Title("Push 2");
 let main = new Div(document.body);
-main.setStyle("background", "#aaaaaa");
+main.setStyle("background", "#444444");
 main.forceHeigth("300px");
 
 
@@ -42,8 +42,7 @@ for (let x = 0; x < 8; x++) {
    new PushButton(main, "b" + parseInt(x + 1), 80 + x * 20, 120);
    for (let y = 0; y < 8; y++) {
       let name = "p" + parseInt(8 - y) + parseInt(x + 1);
-      let pad = new PushButton(main, name, 80 + x * 20, 150 + y * 20);
-      pad.isPad = true;
+      let pad = new PushPad(main, name, 80 + x * 20, 150 + y * 20);
    }
 }
 
