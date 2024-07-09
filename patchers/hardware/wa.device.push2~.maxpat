@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 283.0, 3765.0, 1283.0 ],
+		"rect" : [ 34.0, 311.0, 3765.0, 1255.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -138,7 +138,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 2535.0, 360.0, 197.0, 22.0 ],
-					"text" : "setColor p12 ff0000"
+					"text" : "setColor p11 ffc516"
 				}
 
 			}
@@ -230,7 +230,7 @@
 					"outlettype" : [ "jit_matrix", "" ],
 					"patching_rect" : [ 2055.0, 615.0, 80.0, 60.0 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 30.0, 75.0, 165.0, 30.0 ],
+					"presentation_rect" : [ 42.0, 71.0, 195.0, 45.0 ],
 					"sync" : 1
 				}
 
@@ -314,9 +314,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 2766.0, 442.5, 267.0, 277.0 ],
+					"patching_rect" : [ 2766.0, 442.5, 324.0, 286.5 ],
 					"presentation" : 1,
-					"presentation_rect" : [ 0.0, 0.0, 255.0, 315.0 ],
+					"presentation_rect" : [ 0.0, 0.0, 330.0, 315.0 ],
 					"rendermode" : 2,
 					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/WaMaxPackage/media/maxgui.html?content=push2_dummy"
 				}
@@ -610,7 +610,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 42.0, 182.0, 50.0, 22.0 ],
-					"text" : "37"
+					"text" : "36"
 				}
 
 			}
@@ -1052,7 +1052,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 188.5, 226.0, 50.0, 22.0 ],
-					"text" : "103"
+					"text" : "58"
 				}
 
 			}
