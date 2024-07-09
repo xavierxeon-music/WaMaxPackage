@@ -3,14 +3,14 @@
 		"fileversion" : 1,
 		"appversion" : 		{
 			"major" : 8,
-			"minor" : 5,
+			"minor" : 6,
 			"revision" : 3,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 517.0, 471.0, 3209.0, 835.0 ],
+		"rect" : [ 34.0, 311.0, 3765.0, 1255.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -141,6 +141,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 533.0, 427.0, 105.0, 22.0 ],
+					"style" : "wa.receive",
 					"text" : "receive push2_init"
 				}
 
@@ -150,14 +151,15 @@
 					"id" : "obj-72",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "", "" ],
+					"numoutlets" : 3,
+					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 62.0, 163.0, 273.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "push2_buttonmap.js",
+						"filename" : "push2_buttonmap",
 						"parameter_enable" : 0
 					}
 ,
+					"style" : "wa.patcher",
 					"text" : "js push2_buttonmap push2_button_names.json"
 				}
 
@@ -194,6 +196,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 309.0, 403.0, 115.0, 22.0 ],
+					"style" : "wa.receive",
 					"text" : "receive #0_active"
 				}
 
@@ -254,6 +257,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1081.5, 403.0, 105.0, 22.0 ],
+					"style" : "wa.buffer",
 					"text" : "value #0_active"
 				}
 
@@ -266,6 +270,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1030.5, 740.0, 105.0, 22.0 ],
+					"style" : "wa.buffer",
 					"text" : "value #0_active"
 				}
 
@@ -314,6 +319,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1061.0, 297.0, 122.0, 22.0 ],
+					"style" : "wa.buffer",
 					"text" : "value #0_is_toggle"
 				}
 
@@ -326,6 +332,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 762.0, 38.0, 165.0, 22.0 ],
+					"style" : "wa.receive",
 					"text" : "receive #0_button_number"
 				}
 
@@ -338,6 +345,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1233.700000000000045, 38.0, 165.0, 22.0 ],
+					"style" : "wa.receive",
 					"text" : "receive #0_button_number"
 				}
 
@@ -349,6 +357,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 872.0, 740.0, 103.0, 22.0 ],
+					"style" : "wa.send",
 					"text" : "send #0_active"
 				}
 
@@ -526,6 +535,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 948.0, 38.0, 173.0, 22.0 ],
+					"style" : "wa.receive",
 					"text" : "receive push2_button_pressed"
 				}
 
@@ -550,6 +560,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1406.0, 38.0, 176.0, 22.0 ],
+					"style" : "wa.receive",
 					"text" : "receive push2_button_released"
 				}
 
@@ -584,6 +595,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 160.0, 728.0, 143.0, 22.0 ],
+					"style" : "wa.send",
 					"text" : "send push2_button_color"
 				}
 
@@ -608,6 +620,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 21.5, 422.0, 165.0, 22.0 ],
+					"style" : "wa.receive",
 					"text" : "receive #0_button_number"
 				}
 
@@ -643,7 +656,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 379.0, 527.0, 55.0, 22.0 ],
-					"text" : "green"
+					"text" : "blue"
 				}
 
 			}
@@ -666,7 +679,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 211.0, 528.0, 50.0, 22.0 ],
-					"text" : "blue"
+					"text" : "red"
 				}
 
 			}
@@ -678,6 +691,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 435.0, 163.0, 122.0, 22.0 ],
+					"style" : "wa.buffer",
 					"text" : "value #0_is_toggle"
 				}
 
@@ -689,6 +703,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 31.0, 249.0, 152.0, 22.0 ],
+					"style" : "wa.send",
 					"text" : "send #0_button_number"
 				}
 
@@ -712,7 +727,7 @@
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 31.0, 201.0, 50.0, 22.0 ],
-					"text" : "48"
+					"text" : "39"
 				}
 
 			}
@@ -1248,6 +1263,43 @@
 					"source" : [ "obj-9", 0 ]
 				}
 
+			}
+ ],
+		"styles" : [ 			{
+				"name" : "wa.buffer",
+				"default" : 				{
+					"accentcolor" : [ 0.317647, 0.654902, 0.976471, 1.0 ]
+				}
+,
+				"parentstyle" : "",
+				"multi" : 0
+			}
+, 			{
+				"name" : "wa.patcher",
+				"default" : 				{
+					"accentcolor" : [ 0.439216, 0.74902, 0.254902, 1.0 ]
+				}
+,
+				"parentstyle" : "",
+				"multi" : 0
+			}
+, 			{
+				"name" : "wa.receive",
+				"default" : 				{
+					"accentcolor" : [ 0.960784, 0.827451, 0.156863, 1.0 ]
+				}
+,
+				"parentstyle" : "",
+				"multi" : 0
+			}
+, 			{
+				"name" : "wa.send",
+				"default" : 				{
+					"accentcolor" : [ 0.701961, 0.415686, 0.886275, 1.0 ]
+				}
+,
+				"parentstyle" : "",
+				"multi" : 0
 			}
  ]
 	}

@@ -42,6 +42,11 @@
       "script": "./hardware/push2_dummy.js",
       "styles": [
          "./hardware/push2_dummy.css"
+      ],
+      "includes": [
+         "./hardware/_push2_button.js",
+         "./hardware/_push2_dir_pad.js",
+         "./hardware/_push2_encoder.js"
       ]
    },
    "_default": {

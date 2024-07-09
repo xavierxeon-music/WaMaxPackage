@@ -42,8 +42,17 @@ class Title extends BaseElement {
    constructor(text) {
 
       super("div");
+      this.name = text;
 
       this.element.className = "title";
-      this.element.innerText = text;
+      this.element.innerText = this.name;
+   }
+
+   showMessage(text) {
+      this.element.innerHTML = this.name + " [" + text + "]";
+   }
+
+   clearMessage() {
+      this.element.innerText = this.name;
    }
 }
