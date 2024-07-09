@@ -6,8 +6,9 @@ autowatch = 1;
 inlets = 1;
 setinletassist(0, "list (isColor, id, color)");
 
-outlets = 1;
+outlets = 2;
 setoutletassist(0, "list(id, color_index)");
+setoutletassist(1, "list(id, hex_color)");
 
 var colorList = [];
 var colorIndexBuffer = {};
@@ -42,16 +43,11 @@ function list(isColor, id, inColor) {
 
    var color = new Color(inColor);
 
-   if (1 === isColor) {
+   var color_index = (1 === isColor) ? findNearestMatchInColorList(color) : findNearestMatchInWhiteList(color);
+   outlet(0, [id, color_index]);
 
-      var color_index = findNearestMatchInColorList(color);
-      outlet(0, [id, color_index]);
-   }
-   else {
-
-      var color_index = findNearestMatchInWhiteList(color);
-      outlet(0, [id, color_index]);
-   }
+   var newColor = colorList[color_index];
+   outlet(1, [id, newColor]);
 }
 
 findNearestMatchInColorList.local = 1;

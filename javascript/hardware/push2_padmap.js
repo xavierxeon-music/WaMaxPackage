@@ -6,8 +6,9 @@ autowatch = 1;
 inlets = 1;
 setinletassist(0, "lookup");
 
-outlets = 1;
-setoutletassist(0, "id");
+outlets = 2;
+setoutletassist(0, "name");
+setoutletassist(1, "key");
 
 var padmap = {};
 
@@ -36,6 +37,7 @@ function fromPush(id, velocity) {
       const value = padmap[key];
       if (id === value) {
          outlet(0, "PAD " + key);
+         outlet(1, key);
          return;
       }
    }

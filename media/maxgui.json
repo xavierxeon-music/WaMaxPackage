@@ -37,6 +37,13 @@
          "./mixer/_mixer_knob.js"
       ]
    },
+   "push2_dummy": {
+      "name": "Push2",
+      "script": "./hardware/push2_dummy.js",
+      "styles": [
+         "./hardware/push2_dummy.css"
+      ]
+   },
    "_default": {
       "includes": [
          "./_maxgui/button.js",

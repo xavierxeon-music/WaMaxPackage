@@ -6,9 +6,10 @@ autowatch = 1;
 inlets = 1;
 setinletassist(0, "lookup");
 
-outlets = 2;
+outlets = 3;
 setoutletassist(0, "id");
-setoutletassist(0, "isColor");
+setoutletassist(1, "isColor");
+setoutletassist(1, "key");
 
 var buttonmap = {};
 
@@ -43,6 +44,7 @@ function fromPush(id) {
             outlet(0, "RGB BUTTON " + name);
          else
             outlet(0, "BUTTON " + name);
+         outlet(2, name);
          return;
       }
    }
