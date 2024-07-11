@@ -54,6 +54,35 @@ function midiSlider(value) {
    messnamed("push2_slider_value", value);
 }
 
+function padClicked(name, clicked) {
+
+   var id = 36; // fallback to pad on bottom left   
+
+   var padmap = data["pads"];
+   if (name in padmap)
+      id = padmap[name];
+
+   if (clicked)
+      midiPad(id, 127);
+   else
+      midiPad(id, 0);
+
+}
+
+function buttonClicked(name, clicked) {
+
+   var id = 85; // fallback to play button on bottom left   
+
+   var buttonmap = data["buttons"];
+   if (name in buttonmap)
+      id = buttonmap[name][0];
+
+   if (clicked)
+      midiButton(id, 127);
+   else
+      midiButton(id, 0);
+}
+
 // name conversion
 function push2Pad(id) {
 
@@ -69,13 +98,13 @@ function push2Pad(id) {
 
 function pad2Push(name) {
 
-   var value = 36; // fallback to pad on bottom left   
+   var id = 36; // fallback to pad on bottom left   
 
    var padmap = data["pads"];
    if (name in padmap)
-      value = padmap[name];
+      id = padmap[name];
 
-   outlet(0, value);
+   outlet(0, id);
 }
 
 function push2Button(id) {
@@ -96,16 +125,16 @@ function push2Button(id) {
 
 function button2Push(name) {
 
-   var value = 85; // fallback to play button on bottom left   
+   var id = 85; // fallback to play button on bottom left   
    var isColor = true;
 
    var buttonmap = data["buttons"];
    if (name in buttonmap) {
-      value = buttonmap[name][0];
+      id = buttonmap[name][0];
       isColor = (1 == buttonmap[name][1]);
    }
 
-   outlet(0, [value, isColor]);
+   outlet(0, [id, isColor]);
 }
 
 // color functions
@@ -124,7 +153,7 @@ function padDummyColor(isColor, id, inColor) {
    for (var key in padmap) {
       const value = padmap[key];
       if (id === value) {
-         outlet(0, [key, newColor]);
+         outlet(0, ["setColor", key, newColor]);
          return;
       }
    }
@@ -145,7 +174,7 @@ function buttonDummyColor(isColor, id, inColor) {
    for (var name in buttonmap) {
       const value = buttonmap[name][0];
       if (value === id) {
-         outlet(0, [name, newColor]);
+         outlet(0, ["setColor", name, newColor]);
          return;
       }
    }

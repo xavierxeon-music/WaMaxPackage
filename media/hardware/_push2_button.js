@@ -40,10 +40,10 @@ class PushButton extends BaseElement {
    }
 
    #clicked() {
-      max.outlet("button", "clicked", this.id);
+      max.outlet(this.isPad ? "padClicked" : "buttonClicked", this.id, 1);
    }
    #released() {
-      max.outlet("button", "released", this.id);
+      max.outlet(this.isPad ? "padClicked" : "buttonClicked", this.id, 0);
    }
 }
 
@@ -54,24 +54,7 @@ class PushPad extends PushButton {
       super(parent, id, x, y);
 
       this.element.className = "pushpad";
-      this.isPad = false;
-
-      this.element.addEventListener("pointerdown", (clickEvent) => {
-         this.#clicked();
-      });
-      this.element.addEventListener("pointerup", (clickEvent) => {
-         this.#released();
-      });
-      this.element.addEventListener("pointercancel", (clickEvent) => {
-         this.#released();
-      });
-   }
-
-   #clicked() {
-      max.outlet("pad", "clicked", this.id);
-   }
-   #released() {
-      max.outlet("pad", "released", this.id);
+      this.isPad = true;
    }
 }
 
