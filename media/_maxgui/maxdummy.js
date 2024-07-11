@@ -94,7 +94,7 @@ function debug(...args) {
       console.log("DEBUG:", ...args);
    }
    else {
-      max.outlet("DEBUG", args);
+      max.outlet.apply(max, ["DEBUG"].concat(args))
    }
 }
 

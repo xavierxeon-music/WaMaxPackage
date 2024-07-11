@@ -1,7 +1,6 @@
 //
 
 
-
 // gui
 setupDocument(320, 1, 1);
 let title = new Title("Push 2");
@@ -72,5 +71,4 @@ new PushButton(main, "1_8t", 250, 230);
 new PushButton(main, "1_8", 250, 250);
 new PushButton(main, "1_4t", 250, 270);
 new PushButton(main, "1_4", 250, 290);
-
 

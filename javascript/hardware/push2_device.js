@@ -115,10 +115,41 @@ function padColor(isColor, id, inColor) {
    outlet(0, ["pad", id, color_index]);
 }
 
+function padDummyColor(isColor, id, inColor) {
+
+   var color_index = colorSelect(isColor, inColor);
+   var newColor = colorList[color_index];
+
+   var padmap = data["pads"];
+   for (var key in padmap) {
+      const value = padmap[key];
+      if (id === value) {
+         outlet(0, [key, newColor]);
+         return;
+      }
+   }
+}
+
 function buttonColor(isColor, id, inColor) {
 
    var color_index = colorSelect(isColor, inColor);
    outlet(0, ["button", id, color_index]);
+}
+
+function buttonDummyColor(isColor, id, inColor) {
+
+   var color_index = colorSelect(isColor, inColor);
+   var newColor = colorList[color_index];
+
+   var buttonmap = data["buttons"];
+   for (var name in buttonmap) {
+      const value = buttonmap[name][0];
+      if (value === id) {
+         outlet(0, [name, newColor]);
+         return;
+      }
+   }
+
 }
 
 colorSelect.local = 1;

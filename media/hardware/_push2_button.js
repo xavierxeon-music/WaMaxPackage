@@ -75,8 +75,10 @@ class PushPad extends PushButton {
    }
 }
 
-max.bindInlet('setColor', addMessage);
-function addMessage(id, hexColor) {
-   let button = PushButton.buttonMap[id];
+max.bindInlet('setColor', setColor);
+function setColor(name, hexColor) {
+
+   let button = PushButton.buttonMap[name];
    button.setColor(hexColor);
 }
+
