@@ -6,55 +6,206 @@ autowatch = 1;
 inlets = 1;
 setinletassist(0, "lookup");
 
-outlets = 3;
+outlets = 1;
 setoutletassist(0, "id");
-setoutletassist(1, "isColor");
-setoutletassist(1, "key");
 
-var buttonmap = {};
+var data = readJsonFile("push2_data.json");
+var encoderIdList = [14, 15, 71, 72, 73, 74, 75, 76, 77, 78, 79];
 
-function lookup(name) {
+var colorList = undefined;
+var colorIndexBuffer = {};
+var colorWhiteIndex = 0;
 
-   if (Object.keys(buttonmap).length === 0) {
-      buildMap();
-   }
+var whiteList = undefined;
+var whiteIndexBuffer = {};
 
-   var value = 85; // fallback to play button on bottom left   
-
-   var isColor = true;
-   if (name in buttonmap) {
-      value = buttonmap[name][0];
-      isColor = (1 == buttonmap[name][1]);
-   }
-
-   outlet(0, value);
-   outlet(1, isColor);
+function loadbang() {
+   init();
 }
 
-function fromPush(id) {
+// midi routing
+function midiPad(id, value) {
 
-   if (Object.keys(buttonmap).length === 0) {
-      buildMap();
+   if (0 == value)
+      messnamed("push2_pad_released", [id, value]);
+   else
+      messnamed("push2_pad_pressed", [id, value]);
+}
+
+function midiButton(id, value) {
+
+   var isEncoder = (encoderIdList.indexOf(id) > -1);
+   if (isEncoder) {
+      if (1 == value)
+         messnamed("push2_encoder_down", id);
+      else
+         messnamed("push2_encoder_up", id);
    }
+   else {
+      if (0 == value)
+         messnamed("push2_button_released", id);
+      else
+         messnamed("push2_button_pressed", id);
+   }
+}
+
+function midiSlider(value) {
+
+   messnamed("push2_slider_value", value);
+}
+
+// name conversion
+function push2Pad(id) {
+
+   var padmap = data["pads"];
+   for (var key in padmap) {
+      const value = padmap[key];
+      if (id === value) {
+         outlet(0, ["pad", key]);
+         return;
+      }
+   }
+}
+
+function pad2Push(name) {
+
+   var value = 36; // fallback to pad on bottom left   
+
+   var padmap = data["pads"];
+   if (name in padmap)
+      value = padmap[name];
+
+   outlet(0, value);
+}
+
+function push2Button(id) {
+
+   var buttonmap = data["buttons"];
    for (var name in buttonmap) {
       const value = buttonmap[name][0];
       const isColor = (1 == buttonmap[name][1]);
       if (value === id) {
          if (isColor)
-            outlet(0, "RGB BUTTON " + name);
+            outlet(0, ["color_button", name]);
          else
-            outlet(0, "BUTTON " + name);
-         outlet(2, name);
+            outlet(0, ["button", name]);
          return;
       }
    }
-
-   outlet(0, "???" + id);
 }
 
-buildMap.local = 1;
-function buildMap() {
+function button2Push(name) {
 
-   buttonmap = readJsonFile(jsarguments[1]);
+   var value = 85; // fallback to play button on bottom left   
+   var isColor = true;
+
+   var buttonmap = data["buttons"];
+   if (name in buttonmap) {
+      value = buttonmap[name][0];
+      isColor = (1 == buttonmap[name][1]);
+   }
+
+   outlet(0, [value, isColor]);
 }
+
+// color functions
+function padColor(isColor, id, inColor) {
+
+   var color_index = colorSelect(isColor, inColor);
+   outlet(0, ["pad", id, color_index]);
+}
+
+function buttonColor(isColor, id, inColor) {
+
+   var color_index = colorSelect(isColor, inColor);
+   outlet(0, ["button", id, color_index]);
+}
+
+colorSelect.local = 1;
+function colorSelect(isColor, inColor) {
+
+   var color = new Color(inColor);
+   var color_index = (1 === isColor) ? findNearestMatchInColorList(color) : findNearestMatchInWhiteList(color);
+
+   return color_index;
+}
+
+
+findNearestMatchInColorList.local = 1;
+function findNearestMatchInColorList(color) {
+
+   if (colorList === undefined) // need colorList to work with
+      init();
+
+   if (color.hex in colorIndexBuffer)
+      return colorIndexBuffer[color.hex];
+
+   var color_index = colorWhiteIndex;
+   var minDistance = 0;
+   for (var index = 0; index < colorList.length; index++) {
+
+      const test = colorList[index];
+      const rgb = new Color(test);
+
+      const distance = color.distance(rgb);
+
+      if (0 === index || distance < minDistance) {
+         minDistance = distance;
+         color_index = index;
+      }
+   }
+
+   //post("MATCH", color , color_index, "\n");
+
+   colorIndexBuffer[color.hex] = color_index;
+   return color_index;
+}
+
+findNearestMatchInWhiteList.local = 1;
+function findNearestMatchInWhiteList(color) {
+
+   if (whiteList === undefined) // need whiteList to work with
+      init();
+
+   if (color.hex in whiteIndexBuffer)
+      return whiteIndexBuffer[color.hex];
+
+   const luma = color.luma();
+
+   var white__index = 127;
+   for (var index = 1; index < whiteList.length; index++) {
+      const last = whiteList[index - 1];
+      const current = whiteList[index];
+      if (luma > last && luma <= current) {
+         white__index = index;
+         break;
+      }
+   }
+
+   //post(color, luma,  white__index, "\n");
+   whiteIndexBuffer[color.hex] = white__index;
+   return white__index;
+}
+
+// internal
+init.local = 1;
+function init() {
+
+   colorList = data["colors"];
+   whiteList = data["whites"];
+
+   var white = new Color("ffffff");
+   colorWhiteIndex = findNearestMatchInColorList(white);
+   colorIndexBuffer[white.hex] = colorWhiteIndex;
+
+   for (var index = 0; index < colorList.length; index += 1) {
+
+      var color = colorList[index];
+      colorIndexBuffer[color] = index;
+   }
+
+   whiteIndexBuffer["000000"] = 0;
+   whiteIndexBuffer["ffffff"] = 127;
+}
+
 

@@ -28,3 +28,13 @@ function saveJsonFile(object, fileName) {
 
    file.close();
 }
+
+function readFromDict(name) {
+
+   var dict = new Dict(name);
+   var text = dict.stringify();
+   delete dict;
+
+   var object = JSON.parse(text);
+   return object;
+}
