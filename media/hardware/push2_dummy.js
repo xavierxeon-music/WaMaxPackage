@@ -1,13 +1,11 @@
 //
 
-
 // gui
 setupDocument(320, 1, 1);
 let title = new Title("Push 2");
 let main = new Div(document.body);
 main.setStyle("background", "#444444");
 main.forceHeigth("285px");
-
 
 // left
 new PushEncoder(main, "encoder1", 10, 20);
