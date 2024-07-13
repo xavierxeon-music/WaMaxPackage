@@ -26,9 +26,9 @@ function midiButton(id, value) {
    var isEncoder = (device.encoderIdList.indexOf(id) > -1);
    if (isEncoder) {
       if (1 == value)
-         messnamed("push2_encoder_down", id);
-      else
          messnamed("push2_encoder_up", id);
+      else
+         messnamed("push2_encoder_down", id);
    }
    else {
       if (0 == value)
