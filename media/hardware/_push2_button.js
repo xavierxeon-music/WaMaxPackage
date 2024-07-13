@@ -6,12 +6,11 @@ class PushButton extends BaseElement {
 
    constructor(parent, id, x, y, halfSize) {
 
-      super("button", parent);
+      super("div", parent);
 
       this.element.className = "pushbutton";
       this.isPad = false;
 
-      PushButton.buttonMap[id] = this;
       this.id = id;
 
       if (halfSize)
@@ -37,16 +36,38 @@ class PushButton extends BaseElement {
       this.move(x, y);
    }
 
-   setColor(hexColor) {
-      this.setStyle("background", "#" + hexColor);
-   }
-
-
    #clicked() {
       max.outlet("midi", this.isPad ? "padClicked" : "buttonClicked", this.id, 1);
    }
    #released() {
       max.outlet("midi", this.isPad ? "padClicked" : "buttonClicked", this.id, 0);
+   }
+}
+
+class PushColorButton extends PushButton {
+
+   constructor(parent, id, x, y, halfSize) {
+
+      super(parent, id, x, y, halfSize);
+
+      PushButton.buttonMap[id] = this;
+
+      if (halfSize)
+         this.setShape("<rect x='1' y='7' width='14' height='2' stroke-width='0'>/");
+      else
+         this.setShape("<rect x='1' y='13' width='14' height='2' stroke-width='0'/>");
+   }
+
+   setShape(shape) {
+
+      this.element.innerHTML = "<svg width='16px' heigth='16px'>" + shape + "</svg>";
+      this.svg = this.element.querySelector("svg");
+      this.setColor("cccccc");
+   }
+
+   setColor(hexColor) {
+
+      this.svg.setAttribute("style", "fill: #" + hexColor + ";")
    }
 }
 
@@ -56,8 +77,16 @@ class PushPad extends PushButton {
 
       super(parent, id, x, y);
 
+      PushButton.buttonMap[id] = this;
+
+
       this.element.className = "pushpad";
       this.isPad = true;
+   }
+
+   setColor(hexColor) {
+
+      this.setStyle("background", "#" + hexColor);
    }
 }
 
@@ -65,6 +94,7 @@ max.bindInlet('setColor', setColor);
 function setColor(name, hexColor) {
 
    let button = PushButton.buttonMap[name];
-   button.setColor(hexColor);
+   if (button)
+      button.setColor(hexColor);
 }
 

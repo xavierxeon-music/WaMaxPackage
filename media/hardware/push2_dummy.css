@@ -1,4 +1,4 @@
-button.pushbutton {
+div.pushbutton {
    border: 1px solid #111111;
    background: #666666;
    width: 18px;
@@ -6,7 +6,7 @@ button.pushbutton {
    cursor: pointer;
 }
 
-button.pushpad {
+div.pushpad {
    border: 1px solid #111111;
    background: #cccccc;
    width: 18px;

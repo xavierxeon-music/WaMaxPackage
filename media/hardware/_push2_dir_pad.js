@@ -33,8 +33,8 @@ class PushDirPad extends BaseElement {
       this.move(x, y);
 
       this.element.innerHTML = "<svg width='36px' heigth='28px'>\
-                              <path d='M 0,0 L 36,28' stroke='#111111'></path>\
-                              <path d='M 0,28 L 36,0' stroke='#111111'></path>\
+                              <path d='M 0,0 L 36,28' stroke='#111111'/>\
+                              <path d='M 0,28 L 36,0' stroke='#111111'/>\
                               </svg>";
    }
 
