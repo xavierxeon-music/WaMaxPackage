@@ -1,11 +1,10 @@
 // push button
 
-
 class PushButton extends BaseElement {
 
    static buttonMap = {};
 
-   constructor(parent, id, x, y) {
+   constructor(parent, id, x, y, halfSize) {
 
       super("button", parent);
 
@@ -14,6 +13,9 @@ class PushButton extends BaseElement {
 
       PushButton.buttonMap[id] = this;
       this.id = id;
+
+      if (halfSize)
+         this.setStyle("height", "12px");
 
       this.element.addEventListener("pointerdown", (clickEvent) => {
          this.#clicked();
@@ -38,6 +40,7 @@ class PushButton extends BaseElement {
    setColor(hexColor) {
       this.setStyle("background", "#" + hexColor);
    }
+
 
    #clicked() {
       max.outlet("midi", this.isPad ? "padClicked" : "buttonClicked", this.id, 1);

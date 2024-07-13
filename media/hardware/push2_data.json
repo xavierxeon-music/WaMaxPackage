@@ -259,6 +259,50 @@
       "user": [
          59,
          false
+      ],
+      "encoder1": [
+         14,
+         false
+      ],
+      "encoder2": [
+         15,
+         false
+      ],
+      "encoder3": [
+         71,
+         false
+      ],
+      "encoder4": [
+         72,
+         false
+      ],
+      "encoder5": [
+         73,
+         false
+      ],
+      "encoder6": [
+         74,
+         false
+      ],
+      "encoder7": [
+         75,
+         false
+      ],
+      "encoder8": [
+         76,
+         false
+      ],
+      "encoder9": [
+         77,
+         false
+      ],
+      "encoder10": [
+         78,
+         false
+      ],
+      "encoder11": [
+         79,
+         false
       ]
    },
    "pads": {

@@ -15,3 +15,21 @@ button.pushpad {
    height: 18px;
    cursor: pointer;
 }
+
+div.pushencoder {
+   border: 1px solid #111111;
+   background: #cccccc;
+   padding: 1px 1px;
+   width: 18px;
+   height: 28px;
+   cursor: pointer;
+}
+
+div.pushdirpad {
+   border: 1px solid #111111;
+   background: #cccccc;
+   padding: 1px 1px;
+   width: 38px;
+   height: 30px;
+   cursor: pointer;
+}
