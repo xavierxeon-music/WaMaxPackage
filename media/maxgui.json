@@ -46,7 +46,8 @@
       "includes": [
          "./hardware/_push2_button.js",
          "./hardware/_push2_dir_pad.js",
-         "./hardware/_push2_encoder.js"
+         "./hardware/_push2_encoder.js",
+         "./hardware/_push2_slider.js"
       ]
    },
    "_default": {

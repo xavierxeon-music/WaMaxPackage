@@ -7,10 +7,10 @@ class PushButton extends BaseElement {
    constructor(parent, id, x, y, halfSize) {
 
       super("div", parent);
-
       this.element.className = "pushbutton";
-      this.isPad = false;
+      this.move(x, y);
 
+      this.isPad = false;
       this.id = id;
 
       if (halfSize)
@@ -33,7 +33,6 @@ class PushButton extends BaseElement {
          title.clearMessage();
       });
 
-      this.move(x, y);
    }
 
    #clicked() {
@@ -61,13 +60,13 @@ class PushColorButton extends PushButton {
    setShape(shape) {
 
       this.element.innerHTML = "<svg width='16px' heigth='16px'>" + shape + "</svg>";
-      this.svg = this.element.querySelector("svg");
       this.setColor("cccccc");
    }
 
    setColor(hexColor) {
 
-      this.svg.setAttribute("style", "fill: #" + hexColor + ";")
+      let svg = this.element.querySelector("svg");
+      svg.setAttribute("style", "fill: #" + hexColor + ";")
    }
 }
 
@@ -76,12 +75,11 @@ class PushPad extends PushButton {
    constructor(parent, id, x, y) {
 
       super(parent, id, x, y);
+      this.element.className = "pushpad";
+
+      this.isPad = true;
 
       PushButton.buttonMap[id] = this;
-
-
-      this.element.className = "pushpad";
-      this.isPad = true;
    }
 
    setColor(hexColor) {

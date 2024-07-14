@@ -1,4 +1,4 @@
-//
+// see https://github.com/Ableton/push-interface/blob/master/doc/AbletonPush2MIDIDisplayInterface.asc
 
 // gui
 setupDocument(320, 1, 1);
@@ -8,11 +8,11 @@ main.setStyle("background", "#444444");
 main.forceHeigth("285px");
 
 // left
-new PushEncoder(main, "encoder1", 10, 20);
-new PushEncoder(main, "encoder2", 30, 20);
+new PushEncoder(main, "encoder1", 10, 25);
+new PushEncoder(main, "encoder2", 30, 25);
 
-new PushButton(main, "tap", 10, 50, true);
-new PushButton(main, "metro", 30, 50, true);
+new PushButton(main, "tap", 10, 55, true);
+new PushButton(main, "metro", 30, 55, true);
 
 new PushButton(main, "delete", 10, 70);
 new PushButton(main, "undo", 10, 90);
@@ -31,16 +31,17 @@ new PushButton(main, "new", 10, 215);
 
 new PushButton(main, "fixed_length", 10, 235);
 new PushColorButton(main, "automate", 10, 255);
-new PushColorButton(main, "record", 10, 275);
+let record = new PushColorButton(main, "record", 10, 275);
+record.setShape("<circle cx='8' cy='8' r='4' stroke-width='0'/>");
 
-let play = new PushColorButton(main, "play", 40, 275);
+let play = new PushColorButton(main, "play", 30, 275);
 play.setShape("<polygon points='5,3 13,8 5,13' stroke-width='0'/>");
 
 // center
 for (let x = 0; x < 8; x++) {
    let xPos = 80 + (x * 20);
-   new PushEncoder(main, "encoder" + parseInt(x + 3), xPos, 20);
-   new PushColorButton(main, "t" + parseInt(x + 1), xPos, 50, true);
+   new PushEncoder(main, "encoder" + parseInt(x + 3), xPos, 25);
+   new PushColorButton(main, "t" + parseInt(x + 1), xPos, 55, true);
    new PushColorButton(main, "b" + parseInt(x + 1), xPos, 115, true);
    for (let y = 0; y < 8; y++) {
       let name = "p" + parseInt(8 - y) + parseInt(x + 1);
@@ -49,10 +50,10 @@ for (let x = 0; x < 8; x++) {
 }
 
 // right
-new PushEncoder(main, "encoder11", 290, 20);
+new PushEncoder(main, "encoder11", 290, 25);
 
-new PushButton(main, "setup", 270, 50, true);
-new PushButton(main, "user", 290, 50, true);
+new PushButton(main, "setup", 270, 55, true);
+new PushButton(main, "user", 290, 55, true);
 
 new PushButton(main, "add_device", 250, 70);
 new PushButton(main, "device", 270, 70);
