@@ -15,23 +15,30 @@ var device = new Push2Device();
 // midi routing
 function midiPad(id, value) {
 
+   var name = device.padName(id);
+   device.sendCallback("pad", name, value);
+
    if (0 == value)
       messnamed("push2_pad_released", [id, value]);
    else
       messnamed("push2_pad_pressed", [id, value]);
+
 }
 
 function midiButton(id, value) {
 
+   var name = device.buttonName(id);
+
    var isEncoder = (device.encoderIdList.indexOf(id) > -1);
    if (isEncoder) {
-      print(id, value);
+      device.sendCallback("encoder", name, value);
       if (127 == value)
          messnamed("push2_encoder_down", id);
       else
          messnamed("push2_encoder_up", id);
    }
    else {
+      device.sendCallback("button", name, value);
       if (0 == value)
          messnamed("push2_button_released", id);
       else

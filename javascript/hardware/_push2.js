@@ -3,6 +3,8 @@
 function Push2Device() {
 
    this.internal = new Global("Push2");
+   if (!this.internal.callbackList)
+      this.internal.callbackList = [];
 
    this.encoderIdList = [14, 15, 71, 72, 73, 74, 75, 76, 77, 78, 79];
 
@@ -31,6 +33,40 @@ function Push2Device() {
    this.whiteIndexBuffer["ffffff"] = 127;
 
    return this;
+}
+
+Push2Device.prototype.addCallback = function (callback) {
+
+   this.internal.callbackList.push(callback);
+}
+
+Push2Device.prototype.removeCallback = function (callback) {
+
+   removeFromArray(this.internal.callbackList, callback);
+}
+
+Push2Device.prototype.sendCallback = function (type, name, value) {
+
+   for (var index in this.internal.callbackList) {
+      var callback = this.internal.callbackList[index];
+      callback(type, name, value);
+   }
+}
+
+Push2Device.prototype.setPadColor = function (name, hxecColor) {
+
+   var id = this.padId(name);
+   messnamed("push2_pad_color", 1, id, hxecColor);
+}
+
+Push2Device.prototype.setButtonColor = function (name, hxecColor) {
+
+   var isColor = this.buttonIsColor(name);
+   if (!isColor)
+      return;
+
+   var id = this.buttonId(name);
+   messnamed("push2_button_color", 1, id, hxecColor);
 }
 
 Push2Device.prototype.padId = function (name) {
