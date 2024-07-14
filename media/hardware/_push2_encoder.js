@@ -10,11 +10,10 @@ class PushEncoder extends BaseElement {
 
       this.id = id;
 
-      this.element.innerHTML = "<svg width='18px' heigth='28px' style='stroke:#111111;'>\
-         <path d='M 6,5 L 10,5'/>\
-         <path d='M 8,3 L 8,7'/>\
+      this.element.innerHTML = "<svg width='18px' heigth='28px' style='stroke:#111111;fill:#aaaaaa;'>\
+         <polygon points='3,8 8,1 13,8' stroke-width='0'/>\
          <path d='M 0,10 L 16,10'/>\
-         <path d='M 6,15 L 10,15'/>\
+         <polygon points='3,12 8,18 13,12' stroke-width='0'/>\
          <path d='M 0,20 L 16,20'/>\
          </svg>";
 

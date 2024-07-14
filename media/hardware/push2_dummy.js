@@ -32,7 +32,7 @@ new PushButton(main, "new", 10, 215);
 new PushButton(main, "fixed_length", 10, 235);
 new PushColorButton(main, "automate", 10, 255);
 let record = new PushColorButton(main, "record", 10, 275);
-record.setShape("<circle cx='8' cy='8' r='4' stroke-width='0'/>");
+record.setShape("<circle cx='8' cy='8' r='5' stroke-width='0'/>");
 
 let play = new PushColorButton(main, "play", 30, 275);
 play.setShape("<polygon points='5,3 13,8 5,13' stroke-width='0'/>");

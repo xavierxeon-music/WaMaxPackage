@@ -52,9 +52,9 @@ class PushColorButton extends PushButton {
       PushButton.buttonMap[id] = this;
 
       if (halfSize)
-         this.setShape("<rect x='1' y='7' width='14' height='2' stroke-width='0'>/");
+         this.setShape("<rect x='1' y='5' width='14' height='4' stroke-width='0'>/");
       else
-         this.setShape("<rect x='1' y='13' width='14' height='2' stroke-width='0'/>");
+         this.setShape("<rect x='1' y='11' width='14' height='4' stroke-width='0'/>");
    }
 
    setShape(shape) {
