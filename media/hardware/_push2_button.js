@@ -36,7 +36,7 @@ class PushButton extends BaseElement {
    }
 
    #clicked() {
-      max.outlet("midi", this.isPad ? "padClicked" : "buttonClicked", this.id, 1);
+      max.outlet("midi", this.isPad ? "padClicked" : "buttonClicked", this.id, 127);
    }
    #released() {
       max.outlet("midi", this.isPad ? "padClicked" : "buttonClicked", this.id, 0);

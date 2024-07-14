@@ -25,10 +25,11 @@ function midiButton(id, value) {
 
    var isEncoder = (device.encoderIdList.indexOf(id) > -1);
    if (isEncoder) {
-      if (1 == value)
-         messnamed("push2_encoder_up", id);
-      else
+      print(id, value);
+      if (127 == value)
          messnamed("push2_encoder_down", id);
+      else
+         messnamed("push2_encoder_up", id);
    }
    else {
       if (0 == value)
@@ -51,17 +52,21 @@ function padClicked(name, clicked) {
       midiPad(id, 127);
    else
       midiPad(id, 0);
-
 }
 
 function buttonClicked(name, clicked) {
 
    var id = device.buttonId(name);
-
    if (clicked)
       midiButton(id, 127);
    else
       midiButton(id, 0);
+}
+
+function encoderClicked(name, value) {
+
+   var id = device.buttonId(name);
+   midiButton(id, value);
 }
 
 // name conversion

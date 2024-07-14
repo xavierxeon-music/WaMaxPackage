@@ -6,8 +6,14 @@ class PushDirPad extends BaseElement {
 
       super("div", parent);
       this.element.className = "pushdirpad";
+      this.move(x, y);
 
       this.idList = idList;
+
+      this.element.innerHTML = "<svg width='36px' heigth='28px'>\
+                              <path d='M 0,0 L 36,28' stroke='#111111'/>\
+                              <path d='M 0,28 L 36,0' stroke='#111111'/>\
+                              </svg>";
 
       this.element.addEventListener("pointerdown", (clickEvent) => {
          let id = this.#getId(clickEvent.layerX, clickEvent.layerY);
@@ -29,13 +35,6 @@ class PushDirPad extends BaseElement {
       this.element.addEventListener("pointerleave", (hoverEvent) => {
          title.clearMessage();
       });
-
-      this.move(x, y);
-
-      this.element.innerHTML = "<svg width='36px' heigth='28px'>\
-                              <path d='M 0,0 L 36,28' stroke='#111111'/>\
-                              <path d='M 0,28 L 36,0' stroke='#111111'/>\
-                              </svg>";
    }
 
    #getId(x, y) {
