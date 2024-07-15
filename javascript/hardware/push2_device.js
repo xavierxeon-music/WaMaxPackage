@@ -53,6 +53,8 @@ function midiSlider(value) {
 
 function padClicked(name, clicked) {
 
+   //print("PAD CLICKED", name, clicked);
+
    var id = device.padId(name);
 
    if (clicked)
