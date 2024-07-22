@@ -4,12 +4,14 @@ autowatch = 1;
 inlets = 1;
 setinletassist(0, "mesage");
 
-outlets = 1;
-setoutletassist(0, "active");
+outlets = 2;
+setoutletassist(0, "submatrix");
+setoutletassist(1, "[off, meanColor, distance]");
 
 // active
 var minColor = new Color("black");
 var maxColor = new Color("white");
+var meanColor = new Color("black");
 var targetColor = new Color("red");
 var colorDistance = 0;
 
@@ -27,6 +29,11 @@ function min(a, r, g, b) {
    testAllColorsOff();
 }
 
+function mean(a, r, g, b) {
+
+   meanColor = Color.fromRGB(r, g, b);
+   testAllColorsOff();
+}
 
 function max(a, r, g, b) {
 
@@ -86,17 +93,20 @@ function clamp(num, a, b) {
 testAllColorsOff.local = 1;
 function testAllColorsOff() {
 
+   var off = 1;
+
    // not uniform
-   if (minColor.distance(maxColor) > colorDistance) {
-      outlet(0, 1);
-      return;
+   var dist = minColor.distance(maxColor)
+   if (dist > 2 * colorDistance) {
+      off = 0;
+   }
+   else {
+      // not close to target
+      dist = minColor.distance(targetColor);
+      if (dist > colorDistance) {
+         off = 0;
+      }
    }
 
-   // not target
-   if (minColor.distance(targetColor) > colorDistance) {
-      outlet(0, 1);
-      return;
-   }
-
-   outle(0, 0);
+   outlet(1, [off, meanColor.hex, dist]);
 }

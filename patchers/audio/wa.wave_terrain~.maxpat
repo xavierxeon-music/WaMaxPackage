@@ -40,6 +40,18 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-38",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 1172.0, 500.0, 86.0, 22.0 ],
+					"text" : "prepend mean"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-37",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -103,8 +115,8 @@
 					"id" : "obj-67",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 1080.0, 315.0, 89.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "wave_terrain.js",
@@ -187,7 +199,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 998.0, 600.0, 30.0, 30.0 ]
+					"patching_rect" : [ 1068.0, 596.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -902,8 +914,8 @@
 					"id" : "obj-13",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"numoutlets" : 2,
+					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 998.0, 555.0, 89.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"filename" : "wave_terrain.js",
@@ -922,7 +934,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1173.0, 500.0, 79.0, 22.0 ],
+					"patching_rect" : [ 1277.0, 500.0, 79.0, 22.0 ],
 					"text" : "prepend max"
 				}
 
@@ -1151,7 +1163,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-26", 0 ],
-					"source" : [ "obj-13", 0 ]
+					"source" : [ "obj-13", 1 ]
 				}
 
 			}
@@ -1294,6 +1306,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-38", 0 ],
+					"source" : [ "obj-32", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-32", 0 ],
 					"source" : [ "obj-33", 0 ]
 				}
@@ -1340,6 +1359,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-44", 0 ],
 					"source" : [ "obj-37", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-13", 0 ],
+					"source" : [ "obj-38", 0 ]
 				}
 
 			}

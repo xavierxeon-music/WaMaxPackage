@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.device.grid" patcher_type="1">
+<c74object name="wa.device.grid.pot16" patcher_type="1">
     <digest>grid device</digest>
     <description>a grid device </description>
     <metadatalist>
@@ -12,7 +12,7 @@
     <misc name="Outputs">
         <entry id="1" name="values">
             <digest/>
-            <description>the grid values as list (id, value)</description>
+            <description>the grid values as list (id, value) d</description>
         </entry>
     </misc>
     <objarglist/>
