@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 255.0, 3765.0, 1311.0 ],
+		"rect" : [ 34.0, 255.0, 3150.0, 1311.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -107,7 +107,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 1080.0, 315.0, 89.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "wave_terrain",
+						"filename" : "wave_terrain.js",
 						"parameter_enable" : 0
 					}
 ,
@@ -829,8 +829,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 930.0, 30.0, 331.0, 22.0 ],
-					"text" : "patcherargs input @x 10 @y 10 @radius 10 @offColor white"
+					"patching_rect" : [ 930.0, 30.0, 416.0, 22.0 ],
+					"text" : "patcherargs input @x 10 @y 10 @radius 10 @offColor white @offDistance 0"
 				}
 
 			}
@@ -906,7 +906,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 998.0, 555.0, 89.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "wave_terrain",
+						"filename" : "wave_terrain.js",
 						"parameter_enable" : 0
 					}
 ,
@@ -981,7 +981,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 883.0, 270.0, 105.0, 22.0 ],
+					"patching_rect" : [ 850.333333333333371, 270.0, 105.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_terrain"
 				}
@@ -1027,11 +1027,11 @@
 				"box" : 				{
 					"id" : "obj-44",
 					"maxclass" : "newobj",
-					"numinlets" : 6,
-					"numoutlets" : 6,
-					"outlettype" : [ "", "", "", "", "", "" ],
-					"patching_rect" : [ 883.0, 225.0, 152.0, 22.0 ],
-					"text" : "routepass x y rx ry offColor"
+					"numinlets" : 7,
+					"numoutlets" : 7,
+					"outlettype" : [ "", "", "", "", "", "", "" ],
+					"patching_rect" : [ 850.333333333333371, 225.0, 215.0, 22.0 ],
+					"text" : "routepass x y rx ry offColor offDistance"
 				}
 
 			}
@@ -1347,6 +1347,13 @@
 				"patchline" : 				{
 					"destination" : [ "obj-18", 0 ],
 					"source" : [ "obj-41", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-13", 0 ],
+					"source" : [ "obj-44", 5 ]
 				}
 
 			}

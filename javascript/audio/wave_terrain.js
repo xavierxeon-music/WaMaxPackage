@@ -11,6 +11,7 @@ setoutletassist(0, "active");
 var minColor = new Color("black");
 var maxColor = new Color("white");
 var targetColor = new Color("red");
+var colorDistance = 0;
 
 // box
 var width = 1;
@@ -36,6 +37,12 @@ function max(a, r, g, b) {
 function offColor(hexColor) {
 
    targetColor = new Color(hexColor);
+   testAllColorsOff();
+}
+
+function offDistance(value) {
+
+   colorDistance = value;
    testAllColorsOff();
 }
 
@@ -80,13 +87,13 @@ testAllColorsOff.local = 1;
 function testAllColorsOff() {
 
    // not uniform
-   if (minColor.distance(maxColor) > 0) {
+   if (minColor.distance(maxColor) > colorDistance) {
       outlet(0, 1);
       return;
    }
 
    // not target
-   if (minColor.distance(targetColor) > 0) {
+   if (minColor.distance(targetColor) > colorDistance) {
       outlet(0, 1);
       return;
    }
