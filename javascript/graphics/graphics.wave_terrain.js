@@ -30,8 +30,8 @@ function dim(w, h) {
    if (rect_width == w && rect_height == h)
       return;
 
-   rect_width = 2 * w;
-   rect_height = 2 * h;
+   rect_width = w;
+   rect_height = h;
 
    create();
 }

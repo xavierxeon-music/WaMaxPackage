@@ -17,7 +17,8 @@ var width = 1;
 var height = 1;
 var x = 0;
 var y = 0;
-var radius = 1;
+var rx = 1;
+var ry = 1;
 
 function min(a, r, g, b) {
 
@@ -48,16 +49,18 @@ function bBox(name, value) {
       x = Math.round(value);
    else if ("y" == name)
       y = Math.round(value);
-   else if ("radius" == name)
-      radius = Math.round(value);
+   else if ("rx" == name)
+      rx = Math.round(value);
+   else if ("ry" == name)
+      ry = Math.round(value);
 
-   var cx = clamp(x, radius, width - radius);
-   var cy = clamp(y, radius, height - radius);
+   var cx = clamp(x, rx, width - rx);
+   var cy = clamp(y, ry, height - ry);
 
-   var minx = cx - radius;
-   var miny = cy - radius;
+   var minx = cx - rx;
+   var miny = cy - ry;
    outlet(0, ["offset", minx, miny]);
-   outlet(0, ["dim", radius, radius]);
+   outlet(0, ["dim", 2 * rx, 2 * ry]);
 }
 
 
