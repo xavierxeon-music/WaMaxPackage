@@ -4,13 +4,13 @@
 		"appversion" : 		{
 			"major" : 8,
 			"minor" : 6,
-			"revision" : 0,
+			"revision" : 4,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 171.0, 3592.0, 1395.0 ],
+		"rect" : [ 34.0, 311.0, 3528.0, 1255.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -40,11 +40,23 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-68",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "int" ],
+					"patching_rect" : [ 30.0, 28.0, 66.0, 22.0 ],
+					"text" : "midiin Grid"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-75",
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 174.0, 1154.0, 195.0, 20.0 ],
+					"patching_rect" : [ 1987.0, 286.0, 195.0, 20.0 ],
 					"text" : "dict keys are always strings"
 				}
 
@@ -56,7 +68,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 84.0, 1153.0, 71.0, 22.0 ],
+					"patching_rect" : [ 1897.0, 285.0, 71.0, 22.0 ],
 					"text" : "fromsymbol"
 				}
 
@@ -68,7 +80,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 85.0, 1198.0, 46.0, 22.0 ],
+					"patching_rect" : [ 1898.0, 330.0, 46.0, 22.0 ],
 					"text" : "pack i i"
 				}
 
@@ -80,7 +92,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "int" ],
-					"patching_rect" : [ 84.0, 1108.0, 63.0, 22.0 ],
+					"patching_rect" : [ 1897.0, 240.0, 63.0, 22.0 ],
 					"text" : "unpack s i"
 				}
 
@@ -92,7 +104,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 167.0, 975.0, 61.0, 22.0 ],
+					"patching_rect" : [ 1980.0, 107.0, 61.0, 22.0 ],
 					"text" : "delay 500"
 				}
 
@@ -104,7 +116,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 97.0, 420.0, 58.0, 22.0 ],
+					"patching_rect" : [ 210.000003576278687, 464.999997317790985, 58.0, 22.0 ],
 					"text" : "loadbang"
 				}
 
@@ -115,7 +127,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 85.0, 1243.0, 91.0, 22.0 ],
+					"patching_rect" : [ 1898.0, 375.0, 91.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send grid_input"
 				}
@@ -128,7 +140,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 84.0, 1065.0, 47.0, 22.0 ],
+					"patching_rect" : [ 1897.0, 197.0, 47.0, 22.0 ],
 					"text" : "dict.iter"
 				}
 
@@ -139,7 +151,7 @@
 					"maxclass" : "dict.view",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 174.0, 510.0, 183.0, 373.0 ]
+					"patching_rect" : [ 90.0, 555.0, 186.0, 337.0 ]
 				}
 
 			}
@@ -150,7 +162,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 5,
 					"outlettype" : [ "dictionary", "", "", "", "" ],
-					"patching_rect" : [ 174.0, 465.0, 92.0, 22.0 ],
+					"patching_rect" : [ 90.0, 509.999998658895493, 92.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"legacy" : 0,
@@ -171,20 +183,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 174.0, 420.0, 94.0, 22.0 ],
+					"patching_rect" : [ 90.0, 464.999997317790985, 94.0, 22.0 ],
 					"text" : "sprintf set %i %i"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-50",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "int", "int" ],
-					"patching_rect" : [ 210.0, 376.0, 59.0, 22.0 ],
-					"text" : "unpack i i"
 				}
 
 			}
@@ -195,7 +195,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 167.0, 928.0, 93.0, 22.0 ],
+					"patching_rect" : [ 1980.0, 60.0, 93.0, 22.0 ],
 					"style" : "wa.receive",
 					"text" : "receive grid_init"
 				}
@@ -208,7 +208,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 45.0, 975.0, 97.0, 22.0 ],
+					"patching_rect" : [ 1858.0, 107.0, 97.0, 22.0 ],
 					"restore" : [ 						{
 							"42" : 30,
 							"43" : 36,
@@ -216,7 +216,7 @@
 							"32" : 0,
 							"31" : 0,
 							"22" : 22,
-							"11" : 73,
+							"11" : 0,
 							"12" : 119,
 							"13" : 85,
 							"14" : 119,
@@ -225,7 +225,7 @@
 							"21" : 2,
 							"33" : 5,
 							"34" : 0,
-							"41" : 69
+							"41" : 16383
 						}
  ],
 					"saved_object_attributes" : 					{
@@ -245,7 +245,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 5,
 					"outlettype" : [ "dictionary", "", "", "", "" ],
-					"patching_rect" : [ 84.0, 1018.0, 92.0, 22.0 ],
+					"patching_rect" : [ 1897.0, 150.0, 92.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"legacy" : 0,
@@ -614,7 +614,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 240.0, 210.0, 58.0, 22.0 ],
+					"patching_rect" : [ 242.5, 210.0, 58.0, 22.0 ],
 					"text" : "loadbang"
 				}
 
@@ -753,6 +753,7 @@
 							"parameter_enum" : [ "val1", "val2" ],
 							"parameter_longname" : "live.text[10]",
 							"parameter_mmax" : 1,
+							"parameter_modmode" : 0,
 							"parameter_shortname" : "live.text[1]",
 							"parameter_type" : 2
 						}
@@ -796,7 +797,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "int", "int" ],
-					"patching_rect" : [ 30.0, 287.0, 37.0, 22.0 ],
+					"patching_rect" : [ 30.0, 332.0, 37.0, 22.0 ],
 					"text" : "swap"
 				}
 
@@ -808,7 +809,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 30.0, 328.0, 46.0, 22.0 ],
+					"patching_rect" : [ 30.0, 373.0, 46.0, 22.0 ],
 					"text" : "pack i i"
 				}
 
@@ -820,7 +821,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 30.0, 242.0, 51.0, 22.0 ],
+					"patching_rect" : [ 30.0, 287.0, 51.0, 22.0 ],
 					"text" : "buddy 2"
 				}
 
@@ -832,7 +833,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "int" ],
-					"patching_rect" : [ 67.833333333333314, 197.0, 63.0, 22.0 ],
+					"patching_rect" : [ 68.0, 242.0, 63.0, 22.0 ],
 					"text" : "unpack s i"
 				}
 
@@ -844,7 +845,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 48.5, 105.0, 155.0, 22.0 ],
+					"patching_rect" : [ 49.0, 150.0, 155.0, 22.0 ],
 					"text" : "sprintf get midi_to_local::%i"
 				}
 
@@ -856,7 +857,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 5,
 					"outlettype" : [ "dictionary", "", "", "", "" ],
-					"patching_rect" : [ 48.5, 152.0, 103.0, 22.0 ],
+					"patching_rect" : [ 49.0, 197.0, 103.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"legacy" : 1,
@@ -917,7 +918,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 95.0, 376.0, 91.0, 22.0 ],
+					"patching_rect" : [ 95.0, 421.0, 91.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send grid_input"
 				}
@@ -986,6 +987,7 @@
 						"valueof" : 						{
 							"parameter_longname" : "knob[1]",
 							"parameter_mmax" : 15.0,
+							"parameter_modmode" : 0,
 							"parameter_shortname" : "knob",
 							"parameter_type" : 0,
 							"parameter_unitstyle" : 0
@@ -1051,7 +1053,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 80.833333333333258, 75.0, 50.0, 22.0 ],
+					"patching_rect" : [ 81.0, 120.0, 50.0, 22.0 ],
 					"text" : "1"
 				}
 
@@ -1063,8 +1065,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "int", "int", "int" ],
-					"patching_rect" : [ 30.0, 30.0, 56.0, 22.0 ],
-					"text" : "ctlin Grid"
+					"patching_rect" : [ 30.0, 75.0, 70.0, 22.0 ],
+					"text" : "xctlin"
 				}
 
 			}
@@ -1076,7 +1078,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 377.0, 30.0, 30.0 ]
+					"patching_rect" : [ 30.0, 422.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -1111,7 +1113,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-12", 1 ],
+					"destination" : [ "obj-12", 0 ],
 					"source" : [ "obj-10", 2 ]
 				}
 
@@ -1326,15 +1328,15 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-3", 0 ],
-					"order" : 1,
+					"order" : 0,
 					"source" : [ "obj-34", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-50", 0 ],
-					"order" : 0,
+					"destination" : [ "obj-52", 0 ],
+					"order" : 1,
 					"source" : [ "obj-34", 0 ]
 				}
 
@@ -1453,20 +1455,6 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-52", 1 ],
-					"source" : [ "obj-50", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-52", 0 ],
-					"source" : [ "obj-50", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-22", 0 ],
 					"source" : [ "obj-51", 0 ]
 				}
@@ -1573,6 +1561,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-10", 0 ],
+					"source" : [ "obj-68", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-70", 0 ],
 					"source" : [ "obj-69", 0 ]
 				}
@@ -1622,42 +1617,6 @@
 			"inherited_shortname" : 1
 		}
 ,
-		"dependency_cache" : [ 			{
-				"name" : "_mapped_canvas.js",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/_common",
-				"patcherrelativepath" : "../../javascript/_common",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "bpatcher_size.js",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/setup",
-				"patcherrelativepath" : "../../javascript/setup",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "grid_device.js",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/hardware",
-				"patcherrelativepath" : "../../javascript/hardware",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "grid_device_ui.js",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/javascript/hardware",
-				"patcherrelativepath" : "../../javascript/hardware",
-				"type" : "TEXT",
-				"implicit" : 1
-			}
-, 			{
-				"name" : "wa.patch.bpatcher.maxpat",
-				"bootpath" : "/Volumes/ExternalData/_Home/GitHub/MusicProjects/Max/WaMaxPackage/patchers/patch",
-				"patcherrelativepath" : "../patch",
-				"type" : "JSON",
-				"implicit" : 1
-			}
- ],
 		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.buffer",

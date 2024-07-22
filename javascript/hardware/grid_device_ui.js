@@ -89,10 +89,11 @@ function paint() {
 
          var lineLength = 30;
          if (id in valueMap) {
-            var text = valueMap[id].toString();
+            var precent = valueMap[id] / 16382;
+            var text = (100 * precent).toFixed(0);
             mc.drawText(x + indicatorSize + padding, y + (0.7 * indicatorSize), text)
 
-            var length = valueMap[id] * lineLength / 127;
+            var length = precent * lineLength;
             mc.drawRectangle((x + textWidth) - (lineLength + 5), y + 3, length, 5, true);
          }
          else
