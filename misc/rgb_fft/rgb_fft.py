@@ -9,9 +9,8 @@ def main():
    plot = Plot(data)
    plot.create('test.png')
 
-   print(data.minLength, data.maxLength, data.span)
-   print(data[0])
-   print(data[-1])
+   wave = Wave(data)
+   wave.write('rgb_fft.wav')
 
 
 if __name__ == '__main__':
