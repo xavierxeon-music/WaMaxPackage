@@ -23,15 +23,21 @@ class Wave:
       r = list()
       g = list()
       b = list()
-      for index in range(halfSize):
-         w = maxWaveLength - int(index * waveDelta / halfSize)
-         w = w - self.data.minLength
-         data = self.data[w]
 
-         # print(index, w, data)
-         r.append(round(255 * data.red))
-         g.append(round(255 * data.green))
-         b.append(round(255 * data.blue))
+      for index in range(fftSize):
+         if index < halfSize:
+            w = maxWaveLength - int(index * waveDelta / halfSize)
+            w = w - self.data.minLength
+            data = self.data[w]
+
+            # print(index, w, data)
+            r.append(round(255 * data.red))
+            g.append(round(255 * data.green))
+            b.append(round(255 * data.blue))
+         else:
+            r.append(0)
+            g.append(0)
+            b.append(0)
 
       rgb = itertools.chain(*zip(r, g, b))
 
