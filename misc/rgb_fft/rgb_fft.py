@@ -7,6 +7,7 @@ def main():
 
    data = Data()
    plot = Plot(data)
+   plot.create('test.png')
 
    print(data.minLength, data.maxLength, data.span)
    print(data[0])

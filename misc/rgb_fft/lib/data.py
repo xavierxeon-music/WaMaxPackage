@@ -49,20 +49,20 @@ class Data:
       self.maxLength = self.entries[-1].waveLength
       self.span = self.maxLength - self.minLength
 
-      # normalize RGGB
-      maxRGB = 0
+      self.maxRGB = 0
       for entry in self.entries:
-         if entry.red > maxRGB:
-            maxRGB = entry.red
-         if entry.green > maxRGB:
-            maxRGB = entry.green
-         if entry.blue > maxRGB:
-            maxRGB = entry.blue
+         value = entry.red + entry.green + entry.blue
+         if value > self.maxRGB:
+            self.maxRGB = value
+
+      self._normalize()
+
+   def _normalize(self):
 
       for entry in self.entries:
-         entry.red = entry.red / maxRGB
-         entry.green = entry.red / maxRGB
-         entry.blue = entry.red / maxRGB
+         entry.red = entry.red / self.maxRGB
+         entry.green = entry.green / self.maxRGB
+         entry.blue = entry.blue / self.maxRGB
 
    def __len__(self):
 
