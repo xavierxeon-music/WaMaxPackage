@@ -5,27 +5,22 @@
 
 #include <QSplitter>
 
-#include "Tools/Central.h"
+#include "Server.h"
 
-class MainWindow : public QWidget,
-                   public FunctionHub
+class MainWindow : public QWidget
 {
    Q_OBJECT
 
 public:
    MainWindow();
 
-private slots:
-   void slotWriteAllInit();
-
 private:
-   void setPackagePath(QString packageDir) override;
-   void setModified(bool enabled, QString key) override;
+   void setModified(bool enabled, QString key);
    void closeEvent(QCloseEvent* ce) override;
 
 private:
    QSplitter* splitter;
-   Central central;
+   Server* server;
 };
 
 #endif // NOT MainWindowH

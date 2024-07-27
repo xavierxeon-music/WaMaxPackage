@@ -1,7 +1,7 @@
 TARGET = HelpForMax
 TEMPLATE = app
 
-QT += widgets xml svg
+QT += widgets  svg
 CONFIG += c++20
 
 DESTDIR = ../bin
@@ -23,20 +23,19 @@ windows {
    }
 }
 
-include(Block/Block.pri)
-include(Clean/Clean.pri)
-include(Tools/Tools.pri)
 
-include(Select/01_Select.pri)
-include(Component/02_Component.pri)
-include(Result/03_Result.pri)
-include(Overview/04_Overview.pri)
+#include(Overview/04_Overview.pri)
+include(Common.pri)
 
 HEADERS += \
-   MainWindow.h
+   MainWindow.h \
+   Server.h \
+   Socket.h
 
 SOURCES += \
-   MainWindow.cpp
+   MainWindow.cpp \
+   Server.cpp \
+   Socket.cpp
 
 RESOURCES += \
    icons/icons.qrc
