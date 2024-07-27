@@ -29,13 +29,16 @@ include(Common.pri)
 
 HEADERS += \
    MainWindow.h \
-   Server.h \
-   Socket.h
+   PatchWidget.h \
+   ServerTabWidget.h
 
 SOURCES += \
    MainWindow.cpp \
-   Server.cpp \
-   Socket.cpp
+   PatchWidget.cpp \
+   ServerTabWidget.cpp
 
 RESOURCES += \
    icons/icons.qrc
+
+FORMS += \
+    PatchWidget.ui

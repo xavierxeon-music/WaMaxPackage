@@ -1,26 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>TestClient</class>
- <widget class="QWidget" name="TestClient">
+ <class>PatchWidget</class>
+ <widget class="QWidget" name="PatchWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>221</width>
-    <height>251</height>
+    <width>400</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>HelpForMax TestClient</string>
+   <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QPushButton" name="sendButton">
-     <property name="text">
-      <string>Send</string>
-     </property>
-    </widget>
-   </item>
    <item>
     <widget class="QTextEdit" name="textEdit"/>
    </item>

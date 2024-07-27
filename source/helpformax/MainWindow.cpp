@@ -6,6 +6,7 @@
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QSettings>
+#include <QToolBar>
 #include <QVBoxLayout>
 
 #include <HelpForMax.h>
@@ -13,23 +14,26 @@
 MainWindow::MainWindow()
    : QWidget(nullptr)
    , contentWidget(nullptr)
-   , server(nullptr)
 {
    setWindowTitle("Help For Max");
 
-   server = new Server(this);
-
    QMenuBar* menuBar = new QMenuBar(this);
-   QMenu* manualMenu = menuBar->addMenu("Manual");
-   Q_UNUSED(manualMenu)
 
-   contentWidget = new QTableWidget(this);
+   QToolBar* toolBar = new QToolBar(this);
+
+   contentWidget = new ServerTabWidget(this);
 
    QVBoxLayout* masterLayout = new QVBoxLayout(this);
    masterLayout->setContentsMargins(0, 0, 0, 0);
    masterLayout->addSpacing(0);
    masterLayout->addWidget(menuBar);
+   masterLayout->addWidget(toolBar);
    masterLayout->addWidget(contentWidget);
+
+   QMenu* editMenu = menuBar->addMenu("Edit");
+   QAction* saveAction = editMenu->addAction(QIcon(":/SaveAllPatches.svg"), "Save", contentWidget, &ServerTabWidget::slotSaveCurrentPatch);
+
+   toolBar->addAction(saveAction);
 
    QSettings widgetSettings;
    qDebug() << "SETTINGS @" << widgetSettings.fileName();

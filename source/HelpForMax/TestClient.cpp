@@ -31,7 +31,7 @@ void TestClient::slotSendData()
 
 void TestClient::slotReceiveData()
 {
-   qDebug() << socket->readAll();
+   textEdit->append(QString::fromUtf8(socket->readAll()));
 }
 
 // main function

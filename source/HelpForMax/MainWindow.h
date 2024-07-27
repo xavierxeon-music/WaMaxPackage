@@ -3,9 +3,9 @@
 
 #include <QWidget>
 
-#include <QTableWidget>
+#include <QTabWidget>
 
-#include "Server.h"
+#include "ServerTabWidget.h"
 
 class MainWindow : public QWidget
 {
@@ -19,8 +19,7 @@ private:
    void closeEvent(QCloseEvent* ce) override;
 
 private:
-   QTableWidget* contentWidget;
-   Server* server;
+   ServerTabWidget* contentWidget;
 };
 
 #endif // NOT MainWindowH
