@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 34.0, 255.0, 3150.0, 1311.0 ],
+		"rect" : [ 530.0, 217.0, 2913.0, 1227.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -119,7 +119,7 @@
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 1080.0, 315.0, 89.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "wave_terrain.js",
+						"filename" : "wave_terrain",
 						"parameter_enable" : 0
 					}
 ,
@@ -280,7 +280,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "blue",
+					"comment" : "C",
 					"id" : "obj-24",
 					"index" : 3,
 					"maxclass" : "outlet",
@@ -343,7 +343,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "green",
+					"comment" : "B",
 					"id" : "obj-19",
 					"index" : 2,
 					"maxclass" : "outlet",
@@ -887,7 +887,7 @@
 			}
 , 			{
 				"box" : 				{
-					"comment" : "red",
+					"comment" : "A",
 					"id" : "obj-2",
 					"index" : 1,
 					"maxclass" : "outlet",
@@ -918,7 +918,7 @@
 					"outlettype" : [ "", "" ],
 					"patching_rect" : [ 998.0, 555.0, 89.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "wave_terrain.js",
+						"filename" : "wave_terrain",
 						"parameter_enable" : 0
 					}
 ,

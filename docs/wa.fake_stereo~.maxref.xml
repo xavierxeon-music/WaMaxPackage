@@ -9,33 +9,25 @@
     </metadatalist>
     <parser inlet_count="1"/>
     <misc name="Outputs">
-        <entry id="0" name="signalLeft">
+        <entry id="0" name="left">
             <digest/>
-            <description>left output</description>
+            <description>left out</description>
         </entry>
-        <entry id="1" name="signalRight">
+        <entry id="1" name="right">
             <digest/>
-            <description>right output</description>
+            <description>right out</description>
         </entry>
     </misc>
     <objarglist/>
-    <attributelist>
-        <attribute get="1" name="move" set="1" size="1" type="float">
-            <digest>stereo movement</digest>
-            <description>stereo movement (0-1)</description>
-        </attribute>
-        <attribute get="1" name="width" set="1" size="1" type="float">
-            <digest>stereo width</digest>
-            <description>stereo width (0-1)</description>
-        </attribute>
-    </attributelist>
+    <attributelist/>
     <methodlist>
-        <method name="list" standard="1">
+        <method name="float" standard="1">
             <digest/>
-            <description>width and move</description>
+            <description>stereo width</description>
         </method>
         <method name="signal" standard="1">
             <digest/>
+            <description>audio in</description>
         </method>
     </methodlist>
     <seealsolist/>

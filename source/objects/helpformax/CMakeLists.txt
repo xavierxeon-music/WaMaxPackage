@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.0)
 
 set(C74_MIN_API_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../min-api)
 include(${C74_MIN_API_DIR}/script/min-pretarget.cmake)
@@ -21,8 +21,7 @@ add_library(
    ${PROJECT_SRC}
 )
 
-set(CMAKE_AUTOMOC ON)
-find_package(Qt6 6.2 REQUIRED COMPONENTS Core Gui)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Gui)
+find_package(Qt6 REQUIRED COMPONENTS Core Network)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Network)
 
 include(${C74_MIN_API_DIR}/script/min-posttarget.cmake)
