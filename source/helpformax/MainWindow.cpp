@@ -12,30 +12,28 @@
 
 MainWindow::MainWindow()
    : QWidget(nullptr)
-   , splitter(nullptr)
+   , contentWidget(nullptr)
    , server(nullptr)
 {
    setWindowTitle("Help For Max");
 
    server = new Server(this);
 
-   splitter = new QSplitter(this);
-   splitter->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
-
    QMenuBar* menuBar = new QMenuBar(this);
    QMenu* manualMenu = menuBar->addMenu("Manual");
    Q_UNUSED(manualMenu)
+
+   contentWidget = new QTableWidget(this);
 
    QVBoxLayout* masterLayout = new QVBoxLayout(this);
    masterLayout->setContentsMargins(0, 0, 0, 0);
    masterLayout->addSpacing(0);
    masterLayout->addWidget(menuBar);
-   masterLayout->addWidget(splitter);
+   masterLayout->addWidget(contentWidget);
 
    QSettings widgetSettings;
    qDebug() << "SETTINGS @" << widgetSettings.fileName();
    restoreGeometry(widgetSettings.value("MainWidget/Geometry").toByteArray());
-   splitter->restoreState(widgetSettings.value("MainWidget/State").toByteArray());
 }
 
 void MainWindow::setModified(bool enabled, QString key)
@@ -49,7 +47,6 @@ void MainWindow::closeEvent(QCloseEvent* ce)
 {
    QSettings widgetSettings;
    widgetSettings.setValue("MainWidget/Geometry", saveGeometry());
-   widgetSettings.setValue("MainWidget/State", splitter->saveState());
 
    ce->accept();
 }

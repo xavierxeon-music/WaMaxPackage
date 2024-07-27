@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-#include <QSplitter>
+#include <QTableWidget>
 
 #include "Server.h"
 
@@ -19,7 +19,7 @@ private:
    void closeEvent(QCloseEvent* ce) override;
 
 private:
-   QSplitter* splitter;
+   QTableWidget* contentWidget;
    Server* server;
 };
 

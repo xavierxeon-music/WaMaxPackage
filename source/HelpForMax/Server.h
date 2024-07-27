@@ -2,25 +2,24 @@
 #define ServerH
 
 #include <QLocalServer>
-#include <QLocalSocket>
-#include <QPointer>
+
+#include "Socket.h"
 
 class Server : public QLocalServer
 {
    Q_OBJECT
+
 public:
    Server(QObject* parent);
 
 private:
-   using Socket = QPointer<QLocalSocket>;
+   friend class Socket;
 
 private slots:
    void slotNewConnection();
-   void slotSendData();
-   void slotReceiveData();
 
 private:
-   QList<Socket> socketList;
+   Socket::List socketList;
 };
 
 #endif // NOT ServerH

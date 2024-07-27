@@ -14,16 +14,5 @@ Server::Server(QObject* parent)
 
 void Server::slotNewConnection()
 {
-   Socket socket = nextPendingConnection();
-   socketList.append(socket);
-
-   connect(socket, &QIODevice::readyRead, this, &Server::slotReceiveData);
-}
-
-void Server::slotSendData()
-{
-}
-
-void Server::slotReceiveData()
-{
+   new Socket(this, nextPendingConnection());
 }
