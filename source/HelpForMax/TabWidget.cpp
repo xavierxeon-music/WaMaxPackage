@@ -11,6 +11,8 @@ TabWidget::TabWidget(QWidget* parent)
    , package()
    , server(nullptr)
 {
+   setDocumentMode(true);
+
    server = new QLocalServer(this);
    connect(server, &QLocalServer::newConnection, this, &TabWidget::slotNewConnection);
 

@@ -3,4 +3,5 @@
 EditWidget::EditWidget(QWidget* parent)
    : QWidget(parent)
 {
+   setupUi(this);
 }

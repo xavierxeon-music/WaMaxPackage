@@ -25,11 +25,12 @@ windows {
 
 include(Edit/Edit.pri)
 include(Block/Block.pri)
-#include(Overview/Overview.pri)
 
 
 HEADERS += \
    MainWindow.h \
+   MessageBar.h \
+   OverviewGraph.h \
    PatchWidget.h \
    SocketPatchWidget.h \
    TabWidget.h \
@@ -39,6 +40,8 @@ HEADERS += \
 
 SOURCES += \
    MainWindow.cpp \
+   MessageBar.cpp \
+   OverviewGraph.cpp \
    PatchWidget.cpp \
    SocketPatchWidget.cpp \
    TabWidget.cpp \

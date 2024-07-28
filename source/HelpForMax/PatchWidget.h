@@ -9,6 +9,7 @@
 #include <QPointer>
 
 #include "Edit/EditWidget.h"
+#include "OverviewGraph.h"
 
 class PatchWidget : public QWidget, private Block
 {
@@ -18,14 +19,14 @@ public:
    PatchWidget(QWidget* parent);
 
 public:
-   void openPatch(const QString& pathPath);
+   void openPatch(const QString& patchPath);
    virtual void writeRef();
 
 private:
    QString patchName;
 
    EditWidget* editWidget;
-   QWidget* overviewWidget;
+   Overview::Graph* overviewWidget;
 };
 
 #endif // NOT PatchWidgetH

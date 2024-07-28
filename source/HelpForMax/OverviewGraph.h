@@ -4,17 +4,18 @@
 #include <QGraphicsView>
 
 #include <QGraphicsScene>
-
-#include "Tools/Central.h"
+#include <QJsonObject>
 
 namespace Overview
 {
-   class Graph : public QGraphicsView,
-                 private FunctionHub
+   class Graph : public QGraphicsView
    {
       Q_OBJECT
    public:
-      Graph(QWidget* parent, Central* central);
+      Graph(QWidget* parent);
+
+   public:
+      void load(const QString& patchFileName);
 
    private:
       struct Box
@@ -28,14 +29,11 @@ namespace Overview
       using IdMap = QMap<QString, Box>;
 
    private:
-      void patchSelected(QString patchPath, QString key) override;
-
       IdMap makeObjects(const QJsonObject patcherObject);
       void moveItems(const IdMap& idMap);
       void makeLines(const QJsonObject patcherObject, const IdMap& idMap);
 
    private:
-      Central* central;
       QGraphicsScene* scene;
 
       QPen blackPen;

@@ -12,20 +12,21 @@ PatchWidget::PatchWidget(QWidget* parent)
    , overviewWidget(nullptr)
 {
    editWidget = new EditWidget(this);
-   overviewWidget = new QWidget(this);
+   overviewWidget = new Overview::Graph(this);
 
    QHBoxLayout* masterLayout = new QHBoxLayout(this);
+   masterLayout->setContentsMargins(0, 0, 0, 0);
    masterLayout->addWidget(editWidget);
    masterLayout->addWidget(overviewWidget);
 }
 
-void PatchWidget::openPatch(const QString& pathPath)
+void PatchWidget::openPatch(const QString& patchPath)
 {
-   patchName = Package::setPatchPath(pathPath);
+   patchName = Package::setPatchPath(patchPath);
    setWindowTitle(patchName);
 
    read(patchName);
-   qDebug() << Package::getPath() << patchName;
+   overviewWidget->load(patchPath);
 }
 
 void PatchWidget::writeRef()

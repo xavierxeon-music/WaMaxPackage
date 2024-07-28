@@ -1,16 +1,15 @@
 #include "OverviewGraph.h"
 
 #include <QApplication>
+#include <QDir>
 #include <QGraphicsItem>
 #include <QJsonArray>
+#include <QJsonDocument>
 #include <QJsonValue>
 #include <QVBoxLayout>
 
-#include "Tools/JSONModel.h"
-
-Overview::Graph::Graph(QWidget* parent, Central* central)
+Overview::Graph::Graph(QWidget* parent)
    : QGraphicsView(parent)
-   , central(central)
    , scene(nullptr)
    , blackPen(Qt::black)
    , whiteBrush(Qt::white)
@@ -27,12 +26,21 @@ Overview::Graph::Graph(QWidget* parent, Central* central)
    setAlignment(Qt::AlignLeft | Qt::AlignTop);
 }
 
-void Overview::Graph::patchSelected(QString patchPath, QString key)
+void Overview::Graph::load(const QString& patchFileName)
 {
-   Q_UNUSED(key)
    scene->clear();
 
-   QJsonObject object = JSON::fromFile(patchPath);
+   if (patchFileName.isEmpty())
+      return;
+
+   QFile file(patchFileName);
+   if (!file.open(QIODevice::ReadOnly))
+      return;
+
+   const QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
+   file.close();
+
+   QJsonObject object = doc.object();
    if (object.empty())
       return;
 

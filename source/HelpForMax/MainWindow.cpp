@@ -10,19 +10,19 @@
 #include <QVBoxLayout>
 
 #include "HelpForMax.h"
+#include "MessageBar.h"
+#include "TabWidget.h"
 
 MainWindow::MainWindow()
    : QWidget(nullptr)
-   , tabWidget(nullptr)
    , testClient(nullptr)
 {
    setWindowTitle("Help For Max");
 
    QMenuBar* menuBar = new QMenuBar(this);
-
    QToolBar* toolBar = new QToolBar(this);
-
-   tabWidget = new TabWidget(this);
+   TabWidget* tabWidget = new TabWidget(this);
+   MessageBar* messageBar = new MessageBar(this);
 
    QVBoxLayout* masterLayout = new QVBoxLayout(this);
    masterLayout->setContentsMargins(0, 0, 0, 0);
@@ -30,6 +30,7 @@ MainWindow::MainWindow()
    masterLayout->addWidget(menuBar);
    masterLayout->addWidget(toolBar);
    masterLayout->addWidget(tabWidget);
+   masterLayout->addWidget(messageBar);
 
    QMenu* editMenu = menuBar->addMenu("Edit");
    QAction* openPatchAction = editMenu->addAction(QIcon(":/OpenPatch.svg"), "Open", tabWidget, &TabWidget::slotOpenPatch);

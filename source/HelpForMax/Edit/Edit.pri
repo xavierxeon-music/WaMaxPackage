@@ -3,3 +3,6 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/EditWidget.cpp
+
+FORMS += \
+    $$PWD/EditWidget.ui

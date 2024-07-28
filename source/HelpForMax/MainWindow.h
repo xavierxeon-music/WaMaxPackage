@@ -5,8 +5,6 @@
 
 #include <QPointer>
 
-#include "TabWidget.h"
-
 #include "TestClient.h"
 
 class MainWindow : public QWidget
@@ -24,8 +22,6 @@ private:
    void closeEvent(QCloseEvent* ce) override;
 
 private:
-   TabWidget* tabWidget;
-
    QPointer<TestClient> testClient;
 };
 
