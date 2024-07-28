@@ -12,6 +12,9 @@ QString Package::setPatchPath(const QString& patchPath)
    QFileInfo info(patchPath);
    const QString patchName = info.fileName().replace(".maxpat", "");
 
+   if (patchPath.startsWith(me->path))
+      return patchName;
+
    QString packagePath;
    QDir dir = info.dir();
 
@@ -31,7 +34,10 @@ QString Package::setPatchPath(const QString& patchPath)
          break;
    }
 
-   if (!packagePath.isEmpty() && packagePath != me->path)
+   if (packagePath.isEmpty())
+      return patchName;
+
+   if (packagePath != me->path)
    {
       me->path = packagePath;
       me->author = "";
