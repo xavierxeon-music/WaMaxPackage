@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 14.0.0, 2024-07-27T21:03:53. -->
+<!-- Written by QtCreator 14.0.0, 2024-07-28T18:18:10. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -202,11 +202,13 @@
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
     <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph dwarf,4096 -F 250</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/Volumes/ExternalData/_Home/GitHub/MusicProjects/WaMaxPackage/source/HelpForMax/HelpForMax.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/Volumes/ExternalData/_Home/GitHub/MusicProjects/WaMaxPackage/source/HelpForMax/HelpForMax.pro</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Volumes/ExternalData/_Home/GitHub/MusicProjects/WaMaxPackage/source/HelpForMax/build/Qt_6_7_2_for_macOS-Debug/../bin/HelpForMax.app/Contents/MacOS</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
