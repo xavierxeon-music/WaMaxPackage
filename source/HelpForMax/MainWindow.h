@@ -3,9 +3,11 @@
 
 #include <QWidget>
 
-#include <QTabWidget>
+#include <QPointer>
 
 #include "ServerTabWidget.h"
+
+#include "TestClient.h"
 
 class MainWindow : public QWidget
 {
@@ -14,12 +16,17 @@ class MainWindow : public QWidget
 public:
    MainWindow();
 
+private slots:
+   void slotShowTextClient();
+
 private:
    void setModified(bool enabled, QString key);
    void closeEvent(QCloseEvent* ce) override;
 
 private:
    ServerTabWidget* contentWidget;
+
+   QPointer<TestClient> testClient;
 };
 
 #endif // NOT MainWindowH

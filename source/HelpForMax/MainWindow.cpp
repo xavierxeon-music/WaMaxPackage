@@ -9,11 +9,12 @@
 #include <QToolBar>
 #include <QVBoxLayout>
 
-#include <HelpForMax.h>
+#include "HelpForMax.h"
 
 MainWindow::MainWindow()
    : QWidget(nullptr)
    , contentWidget(nullptr)
+   , testClient(nullptr)
 {
    setWindowTitle("Help For Max");
 
@@ -33,11 +34,32 @@ MainWindow::MainWindow()
    QMenu* editMenu = menuBar->addMenu("Edit");
    QAction* saveAction = editMenu->addAction(QIcon(":/SaveAllPatches.svg"), "Save", contentWidget, &ServerTabWidget::slotSaveCurrentPatch);
 
+   QMenu* testMenu = menuBar->addMenu("Test");
+   QAction* testAction = testMenu->addAction(QIcon(":/OpenPackage.svg"), "Test", this, &MainWindow::slotShowTextClient);
+
+   auto spacer = [&]()
+   {
+      QWidget* widget = new QWidget(this);
+      widget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
+
+      return widget;
+   };
+
    toolBar->addAction(saveAction);
+   toolBar->addWidget(spacer());
+   toolBar->addAction(testAction);
 
    QSettings widgetSettings;
    qDebug() << "SETTINGS @" << widgetSettings.fileName();
    restoreGeometry(widgetSettings.value("MainWidget/Geometry").toByteArray());
+}
+
+void MainWindow::slotShowTextClient()
+{
+   if (testClient.isNull())
+      testClient = new TestClient;
+
+   testClient->show();
 }
 
 void MainWindow::setModified(bool enabled, QString key)

@@ -1,20 +1,19 @@
-#include "helpformax.h"
+#include "wa.helpfile.h"
 
 #include <string>
 
 #include <QJsonDocument>
 #include <QJsonObject>
 
-#include "../../common/HelpForMax.h"
+#include "../../HelpForMax/HelpForMax.h"
 #include "../common.h"
 
-helpformax::helpformax(const atoms& args)
-   : object<helpformax>()
+helpfile::helpfile(const atoms& args)
+   : object<helpfile>()
    , ui_operator::ui_operator(this, args)
-   , timestamp(this, "timestamp", "0000")
-   , paint{this, "paint", minBind(this, &helpformax::paintFunction)}
-   , dblclick(this, "mousedoubleclick", minBind(this, &helpformax::mouseDoubleClickFunction))
-   , loopTimer(this, minBind(this, &helpformax::timerFunction))
+   , paint{this, "paint", minBind(this, &helpfile::paintFunction)}
+   , dblclick(this, "mousedoubleclick", minBind(this, &helpfile::mouseDoubleClickFunction))
+   , loopTimer(this, minBind(this, &helpfile::timerFunction))
    , patchPath()
    , socket(nullptr)
 {
@@ -22,12 +21,12 @@ helpformax::helpformax(const atoms& args)
    loopTimer.delay(1000);
 }
 
-helpformax::~helpformax()
+helpfile::~helpfile()
 {
    delete socket;
 }
 
-atoms helpformax::paintFunction(const atoms& args, const int inlet)
+atoms helpfile::paintFunction(const atoms& args, const int inlet)
 {
    target render(args);
 
@@ -38,7 +37,7 @@ atoms helpformax::paintFunction(const atoms& args, const int inlet)
    return {};
 }
 
-atoms helpformax::mouseDoubleClickFunction(const atoms& args, const int inlet)
+atoms helpfile::mouseDoubleClickFunction(const atoms& args, const int inlet)
 {
    if (!socket->waitForConnected())
    {
@@ -53,7 +52,7 @@ atoms helpformax::mouseDoubleClickFunction(const atoms& args, const int inlet)
    return {};
 }
 
-atoms helpformax::timerFunction(const atoms& args, const int inlet)
+atoms helpfile::timerFunction(const atoms& args, const int inlet)
 {
    auto readRead = [&]()
    {
@@ -76,21 +75,20 @@ atoms helpformax::timerFunction(const atoms& args, const int inlet)
    return {};
 }
 
-void helpformax::sendData()
+void helpfile::sendData()
 {
    if (patchPath.isEmpty())
       patchPath = QString::fromStdString(Patcher::path(this));
 
    QJsonObject object;
    object["patch"] = patchPath;
-   object["timestamp"] = QString(timestamp.get());
 
    QJsonDocument doc(object);
    socket->write(doc.toJson(QJsonDocument::Compact));
    socket->flush();
 }
 
-void helpformax::receiveData()
+void helpfile::receiveData()
 {
    const QJsonDocument doc = QJsonDocument::fromJson(socket->readAll());
    const QJsonObject object = doc.object();
@@ -99,11 +97,9 @@ void helpformax::receiveData()
    if (path != patchPath)
       return;
 
-   const QString ts = object["timestamp"].toString();
-   timestamp = ts.toStdString();
-   Patcher::setDirty(this);
+   //Patcher::setDirty(this);
 
-   cout << "read socket " << path.toStdString() << " " << timestamp.get() << endl;
+   cout << "read socket " << path.toStdString() << endl;
 }
 
-MIN_EXTERNAL(helpformax);
+MIN_EXTERNAL(helpfile);

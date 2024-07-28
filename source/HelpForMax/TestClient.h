@@ -2,11 +2,11 @@
 #define TestClientH
 
 #include "ui_TestClient.h"
-#include <QWidget>
+#include <QDialog>
 
 #include <QLocalSocket>
 
-class TestClient : public QWidget, private Ui::TestClient
+class TestClient : public QDialog, private Ui::TestClient
 {
    Q_OBJECT
 

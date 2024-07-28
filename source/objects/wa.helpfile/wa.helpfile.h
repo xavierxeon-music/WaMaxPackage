@@ -1,6 +1,6 @@
 
-#ifndef Help4MaxH
-#define Help4MaxH
+#ifndef WaHelpFileH
+#define WaHelpFileH
 
 #include "c74_min.h"
 using namespace c74::min;
@@ -8,18 +8,16 @@ using namespace c74::min::ui;
 
 #include <QLocalSocket>
 
-class helpformax : public object<helpformax>, public ui_operator<40, 40>
+class helpfile : public object<helpfile>, public ui_operator<40, 40>
 {
 public:
    MIN_DESCRIPTION{"open help editor"};
 
 public:
-   helpformax(const atoms& args = {});
-   ~helpformax();
+   helpfile(const atoms& args = {});
+   ~helpfile();
 
 public:
-   attribute<symbol> timestamp;
-
    message<> paint;
    message<> dblclick;
    timer<timer_options::defer_delivery> loopTimer;
@@ -37,4 +35,4 @@ private:
    QLocalSocket* socket;
 };
 
-#endif // NOT  Help4MaxH
+#endif // NOT  WaHelpFileH

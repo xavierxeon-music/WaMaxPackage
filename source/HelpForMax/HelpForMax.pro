@@ -1,7 +1,7 @@
 TARGET = HelpForMax
 TEMPLATE = app
 
-QT += widgets  svg
+QT += widgets  svg network
 CONFIG += c++20
 
 DESTDIR = ../bin
@@ -30,15 +30,20 @@ include(Common.pri)
 HEADERS += \
    MainWindow.h \
    PatchWidget.h \
-   ServerTabWidget.h
+   ServerTabWidget.h \
+   TestClient.h \
+   HelpForMax.h \
+   HelpForMax.hpp
 
 SOURCES += \
    MainWindow.cpp \
    PatchWidget.cpp \
-   ServerTabWidget.cpp
+   ServerTabWidget.cpp \
+   TestClient.cpp
 
 RESOURCES += \
    icons/icons.qrc
 
 FORMS += \
-    PatchWidget.ui
+    PatchWidget.ui \
+    TestClient.ui
