@@ -20,6 +20,7 @@ private:
 
 private slots:
    void slotNewConnection();
+   void slotWindowTitleChanged(const QString& name);
 
 private:
    QLocalServer* server;

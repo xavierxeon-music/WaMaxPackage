@@ -25,4 +25,12 @@ void ServerTabWidget::slotNewConnection()
 {
    PatchWidget* patchWidget = new PatchWidget(this, server->nextPendingConnection());
    addTab(patchWidget, "???");
+   connect(patchWidget, &QWidget::windowTitleChanged, this, &ServerTabWidget::slotWindowTitleChanged);
+}
+
+void ServerTabWidget::slotWindowTitleChanged(const QString& name)
+{
+   const PatchWidget* widget = qobject_cast<PatchWidget*>(sender());
+   const int index = indexOf(widget);
+   setTabText(index, name);
 }

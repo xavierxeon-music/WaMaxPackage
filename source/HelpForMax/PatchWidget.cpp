@@ -1,6 +1,7 @@
 #include "PatchWidget.h"
 
 #include <QDateTime>
+#include <QFileInfo>
 #include <QJsonDocument>
 
 #include "ServerTabWidget.h"
@@ -31,9 +32,12 @@ void PatchWidget::slotReceiveData()
    const QJsonDocument doc = QJsonDocument::fromJson(socket->readAll());
    object = doc.object();
 
-   qDebug() << "RECEIVE" << object;
-
    const QString path = object["patch"].toString();
+   QFileInfo info(path);
+   const QString patchName = info.fileName().replace(".maxpat", "");
+   setWindowTitle(patchName);
 
    textEdit->append(path);
+
+   qDebug() << object;
 }
