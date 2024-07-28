@@ -13,7 +13,7 @@
 
 MainWindow::MainWindow()
    : QWidget(nullptr)
-   , contentWidget(nullptr)
+   , tabWidget(nullptr)
    , testClient(nullptr)
 {
    setWindowTitle("Help For Max");
@@ -22,17 +22,20 @@ MainWindow::MainWindow()
 
    QToolBar* toolBar = new QToolBar(this);
 
-   contentWidget = new ServerTabWidget(this);
+   tabWidget = new TabWidget(this);
 
    QVBoxLayout* masterLayout = new QVBoxLayout(this);
    masterLayout->setContentsMargins(0, 0, 0, 0);
    masterLayout->addSpacing(0);
    masterLayout->addWidget(menuBar);
    masterLayout->addWidget(toolBar);
-   masterLayout->addWidget(contentWidget);
+   masterLayout->addWidget(tabWidget);
 
    QMenu* editMenu = menuBar->addMenu("Edit");
-   QAction* saveAction = editMenu->addAction(QIcon(":/SaveAllPatches.svg"), "Save", contentWidget, &ServerTabWidget::slotSaveCurrentPatch);
+   QAction* openPatchAction = editMenu->addAction(QIcon(":/OpenPatch.svg"), "Open", tabWidget, &TabWidget::slotOpenPatch);
+   QAction* saveRefAction = editMenu->addAction(QIcon(":/SaveAllPatches.svg"), "Save", tabWidget, &TabWidget::slotWriteRef);
+   editMenu->addSeparator();
+   QAction* closePatchAction = editMenu->addAction(QIcon(":/Editor.svg"), "Close", tabWidget, &TabWidget::slotClosePatch);
 
    QMenu* testMenu = menuBar->addMenu("Test");
    QAction* testAction = testMenu->addAction(QIcon(":/OpenPackage.svg"), "Test", this, &MainWindow::slotShowTextClient);
@@ -45,7 +48,10 @@ MainWindow::MainWindow()
       return widget;
    };
 
-   toolBar->addAction(saveAction);
+   toolBar->addAction(openPatchAction);
+   toolBar->addAction(saveRefAction);
+   toolBar->addSeparator();
+   toolBar->addAction(closePatchAction);
    toolBar->addWidget(spacer());
    toolBar->addAction(testAction);
 

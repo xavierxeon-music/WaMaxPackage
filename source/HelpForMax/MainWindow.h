@@ -5,7 +5,7 @@
 
 #include <QPointer>
 
-#include "ServerTabWidget.h"
+#include "TabWidget.h"
 
 #include "TestClient.h"
 
@@ -24,7 +24,7 @@ private:
    void closeEvent(QCloseEvent* ce) override;
 
 private:
-   ServerTabWidget* contentWidget;
+   TabWidget* tabWidget;
 
    QPointer<TestClient> testClient;
 };

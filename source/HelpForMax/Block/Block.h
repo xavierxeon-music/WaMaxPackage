@@ -1,28 +1,26 @@
 #ifndef BlockRefH
 #define BlockRefH
 
-#include "Block.h"
+#include "Structure.h"
 
 #include <QDomElement>
 
-class Block::Ref
+class Block : public Structure
 {
 public:
-   Ref(Block* block);
+   Block();
 
 public:
-   const QString& getPath() const;
-
-   void read();
-   void readContent(const QString& content);
-
-   void write();
-   QString writeContent();
+   void read(const QString& patchName);
+   void write(const QString& patchName);
 
 private:
    using TagMap = QMap<QString, QString>;
 
 private:
+   void readContent(const QString& content);
+   QString writeContent(const QString& patchName);
+
    QDomElement createSubElement(QDomElement parent, const QString& name, const QString& text = QString(), const TagMap& tagMap = TagMap());
    void addDigest(const QDomElement& parentElement, const Structure::Digest& digest);
 
@@ -34,9 +32,10 @@ private:
    QString domToMaxFile(QString domXML) const;
    QString maxFileToDom(QString maxXML) const;
 
+   void markUndocumented(Base& base);
+
 private:
-   Block* block;
-   QString refPath;
+   static const QList<QByteArray> descriptionMaxTags;
 };
 
 #endif // NOT BlockRefH

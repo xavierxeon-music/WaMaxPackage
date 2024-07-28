@@ -1,43 +1,33 @@
 #include "PatchWidget.h"
 
-#include <QDateTime>
-#include <QFileInfo>
-#include <QJsonDocument>
+#include <QHBoxLayout>
 
-#include "ServerTabWidget.h"
+#include "Block/Package.h"
 
-PatchWidget::PatchWidget(ServerTabWidget* server, QLocalSocket* socket)
-   : QWidget(server)
-   , server(server)
-   , socket(socket)
-   , object()
+PatchWidget::PatchWidget(QWidget* parent)
+   : QWidget(parent)
+   , Block()
+   , patchName()
+   , editWidget(nullptr)
+   , overviewWidget(nullptr)
 {
-   setupUi(this);
+   editWidget = new EditWidget(this);
+   overviewWidget = new QWidget(this);
 
-   connect(socket, &QLocalSocket::disconnected, this, &QObject::deleteLater);
-   connect(socket, &QIODevice::readyRead, this, &PatchWidget::slotReceiveData);
+   QHBoxLayout* masterLayout = new QHBoxLayout(this);
+   masterLayout->addWidget(editWidget);
+   masterLayout->addWidget(overviewWidget);
 }
 
-void PatchWidget::sendData()
+void PatchWidget::openPatch(const QString& pathPath)
 {
-   object["timestamp"] = QDateTime::currentDateTime().toString();
-   qDebug() << "SEND" << object;
-
-   QJsonDocument doc(object);
-   socket->write(doc.toJson(QJsonDocument::Compact));
-}
-
-void PatchWidget::slotReceiveData()
-{
-   const QJsonDocument doc = QJsonDocument::fromJson(socket->readAll());
-   object = doc.object();
-
-   const QString path = object["patch"].toString();
-   QFileInfo info(path);
-   const QString patchName = info.fileName().replace(".maxpat", "");
+   patchName = Package::setPatchPath(pathPath);
    setWindowTitle(patchName);
 
-   textEdit->append(path);
+   read(patchName);
+   qDebug() << Package::getPath() << patchName;
+}
 
-   qDebug() << object;
+void PatchWidget::writeRef()
+{
 }

@@ -1,32 +1,31 @@
 #ifndef PatchWidgetH
 #define PatchWidgetH
 
-#include "ui_PatchWidget.h"
+#include "Block/Block.h"
 #include <QWidget>
 
 #include <QJsonObject>
 #include <QLocalSocket>
 #include <QPointer>
 
-class ServerTabWidget;
+#include "Edit/EditWidget.h"
 
-class PatchWidget : public QWidget, private Ui::PatchWidget
+class PatchWidget : public QWidget, private Block
 {
    Q_OBJECT
 
 public:
-   PatchWidget(ServerTabWidget* server, QLocalSocket* socket);
+   PatchWidget(QWidget* parent);
 
 public:
-   void sendData();
-
-private slots:
-   void slotReceiveData();
+   void openPatch(const QString& pathPath);
+   virtual void writeRef();
 
 private:
-   ServerTabWidget* server;
-   QPointer<QLocalSocket> socket;
-   QJsonObject object;
+   QString patchName;
+
+   EditWidget* editWidget;
+   QWidget* overviewWidget;
 };
 
 #endif // NOT PatchWidgetH

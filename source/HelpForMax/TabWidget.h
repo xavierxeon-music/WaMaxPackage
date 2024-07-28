@@ -5,24 +5,26 @@
 
 #include <QLocalServer>
 
-class ServerTabWidget : public QTabWidget
+#include "Block/Package.h"
+
+class TabWidget : public QTabWidget
 {
    Q_OBJECT
 
 public:
-   ServerTabWidget(QWidget* parent);
+   TabWidget(QWidget* parent);
 
 public slots:
-   void slotSaveCurrentPatch();
-
-private:
-   friend class Socket;
+   void slotOpenPatch();
+   void slotWriteRef();
+   void slotClosePatch();
 
 private slots:
    void slotNewConnection();
    void slotWindowTitleChanged(const QString& name);
 
 private:
+   Package package;
    QLocalServer* server;
 };
 
