@@ -10,9 +10,12 @@
 
 helpformax::helpformax(const atoms& args)
    : object<helpformax>()
+   , ui_operator::ui_operator(this, args)
    , timestamp(this, "timestamp", "0000")
-   , dblclick(this, "dblclick", minBind(this, &helpformax::mouseDoubleClickFunction))
-   , loopTimer{this, minBind(this, &helpformax::timerFunction)}
+   , paint{this, "paint", minBind(this, &helpformax::paintFunction)}
+   , dblclick(this, "mousedoubleclick", minBind(this, &helpformax::mouseDoubleClickFunction))
+   , loopTimer(this, minBind(this, &helpformax::timerFunction))
+   , patchPath()
    , socket(nullptr)
 {
    socket = new QLocalSocket();
@@ -22,6 +25,17 @@ helpformax::helpformax(const atoms& args)
 helpformax::~helpformax()
 {
    delete socket;
+}
+
+atoms helpformax::paintFunction(const atoms& args, const int inlet)
+{
+   target render(args);
+
+   // background
+   rect<fill>{render, color{0.0, 0.0, 0.0, 1.0}};
+   rect<fill>{render, color{0.3, 0.7, 0.3, 1.0}, position{10.0, 10.0}, size{20.0, -20.0}};
+
+   return {};
 }
 
 atoms helpformax::mouseDoubleClickFunction(const atoms& args, const int inlet)
@@ -62,20 +76,13 @@ atoms helpformax::timerFunction(const atoms& args, const int inlet)
    return {};
 }
 
-QString helpformax::compilePatchPath()
-{
-   using namespace c74;
-
-   max::t_object* max_patch_instance = static_cast<max::t_object*>(patcher());
-   const char* patchPath = max::jpatcher_get_filepath(max_patch_instance)->s_name;
-
-   return patchPath;
-}
-
 void helpformax::sendData()
 {
+   if (patchPath.isEmpty())
+      patchPath = QString::fromStdString(Patcher::path(this));
+
    QJsonObject object;
-   object["patch"] = compilePatchPath();
+   object["patch"] = patchPath;
    object["timestamp"] = QString(timestamp.get());
 
    QJsonDocument doc(object);
@@ -89,11 +96,12 @@ void helpformax::receiveData()
    const QJsonObject object = doc.object();
 
    const QString path = object["patch"].toString();
-   if (path != compilePatchPath())
+   if (path != patchPath)
       return;
 
    const QString ts = object["timestamp"].toString();
    timestamp = ts.toStdString();
+   Patcher::setDirty(this);
 
    cout << "read socket " << path.toStdString() << " " << timestamp.get() << endl;
 }
