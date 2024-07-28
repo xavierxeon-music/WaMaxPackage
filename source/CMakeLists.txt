@@ -3,8 +3,6 @@ cmake_minimum_required(VERSION 3.19)
 string(REGEX REPLACE "(.*)/" "" THIS_FOLDER_NAME "${CMAKE_CURRENT_SOURCE_DIR}")
 project(${THIS_FOLDER_NAME})
 
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/common")
-
 if(APPLE)
    if(${CMAKE_GENERATOR} MATCHES "Xcode")
       if(${XCODE_VERSION} VERSION_LESS 10)
@@ -29,10 +27,10 @@ endif()
 set(CMAKE_CXX_STANDARD 20)
 set(C74_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/../externals")
 
-FILE(GLOB projects RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/objects ${CMAKE_CURRENT_SOURCE_DIR}/objects/*)
+FILE(GLOB projects RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/maxobjects ${CMAKE_CURRENT_SOURCE_DIR}/maxobjects/*)
 
 foreach(project_dir ${projects})
-   set(project_path ${CMAKE_CURRENT_SOURCE_DIR}/objects/${project_dir})
+   set(project_path ${CMAKE_CURRENT_SOURCE_DIR}/maxobjects/${project_dir})
 
    if(EXISTS "${project_path}/CMakeLists.txt")
       message("Generating: ${project_dir}")
