@@ -1,7 +1,11 @@
 #include "EditWidget.h"
 
-EditWidget::EditWidget(QWidget* parent)
+#include "ComponentModel.h"
+
+EditWidget::EditWidget(QWidget* parent, Component::Model* model)
    : QWidget(parent)
 {
    setupUi(this);
+
+   componentTree->setModel(model);
 }

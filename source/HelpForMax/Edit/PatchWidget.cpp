@@ -2,16 +2,20 @@
 
 #include <QHBoxLayout>
 
+#include "ComponentModel.h"
 #include "Data/Package.h"
 
 PatchWidget::PatchWidget(QWidget* parent)
    : QWidget(parent)
    , Block()
    , patchName()
+   , componentModel(nullptr)
    , editWidget(nullptr)
    , overviewWidget(nullptr)
 {
-   editWidget = new EditWidget(this);
+   componentModel = new Component::Model(this, this);
+
+   editWidget = new EditWidget(this, componentModel);
    overviewWidget = new Overview::Graph(this);
 
    QHBoxLayout* masterLayout = new QHBoxLayout(this);
@@ -27,6 +31,8 @@ void PatchWidget::openPatch(const QString& patchPath)
 
    read(patchName);
    overviewWidget->load(patchPath);
+
+   componentModel->patchSelected();
 }
 
 void PatchWidget::writeRef()

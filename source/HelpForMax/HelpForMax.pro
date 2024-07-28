@@ -25,16 +25,14 @@ windows {
    }
 }
 
-include(Edit/Edit.pri)
 include(Data/Data.pri)
-
+include(Edit/Edit.pri)
+include(Tools/Tools.pri)
 
 HEADERS += \
    MainWindow.h \
    MessageBar.h \
    OverviewGraph.h \
-   PatchWidget.h \
-   SocketPatchWidget.h \
    TabWidget.h \
    TestClient.h \
    HelpForMax.h \
@@ -44,8 +42,6 @@ SOURCES += \
    MainWindow.cpp \
    MessageBar.cpp \
    OverviewGraph.cpp \
-   PatchWidget.cpp \
-   SocketPatchWidget.cpp \
    TabWidget.cpp \
    TestClient.cpp
 

@@ -1,15 +1,23 @@
 #include "Block.h"
 
+#include <QApplication>
 #include <QDebug>
 #include <QFile>
 #include <QFileInfo>
+#include <QPalette>
 
 #include "Package.h"
 
+const QBrush Block::udocBrush = QApplication::palette().alternateBase();
+const QBrush Block::docBrush = QApplication::palette().base();
 const QList<QByteArray> Block::descriptionMaxTags = {"o", "m", "at", "ar", "b", "u", "i"};
 
 Block::Block()
    : Structure()
+{
+}
+
+Block::~Block()
 {
 }
 

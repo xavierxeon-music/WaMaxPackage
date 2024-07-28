@@ -2,9 +2,9 @@
 
 #include <QFileDialog>
 
+#include "Edit/PatchWidget.h"
+#include "Edit/SocketPatchWidget.h"
 #include "HelpForMax.h"
-#include "PatchWidget.h"
-#include "SocketPatchWidget.h"
 
 TabWidget::TabWidget(QWidget* parent)
    : QTabWidget(parent)

@@ -8,8 +8,13 @@
 #include <QLocalSocket>
 #include <QPointer>
 
-#include "Edit/EditWidget.h"
+#include "EditWidget.h"
 #include "OverviewGraph.h"
+
+namespace Component
+{
+   class Model;
+};
 
 class PatchWidget : public QWidget, private Block
 {
@@ -25,6 +30,7 @@ public:
 private:
    QString patchName;
 
+   Component::Model* componentModel;
    EditWidget* editWidget;
    Overview::Graph* overviewWidget;
 };

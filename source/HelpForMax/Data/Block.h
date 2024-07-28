@@ -2,17 +2,44 @@
 #define BlockRefH
 
 #include "Structure.h"
+#include <QObject>
 
 #include <QDomElement>
 
 class Block : public Structure
 {
+   Q_GADGET
+
+public:
+   enum Role
+   {
+      RoleMarker = Qt::UserRole + 1,
+      RoleData = Qt::UserRole + 2
+   };
+
+   enum class Marker
+   {
+      Undefined,
+      Patch,
+      Argument,
+      Attribute,
+      MessageStandard,
+      MessageUserDefined,
+      Output
+   };
+   Q_ENUM(Marker)
+
 public:
    Block();
+   virtual ~Block();
 
 public:
    void read(const QString& patchName);
    void write(const QString& patchName);
+
+public:
+   static const QBrush udocBrush;
+   static const QBrush docBrush;
 
 private:
    using TagMap = QMap<QString, QString>;
