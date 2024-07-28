@@ -1,7 +1,7 @@
 #ifndef PatchWidgetH
 #define PatchWidgetH
 
-#include "Block/Block.h"
+#include "Data/Block.h"
 #include <QWidget>
 
 #include <QJsonObject>

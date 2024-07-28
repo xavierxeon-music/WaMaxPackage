@@ -1,6 +1,7 @@
 #ifndef PackageH
 #define PackageH
 
+#include <QFileInfo>
 #include <QString>
 
 class Package
@@ -17,6 +18,9 @@ private:
 private:
    Package();
    ~Package();
+
+private:
+   void update(const QFileInfo& patchInfo);
 
 private:
    static Package* me;

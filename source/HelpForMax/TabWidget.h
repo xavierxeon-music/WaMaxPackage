@@ -5,7 +5,7 @@
 
 #include <QLocalServer>
 
-#include "Block/Package.h"
+#include "Data/Package.h"
 
 class TabWidget : public QTabWidget
 {

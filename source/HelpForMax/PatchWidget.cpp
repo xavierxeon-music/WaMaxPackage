@@ -2,7 +2,7 @@
 
 #include <QHBoxLayout>
 
-#include "Block/Package.h"
+#include "Data/Package.h"
 
 PatchWidget::PatchWidget(QWidget* parent)
    : QWidget(parent)

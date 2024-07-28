@@ -19,7 +19,9 @@ void SocketPatchWidget::slotReceiveData()
    const QJsonObject object = doc.object();
 
    const QString path = object["patch"].toString();
-   openPatch(path);
+
+   metaObject()->invokeMethod(this, &PatchWidget::openPatch, Qt::QueuedConnection, path);
+   //openPatch(path);
 }
 
 void SocketPatchWidget::writeRef()

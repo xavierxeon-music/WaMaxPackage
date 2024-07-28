@@ -8,7 +8,7 @@ CONFIG += c++20
 macx {
    QMAKE_CXXFLAGS += -Werror
    ICON = $$PWD/icons/HelpForMax.icns
-   QMAKE_INFO_PLIST = Info.plist
+   #QMAKE_INFO_PLIST = Info.plist
    CONFIG(release, debug|release){
       DESTDIR = ~/Applications
       QMAKE_POST_LINK = $$(QTDIR)/bin/macdeployqt $${DESTDIR}/$${TARGET}.app
@@ -26,7 +26,7 @@ windows {
 }
 
 include(Edit/Edit.pri)
-include(Block/Block.pri)
+include(Data/Data.pri)
 
 
 HEADERS += \
