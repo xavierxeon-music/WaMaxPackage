@@ -4,6 +4,9 @@
 
 #include <HelpForMax.h>
 
+#include <QJsonDocument>
+#include <QJsonObject>
+
 TestClient::TestClient()
    : QWidget(nullptr)
    , socket(nullptr)
@@ -31,7 +34,12 @@ void TestClient::slotSendData()
 
 void TestClient::slotReceiveData()
 {
-   textEdit->append(QString::fromUtf8(socket->readAll()));
+   const QJsonDocument doc = QJsonDocument::fromJson(socket->readAll());
+   const QJsonObject object = doc.object();
+
+   const QString path = object["path"].toString();
+
+   textEdit->append(doc.toJson());
 }
 
 // main function

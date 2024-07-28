@@ -1,3 +1,6 @@
+#ifndef HelpForMaxHPP
+#define HelpForMaxHPP
+
 #include "HelpForMax.h"
 
 #include <QDebug>
@@ -44,4 +47,7 @@ bool HelpForMax::isServerActive()
 void HelpForMax::startApplication()
 {
    qDebug() << "START APP";
+   // QProcess::startDetached("open", {"-a", "HelpForMax"});
 }
+
+#endif // NOT HelpForMaxHPP

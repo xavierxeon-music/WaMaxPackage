@@ -6,12 +6,16 @@
 class HelpForMax
 {
 public:
-   HelpForMax();
+   inline HelpForMax();
 
 public:
-   static QString compileSockerName();
-   static bool isServerActive();
-   static void startApplication();
+   inline static QString compileSockerName();
+   inline static bool isServerActive();
+   inline static void startApplication();
 };
+
+#ifndef HelpForMaxHPP
+#include "HelpForMax.hpp"
+#endif // NOT HelpForMaxHPP
 
 #endif // NOT HelpForMaxH

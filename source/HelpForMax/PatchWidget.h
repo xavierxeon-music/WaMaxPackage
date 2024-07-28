@@ -4,6 +4,7 @@
 #include "ui_PatchWidget.h"
 #include <QWidget>
 
+#include <QJsonObject>
 #include <QLocalSocket>
 #include <QPointer>
 
@@ -25,6 +26,7 @@ private slots:
 private:
    ServerTabWidget* server;
    QPointer<QLocalSocket> socket;
+   QJsonObject object;
 };
 
 #endif // NOT PatchWidgetH

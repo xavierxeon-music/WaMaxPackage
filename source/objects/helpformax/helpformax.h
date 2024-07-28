@@ -14,19 +14,24 @@ public:
 
 public:
    helpformax(const atoms& args = {});
+   ~helpformax();
 
 public:
    attribute<symbol> timestamp;
 
    message<> dblclick;
+   timer<timer_options::defer_delivery> loopTimer;
 
 private:
    atoms mouseDoubleClickFunction(const atoms& args, const int inlet);
+   atoms timerFunction(const atoms& args, const int inlet);
 
-   void readSocket();
+   QString compilePatchPath();
+   void sendData();
+   void receiveData();
 
 private:
-   QLocalSocket socket;
+   QLocalSocket* socket;
 };
 
 #endif // NOT  Help4MaxH
