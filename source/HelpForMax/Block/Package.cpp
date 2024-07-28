@@ -17,8 +17,8 @@ QString Package::setPatchPath(const QString& patchPath)
 
    while (packagePath.isEmpty())
    {
-      QFileInfoList content = dir.entryInfoList(QDir::Files);
-      for (QFileInfo contentInfo : content)
+      const QFileInfoList content = dir.entryInfoList(QDir::Files);
+      for (const QFileInfo& contentInfo : content)
       {
          if ("package-info.json" != contentInfo.fileName())
             continue;
