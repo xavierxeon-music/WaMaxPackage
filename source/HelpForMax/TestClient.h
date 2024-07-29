@@ -14,8 +14,11 @@ public:
    TestClient();
 
 private slots:
-   void slotSendData();
    void slotReceiveData();
+   void slotSelectItemChanged(QTreeWidgetItem* current, QTreeWidgetItem* previous);
+
+private:
+   void sendData(const QString& patchPath);
 
 private:
    QLocalSocket* socket;

@@ -1,5 +1,6 @@
 #include "TestClient.h"
 
+#include <QFileInfo>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -11,13 +12,49 @@ TestClient::TestClient()
    , socket(nullptr)
 {
    setupUi(this);
+
    socket = new QLocalSocket(this);
    connect(socket, &QLocalSocket::readyRead, this, &TestClient::slotReceiveData);
 
-   connect(sendButton, &QPushButton::clicked, this, &TestClient::slotSendData);
+   selectTree->setHeaderLabels({"Patch"});
+   selectTree->setRootIsDecorated(false);
+
+   auto addItem = [&](const QString& patchPath)
+   {
+      QFileInfo patchInfo(patchPath);
+      const QString patchName = patchInfo.fileName().replace(".maxpat", "");
+
+      QTreeWidgetItem* item = new QTreeWidgetItem(selectTree);
+      item->setText(0, patchName);
+      item->setData(0, Qt::UserRole + 1, patchPath);
+   };
+
+   addItem("/Volumes/ExternalData/_Home/GitHub/MusicProjects/WaMaxPackage/patchers/hardware/wa.grid.pot.maxpat");
+   addItem("/Volumes/ExternalData/_Home/GitHub/MusicProjects/WaMaxPackage/patchers/audio/wa.wave_terrain~.maxpat");
+
+   connect(selectTree, &QTreeWidget::currentItemChanged, this, &TestClient::slotSelectItemChanged);
 }
 
-void TestClient::slotSendData()
+void TestClient::slotReceiveData()
+{
+   const QJsonDocument doc = QJsonDocument::fromJson(socket->readAll());
+   const QJsonObject object = doc.object();
+
+   const QString path = object["path"].toString();
+
+   resultEdit->append(doc.toJson());
+}
+
+void TestClient::slotSelectItemChanged(QTreeWidgetItem* current, QTreeWidgetItem* previous)
+{
+   Q_UNUSED(previous)
+
+   const QString path = current->data(0, Qt::UserRole + 1).toString();
+
+   sendData(path);
+}
+
+void TestClient::sendData(const QString& patchPath)
 {
    if (!socket->waitForConnected())
    {
@@ -29,18 +66,8 @@ void TestClient::slotSendData()
    }
 
    QJsonObject object;
-   object["patch"] = "/Volumes/ExternalData/_Home/GitHub/MusicProjects/WaMaxPackage/patchers/hardware/wa.grid.pot.maxpat";
+   object["patch"] = patchPath;
 
    QJsonDocument doc(object);
    socket->write(doc.toJson(QJsonDocument::Compact));
-}
-
-void TestClient::slotReceiveData()
-{
-   const QJsonDocument doc = QJsonDocument::fromJson(socket->readAll());
-   const QJsonObject object = doc.object();
-
-   const QString path = object["path"].toString();
-
-   textEdit->append(doc.toJson());
 }
