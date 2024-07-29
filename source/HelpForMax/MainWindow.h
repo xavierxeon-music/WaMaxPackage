@@ -7,11 +7,14 @@
 
 #include "TestClient.h"
 
-class TabWidget;
-
 namespace Overview
 {
    class Graph;
+}
+
+namespace Patch
+{
+   class TabWidget;
 }
 
 class MainWindow : public QMainWindow
@@ -28,7 +31,7 @@ private:
    void toogleDock(QWidget* widget, const QString& name, bool enabled);
 
 private:
-   TabWidget* tabWidget;
+   Patch::TabWidget* tabWidget;
    Overview::Graph* overviewWidget;
    TestClient* testClient;
 };

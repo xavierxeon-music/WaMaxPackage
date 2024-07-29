@@ -25,9 +25,6 @@ windows {
    }
 }
 
-include(Data/Data.pri)
-include(Edit/Edit.pri)
-
 include(Package/Package.pri)
 include(Patch/Patch.pri)
 include(Tools/Tools.pri)
@@ -36,7 +33,6 @@ HEADERS += \
    MainWindow.h \
    MessageBar.h \
    OverviewGraph.h \
-   TabWidget.h \
    TestClient.h \
    HelpForMax.h \
    HelpForMax.hpp
@@ -45,7 +41,6 @@ SOURCES += \
    MainWindow.cpp \
    MessageBar.cpp \
    OverviewGraph.cpp \
-   TabWidget.cpp \
    TestClient.cpp
 
 RESOURCES += \

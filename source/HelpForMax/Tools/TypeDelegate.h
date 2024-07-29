@@ -3,7 +3,7 @@
 
 #include <QStyledItemDelegate>
 
-#include "Data/Structure.h"
+#include "Patch/Structure.h"
 
 class TypeDelegate : public QStyledItemDelegate
 {

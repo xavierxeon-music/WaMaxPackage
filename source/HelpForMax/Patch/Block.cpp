@@ -6,7 +6,7 @@
 #include <QFileInfo>
 #include <QPalette>
 
-#include "Package.h"
+#include "Package/PackageInfo.h"
 
 const QBrush Block::udocBrush = QApplication::palette().alternateBase();
 const QBrush Block::docBrush = QApplication::palette().base();
@@ -23,7 +23,7 @@ Block::~Block()
 
 void Block::read(const QString& patchName)
 {
-   const QString refPath = Package::getPath() + "/docs/" + patchName + ".maxref.xml";
+   const QString refPath = Package::Info::getPath() + "/docs/" + patchName + ".maxref.xml";
    QFile file(refPath);
    if (!file.open(QIODevice::ReadOnly))
       return;
@@ -36,7 +36,7 @@ void Block::read(const QString& patchName)
 
 void Block::write(const QString& patchName)
 {
-   const QString refPath = Package::getPath() + "/docs/" + patchName + ".maxref.xml";
+   const QString refPath = Package::Info::getPath() + "/docs/" + patchName + ".maxref.xml";
 
    QFile file(refPath);
    if (!file.open(QIODevice::WriteOnly))
@@ -70,7 +70,7 @@ void Block::readContent(const QByteArray& content)
       const QDomElement metaDataElement = rootElement.firstChildElement("metadatalist");
       if (!metaDataElement.isNull())
       {
-         const QString& packageName = Package::getName();
+         const QString& packageName = Package::Info::getName();
          for (const QDomElement& element : compileAllDirectChildElements(metaDataElement, "metadata"))
          {
             const QString& name = element.attribute("name");
@@ -215,8 +215,8 @@ QByteArray Block::writeContent(const QString& patchName)
 
    {
       QDomElement metaDataElement = createSubElement(rootElement, "metadatalist");
-      createSubElement(metaDataElement, "metadata", Package::getAuthor(), {{"name", "author"}});
-      createSubElement(metaDataElement, "metadata", Package::getName(), {{"name", "tag"}});
+      createSubElement(metaDataElement, "metadata", Package::Info::getAuthor(), {{"name", "author"}});
+      createSubElement(metaDataElement, "metadata", Package::Info::getName(), {{"name", "tag"}});
       for (const QString& tag : patch.metaTagList)
          createSubElement(metaDataElement, "metadata", tag, {{"name", "tag"}});
    }

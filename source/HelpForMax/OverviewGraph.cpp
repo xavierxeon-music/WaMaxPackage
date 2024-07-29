@@ -26,7 +26,7 @@ Overview::Graph::Graph(QWidget* parent)
    setAlignment(Qt::AlignLeft | Qt::AlignTop);
 }
 
-void Overview::Graph::load(const QString& patchFileName)
+void Overview::Graph::slotLoad(const QString& patchFileName)
 {
    scene->clear();
 

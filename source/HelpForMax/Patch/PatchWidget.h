@@ -1,7 +1,7 @@
 #ifndef PatchWidgetH
 #define PatchWidgetH
 
-#include "Data/Block.h"
+#include "Block.h"
 #include "ui_PatchWidget.h"
 #include <QWidget>
 
@@ -24,11 +24,13 @@ namespace Patch
       Widget(QWidget* parent);
 
    public:
+      const QString& getPath() const;
       void openPatch(const QString& patchPath);
       virtual void writeRef();
 
    private:
-      QString patchName;
+      QString path;
+      QString name;
 
       Component::Model* componentModel;
    };

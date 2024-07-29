@@ -1,13 +1,13 @@
-#include "Package.h"
+#include "PackageInfo.h"
 
 #include <QDir>
 
 #include <QJsonDocument>
 #include <QJsonObject>
 
-Package* Package::me = nullptr;
+Package::Info* Package::Info::me = nullptr;
 
-QString Package::setPatchPath(const QString& patchPath)
+QString Package::Info::setPatchPath(const QString& patchPath)
 {
    QFileInfo patchInfo(patchPath);
    const QString patchName = patchInfo.fileName().replace(".maxpat", "");
@@ -17,7 +17,7 @@ QString Package::setPatchPath(const QString& patchPath)
    return patchName;
 }
 
-QString Package::getPath()
+QString Package::Info::getPath()
 {
    if (!me)
       return QString();
@@ -25,7 +25,7 @@ QString Package::getPath()
    return me->path;
 }
 
-QString Package::getName()
+QString Package::Info::getName()
 {
    if (!me)
       return QString();
@@ -33,7 +33,7 @@ QString Package::getName()
    return me->name;
 }
 
-QString Package::getAuthor()
+QString Package::Info::getAuthor()
 {
    if (!me)
       return QString();
@@ -41,7 +41,7 @@ QString Package::getAuthor()
    return me->author;
 }
 
-Package::Package()
+Package::Info::Info()
    : path()
    , name()
    , author()
@@ -49,12 +49,12 @@ Package::Package()
    me = this;
 }
 
-Package::~Package()
+Package::Info::~Info()
 {
    me = nullptr;
 }
 
-void Package::update(const QFileInfo& patchInfo)
+void Package::Info::update(const QFileInfo& patchInfo)
 {
    if (!path.isEmpty())
    {

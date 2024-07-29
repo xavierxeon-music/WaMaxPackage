@@ -12,7 +12,7 @@
 #include "HelpForMax.h"
 #include "MessageBar.h"
 #include "OverviewGraph.h"
-#include "TabWidget.h"
+#include "Patch/PatchTabWidget.h"
 
 MainWindow::MainWindow()
    : QMainWindow(nullptr)
@@ -22,7 +22,7 @@ MainWindow::MainWindow()
 {
    setWindowTitle("Help For Max");
 
-   tabWidget = new TabWidget(this);
+   tabWidget = new Patch::TabWidget(this);
    setCentralWidget(tabWidget);
 
    setStatusBar(new MessageBar(this));
@@ -41,6 +41,8 @@ MainWindow::MainWindow()
    overviewWidget = new Overview::Graph(this);
    addDock(overviewWidget, Qt::RightDockWidgetArea, "OverView");
 
+   connect(tabWidget, &Patch::TabWidget::signalTabSelected, overviewWidget, &Overview::Graph::slotLoad);
+
    testClient = new TestClient;
    addDock(testClient, Qt::TopDockWidgetArea, "Test");
 
@@ -56,18 +58,16 @@ void MainWindow::populateMenuAndToolBar()
 {
    //
    QMenu* patchMenu = menuBar()->addMenu("Patch");
-   QAction* openPatchAction = patchMenu->addAction(QIcon(":/OpenPatch.svg"), "Open", tabWidget, &TabWidget::slotOpenPatch);
+   QAction* openPatchAction = patchMenu->addAction(QIcon(":/OpenPatch.svg"), "Open", tabWidget, &Patch::TabWidget::slotOpenPatch);
    patchMenu->addMenu(tabWidget->getRecentMenu());
-   QAction* saveRefAction = patchMenu->addAction(QIcon(":/SaveAllPatches.svg"), "Save", tabWidget, &TabWidget::slotWriteRef);
+   QAction* saveRefAction = patchMenu->addAction(QIcon(":/SaveAllPatches.svg"), "Save", tabWidget, &Patch::TabWidget::slotWriteRef);
    patchMenu->addSeparator();
-   QAction* closePatchAction = patchMenu->addAction(QIcon(":/Editor.svg"), "Close", tabWidget, &TabWidget::slotClosePatch);
+   QAction* closePatchAction = patchMenu->addAction(QIcon(":/Editor.svg"), "Close", tabWidget, &Patch::TabWidget::slotClosePatch);
 
    //
    QMenu* viewMenu = menuBar()->addMenu("View");
    auto addViewToggle = [&](QWidget* widget, const QString& text)
    {
-      //QAction* viewAction = viewMenu->addAction(text, widget, &QWidget::setVisible);
-
       auto toggleFunction = std::bind(&MainWindow::toogleDock, this, widget, text, std::placeholders::_1);
       QAction* viewAction = viewMenu->addAction(text, toggleFunction);
       viewAction->setCheckable(true);
@@ -133,6 +133,8 @@ int main(int argc, char** argv)
    QApplication::setApplicationName("HelpForMax");
    QApplication::setOrganizationDomain("schweinesystem.ddns.org");
    QApplication::setOrganizationName("SchweineSystem");
+
+   QSettings::setDefaultFormat(QSettings::IniFormat);
 
    QApplication app(argc, argv);
 

@@ -3,7 +3,7 @@
 
 #include <QStandardItemModel>
 
-#include "Data/Block.h"
+#include "Block.h"
 
 namespace Component
 {

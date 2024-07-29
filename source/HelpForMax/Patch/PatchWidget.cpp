@@ -3,12 +3,13 @@
 #include <QHBoxLayout>
 
 #include "ComponentModel.h"
-#include "Data/Package.h"
+#include "Package/PackageInfo.h"
 
 Patch::Widget::Widget(QWidget* parent)
    : QWidget(parent)
    , Block()
-   , patchName()
+   , path()
+   , name()
    , componentModel(nullptr)
 {
    setupUi(this);
@@ -17,12 +18,18 @@ Patch::Widget::Widget(QWidget* parent)
    componentTree->setModel(componentModel);
 }
 
+const QString& Patch::Widget::getPath() const
+{
+   return path;
+}
+
 void Patch::Widget::openPatch(const QString& patchPath)
 {
-   patchName = Package::setPatchPath(patchPath);
-   setWindowTitle(patchName);
+   path = patchPath;
 
-   read(patchName);
+   name = Package::Info::setPatchPath(path);
+   setWindowTitle(name);
+   read(name);
    //overviewWidget->load(patchPath);
 
    componentModel->patchSelected();

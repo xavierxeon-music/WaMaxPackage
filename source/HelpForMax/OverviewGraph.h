@@ -14,8 +14,8 @@ namespace Overview
    public:
       Graph(QWidget* parent);
 
-   public:
-      void load(const QString& patchFileName);
+   public slots:
+      void slotLoad(const QString& patchFileName);
 
    private:
       struct Box

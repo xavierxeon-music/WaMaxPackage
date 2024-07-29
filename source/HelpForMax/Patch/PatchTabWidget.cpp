@@ -1,14 +1,14 @@
-#include "TabWidget.h"
+#include "PatchTabWidget.h"
 
 #include <QFileDialog>
 #include <QMenu>
 #include <QSettings>
 
-#include "Edit/PatchSocketWidget.h"
-#include "Edit/PatchWidget.h"
 #include "HelpForMax.h"
+#include "PatchSocketWidget.h"
+#include "PatchWidget.h"
 
-TabWidget::TabWidget(QWidget* parent)
+Patch::TabWidget::TabWidget(QWidget* parent)
    : QTabWidget(parent)
    , package()
    , server(nullptr)
@@ -21,66 +21,71 @@ TabWidget::TabWidget(QWidget* parent)
 
    server = new QLocalServer(this);
    connect(server, &QLocalServer::newConnection, this, &TabWidget::slotNewConnection);
-
    qDebug() << "Server @" << HelpForMax::compileSockerName();
    server->listen(HelpForMax::compileSockerName());
+
+   connect(this, &QTabWidget::currentChanged, this, &TabWidget::slotTabChanged);
 
    QSettings recentSettings;
    recentFileList = recentSettings.value("RecentPatches").toStringList();
 }
 
-TabWidget::~TabWidget()
+Patch::TabWidget::~TabWidget()
 {
    QSettings recentSettings;
    recentSettings.setValue("RecentPatches", recentFileList);
 }
 
-QMenu* TabWidget::getRecentMenu()
+QMenu* Patch::TabWidget::getRecentMenu()
 {
    return recentMenu;
 }
 
-void TabWidget::slotOpenPatch()
+void Patch::TabWidget::slotOpenPatch()
 {
-   const QString patchFileName = QFileDialog::getOpenFileName(this, "MAX PATCH", Package::getPath(), "*.maxpat");
+   const QString patchFileName = QFileDialog::getOpenFileName(this, "MAX PATCH", Package::Info::getPath(), "*.maxpat");
    if (patchFileName.isEmpty())
       return;
 
-   if (openInternal(patchFileName))
-   {
-      recentFileList.append(patchFileName);
-      while (recentFileList.size() > 10)
-         recentFileList.takeFirst();
-   }
+   openInternal(patchFileName);
 }
 
-void TabWidget::slotWriteRef()
+void Patch::TabWidget::slotWriteRef()
 {
    Patch::Widget* patchWidget = qobject_cast<Patch::Widget*>(currentWidget());
    patchWidget->writeRef();
 }
 
-void TabWidget::slotClosePatch()
+void Patch::TabWidget::slotClosePatch()
 {
    Patch::Widget* patchWidget = qobject_cast<Patch::Widget*>(currentWidget());
    patchWidget->deleteLater();
 }
 
-void TabWidget::slotNewConnection()
+void Patch::TabWidget::slotNewConnection()
 {
    Patch::SocketWidget* patchWidget = new Patch::SocketWidget(this, server->nextPendingConnection());
    addTab(patchWidget, "???");
    connect(patchWidget, &QWidget::windowTitleChanged, this, &TabWidget::slotWindowTitleChanged);
 }
 
-void TabWidget::slotWindowTitleChanged(const QString& name)
+void Patch::TabWidget::slotWindowTitleChanged(const QString& name)
 {
-   const Patch::Widget* widget = qobject_cast<Patch::Widget*>(sender());
-   const int index = indexOf(widget);
+   const Patch::Widget* pathWidget = qobject_cast<Patch::Widget*>(sender());
+   const int index = indexOf(pathWidget);
    setTabText(index, name);
+
+   tabSelected(pathWidget);
+   setCurrentIndex(index);
 }
 
-void TabWidget::slotFillRecentMenu()
+void Patch::TabWidget::slotTabChanged(int index)
+{
+   const Patch::Widget* pathWidget = qobject_cast<Patch::Widget*>(widget(index));
+   tabSelected(pathWidget);
+}
+
+void Patch::TabWidget::slotFillRecentMenu()
 {
    recentMenu->clear();
    for (const QString& patchFileName : recentFileList)
@@ -92,7 +97,16 @@ void TabWidget::slotFillRecentMenu()
    }
 }
 
-bool TabWidget::openInternal(const QString& patchFileName, const QString& patchName)
+void Patch::TabWidget::tabSelected(const Patch::Widget* pathWidget)
+{
+   const QString& path = pathWidget->getPath();
+   if (path.isEmpty())
+      return;
+
+   emit signalTabSelected(path);
+}
+
+bool Patch::TabWidget::openInternal(const QString& patchFileName, const QString& patchName)
 {
    for (int index = 0; index < tabBar()->count(); index++)
    {
@@ -105,6 +119,12 @@ bool TabWidget::openInternal(const QString& patchFileName, const QString& patchN
    connect(patchWidget, &QWidget::windowTitleChanged, this, &TabWidget::slotWindowTitleChanged);
 
    patchWidget->openPatch(patchFileName);
+
+   if (!recentFileList.contains(patchFileName))
+      recentFileList.append(patchFileName);
+
+   while (recentFileList.size() > 10)
+      recentFileList.takeFirst();
 
    return true;
 }
