@@ -3,18 +3,23 @@
 #include <QTimer>
 
 #include "PatchModelAbstract.h"
+#include "PatchWidget.h"
 
 Patch::TreeView::TreeView(QWidget* parent)
    : QTreeView(parent)
+   , widget(nullptr)
    , model(nullptr)
+   , id("???")
 {
    setRootIsDecorated(false);
    connect(this, &QAbstractItemView::doubleClicked, this, &TreeView::slotItemDoubleClicked);
 }
 
-void Patch::TreeView::init(Model::Abstract* model)
+void Patch::TreeView::init(Widget* widget, Model::Abstract* model, const QString& id)
 {
+   this->widget = widget;
    this->model = model;
+   this->id = id;
    setModel(model);
 
    connect(model, &Model::Abstract::modelReset, this, &TreeView::slotResizeColumns);
@@ -33,6 +38,6 @@ void Patch::TreeView::slotResizeColumns()
 
 void Patch::TreeView::slotItemDoubleClicked(const QModelIndex& index)
 {
-   model->getDigest(index);
-   qDebug() << index;
+   Structure::Digest* digest = model->getDigest(index);
+   widget->setDigest(digest, id);
 }

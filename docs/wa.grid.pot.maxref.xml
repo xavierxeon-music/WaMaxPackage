@@ -2,7 +2,7 @@
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
 <c74object name="wa.grid.pot" patcher_type="0">
     <digest>grid element</digest>
-    <description>a kknob on a grid</description>
+    <description>a knob on a grid</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>

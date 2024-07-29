@@ -10,22 +10,26 @@ namespace Patch
       class Abstract;
    }
 
+   class Widget;
+
    class TreeView : public QTreeView
    {
       Q_OBJECT
 
    public:
-      TreeView(QWidget* parent = nullptr);
+      TreeView(QWidget* parent);
 
    public:
-      void init(Model::Abstract* model);
+      void init(Widget* widget, Model::Abstract* model, const QString& id);
 
    private slots:
       void slotResizeColumns();
       void slotItemDoubleClicked(const QModelIndex& index);
 
    private:
+      Widget* widget;
       Model::Abstract* model;
+      QString id;
    };
 } // namespace Patch
 

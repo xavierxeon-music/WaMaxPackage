@@ -1,5 +1,6 @@
 HEADERS += \
     $$PWD/Block.h \
+    $$PWD/DescriptionHighlighter.h \
     $$PWD/PatchModelAbstract.h \
     $$PWD/PatchModelArgument.h \
     $$PWD/PatchModelNamedMessage.h \
@@ -14,6 +15,7 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/Block.cpp \
+    $$PWD/DescriptionHighlighter.cpp \
     $$PWD/PatchModelAbstract.cpp \
     $$PWD/PatchModelArgument.cpp \
     $$PWD/PatchModelNamedMessage.cpp \

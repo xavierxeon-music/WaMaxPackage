@@ -36,11 +36,12 @@ public:
 public:
    void read(const QString& patchName);
    void write(const QString& patchName);
-   void setDirty();
+   virtual void setDirty();
 
 public:
    static const QBrush udocBrush;
    static const QBrush docBrush;
+   static const QList<QByteArray> descriptionMaxTags;
 
 private:
    using TagMap = QMap<QString, QString>;
@@ -61,9 +62,6 @@ private:
    QByteArray maxFileToDom(QByteArray maxXML) const;
 
    void markUndocumented(Base& base);
-
-private:
-   static const QList<QByteArray> descriptionMaxTags;
 };
 
 #endif // NOT BlockRefH

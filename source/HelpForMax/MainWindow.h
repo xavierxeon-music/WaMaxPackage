@@ -24,9 +24,11 @@ class MainWindow : public QMainWindow
 public:
    MainWindow();
 
+public:
+   void checkDirty();
+
 private:
    void populateMenuAndToolBar();
-   void setModified(bool enabled, QString key);
    void closeEvent(QCloseEvent* ce) override;
    void toogleDock(QWidget* widget, const QString& name, bool enabled);
 

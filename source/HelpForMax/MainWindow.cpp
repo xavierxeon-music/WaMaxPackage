@@ -13,6 +13,7 @@
 #include "MessageBar.h"
 #include "OverviewGraph.h"
 #include "Patch/PatchTabWidget.h"
+#include "Patch/PatchWidget.h"
 
 MainWindow::MainWindow()
    : QMainWindow(nullptr)
@@ -20,7 +21,7 @@ MainWindow::MainWindow()
    , overviewWidget(nullptr)
    , testClient(nullptr)
 {
-   setWindowTitle("Help For Max");
+   setWindowTitle("Help For Max [*]");
 
    tabWidget = new Patch::TabWidget(this);
    setCentralWidget(tabWidget);
@@ -102,11 +103,15 @@ void MainWindow::populateMenuAndToolBar()
    patchToolBar->addAction(closePatchAction);
 }
 
-void MainWindow::setModified(bool enabled, QString key)
+void MainWindow::checkDirty()
 {
-   Q_UNUSED(key)
+   bool dirty = false;
+   for (Patch::Widget* widget : findChildren<Patch::Widget*>())
+   {
+      dirty |= widget->isDirty();
+   }
 
-   setWindowModified(enabled);
+   setWindowModified(dirty);
 }
 
 void MainWindow::closeEvent(QCloseEvent* ce)
