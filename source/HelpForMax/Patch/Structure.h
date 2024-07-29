@@ -76,8 +76,8 @@ public:
       Argument::List arguments;
       Digest digest;
 
-      using StandardMap = QMap<Type, Message>;
-      using FreeMap = QMap<QString, Message>; // name vs message
+      using TypedMap = QMap<Type, Message>;
+      using NamedMap = QMap<QString, Message>; // name vs message
    };
 
    // things in patcherargs with @
@@ -99,8 +99,8 @@ public:
    Output::Map outputMap;
    Argument::List argumentList;
    Attribute::Map attributeMap;
-   Message::StandardMap messageStandardMap;
-   Message::FreeMap messageUserDefinedMap;
+   Message::TypedMap messageTypedMap;
+   Message::NamedMap messageNamedMap;
 
 public:
    virtual void clear();

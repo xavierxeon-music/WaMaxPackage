@@ -10,8 +10,11 @@
 #include <QLocalSocket>
 #include <QPointer>
 
+#include "PatchModelAbstract.h"
+
 namespace Patch
 {
+
    class Widget : public QWidget, private Block, private Ui::PatchWidget, private Ui::DigetWidget
    {
       Q_OBJECT
@@ -25,8 +28,17 @@ namespace Patch
       virtual void writeRef();
 
    private:
+      void setDigest(Digest* newDigest, const QString& name);
+      void rebuild();
+      void update();
+
+   private:
       QString path;
       QString name;
+
+      Model::Abstract::List modelList;
+
+      Digest* digest;
    };
 
 } // namespace Patch

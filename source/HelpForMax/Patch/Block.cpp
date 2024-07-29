@@ -179,11 +179,11 @@ void Block::readContent(const QByteArray& content)
             if (isStandard)
             {
                const Structure::Type type = Structure::toType(name);
-               messageStandardMap[type] = message;
+               messageTypedMap[type] = message;
             }
             else
             {
-               messageUserDefinedMap[name] = message;
+               messageNamedMap[name] = message;
             }
          }
       }
@@ -293,14 +293,14 @@ QByteArray Block::writeContent(const QString& patchName)
          addDigest(messageElement, message.digest);
       };
 
-      for (Structure::Message::StandardMap::ConstIterator it = messageStandardMap.constBegin(); it != messageStandardMap.constEnd(); it++)
+      for (Structure::Message::TypedMap::ConstIterator it = messageTypedMap.constBegin(); it != messageTypedMap.constEnd(); it++)
       {
          const Structure::Message& message = it.value();
          const QString& name = Structure::typeName(it.key());
          addMessage(message, name, true);
       }
 
-      for (Structure::Message::FreeMap::ConstIterator it = messageUserDefinedMap.constBegin(); it != messageUserDefinedMap.constEnd(); it++)
+      for (Structure::Message::NamedMap::ConstIterator it = messageNamedMap.constBegin(); it != messageNamedMap.constEnd(); it++)
       {
          const Structure::Message& message = it.value();
          const QString& name = it.key();

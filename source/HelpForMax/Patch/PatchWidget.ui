@@ -36,7 +36,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLabel" name="nameNameLabel">
+      <widget class="QLabel" name="patchNameLabel">
        <property name="sizePolicy">
         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -56,7 +56,7 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_6">
      <item>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="patchDigestEdit">
        <property name="readOnly">
         <bool>true</bool>
        </property>
@@ -110,7 +110,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QTreeView" name="argumetTree"/>
+    <widget class="Patch::TreeView" name="argumentTree"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -137,7 +137,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QTreeView" name="typedMessageTree"/>
+    <widget class="Patch::TreeView" name="typedMessageTree"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -178,7 +178,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QTreeView" name="namedMessageTree"/>
+    <widget class="Patch::TreeView" name="namedMessageTree"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -222,10 +222,17 @@
     </layout>
    </item>
    <item>
-    <widget class="QTreeView" name="outputsTree"/>
+    <widget class="Patch::TreeView" name="outputTree"/>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Patch::TreeView</class>
+   <extends>QTreeView</extends>
+   <header>Patch/PatchTreeView.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

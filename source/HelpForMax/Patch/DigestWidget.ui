@@ -30,7 +30,7 @@
    <item>
     <widget class="QLabel" name="syntaxInfo">
      <property name="text">
-      <string>add helful syntax stuff here</string>
+      <string>add helpful syntax stuff here</string>
      </property>
     </widget>
    </item>
