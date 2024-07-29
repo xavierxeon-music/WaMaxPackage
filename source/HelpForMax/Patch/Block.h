@@ -36,6 +36,7 @@ public:
 public:
    void read(const QString& patchName);
    void write(const QString& patchName);
+   void setDirty();
 
 public:
    static const QBrush udocBrush;

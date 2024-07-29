@@ -6,12 +6,12 @@
 #include <QCoreApplication>
 #include <QThread>
 
+#include "DelegateType.h"
 #include "Package/PackageInfo.h"
 #include "PatchModelArgument.h"
 #include "PatchModelNamedMessage.h"
 #include "PatchModelOutput.h"
 #include "PatchModelTypedMessage.h"
-#include "TypeDelegate.h"
 
 Patch::Widget::Widget(QWidget* parent)
    : QWidget(parent)
@@ -28,6 +28,7 @@ Patch::Widget::Widget(QWidget* parent)
    QScrollArea* scrollArea = new QScrollArea(this);
    scrollArea->setFrameShadow(QFrame::Plain);
    scrollArea->setFrameShape(QFrame::NoFrame);
+   scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
    scrollArea->setWidget(content);
 
    // right: digest area
@@ -37,7 +38,7 @@ Patch::Widget::Widget(QWidget* parent)
    Model::Argument* argumentModel = new Model::Argument(this, this);
    modelList.append(argumentModel);
    argumentTree->setModel(argumentModel);
-   argumentTree->setItemDelegateForColumn(1, new TypeDelegate(this, argumentModel));
+   argumentTree->setItemDelegateForColumn(1, new Delegate::Type(this, argumentModel));
 
    Model::TypedMessage* typedMessageModel = new Model::TypedMessage(this, this);
    modelList.append(typedMessageModel);
@@ -75,6 +76,7 @@ void Patch::Widget::openPatch(const QString& patchPath)
 
 void Patch::Widget::writeRef()
 {
+   write(name);
 }
 
 void Patch::Widget::setDigest(Digest* newDigest, const QString& name)

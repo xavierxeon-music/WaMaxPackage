@@ -24,6 +24,7 @@ Block::~Block()
 void Block::read(const QString& patchName)
 {
    const QString refPath = Package::Info::getPath() + "/docs/" + patchName + ".maxref.xml";
+   qDebug() << "READ REF " << refPath;
    QFile file(refPath);
    if (!file.open(QIODevice::ReadOnly))
       return;
@@ -457,4 +458,8 @@ QByteArray Block::maxFileToDom(QByteArray maxXML) const
 void Block::markUndocumented(Base& base)
 {
    Q_UNUSED(base)
+}
+
+void Block::setDirty()
+{
 }

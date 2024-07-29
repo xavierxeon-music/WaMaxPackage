@@ -1,14 +1,14 @@
-#include "TypeDelegate.h"
+#include "DelegateType.h"
 
 #include <QComboBox>
 
-TypeDelegate::TypeDelegate(QObject* parent, TypeDelegate::Proxy* proxy)
+Delegate::Type::Type(QObject* parent, Type::Source* source)
    : QStyledItemDelegate(parent)
-   , proxy(proxy)
+   , source(source)
 {
 }
 
-QWidget* TypeDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
+QWidget* Delegate::Type::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
    Q_UNUSED(option)
    Q_UNUSED(index)
@@ -28,24 +28,24 @@ QWidget* TypeDelegate::createEditor(QWidget* parent, const QStyleOptionViewItem&
    return comboBox;
 }
 
-void TypeDelegate::setEditorData(QWidget* editor, const QModelIndex& index) const
+void Delegate::Type::setEditorData(QWidget* editor, const QModelIndex& index) const
 {
    QComboBox* comboBox = qobject_cast<QComboBox*>(editor);
 
-   const Structure::Type type = proxy->getType(index.row());
+   const Structure::Type type = source->getType(index.row());
    const int typeIndex = comboBox->findText(Structure::typeName(type));
    comboBox->setCurrentIndex(typeIndex);
 }
 
-void TypeDelegate::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
+void Delegate::Type::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
    QComboBox* comboBox = qobject_cast<QComboBox*>(editor);
 
    const QString typeText = comboBox->currentText();
-   model->setData(index, typeText, Qt::DisplayRole);
+   model->setData(index, typeText, Qt::EditRole);
 }
 
-void TypeDelegate::updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const
+void Delegate::Type::updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
    Q_UNUSED(index)
 

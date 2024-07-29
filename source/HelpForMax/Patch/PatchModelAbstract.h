@@ -4,13 +4,12 @@
 #include <QStandardItemModel>
 
 #include "Block.h"
-#include "TypeDelegate.h"
 
 namespace Patch
 {
    namespace Model
    {
-      class Abstract : public QStandardItemModel, public TypeDelegate::Proxy
+      class Abstract : public QStandardItemModel
       {
          Q_OBJECT
       public:
@@ -22,7 +21,6 @@ namespace Patch
       public:
          virtual void update() = 0;
          virtual void rebuild() = 0;
-         virtual Structure::Type getType(const int index);
 
       protected:
          Block* block;

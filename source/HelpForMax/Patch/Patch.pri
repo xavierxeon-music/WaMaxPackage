@@ -10,7 +10,7 @@ HEADERS += \
     $$PWD/PatchTreeView.h \
     $$PWD/PatchWidget.h \
     $$PWD/Structure.h \
-    $$PWD/TypeDelegate.h
+    $$PWD/DelegateType.h
 
 SOURCES += \
     $$PWD/Block.cpp \
@@ -24,7 +24,7 @@ SOURCES += \
     $$PWD/PatchTreeView.cpp \
     $$PWD/PatchWidget.cpp \
     $$PWD/Structure.cpp \
-    $$PWD/TypeDelegate.cpp
+    $$PWD/DelegateType.cpp
 
 FORMS += \
     $$PWD/DigestWidget.ui \
