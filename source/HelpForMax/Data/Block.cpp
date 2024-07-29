@@ -51,12 +51,11 @@ void Block::write(const QString& patchName)
 
 void Block::readContent(const QByteArray& content)
 {
-   QString errorMessage;
    QDomDocument doc;
    QDomDocument::ParseResult result = doc.setContent(content);
    if (!result.errorMessage.isEmpty())
    {
-      qWarning() << "unable to read xml" << errorMessage;
+      qWarning() << "unable to read xml" << result.errorMessage;
       return;
    }
 

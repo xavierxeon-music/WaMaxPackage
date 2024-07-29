@@ -56,15 +56,18 @@ Package::~Package()
 
 void Package::update(const QFileInfo& patchInfo)
 {
-   if (patchInfo.absoluteFilePath().startsWith(path))
-      return;
-   else
-      ; // package has changed, display message
+   if (!path.isEmpty())
+   {
+      if (patchInfo.absoluteFilePath().startsWith(path))
+         return;
+      else
+         ; // package has changed, display message
+   }
+
+   // TODO cleanup: search for file name, package equality has been checked above
 
    QString packagePath;
-   QDir dir = patchInfo.dir();
-
-   while (packagePath.isEmpty())
+   for (QDir dir = patchInfo.dir(); !dir.isRoot(); dir.cdUp())
    {
       const QFileInfoList content = dir.entryInfoList(QDir::Files);
       for (const QFileInfo& contentInfo : content)
@@ -75,9 +78,6 @@ void Package::update(const QFileInfo& patchInfo)
          packagePath = contentInfo.dir().absolutePath();
          break;
       }
-      dir.cdUp();
-      if (dir.isRoot())
-         break;
    }
 
    if (packagePath.isEmpty())
