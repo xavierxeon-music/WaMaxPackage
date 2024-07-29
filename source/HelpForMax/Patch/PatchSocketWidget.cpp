@@ -21,7 +21,6 @@ void Patch::SocketWidget::slotReceiveData()
    const QString path = object["patch"].toString();
 
    metaObject()->invokeMethod(this, &Widget::openPatch, Qt::QueuedConnection, path);
-   //openPatch(path);
 }
 
 void Patch::SocketWidget::writeRef()

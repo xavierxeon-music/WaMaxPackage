@@ -3,6 +3,9 @@
 #include <QHBoxLayout>
 #include <QScrollArea>
 
+#include <QCoreApplication>
+#include <QThread>
+
 #include "ComponentModel.h"
 #include "Package/PackageInfo.h"
 

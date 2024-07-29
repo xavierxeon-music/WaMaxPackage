@@ -67,8 +67,11 @@ void Package::Info::update(const QFileInfo& patchInfo)
    author = "";
    name = "";
 
+   if (!patchInfo.exists())
+      return;
+
    QString fileName;
-   for (QDir dir = patchInfo.dir(); !dir.isRoot(); dir.cdUp())
+   for (QDir dir = patchInfo.dir(); !dir.isRoot() && fileName.isEmpty(); dir.cdUp())
    {
       const QFileInfoList content = dir.entryInfoList(QDir::Files);
       for (const QFileInfo& contentInfo : content)

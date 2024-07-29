@@ -27,7 +27,6 @@ windows {
 
 include(Package/Package.pri)
 include(Patch/Patch.pri)
-include(Tools/Tools.pri)
 
 HEADERS += \
    MainWindow.h \
