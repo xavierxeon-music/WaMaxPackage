@@ -34,6 +34,7 @@ MainWindow::MainWindow()
 
    QMenu* editMenu = menuBar->addMenu("Edit");
    QAction* openPatchAction = editMenu->addAction(QIcon(":/OpenPatch.svg"), "Open", tabWidget, &TabWidget::slotOpenPatch);
+   editMenu->addMenu(tabWidget->getRecentMenu());
    QAction* saveRefAction = editMenu->addAction(QIcon(":/SaveAllPatches.svg"), "Save", tabWidget, &TabWidget::slotWriteRef);
    editMenu->addSeparator();
    QAction* closePatchAction = editMenu->addAction(QIcon(":/Editor.svg"), "Close", tabWidget, &TabWidget::slotClosePatch);
