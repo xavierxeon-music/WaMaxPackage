@@ -10,12 +10,8 @@ Patch::Widget::Widget(QWidget* parent)
    , Block()
    , path()
    , name()
-   , componentModel(nullptr)
 {
    setupUi(this);
-
-   componentModel = new Component::Model(this, this);
-   componentTree->setModel(componentModel);
 }
 
 const QString& Patch::Widget::getPath() const
@@ -30,9 +26,8 @@ void Patch::Widget::openPatch(const QString& patchPath)
    name = Package::Info::setPatchPath(path);
    setWindowTitle(name);
    read(name);
-   //overviewWidget->load(patchPath);
 
-   componentModel->patchSelected();
+   //componentModel->patchSelected();
 }
 
 void Patch::Widget::writeRef()

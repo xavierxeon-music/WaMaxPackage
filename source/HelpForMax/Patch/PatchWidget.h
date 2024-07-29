@@ -9,11 +9,6 @@
 #include <QLocalSocket>
 #include <QPointer>
 
-namespace Component
-{
-   class Model;
-};
-
 namespace Patch
 {
    class Widget : public QWidget, private Block, private Ui::Widget
@@ -31,8 +26,6 @@ namespace Patch
    private:
       QString path;
       QString name;
-
-      Component::Model* componentModel;
    };
 
 } // namespace Patch
