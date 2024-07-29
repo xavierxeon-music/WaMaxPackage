@@ -2,46 +2,87 @@
 
 #include <QApplication>
 #include <QCloseEvent>
+#include <QDockWidget>
 #include <QMenu>
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QSettings>
 #include <QToolBar>
-#include <QVBoxLayout>
 
 #include "HelpForMax.h"
 #include "MessageBar.h"
+#include "OverviewGraph.h"
 #include "TabWidget.h"
 
 MainWindow::MainWindow()
-   : QWidget(nullptr)
+   : QMainWindow(nullptr)
+   , tabWidget(nullptr)
+   , overviewWidget(nullptr)
    , testClient(nullptr)
 {
    setWindowTitle("Help For Max");
 
-   QMenuBar* menuBar = new QMenuBar(this);
-   QToolBar* toolBar = new QToolBar(this);
-   TabWidget* tabWidget = new TabWidget(this);
-   MessageBar* messageBar = new MessageBar(this);
+   tabWidget = new TabWidget(this);
+   setCentralWidget(tabWidget);
 
-   QVBoxLayout* masterLayout = new QVBoxLayout(this);
-   masterLayout->setContentsMargins(0, 0, 0, 0);
-   masterLayout->addSpacing(0);
-   masterLayout->addWidget(menuBar);
-   masterLayout->addWidget(toolBar);
-   masterLayout->addWidget(tabWidget);
-   masterLayout->addWidget(messageBar);
+   setStatusBar(new MessageBar(this));
 
-   QMenu* editMenu = menuBar->addMenu("Edit");
-   QAction* openPatchAction = editMenu->addAction(QIcon(":/OpenPatch.svg"), "Open", tabWidget, &TabWidget::slotOpenPatch);
-   editMenu->addMenu(tabWidget->getRecentMenu());
-   QAction* saveRefAction = editMenu->addAction(QIcon(":/SaveAllPatches.svg"), "Save", tabWidget, &TabWidget::slotWriteRef);
-   editMenu->addSeparator();
-   QAction* closePatchAction = editMenu->addAction(QIcon(":/Editor.svg"), "Close", tabWidget, &TabWidget::slotClosePatch);
+   auto addDock = [&](QWidget* widget, const Qt::DockWidgetArea& area, const QString& name)
+   {
+      QDockWidget* dockWidget = new QDockWidget(this);
+      dockWidget->setObjectName(name);
+      dockWidget->setWidget(widget);
+      dockWidget->setFeatures(QDockWidget::NoDockWidgetFeatures);
+      dockWidget->setTitleBarWidget(new QWidget());
 
-   QMenu* testMenu = menuBar->addMenu("Test");
-   QAction* testAction = testMenu->addAction(QIcon(":/OpenPackage.svg"), "Test", this, &MainWindow::slotShowTextClient);
+      addDockWidget(area, dockWidget);
+   };
 
+   overviewWidget = new Overview::Graph(this);
+   addDock(overviewWidget, Qt::RightDockWidgetArea, "OverView");
+
+   testClient = new TestClient;
+   addDock(testClient, Qt::TopDockWidgetArea, "Test");
+
+   populateMenuAndToolBar();
+
+   QSettings widgetSettings;
+   qDebug() << "SETTINGS @" << widgetSettings.fileName();
+   restoreGeometry(widgetSettings.value("MainWidget/Geometry").toByteArray());
+   restoreState(widgetSettings.value("MainWidget/State").toByteArray());
+}
+
+void MainWindow::populateMenuAndToolBar()
+{
+   //
+   QMenu* patchMenu = menuBar()->addMenu("Patch");
+   QAction* openPatchAction = patchMenu->addAction(QIcon(":/OpenPatch.svg"), "Open", tabWidget, &TabWidget::slotOpenPatch);
+   patchMenu->addMenu(tabWidget->getRecentMenu());
+   QAction* saveRefAction = patchMenu->addAction(QIcon(":/SaveAllPatches.svg"), "Save", tabWidget, &TabWidget::slotWriteRef);
+   patchMenu->addSeparator();
+   QAction* closePatchAction = patchMenu->addAction(QIcon(":/Editor.svg"), "Close", tabWidget, &TabWidget::slotClosePatch);
+
+   //
+   QMenu* viewMenu = menuBar()->addMenu("View");
+   auto addViewToggle = [&](QWidget* widget, const QString& text)
+   {
+      //QAction* viewAction = viewMenu->addAction(text, widget, &QWidget::setVisible);
+
+      auto toggleFunction = std::bind(&MainWindow::toogleDock, this, widget, text, std::placeholders::_1);
+      QAction* viewAction = viewMenu->addAction(text, toggleFunction);
+      viewAction->setCheckable(true);
+
+      QSettings dockSettings;
+      const bool enabled = dockSettings.value("Dock/" + text).toBool();
+
+      widget->setVisible(enabled);
+      viewAction->setChecked(enabled);
+   };
+   addViewToggle(overviewWidget, "Overview");
+   addViewToggle(testClient, "Test");
+   viewMenu->addSeparator();
+
+   //
    auto spacer = [&]()
    {
       QWidget* widget = new QWidget(this);
@@ -49,25 +90,16 @@ MainWindow::MainWindow()
 
       return widget;
    };
+   Q_UNUSED(spacer)
 
-   toolBar->addAction(openPatchAction);
-   toolBar->addAction(saveRefAction);
-   toolBar->addSeparator();
-   toolBar->addAction(closePatchAction);
-   toolBar->addWidget(spacer());
-   toolBar->addAction(testAction);
+   QToolBar* patchToolBar = addToolBar("Patch");
+   patchToolBar->setObjectName("Patch");
+   patchToolBar->setMovable(false);
 
-   QSettings widgetSettings;
-   qDebug() << "SETTINGS @" << widgetSettings.fileName();
-   restoreGeometry(widgetSettings.value("MainWidget/Geometry").toByteArray());
-}
-
-void MainWindow::slotShowTextClient()
-{
-   if (testClient.isNull())
-      testClient = new TestClient;
-
-   testClient->show();
+   patchToolBar->addAction(openPatchAction);
+   patchToolBar->addAction(saveRefAction);
+   patchToolBar->addSeparator();
+   patchToolBar->addAction(closePatchAction);
 }
 
 void MainWindow::setModified(bool enabled, QString key)
@@ -81,8 +113,17 @@ void MainWindow::closeEvent(QCloseEvent* ce)
 {
    QSettings widgetSettings;
    widgetSettings.setValue("MainWidget/Geometry", saveGeometry());
+   widgetSettings.setValue("MainWidget/State", saveState());
 
    ce->accept();
+}
+
+void MainWindow::toogleDock(QWidget* widget, const QString& name, bool enabled)
+{
+   widget->setVisible(enabled);
+
+   QSettings dockSettings;
+   dockSettings.setValue("Dock/" + name, enabled);
 }
 
 // main function

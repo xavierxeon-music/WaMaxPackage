@@ -1,7 +1,7 @@
 #ifndef EditWidgetH
 #define EditWidgetH
 
-#include "ui_EditWidget.h"
+#include "ui_PatchWidget.h"
 #include <QWidget>
 
 namespace Component

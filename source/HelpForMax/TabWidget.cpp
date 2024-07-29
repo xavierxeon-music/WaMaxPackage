@@ -4,8 +4,8 @@
 #include <QMenu>
 #include <QSettings>
 
+#include "Edit/PatchSocketWidget.h"
 #include "Edit/PatchWidget.h"
-#include "Edit/SocketPatchWidget.h"
 #include "HelpForMax.h"
 
 TabWidget::TabWidget(QWidget* parent)
@@ -56,26 +56,26 @@ void TabWidget::slotOpenPatch()
 
 void TabWidget::slotWriteRef()
 {
-   PatchWidget* patchWidget = qobject_cast<PatchWidget*>(currentWidget());
+   Patch::Widget* patchWidget = qobject_cast<Patch::Widget*>(currentWidget());
    patchWidget->writeRef();
 }
 
 void TabWidget::slotClosePatch()
 {
-   PatchWidget* patchWidget = qobject_cast<PatchWidget*>(currentWidget());
+   Patch::Widget* patchWidget = qobject_cast<Patch::Widget*>(currentWidget());
    patchWidget->deleteLater();
 }
 
 void TabWidget::slotNewConnection()
 {
-   SocketPatchWidget* patchWidget = new SocketPatchWidget(this, server->nextPendingConnection());
+   Patch::SocketWidget* patchWidget = new Patch::SocketWidget(this, server->nextPendingConnection());
    addTab(patchWidget, "???");
    connect(patchWidget, &QWidget::windowTitleChanged, this, &TabWidget::slotWindowTitleChanged);
 }
 
 void TabWidget::slotWindowTitleChanged(const QString& name)
 {
-   const PatchWidget* widget = qobject_cast<PatchWidget*>(sender());
+   const Patch::Widget* widget = qobject_cast<Patch::Widget*>(sender());
    const int index = indexOf(widget);
    setTabText(index, name);
 }
@@ -100,7 +100,7 @@ bool TabWidget::openInternal(const QString& patchFileName, const QString& patchN
          return false;
    }
 
-   PatchWidget* patchWidget = new PatchWidget(this);
+   Patch::Widget* patchWidget = new Patch::Widget(this);
    addTab(patchWidget, "???");
    connect(patchWidget, &QWidget::windowTitleChanged, this, &TabWidget::slotWindowTitleChanged);
 

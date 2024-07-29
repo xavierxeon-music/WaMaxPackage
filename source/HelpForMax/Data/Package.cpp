@@ -64,9 +64,10 @@ void Package::update(const QFileInfo& patchInfo)
          ; // package has changed, display message
    }
 
-   // TODO cleanup: search for file name, package equality has been checked above
+   author = "";
+   name = "";
 
-   QString packagePath;
+   QString fileName;
    for (QDir dir = patchInfo.dir(); !dir.isRoot(); dir.cdUp())
    {
       const QFileInfoList content = dir.entryInfoList(QDir::Files);
@@ -75,34 +76,26 @@ void Package::update(const QFileInfo& patchInfo)
          if ("package-info.json" != contentInfo.fileName())
             continue;
 
-         packagePath = contentInfo.dir().absolutePath();
+         path = contentInfo.dir().absolutePath();
+         fileName = contentInfo.absoluteFilePath();
          break;
       }
    }
 
-   if (packagePath.isEmpty())
+   if (fileName.isEmpty())
       return;
 
-   if (packagePath != path)
+   QFile file(fileName);
+   if (!file.open(QIODevice::ReadOnly))
+      return;
+
+   const QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
+   file.close();
+
+   const QJsonObject object = doc.object();
+   if (!object.empty())
    {
-      path = packagePath;
-      author = "";
-      name = "";
-
-      const QString fileName = packagePath + "/package-info.json";
-
-      QFile file(fileName);
-      if (file.open(QIODevice::ReadOnly))
-      {
-         const QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
-         file.close();
-
-         const QJsonObject object = doc.object();
-         if (!object.empty())
-         {
-            author = object["author"].toString();
-            name = object["name"].toString();
-         }
-      }
+      author = object["author"].toString();
+      name = object["name"].toString();
    }
 }

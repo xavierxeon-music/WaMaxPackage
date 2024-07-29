@@ -1,14 +1,12 @@
 HEADERS += \
     $$PWD/ComponentModel.h \
-    $$PWD/EditWidget.h \
-    $$PWD/PatchWidget.h \
-    $$PWD/SocketPatchWidget.h
+    $$PWD/PatchSocketWidget.h \
+    $$PWD/PatchWidget.h
 
 SOURCES += \
     $$PWD/ComponentModel.cpp \
-    $$PWD/EditWidget.cpp \
-    $$PWD/PatchWidget.cpp \
-    $$PWD/SocketPatchWidget.cpp
+    $$PWD/PatchSocketWidget.cpp \
+    $$PWD/PatchWidget.cpp
 
 FORMS += \
-    $$PWD/EditWidget.ui
+    $$PWD/PatchWidget.ui

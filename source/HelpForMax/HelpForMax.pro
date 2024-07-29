@@ -27,6 +27,9 @@ windows {
 
 include(Data/Data.pri)
 include(Edit/Edit.pri)
+
+include(Package/Package.pri)
+include(Patch/Patch.pri)
 include(Tools/Tools.pri)
 
 HEADERS += \

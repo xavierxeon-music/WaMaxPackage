@@ -2,37 +2,37 @@
 #define PatchWidgetH
 
 #include "Data/Block.h"
+#include "ui_PatchWidget.h"
 #include <QWidget>
 
 #include <QJsonObject>
 #include <QLocalSocket>
 #include <QPointer>
 
-#include "EditWidget.h"
-#include "OverviewGraph.h"
-
 namespace Component
 {
    class Model;
 };
 
-class PatchWidget : public QWidget, private Block
+namespace Patch
 {
-   Q_OBJECT
+   class Widget : public QWidget, private Block, private Ui::Widget
+   {
+      Q_OBJECT
 
-public:
-   PatchWidget(QWidget* parent);
+   public:
+      Widget(QWidget* parent);
 
-public:
-   void openPatch(const QString& patchPath);
-   virtual void writeRef();
+   public:
+      void openPatch(const QString& patchPath);
+      virtual void writeRef();
 
-private:
-   QString patchName;
+   private:
+      QString patchName;
 
-   Component::Model* componentModel;
-   EditWidget* editWidget;
-   Overview::Graph* overviewWidget;
-};
+      Component::Model* componentModel;
+   };
+
+} // namespace Patch
 
 #endif // NOT PatchWidgetH

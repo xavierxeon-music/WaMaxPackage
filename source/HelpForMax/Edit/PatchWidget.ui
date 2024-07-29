@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>EditWidget</class>
- <widget class="QWidget" name="EditWidget">
+ <class>Patch::Widget</class>
+ <widget class="QWidget" name="Patch::Widget">
   <property name="geometry">
    <rect>
     <x>0</x>

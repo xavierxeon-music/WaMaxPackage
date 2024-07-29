@@ -1,32 +1,32 @@
-#include "SocketPatchWidget.h"
+#include "PatchSocketWidget.h"
 
 #include <QDateTime>
 #include <QJsonDocument>
 
-SocketPatchWidget::SocketPatchWidget(QWidget* parent, QLocalSocket* socket)
-   : PatchWidget(parent)
+Patch::SocketWidget::SocketWidget(QWidget* parent, QLocalSocket* socket)
+   : Widget(parent)
    , socket(socket)
 {
    socket->setParent(this);
 
    connect(socket, &QLocalSocket::disconnected, this, &QObject::deleteLater);
-   connect(socket, &QIODevice::readyRead, this, &SocketPatchWidget::slotReceiveData);
+   connect(socket, &QIODevice::readyRead, this, &SocketWidget::slotReceiveData);
 }
 
-void SocketPatchWidget::slotReceiveData()
+void Patch::SocketWidget::slotReceiveData()
 {
    const QJsonDocument doc = QJsonDocument::fromJson(socket->readAll());
    const QJsonObject object = doc.object();
 
    const QString path = object["patch"].toString();
 
-   metaObject()->invokeMethod(this, &PatchWidget::openPatch, Qt::QueuedConnection, path);
+   metaObject()->invokeMethod(this, &Widget::openPatch, Qt::QueuedConnection, path);
    //openPatch(path);
 }
 
-void SocketPatchWidget::writeRef()
+void Patch::SocketWidget::writeRef()
 {
-   PatchWidget::writeRef();
+   Widget::writeRef();
 
    const QJsonObject object;
    object["timestamp"] = QDateTime::currentDateTime().toString();

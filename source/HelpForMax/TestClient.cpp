@@ -15,7 +15,6 @@ TestClient::TestClient()
    connect(socket, &QLocalSocket::readyRead, this, &TestClient::slotReceiveData);
 
    connect(sendButton, &QPushButton::clicked, this, &TestClient::slotSendData);
-   slotSendData();
 }
 
 void TestClient::slotSendData()
