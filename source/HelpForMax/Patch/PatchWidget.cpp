@@ -6,12 +6,14 @@
 #include "Package/PackageInfo.h"
 
 Patch::Widget::Widget(QWidget* parent)
-   : QWidget(parent)
+   : QScrollArea(parent)
    , Block()
    , path()
    , name()
 {
-   setupUi(this);
+   QWidget* content = new QWidget(this);
+   setWidget(content);
+   setupUi(content);
 }
 
 const QString& Patch::Widget::getPath() const
