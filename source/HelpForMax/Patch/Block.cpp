@@ -32,6 +32,8 @@ void Block::read(const QString& patchName)
    const QByteArray content = maxFileToDom(file.readAll());
    file.close();
 
+   *this = Block(); // clear old data
+
    readContent(content);
 }
 

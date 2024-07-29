@@ -18,9 +18,9 @@ namespace Patch
       private:
          void update() override;
          void rebuild() override;
-         Structure::Type getType(const int index) override;
-
+         Structure::Digest* getDigest(const QModelIndex& index) override;
          bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole) override;
+         Structure::Type getType(const int index) override;
       };
    } // namespace Model
 } // namespace Patch

@@ -8,31 +8,35 @@ Patch::Model::Argument::Argument(QObject* parent, Block* block)
 
 void Patch::Model::Argument::update()
 {
-   Abstract::update();
 }
 
 void Patch::Model::Argument::rebuild()
 {
-   Abstract::rebuild();
+   beginResetModel();
+
+   clear();
 
    setHorizontalHeaderLabels({"Name", "Type", "Description"});
 
    for (const Structure::Argument& argument : block->argumentList)
    {
       QStandardItem* nameItem = new QStandardItem(argument.name);
+
       QStandardItem* typeItem = new QStandardItem(Structure::typeName(argument.type));
+
       QStandardItem* descrItem = new QStandardItem(argument.digest.text);
       descrItem->setEditable(false);
 
       invisibleRootItem()->appendRow({nameItem, typeItem, descrItem});
    }
+
+   endResetModel();
 }
 
-Structure::Type Patch::Model::Argument::getType(const int index)
+Structure::Digest* Patch::Model::Argument::getDigest(const QModelIndex& index)
 {
-   const Structure::Argument& argument = block->argumentList.at(index);
-
-   return argument.type;
+   Structure::Argument& argument = block->argumentList[index.row()];
+   return &(argument.digest);
 }
 
 bool Patch::Model::Argument::setData(const QModelIndex& index, const QVariant& value, int role)
@@ -58,4 +62,11 @@ bool Patch::Model::Argument::setData(const QModelIndex& index, const QVariant& v
    }
 
    return result;
+}
+
+Structure::Type Patch::Model::Argument::getType(const int index)
+{
+   const Structure::Argument& argument = block->argumentList.at(index);
+
+   return argument.type;
 }

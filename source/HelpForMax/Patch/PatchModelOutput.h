@@ -17,6 +17,7 @@ namespace Patch
       private:
          void update() override;
          void rebuild() override;
+         Structure::Digest* getDigest(const QModelIndex& index) override;
       };
    } // namespace Model
 } // namespace Patch

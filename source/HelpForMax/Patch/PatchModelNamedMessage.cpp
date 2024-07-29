@@ -7,10 +7,16 @@ Patch::Model::NamedMessage::NamedMessage(QObject* parent, Block* block)
 
 void Patch::Model::NamedMessage::update()
 {
-   Abstract::update();
 }
 
 void Patch::Model::NamedMessage::rebuild()
 {
-   Abstract::rebuild();
+}
+
+Structure::Digest* Patch::Model::NamedMessage::getDigest(const QModelIndex& index)
+{
+   const QString name = invisibleRootItem()->child(index.row(), 0)->text();
+
+   Structure::Message& message = block->messageNamedMap[name];
+   return &(message.digest);
 }

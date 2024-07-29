@@ -28,7 +28,7 @@ Patch::Widget::Widget(QWidget* parent)
    QScrollArea* scrollArea = new QScrollArea(this);
    scrollArea->setFrameShadow(QFrame::Plain);
    scrollArea->setFrameShape(QFrame::NoFrame);
-   scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+   scrollArea->setWidgetResizable(true);
    scrollArea->setWidget(content);
 
    // right: digest area
@@ -37,20 +37,20 @@ Patch::Widget::Widget(QWidget* parent)
 
    Model::Argument* argumentModel = new Model::Argument(this, this);
    modelList.append(argumentModel);
-   argumentTree->setModel(argumentModel);
+   argumentTree->init(argumentModel);
    argumentTree->setItemDelegateForColumn(1, new Delegate::Type(this, argumentModel));
 
    Model::TypedMessage* typedMessageModel = new Model::TypedMessage(this, this);
    modelList.append(typedMessageModel);
-   typedMessageTree->setModel(typedMessageModel);
+   typedMessageTree->init(typedMessageModel);
 
    Model::NamedMessage* namedMessageModel = new Model::NamedMessage(this, this);
    modelList.append(namedMessageModel);
-   namedMessageTree->setModel(namedMessageModel);
+   namedMessageTree->init(namedMessageModel);
 
    Model::Output* outputModel = new Model::Output(this, this);
    modelList.append(outputModel);
-   outputTree->setModel(outputModel);
+   outputTree->init(outputModel);
 
    QHBoxLayout* masterLayout = new QHBoxLayout(this);
    masterLayout->setContentsMargins(0, 0, 0, 0);

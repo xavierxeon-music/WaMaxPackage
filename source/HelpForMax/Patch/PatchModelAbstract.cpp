@@ -5,12 +5,3 @@ Patch::Model::Abstract::Abstract(QObject* parent, Block* block)
    , block(block)
 {
 }
-
-void Patch::Model::Abstract::update()
-{
-}
-
-void Patch::Model::Abstract::rebuild()
-{
-   clear();
-}
