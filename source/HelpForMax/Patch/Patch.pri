@@ -15,4 +15,5 @@ SOURCES += \
     $$PWD/Structure.cpp
 
 FORMS += \
+    $$PWD/DigestWidget.ui \
     $$PWD/PatchWidget.ui

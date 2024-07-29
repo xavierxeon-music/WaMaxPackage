@@ -1,19 +1,34 @@
 #include "PatchWidget.h"
 
 #include <QHBoxLayout>
+#include <QScrollArea>
 
 #include "ComponentModel.h"
 #include "Package/PackageInfo.h"
 
 Patch::Widget::Widget(QWidget* parent)
-   : QScrollArea(parent)
+   : QWidget(parent)
    , Block()
    , path()
    , name()
 {
-   QWidget* content = new QWidget(this);
-   setWidget(content);
-   setupUi(content);
+   // left: scroll area
+   QWidget* content = new QWidget();
+   Ui::PatchWidget::setupUi(content);
+
+   QScrollArea* scrollArea = new QScrollArea(this);
+   scrollArea->setFrameShadow(QFrame::Plain);
+   scrollArea->setFrameShape(QFrame::NoFrame);
+   scrollArea->setWidget(content);
+
+   // right: digest area
+   QWidget* editArea = new QWidget(this);
+   Ui::DigetWidget::setupUi(editArea);
+
+   QHBoxLayout* masterLayout = new QHBoxLayout(this);
+   masterLayout->setContentsMargins(0, 0, 0, 0);
+   masterLayout->addWidget(scrollArea);
+   masterLayout->addWidget(editArea);
 }
 
 const QString& Patch::Widget::getPath() const

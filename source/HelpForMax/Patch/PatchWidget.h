@@ -2,8 +2,9 @@
 #define PatchWidgetH
 
 #include "Block.h"
+#include "ui_DigestWidget.h"
 #include "ui_PatchWidget.h"
-#include <QScrollArea>
+#include <QWidget>
 
 #include <QJsonObject>
 #include <QLocalSocket>
@@ -11,7 +12,7 @@
 
 namespace Patch
 {
-   class Widget : public QScrollArea, private Block, private Ui::Widget
+   class Widget : public QWidget, private Block, private Ui::PatchWidget, private Ui::DigetWidget
    {
       Q_OBJECT
 
