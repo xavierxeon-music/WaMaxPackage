@@ -5,15 +5,15 @@
 
 #include "../common.h"
 
-from7bit::from7bit()
-   : object<from7bit>()
+From7Bit::From7Bit()
+   : object<From7Bit>()
    , input{this, "(list) 7 bit list"}
    , output{this, "(int) integer value"}
-   , listMessage{this, "list", "7 bit list.", minBind(this, &from7bit::listFunction)}
+   , listMessage{this, "list", "7 bit list.", minBind(this, &From7Bit::listFunction)}
 {
 }
 
-atoms from7bit::listFunction(const atoms& args, const int inlet)
+atoms From7Bit::listFunction(const atoms& args, const int inlet)
 {
    std::vector<uint8_t> sevenBits;
    for (auto i = 0; i < args.size(); ++i)
@@ -35,4 +35,4 @@ atoms from7bit::listFunction(const atoms& args, const int inlet)
    return {};
 }
 
-MIN_EXTERNAL(from7bit);
+MIN_EXTERNAL(From7Bit);

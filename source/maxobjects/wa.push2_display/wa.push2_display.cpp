@@ -10,12 +10,12 @@
 static const int imageLength = 1024 * 160;
 static const int dataLength = imageLength * 2; // RGB 16 image
 
-push2_display::push2_display()
-   : object<push2_display>()
+Push2Display::Push2Display()
+   : object<Push2Display>()
    , matrix_operator<>(false)
    , input{this, "(matrix) Input", "matrix"}
    , output{this, "(matrix) output", "matrix"}
-   , updateTimer{this, minBind(this, &push2_display::timerFunction)}
+   , updateTimer{this, minBind(this, &Push2Display::timerFunction)}
    , context(nullptr)
    , device(nullptr)
    , bufferData(nullptr)
@@ -33,7 +33,7 @@ push2_display::push2_display()
    updateTimer.delay(1000);
 }
 
-push2_display::~push2_display()
+Push2Display::~Push2Display()
 {
    unbindDevice();
 
@@ -45,12 +45,12 @@ push2_display::~push2_display()
 }
 
 template <typename matrix_type>
-matrix_type push2_display::calc_cell(matrix_type input, const matrix_info& info, matrix_coord& position)
+matrix_type Push2Display::calc_cell(matrix_type input, const matrix_info& info, matrix_coord& position)
 {
    return matrix_type{};
 }
 
-pixel push2_display::calc_cell(pixel input, const matrix_info& info, matrix_coord& position)
+pixel Push2Display::calc_cell(pixel input, const matrix_info& info, matrix_coord& position)
 {
    const int x = position.x();
    if (x < 0 || x >= 960)
@@ -66,7 +66,7 @@ pixel push2_display::calc_cell(pixel input, const matrix_info& info, matrix_coor
    return pixel{};
 }
 
-ushort push2_display::rgb16Color(uchar red, uchar green, uchar blue) const
+ushort Push2Display::rgb16Color(uchar red, uchar green, uchar blue) const
 {
    const ushort r = (red / 8) << 0;   // max 32 colors = 5 bit -> shift by 0
    const ushort g = (green / 4) << 5; // max 64 colors = 6 bit -> shift by 5
@@ -76,7 +76,7 @@ ushort push2_display::rgb16Color(uchar red, uchar green, uchar blue) const
    return color;
 }
 
-void push2_display::setColor(int x, int y, ushort color)
+void Push2Display::setColor(int x, int y, ushort color)
 {
    const int index = x + (1024 * y);
    if (index >= imageLength)
@@ -87,7 +87,7 @@ void push2_display::setColor(int x, int y, ushort color)
    bufferMutex.unlock();
 }
 
-atoms push2_display::timerFunction(const atoms& args, const int inlet)
+atoms Push2Display::timerFunction(const atoms& args, const int inlet)
 {
    if (!bindDevice())
    {
@@ -107,7 +107,7 @@ atoms push2_display::timerFunction(const atoms& args, const int inlet)
    return {};
 }
 
-bool push2_display::bindDevice()
+bool Push2Display::bindDevice()
 {
    if (device)
       return true;
@@ -119,7 +119,7 @@ bool push2_display::bindDevice()
    return false;
 }
 
-void push2_display::unbindDevice()
+void Push2Display::unbindDevice()
 {
    if (!device)
       return;
@@ -130,7 +130,7 @@ void push2_display::unbindDevice()
    device = nullptr;
 }
 
-int push2_display::transferBuffer()
+int Push2Display::transferBuffer()
 {
    static const uchar endpoint = 0x01 | LIBUSB_ENDPOINT_OUT;
    static const uint timeout = 200;
@@ -147,7 +147,7 @@ int push2_display::transferBuffer()
    return transferred;
 }
 
-void push2_display::defaultImage()
+void Push2Display::defaultImage()
 {
    using PaddingMap = std::map<int, ushort>;
    static const PaddingMap paddingMap = {
@@ -175,4 +175,4 @@ void push2_display::defaultImage()
    }
 }
 
-MIN_EXTERNAL(push2_display);
+MIN_EXTERNAL(Push2Display);

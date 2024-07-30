@@ -8,19 +8,28 @@ using namespace c74::min::ui;
 
 #include <QLocalSocket>
 
-class helpfile : public object<helpfile>, public ui_operator<40, 40>
+class HelpFile : public object<HelpFile>, public ui_operator<40, 40>
 {
 public:
    MIN_DESCRIPTION{"open help editor"};
 
 public:
-   helpfile(const atoms& args = {});
-   ~helpfile();
+   HelpFile(const atoms& args = {});
+   ~HelpFile();
 
 public:
    message<> paint;
    message<> dblclick;
    timer<timer_options::defer_delivery> loopTimer;
+
+private:
+   enum class State
+   {
+      Initial,
+      NotInPackage,
+      HelpFileOutdated,
+      UpToDate
+   };
 
 private:
    atoms paintFunction(const atoms& args, const int inlet);
@@ -29,10 +38,13 @@ private:
 
    void sendData();
    void receiveData();
+   void checkState();
 
 private:
    QString patchPath;
+   QString refPath;
    QLocalSocket* socket;
+   State state;
 };
 
 #endif // NOT  WaHelpFileH

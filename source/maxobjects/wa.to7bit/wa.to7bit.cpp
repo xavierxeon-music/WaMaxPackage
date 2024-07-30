@@ -5,15 +5,15 @@
 
 #include "../common.h"
 
-to7bit::to7bit()
-   : object<to7bit>()
-   , input{this, "(int) values to to7bit"}
+To7Bit::To7Bit()
+   : object<To7Bit>()
+   , input{this, "(int) values to To7Bit"}
    , output{this, "(int) 7 bit list"}
-   , intMessage{this, "int", "integer value.", minBind(this, &to7bit::intFunction)}
+   , intMessage{this, "int", "integer value.", minBind(this, &To7Bit::intFunction)}
 {
 }
 
-atoms to7bit::intFunction(const atoms& args, const int inlet)
+atoms To7Bit::intFunction(const atoms& args, const int inlet)
 {
    const long intValue = args[0];
    static const char maxSize = sizeof(long);
@@ -41,4 +41,4 @@ atoms to7bit::intFunction(const atoms& args, const int inlet)
    return {};
 }
 
-MIN_EXTERNAL(to7bit);
+MIN_EXTERNAL(To7Bit);

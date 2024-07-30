@@ -5,13 +5,13 @@
 #include "c74_min.h"
 using namespace c74::min;
 
-class from7bit : public object<from7bit>
+class From7Bit : public object<From7Bit>
 {
 public:
    MIN_DESCRIPTION{"7bit list to int"};
 
 public:
-   from7bit();
+   From7Bit();
 
 public:
    inlet<> input;

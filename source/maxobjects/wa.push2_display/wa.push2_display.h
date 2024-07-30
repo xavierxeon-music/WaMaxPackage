@@ -8,14 +8,14 @@
 #include "c74_min.h"
 using namespace c74::min;
 
-class push2_display : public object<push2_display>, public matrix_operator<>
+class Push2Display : public object<Push2Display>, public matrix_operator<>
 {
 public:
    MIN_DESCRIPTION{"Display matrix on Ableton Push2 display"};
 
 public:
-   push2_display();
-   ~push2_display();
+   Push2Display();
+   ~Push2Display();
 
 public:
    template <typename matrix_type>
