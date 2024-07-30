@@ -12,12 +12,14 @@
 #include "HelpForMax.h"
 #include "MessageBar.h"
 #include "OverviewGraph.h"
+#include "Package/PackageView.h"
 #include "Patch/PatchTabWidget.h"
 #include "Patch/PatchWidget.h"
 
 MainWindow::MainWindow()
    : QMainWindow(nullptr)
    , tabWidget(nullptr)
+   , packageView(nullptr)
    , overviewWidget(nullptr)
    , testClient(nullptr)
 {
@@ -39,6 +41,9 @@ MainWindow::MainWindow()
       addDockWidget(area, dockWidget);
    };
 
+   packageView = new Package::View(this);
+   addDock(packageView, Qt::LeftDockWidgetArea, "Package");
+
    overviewWidget = new Overview::Graph(this);
    addDock(overviewWidget, Qt::RightDockWidgetArea, "OverView");
 
@@ -59,27 +64,38 @@ void MainWindow::populateMenuAndToolBar()
 {
    //
    QMenu* patchMenu = menuBar()->addMenu("Patch");
-   QAction* openPatchAction = patchMenu->addAction(QIcon(":/OpenPatch.svg"), "Open", tabWidget, &Patch::TabWidget::slotOpenPatch);
+   QAction* openPatchAction = patchMenu->addAction(QIcon(":/PatchLoad.svg"), "Load", tabWidget, &Patch::TabWidget::slotOpenPatch);
    patchMenu->addMenu(tabWidget->getRecentMenu());
-   QAction* saveRefAction = patchMenu->addAction(QIcon(":/SaveAllPatches.svg"), "Save", tabWidget, &Patch::TabWidget::slotWriteRef);
+   QAction* saveRefAction = patchMenu->addAction(QIcon(":/PatchSave.svg"), "Save", tabWidget, &Patch::TabWidget::slotWriteRef);
+   patchMenu->addAction(QIcon(":/PatchSaveAll.svg"), "SaveAll");
    patchMenu->addSeparator();
-   QAction* closePatchAction = patchMenu->addAction(QIcon(":/Editor.svg"), "Close", tabWidget, &Patch::TabWidget::slotClosePatch);
+   QAction* closePatchAction = patchMenu->addAction(QIcon(":/PatchClose.svg"), "Close", tabWidget, &Patch::TabWidget::slotClosePatch);
+   patchMenu->addSeparator();
+   patchMenu->addAction(QIcon(":/PatchOpenInMax.svg"), "Open In Max");
+   patchMenu->addAction(QIcon(":/PatchOpenRef.svg"), "Open XML");
 
    //
    QMenu* viewMenu = menuBar()->addMenu("View");
-   auto addViewToggle = [&](QWidget* widget, const QString& text)
+   auto addViewToggle = [&](QWidget* widget, const QString& text, const QIcon& icon = QIcon())
    {
       auto toggleFunction = std::bind(&MainWindow::toogleDock, this, widget, text, std::placeholders::_1);
       QAction* viewAction = viewMenu->addAction(text, toggleFunction);
       viewAction->setCheckable(true);
+
+      if (!icon.isNull())
+         viewAction->setIcon(icon);
 
       QSettings dockSettings;
       const bool enabled = dockSettings.value("Dock/" + text).toBool();
 
       widget->setVisible(enabled);
       viewAction->setChecked(enabled);
+
+      return viewAction;
    };
-   addViewToggle(overviewWidget, "Overview");
+
+   QAction* packageAction = addViewToggle(packageView, "Package", QIcon(":/PackageGeneral.svg"));
+   QAction* overviewAction = addViewToggle(overviewWidget, "Overview", QIcon(":/OverviewGeneral.svg"));
    addViewToggle(testClient, "Test");
    viewMenu->addSeparator();
 
@@ -91,7 +107,6 @@ void MainWindow::populateMenuAndToolBar()
 
       return widget;
    };
-   Q_UNUSED(spacer)
 
    QToolBar* patchToolBar = addToolBar("Patch");
    patchToolBar->setObjectName("Patch");
@@ -101,6 +116,14 @@ void MainWindow::populateMenuAndToolBar()
    patchToolBar->addAction(saveRefAction);
    patchToolBar->addSeparator();
    patchToolBar->addAction(closePatchAction);
+
+   QToolBar* viewToolBar = addToolBar("View");
+   viewToolBar->setObjectName("View");
+   viewToolBar->setMovable(false);
+
+   viewToolBar->addWidget(spacer());
+   viewToolBar->addAction(packageAction);
+   viewToolBar->addAction(overviewAction);
 }
 
 void MainWindow::checkDirty()

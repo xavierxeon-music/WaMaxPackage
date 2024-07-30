@@ -12,7 +12,7 @@ Patch::TreeView::TreeView(QWidget* parent)
    , id("???")
 {
    setRootIsDecorated(false);
-   connect(this, &QAbstractItemView::doubleClicked, this, &TreeView::slotItemDoubleClicked);
+   connect(this, &QAbstractItemView::clicked, this, &TreeView::slotItemClicked);
 }
 
 void Patch::TreeView::init(Widget* widget, Model::Abstract* model, const QString& id)
@@ -36,7 +36,7 @@ void Patch::TreeView::slotResizeColumns()
    QTimer::singleShot(10, this, resizeIternal);
 }
 
-void Patch::TreeView::slotItemDoubleClicked(const QModelIndex& index)
+void Patch::TreeView::slotItemClicked(const QModelIndex& index)
 {
    Structure::Digest* digest = model->getDigest(index);
    widget->setDigest(digest, id);

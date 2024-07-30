@@ -14,7 +14,7 @@ void Patch::Model::TypedMessage::rebuild()
    beginResetModel();
    clear();
 
-   setHorizontalHeaderLabels({"Type", "A", "Description"});
+   setHorizontalHeaderLabels({"Type", "Active", "Description"});
 
    for (const Structure::Type& type : block->typeList())
    {
@@ -24,6 +24,7 @@ void Patch::Model::TypedMessage::rebuild()
       QStandardItem* activeItem = new QStandardItem();
       activeItem->setEditable(false);
       activeItem->setCheckable(true);
+      activeItem->setIcon(QIcon(":/DocMessageTyped.svg"));
 
       QStandardItem* descrItem = new QStandardItem();
       descrItem->setEditable(false);

@@ -12,6 +12,11 @@ namespace Overview
    class Graph;
 }
 
+namespace Package
+{
+   class View;
+}
+
 namespace Patch
 {
    class TabWidget;
@@ -34,6 +39,7 @@ private:
 
 private:
    Patch::TabWidget* tabWidget;
+   Package::View* packageView;
    Overview::Graph* overviewWidget;
    TestClient* testClient;
 };

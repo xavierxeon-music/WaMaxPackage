@@ -16,7 +16,7 @@ Patch::TabWidget::TabWidget(QWidget* parent)
    , recentMenu(nullptr)
 {
    setDocumentMode(true);
-   recentMenu = new QMenu("Recent", this);
+   recentMenu = new QMenu("Recent Patches", this);
    connect(recentMenu, &QMenu::aboutToShow, this, &TabWidget::slotFillRecentMenu);
 
    server = new QLocalServer(this);

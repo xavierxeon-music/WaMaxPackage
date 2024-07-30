@@ -24,7 +24,7 @@ namespace Patch
 
    private slots:
       void slotResizeColumns();
-      void slotItemDoubleClicked(const QModelIndex& index);
+      void slotItemClicked(const QModelIndex& index);
 
    private:
       Widget* widget;

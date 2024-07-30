@@ -2,6 +2,7 @@
  <qresource prefix="/">
   <file>DocArgument.svg</file>
   <file>DocAttribute.svg</file>
+  <file>DocDescsription.svg</file>
   <file>DocMessageNamd.svg</file>
   <file>DocMessageTyped.svg</file>
   <file>DocOutput.svg</file>
@@ -14,7 +15,7 @@
   <file>PatchLoad.svg</file>
   <file>PatchOpenInMax.svg</file>
   <file>PatchOpenRef.svg</file>
-  <file>PatcheSave.svg</file>
-  <file>PatcheSaveAll.svg</file>
+  <file>PatchSave.svg</file>
+  <file>PatchSaveAll.svg</file>
  </qresource>
 </RCC>
