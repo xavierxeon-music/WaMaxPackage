@@ -17,18 +17,6 @@ public:
       RoleData = Qt::UserRole + 2
    };
 
-   enum class Marker
-   {
-      Undefined,
-      Patch,
-      Argument,
-      Attribute,
-      MessageStandard,
-      MessageUserDefined,
-      Output
-   };
-   Q_ENUM(Marker)
-
 public:
    Block();
    virtual ~Block();
@@ -36,12 +24,6 @@ public:
 public:
    void read(const QString& patchName);
    void write(const QString& patchName);
-   virtual void setDirty();
-
-public:
-   static const QBrush udocBrush;
-   static const QBrush docBrush;
-   static const QList<QByteArray> descriptionMaxTags;
 
 private:
    using TagMap = QMap<QString, QString>;
@@ -60,8 +42,6 @@ private:
 
    QByteArray domToMaxFile(QByteArray domXML) const;
    QByteArray maxFileToDom(QByteArray maxXML) const;
-
-   void markUndocumented(Base& base);
 };
 
 #endif // NOT BlockRefH

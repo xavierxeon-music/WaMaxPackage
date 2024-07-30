@@ -8,10 +8,6 @@
 
 #include "Package/PackageInfo.h"
 
-const QBrush Block::udocBrush = QApplication::palette().alternateBase();
-const QBrush Block::docBrush = QApplication::palette().base();
-const QList<QByteArray> Block::descriptionMaxTags = {"o", "m", "at", "ar", "b", "u", "i"};
-
 Block::Block()
    : Structure()
 {
@@ -64,8 +60,6 @@ void Block::readContent(const QByteArray& content)
 
    const QDomElement rootElement = doc.documentElement();
    readDigest(rootElement, patch.digest);
-   if (patch.digest.description.isEmpty())
-      markUndocumented(patch.digest);
 
    patch.patcherType = (Structure::PatcherType)rootElement.attribute("patcher_type", "0").toInt();
 
@@ -99,8 +93,6 @@ void Block::readContent(const QByteArray& content)
             output.name = outletElement.attribute("name");
 
             readDigest(outletElement, output.digest);
-            if (output.digest.description.isEmpty())
-               markUndocumented(output.digest);
 
             outputMap[id] = output;
          }
@@ -119,8 +111,6 @@ void Block::readContent(const QByteArray& content)
             argument.type = Structure::toType(arguemntElement.attribute("type"));
 
             readDigest(arguemntElement, argument.digest);
-            if (argument.digest.text.isEmpty())
-               markUndocumented(argument.digest);
 
             argumentList.append(argument);
          }
@@ -142,8 +132,6 @@ void Block::readContent(const QByteArray& content)
             attribute.size = attributeElement.attribute("size").toInt();
 
             readDigest(attributeElement, attribute.digest);
-            if (attribute.digest.text.isEmpty())
-               markUndocumented(attribute.digest);
 
             attributeMap[name] = attribute;
          }
@@ -175,8 +163,6 @@ void Block::readContent(const QByteArray& content)
             }
 
             readDigest(messageElement, message.digest);
-            if (patch.digest.description.isEmpty())
-               markUndocumented(patch.digest);
 
             const bool isStandard = ("1" == messageElement.attribute("standard"));
             if (isStandard)
@@ -455,13 +441,4 @@ QByteArray Block::maxFileToDom(QByteArray maxXML) const
    maxXML.replace("<br/>", "\n");
 
    return maxXML;
-}
-
-void Block::markUndocumented(Base& base)
-{
-   Q_UNUSED(base)
-}
-
-void Block::setDirty()
-{
 }

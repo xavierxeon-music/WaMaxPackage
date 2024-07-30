@@ -1,12 +1,16 @@
 #ifndef StructureH
 #define StructureH
 
+#include <QObject>
+
 #include <QMap>
 #include <QString>
 #include <QStringList>
 
 class Structure
 {
+   Q_GADGET
+
 public:
    enum class Type
    {
@@ -29,6 +33,20 @@ public:
       PatcherPoly,
       PatcherFourier
    };
+
+   enum class Marker
+   {
+      Undefined,
+      Patch,
+      Argument,
+      Attribute,
+      MessageStandard,
+      MessageUserDefined,
+      Output
+   };
+   Q_ENUM(Marker)
+
+   static const QList<QByteArray> descriptionMaxTags;
 
    struct Base
    {
@@ -95,18 +113,23 @@ public:
    using SeeAlsoList = QStringList;
 
 public:
-   Patch patch;
-   Output::Map outputMap;
-   Argument::List argumentList;
-   Attribute::Map attributeMap;
-   Message::TypedMap messageTypedMap;
-   Message::NamedMap messageNamedMap;
+   Structure();
+   virtual ~Structure();
 
 public:
    virtual void clear();
    static QString typeName(const Type& type);
    static Type toType(const QString& name);
    static QList<Type> typeList();
+   virtual void setDirty();
+
+public:
+   Patch patch;
+   Output::Map outputMap;
+   Argument::List argumentList;
+   Attribute::Map attributeMap;
+   Message::TypedMap messageTypedMap;
+   Message::NamedMap messageNamedMap;
 
 private:
    static const QMap<Type, QString> typeNameMap;

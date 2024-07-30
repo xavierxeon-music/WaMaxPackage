@@ -1,5 +1,7 @@
 #include "Structure.h"
 
+const QList<QByteArray> Structure::descriptionMaxTags = {"o", "m", "at", "ar", "b", "u", "i"};
+
 const QMap<Structure::Type, QString> Structure::typeNameMap = {{Type::Anything, "anything"}, // must be max names!
                                                                {Type::Bang, "bang"},
                                                                {Type::Integer, "int"},
@@ -10,6 +12,20 @@ const QMap<Structure::Type, QString> Structure::typeNameMap = {{Type::Anything, 
                                                                {Type::MultiSignal, "multichannelsignal"},
                                                                {Type::Dictionary, "dictionary"},
                                                                {Type::Matrix, "matrix"}};
+
+Structure::Structure()
+   : patch()
+   , outputMap()
+   , argumentList()
+   , attributeMap()
+   , messageTypedMap()
+   , messageNamedMap()
+{
+}
+
+Structure::~Structure()
+{
+}
 
 void Structure::clear()
 {
@@ -35,4 +51,8 @@ Structure::Type Structure::toType(const QString& name)
 QList<Structure::Type> Structure::typeList()
 {
    return typeNameMap.keys();
+}
+
+void Structure::setDirty()
+{
 }
