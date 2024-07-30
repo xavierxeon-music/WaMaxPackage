@@ -75,6 +75,8 @@ bool Patch::Model::TypedMessage::setData(const QModelIndex& index, const QVarian
          {
             structure->messageTypedMap.remove(type);
          }
+
+         structure->setDirty();
       }
    }
 
