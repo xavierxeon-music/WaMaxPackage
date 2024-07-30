@@ -36,6 +36,12 @@ Patch::Widget::Widget(QWidget* parent)
    scrollArea->setWidgetResizable(true);
    scrollArea->setWidget(content);
 
+   setIcon(patchIcon, Structure::PatchPart::Patch);
+   setIcon(argumentIcon, Structure::PatchPart::Argument);
+   setIcon(typedMessageIcon, Structure::PatchPart::MessageTyped);
+   setIcon(nameMessageIcon, Structure::PatchPart::MessageNamed);
+   setIcon(outputIcon, Structure::PatchPart::Output);
+
    // set models
 
    Model::Argument* argumentModel = new Model::Argument(this, this);
@@ -129,7 +135,7 @@ void Patch::Widget::setDigest(Digest* newDigest, const PatchPart& part)
       return;
    }
 
-   topicIcon->setPixmap(partIcon(part).pixmap(16, 16));
+   setIcon(topicIcon, part);
 
    topicInfo->setText(partName(part));
    digestEdit->setText(digest->text);
@@ -181,4 +187,9 @@ void Patch::Widget::propagateDirty(bool isDirty)
          return;
       }
    }
+}
+
+void Patch::Widget::setIcon(QLabel* iconLabel, Structure::PatchPart part)
+{
+   iconLabel->setPixmap(partIcon(part).pixmap(16, 16));
 }

@@ -41,6 +41,7 @@ namespace Patch
       void update();
       void setDirty() override;
       void propagateDirty(bool isDirty);
+      void setIcon(QLabel* iconLabel, Structure::PatchPart part);
 
    private:
       QString path;

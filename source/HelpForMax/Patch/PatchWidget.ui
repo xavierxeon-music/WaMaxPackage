@@ -13,21 +13,28 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
-    <number>5</number>
+    <number>0</number>
    </property>
    <property name="topMargin">
-    <number>5</number>
+    <number>0</number>
    </property>
    <property name="rightMargin">
-    <number>5</number>
+    <number>0</number>
    </property>
    <property name="bottomMargin">
-    <number>5</number>
+    <number>0</number>
    </property>
-   <item>
+   <item row="0" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QLabel" name="patchIcon">
+       <property name="text">
+        <string>?</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QLabel" name="nameInfo">
        <property name="text">
@@ -60,7 +67,7 @@
      </item>
     </layout>
    </item>
-   <item>
+   <item row="1" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_6">
      <item>
       <widget class="QLineEdit" name="patchDigestEdit">
@@ -78,8 +85,15 @@
      </item>
     </layout>
    </item>
-   <item>
+   <item row="2" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="argumentIcon">
+       <property name="text">
+        <string>?</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QLabel" name="argumentInfo">
        <property name="text">
@@ -116,11 +130,18 @@
      </item>
     </layout>
    </item>
-   <item>
+   <item row="3" column="0">
     <widget class="Patch::TreeView" name="argumentTree"/>
    </item>
-   <item>
+   <item row="4" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="typedMessageIcon">
+       <property name="text">
+        <string>?</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QLabel" name="typedMessageInfo">
        <property name="text">
@@ -143,11 +164,18 @@
      </item>
     </layout>
    </item>
-   <item>
+   <item row="5" column="0">
     <widget class="Patch::TreeView" name="typedMessageTree"/>
    </item>
-   <item>
+   <item row="6" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <item>
+      <widget class="QLabel" name="nameMessageIcon">
+       <property name="text">
+        <string>?</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QLabel" name="namedMessageInfo">
        <property name="text">
@@ -184,11 +212,18 @@
      </item>
     </layout>
    </item>
-   <item>
+   <item row="7" column="0">
     <widget class="Patch::TreeView" name="namedMessageTree"/>
    </item>
-   <item>
+   <item row="8" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QLabel" name="outputIcon">
+       <property name="text">
+        <string>?</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <widget class="QLabel" name="outputsInfo">
        <property name="text">
@@ -228,7 +263,7 @@
      </item>
     </layout>
    </item>
-   <item>
+   <item row="9" column="0">
     <widget class="Patch::TreeView" name="outputTree"/>
    </item>
   </layout>
