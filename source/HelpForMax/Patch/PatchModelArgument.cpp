@@ -22,7 +22,7 @@ void Patch::Model::Argument::rebuild()
    {
       QStandardItem* nameItem = new QStandardItem(argument.name);
 
-      QStandardItem* typeItem = new QStandardItem(Structure::dataTypeName(argument.type));
+      QStandardItem* typeItem = new QStandardItem(Structure::dataTypeName(argument.dataType));
 
       QStandardItem* descrItem = new QStandardItem(argument.digest.text);
       descrItem->setEditable(false);
@@ -53,7 +53,7 @@ bool Patch::Model::Argument::setData(const QModelIndex& index, const QVariant& v
             structure->setDirty();
             break;
          case 1:
-            argument.type = Structure::toDataType(value.toString());
+            argument.dataType = Structure::toDataType(value.toString());
             structure->setDirty();
             break;
          default:
@@ -68,5 +68,5 @@ Structure::DataType Patch::Model::Argument::getType(const int index)
 {
    const Structure::Argument& argument = structure->argumentList.at(index);
 
-   return argument.type;
+   return argument.dataType;
 }

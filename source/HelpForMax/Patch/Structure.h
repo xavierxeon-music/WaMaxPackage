@@ -26,7 +26,7 @@ public:
       Dictionary,
       Matrix
    };
-   Q_ENUM(DataType);
+   Q_ENUM(DataType)
 
    enum class PatchType
    {
@@ -35,19 +35,20 @@ public:
       Poly,
       Fourier
    };
-   Q_ENUM(PatchType);
+   Q_ENUM(PatchType)
 
    enum class PatchPart
    {
-      Undefined,
-      Patch,
-      Argument,
-      Attribute,
-      MessageTyped,
-      MessageNamed,
-      Output
+      Undefined = 0x00,
+      Patch = 0x01,
+      Argument = 0x02,
+      Attribute = 0x04,
+      MessageTyped = 0x08,
+      MessageNamed = 0x10,
+      Output = 0x20
    };
-   Q_ENUM(PatchPart);
+   Q_ENUM(PatchPart)
+   Q_DECLARE_FLAGS(PatchParts, PatchPart)
 
    static const QList<QByteArray> descriptionMaxTags;
 
@@ -74,37 +75,37 @@ public:
       using Map = QMap<int, Output>; // outlet number vs port
    };
 
+   struct Base
+   {
+      DataType dataType = DataType::Symbol;
+      Digest digest;
+   };
+
+   struct MessageTyped : Base
+   {
+      using Map = QMap<DataType, MessageTyped>;
+   };
+
+   // attributes and things in patcherargs with @
+   struct MessageNamed : Base
+   {
+      bool isMessage = false;
+      bool isAttribute = false;
+
+      PatchParts patchParts = PatchPart::Undefined;
+
+      QString name;
+
+      using Map = QMap<QString, MessageNamed>;
+   };
+
    // things in patcherargs without @
-   // message arguments
-   struct Argument
+   struct Argument : Base
    {
       QString name;
       bool optional = false;
-      DataType type = DataType::Symbol;
-      Digest digest;
 
       using List = QList<Argument>;
-   };
-
-   struct Message
-   {
-      Argument::List arguments;
-      Digest digest;
-
-      using TypeMap = QMap<DataType, Message>;
-      using NameMap = QMap<QString, Message>; // name vs message
-   };
-
-   // things in patcherargs with @
-   struct Attribute
-   {
-      bool get = true;
-      bool set = true;
-      DataType type = DataType::Symbol;
-      int size = 1;
-      Digest digest;
-
-      using Map = QMap<QString, Attribute>; // name vs message
    };
 
    using SeeAlsoList = QStringList;
@@ -135,9 +136,10 @@ public:
    Patch patch;
    Output::Map outputMap;
    Argument::List argumentList;
-   Attribute::Map attributeMap;
-   Message::TypeMap messageTypedMap;
-   Message::NameMap messageNamedMap;
+   MessageTyped::Map messageTypedMap;
+   MessageNamed::Map messageNamedMap;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(Structure::PatchParts)
 
 #endif // NOT StructureH

@@ -118,7 +118,7 @@ void File::Ref::readContent(const QByteArray& content)
             Structure::Argument argument;
             argument.name = arguemntElement.attribute("name");
             argument.optional = ("1" == arguemntElement.attribute("optional"));
-            argument.type = Structure::toDataType(arguemntElement.attribute("type"));
+            argument.dataType = Structure::toDataType(arguemntElement.attribute("type"));
 
             readDigest(arguemntElement, argument.digest);
 
@@ -135,15 +135,13 @@ void File::Ref::readContent(const QByteArray& content)
          {
             const QString name = attributeElement.attribute("name");
 
-            Structure::Attribute attribute;
-            attribute.get = ("1" == attributeElement.attribute("get"));
-            attribute.set = ("1" == attributeElement.attribute("set"));
-            attribute.type = Structure::toDataType(attributeElement.attribute("type"));
-            attribute.size = attributeElement.attribute("size").toInt();
+            Structure::MessageNamed attribute;
+            attribute.dataType = Structure::toDataType(attributeElement.attribute("type"));
+            attribute.isAttribute = true;
 
             readDigest(attributeElement, attribute.digest);
 
-            structure->attributeMap[name] = attribute;
+            structure->messageNamedMap[name] = attribute;
          }
       }
    }
@@ -154,34 +152,29 @@ void File::Ref::readContent(const QByteArray& content)
       {
          for (const QDomElement& messageElement : compileAllDirectChildElements(messageListElement, "method"))
          {
-            const QString name = messageElement.attribute("name");
-
-            Structure::Message message;
-
-            const QDomElement argListElement = messageElement.firstChildElement("arglist");
-            if (!argListElement.isNull())
-            {
-               for (const QDomElement& arguemntElement : compileAllDirectChildElements(argListElement, "arg"))
-               {
-                  Structure::Argument argument;
-                  argument.name = arguemntElement.attribute("name");
-                  argument.optional = ("1" == arguemntElement.attribute("optional"));
-                  argument.type = Structure::toDataType(arguemntElement.attribute("type"));
-
-                  message.arguments.append(argument);
-               }
-            }
-
-            readDigest(messageElement, message.digest);
-
             const bool isStandard = ("1" == messageElement.attribute("standard"));
+            const QString name = messageElement.attribute("name");
             if (isStandard)
             {
-               const Structure::DataType type = Structure::toDataType(name);
-               structure->messageTypedMap[type] = message;
+               Structure::MessageTyped message;
+               readDigest(messageElement, message.digest);
+
+               message.dataType = Structure::toDataType(name);
+
+               structure->messageTypedMap[message.dataType] = message;
             }
             else
             {
+               Structure::MessageNamed message;
+               readDigest(messageElement, message.digest);
+
+               message.isMessage = true;
+
+               const QDomElement argListElement = messageElement.firstChildElement("arglist");
+               const QDomElement& arguemntElement = argListElement.firstChildElement("arg");
+               //message.optional = ("1" == arguemntElement.attribute("optional"));
+               message.dataType = Structure::toDataType(arguemntElement.attribute("type"));
+
                structure->messageNamedMap[name] = message;
             }
          }
@@ -245,7 +238,7 @@ QByteArray File::Ref::writeContent(const QString& patchName)
          QDomElement arguemntElement = createSubElement(objArgListElement, "objarg");
          arguemntElement.setAttribute("name", argument.name);
          arguemntElement.setAttribute("optional", argument.optional);
-         arguemntElement.setAttribute("type", Structure::dataTypeName(argument.type));
+         arguemntElement.setAttribute("type", Structure::dataTypeName(argument.dataType));
 
          addDigest(arguemntElement, argument.digest);
       }
@@ -253,57 +246,48 @@ QByteArray File::Ref::writeContent(const QString& patchName)
 
    {
       QDomElement attributeListElement = createSubElement(rootElement, "attributelist");
-      for (Structure::Attribute::Map::ConstIterator it = structure->attributeMap.constBegin(); it != structure->attributeMap.constEnd(); it++)
-      {
-         const Structure::Attribute& attribute = it.value();
-
-         QDomElement attributeElement = createSubElement(attributeListElement, "attribute");
-         attributeElement.setAttribute("name", it.key());
-         attributeElement.setAttribute("get", attribute.get);
-         attributeElement.setAttribute("set", attribute.set);
-         attributeElement.setAttribute("type", Structure::dataTypeName(attribute.type));
-         attributeElement.setAttribute("size", attribute.size);
-
-         addDigest(attributeElement, attribute.digest);
-      }
-   }
-
-   {
       QDomElement messageListElement = createSubElement(rootElement, "methodlist");
 
-      auto addMessage = [&](const Structure::Message& message, const QString& name, const bool isStandard)
+      for (Structure::MessageNamed::Map::ConstIterator it = structure->messageNamedMap.constBegin(); it != structure->messageNamedMap.constEnd(); it++)
       {
-         QDomElement messageElement = createSubElement(messageListElement, "method");
-         messageElement.setAttribute("name", name);
-         messageElement.setAttribute("standard", isStandard);
-
-         if (!message.arguments.empty() && !isStandard)
+         const Structure::MessageNamed& messageNamed = it.value();
+         if (messageNamed.isMessage)
          {
+            QDomElement messageElement = createSubElement(messageListElement, "method");
+            messageElement.setAttribute("name", messageNamed.name);
+            messageElement.setAttribute("standard", 0);
+
             QDomElement argListElement = createSubElement(messageElement, "arglist");
-            for (const Structure::Argument& argument : message.arguments)
-            {
-               QDomElement arguemntElement = createSubElement(argListElement, "arg");
-               arguemntElement.setAttribute("name", argument.name);
-               arguemntElement.setAttribute("optional", argument.optional);
-               arguemntElement.setAttribute("type", Structure::dataTypeName(argument.type));
-            }
+
+            QDomElement arguemntElement = createSubElement(argListElement, "arg");
+            arguemntElement.setAttribute("name", messageNamed.name);
+            arguemntElement.setAttribute("optional", 0);
+            arguemntElement.setAttribute("type", Structure::dataTypeName(messageNamed.dataType));
+
+            addDigest(messageElement, messageNamed.digest);
          }
+         else if (messageNamed.isAttribute)
+         {
+            QDomElement attributeElement = createSubElement(attributeListElement, "attribute");
+            attributeElement.setAttribute("name", messageNamed.name);
+            attributeElement.setAttribute("get", 0);
+            attributeElement.setAttribute("set", 1);
+            attributeElement.setAttribute("type", Structure::dataTypeName(messageNamed.dataType));
+            attributeElement.setAttribute("size", 1);
 
-         addDigest(messageElement, message.digest);
-      };
-
-      for (Structure::Message::TypeMap::ConstIterator it = structure->messageTypedMap.constBegin(); it != structure->messageTypedMap.constEnd(); it++)
-      {
-         const Structure::Message& message = it.value();
-         const QString& name = Structure::dataTypeName(it.key());
-         addMessage(message, name, true);
+            addDigest(attributeElement, messageNamed.digest);
+         }
       }
 
-      for (Structure::Message::NameMap::ConstIterator it = structure->messageNamedMap.constBegin(); it != structure->messageNamedMap.constEnd(); it++)
+      for (Structure::MessageTyped::Map::ConstIterator it = structure->messageTypedMap.constBegin(); it != structure->messageTypedMap.constEnd(); it++)
       {
-         const Structure::Message& message = it.value();
-         const QString& name = it.key();
-         addMessage(message, name, false);
+         const Structure::MessageTyped& messageTyped = it.value();
+
+         QDomElement messageElement = createSubElement(messageListElement, "method");
+         messageElement.setAttribute("name", Structure::dataTypeName(messageTyped.dataType));
+         messageElement.setAttribute("standard", 1);
+
+         addDigest(messageElement, messageTyped.digest);
       }
    }
 

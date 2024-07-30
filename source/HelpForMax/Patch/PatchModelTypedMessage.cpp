@@ -48,7 +48,7 @@ Structure::Digest* Patch::Model::TypedMessage::getDigest(const QModelIndex& inde
    const QString typeName = invisibleRootItem()->child(index.row(), 0)->text();
    const Structure::DataType type = Structure::toDataType(typeName);
 
-   Structure::Message& message = structure->messageTypedMap[type];
+   Structure::MessageTyped& message = structure->messageTypedMap[type];
    return &(message.digest);
 }
 
@@ -67,7 +67,7 @@ bool Patch::Model::TypedMessage::setData(const QModelIndex& index, const QVarian
 
          if (enabled)
          {
-            Structure::Message message;
+            Structure::MessageTyped message;
             message.digest.text = invisibleRootItem()->child(index.row(), 2)->text();
             structure->messageTypedMap.insert(type, message);
          }

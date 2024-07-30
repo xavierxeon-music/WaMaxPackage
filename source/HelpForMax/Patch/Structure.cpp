@@ -35,7 +35,6 @@ Structure::Structure()
    : patch()
    , outputMap()
    , argumentList()
-   , attributeMap()
    , messageTypedMap()
    , messageNamedMap()
 {
