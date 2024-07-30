@@ -134,14 +134,17 @@ void File::Ref::readContent(const QByteArray& content)
          for (const QDomElement& attributeElement : compileAllDirectChildElements(attributeListElement, "attribute"))
          {
             const QString name = attributeElement.attribute("name");
+            if (!structure->messageNamedMap.contains(name))
+            {
+               Structure::MessageNamed attribute;
+               attribute.dataType = Structure::toDataType(attributeElement.attribute("type"));
 
-            Structure::MessageNamed attribute;
-            attribute.dataType = Structure::toDataType(attributeElement.attribute("type"));
-            attribute.isAttribute = true;
+               readDigest(attributeElement, attribute.digest);
 
-            readDigest(attributeElement, attribute.digest);
+               structure->messageNamedMap[name] = attribute;
+            }
 
-            structure->messageNamedMap[name] = attribute;
+            structure->messageNamedMap[name].patchParts |= Structure::PatchPart::Attribute;
          }
       }
    }
@@ -166,16 +169,19 @@ void File::Ref::readContent(const QByteArray& content)
             else
             {
                Structure::MessageNamed message;
-               readDigest(messageElement, message.digest);
+               if (!structure->messageNamedMap.contains(name))
+               {
+                  readDigest(messageElement, message.digest);
 
-               message.isMessage = true;
+                  const QDomElement argListElement = messageElement.firstChildElement("arglist");
+                  const QDomElement& arguemntElement = argListElement.firstChildElement("arg");
+                  //message.optional = ("1" == arguemntElement.attribute("optional"));
+                  message.dataType = Structure::toDataType(arguemntElement.attribute("type"));
 
-               const QDomElement argListElement = messageElement.firstChildElement("arglist");
-               const QDomElement& arguemntElement = argListElement.firstChildElement("arg");
-               //message.optional = ("1" == arguemntElement.attribute("optional"));
-               message.dataType = Structure::toDataType(arguemntElement.attribute("type"));
+                  structure->messageNamedMap[name] = message;
+               }
 
-               structure->messageNamedMap[name] = message;
+               structure->messageNamedMap[name].patchParts |= Structure::PatchPart::MessageNamed;
             }
          }
       }
@@ -251,7 +257,7 @@ QByteArray File::Ref::writeContent(const QString& patchName)
       for (Structure::MessageNamed::Map::ConstIterator it = structure->messageNamedMap.constBegin(); it != structure->messageNamedMap.constEnd(); it++)
       {
          const Structure::MessageNamed& messageNamed = it.value();
-         if (messageNamed.isMessage)
+         if (0 != (messageNamed.patchParts & Structure::PatchPart::MessageNamed))
          {
             QDomElement messageElement = createSubElement(messageListElement, "method");
             messageElement.setAttribute("name", messageNamed.name);
@@ -266,7 +272,7 @@ QByteArray File::Ref::writeContent(const QString& patchName)
 
             addDigest(messageElement, messageNamed.digest);
          }
-         else if (messageNamed.isAttribute)
+         else if (0 != (messageNamed.patchParts & Structure::PatchPart::Attribute))
          {
             QDomElement attributeElement = createSubElement(attributeListElement, "attribute");
             attributeElement.setAttribute("name", messageNamed.name);

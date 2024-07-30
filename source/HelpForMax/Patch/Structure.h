@@ -89,12 +89,8 @@ public:
    // attributes and things in patcherargs with @
    struct MessageNamed : Base
    {
-      bool isMessage = false;
-      bool isAttribute = false;
-
-      PatchParts patchParts = PatchPart::Undefined;
-
       QString name;
+      PatchParts patchParts = PatchPart::Undefined;
 
       using Map = QMap<QString, MessageNamed>;
    };
