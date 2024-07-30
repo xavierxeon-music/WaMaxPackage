@@ -9,6 +9,7 @@
 #include "../MainWindow.h"
 #include "DelegateType.h"
 #include "DescriptionHighlighter.h"
+#include "FileRef.h"
 #include "Package/PackageInfo.h"
 #include "PatchModelArgument.h"
 #include "PatchModelNamedMessage.h"
@@ -17,7 +18,7 @@
 
 Patch::Widget::Widget(QWidget* parent)
    : QWidget(parent)
-   , Block()
+   , Structure()
    , path()
    , name()
    , modelList()
@@ -81,14 +82,14 @@ void Patch::Widget::openPatch(const QString& patchPath)
    name = Package::Info::setPatchPath(path);
    propagateDirty(false);
 
-   read(name);
+   File::Ref::read(this, name);
 
    rebuild();
 }
 
 void Patch::Widget::writeRef()
 {
-   write(name);
+   File::Ref::write(this, name);
    propagateDirty(false);
 }
 

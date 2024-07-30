@@ -12,7 +12,7 @@ namespace Patch
          Q_OBJECT
 
       public:
-         NamedMessage(QObject* parent, Block* block);
+         NamedMessage(QObject* parent, Structure* structure);
 
       private:
          void update() override;

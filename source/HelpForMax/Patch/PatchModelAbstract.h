@@ -3,7 +3,7 @@
 
 #include <QStandardItemModel>
 
-#include "Block.h"
+#include "Structure.h"
 
 namespace Patch
 {
@@ -16,7 +16,7 @@ namespace Patch
          using List = QList<Abstract*>;
 
       public:
-         Abstract(QObject* parent, Block* block);
+         Abstract(QObject* parent, Structure* structure);
 
       public:
          virtual void update() = 0;
@@ -24,7 +24,7 @@ namespace Patch
          virtual Structure::Digest* getDigest(const QModelIndex& index) = 0;
 
       protected:
-         Block* block;
+         Structure* structure;
       };
    } // namespace Model
 } // namespace Patch

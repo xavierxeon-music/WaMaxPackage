@@ -1,7 +1,7 @@
 #include "PatchModelAbstract.h"
 
-Patch::Model::Abstract::Abstract(QObject* parent, Block* block)
+Patch::Model::Abstract::Abstract(QObject* parent, Structure* structure)
    : QStandardItemModel(parent)
-   , block(block)
+   , structure(structure)
 {
 }

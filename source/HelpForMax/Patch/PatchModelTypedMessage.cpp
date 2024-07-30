@@ -1,7 +1,7 @@
 #include "PatchModelTypedMessage.h"
 
-Patch::Model::TypedMessage::TypedMessage(QObject* parent, Block* block)
-   : Abstract(parent, block)
+Patch::Model::TypedMessage::TypedMessage(QObject* parent, Structure* structure)
+   : Abstract(parent, structure)
 {
 }
 
@@ -16,7 +16,7 @@ void Patch::Model::TypedMessage::rebuild()
 
    setHorizontalHeaderLabels({"Type", "Active", "Description"});
 
-   for (const Structure::Type& type : block->typeList())
+   for (const Structure::Type& type : structure->typeList())
    {
       QStandardItem* typeItem = new QStandardItem(Structure::typeName(type));
       typeItem->setEditable(false);
@@ -29,11 +29,11 @@ void Patch::Model::TypedMessage::rebuild()
       QStandardItem* descrItem = new QStandardItem();
       descrItem->setEditable(false);
 
-      if (block->messageTypedMap.contains(type))
+      if (structure->messageTypedMap.contains(type))
       {
          activeItem->setCheckState(Qt::Checked);
 
-         QString description = block->messageTypedMap.value(type).digest.text;
+         QString description = structure->messageTypedMap.value(type).digest.text;
          descrItem->setText(description);
       }
 
@@ -48,7 +48,7 @@ Structure::Digest* Patch::Model::TypedMessage::getDigest(const QModelIndex& inde
    const QString typeName = invisibleRootItem()->child(index.row(), 0)->text();
    const Structure::Type type = Structure::toType(typeName);
 
-   Structure::Message& message = block->messageTypedMap[type];
+   Structure::Message& message = structure->messageTypedMap[type];
    return &(message.digest);
 }
 
@@ -69,11 +69,11 @@ bool Patch::Model::TypedMessage::setData(const QModelIndex& index, const QVarian
          {
             Structure::Message message;
             message.digest.text = invisibleRootItem()->child(index.row(), 2)->text();
-            block->messageTypedMap.insert(type, message);
+            structure->messageTypedMap.insert(type, message);
          }
          else
          {
-            block->messageTypedMap.remove(type);
+            structure->messageTypedMap.remove(type);
          }
       }
    }

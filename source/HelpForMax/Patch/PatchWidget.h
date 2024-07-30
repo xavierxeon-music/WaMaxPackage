@@ -1,7 +1,7 @@
 #ifndef PatchWidgetH
 #define PatchWidgetH
 
-#include "Block.h"
+#include "Structure.h"
 #include "ui_DigestWidget.h"
 #include "ui_PatchWidget.h"
 #include <QWidget>
@@ -14,7 +14,7 @@
 
 namespace Patch
 {
-   class Widget : public QWidget, private Block, private Ui::PatchWidget, private Ui::DigestWidget
+   class Widget : public QWidget, private Structure, private Ui::PatchWidget, private Ui::DigestWidget
    {
       Q_OBJECT
 

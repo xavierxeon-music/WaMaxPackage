@@ -1,7 +1,7 @@
 #include "PatchModelNamedMessage.h"
 
-Patch::Model::NamedMessage::NamedMessage(QObject* parent, Block* block)
-   : Abstract(parent, block)
+Patch::Model::NamedMessage::NamedMessage(QObject* parent, Structure* structure)
+   : Abstract(parent, structure)
 {
 }
 
@@ -17,6 +17,6 @@ Structure::Digest* Patch::Model::NamedMessage::getDigest(const QModelIndex& inde
 {
    const QString name = invisibleRootItem()->child(index.row(), 0)->text();
 
-   Structure::Message& message = block->messageNamedMap[name];
+   Structure::Message& message = structure->messageNamedMap[name];
    return &(message.digest);
 }

@@ -1,7 +1,7 @@
 #include "PatchModelArgument.h"
 
-Patch::Model::Argument::Argument(QObject* parent, Block* block)
-   : Abstract(parent, block)
+Patch::Model::Argument::Argument(QObject* parent, Structure* structure)
+   : Abstract(parent, structure)
    , Delegate::Type::Source()
 {
 }
@@ -18,7 +18,7 @@ void Patch::Model::Argument::rebuild()
 
    setHorizontalHeaderLabels({"Name", "Type", "Description"});
 
-   for (const Structure::Argument& argument : block->argumentList)
+   for (const Structure::Argument& argument : structure->argumentList)
    {
       QStandardItem* nameItem = new QStandardItem(argument.name);
 
@@ -35,7 +35,7 @@ void Patch::Model::Argument::rebuild()
 
 Structure::Digest* Patch::Model::Argument::getDigest(const QModelIndex& index)
 {
-   Structure::Argument& argument = block->argumentList[index.row()];
+   Structure::Argument& argument = structure->argumentList[index.row()];
    return &(argument.digest);
 }
 
@@ -44,17 +44,17 @@ bool Patch::Model::Argument::setData(const QModelIndex& index, const QVariant& v
    const bool result = QStandardItemModel::setData(index, value, role);
    if (Qt::EditRole == role)
    {
-      Structure::Argument& argument = block->argumentList[index.row()];
+      Structure::Argument& argument = structure->argumentList[index.row()];
 
       switch (index.column())
       {
          case 0:
             argument.name = value.toString();
-            block->setDirty();
+            structure->setDirty();
             break;
          case 1:
             argument.type = Structure::toType(value.toString());
-            block->setDirty();
+            structure->setDirty();
             break;
          default:
             break;
@@ -66,7 +66,7 @@ bool Patch::Model::Argument::setData(const QModelIndex& index, const QVariant& v
 
 Structure::Type Patch::Model::Argument::getType(const int index)
 {
-   const Structure::Argument& argument = block->argumentList.at(index);
+   const Structure::Argument& argument = structure->argumentList.at(index);
 
    return argument.type;
 }

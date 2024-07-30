@@ -13,7 +13,7 @@ namespace Patch
          Q_OBJECT
 
       public:
-         Argument(QObject* parent, Block* block);
+         Argument(QObject* parent, Structure* structure);
 
       private:
          void update() override;
