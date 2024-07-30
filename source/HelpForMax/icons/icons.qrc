@@ -1,21 +1,21 @@
 <RCC>
- <qresource prefix="/">
-  <file>DocArgument.svg</file>
-  <file>DocAttribute.svg</file>
-  <file>DocDescsription.svg</file>
-  <file>DocMessageNamd.svg</file>
-  <file>DocMessageTyped.svg</file>
-  <file>DocOutput.svg</file>
-  <file>HelpForMax.svg</file>
-  <file>OverviewGeneral.svg</file>
-  <file>PackageGeneral.svg</file>
-  <file>PackageReload.svg</file>
-  <file>PatchClose.svg</file>
-  <file>PatchGeneral.svg</file>
-  <file>PatchLoad.svg</file>
-  <file>PatchOpenInMax.svg</file>
-  <file>PatchOpenRef.svg</file>
-  <file>PatchSave.svg</file>
-  <file>PatchSaveAll.svg</file>
- </qresource>
+    <qresource prefix="/">
+        <file>DocArgument.svg</file>
+        <file>DocAttribute.svg</file>
+        <file>DocDescription.svg</file>
+        <file>DocMessageNamd.svg</file>
+        <file>DocMessageTyped.svg</file>
+        <file>DocOutput.svg</file>
+        <file>HelpForMax.svg</file>
+        <file>OverviewGeneral.svg</file>
+        <file>PackageGeneral.svg</file>
+        <file>PackageReload.svg</file>
+        <file>PatchClose.svg</file>
+        <file>PatchGeneral.svg</file>
+        <file>PatchLoad.svg</file>
+        <file>PatchOpenInMax.svg</file>
+        <file>PatchOpenRef.svg</file>
+        <file>PatchSave.svg</file>
+        <file>PatchSaveAll.svg</file>
+    </qresource>
 </RCC>

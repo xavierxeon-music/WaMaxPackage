@@ -1,7 +1,7 @@
 #include "PatchModelTypedMessage.h"
 
 Patch::Model::TypedMessage::TypedMessage(QObject* parent, Structure* structure)
-   : Abstract(parent, structure)
+   : Abstract(parent, structure, Structure::PatchPart::MessageTyped)
 {
 }
 

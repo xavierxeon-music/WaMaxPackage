@@ -1,7 +1,7 @@
 #include "PatchModelArgument.h"
 
 Patch::Model::Argument::Argument(QObject* parent, Structure* structure)
-   : Abstract(parent, structure)
+   : Abstract(parent, structure, Structure::PatchPart::Argument)
    , Delegate::Type::Source()
 {
 }

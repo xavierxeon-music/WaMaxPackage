@@ -3,6 +3,7 @@
 
 #include <QObject>
 
+#include <QIcon>
 #include <QMap>
 #include <QString>
 #include <QStringList>
@@ -127,6 +128,7 @@ public:
 
    // part
    static QString partName(const PatchPart& part);
+   static QIcon partIcon(const PatchPart& part);
    static PatchPart toPart(const QString& name);
 
 public:

@@ -1,7 +1,7 @@
 #include "PatchModelNamedMessage.h"
 
 Patch::Model::NamedMessage::NamedMessage(QObject* parent, Structure* structure)
-   : Abstract(parent, structure)
+   : Abstract(parent, structure, Structure::PatchPart::MessageNamed)
 {
 }
 

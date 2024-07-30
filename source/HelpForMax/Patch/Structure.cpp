@@ -24,11 +24,11 @@ static const PatchTypeNameMap patchTypeNameMap = {{Structure::PatchType::Standar
 
 using PatchPartNameMap = QMap<Structure::PatchPart, QString>;
 static const PatchPartNameMap patchPartNameMap = {{Structure::PatchPart::Undefined, "undefined"},
-                                                  {Structure::PatchPart::Patch, "patch"},
-                                                  {Structure::PatchPart::Argument, "argument"},
-                                                  {Structure::PatchPart::Attribute, "attribute"},
-                                                  {Structure::PatchPart::MessageTyped, "message_typed"},
-                                                  {Structure::PatchPart::MessageNamed, "message_named"},
+                                                  {Structure::PatchPart::Patch, "Patch"},
+                                                  {Structure::PatchPart::Argument, "Argument"},
+                                                  {Structure::PatchPart::Attribute, "Attribute"},
+                                                  {Structure::PatchPart::MessageTyped, "Message Typed"},
+                                                  {Structure::PatchPart::MessageNamed, "Message Named"},
                                                   {Structure::PatchPart::Output, "putput"}};
 
 Structure::Structure()
@@ -92,9 +92,27 @@ Structure::PatchType Structure::toType(const QString& name)
    ;
 }
 
-QString Structure::partName(const Structure::PatchPart& part)
+QString Structure::partName(const PatchPart& part)
 {
    return patchPartNameMap.value(part, "undefined");
+}
+
+QIcon Structure::partIcon(const PatchPart& part)
+{
+   if (PatchPart::Patch == part)
+      return QIcon(":/PatchGeneral.svg");
+   else if (PatchPart::Argument == part)
+      return QIcon(":/DocArgument.svg");
+   else if (PatchPart::Attribute == part)
+      return QIcon(":/DocAttribute.svg");
+   else if (PatchPart::MessageTyped == part)
+      return QIcon(":/DocMessageTyped.svg");
+   else if (PatchPart::MessageNamed == part)
+      return QIcon(":/DocMessageNamed.svg");
+   else if (PatchPart::Output == part)
+      return QIcon(":/DocOutput.svg");
+
+   return QIcon();
 }
 
 Structure::PatchPart Structure::toPart(const QString& name)

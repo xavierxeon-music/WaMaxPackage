@@ -36,7 +36,7 @@ namespace Patch
       void slotSaveDigestDescription();
 
    private:
-      void setDigest(Digest* newDigest, const QString& name);
+      void setDigest(Digest* newDigest, const PatchPart& part);
       void rebuild();
       void update();
       void setDirty() override;

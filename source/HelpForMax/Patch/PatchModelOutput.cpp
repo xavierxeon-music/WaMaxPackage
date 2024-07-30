@@ -1,7 +1,7 @@
 #include "PatchModelOutput.h"
 
 Patch::Model::Output::Output(QObject* parent, Structure* structure)
-   : Abstract(parent, structure)
+   : Abstract(parent, structure, Structure::PatchPart::Output)
 {
 }
 

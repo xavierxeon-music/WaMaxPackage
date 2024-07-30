@@ -40,20 +40,20 @@ Patch::Widget::Widget(QWidget* parent)
 
    Model::Argument* argumentModel = new Model::Argument(this, this);
    modelList.append(argumentModel);
-   argumentTree->init(this, argumentModel, "Argument");
+   argumentTree->init(this, argumentModel);
    argumentTree->setItemDelegateForColumn(1, new Delegate::Type(this, argumentModel));
 
    Model::TypedMessage* typedMessageModel = new Model::TypedMessage(this, this);
    modelList.append(typedMessageModel);
-   typedMessageTree->init(this, typedMessageModel, "Typed Message");
+   typedMessageTree->init(this, typedMessageModel);
 
    Model::NamedMessage* namedMessageModel = new Model::NamedMessage(this, this);
    modelList.append(namedMessageModel);
-   namedMessageTree->init(this, namedMessageModel, "Named Message");
+   namedMessageTree->init(this, namedMessageModel);
 
    Model::Output* outputModel = new Model::Output(this, this);
    modelList.append(outputModel);
-   outputTree->init(this, outputModel, "Output");
+   outputTree->init(this, outputModel);
 
    // right: digest area
    QWidget* editArea = new QWidget(this);
@@ -100,7 +100,7 @@ bool Patch::Widget::isDirty() const
 
 void Patch::Widget::slotSetPatchDigest()
 {
-   setDigest(&patch.digest, "Patch");
+   setDigest(&patch.digest, Structure::PatchPart::Patch);
 }
 
 void Patch::Widget::slotSaveDigestText()
@@ -118,7 +118,7 @@ void Patch::Widget::slotSaveDigestDescription()
    setDirty();
 }
 
-void Patch::Widget::setDigest(Digest* newDigest, const QString& name)
+void Patch::Widget::setDigest(Digest* newDigest, const PatchPart& part)
 {
    digest = newDigest;
    if (!digest)
@@ -129,7 +129,9 @@ void Patch::Widget::setDigest(Digest* newDigest, const QString& name)
       return;
    }
 
-   topicInfo->setText(name);
+   topicIcon->setPixmap(partIcon(part).pixmap(16, 16));
+
+   topicInfo->setText(partName(part));
    digestEdit->setText(digest->text);
 
    descriptionEdit->blockSignals(true);
@@ -142,7 +144,7 @@ void Patch::Widget::rebuild()
    for (Model::Abstract* model : modelList)
       model->rebuild();
 
-   setDigest(&patch.digest, "Patch");
+   setDigest(&patch.digest, Structure::PatchPart::Patch);
 
    patchNameLabel->setText(name);
    patchDigestEdit->setText(patch.digest.text);
