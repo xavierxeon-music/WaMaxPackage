@@ -14,7 +14,7 @@ namespace Delegate
    public:
       struct Source
       {
-         virtual Structure::Type getType(const int index) = 0;
+         virtual Structure::DataType getType(const int index) = 0;
       };
 
    public:

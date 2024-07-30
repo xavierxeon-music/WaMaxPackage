@@ -16,9 +16,9 @@ void Patch::Model::TypedMessage::rebuild()
 
    setHorizontalHeaderLabels({"Type", "Active", "Description"});
 
-   for (const Structure::Type& type : structure->typeList())
+   for (const Structure::DataType& type : structure->dataTypeList())
    {
-      QStandardItem* typeItem = new QStandardItem(Structure::typeName(type));
+      QStandardItem* typeItem = new QStandardItem(Structure::dataTypeName(type));
       typeItem->setEditable(false);
 
       QStandardItem* activeItem = new QStandardItem();
@@ -46,7 +46,7 @@ void Patch::Model::TypedMessage::rebuild()
 Structure::Digest* Patch::Model::TypedMessage::getDigest(const QModelIndex& index)
 {
    const QString typeName = invisibleRootItem()->child(index.row(), 0)->text();
-   const Structure::Type type = Structure::toType(typeName);
+   const Structure::DataType type = Structure::toDataType(typeName);
 
    Structure::Message& message = structure->messageTypedMap[type];
    return &(message.digest);
@@ -63,7 +63,7 @@ bool Patch::Model::TypedMessage::setData(const QModelIndex& index, const QVarian
       if (1 == index.column())
       {
          const QString typeName = invisibleRootItem()->child(index.row(), 0)->text();
-         const Structure::Type type = Structure::toType(typeName);
+         const Structure::DataType type = Structure::toDataType(typeName);
 
          if (enabled)
          {

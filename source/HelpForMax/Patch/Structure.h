@@ -12,7 +12,7 @@ class Structure
    Q_GADGET
 
 public:
-   enum class Type
+   enum class DataType
    {
       Anything,
       Symbol,
@@ -25,51 +25,47 @@ public:
       Dictionary,
       Matrix
    };
+   Q_ENUM(DataType);
 
-   enum PatcherType
+   enum class PatchType
    {
-      PatcherStandard,
-      PatcherGui,
-      PatcherPoly,
-      PatcherFourier
+      Standard,
+      Gui,
+      Poly,
+      Fourier
    };
+   Q_ENUM(PatchType);
 
-   enum class Marker
+   enum class PatchPart
    {
       Undefined,
       Patch,
       Argument,
       Attribute,
-      MessageStandard,
-      MessageUserDefined,
+      MessageTyped,
+      MessageNamed,
       Output
    };
-   Q_ENUM(Marker)
+   Q_ENUM(PatchPart);
 
    static const QList<QByteArray> descriptionMaxTags;
 
-   struct Base
-   {
-      bool undocumented = false;
-   };
-
-   struct Digest : Base
+   struct Digest
    {
       QString text;
       QString description;
    };
 
-public:
    struct Patch
    {
       Digest digest;
-      PatcherType patcherType = PatcherStandard;
+      PatchType patcherType = PatchType::Standard;
       int inletCount = 0;
       QStringList metaTagList;
       QStringList seeAlsoList;
    };
 
-   struct Output : Base
+   struct Output
    {
       QString name;
       Digest digest;
@@ -79,31 +75,31 @@ public:
 
    // things in patcherargs without @
    // message arguments
-   struct Argument : Base
+   struct Argument
    {
       QString name;
       bool optional = false;
-      Type type = Type::Symbol;
+      DataType type = DataType::Symbol;
       Digest digest;
 
       using List = QList<Argument>;
    };
 
-   struct Message : Base
+   struct Message
    {
       Argument::List arguments;
       Digest digest;
 
-      using TypedMap = QMap<Type, Message>;
-      using NamedMap = QMap<QString, Message>; // name vs message
+      using TypeMap = QMap<DataType, Message>;
+      using NameMap = QMap<QString, Message>; // name vs message
    };
 
    // things in patcherargs with @
-   struct Attribute : Base
+   struct Attribute
    {
       bool get = true;
       bool set = true;
-      Type type = Type::Symbol;
+      DataType type = DataType::Symbol;
       int size = 1;
       Digest digest;
 
@@ -118,21 +114,28 @@ public:
 
 public:
    virtual void clear();
-   static QString typeName(const Type& type);
-   static Type toType(const QString& name);
-   static QList<Type> typeList();
    virtual void setDirty();
+
+   // message type
+   static QString dataTypeName(const DataType& type);
+   static DataType toDataType(const QString& name);
+   static QList<DataType> dataTypeList();
+
+   // patcher type
+   static QString typeName(const PatchType& type);
+   static PatchType toType(const QString& name);
+
+   // part
+   static QString partName(const PatchPart& part);
+   static PatchPart toPart(const QString& name);
 
 public:
    Patch patch;
    Output::Map outputMap;
    Argument::List argumentList;
    Attribute::Map attributeMap;
-   Message::TypedMap messageTypedMap;
-   Message::NamedMap messageNamedMap;
-
-private:
-   static const QMap<Type, QString> typeNameMap;
+   Message::TypeMap messageTypedMap;
+   Message::NameMap messageNamedMap;
 };
 
 #endif // NOT StructureH

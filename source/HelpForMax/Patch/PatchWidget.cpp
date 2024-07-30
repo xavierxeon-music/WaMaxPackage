@@ -6,10 +6,10 @@
 #include <QCoreApplication>
 #include <QThread>
 
-#include "../MainWindow.h"
 #include "DelegateType.h"
 #include "DescriptionHighlighter.h"
 #include "FileRef.h"
+#include "MainWindow.h"
 #include "Package/PackageInfo.h"
 #include "PatchModelArgument.h"
 #include "PatchModelNamedMessage.h"
