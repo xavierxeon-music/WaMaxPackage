@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.launchpad.row" patcher_type="0">
+<c74object name="wa.launchpad.row" patcher_type="standard">
     <digest>a row of a lauchnpad</digest>
     <description>used 9 value as a slider, ranging from -4 to +4</description>
     <metadatalist>

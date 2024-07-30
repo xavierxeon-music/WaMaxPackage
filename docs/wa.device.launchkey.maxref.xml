@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.device.launchkey" patcher_type="1">
+<c74object name="wa.device.launchkey" patcher_type="gui">
     <digest>launchkey device</digest>
     <description>A novation Launchkey 61 mk3  keyboard<br/><br/>In a locked patch move the mouse to see element names.<br/><br/>Single mouse click freezes element name display<br/>Double mouse click create new <o>wa.launchkey,element</o></description>
     <metadatalist>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.control.drum" patcher_type="1">
+<c74object name="wa.control.drum" patcher_type="gui">
     <digest>control ans store drum params</digest>
     <description>control ans store drum params</description>
     <metadatalist>

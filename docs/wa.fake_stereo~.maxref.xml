@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.fake_stereo~" patcher_type="0">
+<c74object name="wa.fake_stereo~" patcher_type="standard">
     <digest>Haas Effect</digest>
     <description>create fake stereo</description>
     <metadatalist>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.rack.es8.display" patcher_type="1">
+<c74object name="wa.rack.es8.display" patcher_type="gui">
     <digest>es8 device</digest>
     <description>show es8 connections<br/></description>
     <metadatalist>

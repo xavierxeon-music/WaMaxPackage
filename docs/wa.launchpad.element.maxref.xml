@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.launchpad.element" patcher_type="0">
+<c74object name="wa.launchpad.element" patcher_type="standard">
     <digest>lauchpad button</digest>
     <description>Interact with a single button of a Novation Launchpad Mini.<br/>Can be used in 2 modes: click and toggle.<br/><br/><i>"click"</i> is active for as long as the button is pressed.<br/><i>"toggle"</i> is active between to consecutive button presses.<br/><br/><b>Needs</b> a <o>wa.device.launchpad</o></description>
     <metadatalist>

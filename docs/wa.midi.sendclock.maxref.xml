@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.midi.clocksend" patcher_type="0">
+<c74object name="wa.midi.clocksend" patcher_type="standard">
     <digest>send midiclock</digest>
     <description>send the currrent transpoprt state and cock via midi</description>
     <metadatalist>

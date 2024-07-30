@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.pass_on_play" patcher_type="0">
+<c74object name="wa.pass_on_play" patcher_type="standard">
     <digest>pass on play</digest>
     <description>pass signal if transport is running</description>
     <metadatalist>

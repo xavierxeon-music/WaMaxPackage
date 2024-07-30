@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.device.push2~" patcher_type="1">
+<c74object name="wa.device.push2~" patcher_type="gui">
     <digest>an Ableton Push2 device</digest>
     <description>connect to an Ableton Oush2 device.<br/>Necessary if you want to use <o>wa.push2.button</o> or <o>wa.push2.pad</o></description>
     <metadatalist>

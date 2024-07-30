@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.debug.window" patcher_type="1">
+<c74object name="wa.debug.window" patcher_type="gui">
     <digest>local print</digest>
     <description>acts like print, but in a local window</description>
     <metadatalist>

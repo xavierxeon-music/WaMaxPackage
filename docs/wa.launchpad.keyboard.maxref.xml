@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object name="wa.launchpad.keyboard" patcher_type="0">
+<c74object name="wa.launchpad.keyboard" patcher_type="standard">
     <digest>midi keyboard</digest>
     <description>use 2 launchpad rows as a midi keyboard</description>
     <metadatalist>
