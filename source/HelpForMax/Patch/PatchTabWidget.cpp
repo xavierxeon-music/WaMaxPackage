@@ -1,5 +1,6 @@
 #include "PatchTabWidget.h"
 
+#include <QDesktopServices>
 #include <QFileDialog>
 #include <QMenu>
 #include <QSettings>
@@ -41,7 +42,7 @@ QMenu* Patch::TabWidget::getRecentMenu()
    return recentMenu;
 }
 
-void Patch::TabWidget::slotOpenPatch()
+void Patch::TabWidget::slotLoadPatch()
 {
    const QString patchFileName = QFileDialog::getOpenFileName(this, "MAX PATCH", Package::Info::getPath(), "*.maxpat");
    if (patchFileName.isEmpty())
@@ -53,13 +54,33 @@ void Patch::TabWidget::slotOpenPatch()
 void Patch::TabWidget::slotWriteRef()
 {
    Patch::Widget* patchWidget = qobject_cast<Patch::Widget*>(currentWidget());
-   patchWidget->writeRef();
+   if (patchWidget)
+      patchWidget->writeRef();
+}
+
+void Patch::TabWidget::slotWriteAllRefs()
+{
 }
 
 void Patch::TabWidget::slotClosePatch()
 {
    Patch::Widget* patchWidget = qobject_cast<Patch::Widget*>(currentWidget());
-   patchWidget->deleteLater();
+   if (patchWidget)
+      patchWidget->deleteLater();
+}
+
+void Patch::TabWidget::slotOpenInMax()
+{
+   Patch::Widget* patchWidget = qobject_cast<Patch::Widget*>(currentWidget());
+   if (patchWidget)
+      patchWidget->openInMax();
+}
+
+void Patch::TabWidget::slotOpenXML()
+{
+   Patch::Widget* patchWidget = qobject_cast<Patch::Widget*>(currentWidget());
+   if (patchWidget)
+      patchWidget->openXML();
 }
 
 void Patch::TabWidget::slotNewConnection()

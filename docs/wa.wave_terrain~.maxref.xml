@@ -45,7 +45,7 @@
     </attributelist>
     <methodlist>
         <method name="signal" standard="1">
-            <digest/>
+            <digest>x/y control</digest>
         </method>
     </methodlist>
     <seealsolist/>

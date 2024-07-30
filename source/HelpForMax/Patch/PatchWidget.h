@@ -25,12 +25,15 @@ namespace Patch
       const QString& getPath() const;
       void openPatch(const QString& patchPath);
       virtual void writeRef();
+      void openInMax();
+      void openXML();
       bool isDirty() const;
 
    private:
       friend class TreeView;
 
    private slots:
+      void slotPatchTypeChanged(int index);
       void slotSetPatchDigest();
       void slotSaveDigestText();
       void slotSaveDigestDescription();

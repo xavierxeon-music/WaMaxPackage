@@ -6,16 +6,22 @@
 
 #include "Package/PackageInfo.h"
 
-void File::Ref::read(Structure* structure, const QString& patchFileName)
+void File::Ref::read(Structure* structure, const QString& patchName)
 {
    Ref ref(structure);
-   ref.read(patchFileName);
+   ref.read(patchName);
 }
 
-void File::Ref::write(Structure* structure, const QString& patchFileName)
+void File::Ref::write(Structure* structure, const QString& patchName)
 {
    Ref ref(structure);
-   ref.write(patchFileName);
+   ref.write(patchName);
+}
+
+QString File::Ref::getFilePath(const QString& patchName)
+{
+   const QString refPath = Package::Info::getPath() + "/docs/" + patchName + ".maxref.xml";
+   return refPath;
 }
 
 File::Ref::Ref(Structure* structure)
@@ -27,9 +33,7 @@ void File::Ref::read(const QString& patchName)
 {
    structure->clear(); // clear old data
 
-   const QString refPath = Package::Info::getPath() + "/docs/" + patchName + ".maxref.xml";
-   qDebug() << "READ REF " << refPath;
-   QFile file(refPath);
+   QFile file(getFilePath(patchName));
    if (!file.open(QIODevice::ReadOnly))
       return;
 
@@ -41,9 +45,7 @@ void File::Ref::read(const QString& patchName)
 
 void File::Ref::write(const QString& patchName)
 {
-   const QString refPath = Package::Info::getPath() + "/docs/" + patchName + ".maxref.xml";
-
-   QFile file(refPath);
+   QFile file(getFilePath(patchName));
    if (!file.open(QIODevice::WriteOnly))
       return;
 

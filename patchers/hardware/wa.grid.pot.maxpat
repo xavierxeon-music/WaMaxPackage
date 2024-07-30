@@ -44,7 +44,7 @@
 					"maxclass" : "wa.helpfile",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1770.0, 240.0, 40.0, 40.0 ]
+					"patching_rect" : [ 492.0, 30.0, 40.0, 40.0 ]
 				}
 
 			}
@@ -341,7 +341,7 @@
 				"box" : 				{
 					"comment" : "rgb",
 					"id" : "obj-18",
-					"index" : 2,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -595,7 +595,7 @@
 				"box" : 				{
 					"comment" : "",
 					"id" : "obj-1",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -608,7 +608,7 @@
 				"box" : 				{
 					"comment" : "value",
 					"id" : "obj-2",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -994,6 +994,7 @@
 
 			}
  ],
+		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.buffer",
 				"default" : 				{

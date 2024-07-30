@@ -31,6 +31,7 @@ TestClient::TestClient()
 
    addItem("/Users/waspe/GitHub/MusicProjects/WaMaxPackage/patchers/hardware/wa.grid.pot.maxpat");
    addItem("/Users/waspe/GitHub/MusicProjects/WaMaxPackage/patchers/audio/wa.wave_terrain~.maxpat");
+   addItem("/Users/waspe/GitHub/MusicProjects/WaMaxPackage/patchers/mixer/wa.channel_strip.master~.maxpat");
 
    connect(selectTree, &QTreeWidget::currentItemChanged, this, &TestClient::slotSelectItemChanged);
 }

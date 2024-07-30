@@ -26,9 +26,12 @@ namespace Patch
       QMenu* getRecentMenu();
 
    public slots:
-      void slotOpenPatch();
+      void slotLoadPatch();
       void slotWriteRef();
       void slotClosePatch();
+      void slotWriteAllRefs();
+      void slotOpenInMax();
+      void slotOpenXML();
 
    private slots:
       void slotNewConnection();

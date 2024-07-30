@@ -1,13 +1,13 @@
 #include "PatchWidget.h"
 
+#include <QDesktopServices>
 #include <QHBoxLayout>
 #include <QScrollArea>
 
-#include <QCoreApplication>
-#include <QThread>
-
 #include "DelegateType.h"
 #include "DescriptionHighlighter.h"
+#include "FileHelp.h"
+#include "FileInit.h"
 #include "FileRef.h"
 #include "MainWindow.h"
 #include "Package/PackageInfo.h"
@@ -41,6 +41,12 @@ Patch::Widget::Widget(QWidget* parent)
    setIcon(typedMessageIcon, Structure::PatchPart::MessageTyped);
    setIcon(nameMessageIcon, Structure::PatchPart::MessageNamed);
    setIcon(outputIcon, Structure::PatchPart::Output);
+
+   patchTypeCombo->addItem("Standard", QVariant::fromValue(Structure::PatchType::Standard));
+   patchTypeCombo->addItem("Gui", QVariant::fromValue(Structure::PatchType::Gui));
+   patchTypeCombo->addItem("Poly", QVariant::fromValue(Structure::PatchType::Poly));
+   patchTypeCombo->addItem("Fourier", QVariant::fromValue(Structure::PatchType::Fourier));
+   connect(patchTypeCombo, &QComboBox::currentIndexChanged, this, &Widget::slotPatchTypeChanged);
 
    // set models
 
@@ -96,7 +102,20 @@ void Patch::Widget::openPatch(const QString& patchPath)
 void Patch::Widget::writeRef()
 {
    File::Ref::write(this, name);
+   File::Help::write(this, name);
+   File::Init::write(this, name);
    propagateDirty(false);
+}
+
+void Patch::Widget::openInMax()
+{
+   QDesktopServices::openUrl(QUrl::fromLocalFile(path));
+}
+
+void Patch::Widget::openXML()
+{
+   const QString refPath = File::Ref::getFilePath(name);
+   QDesktopServices::openUrl(QUrl::fromLocalFile(refPath));
 }
 
 bool Patch::Widget::isDirty() const
@@ -104,9 +123,19 @@ bool Patch::Widget::isDirty() const
    return dirty;
 }
 
+void Patch::Widget::slotPatchTypeChanged(int index)
+{
+   patch.patcherType = patchTypeCombo->itemData(index).value<Structure::PatchType>();
+   setDirty();
+}
+
 void Patch::Widget::slotSetPatchDigest()
 {
    setDigest(&patch.digest, Structure::PatchPart::Patch);
+   setDirty();
+
+   // update even if current digest does not belong to patch
+   update();
 }
 
 void Patch::Widget::slotSaveDigestText()
@@ -115,7 +144,7 @@ void Patch::Widget::slotSaveDigestText()
    setDirty();
 
    // update even if current digest does not belong to patch
-   patchDigestEdit->setText(patch.digest.text);
+   update();
 }
 
 void Patch::Widget::slotSaveDigestDescription()
@@ -154,10 +183,19 @@ void Patch::Widget::rebuild()
 
    patchNameLabel->setText(name);
    patchDigestEdit->setText(patch.digest.text);
+
+   const int typeIndex = patchTypeCombo->findData(QVariant::fromValue(patch.patcherType));
+   patchTypeCombo->blockSignals(true);
+   patchTypeCombo->setCurrentIndex(typeIndex);
+   patchTypeCombo->blockSignals(false);
 }
 
 void Patch::Widget::update()
 {
+   for (Model::Abstract* model : modelList)
+      model->update();
+
+   patchDigestEdit->setText(patch.digest.text);
 }
 
 void Patch::Widget::setDirty()

@@ -2,7 +2,7 @@ HEADERS += \
     $$PWD/DescriptionHighlighter.h \
     $$PWD/FileAbstract.h \
     $$PWD/FileHelp.h \
-    $$PWD/FileIni.h \
+    $$PWD/FileInit.h \
     $$PWD/FileRef.h \
     $$PWD/PatchModelAbstract.h \
     $$PWD/PatchModelArgument.h \
@@ -20,7 +20,7 @@ SOURCES += \
     $$PWD/DescriptionHighlighter.cpp \
     $$PWD/FileAbstract.cpp \
     $$PWD/FileHelp.cpp \
-    $$PWD/FileIni.cpp \
+    $$PWD/FileInit.cpp \
     $$PWD/FileRef.cpp \
     $$PWD/PatchModelAbstract.cpp \
     $$PWD/PatchModelArgument.cpp \

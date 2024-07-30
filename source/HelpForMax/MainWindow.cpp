@@ -64,15 +64,15 @@ void MainWindow::populateMenuAndToolBar()
 {
    //
    QMenu* patchMenu = menuBar()->addMenu("Patch");
-   QAction* openPatchAction = patchMenu->addAction(QIcon(":/PatchLoad.svg"), "Load", tabWidget, &Patch::TabWidget::slotOpenPatch);
+   QAction* lopdPatchAction = patchMenu->addAction(QIcon(":/PatchLoad.svg"), "Load", tabWidget, &Patch::TabWidget::slotLoadPatch);
    patchMenu->addMenu(tabWidget->getRecentMenu());
    QAction* saveRefAction = patchMenu->addAction(QIcon(":/PatchSave.svg"), "Save", tabWidget, &Patch::TabWidget::slotWriteRef);
-   patchMenu->addAction(QIcon(":/PatchSaveAll.svg"), "SaveAll");
+   patchMenu->addAction(QIcon(":/PatchSaveAll.svg"), "SaveAll", tabWidget, &Patch::TabWidget::slotWriteAllRefs);
    patchMenu->addSeparator();
    QAction* closePatchAction = patchMenu->addAction(QIcon(":/PatchClose.svg"), "Close", tabWidget, &Patch::TabWidget::slotClosePatch);
    patchMenu->addSeparator();
-   patchMenu->addAction(QIcon(":/PatchOpenInMax.svg"), "Open In Max");
-   patchMenu->addAction(QIcon(":/PatchOpenRef.svg"), "Open XML");
+   patchMenu->addAction(QIcon(":/PatchOpenInMax.svg"), "Open In Max", tabWidget, &Patch::TabWidget::slotOpenInMax);
+   patchMenu->addAction(QIcon(":/PatchOpenRef.svg"), "Open XML", tabWidget, &Patch::TabWidget::slotOpenXML);
 
    //
    QMenu* viewMenu = menuBar()->addMenu("View");
@@ -103,24 +103,28 @@ void MainWindow::populateMenuAndToolBar()
    auto spacer = [&]()
    {
       QWidget* widget = new QWidget(this);
+      widget->setMinimumWidth(100);
       widget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Preferred);
 
       return widget;
    };
 
-   QToolBar* patchToolBar = addToolBar("Patch");
-   patchToolBar->setObjectName("Patch");
-   patchToolBar->setMovable(false);
+   auto createToolBar = [&](const QString& name)
+   {
+      QToolBar* toolBar = addToolBar(name);
+      toolBar->setObjectName(name);
+      toolBar->setMovable(false);
 
-   patchToolBar->addAction(openPatchAction);
+      return toolBar;
+   };
+
+   QToolBar* patchToolBar = createToolBar("Patch");
+   patchToolBar->addAction(lopdPatchAction);
    patchToolBar->addAction(saveRefAction);
    patchToolBar->addSeparator();
    patchToolBar->addAction(closePatchAction);
 
-   QToolBar* viewToolBar = addToolBar("View");
-   viewToolBar->setObjectName("View");
-   viewToolBar->setMovable(false);
-
+   QToolBar* viewToolBar = createToolBar("View");
    viewToolBar->addWidget(spacer());
    viewToolBar->addAction(packageAction);
    viewToolBar->addAction(overviewAction);
