@@ -85,14 +85,13 @@ void File::Ref::readContent(const QByteArray& content)
       {
          for (const QDomElement& outletElement : compileAllDirectChildElements(outputListElement, "entry"))
          {
-            const int id = outletElement.attribute("id").toInt();
+            const QString name = outletElement.attribute("name");
+            const Patch::Structure::DataType dataType = Patch::Structure::toDataType(name);
 
-            Patch::Structure::Output output;
-            output.name = outletElement.attribute("name");
+            Patch::Structure::Output& output = structure->outputMap[dataType];
+            output.active = true;
 
             readDigest(outletElement, output.digest);
-
-            structure->outputMap[id] = output;
          }
       }
    }
@@ -208,18 +207,16 @@ QByteArray File::Ref::writeContent(const QString& patchName)
    }
 
    {
-      QDomElement parserElement = createSubElement(rootElement, "parser");
-      parserElement.setAttribute("inlet_count", structure->header.inletCount);
-   }
-
-   {
       QDomElement outputListElement = createSubElement(rootElement, "misc");
       outputListElement.setAttribute("name", "Outputs");
       for (Patch::Structure::Output::Map::const_iterator it = structure->outputMap.constBegin(); it != structure->outputMap.constEnd(); it++)
       {
+         const Patch::Structure::Output& output = it.value();
+         if (!output.active)
+            continue;
+
          QDomElement outputElement = createSubElement(outputListElement, "entry");
-         outputElement.setAttribute("name", it.value().name);
-         outputElement.setAttribute("id", it.key());
+         outputElement.setAttribute("name", Patch::Structure::dataTypeName(output.dataType));
 
          addDigest(outputElement, it.value().digest);
       }

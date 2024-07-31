@@ -65,17 +65,19 @@ namespace Patch
       {
          Digest digest;
          PatchType patcherType = PatchType::Standard;
-         int inletCount = 0;
+
          QStringList metaTagList;
          QStringList seeAlsoList;
       };
 
       struct Output
       {
-         QString name;
+         DataType dataType = DataType::Anything;
+         bool active = false;
          Digest digest;
 
-         using Map = QMap<int, Output>; // outlet number vs port
+         using List = QList<Output>;
+         using Map = QMap<DataType, Output>;
       };
 
       struct Input

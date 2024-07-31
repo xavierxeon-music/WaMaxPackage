@@ -7,15 +7,14 @@
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="0"/>
     <misc name="Outputs">
-        <entry id="1" name="value">
+        <entry name="float">
             <digest/>
-            <description>the value of the element (on change)</description>
+            <description>(right) the current normalized value</description>
         </entry>
-        <entry id="2" name="rgb">
+        <entry name="list">
             <digest/>
-            <description>rgb value of current color as float</description>
+            <description>(left) the color as float values</description>
         </entry>
     </misc>
     <objarglist>
@@ -48,12 +47,6 @@
             </arglist>
             <digest>name</digest>
             <description>the name of the element</description>
-        </method>
-        <method name="int" standard="1">
-            <arglist>
-                <arg name="" optional="0" type="int"/>
-            </arglist>
-            <digest/>
         </method>
     </methodlist>
     <seealsolist/>

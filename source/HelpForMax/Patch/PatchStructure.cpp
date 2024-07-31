@@ -40,11 +40,20 @@ Patch::Structure::Structure()
 {
    for (const DataType& dataType : dataTypeNameMap.keys())
    {
-      Structure::MessageTyped message;
-      message.active = false;
-      message.dataType = dataType;
+      {
+         Structure::MessageTyped message;
+         message.active = false;
+         message.dataType = dataType;
 
-      messageTypedMap[dataType] = message;
+         messageTypedMap[dataType] = message;
+      }
+      {
+         Structure::Output output;
+         output.active = false;
+         output.dataType = dataType;
+
+         outputMap[dataType] = output;
+      }
    }
 }
 

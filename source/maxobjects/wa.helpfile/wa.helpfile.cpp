@@ -63,7 +63,10 @@ atoms HelpFile::mouseDoubleClickFunction(const atoms& args, const int inlet)
    if (!socket->waitForConnected())
    {
       if (!HelpForMax::isServerActive())
+      {
+         cout << "start application" << endl;
          HelpForMax::startApplication();
+      }
 
       socket->connectToServer(HelpForMax::compileSockerName());
       socket->waitForConnected();

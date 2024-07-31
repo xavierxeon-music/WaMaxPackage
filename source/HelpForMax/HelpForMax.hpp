@@ -18,7 +18,6 @@ HelpForMax::HelpForMax()
 QString HelpForMax::compileSockerName()
 {
    const QString socketPath = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
-   // QDir().mkpath(socketPath);
 
    const QString socketName = socketPath + "/.helpformax.socket";
    return socketName;
@@ -46,8 +45,7 @@ bool HelpForMax::isServerActive()
 
 void HelpForMax::startApplication()
 {
-   qDebug() << "START APP";
-   // QProcess::startDetached("open", {"-a", "HelpForMax"});
+   QProcess::startDetached("open", {"-a", "HelpForMax"});
 }
 
 #endif // NOT HelpForMaxHPP

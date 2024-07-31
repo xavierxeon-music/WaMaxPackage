@@ -235,9 +235,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QSpinBox" name="outputCountSpin"/>
-     </item>
-     <item>
       <spacer name="horizontalSpacer_4">
        <property name="orientation">
         <enum>Qt::Orientation::Horizontal</enum>
