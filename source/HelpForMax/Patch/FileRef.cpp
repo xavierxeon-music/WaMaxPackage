@@ -6,24 +6,6 @@
 
 #include "Package/PackageInfo.h"
 
-void File::Ref::read(Structure* structure, const QString& patchName)
-{
-   Ref ref(structure);
-   ref.read(patchName);
-}
-
-void File::Ref::write(Structure* structure, const QString& patchName)
-{
-   Ref ref(structure);
-   ref.write(patchName);
-}
-
-QString File::Ref::getFilePath(const QString& patchName)
-{
-   const QString refPath = Package::Info::getPath() + "/docs/" + patchName + ".maxref.xml";
-   return refPath;
-}
-
 File::Ref::Ref(Structure* structure)
    : Abstract(structure)
 {
@@ -54,6 +36,12 @@ void File::Ref::write(const QString& patchName)
 
    file.write(content);
    file.close();
+}
+
+QString File::Ref::getFilePath(const QString& patchName)
+{
+   const QString refPath = Package::Info::getPath() + "/docs/" + patchName + ".maxref.xml";
+   return refPath;
 }
 
 void File::Ref::readContent(const QByteArray& content)

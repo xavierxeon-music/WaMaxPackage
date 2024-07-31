@@ -8,14 +8,11 @@ namespace File
    class Init : public Abstract
    {
    public:
-      static void write(Structure* structure, const QString& patchName);
-      static QString getFilePath(const QString& patchName);
-
-   public:
       Init(Structure* structure);
 
-   private:
-      void write(const QString& patchName);
+   public:
+      void write(const QString& patchName) override;
+      QString getFilePath(const QString& patchName) override;
    };
 } // namespace File
 

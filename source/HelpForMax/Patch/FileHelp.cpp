@@ -6,18 +6,6 @@
 
 #include "Package/PackageInfo.h"
 
-void File::Help::write(Structure* structure, const QString& patchName)
-{
-   Help help(structure);
-   help.write(patchName);
-}
-
-QString File::Help::getFilePath(const QString& patchName)
-{
-   const QString helpPath = Package::Info::getPath() + "/help/" + patchName + ".maxhelp";
-   return helpPath;
-}
-
 File::Help::Help(Structure* structure)
    : Abstract(structure)
 {
@@ -59,4 +47,10 @@ void File::Help::write(const QString& patchName)
 
    file.write(content);
    file.close();
+}
+
+QString File::Help::getFilePath(const QString& patchName)
+{
+   const QString helpPath = Package::Info::getPath() + "/help/" + patchName + ".maxhelp";
+   return helpPath;
 }

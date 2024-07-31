@@ -75,19 +75,19 @@ public:
       using Map = QMap<int, Output>; // outlet number vs port
    };
 
-   struct Base
+   struct Input
    {
       DataType dataType = DataType::Symbol;
       Digest digest;
    };
 
-   struct MessageTyped : Base
+   struct MessageTyped : Input
    {
       using Map = QMap<DataType, MessageTyped>;
    };
 
    // attributes and things in patcherargs with @
-   struct MessageNamed : Base
+   struct MessageNamed : Input
    {
       QString name;
       PatchParts patchParts = PatchPart::Undefined;
@@ -96,7 +96,7 @@ public:
    };
 
    // things in patcherargs without @
-   struct Argument : Base
+   struct Argument : Input
    {
       QString name;
       bool optional = false;

@@ -2,18 +2,6 @@
 
 #include "Package/PackageInfo.h"
 
-void File::Init::write(Structure* structure, const QString& patchName)
-{
-   Init init(structure);
-   init.write(patchName);
-}
-
-QString File::Init::getFilePath(const QString& patchName)
-{
-   const QString initPath = Package::Info::getPath() + "/init/" + patchName + ".txt";
-   return initPath;
-}
-
 File::Init::Init(Structure* structure)
    : Abstract(structure)
 {
@@ -51,4 +39,10 @@ void File::Init::write(const QString& patchName)
       }
       file.close();
    }
+}
+
+QString File::Init::getFilePath(const QString& patchName)
+{
+   const QString initPath = Package::Info::getPath() + "/init/" + patchName + ".txt";
+   return initPath;
 }

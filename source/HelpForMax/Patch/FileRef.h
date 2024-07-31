@@ -10,20 +10,17 @@ namespace File
    class Ref : public Abstract
    {
    public:
-      static void read(Structure* structure, const QString& patchName);
-      static void write(Structure* structure, const QString& patchName);
-      static QString getFilePath(const QString& patchName);
+      Ref(Structure* structure);
 
    public:
-      Ref(Structure* structure);
+      void read(const QString& patchName) override;
+      void write(const QString& patchName) override;
+      QString getFilePath(const QString& patchName) override;
 
    private:
       using TagMap = QMap<QString, QString>;
 
    private:
-      void read(const QString& patchName);
-      void write(const QString& patchName);
-
       void readContent(const QByteArray& content);
       QByteArray writeContent(const QString& patchName);
 

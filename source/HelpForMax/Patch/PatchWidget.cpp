@@ -94,16 +94,16 @@ void Patch::Widget::openPatch(const QString& patchPath)
    name = Package::Info::setPatchPath(path);
    propagateDirty(false);
 
-   File::Ref::read(this, name);
+   File::Ref(this).read(name);
 
    rebuild();
 }
 
 void Patch::Widget::writeRef()
 {
-   File::Ref::write(this, name);
-   File::Help::write(this, name);
-   File::Init::write(this, name);
+   File::Ref(this).write(name);
+   File::Help(this).write(name);
+   File::Init(this).write(name);
    propagateDirty(false);
 }
 
@@ -114,7 +114,7 @@ void Patch::Widget::openInMax()
 
 void Patch::Widget::openXML()
 {
-   const QString refPath = File::Ref::getFilePath(name);
+   const QString refPath = File::Ref(this).getFilePath(name);
    QDesktopServices::openUrl(QUrl::fromLocalFile(refPath));
 }
 

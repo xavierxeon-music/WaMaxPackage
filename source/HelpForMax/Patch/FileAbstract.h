@@ -10,6 +10,11 @@ namespace File
    public:
       Abstract(Structure* structure);
 
+   public:
+      virtual void read(const QString& patchName);
+      virtual void write(const QString& patchName) = 0;
+      virtual QString getFilePath(const QString& patchName) = 0;
+
    protected:
       Structure* structure;
    };
