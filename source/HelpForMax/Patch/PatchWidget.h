@@ -29,6 +29,10 @@ namespace Patch
       void openXML();
       bool isDirty() const;
 
+   protected:
+      QString path;
+      QString name;
+
    private:
       friend class TreeView;
 
@@ -47,9 +51,6 @@ namespace Patch
       void setIcon(QLabel* iconLabel, Structure::PatchPart part);
 
    private:
-      QString path;
-      QString name;
-
       Model::Abstract::List modelList;
       bool dirty;
 

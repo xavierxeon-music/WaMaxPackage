@@ -18,17 +18,20 @@ void Patch::SocketWidget::slotReceiveData()
    const QJsonDocument doc = QJsonDocument::fromJson(socket->readAll());
    const QJsonObject object = doc.object();
 
-   const QString path = object["patch"].toString();
+   const QString newPath = object["patch"].toString();
+   if (path == newPath)
+      return;
 
-   metaObject()->invokeMethod(this, &Widget::openPatch, Qt::QueuedConnection, path);
+   //metaObject()->invokeMethod(this, &Widget::openPatch, Qt::QueuedConnection, newPath);
+   openPatch(newPath);
 }
 
 void Patch::SocketWidget::writeRef()
 {
    Widget::writeRef();
 
-   const QJsonObject object;
-   object["timestamp"] = QDateTime::currentDateTime().toString();
+   QJsonObject object;
+   object["patch"] = path;
    qDebug() << "SEND" << object;
 
    QJsonDocument doc(object);

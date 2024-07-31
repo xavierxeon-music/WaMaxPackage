@@ -13,15 +13,18 @@ class TestClient : public QDialog, private Ui::TestClient
 public:
    TestClient();
 
+private:
+   using SocketMap = QMap<QString, QLocalSocket*>;
+
 private slots:
-   void slotReceiveData();
    void slotSelectItemChanged(QTreeWidgetItem* current, QTreeWidgetItem* previous);
 
 private:
    void sendData(const QString& patchPath);
+   void receiveData(QLocalSocket* socket);
 
 private:
-   QLocalSocket* socket;
+   SocketMap socketMap;
 };
 
 #endif // NOT TestClientH

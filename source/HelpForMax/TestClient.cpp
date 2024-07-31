@@ -9,12 +9,9 @@
 
 TestClient::TestClient()
    : QDialog(nullptr)
-   , socket(nullptr)
+   , socketMap()
 {
    setupUi(this);
-
-   socket = new QLocalSocket(this);
-   connect(socket, &QLocalSocket::readyRead, this, &TestClient::slotReceiveData);
 
    selectTree->setHeaderLabels({"Patch"});
    selectTree->setRootIsDecorated(false);
@@ -36,16 +33,6 @@ TestClient::TestClient()
    connect(selectTree, &QTreeWidget::currentItemChanged, this, &TestClient::slotSelectItemChanged);
 }
 
-void TestClient::slotReceiveData()
-{
-   const QJsonDocument doc = QJsonDocument::fromJson(socket->readAll());
-   const QJsonObject object = doc.object();
-
-   const QString path = object["path"].toString();
-
-   resultEdit->append(doc.toJson());
-}
-
 void TestClient::slotSelectItemChanged(QTreeWidgetItem* current, QTreeWidgetItem* previous)
 {
    Q_UNUSED(previous)
@@ -57,8 +44,14 @@ void TestClient::slotSelectItemChanged(QTreeWidgetItem* current, QTreeWidgetItem
 
 void TestClient::sendData(const QString& patchPath)
 {
-   if (!socket->waitForConnected())
+   if (!socketMap.contains(patchPath))
    {
+      QLocalSocket* socket = new QLocalSocket(this);
+      socketMap.insert(patchPath, socket);
+
+      auto receiveFunction = std::bind(&TestClient::receiveData, this, socket);
+      connect(socket, &QLocalSocket::readyRead, receiveFunction);
+
       if (!HelpForMax::isServerActive())
          HelpForMax::startApplication();
 
@@ -66,9 +59,22 @@ void TestClient::sendData(const QString& patchPath)
       socket->waitForConnected();
    }
 
+   QLocalSocket* socket = socketMap[patchPath];
+   socket->waitForConnected();
+
    QJsonObject object;
    object["patch"] = patchPath;
 
    QJsonDocument doc(object);
    socket->write(doc.toJson(QJsonDocument::Compact));
+}
+
+void TestClient::receiveData(QLocalSocket* socket)
+{
+   const QJsonDocument doc = QJsonDocument::fromJson(socket->readAll());
+   const QJsonObject object = doc.object();
+
+   //const QString path = object["path"].toString();
+
+   resultEdit->append(doc.toJson());
 }
