@@ -12,12 +12,14 @@ void Patch::Model::Argument::update()
    {
       QStandardItem* nameItem = invisibleRootItem()->child(row, 0);
       QStandardItem* typeItem = invisibleRootItem()->child(row, 1);
-      QStandardItem* digestItem = invisibleRootItem()->child(row, 2);
+      QStandardItem* optionalItem = invisibleRootItem()->child(row, 2);
+      QStandardItem* digestItem = invisibleRootItem()->child(row, 3);
 
       const Structure::Argument& argument = structure->argumentList.at(row);
 
       nameItem->setText(argument.name);
       typeItem->setText(Structure::dataTypeName(argument.dataType));
+      optionalItem->setCheckState(argument.optional ? Qt::Checked : Qt::Unchecked);
 
       updateDigestItem(digestItem, argument.digest);
    }
@@ -31,7 +33,7 @@ void Patch::Model::Argument::rebuild()
 
    clear();
 
-   setHorizontalHeaderLabels({"Name", "Type", "Digest"});
+   setHorizontalHeaderLabels({"Name", "Type", "Optional", "Digest"});
 
    for (int row = 0; row < structure->argumentList.count(); row++)
    {
@@ -39,10 +41,15 @@ void Patch::Model::Argument::rebuild()
 
       QStandardItem* typeItem = new QStandardItem();
 
+      QStandardItem* optionalItem = new QStandardItem();
+      optionalItem->setCheckable(true);
+      optionalItem->setEditable(false);
+      optionalItem->setIcon(QIcon(":/DocArgument.svg"));
+
       QStandardItem* digestItem = new QStandardItem();
       digestItem->setEditable(false);
 
-      invisibleRootItem()->appendRow({nameItem, typeItem, digestItem});
+      invisibleRootItem()->appendRow({nameItem, typeItem, optionalItem, digestItem});
    }
 
    endResetModel();
@@ -78,10 +85,10 @@ void Patch::Model::Argument::removeItem(const QModelIndex& index)
 bool Patch::Model::Argument::setData(const QModelIndex& index, const QVariant& value, int role)
 {
    const bool result = QStandardItemModel::setData(index, value, role);
+   Structure::Argument& argument = structure->argumentList[index.row()];
+
    if (Qt::EditRole == role)
    {
-      Structure::Argument& argument = structure->argumentList[index.row()];
-
       if (0 == index.column())
       {
          argument.name = value.toString();
@@ -92,6 +99,11 @@ bool Patch::Model::Argument::setData(const QModelIndex& index, const QVariant& v
          argument.dataType = Structure::toDataType(value.toString());
          structure->setDirty();
       }
+   }
+   else if (Qt::CheckStateRole == role)
+   {
+      argument.optional = (Qt::Checked == value.toInt());
+      structure->setDirty();
    }
 
    emit signalDataEdited();

@@ -12,6 +12,8 @@ void Patch::Model::Header::update()
 
    typeItem->setText(Structure::patchTypeName(structure->header.patcherType));
    updateDigestItem(digestItem, structure->header.digest);
+
+   emit signalDataEdited();
 }
 
 void Patch::Model::Header::rebuild()

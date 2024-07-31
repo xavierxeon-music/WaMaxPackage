@@ -80,6 +80,7 @@ namespace Patch
 
       struct Input
       {
+         QString name;
          DataType dataType = DataType::Symbol;
          Digest digest;
       };
@@ -95,7 +96,6 @@ namespace Patch
       // attributes and things in patcherargs with @
       struct AttributesAndMessageNamed : Input
       {
-         QString name;
          PatchParts patchParts = PatchPart::Undefined;
 
          using List = QList<AttributesAndMessageNamed>;
@@ -105,7 +105,6 @@ namespace Patch
       // things in patcherargs without @
       struct Argument : Input
       {
-         QString name;
          bool optional = false;
 
          using List = QList<Argument>;

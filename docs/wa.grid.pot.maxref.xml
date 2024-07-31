@@ -19,17 +19,17 @@
         </entry>
     </misc>
     <objarglist>
-        <objarg name="id" optional="1" type="int">
+        <objarg name="id" optional="0" type="int">
             <digest>the grid id  (11)</digest>
             <description>the grid ID of the element<br/><br/>11 12 13 14<br/>21 22 23 24<br/>31 32 33 34<br/>41 42 43 44<br/></description>
         </objarg>
     </objarglist>
     <attributelist>
-        <attribute get="0" name="color" set="1" size="1" type="symbol">
+        <attribute name="color" type="symbol">
             <digest>led color</digest>
             <description>the color of the LED</description>
         </attribute>
-        <attribute get="0" name="name" set="1" size="1" type="symbol">
+        <attribute name="name" type="symbol">
             <digest>name</digest>
             <description>the name of the element</description>
         </attribute>
@@ -48,6 +48,12 @@
             </arglist>
             <digest>name</digest>
             <description>the name of the element</description>
+        </method>
+        <method name="int" standard="1">
+            <arglist>
+                <arg name="" optional="0" type="int"/>
+            </arglist>
+            <digest/>
         </method>
     </methodlist>
     <seealsolist/>

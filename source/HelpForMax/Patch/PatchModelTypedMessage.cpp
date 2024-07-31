@@ -9,13 +9,15 @@ void Patch::Model::TypedMessage::update()
 {
    for (int row = 0; row < invisibleRootItem()->rowCount(); row++)
    {
-      QStandardItem* typeItem = invisibleRootItem()->child(row, 0);
-      QStandardItem* activeItem = invisibleRootItem()->child(row, 1);
-      QStandardItem* digestItem = invisibleRootItem()->child(row, 2);
+      QStandardItem* nameItem = invisibleRootItem()->child(row, 0);
+      QStandardItem* typeItem = invisibleRootItem()->child(row, 1);
+      QStandardItem* activeItem = invisibleRootItem()->child(row, 2);
+      QStandardItem* digestItem = invisibleRootItem()->child(row, 3);
 
       const Structure::DataType type = typeItem->data().value<Structure::DataType>();
       Structure::MessageTyped& message = structure->messageTypedMap[type];
 
+      nameItem->setText(message.name);
       activeItem->setCheckState(message.active ? Qt::Checked : Qt::Unchecked);
 
       updateDigestItem(digestItem, message.digest);
@@ -28,10 +30,12 @@ void Patch::Model::TypedMessage::rebuild()
 {
    beginResetModel();
    clear();
-   setHorizontalHeaderLabels({"Type", "Active", "Digest"});
+   setHorizontalHeaderLabels({"Name", "Type", "Active", "Digest"});
 
    for (const Structure::DataType& type : structure->dataTypeList())
    {
+      QStandardItem* nameItem = new QStandardItem();
+
       QStandardItem* typeItem = new QStandardItem(Structure::dataTypeName(type));
       typeItem->setEditable(false);
       typeItem->setData(QVariant::fromValue(type));
@@ -44,7 +48,7 @@ void Patch::Model::TypedMessage::rebuild()
       QStandardItem* digestItem = new QStandardItem();
       digestItem->setEditable(false);
 
-      invisibleRootItem()->appendRow({typeItem, activeItem, digestItem});
+      invisibleRootItem()->appendRow({nameItem, typeItem, activeItem, digestItem});
    }
 
    endResetModel();
@@ -53,7 +57,7 @@ void Patch::Model::TypedMessage::rebuild()
 
 Patch::Structure::Digest* Patch::Model::TypedMessage::getDigest(const QModelIndex& index)
 {
-   const QString typeName = invisibleRootItem()->child(index.row(), 0)->text();
+   const QString typeName = invisibleRootItem()->child(index.row(), 1)->text();
    const Structure::DataType type = Structure::toDataType(typeName);
 
    Structure::MessageTyped& message = structure->messageTypedMap[type];
@@ -64,15 +68,23 @@ bool Patch::Model::TypedMessage::setData(const QModelIndex& index, const QVarian
 {
    const bool result = QStandardItemModel::setData(index, value, role);
 
-   if (Qt::CheckStateRole == role)
+   const Structure::DataType type = invisibleRootItem()->child(index.row(), 1)->data().value<Structure::DataType>();
+   Structure::MessageTyped& message = structure->messageTypedMap[type];
+
+   if (Qt::EditRole == role)
+   {
+      if (0 == index.column())
+      {
+         message.name = value.toString();
+         structure->setDirty();
+      }
+   }
+   else if (Qt::CheckStateRole == role)
    {
       const bool enabled = (Qt::Checked == value.toInt());
 
-      if (1 == index.column())
+      if (2 == index.column())
       {
-         const Structure::DataType type = invisibleRootItem()->child(index.row(), 0)->data().value<Structure::DataType>();
-
-         Structure::MessageTyped& message = structure->messageTypedMap[type];
          if (enabled)
          {
             message.active = true;
