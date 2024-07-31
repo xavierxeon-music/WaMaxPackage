@@ -22,6 +22,8 @@ namespace Patch
          virtual void update() = 0;
          virtual void rebuild() = 0;
          virtual Structure::Digest* getDigest(const QModelIndex& index) = 0;
+         virtual void createBeforeItem(const QModelIndex& index);
+         virtual void removeItem(const QModelIndex& index);
          const Structure::PatchPart& getPart() const;
 
       protected:

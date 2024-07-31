@@ -54,6 +54,25 @@ Patch::Structure::Digest* Patch::Model::Argument::getDigest(const QModelIndex& i
    return &(argument.digest);
 }
 
+void Patch::Model::Argument::createBeforeItem(const QModelIndex& index)
+{
+   Structure::Argument argument;
+   argument.name = "???";
+
+   if (index.isValid())
+      structure->argumentList.insert(index.row(), argument);
+   else
+      structure->argumentList.append(argument);
+
+   structure->setDirty();
+}
+
+void Patch::Model::Argument::removeItem(const QModelIndex& index)
+{
+   structure->argumentList.removeAt(index.row());
+   structure->setDirty();
+}
+
 bool Patch::Model::Argument::setData(const QModelIndex& index, const QVariant& value, int role)
 {
    const bool result = QStandardItemModel::setData(index, value, role);

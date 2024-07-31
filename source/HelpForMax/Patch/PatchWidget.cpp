@@ -51,6 +51,7 @@ Patch::Widget::Widget(QWidget* parent)
    Model::Argument* argumentModel = new Model::Argument(this, this);
    modelList.append(argumentModel);
    argumentTree->init(this, argumentModel);
+   argumentTree->setButtons(argumentAddButton, argumentRemoveButton);
    argumentTree->setItemDelegateForColumn(1, new Delegate::DataType(this, argumentModel));
 
    Model::TypedMessage* typedMessageModel = new Model::TypedMessage(this, this);
@@ -60,16 +61,19 @@ Patch::Widget::Widget(QWidget* parent)
    Model::NamedMessage* namedMessageModel = new Model::NamedMessage(this, this);
    modelList.append(namedMessageModel);
    namedMessageTree->init(this, namedMessageModel);
+   namedMessageTree->setButtons(namedMessageAddButton, namedMessageRemoveButton);
 
    Model::Output* outputModel = new Model::Output(this, this);
    modelList.append(outputModel);
    outputTree->init(this, outputModel);
+   outputTree->setButtons(outputAddButton, outputRemoveButton);
 
    // right: digest area
    QWidget* editArea = new QWidget(this);
    Ui::DigestWidget::setupUi(editArea);
 
    new DescriptionHighlighter(descriptionEdit->document());
+   descriptionIcon->setPixmap(QIcon(":/DocDescription.svg").pixmap(16, 16));
 
    connect(digestEdit, &QLineEdit::editingFinished, this, &Widget::slotSaveDigestText);
    connect(descriptionEdit, &QTextEdit::textChanged, this, &Widget::slotSaveDigestDescription);
@@ -189,10 +193,11 @@ void Patch::Widget::setDirty()
 
 void Patch::Widget::propagateDirty(bool isDirty)
 {
+   static const QString bullet = QString::fromUtf8("\u25cf") + QString(" ");
    if (isDirty)
    {
       dirty = true;
-      setWindowTitle(name + "*");
+      setWindowTitle(bullet + name);
    }
    else
    {

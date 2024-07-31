@@ -28,6 +28,21 @@ void Patch::TreeView::init(Widget* widget, Model::Abstract* model, int forceRowH
    connect(model, &Model::Abstract::modelReset, this, &TreeView::slotResizeColumns);
 }
 
+void Patch::TreeView::setButtons(QToolButton* addButton, QToolButton* removeButton)
+{
+   static const QString styleSheet = "QToolButton { border: 0px none #8f8f91;}";
+
+   static const QString plus = QString::fromUtf8("\u2795");
+   addButton->setStyleSheet(styleSheet);
+   addButton->setText(plus);
+   connect(addButton, &QAbstractButton::clicked, this, &TreeView::slotAddElement);
+
+   static const QString minus = QString::fromUtf8("\u2796");
+   removeButton->setStyleSheet(styleSheet);
+   removeButton->setText(minus);
+   connect(removeButton, &QAbstractButton::clicked, this, &TreeView::slotRemoveElement);
+}
+
 void Patch::TreeView::slotResizeColumns()
 {
    auto resizeIternal = [this]()
@@ -51,4 +66,21 @@ void Patch::TreeView::slotItemClicked(const QModelIndex& index)
 {
    Structure::Digest* digest = model->getDigest(index);
    widget->setDigest(digest, model->getPart());
+}
+
+void Patch::TreeView::slotAddElement()
+{
+   QModelIndex index = selectedIndexes().isEmpty() ? QModelIndex() : selectedIndexes().first();
+   model->createBeforeItem(index);
+   model->rebuild();
+}
+
+void Patch::TreeView::slotRemoveElement()
+{
+   QModelIndex index = selectedIndexes().isEmpty() ? QModelIndex() : selectedIndexes().first();
+   if (!index.isValid())
+      return;
+
+   model->removeItem(index);
+   model->rebuild();
 }
