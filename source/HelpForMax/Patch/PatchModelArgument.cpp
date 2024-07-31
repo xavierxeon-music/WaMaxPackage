@@ -33,7 +33,7 @@ void Patch::Model::Argument::rebuild()
    endResetModel();
 }
 
-Structure::Digest* Patch::Model::Argument::getDigest(const QModelIndex& index)
+Patch::Structure::Digest* Patch::Model::Argument::getDigest(const QModelIndex& index)
 {
    Structure::Argument& argument = structure->argumentList[index.row()];
    return &(argument.digest);
@@ -64,7 +64,7 @@ bool Patch::Model::Argument::setData(const QModelIndex& index, const QVariant& v
    return result;
 }
 
-Structure::DataType Patch::Model::Argument::getType(const int index)
+Patch::Structure::DataType Patch::Model::Argument::getType(const int index)
 {
    const Structure::Argument& argument = structure->argumentList.at(index);
 

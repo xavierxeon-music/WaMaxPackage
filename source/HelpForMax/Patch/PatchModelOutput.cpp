@@ -13,7 +13,7 @@ void Patch::Model::Output::rebuild()
 {
 }
 
-Structure::Digest* Patch::Model::Output::getDigest(const QModelIndex& index)
+Patch::Structure::Digest* Patch::Model::Output::getDigest(const QModelIndex& index)
 {
    Q_UNUSED(index)
 

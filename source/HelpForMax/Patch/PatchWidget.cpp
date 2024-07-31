@@ -125,13 +125,13 @@ bool Patch::Widget::isDirty() const
 
 void Patch::Widget::slotPatchTypeChanged(int index)
 {
-   patch.patcherType = patchTypeCombo->itemData(index).value<Structure::PatchType>();
+   header.patcherType = patchTypeCombo->itemData(index).value<Structure::PatchType>();
    setDirty();
 }
 
 void Patch::Widget::slotSetPatchDigest()
 {
-   setDigest(&patch.digest, Structure::PatchPart::Patch);
+   setDigest(&header.digest, Structure::PatchPart::Patch);
    setDirty();
 
    // update even if current digest does not belong to patch
@@ -179,12 +179,12 @@ void Patch::Widget::rebuild()
    for (Model::Abstract* model : modelList)
       model->rebuild();
 
-   setDigest(&patch.digest, Structure::PatchPart::Patch);
+   setDigest(&header.digest, Structure::PatchPart::Patch);
 
    patchNameLabel->setText(name);
-   patchDigestEdit->setText(patch.digest.text);
+   patchDigestEdit->setText(header.digest.text);
 
-   const int typeIndex = patchTypeCombo->findData(QVariant::fromValue(patch.patcherType));
+   const int typeIndex = patchTypeCombo->findData(QVariant::fromValue(header.patcherType));
    patchTypeCombo->blockSignals(true);
    patchTypeCombo->setCurrentIndex(typeIndex);
    patchTypeCombo->blockSignals(false);
@@ -195,7 +195,7 @@ void Patch::Widget::update()
    for (Model::Abstract* model : modelList)
       model->update();
 
-   patchDigestEdit->setText(patch.digest.text);
+   patchDigestEdit->setText(header.digest.text);
 }
 
 void Patch::Widget::setDirty()

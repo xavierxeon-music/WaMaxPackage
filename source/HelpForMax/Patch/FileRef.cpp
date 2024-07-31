@@ -6,7 +6,7 @@
 
 #include "Package/PackageInfo.h"
 
-File::Ref::Ref(Structure* structure)
+File::Ref::Ref(Patch::Structure* structure)
    : Abstract(structure)
 {
 }
@@ -55,11 +55,11 @@ void File::Ref::readContent(const QByteArray& content)
    }
 
    const QDomElement rootElement = doc.documentElement();
-   readDigest(rootElement, structure->patch.digest);
+   readDigest(rootElement, structure->header.digest);
 
    const QString patcherType = rootElement.attribute("patcher_type", "standard");
 
-   structure->patch.patcherType = Structure::toType(patcherType);
+   structure->header.patcherType = Patch::Structure::toType(patcherType);
 
    {
       const QDomElement metaDataElement = rootElement.firstChildElement("metadatalist");
@@ -74,7 +74,7 @@ void File::Ref::readContent(const QByteArray& content)
 
             const QString text = readText(element);
             if (packageName != text)
-               structure->patch.metaTagList.append(text);
+               structure->header.metaTagList.append(text);
          }
       }
    }
@@ -87,7 +87,7 @@ void File::Ref::readContent(const QByteArray& content)
          {
             const int id = outletElement.attribute("id").toInt();
 
-            Structure::Output output;
+            Patch::Structure::Output output;
             output.name = outletElement.attribute("name");
 
             readDigest(outletElement, output.digest);
@@ -103,10 +103,10 @@ void File::Ref::readContent(const QByteArray& content)
       {
          for (const QDomElement& arguemntElement : compileAllDirectChildElements(objArgListElement, "objarg"))
          {
-            Structure::Argument argument;
+            Patch::Structure::Argument argument;
             argument.name = arguemntElement.attribute("name");
             argument.optional = ("1" == arguemntElement.attribute("optional"));
-            argument.dataType = Structure::toDataType(arguemntElement.attribute("type"));
+            argument.dataType = Patch::Structure::toDataType(arguemntElement.attribute("type"));
 
             readDigest(arguemntElement, argument.digest);
 
@@ -124,15 +124,15 @@ void File::Ref::readContent(const QByteArray& content)
             const QString name = attributeElement.attribute("name");
             if (!structure->messageNamedMap.contains(name))
             {
-               Structure::MessageNamed attribute;
-               attribute.dataType = Structure::toDataType(attributeElement.attribute("type"));
+               Patch::Structure::MessageNamed attribute;
+               attribute.dataType = Patch::Structure::toDataType(attributeElement.attribute("type"));
 
                readDigest(attributeElement, attribute.digest);
 
                structure->messageNamedMap[name] = attribute;
             }
 
-            structure->messageNamedMap[name].patchParts |= Structure::PatchPart::Attribute;
+            structure->messageNamedMap[name].patchParts |= Patch::Structure::PatchPart::Attribute;
          }
       }
    }
@@ -147,16 +147,16 @@ void File::Ref::readContent(const QByteArray& content)
             const QString name = messageElement.attribute("name");
             if (isStandard)
             {
-               Structure::MessageTyped message;
+               Patch::Structure::MessageTyped message;
                readDigest(messageElement, message.digest);
 
-               message.dataType = Structure::toDataType(name);
+               message.dataType = Patch::Structure::toDataType(name);
 
                structure->messageTypedMap[message.dataType] = message;
             }
             else
             {
-               Structure::MessageNamed message;
+               Patch::Structure::MessageNamed message;
                if (!structure->messageNamedMap.contains(name))
                {
                   readDigest(messageElement, message.digest);
@@ -164,12 +164,12 @@ void File::Ref::readContent(const QByteArray& content)
                   const QDomElement argListElement = messageElement.firstChildElement("arglist");
                   const QDomElement& arguemntElement = argListElement.firstChildElement("arg");
                   //message.optional = ("1" == arguemntElement.attribute("optional"));
-                  message.dataType = Structure::toDataType(arguemntElement.attribute("type"));
+                  message.dataType = Patch::Structure::toDataType(arguemntElement.attribute("type"));
 
                   structure->messageNamedMap[name] = message;
                }
 
-               structure->messageNamedMap[name].patchParts |= Structure::PatchPart::MessageNamed;
+               structure->messageNamedMap[name].patchParts |= Patch::Structure::PatchPart::MessageNamed;
             }
          }
       }
@@ -182,7 +182,7 @@ void File::Ref::readContent(const QByteArray& content)
          for (QDomElement element = seeAlsoListElement.firstChildElement("seealso"); !element.isNull(); element = element.nextSiblingElement("seealso"))
          {
             const QString& name = element.attribute("name");
-            structure->patch.seeAlsoList.append(name);
+            structure->header.seeAlsoList.append(name);
          }
       }
    }
@@ -196,26 +196,26 @@ QByteArray File::Ref::writeContent(const QString& patchName)
    doc.appendChild(rootElement);
    rootElement.setAttribute("name", patchName);
 
-   rootElement.setAttribute("patcher_type", Structure::typeName(structure->patch.patcherType));
-   addDigest(rootElement, structure->patch.digest);
+   rootElement.setAttribute("patcher_type", Patch::Structure::typeName(structure->header.patcherType));
+   addDigest(rootElement, structure->header.digest);
 
    {
       QDomElement metaDataElement = createSubElement(rootElement, "metadatalist");
       createSubElement(metaDataElement, "metadata", Package::Info::getAuthor(), {{"name", "author"}});
       createSubElement(metaDataElement, "metadata", Package::Info::getName(), {{"name", "tag"}});
-      for (const QString& tag : structure->patch.metaTagList)
+      for (const QString& tag : structure->header.metaTagList)
          createSubElement(metaDataElement, "metadata", tag, {{"name", "tag"}});
    }
 
    {
       QDomElement parserElement = createSubElement(rootElement, "parser");
-      parserElement.setAttribute("inlet_count", structure->patch.inletCount);
+      parserElement.setAttribute("inlet_count", structure->header.inletCount);
    }
 
    {
       QDomElement outputListElement = createSubElement(rootElement, "misc");
       outputListElement.setAttribute("name", "Outputs");
-      for (Structure::Output::Map::ConstIterator it = structure->outputMap.constBegin(); it != structure->outputMap.constEnd(); it++)
+      for (Patch::Structure::Output::Map::ConstIterator it = structure->outputMap.constBegin(); it != structure->outputMap.constEnd(); it++)
       {
          QDomElement outputElement = createSubElement(outputListElement, "entry");
          outputElement.setAttribute("name", it.value().name);
@@ -227,12 +227,12 @@ QByteArray File::Ref::writeContent(const QString& patchName)
 
    {
       QDomElement objArgListElement = createSubElement(rootElement, "objarglist");
-      for (const Structure::Argument& argument : structure->argumentList)
+      for (const Patch::Structure::Argument& argument : structure->argumentList)
       {
          QDomElement arguemntElement = createSubElement(objArgListElement, "objarg");
          arguemntElement.setAttribute("name", argument.name);
          arguemntElement.setAttribute("optional", argument.optional);
-         arguemntElement.setAttribute("type", Structure::dataTypeName(argument.dataType));
+         arguemntElement.setAttribute("type", Patch::Structure::dataTypeName(argument.dataType));
 
          addDigest(arguemntElement, argument.digest);
       }
@@ -242,10 +242,10 @@ QByteArray File::Ref::writeContent(const QString& patchName)
       QDomElement attributeListElement = createSubElement(rootElement, "attributelist");
       QDomElement messageListElement = createSubElement(rootElement, "methodlist");
 
-      for (Structure::MessageNamed::Map::ConstIterator it = structure->messageNamedMap.constBegin(); it != structure->messageNamedMap.constEnd(); it++)
+      for (Patch::Structure::MessageNamed::Map::ConstIterator it = structure->messageNamedMap.constBegin(); it != structure->messageNamedMap.constEnd(); it++)
       {
-         const Structure::MessageNamed& messageNamed = it.value();
-         if (0 != (messageNamed.patchParts & Structure::PatchPart::MessageNamed))
+         const Patch::Structure::MessageNamed& messageNamed = it.value();
+         if (0 != (messageNamed.patchParts & Patch::Structure::PatchPart::MessageNamed))
          {
             QDomElement messageElement = createSubElement(messageListElement, "method");
             messageElement.setAttribute("name", messageNamed.name);
@@ -256,29 +256,29 @@ QByteArray File::Ref::writeContent(const QString& patchName)
             QDomElement arguemntElement = createSubElement(argListElement, "arg");
             arguemntElement.setAttribute("name", messageNamed.name);
             arguemntElement.setAttribute("optional", 0);
-            arguemntElement.setAttribute("type", Structure::dataTypeName(messageNamed.dataType));
+            arguemntElement.setAttribute("type", Patch::Structure::dataTypeName(messageNamed.dataType));
 
             addDigest(messageElement, messageNamed.digest);
          }
-         else if (0 != (messageNamed.patchParts & Structure::PatchPart::Attribute))
+         else if (0 != (messageNamed.patchParts & Patch::Structure::PatchPart::Attribute))
          {
             QDomElement attributeElement = createSubElement(attributeListElement, "attribute");
             attributeElement.setAttribute("name", messageNamed.name);
             attributeElement.setAttribute("get", 0);
             attributeElement.setAttribute("set", 1);
-            attributeElement.setAttribute("type", Structure::dataTypeName(messageNamed.dataType));
+            attributeElement.setAttribute("type", Patch::Structure::dataTypeName(messageNamed.dataType));
             attributeElement.setAttribute("size", 1);
 
             addDigest(attributeElement, messageNamed.digest);
          }
       }
 
-      for (Structure::MessageTyped::Map::ConstIterator it = structure->messageTypedMap.constBegin(); it != structure->messageTypedMap.constEnd(); it++)
+      for (Patch::Structure::MessageTyped::Map::ConstIterator it = structure->messageTypedMap.constBegin(); it != structure->messageTypedMap.constEnd(); it++)
       {
-         const Structure::MessageTyped& messageTyped = it.value();
+         const Patch::Structure::MessageTyped& messageTyped = it.value();
 
          QDomElement messageElement = createSubElement(messageListElement, "method");
-         messageElement.setAttribute("name", Structure::dataTypeName(messageTyped.dataType));
+         messageElement.setAttribute("name", Patch::Structure::dataTypeName(messageTyped.dataType));
          messageElement.setAttribute("standard", 1);
 
          addDigest(messageElement, messageTyped.digest);
@@ -287,7 +287,7 @@ QByteArray File::Ref::writeContent(const QString& patchName)
 
    {
       QDomElement seeAlsoListElement = createSubElement(rootElement, "seealsolist");
-      for (const QString& seeAlso : structure->patch.seeAlsoList)
+      for (const QString& seeAlso : structure->header.seeAlsoList)
       {
          createSubElement(seeAlsoListElement, "seealso", QString(), {{"name", seeAlso}});
       }
@@ -320,7 +320,7 @@ QDomElement File::Ref::createSubElement(QDomElement parent, const QString& name,
    return element;
 }
 
-void File::Ref::addDigest(const QDomElement& parentElement, const Structure::Digest& digest)
+void File::Ref::addDigest(const QDomElement& parentElement, const Patch::Structure::Digest& digest)
 {
    createSubElement(parentElement, "digest", digest.text);
    if (!digest.description.isEmpty())
@@ -331,7 +331,7 @@ void File::Ref::addDigest(const QDomElement& parentElement, const Structure::Dig
    }
 }
 
-void File::Ref::readDigest(const QDomElement& parentElement, Structure::Digest& digest) const
+void File::Ref::readDigest(const QDomElement& parentElement, Patch::Structure::Digest& digest) const
 {
    const QDomElement textElement = parentElement.firstChildElement("digest");
    digest.text = readText(textElement);
@@ -421,7 +421,7 @@ QByteArray File::Ref::domToMaxFile(QByteArray domXML) const
 
 QByteArray File::Ref::maxFileToDom(QByteArray maxXML) const
 {
-   for (const QByteArray& tag : Structure::descriptionMaxTags)
+   for (const QByteArray& tag : Patch::Structure::descriptionMaxTags)
    {
       maxXML.replace("<" + tag + ">", "&lt;" + tag + "&gt;");
       maxXML.replace("</" + tag + ">", "&lt;/" + tag + "&gt;");

@@ -3,7 +3,7 @@
 
 #include <QStandardItemModel>
 
-#include "Structure.h"
+#include "PatchStructure.h"
 
 namespace Patch
 {

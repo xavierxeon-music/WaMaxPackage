@@ -1,6 +1,6 @@
 #include "DescriptionHighlighter.h"
 
-#include "Structure.h"
+#include "PatchStructure.h"
 
 DescriptionHighlighter::DescriptionHighlighter(QTextDocument* document)
    : QSyntaxHighlighter(document)
@@ -20,7 +20,7 @@ DescriptionHighlighter::DescriptionHighlighter(QTextDocument* document)
 
    QString patternStart;
    QString patternEnd;
-   for (const QByteArray& tag : Structure::descriptionMaxTags)
+   for (const QByteArray& tag : Patch::Structure::descriptionMaxTags)
    {
       if (!patternStart.isEmpty())
          patternStart += "|";

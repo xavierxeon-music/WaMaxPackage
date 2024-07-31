@@ -7,7 +7,7 @@ Patch::Model::Abstract::Abstract(QObject* parent, Structure* structure, const St
 {
 }
 
-const Structure::PatchPart& Patch::Model::Abstract::getPart() const
+const Patch::Structure::PatchPart& Patch::Model::Abstract::getPart() const
 {
    return part;
 }

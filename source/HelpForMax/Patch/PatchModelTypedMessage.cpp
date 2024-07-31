@@ -43,7 +43,7 @@ void Patch::Model::TypedMessage::rebuild()
    endResetModel();
 }
 
-Structure::Digest* Patch::Model::TypedMessage::getDigest(const QModelIndex& index)
+Patch::Structure::Digest* Patch::Model::TypedMessage::getDigest(const QModelIndex& index)
 {
    const QString typeName = invisibleRootItem()->child(index.row(), 0)->text();
    const Structure::DataType type = Structure::toDataType(typeName);

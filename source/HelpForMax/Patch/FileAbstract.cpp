@@ -1,6 +1,6 @@
 #include "FileAbstract.h"
 
-File::Abstract::Abstract(Structure* structure)
+File::Abstract::Abstract(Patch::Structure* structure)
    : structure(structure)
 {
 }

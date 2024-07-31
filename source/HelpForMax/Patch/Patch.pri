@@ -10,10 +10,10 @@ HEADERS += \
     $$PWD/PatchModelOutput.h \
     $$PWD/PatchModelTypedMessage.h \
     $$PWD/PatchSocketWidget.h \
+    $$PWD/PatchStructure.h \
     $$PWD/PatchTabWidget.h \
     $$PWD/PatchTreeView.h \
     $$PWD/PatchWidget.h \
-    $$PWD/Structure.h \
     $$PWD/DelegateType.h
 
 SOURCES += \
@@ -28,10 +28,10 @@ SOURCES += \
     $$PWD/PatchModelOutput.cpp \
     $$PWD/PatchModelTypedMessage.cpp \
     $$PWD/PatchSocketWidget.cpp \
+    $$PWD/PatchStructure.cpp \
     $$PWD/PatchTabWidget.cpp \
     $$PWD/PatchTreeView.cpp \
     $$PWD/PatchWidget.cpp \
-    $$PWD/Structure.cpp \
     $$PWD/DelegateType.cpp
 
 FORMS += \

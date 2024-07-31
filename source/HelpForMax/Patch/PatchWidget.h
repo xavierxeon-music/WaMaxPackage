@@ -1,7 +1,7 @@
 #ifndef PatchWidgetH
 #define PatchWidgetH
 
-#include "Structure.h"
+#include "PatchStructure.h"
 #include "ui_DigestWidget.h"
 #include "ui_PatchWidget.h"
 #include <QWidget>

@@ -10,7 +10,7 @@ namespace File
    class Ref : public Abstract
    {
    public:
-      Ref(Structure* structure);
+      Ref(Patch::Structure* structure);
 
    public:
       void read(const QString& patchName) override;
@@ -25,9 +25,9 @@ namespace File
       QByteArray writeContent(const QString& patchName);
 
       QDomElement createSubElement(QDomElement parent, const QString& name, const QString& text = QString(), const TagMap& tagMap = TagMap());
-      void addDigest(const QDomElement& parentElement, const Structure::Digest& digest);
+      void addDigest(const QDomElement& parentElement, const Patch::Structure::Digest& digest);
 
-      void readDigest(const QDomElement& parentElement, Structure::Digest& digest) const;
+      void readDigest(const QDomElement& parentElement, Patch::Structure::Digest& digest) const;
       QString readText(const QDomElement& element) const;
       QDomElement findFirstDirectChildElementWithAttributes(const QDomElement& element, const QString& tag, const TagMap& tagMap) const;
       QList<QDomElement> compileAllDirectChildElements(const QDomElement& element, const QString& tag, const TagMap& tagMap = TagMap()) const;

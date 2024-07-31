@@ -8,7 +8,7 @@ namespace File
    class Init : public Abstract
    {
    public:
-      Init(Structure* structure);
+      Init(Patch::Structure* structure);
 
    public:
       void write(const QString& patchName) override;

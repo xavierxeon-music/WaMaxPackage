@@ -13,7 +13,7 @@ void Patch::Model::NamedMessage::rebuild()
 {
 }
 
-Structure::Digest* Patch::Model::NamedMessage::getDigest(const QModelIndex& index)
+Patch::Structure::Digest* Patch::Model::NamedMessage::getDigest(const QModelIndex& index)
 {
    const QString name = invisibleRootItem()->child(index.row(), 0)->text();
    /*

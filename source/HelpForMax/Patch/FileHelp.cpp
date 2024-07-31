@@ -6,7 +6,7 @@
 
 #include "Package/PackageInfo.h"
 
-File::Help::Help(Structure* structure)
+File::Help::Help(Patch::Structure* structure)
    : Abstract(structure)
 {
 }

@@ -1,14 +1,14 @@
 #ifndef FileAbstractH
 #define FileAbstractH
 
-#include "Structure.h"
+#include "PatchStructure.h"
 
 namespace File
 {
    class Abstract
    {
    public:
-      Abstract(Structure* structure);
+      Abstract(Patch::Structure* structure);
 
    public:
       virtual void read(const QString& patchName);
@@ -16,7 +16,7 @@ namespace File
       virtual QString getFilePath(const QString& patchName) = 0;
 
    protected:
-      Structure* structure;
+      Patch::Structure* structure;
    };
 } // namespace File
 

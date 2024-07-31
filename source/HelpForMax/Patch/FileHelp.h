@@ -8,7 +8,7 @@ namespace File
    class Help : public Abstract
    {
    public:
-      Help(Structure* structure);
+      Help(Patch::Structure* structure);
 
    public:
       void write(const QString& patchName) override;
