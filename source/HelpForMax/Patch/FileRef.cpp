@@ -147,12 +147,11 @@ void File::Ref::readContent(const QByteArray& content)
             const QString name = messageElement.attribute("name");
             if (isStandard)
             {
-               Patch::Structure::MessageTyped message;
+               const Patch::Structure::DataType dataType = Patch::Structure::toDataType(name);
+               Patch::Structure::MessageTyped& message = structure->messageTypedMap[dataType];
+
+               message.active = true;
                readDigest(messageElement, message.digest);
-
-               message.dataType = Patch::Structure::toDataType(name);
-
-               structure->messageTypedMap[message.dataType] = message;
             }
             else
             {
@@ -276,9 +275,13 @@ QByteArray File::Ref::writeContent(const QString& patchName)
       for (Patch::Structure::MessageTyped::Map::ConstIterator it = structure->messageTypedMap.constBegin(); it != structure->messageTypedMap.constEnd(); it++)
       {
          const Patch::Structure::MessageTyped& messageTyped = it.value();
+         const QString typeName = Patch::Structure::dataTypeName(messageTyped.dataType);
+
+         if (!messageTyped.active)
+            continue;
 
          QDomElement messageElement = createSubElement(messageListElement, "method");
-         messageElement.setAttribute("name", Patch::Structure::dataTypeName(messageTyped.dataType));
+         messageElement.setAttribute("name", typeName);
          messageElement.setAttribute("standard", 1);
 
          addDigest(messageElement, messageTyped.digest);

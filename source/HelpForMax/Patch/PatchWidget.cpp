@@ -128,19 +128,12 @@ bool Patch::Widget::isDirty() const
 void Patch::Widget::slotSetPatchDigest()
 {
    setDigest(&header.digest, Structure::PatchPart::Header);
-   setDirty();
-
-   // update even if current digest does not belong to patch
-   update();
 }
 
 void Patch::Widget::slotSaveDigestText()
 {
    digest->text = digestEdit->text();
    setDirty();
-
-   // update even if current digest does not belong to patch
-   update();
 }
 
 void Patch::Widget::slotSaveDigestDescription()
@@ -189,6 +182,7 @@ void Patch::Widget::update()
 void Patch::Widget::setDirty()
 {
    propagateDirty(true);
+   update();
 }
 
 void Patch::Widget::propagateDirty(bool isDirty)

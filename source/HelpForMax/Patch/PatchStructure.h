@@ -86,6 +86,7 @@ namespace Patch
 
       struct MessageTyped : Input
       {
+         bool active = false;
          using Map = QMap<DataType, MessageTyped>;
       };
 

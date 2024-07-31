@@ -14,11 +14,11 @@ void Patch::Model::TypedMessage::update()
       QStandardItem* digestItem = invisibleRootItem()->child(row, 2);
 
       const Structure::DataType type = typeItem->data().value<Structure::DataType>();
-      const bool active = structure->messageTypedMap.contains(type);
+      Structure::MessageTyped& message = structure->messageTypedMap[type];
 
-      activeItem->setCheckState(active ? Qt::Checked : Qt::Unchecked);
+      activeItem->setCheckState(message.active ? Qt::Checked : Qt::Unchecked);
 
-      updateDigestItem(digestItem, structure->messageTypedMap.value(type).digest);
+      updateDigestItem(digestItem, message.digest);
    }
 }
 
@@ -70,18 +70,17 @@ bool Patch::Model::TypedMessage::setData(const QModelIndex& index, const QVarian
 
       if (1 == index.column())
       {
-         const QString typeName = invisibleRootItem()->child(index.row(), 0)->text();
-         const Structure::DataType type = Structure::toDataType(typeName);
+         const Structure::DataType type = invisibleRootItem()->child(index.row(), 0)->data().value<Structure::DataType>();
 
+         Structure::MessageTyped& message = structure->messageTypedMap[type];
          if (enabled)
          {
-            Structure::MessageTyped message;
+            message.active = true;
             message.digest.text = invisibleRootItem()->child(index.row(), 2)->text();
-            structure->messageTypedMap.insert(type, message);
          }
          else
          {
-            structure->messageTypedMap.remove(type);
+            message.active = false;
          }
 
          structure->setDirty();

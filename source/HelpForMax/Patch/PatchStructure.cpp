@@ -38,6 +38,14 @@ Patch::Structure::Structure()
    , messageTypedMap()
    , messageNamedMap()
 {
+   for (const DataType& dataType : dataTypeNameMap.keys())
+   {
+      Structure::MessageTyped message;
+      message.active = false;
+      message.dataType = dataType;
+
+      messageTypedMap[dataType] = message;
+   }
 }
 
 Patch::Structure::~Structure()
