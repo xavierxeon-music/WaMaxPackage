@@ -40,11 +40,11 @@
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
 				"box" : 				{
-					"id" : "obj-33",
+					"id" : "obj-35",
 					"maxclass" : "wa.helpfile",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 492.0, 30.0, 40.0, 40.0 ]
+					"patching_rect" : [ 550.0, 30.0, 40.0, 40.0 ]
 				}
 
 			}

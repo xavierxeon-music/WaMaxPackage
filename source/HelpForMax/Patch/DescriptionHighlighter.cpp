@@ -65,7 +65,7 @@ void DescriptionHighlighter::highlightBlock(const QString& text)
       return;
 
    int startIndex = -1;
-   for (ContentMap::ConstIterator it = contentMap.constBegin(); it != contentMap.constEnd(); it++)
+   for (ContentMap::const_iterator it = contentMap.constBegin(); it != contentMap.constEnd(); it++)
    {
       if (it.value())
       {

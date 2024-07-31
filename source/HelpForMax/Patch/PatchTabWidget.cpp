@@ -102,6 +102,9 @@ void Patch::TabWidget::slotWindowTitleChanged(const QString& name)
 
 void Patch::TabWidget::slotTabChanged(int index)
 {
+   if (index < 0)
+      return;
+
    const Patch::Widget* pathWidget = qobject_cast<Patch::Widget*>(widget(index));
    tabSelected(pathWidget);
 }

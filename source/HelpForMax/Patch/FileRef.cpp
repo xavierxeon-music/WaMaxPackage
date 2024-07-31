@@ -216,7 +216,7 @@ QByteArray File::Ref::writeContent(const QString& patchName)
    {
       QDomElement outputListElement = createSubElement(rootElement, "misc");
       outputListElement.setAttribute("name", "Outputs");
-      for (Patch::Structure::Output::Map::ConstIterator it = structure->outputMap.constBegin(); it != structure->outputMap.constEnd(); it++)
+      for (Patch::Structure::Output::Map::const_iterator it = structure->outputMap.constBegin(); it != structure->outputMap.constEnd(); it++)
       {
          QDomElement outputElement = createSubElement(outputListElement, "entry");
          outputElement.setAttribute("name", it.value().name);
@@ -243,7 +243,7 @@ QByteArray File::Ref::writeContent(const QString& patchName)
       QDomElement attributeListElement = createSubElement(rootElement, "attributelist");
       QDomElement messageListElement = createSubElement(rootElement, "methodlist");
 
-      for (Patch::Structure::AttributesAndMessageNamed::Map::ConstIterator it = structure->messageNamedMap.constBegin(); it != structure->messageNamedMap.constEnd(); it++)
+      for (Patch::Structure::AttributesAndMessageNamed::Map::const_iterator it = structure->messageNamedMap.constBegin(); it != structure->messageNamedMap.constEnd(); it++)
       {
          const Patch::Structure::AttributesAndMessageNamed& messageNamed = it.value();
          if (0 != (messageNamed.patchParts & Patch::Structure::PatchPart::MessageNamed))
@@ -275,7 +275,7 @@ QByteArray File::Ref::writeContent(const QString& patchName)
          }
       }
 
-      for (Patch::Structure::MessageTyped::Map::ConstIterator it = structure->messageTypedMap.constBegin(); it != structure->messageTypedMap.constEnd(); it++)
+      for (Patch::Structure::MessageTyped::Map::const_iterator it = structure->messageTypedMap.constBegin(); it != structure->messageTypedMap.constEnd(); it++)
       {
          const Patch::Structure::MessageTyped& messageTyped = it.value();
          const QString typeName = Patch::Structure::dataTypeName(messageTyped.dataType);
@@ -318,7 +318,7 @@ QDomElement File::Ref::createSubElement(QDomElement parent, const QString& name,
       element.appendChild(textNode);
    }
 
-   for (TagMap::ConstIterator it = tagMap.constBegin(); it != tagMap.constEnd(); it++)
+   for (TagMap::const_iterator it = tagMap.constBegin(); it != tagMap.constEnd(); it++)
    {
       element.setAttribute(it.key(), it.value());
    }
@@ -367,7 +367,7 @@ QDomElement File::Ref::findFirstDirectChildElementWithAttributes(const QDomEleme
          if (tagMap.empty())
             return true;
 
-         for (TagMap::ConstIterator it = tagMap.constBegin(); it != tagMap.constEnd(); it++)
+         for (TagMap::const_iterator it = tagMap.constBegin(); it != tagMap.constEnd(); it++)
          {
             if (!childElement.hasAttribute(it.key()))
                continue;
@@ -395,7 +395,7 @@ QList<QDomElement> File::Ref::compileAllDirectChildElements(const QDomElement& e
          if (tagMap.empty())
             return true;
 
-         for (TagMap::ConstIterator it = tagMap.constBegin(); it != tagMap.constEnd(); it++)
+         for (TagMap::const_iterator it = tagMap.constBegin(); it != tagMap.constEnd(); it++)
          {
             if (!childElement.hasAttribute(it.key()))
                continue;

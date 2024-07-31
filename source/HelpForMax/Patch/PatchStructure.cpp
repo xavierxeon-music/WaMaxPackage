@@ -68,7 +68,7 @@ QString Patch::Structure::dataTypeName(const DataType& type)
 
 Patch::Structure::DataType Patch::Structure::toDataType(const QString& name)
 {
-   for (DataTypeNameMap ::ConstIterator it = dataTypeNameMap.constBegin(); it != dataTypeNameMap.constEnd(); it++)
+   for (DataTypeNameMap ::const_iterator it = dataTypeNameMap.constBegin(); it != dataTypeNameMap.constEnd(); it++)
    {
       if (name == it.value())
          return it.key();
@@ -89,7 +89,7 @@ QString Patch::Structure::patchTypeName(const PatchType& type)
 
 Patch::Structure::PatchType Patch::Structure::toPatchType(const QString& name)
 {
-   for (PatchTypeNameMap::ConstIterator it = patchTypeNameMap.constBegin(); it != patchTypeNameMap.constEnd(); it++)
+   for (PatchTypeNameMap::const_iterator it = patchTypeNameMap.constBegin(); it != patchTypeNameMap.constEnd(); it++)
    {
       if (name == it.value())
          return it.key();
@@ -129,7 +129,7 @@ QIcon Patch::Structure::partIcon(const PatchPart& part)
 
 Patch::Structure::PatchPart Patch::Structure::toPart(const QString& name)
 {
-   for (PatchPartNameMap ::ConstIterator it = patchPartNameMap.constBegin(); it != patchPartNameMap.constEnd(); it++)
+   for (PatchPartNameMap ::const_iterator it = patchPartNameMap.constBegin(); it != patchPartNameMap.constEnd(); it++)
    {
       if (name == it.value())
          return it.key();

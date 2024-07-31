@@ -8,7 +8,7 @@ Patch::Model::NamedMessage::NamedMessage(QObject* parent, Structure* structure)
 void Patch::Model::NamedMessage::update()
 {
    int row = 0;
-   for (Structure::AttributesAndMessageNamed::Map::ConstIterator it = structure->messageNamedMap.constBegin(); it != structure->messageNamedMap.constEnd(); it++)
+   for (Structure::AttributesAndMessageNamed::Map::const_iterator it = structure->messageNamedMap.constBegin(); it != structure->messageNamedMap.constEnd(); it++)
    {
       QStandardItem* nameItem = invisibleRootItem()->child(row, 0);
       QStandardItem* typeItem = invisibleRootItem()->child(row, 1);
@@ -16,9 +16,14 @@ void Patch::Model::NamedMessage::update()
       QStandardItem* isMessageItem = invisibleRootItem()->child(row, 3);
       QStandardItem* digestItem = invisibleRootItem()->child(row, 4);
 
+      if (!nameItem)
+         continue;
+
       const Structure::AttributesAndMessageNamed& messageNamed = it.value();
 
       nameItem->setText(messageNamed.name);
+      nameItem->setData(QVariant::fromValue(it));
+
       typeItem->setText(Structure::dataTypeName(messageNamed.dataType));
 
       if (0 != (messageNamed.patchParts & Structure::PatchPart::Attribute))
@@ -35,34 +40,6 @@ void Patch::Model::NamedMessage::update()
 
       row++;
    }
-   /*
-   const QStringList nameLsit = structure->messageNamedMap.keys();
-   for (int row = 0; row < invisibleRootItem()->rowCount(); row++)
-   {
-      QStandardItem* nameItem = invisibleRootItem()->child(row, 0);
-      QStandardItem* typeItem = invisibleRootItem()->child(row, 1);
-      QStandardItem* isAttributeItem = invisibleRootItem()->child(row, 2);
-      QStandardItem* isMessageItem = invisibleRootItem()->child(row, 3);
-      QStandardItem* digestItem = invisibleRootItem()->child(row, 4);
-
-      const Structure::AttributesAndMessageNamed& messageNamed = structure->messageNamedMap[nameLsit.at(row)];
-
-      nameItem->setText(messageNamed.name);
-      typeItem->setText(Structure::dataTypeName(messageNamed.dataType));
-
-      if (0 != (messageNamed.patchParts & Structure::PatchPart::Attribute))
-         isAttributeItem->setCheckState(Qt::Checked);
-      else
-         isAttributeItem->setCheckState(Qt::Unchecked);
-
-      if (0 != (messageNamed.patchParts & Structure::PatchPart::MessageNamed))
-         isMessageItem->setCheckState(Qt::Checked);
-      else
-         isMessageItem->setCheckState(Qt::Unchecked);
-
-      updateDigestItem(digestItem, messageNamed.digest);
-   }
-   */
 
    emit signalDataEdited();
 }
@@ -73,9 +50,10 @@ void Patch::Model::NamedMessage::rebuild()
    clear();
    setHorizontalHeaderLabels({"Name", "Type", "At", "M", "Digest"});
 
-   for (Structure::AttributesAndMessageNamed::Map::ConstIterator it = structure->messageNamedMap.constBegin(); it != structure->messageNamedMap.constEnd(); it++)
+   for (Structure::AttributesAndMessageNamed::Map::const_iterator it = structure->messageNamedMap.constBegin(); it != structure->messageNamedMap.constEnd(); it++)
    {
       QStandardItem* nameItem = new QStandardItem();
+      nameItem->setData(QVariant::fromValue(it));
 
       QStandardItem* typeItem = new QStandardItem();
 
@@ -110,12 +88,23 @@ Patch::Structure::Digest* Patch::Model::NamedMessage::getDigest(const QModelInde
 void Patch::Model::NamedMessage::createBeforeItem(const QModelIndex& index)
 {
    Q_UNUSED(index)
+
+   Structure::AttributesAndMessageNamed messageNamed;
+   messageNamed.name = "???";
+
+   if (structure->messageNamedMap.contains(messageNamed.name))
+      return;
+
+   structure->messageNamedMap.insert(messageNamed.name, messageNamed);
    structure->setDirty();
 }
 
 void Patch::Model::NamedMessage::removeItem(const QModelIndex& index)
 {
-   Q_UNUSED(index)
+   QStandardItem* nameItem = invisibleRootItem()->child(index.row(), 0);
+   Structure::AttributesAndMessageNamed::Map::const_iterator it = nameItem->data().value<Structure::AttributesAndMessageNamed::Map::const_iterator>();
+
+   structure->messageNamedMap.erase(it);
    structure->setDirty();
 }
 
