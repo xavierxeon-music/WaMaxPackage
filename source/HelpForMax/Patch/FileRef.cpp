@@ -59,7 +59,7 @@ void File::Ref::readContent(const QByteArray& content)
 
    const QString patcherType = rootElement.attribute("patcher_type", "standard");
 
-   structure->header.patcherType = Patch::Structure::toType(patcherType);
+   structure->header.patcherType = Patch::Structure::toPatchType(patcherType);
 
    {
       const QDomElement metaDataElement = rootElement.firstChildElement("metadatalist");
@@ -196,7 +196,7 @@ QByteArray File::Ref::writeContent(const QString& patchName)
    doc.appendChild(rootElement);
    rootElement.setAttribute("name", patchName);
 
-   rootElement.setAttribute("patcher_type", Patch::Structure::typeName(structure->header.patcherType));
+   rootElement.setAttribute("patcher_type", Patch::Structure::patchTypeName(structure->header.patcherType));
    addDigest(rootElement, structure->header.digest);
 
    {

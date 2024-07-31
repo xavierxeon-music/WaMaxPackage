@@ -43,7 +43,7 @@ namespace Patch
       enum class PatchPart
       {
          Undefined = 0x00,
-         Patch = 0x01,
+         Header = 0x01,
          Argument = 0x02,
          Attribute = 0x04,
          MessageTyped = 0x08,
@@ -123,8 +123,9 @@ namespace Patch
       static QList<DataType> dataTypeList();
 
       // patcher type
-      static QString typeName(const PatchType& type);
-      static PatchType toType(const QString& name);
+      static QString patchTypeName(const PatchType& type);
+      static PatchType toPatchType(const QString& name);
+      static QList<PatchType> patchTypeList();
 
       // part
       static QString partName(const PatchPart& part);

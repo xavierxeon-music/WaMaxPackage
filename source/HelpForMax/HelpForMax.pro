@@ -13,7 +13,10 @@ macx {
       DESTDIR = ~/Applications
       QMAKE_POST_LINK = $$(QTDIR)/bin/macdeployqt $${DESTDIR}/$${TARGET}.app
    }
-   CONFIG+=sdk_no_version_check
+   CONFIG(debug, debug|release) {
+      DEFINES += TEST_CLIENT_AVAILABLE
+   }
+   CONFIG += sdk_no_version_check
 }
 
 windows {
@@ -31,7 +34,7 @@ include(Patch/Patch.pri)
 HEADERS += \
    MainWindow.h \
    MessageBar.h \
-   OverviewGraph.h \
+   SchemaWidget.h \
    TestClient.h \
    HelpForMax.h \
    HelpForMax.hpp
@@ -39,7 +42,7 @@ HEADERS += \
 SOURCES += \
    MainWindow.cpp \
    MessageBar.cpp \
-   OverviewGraph.cpp \
+   SchemaWidget.cpp \
    TestClient.cpp
 
 RESOURCES += \

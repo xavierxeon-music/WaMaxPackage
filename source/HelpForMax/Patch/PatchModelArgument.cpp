@@ -2,12 +2,25 @@
 
 Patch::Model::Argument::Argument(QObject* parent, Structure* structure)
    : Abstract(parent, structure, Structure::PatchPart::Argument)
-   , Delegate::Type::Source()
+   , Delegate::DataType::Source()
 {
 }
 
 void Patch::Model::Argument::update()
 {
+   for (int row = 0; row < invisibleRootItem()->rowCount(); row++)
+   {
+      QStandardItem* nameItem = invisibleRootItem()->child(row, 0);
+      QStandardItem* typeItem = invisibleRootItem()->child(row, 1);
+      QStandardItem* digestItem = invisibleRootItem()->child(row, 2);
+
+      const Structure::Argument& argument = structure->argumentList.at(row);
+
+      nameItem->setText(argument.name);
+      typeItem->setText(Structure::dataTypeName(argument.dataType));
+
+      updateDigestItem(digestItem, argument.digest);
+   }
 }
 
 void Patch::Model::Argument::rebuild()
@@ -16,7 +29,7 @@ void Patch::Model::Argument::rebuild()
 
    clear();
 
-   setHorizontalHeaderLabels({"Name", "Type", "Description"});
+   setHorizontalHeaderLabels({"Name", "Type", "Digest"});
 
    for (const Structure::Argument& argument : structure->argumentList)
    {
@@ -24,13 +37,15 @@ void Patch::Model::Argument::rebuild()
 
       QStandardItem* typeItem = new QStandardItem(Structure::dataTypeName(argument.dataType));
 
-      QStandardItem* descrItem = new QStandardItem(argument.digest.text);
-      descrItem->setEditable(false);
+      QStandardItem* digestItem = new QStandardItem(argument.digest.text);
+      digestItem->setEditable(false);
 
-      invisibleRootItem()->appendRow({nameItem, typeItem, descrItem});
+      invisibleRootItem()->appendRow({nameItem, typeItem, digestItem});
    }
 
    endResetModel();
+
+   update();
 }
 
 Patch::Structure::Digest* Patch::Model::Argument::getDigest(const QModelIndex& index)
@@ -64,7 +79,7 @@ bool Patch::Model::Argument::setData(const QModelIndex& index, const QVariant& v
    return result;
 }
 
-Patch::Structure::DataType Patch::Model::Argument::getType(const int index)
+Patch::Structure::DataType Patch::Model::Argument::getDataType(const int index)
 {
    const Structure::Argument& argument = structure->argumentList.at(index);
 

@@ -1,18 +1,18 @@
-#ifndef OverviewGraphH
-#define OverviewGraphH
+#ifndef SchemaWidgetH
+#define SchemaWidgetH
 
 #include <QGraphicsView>
 
 #include <QGraphicsScene>
 #include <QJsonObject>
 
-namespace Overview
+namespace Schema
 {
-   class Graph : public QGraphicsView
+   class Widget : public QGraphicsView
    {
       Q_OBJECT
    public:
-      Graph(QWidget* parent);
+      Widget(QWidget* parent);
 
    public slots:
       void slotLoad(const QString& patchFileName);
@@ -41,6 +41,6 @@ namespace Overview
       QBrush grayBrush;
       QFont font;
    };
-} // namespace Overview
+} // namespace Schema
 
-#endif // NOT OverviewGraphH
+#endif // NOT SchemaWidgetH

@@ -7,11 +7,6 @@
 
 #include "TestClient.h"
 
-namespace Overview
-{
-   class Graph;
-}
-
 namespace Package
 {
    class View;
@@ -20,6 +15,11 @@ namespace Package
 namespace Patch
 {
    class TabWidget;
+}
+
+namespace Schema
+{
+   class Widget;
 }
 
 class MainWindow : public QMainWindow
@@ -40,8 +40,10 @@ private:
 private:
    Patch::TabWidget* tabWidget;
    Package::View* packageView;
-   Overview::Graph* overviewWidget;
+   Schema::Widget* schemaWidget;
+#ifdef TEST_CLIENT_AVAILABLE
    TestClient* testClient;
+#endif // TEST_CLIENT_AVAILABLE
 };
 
 #endif // NOT MainWindowH

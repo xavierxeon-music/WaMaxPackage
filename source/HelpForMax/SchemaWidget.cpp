@@ -1,4 +1,4 @@
-#include "OverviewGraph.h"
+#include "SchemaWidget.h"
 
 #include <QApplication>
 #include <QDir>
@@ -8,7 +8,7 @@
 #include <QJsonValue>
 #include <QVBoxLayout>
 
-Overview::Graph::Graph(QWidget* parent)
+Schema::Widget::Widget(QWidget* parent)
    : QGraphicsView(parent)
    , scene(nullptr)
    , blackPen(Qt::black)
@@ -26,7 +26,7 @@ Overview::Graph::Graph(QWidget* parent)
    setAlignment(Qt::AlignLeft | Qt::AlignTop);
 }
 
-void Overview::Graph::slotLoad(const QString& patchFileName)
+void Schema::Widget::slotLoad(const QString& patchFileName)
 {
    scene->clear();
 
@@ -51,7 +51,7 @@ void Overview::Graph::slotLoad(const QString& patchFileName)
    makeLines(patcherObject, idMap);
 }
 
-Overview::Graph::IdMap Overview::Graph::makeObjects(const QJsonObject patcherObject)
+Schema::Widget::IdMap Schema::Widget::makeObjects(const QJsonObject patcherObject)
 {
    static const QStringList skipList = {"comment", "panel"};
    const QJsonArray boxArray = patcherObject["boxes"].toArray();
@@ -113,7 +113,7 @@ Overview::Graph::IdMap Overview::Graph::makeObjects(const QJsonObject patcherObj
    return idMap;
 }
 
-void Overview::Graph::makeLines(const QJsonObject patcherObject, const IdMap& idMap)
+void Schema::Widget::makeLines(const QJsonObject patcherObject, const IdMap& idMap)
 {
    const QJsonArray lineArray = patcherObject["lines"].toArray();
 
@@ -152,7 +152,7 @@ void Overview::Graph::makeLines(const QJsonObject patcherObject, const IdMap& id
    }
 }
 
-void Overview::Graph::moveItems(const IdMap& idMap)
+void Schema::Widget::moveItems(const IdMap& idMap)
 {
    auto compileMinPoint = [&]()
    {

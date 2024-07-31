@@ -4,7 +4,8 @@
 #include <QHBoxLayout>
 #include <QScrollArea>
 
-#include "DelegateType.h"
+#include "DelegateDataType.h"
+#include "DelegatePatchType.h"
 #include "DescriptionHighlighter.h"
 #include "FileHelp.h"
 #include "FileInit.h"
@@ -12,6 +13,7 @@
 #include "MainWindow.h"
 #include "Package/PackageInfo.h"
 #include "PatchModelArgument.h"
+#include "PatchModelHeader.h"
 #include "PatchModelNamedMessage.h"
 #include "PatchModelOutput.h"
 #include "PatchModelTypedMessage.h"
@@ -28,32 +30,28 @@ Patch::Widget::Widget(QWidget* parent)
    QWidget* content = new QWidget();
    Ui::PatchWidget::setupUi(content);
 
-   connect(patchDescriptionEditButton, &QAbstractButton::clicked, this, &Widget::slotSetPatchDigest);
-
    QScrollArea* scrollArea = new QScrollArea(this);
    scrollArea->setFrameShadow(QFrame::Plain);
    scrollArea->setFrameShape(QFrame::NoFrame);
    scrollArea->setWidgetResizable(true);
    scrollArea->setWidget(content);
 
-   setIcon(patchIcon, Structure::PatchPart::Patch);
+   setIcon(patchIcon, Structure::PatchPart::Header);
    setIcon(argumentIcon, Structure::PatchPart::Argument);
    setIcon(typedMessageIcon, Structure::PatchPart::MessageTyped);
    setIcon(nameMessageIcon, Structure::PatchPart::MessageNamed);
    setIcon(outputIcon, Structure::PatchPart::Output);
 
-   patchTypeCombo->addItem("Standard", QVariant::fromValue(Structure::PatchType::Standard));
-   patchTypeCombo->addItem("Gui", QVariant::fromValue(Structure::PatchType::Gui));
-   patchTypeCombo->addItem("Poly", QVariant::fromValue(Structure::PatchType::Poly));
-   patchTypeCombo->addItem("Fourier", QVariant::fromValue(Structure::PatchType::Fourier));
-   connect(patchTypeCombo, &QComboBox::currentIndexChanged, this, &Widget::slotPatchTypeChanged);
-
    // set models
+   Model::Header* headerModel = new Model::Header(this, this);
+   modelList.append(headerModel);
+   headerTree->init(this, headerModel, 1);
+   headerTree->setItemDelegateForColumn(0, new Delegate::PatchType(this, headerModel));
 
    Model::Argument* argumentModel = new Model::Argument(this, this);
    modelList.append(argumentModel);
    argumentTree->init(this, argumentModel);
-   argumentTree->setItemDelegateForColumn(1, new Delegate::Type(this, argumentModel));
+   argumentTree->setItemDelegateForColumn(1, new Delegate::DataType(this, argumentModel));
 
    Model::TypedMessage* typedMessageModel = new Model::TypedMessage(this, this);
    modelList.append(typedMessageModel);
@@ -123,15 +121,9 @@ bool Patch::Widget::isDirty() const
    return dirty;
 }
 
-void Patch::Widget::slotPatchTypeChanged(int index)
-{
-   header.patcherType = patchTypeCombo->itemData(index).value<Structure::PatchType>();
-   setDirty();
-}
-
 void Patch::Widget::slotSetPatchDigest()
 {
-   setDigest(&header.digest, Structure::PatchPart::Patch);
+   setDigest(&header.digest, Structure::PatchPart::Header);
    setDirty();
 
    // update even if current digest does not belong to patch
@@ -179,23 +171,15 @@ void Patch::Widget::rebuild()
    for (Model::Abstract* model : modelList)
       model->rebuild();
 
-   setDigest(&header.digest, Structure::PatchPart::Patch);
+   setDigest(&header.digest, Structure::PatchPart::Header);
 
    patchNameLabel->setText(name);
-   patchDigestEdit->setText(header.digest.text);
-
-   const int typeIndex = patchTypeCombo->findData(QVariant::fromValue(header.patcherType));
-   patchTypeCombo->blockSignals(true);
-   patchTypeCombo->setCurrentIndex(typeIndex);
-   patchTypeCombo->blockSignals(false);
 }
 
 void Patch::Widget::update()
 {
    for (Model::Abstract* model : modelList)
       model->update();
-
-   patchDigestEdit->setText(header.digest.text);
 }
 
 void Patch::Widget::setDirty()

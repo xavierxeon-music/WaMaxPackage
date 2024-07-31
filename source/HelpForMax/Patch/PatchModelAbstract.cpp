@@ -11,3 +11,14 @@ const Patch::Structure::PatchPart& Patch::Model::Abstract::getPart() const
 {
    return part;
 }
+
+void Patch::Model::Abstract::updateDigestItem(QStandardItem* digestItem, const Structure::Digest& digest)
+{
+   QString description = digest.text;
+   digestItem->setText(description);
+
+   if (digest.description.isEmpty())
+      digestItem->setIcon(QIcon());
+   else
+      digestItem->setIcon(QIcon(":/DocDescription.svg"));
+}

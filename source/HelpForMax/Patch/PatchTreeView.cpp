@@ -9,15 +9,20 @@ Patch::TreeView::TreeView(QWidget* parent)
    : QTreeView(parent)
    , widget(nullptr)
    , model(nullptr)
+   , forceRowHeight(-1)
 {
    setRootIsDecorated(false);
+   setUniformRowHeights(true);
+
    connect(this, &QAbstractItemView::clicked, this, &TreeView::slotItemClicked);
 }
 
-void Patch::TreeView::init(Widget* widget, Model::Abstract* model)
+void Patch::TreeView::init(Widget* widget, Model::Abstract* model, int forceRowHeight)
 {
    this->widget = widget;
    this->model = model;
+   this->forceRowHeight = forceRowHeight;
+
    setModel(model);
 
    connect(model, &Model::Abstract::modelReset, this, &TreeView::slotResizeColumns);
@@ -29,6 +34,14 @@ void Patch::TreeView::slotResizeColumns()
    {
       for (int col = 0; col < model->columnCount(); col++)
          this->resizeColumnToContents(col);
+
+      if (this->forceRowHeight < 1)
+         return;
+
+      QModelIndex index = this->model->index(0, 0);
+      const int height = this->header()->height() + this->rowHeight(index);
+
+      this->setMaximumHeight(height + 10);
    };
 
    QTimer::singleShot(10, this, resizeIternal);

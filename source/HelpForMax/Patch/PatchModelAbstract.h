@@ -25,6 +25,9 @@ namespace Patch
          const Structure::PatchPart& getPart() const;
 
       protected:
+         void updateDigestItem(QStandardItem* digestItem, const Structure::Digest& digest);
+
+      protected:
          Structure* structure;
          Structure::PatchPart part;
       };

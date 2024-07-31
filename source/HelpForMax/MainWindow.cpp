@@ -11,17 +11,19 @@
 
 #include "HelpForMax.h"
 #include "MessageBar.h"
-#include "OverviewGraph.h"
 #include "Package/PackageView.h"
 #include "Patch/PatchTabWidget.h"
 #include "Patch/PatchWidget.h"
+#include "SchemaWidget.h"
 
 MainWindow::MainWindow()
    : QMainWindow(nullptr)
    , tabWidget(nullptr)
    , packageView(nullptr)
-   , overviewWidget(nullptr)
+   , schemaWidget(nullptr)
+#ifdef TEST_CLIENT_AVAILABLE
    , testClient(nullptr)
+#endif // TEST_CLIENT_AVAILABLE
 {
    setWindowTitle("Help For Max [*]");
 
@@ -44,13 +46,15 @@ MainWindow::MainWindow()
    packageView = new Package::View(this);
    addDock(packageView, Qt::LeftDockWidgetArea, "Package");
 
-   overviewWidget = new Overview::Graph(this);
-   addDock(overviewWidget, Qt::RightDockWidgetArea, "OverView");
+   schemaWidget = new Schema::Widget(this);
+   addDock(schemaWidget, Qt::RightDockWidgetArea, "Schema");
 
-   connect(tabWidget, &Patch::TabWidget::signalTabSelected, overviewWidget, &Overview::Graph::slotLoad);
+   connect(tabWidget, &Patch::TabWidget::signalTabSelected, schemaWidget, &Schema::Widget::slotLoad);
 
+#ifdef TEST_CLIENT_AVAILABLE
    testClient = new TestClient;
    addDock(testClient, Qt::TopDockWidgetArea, "Test");
+#endif // TEST_CLIENT_AVAILABLE
 
    populateMenuAndToolBar();
 
@@ -64,39 +68,57 @@ void MainWindow::populateMenuAndToolBar()
 {
    //
    QMenu* patchMenu = menuBar()->addMenu("Patch");
+
    QAction* lopdPatchAction = patchMenu->addAction(QIcon(":/PatchLoad.svg"), "Load", tabWidget, &Patch::TabWidget::slotLoadPatch);
    patchMenu->addMenu(tabWidget->getRecentMenu());
+
    QAction* saveRefAction = patchMenu->addAction(QIcon(":/PatchSave.svg"), "Save", tabWidget, &Patch::TabWidget::slotWriteRef);
+   saveRefAction->setShortcut(QKeySequence::Save);
+
    patchMenu->addAction(QIcon(":/PatchSaveAll.svg"), "SaveAll", tabWidget, &Patch::TabWidget::slotWriteAllRefs);
    patchMenu->addSeparator();
+
    QAction* closePatchAction = patchMenu->addAction(QIcon(":/PatchClose.svg"), "Close", tabWidget, &Patch::TabWidget::slotClosePatch);
+   closePatchAction->setShortcut(QKeySequence::Close);
    patchMenu->addSeparator();
-   patchMenu->addAction(QIcon(":/PatchOpenInMax.svg"), "Open In Max", tabWidget, &Patch::TabWidget::slotOpenInMax);
-   patchMenu->addAction(QIcon(":/PatchOpenRef.svg"), "Open XML", tabWidget, &Patch::TabWidget::slotOpenXML);
 
    //
    QMenu* viewMenu = menuBar()->addMenu("View");
-   auto addViewToggle = [&](QWidget* widget, const QString& text, const QIcon& icon = QIcon())
+   auto addViewToggle = [&](QWidget* widget, const QString& name, const QIcon& icon = QIcon())
    {
-      auto toggleFunction = std::bind(&MainWindow::toogleDock, this, widget, text, std::placeholders::_1);
-      QAction* viewAction = viewMenu->addAction(text, toggleFunction);
+      auto toggleFunction = std::bind(&MainWindow::toogleDock, this, widget, name, std::placeholders::_1);
+      QAction* viewAction = viewMenu->addAction(name, toggleFunction);
       viewAction->setCheckable(true);
 
       if (!icon.isNull())
          viewAction->setIcon(icon);
 
       QSettings dockSettings;
-      const bool enabled = dockSettings.value("Dock/" + text).toBool();
+      const bool enabled = dockSettings.value("DockEnabled/" + name).toBool();
 
       widget->setVisible(enabled);
       viewAction->setChecked(enabled);
+
+      const QSize size = dockSettings.value("DockSize/" + name).toSize();
+      if (enabled && !size.isNull())
+         widget->setMinimumSize(size);
 
       return viewAction;
    };
 
    QAction* packageAction = addViewToggle(packageView, "Package", QIcon(":/PackageGeneral.svg"));
-   QAction* overviewAction = addViewToggle(overviewWidget, "Overview", QIcon(":/OverviewGeneral.svg"));
-   addViewToggle(testClient, "Test");
+   QAction* schemmaAction = addViewToggle(schemaWidget, "Schema", QIcon(":/OverviewGeneral.svg"));
+   schemmaAction->setShortcut(QKeySequence::Print);
+
+#ifdef TEST_CLIENT_AVAILABLE
+   addViewToggle(testClient, "TestClient");
+#endif // TEST_CLIENT_AVAILABLE
+
+   viewMenu->addSeparator();
+   viewMenu->addAction(QIcon(":/PatchOpenInMax.svg"), "Open In Max", tabWidget, &Patch::TabWidget::slotOpenInMax);
+
+   QAction* showXMLAction = viewMenu->addAction(QIcon(":/PatchOpenRef.svg"), "Open XML", tabWidget, &Patch::TabWidget::slotOpenXML);
+   showXMLAction->setShortcut(QKeySequence::Open);
    viewMenu->addSeparator();
 
    //
@@ -127,7 +149,7 @@ void MainWindow::populateMenuAndToolBar()
    QToolBar* viewToolBar = createToolBar("View");
    viewToolBar->addWidget(spacer());
    viewToolBar->addAction(packageAction);
-   viewToolBar->addAction(overviewAction);
+   viewToolBar->addAction(schemmaAction);
 }
 
 void MainWindow::checkDirty()
@@ -152,10 +174,20 @@ void MainWindow::closeEvent(QCloseEvent* ce)
 
 void MainWindow::toogleDock(QWidget* widget, const QString& name, bool enabled)
 {
-   widget->setVisible(enabled);
-
    QSettings dockSettings;
-   dockSettings.setValue("Dock/" + name, enabled);
+   dockSettings.setValue("DockEnabled/" + name, enabled);
+   if (!enabled)
+   {
+      dockSettings.setValue("DockSize/" + name, widget->size());
+      widget->setVisible(false);
+   }
+   else
+   {
+      widget->setVisible(true);
+      const QSize size = dockSettings.value("DockSize/" + name).toSize();
+      if (!size.isNull())
+         widget->setMinimumSize(size);
+   }
 }
 
 // main function

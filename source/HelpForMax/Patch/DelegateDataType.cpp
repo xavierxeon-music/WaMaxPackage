@@ -1,14 +1,14 @@
-#include "DelegateType.h"
+#include "DelegateDataType.h"
 
 #include <QComboBox>
 
-Delegate::Type::Type(QObject* parent, Type::Source* source)
+Delegate::DataType::DataType(QObject* parent, DataType::Source* source)
    : QStyledItemDelegate(parent)
    , source(source)
 {
 }
 
-QWidget* Delegate::Type::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
+QWidget* Delegate::DataType::createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
    Q_UNUSED(option)
    Q_UNUSED(index)
@@ -28,16 +28,16 @@ QWidget* Delegate::Type::createEditor(QWidget* parent, const QStyleOptionViewIte
    return comboBox;
 }
 
-void Delegate::Type::setEditorData(QWidget* editor, const QModelIndex& index) const
+void Delegate::DataType::setEditorData(QWidget* editor, const QModelIndex& index) const
 {
    QComboBox* comboBox = qobject_cast<QComboBox*>(editor);
 
-   const Patch::Structure::DataType type = source->getType(index.row());
+   const Patch::Structure::DataType type = source->getDataType(index.row());
    const int typeIndex = comboBox->findText(Patch::Structure::dataTypeName(type));
    comboBox->setCurrentIndex(typeIndex);
 }
 
-void Delegate::Type::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
+void Delegate::DataType::setModelData(QWidget* editor, QAbstractItemModel* model, const QModelIndex& index) const
 {
    QComboBox* comboBox = qobject_cast<QComboBox*>(editor);
 
@@ -45,7 +45,7 @@ void Delegate::Type::setModelData(QWidget* editor, QAbstractItemModel* model, co
    model->setData(index, typeText, Qt::EditRole);
 }
 
-void Delegate::Type::updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const
+void Delegate::DataType::updateEditorGeometry(QWidget* editor, const QStyleOptionViewItem& option, const QModelIndex& index) const
 {
    Q_UNUSED(index)
 

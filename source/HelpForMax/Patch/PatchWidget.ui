@@ -6,27 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>340</width>
-    <height>724</height>
+    <width>357</width>
+    <height>1245</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
-   <item row="0" column="0">
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_5">
      <item>
       <widget class="QLabel" name="patchIcon">
@@ -55,37 +43,36 @@
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QComboBox" name="patchTypeCombo">
-       <property name="minimumSize">
-        <size>
-         <width>200</width>
-         <height>0</height>
-        </size>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
-   <item row="1" column="0">
-    <layout class="QHBoxLayout" name="horizontalLayout_6">
-     <item>
-      <widget class="QLineEdit" name="patchDigestEdit">
-       <property name="readOnly">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="patchDescriptionEditButton">
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="metaTagInfo">
        <property name="text">
-        <string>edit</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;meta tags&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="seeAlsoEdit"/>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="metaTagEdit"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="seeAlsoInfo">
+       <property name="text">
+        <string>see also</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0" colspan="2">
+      <widget class="Patch::TreeView" name="headerTree"/>
+     </item>
     </layout>
    </item>
-   <item row="2" column="0">
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="argumentIcon">
@@ -130,10 +117,10 @@
      </item>
     </layout>
    </item>
-   <item row="3" column="0">
+   <item>
     <widget class="Patch::TreeView" name="argumentTree"/>
    </item>
-   <item row="4" column="0">
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <widget class="QLabel" name="typedMessageIcon">
@@ -164,10 +151,10 @@
      </item>
     </layout>
    </item>
-   <item row="5" column="0">
+   <item>
     <widget class="Patch::TreeView" name="typedMessageTree"/>
    </item>
-   <item row="6" column="0">
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QLabel" name="nameMessageIcon">
@@ -212,10 +199,10 @@
      </item>
     </layout>
    </item>
-   <item row="7" column="0">
+   <item>
     <widget class="Patch::TreeView" name="namedMessageTree"/>
    </item>
-   <item row="8" column="0">
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
       <widget class="QLabel" name="outputIcon">
@@ -263,7 +250,7 @@
      </item>
     </layout>
    </item>
-   <item row="9" column="0">
+   <item>
     <widget class="Patch::TreeView" name="outputTree"/>
    </item>
   </layout>

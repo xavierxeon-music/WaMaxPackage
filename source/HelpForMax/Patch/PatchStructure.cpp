@@ -24,12 +24,12 @@ static const PatchTypeNameMap patchTypeNameMap = {{Patch::Structure::PatchType::
 
 using PatchPartNameMap = QMap<Patch::Structure::PatchPart, QString>;
 static const PatchPartNameMap patchPartNameMap = {{Patch::Structure::PatchPart::Undefined, "undefined"},
-                                                  {Patch::Structure::PatchPart::Patch, "Patch"},
+                                                  {Patch::Structure::PatchPart::Header, "Header"},
                                                   {Patch::Structure::PatchPart::Argument, "Argument"},
                                                   {Patch::Structure::PatchPart::Attribute, "Attribute"},
                                                   {Patch::Structure::PatchPart::MessageTyped, "Message Typed"},
                                                   {Patch::Structure::PatchPart::MessageNamed, "Message Named"},
-                                                  {Patch::Structure::PatchPart::Output, "putput"}};
+                                                  {Patch::Structure::PatchPart::Output, "Output"}};
 
 Patch::Structure::Structure()
    : header()
@@ -74,12 +74,12 @@ QList<Patch::Structure::DataType> Patch::Structure::dataTypeList()
    return dataTypeNameMap.keys();
 }
 
-QString Patch::Structure::typeName(const PatchType& type)
+QString Patch::Structure::patchTypeName(const PatchType& type)
 {
    return patchTypeNameMap.value(type, "standard");
 }
 
-Patch::Structure::PatchType Patch::Structure::toType(const QString& name)
+Patch::Structure::PatchType Patch::Structure::toPatchType(const QString& name)
 {
    for (PatchTypeNameMap::ConstIterator it = patchTypeNameMap.constBegin(); it != patchTypeNameMap.constEnd(); it++)
    {
@@ -91,6 +91,11 @@ Patch::Structure::PatchType Patch::Structure::toType(const QString& name)
    ;
 }
 
+QList<Patch::Structure::PatchType> Patch::Structure::patchTypeList()
+{
+   return patchTypeNameMap.keys();
+}
+
 QString Patch::Structure::partName(const PatchPart& part)
 {
    return patchPartNameMap.value(part, "undefined");
@@ -98,7 +103,7 @@ QString Patch::Structure::partName(const PatchPart& part)
 
 QIcon Patch::Structure::partIcon(const PatchPart& part)
 {
-   if (PatchPart::Patch == part)
+   if (PatchPart::Header == part)
       return QIcon(":/PatchGeneral.svg");
    else if (PatchPart::Argument == part)
       return QIcon(":/DocArgument.svg");

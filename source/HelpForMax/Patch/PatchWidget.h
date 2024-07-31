@@ -37,7 +37,6 @@ namespace Patch
       friend class TreeView;
 
    private slots:
-      void slotPatchTypeChanged(int index);
       void slotSetPatchDigest();
       void slotSaveDigestText();
       void slotSaveDigestDescription();

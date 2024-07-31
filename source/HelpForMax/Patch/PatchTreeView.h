@@ -20,7 +20,7 @@ namespace Patch
       TreeView(QWidget* parent);
 
    public:
-      void init(Widget* widget, Model::Abstract* model);
+      void init(Widget* widget, Model::Abstract* model, int forceRowHeight = -1);
 
    private slots:
       void slotResizeColumns();
@@ -29,6 +29,8 @@ namespace Patch
    private:
       Widget* widget;
       Model::Abstract* model;
+
+      int forceRowHeight;
    };
 } // namespace Patch
 

@@ -1,5 +1,5 @@
-#ifndef DelegateTypeH
-#define DelegateTypeH
+#ifndef DelegateDataTypeH
+#define DelegateDataTypeH
 
 #include <QStyledItemDelegate>
 
@@ -7,18 +7,18 @@
 
 namespace Delegate
 {
-   class Type : public QStyledItemDelegate
+   class DataType : public QStyledItemDelegate
    {
       Q_OBJECT
 
    public:
       struct Source
       {
-         virtual Patch::Structure::DataType getType(const int index) = 0;
+         virtual Patch::Structure::DataType getDataType(const int index) = 0;
       };
 
    public:
-      Type(QObject* parent, Source* source);
+      DataType(QObject* parent, Source* source);
 
    public:
       QWidget* createEditor(QWidget* parent, const QStyleOptionViewItem& option, const QModelIndex& index) const override;
@@ -31,4 +31,4 @@ namespace Delegate
    };
 } // namespace Delegate
 
-#endif // NOT DelegateTypeH
+#endif // NOT DelegateDataTypeH

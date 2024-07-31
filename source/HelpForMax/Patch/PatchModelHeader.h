@@ -1,28 +1,28 @@
-#ifndef PatchModelArgumentH
-#define PatchModelArgumentH
+#ifndef PatchModelHeaderH
+#define PatchModelHeaderH
 
-#include "DelegateDataType.h"
+#include "DelegatePatchType.h"
 #include "PatchModelAbstract.h"
 
 namespace Patch
 {
    namespace Model
    {
-      class Argument : public Abstract, public Delegate::DataType::Source
+      class Header : public Abstract, public Delegate::PatchType::Source
       {
          Q_OBJECT
 
       public:
-         Argument(QObject* parent, Structure* structure);
+         Header(QObject* parent, Structure* structure);
 
       private:
          void update() override;
          void rebuild() override;
          Structure::Digest* getDigest(const QModelIndex& index) override;
          bool setData(const QModelIndex& index, const QVariant& value, int role = Qt::EditRole) override;
-         Structure::DataType getDataType(const int index) override;
+         Patch::Structure::PatchType getPatchType(const int index) override;
       };
    } // namespace Model
 } // namespace Patch
 
-#endif // NOT PatchModelArgumentH
+#endif // NOT PatchModelHeaderH

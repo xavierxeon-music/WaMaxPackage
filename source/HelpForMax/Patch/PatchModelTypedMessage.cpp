@@ -7,6 +7,19 @@ Patch::Model::TypedMessage::TypedMessage(QObject* parent, Structure* structure)
 
 void Patch::Model::TypedMessage::update()
 {
+   for (int row = 0; row < invisibleRootItem()->rowCount(); row++)
+   {
+      QStandardItem* typeItem = invisibleRootItem()->child(row, 0);
+      QStandardItem* activeItem = invisibleRootItem()->child(row, 1);
+      QStandardItem* digestItem = invisibleRootItem()->child(row, 2);
+
+      const Structure::DataType type = typeItem->data().value<Structure::DataType>();
+      const bool active = structure->messageTypedMap.contains(type);
+
+      activeItem->setCheckState(active ? Qt::Checked : Qt::Unchecked);
+
+      updateDigestItem(digestItem, structure->messageTypedMap.value(type).digest);
+   }
 }
 
 void Patch::Model::TypedMessage::rebuild()
@@ -14,33 +27,28 @@ void Patch::Model::TypedMessage::rebuild()
    beginResetModel();
    clear();
 
-   setHorizontalHeaderLabels({"Type", "Active", "Description"});
+   setHorizontalHeaderLabels({"Type", "Active", "Digest"});
 
    for (const Structure::DataType& type : structure->dataTypeList())
    {
       QStandardItem* typeItem = new QStandardItem(Structure::dataTypeName(type));
       typeItem->setEditable(false);
+      typeItem->setData(QVariant::fromValue(type));
 
       QStandardItem* activeItem = new QStandardItem();
       activeItem->setEditable(false);
       activeItem->setCheckable(true);
       activeItem->setIcon(QIcon(":/DocMessageTyped.svg"));
 
-      QStandardItem* descrItem = new QStandardItem();
-      descrItem->setEditable(false);
+      QStandardItem* digestItem = new QStandardItem();
+      digestItem->setEditable(false);
 
-      if (structure->messageTypedMap.contains(type))
-      {
-         activeItem->setCheckState(Qt::Checked);
-
-         QString description = structure->messageTypedMap.value(type).digest.text;
-         descrItem->setText(description);
-      }
-
-      invisibleRootItem()->appendRow({typeItem, activeItem, descrItem});
+      invisibleRootItem()->appendRow({typeItem, activeItem, digestItem});
    }
 
    endResetModel();
+
+   update();
 }
 
 Patch::Structure::Digest* Patch::Model::TypedMessage::getDigest(const QModelIndex& index)

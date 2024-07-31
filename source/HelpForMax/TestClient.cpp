@@ -26,9 +26,10 @@ TestClient::TestClient()
       item->setData(0, Qt::UserRole + 1, patchPath);
    };
 
-   addItem("/Users/waspe/GitHub/MusicProjects/WaMaxPackage/patchers/hardware/wa.grid.pot.maxpat");
-   addItem("/Users/waspe/GitHub/MusicProjects/WaMaxPackage/patchers/audio/wa.wave_terrain~.maxpat");
-   addItem("/Users/waspe/GitHub/MusicProjects/WaMaxPackage/patchers/mixer/wa.channel_strip.master~.maxpat");
+   const QString packageDir = "/Users/waspe/GitHub/MusicProjects/WaMaxPackage";
+   addItem(packageDir + "/patchers/hardware/wa.grid.pot.maxpat");
+   addItem(packageDir + "/patchers/audio/wa.wave_terrain~.maxpat");
+   addItem(packageDir + "/patchers/mixer/wa.channel_strip.master~.maxpat");
 
    connect(selectTree, &QTreeWidget::currentItemChanged, this, &TestClient::slotSelectItemChanged);
 }
