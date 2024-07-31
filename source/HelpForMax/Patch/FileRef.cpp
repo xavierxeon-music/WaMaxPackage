@@ -124,7 +124,8 @@ void File::Ref::readContent(const QByteArray& content)
             const QString name = attributeElement.attribute("name");
             if (!structure->messageNamedMap.contains(name))
             {
-               Patch::Structure::MessageNamed attribute;
+               Patch::Structure::AttributesAndMessageNamed attribute;
+               attribute.name = name;
                attribute.dataType = Patch::Structure::toDataType(attributeElement.attribute("type"));
 
                readDigest(attributeElement, attribute.digest);
@@ -155,9 +156,10 @@ void File::Ref::readContent(const QByteArray& content)
             }
             else
             {
-               Patch::Structure::MessageNamed message;
+               Patch::Structure::AttributesAndMessageNamed message;
                if (!structure->messageNamedMap.contains(name))
                {
+                  message.name = name;
                   readDigest(messageElement, message.digest);
 
                   const QDomElement argListElement = messageElement.firstChildElement("arglist");
@@ -241,9 +243,9 @@ QByteArray File::Ref::writeContent(const QString& patchName)
       QDomElement attributeListElement = createSubElement(rootElement, "attributelist");
       QDomElement messageListElement = createSubElement(rootElement, "methodlist");
 
-      for (Patch::Structure::MessageNamed::Map::ConstIterator it = structure->messageNamedMap.constBegin(); it != structure->messageNamedMap.constEnd(); it++)
+      for (Patch::Structure::AttributesAndMessageNamed::Map::ConstIterator it = structure->messageNamedMap.constBegin(); it != structure->messageNamedMap.constEnd(); it++)
       {
-         const Patch::Structure::MessageNamed& messageNamed = it.value();
+         const Patch::Structure::AttributesAndMessageNamed& messageNamed = it.value();
          if (0 != (messageNamed.patchParts & Patch::Structure::PatchPart::MessageNamed))
          {
             QDomElement messageElement = createSubElement(messageListElement, "method");
@@ -259,7 +261,8 @@ QByteArray File::Ref::writeContent(const QString& patchName)
 
             addDigest(messageElement, messageNamed.digest);
          }
-         else if (0 != (messageNamed.patchParts & Patch::Structure::PatchPart::Attribute))
+         // no else here !!
+         if (0 != (messageNamed.patchParts & Patch::Structure::PatchPart::Attribute))
          {
             QDomElement attributeElement = createSubElement(attributeListElement, "attribute");
             attributeElement.setAttribute("name", messageNamed.name);

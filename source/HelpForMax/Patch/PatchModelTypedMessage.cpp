@@ -20,13 +20,14 @@ void Patch::Model::TypedMessage::update()
 
       updateDigestItem(digestItem, message.digest);
    }
+
+   emit signalDataEdited();
 }
 
 void Patch::Model::TypedMessage::rebuild()
 {
    beginResetModel();
    clear();
-
    setHorizontalHeaderLabels({"Type", "Active", "Digest"});
 
    for (const Structure::DataType& type : structure->dataTypeList())
@@ -47,7 +48,6 @@ void Patch::Model::TypedMessage::rebuild()
    }
 
    endResetModel();
-
    update();
 }
 
@@ -87,5 +87,6 @@ bool Patch::Model::TypedMessage::setData(const QModelIndex& index, const QVarian
       }
    }
 
+   emit signalDataEdited();
    return result;
 }

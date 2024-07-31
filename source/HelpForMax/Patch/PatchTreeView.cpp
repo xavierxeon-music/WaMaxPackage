@@ -25,7 +25,7 @@ void Patch::TreeView::init(Widget* widget, Model::Abstract* model, int forceRowH
 
    setModel(model);
 
-   connect(model, &Model::Abstract::modelReset, this, &TreeView::slotResizeColumns);
+   connect(model, &Model::Abstract::signalDataEdited, this, &TreeView::slotResizeColumns);
 }
 
 void Patch::TreeView::setButtons(QToolButton* addButton, QToolButton* removeButton)

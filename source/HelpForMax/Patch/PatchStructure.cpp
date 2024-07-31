@@ -138,3 +138,19 @@ Patch::Structure::PatchPart Patch::Structure::toPart(const QString& name)
    return PatchPart::Undefined;
    ;
 }
+
+void Patch::Structure::repackNamedMessages()
+{
+   AttributesAndMessageNamed::List list = messageNamedMap.values();
+   messageNamedMap.clear();
+
+   for (const AttributesAndMessageNamed& message : list)
+   {
+      QString name = message.name;
+      // avoid duplicate keys
+      while (messageNamedMap.contains(name))
+         name += "_";
+
+      messageNamedMap.insert(name, message);
+   }
+}

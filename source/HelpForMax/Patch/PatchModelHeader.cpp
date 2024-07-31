@@ -17,9 +17,7 @@ void Patch::Model::Header::update()
 void Patch::Model::Header::rebuild()
 {
    beginResetModel();
-
    clear();
-
    setHorizontalHeaderLabels({"PatchType", "Digest"});
 
    QStandardItem* typeItem = new QStandardItem();
@@ -28,7 +26,6 @@ void Patch::Model::Header::rebuild()
    digestItem->setEditable(false);
 
    invisibleRootItem()->appendRow({typeItem, digestItem});
-
    endResetModel();
 
    update();

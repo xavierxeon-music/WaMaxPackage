@@ -39,6 +39,7 @@ Patch::Widget::Widget(QWidget* parent)
    setIcon(patchIcon, Structure::PatchPart::Header);
    setIcon(argumentIcon, Structure::PatchPart::Argument);
    setIcon(typedMessageIcon, Structure::PatchPart::MessageTyped);
+   setIcon(attributeIcon, Structure::PatchPart::Attribute);
    setIcon(nameMessageIcon, Structure::PatchPart::MessageNamed);
    setIcon(outputIcon, Structure::PatchPart::Output);
 
@@ -62,6 +63,7 @@ Patch::Widget::Widget(QWidget* parent)
    modelList.append(namedMessageModel);
    namedMessageTree->init(this, namedMessageModel);
    namedMessageTree->setButtons(namedMessageAddButton, namedMessageRemoveButton);
+   namedMessageTree->setItemDelegateForColumn(1, new Delegate::DataType(this, namedMessageModel));
 
    Model::Output* outputModel = new Model::Output(this, this);
    modelList.append(outputModel);

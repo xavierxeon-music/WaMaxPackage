@@ -18,6 +18,9 @@ namespace Patch
       public:
          Abstract(QObject* parent, Structure* structure, const Structure::PatchPart& part);
 
+      signals:
+         void signalDataEdited();
+
       public:
          virtual void update() = 0;
          virtual void rebuild() = 0;

@@ -87,16 +87,19 @@ namespace Patch
       struct MessageTyped : Input
       {
          bool active = false;
+
+         using List = QList<MessageTyped>;
          using Map = QMap<DataType, MessageTyped>;
       };
 
       // attributes and things in patcherargs with @
-      struct MessageNamed : Input
+      struct AttributesAndMessageNamed : Input
       {
          QString name;
          PatchParts patchParts = PatchPart::Undefined;
 
-         using Map = QMap<QString, MessageNamed>;
+         using List = QList<AttributesAndMessageNamed>;
+         using Map = QMap<QString, AttributesAndMessageNamed>;
       };
 
       // things in patcherargs without @
@@ -133,12 +136,14 @@ namespace Patch
       static QIcon partIcon(const PatchPart& part);
       static PatchPart toPart(const QString& name);
 
+      void repackNamedMessages();
+
    public:
       Header header;
       Output::Map outputMap;
       Argument::List argumentList;
       MessageTyped::Map messageTypedMap;
-      MessageNamed::Map messageNamedMap;
+      AttributesAndMessageNamed::Map messageNamedMap;
    };
 } // namespace Patch
 

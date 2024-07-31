@@ -21,6 +21,8 @@ void Patch::Model::Argument::update()
 
       updateDigestItem(digestItem, argument.digest);
    }
+
+   emit signalDataEdited();
 }
 
 void Patch::Model::Argument::rebuild()
@@ -31,13 +33,13 @@ void Patch::Model::Argument::rebuild()
 
    setHorizontalHeaderLabels({"Name", "Type", "Digest"});
 
-   for (const Structure::Argument& argument : structure->argumentList)
+   for (int row = 0; row < structure->argumentList.count(); row++)
    {
-      QStandardItem* nameItem = new QStandardItem(argument.name);
+      QStandardItem* nameItem = new QStandardItem();
 
-      QStandardItem* typeItem = new QStandardItem(Structure::dataTypeName(argument.dataType));
+      QStandardItem* typeItem = new QStandardItem();
 
-      QStandardItem* digestItem = new QStandardItem(argument.digest.text);
+      QStandardItem* digestItem = new QStandardItem();
       digestItem->setEditable(false);
 
       invisibleRootItem()->appendRow({nameItem, typeItem, digestItem});
@@ -80,21 +82,19 @@ bool Patch::Model::Argument::setData(const QModelIndex& index, const QVariant& v
    {
       Structure::Argument& argument = structure->argumentList[index.row()];
 
-      switch (index.column())
+      if (0 == index.column())
       {
-         case 0:
-            argument.name = value.toString();
-            structure->setDirty();
-            break;
-         case 1:
-            argument.dataType = Structure::toDataType(value.toString());
-            structure->setDirty();
-            break;
-         default:
-            break;
+         argument.name = value.toString();
+         structure->setDirty();
+      }
+      else if (1 == index.column())
+      {
+         argument.dataType = Structure::toDataType(value.toString());
+         structure->setDirty();
       }
    }
 
+   emit signalDataEdited();
    return result;
 }
 
