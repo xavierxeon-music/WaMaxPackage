@@ -285,7 +285,7 @@ QByteArray File::Ref::writeContent(const QString& patchName)
          QDomElement argListElement = createSubElement(messageElement, "arglist");
 
          QDomElement arguemntElement = createSubElement(argListElement, "arg");
-         arguemntElement.setAttribute("name", messageTyped.name);
+         arguemntElement.setAttribute("name", typeName);
          arguemntElement.setAttribute("optional", 0);
          arguemntElement.setAttribute("type", typeName);
 
