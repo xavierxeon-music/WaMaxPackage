@@ -10,6 +10,7 @@
 #include <QLocalSocket>
 #include <QProcess>
 #include <QStandardPaths>
+#include <QThread>
 
 HelpForMax::HelpForMax()
 {
@@ -46,6 +47,7 @@ bool HelpForMax::isServerActive()
 void HelpForMax::startApplication()
 {
    QProcess::startDetached("open", {"-a", "HelpForMax"});
+   QThread::sleep(1);
 }
 
 #endif // NOT HelpForMaxHPP

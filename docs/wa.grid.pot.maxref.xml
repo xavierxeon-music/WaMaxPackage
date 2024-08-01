@@ -9,11 +9,11 @@
     </metadatalist>
     <misc name="Outputs">
         <entry name="float">
-            <digest/>
+            <digest>value</digest>
             <description>(right) the current normalized value</description>
         </entry>
         <entry name="list">
-            <digest/>
+            <digest>color</digest>
             <description>(left) the color as float values</description>
         </entry>
     </misc>
