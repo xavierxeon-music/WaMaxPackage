@@ -46,9 +46,7 @@ class GridCanvas extends Canvas {
 
    update() {
 
-      this.ctx.clearRect(0, 0, this.element.width, this.element.height);
-
-      const zeroAngle = 0.5 * Math.PI;
+      this.clear();
 
       var outlineColor = "#666666";
       var fullColor = "#ffffff";
@@ -62,57 +60,36 @@ class GridCanvas extends Canvas {
             let index = ((4 - col) * 10) + (row + 1)
 
             // outer circle
-
-            this.ctx.fillStyle = outlineColor;
-
-            this.ctx.beginPath();
-            this.ctx.arc(x, y, 14, 0, 2 * Math.PI);
-            this.ctx.lineWidth = 6;
-            this.ctx.fill();
-            this.ctx.closePath();
-
+            this.circle(x, y, 14, outlineColor);
 
             // knob indicator
             let fraction = valueDict[index];
             if (undefined == fraction)
-               fraction = 0.5;
+               fraction = 0.0;
 
-            this.ctx.strokeStyle = fullColor;
-            if (fraction > 0.0) {
-
-               this.ctx.beginPath();
-               this.ctx.arc(x, y, 10, zeroAngle, zeroAngle + (fraction * 2 * Math.PI));
-               this.ctx.lineWidth = 7;
-               this.ctx.stroke();
-               this.ctx.closePath();
-            }
+            if (fraction > 0.0)
+               this.ring(x, y, 10, 7, fullColor, fraction, 0.5 * Math.PI);
 
             // inner circle
-            this.ctx.fillStyle = outlineColor;
-            this.ctx.beginPath();
-            this.ctx.arc(x, y, 9, 0, 2 * Math.PI);
-            this.ctx.fill();
-            this.ctx.closePath();
+            this.circle(x, y, 9, outlineColor);
 
             // color inidicator
             let color = colorDict[index];
             if (undefined == color)
                color = "#000000";
-            this.ctx.fillStyle = color;
 
-            this.ctx.beginPath();
-            this.ctx.arc(x, y, 7, 0, 2 * Math.PI);
-            this.ctx.fill();
-            this.ctx.closePath();
+            this.circle(x, y, 7, color);
+
 
             // name 
             let name = nameDict[index];
-            this.ctx.fillStyle = fullColor;
+            let fontColor = fullColor;
             if (undefined == name) {
                name = index.toString();
-               this.ctx.fillStyle = outlineColor;
+               fontColor = outlineColor;
             }
 
+            this.ctx.fillStyle = fontColor;
             this.ctx.fillText(name, x, y + 25);
 
          }
