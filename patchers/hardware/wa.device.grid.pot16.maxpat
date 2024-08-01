@@ -365,7 +365,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 5,
 					"outlettype" : [ "dictionary", "", "", "", "" ],
-					"patching_rect" : [ 90.0, 585.0, 92.0, 22.0 ],
+					"patching_rect" : [ 90.0, 585.0, 115.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"legacy" : 0,
@@ -413,10 +413,10 @@
 					"outlettype" : [ "", "", "" ],
 					"patching_rect" : [ 1846.0, 107.0, 121.0, 22.0 ],
 					"restore" : [ 						{
-							"42" : 8895,
+							"42" : 8891,
 							"43" : 4917,
 							"44" : 8023,
-							"32" : 7527,
+							"32" : 7523,
 							"31" : 0,
 							"22" : 0,
 							"11" : 0,
@@ -426,8 +426,8 @@
 							"24" : 0,
 							"23" : 0,
 							"21" : 0,
-							"33" : 2076,
-							"34" : 4710,
+							"33" : 2072,
+							"34" : 4714,
 							"41" : 7667
 						}
  ],
@@ -448,7 +448,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 5,
 					"outlettype" : [ "dictionary", "", "", "", "" ],
-					"patching_rect" : [ 1897.0, 150.0, 92.0, 22.0 ],
+					"patching_rect" : [ 1897.0, 150.0, 115.0, 22.0 ],
 					"saved_object_attributes" : 					{
 						"embed" : 0,
 						"legacy" : 0,
@@ -682,18 +682,6 @@
 			}
 , 			{
 				"box" : 				{
-					"id" : "obj-28",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
-					"patching_rect" : [ 243.0, 125.0, 58.0, 22.0 ],
-					"text" : "loadbang"
-				}
-
-			}
-, 			{
-				"box" : 				{
 					"id" : "obj-65",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -800,7 +788,7 @@
 				"box" : 				{
 					"comment" : "reset, color",
 					"id" : "obj-15",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -1006,7 +994,7 @@
 				"box" : 				{
 					"comment" : "values",
 					"id" : "obj-2",
-					"index" : 1,
+					"index" : 0,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -1148,13 +1136,6 @@
 				"patchline" : 				{
 					"destination" : [ "obj-38", 0 ],
 					"source" : [ "obj-27", 0 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-51", 0 ],
-					"source" : [ "obj-28", 0 ]
 				}
 
 			}
@@ -1534,6 +1515,7 @@
 
 			}
  ],
+		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.buffer",
 				"default" : 				{
