@@ -16,8 +16,8 @@ var blueMidi = 160;
 
 function parseColor(localId, name) {
 
-   color = new Color(name);
-   id = lookup.get("local_to_midi::" + localId);
+   var color = new Color(name);
+   var id = lookup.get("local_to_midi::" + localId);
 
    outlet(1, [color.red, color.green, color.blue, id]);
 
@@ -28,4 +28,11 @@ function parseColor(localId, name) {
    outlet(0, [redMidi, id, midiRed]);
    outlet(0, [greenMidi, id, midiGreen]);
    outlet(0, [blueMidi, id, midBlue]);
+}
+
+function convertColor(id, name) {
+
+   color = new Color(name);
+
+   outlet(0, ["color", id, color.hex]);
 }

@@ -118,7 +118,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 825.0, 451.0, 95.0, 22.0 ],
 					"style" : "wa.send",
-					"text" : "send grid_name"
+					"text" : "send grid_pot_name"
 				}
 
 			}
@@ -167,7 +167,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 915.0, 206.0, 93.0, 22.0 ],
 					"style" : "wa.receive",
-					"text" : "receive grid_init"
+					"text" : "receive grid_pot_init"
 				}
 
 			}
@@ -382,7 +382,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 403.0, 510.0, 91.0, 22.0 ],
 					"style" : "wa.send",
-					"text" : "send grid_color"
+					"text" : "send grid_pot_color"
 				}
 
 			}
@@ -503,7 +503,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 26.0, 30.0, 103.0, 22.0 ],
 					"style" : "wa.receive",
-					"text" : "receive grid_input"
+					"text" : "receive grid_pot_input"
 				}
 
 			}
@@ -516,7 +516,7 @@
 					"outlettype" : [ "" ],
 					"patching_rect" : [ 480.0, 206.0, 93.0, 22.0 ],
 					"style" : "wa.receive",
-					"text" : "receive grid_init"
+					"text" : "receive grid_pot_init"
 				}
 
 			}

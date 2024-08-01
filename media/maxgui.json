@@ -14,16 +14,24 @@
          "./other/debug_window.css"
       ]
    },
+   "grid_pot16": {
+      "name": "Grid Pot16",
+      "script": "./hardware/grid_pot16_ui.js"
+   },
+   "grid_enc16": {
+      "name": "Grid Enc16",
+      "script": "./hardware/grid_enc16_ui.js"
+   },
    "rack_es8": {
-      "name": "rack_es8",
+      "name": "Rack ES8",
       "script": "./rack/es8_ui.js"
    },
    "rack_es9": {
-      "name": "device_es9",
+      "name": "Rack ES9",
       "script": "./rack/es9_ui.js"
    },
    "rack_acdc": {
-      "name": "rack_acdc",
+      "name": "Rack ACDC",
       "script": "./rack/acdc_ui.js"
    },
    "mixer": {

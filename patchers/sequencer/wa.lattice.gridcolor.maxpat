@@ -100,7 +100,7 @@
 					"numoutlets" : 0,
 					"patching_rect" : [ 30.0, 242.0, 91.0, 22.0 ],
 					"style" : "wa.send",
-					"text" : "send grid_color"
+					"text" : "send grid_pot_color"
 				}
 
 			}
