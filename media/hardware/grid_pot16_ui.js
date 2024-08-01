@@ -4,7 +4,6 @@ let valueDict = {};
 let nameDict = {};
 let colorDict = {};
 
-//max.bindInlet('reset', resetMessages);
 function sendReset() {
 
    max.outlet("reset", "bang");
@@ -104,7 +103,7 @@ title.setStyle("height", "20px");
 
 let resetButton = new Button(title, "reset");
 resetButton.onClicked(sendReset);
-resetButton.move(150, 2);
+resetButton.move(160, 3);
 
 let canvas = new GridCanvas();
 canvas.update();
