@@ -106,7 +106,7 @@ void MainWindow::populateMenuAndToolBar()
 
       const QSize size = dockSettings.value("DockSize/" + name).toSize();
       if (enabled && size.width() > 0 && size.height() > 0)
-         widget->setMinimumSize(size);
+         widget->resize(size);
 
       return viewAction;
    };
@@ -190,7 +190,7 @@ void MainWindow::toogleDock(QWidget* widget, const QString& name, bool enabled)
       widget->setVisible(true);
       const QSize size = dockSettings.value("DockSize/" + name).toSize();
       if (size.width() > 0 && size.height() > 0)
-         widget->setMinimumSize(size);
+         widget->resize(size);
    }
 }
 

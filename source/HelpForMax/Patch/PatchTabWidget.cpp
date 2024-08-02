@@ -158,6 +158,14 @@ void Patch::TabWidget::slotFillRecentMenu()
       auto openFunction = std::bind(&TabWidget::slotLoadPatch, this, patchFileName);
       recentMenu->addAction(patchName, openFunction);
    }
+
+   recentMenu->addSeparator();
+   recentMenu->addAction("Clear Recent", this, &TabWidget::slotClearRecentPatches);
+}
+
+void Patch::TabWidget::slotClearRecentPatches()
+{
+   recentFileList.clear();
 }
 
 void Patch::TabWidget::tabSelected(const Patch::Widget* pathWidget)

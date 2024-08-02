@@ -21,20 +21,27 @@ namespace Schema
       struct Box
       {
          QGraphicsRectItem* rectItem = nullptr;
-         QGraphicsSimpleTextItem* textItem = nullptr;
+         QGraphicsItem* foregroundItem = nullptr;
          int inletCount = 0;
          int outletCount = 0;
+      };
+
+      enum DataKeys
+      {
+         KeyHelp = 1
       };
 
       using IdMap = QMap<QString, Box>;
 
    private:
       IdMap makeObjects(const QJsonObject patcherObject);
-      void moveItems(const IdMap& idMap);
       void makeLines(const QJsonObject patcherObject, const IdMap& idMap);
+      void moveItems(const IdMap& idMap);
+      void mouseDoubleClickEvent(QMouseEvent* me) override;
 
    private:
       QGraphicsScene* scene;
+      QString patchFileName;
 
       QPen blackPen;
       QBrush whiteBrush;

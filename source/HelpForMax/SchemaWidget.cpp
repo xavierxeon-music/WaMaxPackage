@@ -1,16 +1,18 @@
 #include "SchemaWidget.h"
 
 #include <QApplication>
+#include <QDesktopServices>
 #include <QDir>
 #include <QGraphicsItem>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonValue>
-#include <QVBoxLayout>
+#include <QMouseEvent>
 
 Schema::Widget::Widget(QWidget* parent)
    : QGraphicsView(parent)
    , scene(nullptr)
+   , patchFileName()
    , blackPen(Qt::black)
    , whiteBrush(Qt::white)
    , grayBrush(QColor(230, 230, 230))
@@ -29,6 +31,7 @@ Schema::Widget::Widget(QWidget* parent)
 void Schema::Widget::slotLoad(const QString& patchFileName)
 {
    scene->clear();
+   this->patchFileName = patchFileName;
 
    if (patchFileName.isEmpty())
       return;
@@ -100,14 +103,32 @@ Schema::Widget::IdMap Schema::Widget::makeObjects(const QJsonObject patcherObjec
       if (text.isEmpty())
          text = className;
 
-      QGraphicsSimpleTextItem* textItem = scene->addSimpleText(text, font);
-      textItem->setPos(patchRect.x() + 5, patchRect.y() + 5);
+      QGraphicsItem* foregroundItem = nullptr;
+
+      if ("wa.helpfile" == text)
+      {
+         QFont bigFont;
+         bigFont.setPixelSize(30);
+
+         QGraphicsSimpleTextItem* textItem = scene->addSimpleText("H", bigFont);
+         textItem->setPos(patchRect.x() + 5, patchRect.y() + 5);
+         foregroundItem = textItem;
+
+         rectItem->setData(KeyHelp, true);
+         textItem->setData(KeyHelp, true);
+      }
+      else
+      {
+         QGraphicsSimpleTextItem* textItem = scene->addSimpleText(text, font);
+         textItem->setPos(patchRect.x() + 5, patchRect.y() + 5);
+         foregroundItem = textItem;
+      }
 
       const int inletCount = boxObject["numinlets"].toInt();
       const int outletCount = boxObject["numoutlets"].toInt();
 
       const QString id = boxObject["id"].toString();
-      idMap[id] = {rectItem, textItem, inletCount, outletCount};
+      idMap[id] = {rectItem, foregroundItem, inletCount, outletCount};
    }
 
    return idMap;
@@ -184,6 +205,15 @@ void Schema::Widget::moveItems(const IdMap& idMap)
       const QPointF oldPos = box.rectItem->pos();
       QPointF newPos = oldPos - minPoint;
       box.rectItem->setPos(newPos);
-      box.textItem->setPos(newPos + QPointF(5, 5));
+      if (box.foregroundItem)
+         box.foregroundItem->setPos(newPos + QPointF(5, 5));
    }
+}
+
+void Schema::Widget::mouseDoubleClickEvent(QMouseEvent* me)
+{
+   QGraphicsItem* item = itemAt(me->pos());
+   bool isHelp = item->data(KeyHelp).toBool();
+   if (isHelp && !patchFileName.isEmpty())
+      QDesktopServices::openUrl(QUrl::fromLocalFile(patchFileName));
 }

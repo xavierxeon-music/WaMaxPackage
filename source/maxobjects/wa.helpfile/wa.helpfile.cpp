@@ -48,9 +48,15 @@ atoms HelpFile::paintFunction(const atoms& args, const int inlet)
    rect<fill>{render, highlight, position{5.0, 5.0}, size{30.0, 30.0}};
 
    // the H
-   rect<fill>{render, bg, position{10.0, 10.0}, size{5.0, 20.0}};
-   rect<fill>{render, bg, position{25.0, 10.0}, size{5.0, 20.0}};
-   rect<fill>{render, bg, position{15.0, 17.5}, size{10.0, 5.0}};
+   if (State::HelpFileOutdated == state || State::UpToDate == state)
+   {
+      rect<fill>{render, bg, position{10.0, 10.0}, size{5.0, 20.0}};
+      rect<fill>{render, bg, position{25.0, 10.0}, size{5.0, 20.0}};
+   }
+   if (State::Initial != state)
+   {
+      rect<fill>{render, bg, position{15.0, 17.5}, size{10.0, 5.0}};
+   }
 
    return {};
 }

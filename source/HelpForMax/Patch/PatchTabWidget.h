@@ -38,8 +38,9 @@ namespace Patch
    private slots:
       void slotNewConnection();
       void slotWindowTitleChanged(const QString& name);
-      void slotFillRecentMenu();
       void slotTabChanged(int index);
+      void slotFillRecentMenu();
+      void slotClearRecentPatches();
 
    private:
       void tabSelected(const Patch::Widget* pathWidget);
