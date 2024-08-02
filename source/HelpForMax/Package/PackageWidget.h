@@ -17,14 +17,19 @@ namespace Package
       Widget(QWidget* parent);
 
    signals:
+      void signalCloseAllPatches();
       void signalPatchSeleted(const QString& path);
+
+   public slots:
+      void slotLoadPackage();
+      void slotClosePackage();
 
    private slots:
       void slotItemDoubleClicked(const QModelIndex& index);
 
    private:
-      void clearContent() override;
-      void createContent(const QString& packagePath) override;
+      void clear() override;
+      void create(const QString& packagePath) override;
 
    private:
       Model* model;

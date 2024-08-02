@@ -30,6 +30,7 @@ namespace Patch
       void slotLoadPatch(const QString& patchFileName);
       void slotWriteRef();
       void slotClosePatch();
+      void slotCloseAllPatches();
       void slotWriteAllRefs();
       void slotOpenInMax();
       void slotOpenXML();

@@ -34,6 +34,7 @@ include(Patch/Patch.pri)
 HEADERS += \
    MainWindow.h \
    MessageBar.h \
+   MessageChannel.h \
    SchemaWidget.h \
    TestClient.h \
    HelpForMax.h \
@@ -42,6 +43,7 @@ HEADERS += \
 SOURCES += \
    MainWindow.cpp \
    MessageBar.cpp \
+   MessageChannel.cpp \
    SchemaWidget.cpp \
    TestClient.cpp
 

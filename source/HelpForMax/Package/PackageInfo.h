@@ -4,17 +4,13 @@
 #include <QFileInfo>
 #include <QString>
 
-namespace Patch
-{
-   class TabWidget;
-}
-
 namespace Package
 {
    class Info
    {
    public:
-      static QString setPatchPath(const QString& package); // return patch name
+      static bool setPackage(const QString& someFileInPackage); // true if no package was set or is same package
+      static QString extractPatchName(const QString& patchFileName);
       static QString getPath();
       static QString getName();
       static QString getAuthor();
@@ -24,9 +20,9 @@ namespace Package
       ~Info();
 
    protected:
-      virtual void clearContent() = 0;
-      virtual void createContent(const QString& packagePath) = 0;
-      void update(const QFileInfo& patchInfo);
+      virtual void clear();
+      bool update(const QString& someFileInPackage);
+      virtual void create(const QString& packagePath) = 0;
 
    protected:
       QString path;

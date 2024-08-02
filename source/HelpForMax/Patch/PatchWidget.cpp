@@ -11,6 +11,7 @@
 #include "FileInit.h"
 #include "FileRef.h"
 #include "MainWindow.h"
+#include "MessageBar.h"
 #include "Package/PackageInfo.h"
 #include "PatchModelArgument.h"
 #include "PatchModelHeader.h"
@@ -93,9 +94,16 @@ const QString& Patch::Widget::getPath() const
 
 void Patch::Widget::openPatch(const QString& patchPath)
 {
+   if (!Package::Info::setPackage(patchPath))
+   {
+      Message::Bar::warning() << "PATCH does not belong to package" << patchPath;
+      this->deleteLater();
+      return;
+   }
+
    path = patchPath;
 
-   name = Package::Info::setPatchPath(path);
+   name = Package::Info::extractPatchName(path);
    propagateDirty(false);
 
    File::Ref(this).read(name);

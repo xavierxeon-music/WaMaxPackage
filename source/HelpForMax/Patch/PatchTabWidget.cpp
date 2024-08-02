@@ -92,6 +92,18 @@ void Patch::TabWidget::slotClosePatch()
       patchWidget->deleteLater();
 }
 
+void Patch::TabWidget::slotCloseAllPatches()
+{
+   QList<QWidget*> deleteList;
+   for (int index = 0; index < tabBar()->count(); index++)
+   {
+      deleteList.append(widget(index));
+   }
+
+   for (QWidget* widget : deleteList)
+      widget->deleteLater();
+}
+
 void Patch::TabWidget::slotOpenInMax()
 {
    Patch::Widget* patchWidget = qobject_cast<Patch::Widget*>(currentWidget());

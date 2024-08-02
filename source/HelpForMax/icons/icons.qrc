@@ -8,8 +8,9 @@
         <file>DocOutput.svg</file>
         <file>HelpForMax.svg</file>
         <file>OverviewGeneral.svg</file>
+        <file>PackageClose.svg</file>
         <file>PackageGeneral.svg</file>
-        <file>PackageReload.svg</file>
+        <file>PackageLoad.svg</file>
         <file>PatchClose.svg</file>
         <file>PatchGeneral.svg</file>
         <file>PatchLoad.svg</file>

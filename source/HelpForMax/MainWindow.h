@@ -3,24 +3,10 @@
 
 #include <QMainWindow>
 
-#include <QPointer>
-
+#include "Package/PackageWidget.h"
+#include "Patch/PatchTabWidget.h"
+#include "SchemaWidget.h"
 #include "TestClient.h"
-
-namespace Package
-{
-   class Widget;
-}
-
-namespace Patch
-{
-   class TabWidget;
-}
-
-namespace Schema
-{
-   class Widget;
-}
 
 class MainWindow : public QMainWindow
 {
@@ -39,7 +25,7 @@ private:
 
 private:
    Patch::TabWidget* tabWidget;
-   QWidget* packageWidget;
+   Package::Widget* packageWidget;
    Schema::Widget* schemaWidget;
 #ifdef TEST_CLIENT_AVAILABLE
    TestClient* testClient;

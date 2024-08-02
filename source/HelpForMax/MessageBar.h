@@ -3,12 +3,33 @@
 
 #include <QStatusBar>
 
-class MessageBar : public QStatusBar
+namespace Message
 {
-   Q_OBJECT
+   class Channel;
 
-public:
-   MessageBar(QWidget* parent);
-};
+   class Bar : public QStatusBar
+   {
+      Q_OBJECT
+
+   public:
+      Bar(QWidget* parent);
+      ~Bar();
+
+   public:
+      static QTextStream message();
+      static QTextStream warning();
+
+   private:
+      friend class Channel;
+
+   private:
+      void print(const QString& text, bool isWarning = false);
+
+   private:
+      static Bar* me;
+      Channel* messageChannel;
+      Channel* warningChannel;
+   };
+} // namespace Message
 
 #endif // NOT MessageBarH

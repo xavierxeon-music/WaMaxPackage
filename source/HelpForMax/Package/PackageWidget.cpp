@@ -11,6 +11,7 @@ Package::Widget::Widget(QWidget* parent)
    , model(nullptr)
 {
    setupUi(this);
+   packageNameInfo->setText("<b>...</b>");
 
    model = new Model(this);
    packageTree->setModel(model);
@@ -21,9 +22,18 @@ Package::Widget::Widget(QWidget* parent)
    const QString packagePath = settings.value("Package/Path").toString();
    if (!packagePath.isEmpty())
    {
-      QFileInfo packageInfo(packagePath + "/");
-      Info::update(packageInfo);
+      Info::update(packagePath + "/");
    }
+}
+
+void Package::Widget::slotLoadPackage()
+{
+}
+
+void Package::Widget::slotClosePackage()
+{
+   clear();
+   emit signalCloseAllPatches();
 }
 
 void Package::Widget::slotItemDoubleClicked(const QModelIndex& index)
@@ -36,12 +46,20 @@ void Package::Widget::slotItemDoubleClicked(const QModelIndex& index)
    emit signalPatchSeleted(path);
 }
 
-void Package::Widget::clearContent()
+void Package::Widget::clear()
 {
+   {
+      QSettings settings;
+      settings.setValue("Package/Path", "");
+   }
+
+   packageNameInfo->setText("<b>...</b>");
+
    model->clear();
+   Info::clear();
 }
 
-void Package::Widget::createContent(const QString& packagePath)
+void Package::Widget::create(const QString& packagePath)
 {
    {
       QSettings settings;
@@ -49,4 +67,6 @@ void Package::Widget::createContent(const QString& packagePath)
    }
 
    model->create(packagePath);
+
+   packageNameInfo->setText("<b>" + name + "</b>");
 }

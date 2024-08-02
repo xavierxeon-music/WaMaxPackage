@@ -7,7 +7,6 @@
 Package::Model::Model(QObject* parent)
    : QStandardItemModel(parent)
 {
-   setHorizontalHeaderLabels({"Folder / Patch Name"});
 }
 
 void Package::Model::create(const QString& packagePath)

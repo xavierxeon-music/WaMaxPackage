@@ -11,10 +11,7 @@
 
 #include "HelpForMax.h"
 #include "MessageBar.h"
-#include "Package/PackageWidget.h"
-#include "Patch/PatchTabWidget.h"
 #include "Patch/PatchWidget.h"
-#include "SchemaWidget.h"
 
 MainWindow::MainWindow()
    : QMainWindow(nullptr)
@@ -30,7 +27,7 @@ MainWindow::MainWindow()
    tabWidget = new Patch::TabWidget(this);
    setCentralWidget(tabWidget);
 
-   setStatusBar(new MessageBar(this));
+   setStatusBar(new Message::Bar(this));
 
    auto addDock = [&](QWidget* widget, const Qt::DockWidgetArea& area, const QString& name)
    {
@@ -50,8 +47,8 @@ MainWindow::MainWindow()
    addDock(schemaWidget, Qt::RightDockWidgetArea, "Schema");
 
    connect(tabWidget, &Patch::TabWidget::signalTabSelected, schemaWidget, &Schema::Widget::slotLoad);
-   //connect(packageWidget, &Package::Widget::signalPatchSeleted, tabWidget, &Patch::TabWidget::slotLoadPatch);
-   connect(packageWidget, SIGNAL(signalPatchSeleted(QString)), tabWidget, SLOT(slotLoadPatch(QString)));
+   connect(packageWidget, &Package::Widget::signalCloseAllPatches, tabWidget, &Patch::TabWidget::slotCloseAllPatches);
+   connect(packageWidget, &Package::Widget::signalPatchSeleted, tabWidget, &Patch::TabWidget::slotLoadPatch);
 
 #ifdef TEST_CLIENT_AVAILABLE
    testClient = new TestClient;
@@ -68,11 +65,10 @@ MainWindow::MainWindow()
 
 void MainWindow::populateMenuAndToolBar()
 {
-   //
+   // patch
    QMenu* patchMenu = menuBar()->addMenu("Patch");
 
-   QAction* lopdPatchAction = patchMenu->addAction(QIcon(":/PatchLoad.svg"), "Load", tabWidget, &Patch::TabWidget::slotPromptLoadPatch);
-   patchMenu->addMenu(tabWidget->getRecentMenu());
+   patchMenu->addAction(QIcon(":/PatchLoad.svg"), "Load", tabWidget, &Patch::TabWidget::slotPromptLoadPatch);
 
    QAction* saveRefAction = patchMenu->addAction(QIcon(":/PatchSave.svg"), "Save", tabWidget, &Patch::TabWidget::slotWriteRef);
    saveRefAction->setShortcut(QKeySequence::Save);
@@ -80,11 +76,18 @@ void MainWindow::populateMenuAndToolBar()
    patchMenu->addAction(QIcon(":/PatchSaveAll.svg"), "SaveAll", tabWidget, &Patch::TabWidget::slotWriteAllRefs);
    patchMenu->addSeparator();
 
-   QAction* closePatchAction = patchMenu->addAction(QIcon(":/PatchClose.svg"), "Close", tabWidget, &Patch::TabWidget::slotClosePatch);
-   closePatchAction->setShortcut(QKeySequence::Close);
+   patchMenu->addMenu(tabWidget->getRecentMenu());
    patchMenu->addSeparator();
 
-   //
+   QAction* closePatchAction = patchMenu->addAction(QIcon(":/PatchClose.svg"), "Close", tabWidget, &Patch::TabWidget::slotClosePatch);
+   closePatchAction->setShortcut(QKeySequence::Close);
+
+   // package
+   QMenu* packageMenu = menuBar()->addMenu("Package");
+   packageMenu->addAction(QIcon(":/PackageLoad.svg"), "Load", packageWidget, &Package::Widget::slotLoadPackage);
+   packageMenu->addAction(QIcon(":/PackageClose.svg"), "Close", packageWidget, &Package::Widget::slotClosePackage);
+
+   // view
    QMenu* viewMenu = menuBar()->addMenu("View");
    auto addViewToggle = [&](QWidget* widget, const QString& name, const QIcon& icon = QIcon())
    {
@@ -143,7 +146,6 @@ void MainWindow::populateMenuAndToolBar()
    };
 
    QToolBar* patchToolBar = createToolBar("Patch");
-   patchToolBar->addAction(lopdPatchAction);
    patchToolBar->addAction(saveRefAction);
    patchToolBar->addSeparator();
    patchToolBar->addAction(closePatchAction);

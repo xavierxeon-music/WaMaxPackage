@@ -5,14 +5,19 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 
+#include "MessageBar.h"
+
 Package::Info* Package::Info::me = nullptr;
 
-QString Package::Info::setPatchPath(const QString& patchPath)
+bool Package::Info::setPackage(const QString& someFileInPackage)
 {
-   QFileInfo patchInfo(patchPath);
-   const QString patchName = patchInfo.fileName().replace(".maxpat", "");
+   return me->update(someFileInPackage);
+}
 
-   me->update(patchInfo);
+QString Package::Info::extractPatchName(const QString& patchFileName)
+{
+   QFileInfo patchInfo(patchFileName);
+   const QString patchName = patchInfo.fileName().replace(".maxpat", "");
 
    return patchName;
 }
@@ -54,23 +59,31 @@ Package::Info::~Info()
    me = nullptr;
 }
 
-void Package::Info::update(const QFileInfo& patchInfo)
+void Package::Info::clear()
 {
-   if (!path.isEmpty())
-   {
-      if (patchInfo.absoluteFilePath().startsWith(path))
-         return;
-      else
-         ; // package has changed, display message
-   }
-
+   path = "";
    author = "";
    name = "";
 
-   clearContent();
+   Message::Bar::message() << "PACKAGE UNLOADED";
+}
+
+bool Package::Info::update(const QString& someFileInPackage)
+{
+   QFileInfo patchInfo(someFileInPackage);
+
+   if (!path.isEmpty())
+   {
+      if (patchInfo.absoluteFilePath().startsWith(path))
+         return true;
+      else
+         return false;
+   }
+
+   //clear();
 
    if (!patchInfo.exists())
-      return;
+      return false;
 
    QString fileName;
    for (QDir dir = patchInfo.dir(); !dir.isRoot() && fileName.isEmpty(); dir.cdUp())
@@ -88,11 +101,11 @@ void Package::Info::update(const QFileInfo& patchInfo)
    }
 
    if (fileName.isEmpty())
-      return;
+      return false;
 
    QFile file(fileName);
    if (!file.open(QIODevice::ReadOnly))
-      return;
+      return false;
 
    const QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
    file.close();
@@ -102,7 +115,10 @@ void Package::Info::update(const QFileInfo& patchInfo)
    {
       author = object["author"].toString();
       name = object["name"].toString();
+
+      Message::Bar::message() << "LOADED PACKAGE " << name;
    }
 
-   createContent(path);
+   create(path);
+   return true;
 }
