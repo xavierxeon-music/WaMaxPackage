@@ -36,7 +36,7 @@ function setMin(value) {
       outlet(0, current);
    }
 
-   //post("setMin", value, min, max, current);
+   //print("setMin", value, min, max, current);
 }
 
 function setMax(value) {
@@ -51,32 +51,32 @@ function setMax(value) {
       outlet(0, current);
    }
 
-   //post("setMax", value, min, max, current);
+   //print("setMax", value, min, max, current);
 }
 
-function increment() {
+function diff(value) {
 
-   if (current < max)
-      current += 1;
-   else if (wrapAround)
-      current = min;
+   current += value;
+
+   //print("diff", current, value, min, max);
+
+   if (wrapAround) {
+      var diff = max - min;
+      while (current > max)
+         current -= diff;
+      while (current < min)
+         current += diff;
+   }
+   else {
+      if (current > max)
+         current = max;
+      else if (current < min)
+         current = min;
+   }
 
    outlet(0, current);
-
-   //post("increment", min, max, current);
 }
 
-function decrement() {
-
-   if (current > min)
-      current -= 1;
-   else if (wrapAround)
-      current = max;
-
-   outlet(0, current);
-
-   //post("decrement", min, max, current);
-}
 
 
 function forceValue(value) {
@@ -90,7 +90,7 @@ function forceValue(value) {
 
    outlet(0, current);
 
-   //post("forceValue", min, max, current);
+   //print("forceValue", min, max, current);
 }
 
 function wrap(value) {

@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 125.0, 374.0, 2916.0, 1003.0 ],
+		"rect" : [ 34.0, 115.0, 3772.0, 1451.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -39,6 +39,18 @@
 		"subpatcher_template" : "OpenGrid",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-31",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "bang" ],
+					"patching_rect" : [ 1470.0, 490.5, 67.0, 22.0 ],
+					"text" : "delay 1000"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-73",
 					"maxclass" : "message",
@@ -93,7 +105,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1142.0, 645.0, 133.0, 22.0 ],
+					"patching_rect" : [ 1142.0, 645.0, 147.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_gui_command"
 				}
@@ -105,7 +117,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1142.0, 490.5, 133.0, 22.0 ],
+					"patching_rect" : [ 1142.0, 490.5, 147.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_gui_command"
 				}
@@ -117,7 +129,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1140.0, 329.0, 133.0, 22.0 ],
+					"patching_rect" : [ 1140.0, 329.0, 147.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_gui_command"
 				}
@@ -130,7 +142,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 1560.0, 42.0, 146.0, 22.0 ],
+					"patching_rect" : [ 1560.0, 42.0, 159.0, 22.0 ],
 					"style" : "wa.receive",
 					"text" : "receive #0_gui_command"
 				}
@@ -142,7 +154,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1140.0, 169.0, 133.0, 22.0 ],
+					"patching_rect" : [ 1140.0, 169.0, 147.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_gui_command"
 				}
@@ -534,7 +546,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1470.0, 489.0, 106.0, 22.0 ],
+					"patching_rect" : [ 1470.0, 540.0, 106.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send grid_enc_init"
 				}
@@ -633,7 +645,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1553.0, 447.0, 78.0, 22.0 ],
+					"patching_rect" : [ 1600.5, 447.0, 78.0, 22.0 ],
 					"text" : "print DEBUG"
 				}
 
@@ -1028,7 +1040,7 @@
 				"box" : 				{
 					"comment" : "reset, color",
 					"id" : "obj-15",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
@@ -1321,6 +1333,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-86", 0 ],
+					"source" : [ "obj-31", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-34", 1 ],
 					"source" : [ "obj-32", 0 ]
 				}
@@ -1543,7 +1562,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-86", 0 ],
+					"destination" : [ "obj-31", 0 ],
 					"source" : [ "obj-78", 0 ]
 				}
 
@@ -1565,6 +1584,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-86", 0 ],
+					"midpoints" : [ 1580.833333333333258, 525.0, 1479.5, 525.0 ],
 					"source" : [ "obj-79", 2 ]
 				}
 
@@ -1647,7 +1667,6 @@
 
 			}
  ],
-		"autosave" : 0,
 		"styles" : [ 			{
 				"name" : "wa.admin",
 				"default" : 				{
