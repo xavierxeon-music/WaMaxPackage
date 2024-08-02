@@ -9,7 +9,7 @@
 
 namespace Package
 {
-   class View;
+   class Widget;
 }
 
 namespace Patch
@@ -39,7 +39,7 @@ private:
 
 private:
    Patch::TabWidget* tabWidget;
-   Package::View* packageView;
+   QWidget* packageWidget;
    Schema::Widget* schemaWidget;
 #ifdef TEST_CLIENT_AVAILABLE
    TestClient* testClient;

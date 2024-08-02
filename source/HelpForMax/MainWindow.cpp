@@ -11,7 +11,7 @@
 
 #include "HelpForMax.h"
 #include "MessageBar.h"
-#include "Package/PackageView.h"
+#include "Package/PackageWidget.h"
 #include "Patch/PatchTabWidget.h"
 #include "Patch/PatchWidget.h"
 #include "SchemaWidget.h"
@@ -19,7 +19,7 @@
 MainWindow::MainWindow()
    : QMainWindow(nullptr)
    , tabWidget(nullptr)
-   , packageView(nullptr)
+   , packageWidget(nullptr)
    , schemaWidget(nullptr)
 #ifdef TEST_CLIENT_AVAILABLE
    , testClient(nullptr)
@@ -43,13 +43,15 @@ MainWindow::MainWindow()
       addDockWidget(area, dockWidget);
    };
 
-   packageView = new Package::View(this);
-   addDock(packageView, Qt::LeftDockWidgetArea, "Package");
+   packageWidget = new Package::Widget(this);
+   addDock(packageWidget, Qt::LeftDockWidgetArea, "Package");
 
    schemaWidget = new Schema::Widget(this);
    addDock(schemaWidget, Qt::RightDockWidgetArea, "Schema");
 
    connect(tabWidget, &Patch::TabWidget::signalTabSelected, schemaWidget, &Schema::Widget::slotLoad);
+   //connect(packageWidget, &Package::Widget::signalPatchSeleted, tabWidget, &Patch::TabWidget::slotLoadPatch);
+   connect(packageWidget, SIGNAL(signalPatchSeleted(QString)), tabWidget, SLOT(slotLoadPatch(QString)));
 
 #ifdef TEST_CLIENT_AVAILABLE
    testClient = new TestClient;
@@ -58,10 +60,10 @@ MainWindow::MainWindow()
 
    populateMenuAndToolBar();
 
-   QSettings widgetSettings;
-   qDebug() << "SETTINGS @" << widgetSettings.fileName();
-   restoreGeometry(widgetSettings.value("MainWidget/Geometry").toByteArray());
-   restoreState(widgetSettings.value("MainWidget/State").toByteArray());
+   QSettings settings;
+   qDebug() << "SETTINGS @" << settings.fileName();
+   restoreGeometry(settings.value("MainWidget/Geometry").toByteArray());
+   restoreState(settings.value("MainWidget/State").toByteArray());
 }
 
 void MainWindow::populateMenuAndToolBar()
@@ -69,7 +71,7 @@ void MainWindow::populateMenuAndToolBar()
    //
    QMenu* patchMenu = menuBar()->addMenu("Patch");
 
-   QAction* lopdPatchAction = patchMenu->addAction(QIcon(":/PatchLoad.svg"), "Load", tabWidget, &Patch::TabWidget::slotLoadPatch);
+   QAction* lopdPatchAction = patchMenu->addAction(QIcon(":/PatchLoad.svg"), "Load", tabWidget, &Patch::TabWidget::slotPromptLoadPatch);
    patchMenu->addMenu(tabWidget->getRecentMenu());
 
    QAction* saveRefAction = patchMenu->addAction(QIcon(":/PatchSave.svg"), "Save", tabWidget, &Patch::TabWidget::slotWriteRef);
@@ -106,7 +108,7 @@ void MainWindow::populateMenuAndToolBar()
       return viewAction;
    };
 
-   QAction* packageAction = addViewToggle(packageView, "Package", QIcon(":/PackageGeneral.svg"));
+   QAction* packageAction = addViewToggle(packageWidget, "Package", QIcon(":/PackageGeneral.svg"));
    QAction* schemmaAction = addViewToggle(schemaWidget, "Schema", QIcon(":/OverviewGeneral.svg"));
    schemmaAction->setShortcut(QKeySequence::Print);
 
@@ -165,9 +167,9 @@ void MainWindow::checkDirty()
 
 void MainWindow::closeEvent(QCloseEvent* ce)
 {
-   QSettings widgetSettings;
-   widgetSettings.setValue("MainWidget/Geometry", saveGeometry());
-   widgetSettings.setValue("MainWidget/State", saveState());
+   QSettings settings;
+   settings.setValue("MainWidget/Geometry", saveGeometry());
+   settings.setValue("MainWidget/State", saveState());
 
    ce->accept();
 }

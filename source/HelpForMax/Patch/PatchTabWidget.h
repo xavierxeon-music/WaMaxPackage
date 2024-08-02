@@ -26,7 +26,8 @@ namespace Patch
       QMenu* getRecentMenu();
 
    public slots:
-      void slotLoadPatch();
+      void slotPromptLoadPatch();
+      void slotLoadPatch(const QString& patchFileName);
       void slotWriteRef();
       void slotClosePatch();
       void slotWriteAllRefs();
@@ -41,10 +42,8 @@ namespace Patch
 
    private:
       void tabSelected(const Patch::Widget* pathWidget);
-      bool openInternal(const QString& patchFileName, const QString& patchName = QString());
 
    private:
-      Package::Info package;
       QLocalServer* server;
       QStringList recentFileList;
       QMenu* recentMenu;

@@ -11,7 +11,6 @@
 
 Patch::TabWidget::TabWidget(QWidget* parent)
    : QTabWidget(parent)
-   , package()
    , server(nullptr)
    , recentFileList()
    , recentMenu(nullptr)
@@ -27,14 +26,14 @@ Patch::TabWidget::TabWidget(QWidget* parent)
 
    connect(this, &QTabWidget::currentChanged, this, &TabWidget::slotTabChanged);
 
-   QSettings recentSettings;
-   recentFileList = recentSettings.value("RecentPatches").toStringList();
+   QSettings settings;
+   recentFileList = settings.value("RecentPatches").toStringList();
 }
 
 Patch::TabWidget::~TabWidget()
 {
-   QSettings recentSettings;
-   recentSettings.setValue("RecentPatches", recentFileList);
+   QSettings settings;
+   settings.setValue("RecentPatches", recentFileList);
 }
 
 QMenu* Patch::TabWidget::getRecentMenu()
@@ -42,13 +41,37 @@ QMenu* Patch::TabWidget::getRecentMenu()
    return recentMenu;
 }
 
-void Patch::TabWidget::slotLoadPatch()
+void Patch::TabWidget::slotPromptLoadPatch()
 {
    const QString patchFileName = QFileDialog::getOpenFileName(this, "MAX PATCH", Package::Info::getPath(), "*.maxpat");
    if (patchFileName.isEmpty())
       return;
 
-   openInternal(patchFileName);
+   slotLoadPatch(patchFileName);
+}
+
+void Patch::TabWidget::slotLoadPatch(const QString& patchFileName)
+{
+   QFileInfo patchInfo(patchFileName);
+   const QString patchName = patchInfo.fileName().replace(".maxpat", "");
+
+   for (int index = 0; index < tabBar()->count(); index++)
+   {
+      if (patchName == tabText(index))
+         return;
+   }
+
+   Patch::Widget* patchWidget = new Patch::Widget(this);
+   addTab(patchWidget, "???");
+   connect(patchWidget, &QWidget::windowTitleChanged, this, &TabWidget::slotWindowTitleChanged);
+
+   patchWidget->openPatch(patchFileName);
+
+   if (!recentFileList.contains(patchFileName))
+      recentFileList.append(patchFileName);
+
+   while (recentFileList.size() > 10)
+      recentFileList.takeFirst();
 }
 
 void Patch::TabWidget::slotWriteRef()
@@ -103,7 +126,11 @@ void Patch::TabWidget::slotWindowTitleChanged(const QString& name)
 void Patch::TabWidget::slotTabChanged(int index)
 {
    if (index < 0)
+   {
+      //"no tab left"
+      emit signalTabSelected("");
       return;
+   }
 
    const Patch::Widget* pathWidget = qobject_cast<Patch::Widget*>(widget(index));
    tabSelected(pathWidget);
@@ -116,7 +143,7 @@ void Patch::TabWidget::slotFillRecentMenu()
    {
       QFileInfo patchInfo(patchFileName);
       const QString patchName = patchInfo.fileName().replace(".maxpat", "");
-      auto openFunction = std::bind(&TabWidget::openInternal, this, patchFileName, patchName);
+      auto openFunction = std::bind(&TabWidget::slotLoadPatch, this, patchFileName);
       recentMenu->addAction(patchName, openFunction);
    }
 }
@@ -128,27 +155,4 @@ void Patch::TabWidget::tabSelected(const Patch::Widget* pathWidget)
       return;
 
    emit signalTabSelected(path);
-}
-
-bool Patch::TabWidget::openInternal(const QString& patchFileName, const QString& patchName)
-{
-   for (int index = 0; index < tabBar()->count(); index++)
-   {
-      if (patchName == tabText(index))
-         return false;
-   }
-
-   Patch::Widget* patchWidget = new Patch::Widget(this);
-   addTab(patchWidget, "???");
-   connect(patchWidget, &QWidget::windowTitleChanged, this, &TabWidget::slotWindowTitleChanged);
-
-   patchWidget->openPatch(patchFileName);
-
-   if (!recentFileList.contains(patchFileName))
-      recentFileList.append(patchFileName);
-
-   while (recentFileList.size() > 10)
-      recentFileList.takeFirst();
-
-   return true;
 }

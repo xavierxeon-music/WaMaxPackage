@@ -67,6 +67,8 @@ void Package::Info::update(const QFileInfo& patchInfo)
    author = "";
    name = "";
 
+   clearContent();
+
    if (!patchInfo.exists())
       return;
 
@@ -101,4 +103,6 @@ void Package::Info::update(const QFileInfo& patchInfo)
       author = object["author"].toString();
       name = object["name"].toString();
    }
+
+   createContent(path);
 }

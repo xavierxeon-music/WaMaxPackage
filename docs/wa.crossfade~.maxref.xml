@@ -1,38 +1,39 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
-<c74object as_bpatcher="0" name="wa.blocks.pan~">
-    <digest>pan a mono signal</digest>
+<c74object name="wa.crossfade~" patcher_type="standard">
+    <digest>crossfade or pan a mono signal</digest>
     <description>pans a mono signal to a stereo outpuit</description>
     <metadatalist>
         <metadata name="author">Ralf Waspe</metadata>
         <metadata name="tag">WaMaxPackage</metadata>
     </metadatalist>
-    <parser inlet_count="2"/>
     <misc name="Outputs">
-        <entry name="left" id="1">
+        <entry name="signal">
             <digest/>
-            <description>left signal output</description>
-        </entry>
-        <entry name="right" id="2">
-            <digest/>
-            <description>right signal outpuit</description>
+            <description>(left) (right) the paned or crossfadd signals</description>
         </entry>
     </misc>
     <objarglist>
-        <objarg optional="1" name="pan" type="float">
+        <objarg name="pan" optional="1" type="float">
             <digest>set the pan</digest>
             <description>set the pan in range [-1. 1.]</description>
         </objarg>
     </objarglist>
     <attributelist/>
     <methodlist>
-        <method standard="1" name="float">
-            <digest/>
-            <description>on right inlent the position of the signal [-1,1]. Center is at 0.</description>
+        <method name="float" standard="1">
+            <arglist>
+                <arg name="float" optional="0" type="float"/>
+            </arglist>
+            <digest>postion</digest>
+            <description>(middle) the position of the signal [-1,1]. Center is at 0.</description>
         </method>
-        <method standard="1" name="signal">
-            <digest/>
-            <description>on right inlet: the signal to be panned.</description>
+        <method name="signal" standard="1">
+            <arglist>
+                <arg name="signal" optional="0" type="signal"/>
+            </arglist>
+            <digest>pan</digest>
+            <description>(left) the signal to be panned.<br/>(middle) crossfade or pan position<br/>(right) the signal to be corssfaded</description>
         </method>
     </methodlist>
     <seealsolist/>

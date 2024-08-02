@@ -11,6 +11,9 @@ namespace Package
 
    public:
       Model(QObject* parent);
+
+   public:
+      void create(const QString& packagePath);
    };
 } // namespace Package
 

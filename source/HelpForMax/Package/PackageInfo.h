@@ -19,21 +19,22 @@ namespace Package
       static QString getName();
       static QString getAuthor();
 
-   private:
-      friend class Patch::TabWidget;
-
-   private:
+   protected:
       Info();
       ~Info();
 
-   private:
+   protected:
+      virtual void clearContent() = 0;
+      virtual void createContent(const QString& packagePath) = 0;
       void update(const QFileInfo& patchInfo);
 
-   private:
-      static Info* me;
+   protected:
       QString path;
       QString name;
       QString author;
+
+   private:
+      static Info* me;
    };
 } // namespace Package
 
