@@ -45,6 +45,12 @@ bool Patch::Model::Header::setData(const QModelIndex& index, const QVariant& val
    const bool result = QStandardItemModel::setData(index, value, role);
    if (Qt::EditRole == role)
    {
+      if (0 == index.column())
+      {
+         Structure::PatchType patchType = Structure::toPatchType(value.toString());
+         structure->header.patcherType = patchType;
+         structure->setDirty();
+      }
    }
 
    return result;
