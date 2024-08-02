@@ -1,5 +1,4 @@
 //
-
 let valueDict = {};
 let nameDict = {};
 let colorDict = {};
