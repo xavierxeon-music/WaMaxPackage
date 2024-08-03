@@ -1,2 +1,0 @@
-max objectfile wa.ir-imposter wa.ir-imposter;
-max definesubstitution wa.ir-imposter bpatcher @name wa.ir-imposter.maxpat;

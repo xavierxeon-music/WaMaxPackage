@@ -1,2 +1,0 @@
-max objectfile wa.device.launchpad wa.device.launchpad;
-max definesubstitution wa.device.launchpad bpatcher @name wa.device.launchpad.maxpat;

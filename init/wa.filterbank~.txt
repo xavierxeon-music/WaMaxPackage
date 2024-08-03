@@ -1,2 +1,0 @@
-max objectfile wa.filterbank~ wa.filterbank~;
-max definesubstitution wa.filterbank~ bpatcher @name wa.filterbank~.maxpat;
