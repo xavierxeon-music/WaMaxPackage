@@ -36,3 +36,8 @@ function convertColor(id, name) {
 
    outlet(0, ["color", id, color.hex]);
 }
+
+function command_enc(name, id, value) {
+
+   print(name, id, value);
+}

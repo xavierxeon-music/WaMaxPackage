@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 173.0, 412.0, 2919.0, 975.0 ],
+		"rect" : [ 173.0, 412.0, 3534.0, 975.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -45,7 +45,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 557.0, 270.0, 72.0, 22.0 ],
+					"patching_rect" : [ 482.0, 190.0, 72.0, 22.0 ],
 					"text" : "prepend diff"
 				}
 
@@ -56,7 +56,7 @@
 					"maxclass" : "wa.helpfile",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 563.0, 45.0, 40.0, 40.0 ]
+					"patching_rect" : [ 330.0, 217.0, 40.0, 40.0 ]
 				}
 
 			}
@@ -67,8 +67,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 219.5, 375.0, 73.0, 22.0 ],
-					"restore" : [ 19 ],
+					"patching_rect" : [ 205.0, 240.0, 73.0, 22.0 ],
+					"restore" : [ 25 ],
 					"saved_object_attributes" : 					{
 						"parameter_enable" : 0,
 						"parameter_mappable" : 0
@@ -86,7 +86,7 @@
 					"numinlets" : 5,
 					"numoutlets" : 5,
 					"outlettype" : [ "", "", "", "", "" ],
-					"patching_rect" : [ 345.0, 170.0, 231.0, 22.0 ],
+					"patching_rect" : [ 270.0, 90.0, 231.0, 22.0 ],
 					"text" : "routepass forceValue setMin setMax wrap"
 				}
 
@@ -97,7 +97,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 555.0, 315.0, 133.0, 22.0 ],
+					"patching_rect" : [ 480.0, 235.0, 133.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_message"
 				}
@@ -109,7 +109,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 63.0, 225.0, 133.0, 22.0 ],
+					"patching_rect" : [ 30.0, 191.0, 133.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_message"
 				}
@@ -122,7 +122,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 45.0, 375.0, 146.0, 22.0 ],
+					"patching_rect" : [ 30.0, 240.0, 146.0, 22.0 ],
 					"style" : "wa.receive",
 					"text" : "receive #0_message"
 				}
@@ -136,7 +136,7 @@
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 45.0, 465.0, 30.0, 30.0 ]
+					"patching_rect" : [ 30.0, 330.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -146,7 +146,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 345.0, 230.0, 133.0, 22.0 ],
+					"patching_rect" : [ 270.0, 150.0, 133.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send #0_message"
 				}
@@ -159,9 +159,9 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 45.0, 420.0, 75.0, 22.0 ],
+					"patching_rect" : [ 30.0, 285.0, 75.0, 22.0 ],
 					"saved_object_attributes" : 					{
-						"filename" : "encoder.js",
+						"filename" : "encoder",
 						"parameter_enable" : 0
 					}
 ,
@@ -178,7 +178,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 557.0, 230.0, 52.0, 22.0 ],
+					"patching_rect" : [ 482.0, 150.0, 52.0, 22.0 ],
 					"text" : "route int"
 				}
 
@@ -190,7 +190,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 169.0, 170.0, 95.0, 22.0 ],
+					"patching_rect" : [ 136.0, 136.0, 95.0, 22.0 ],
 					"text" : "prepend setMax"
 				}
 
@@ -202,7 +202,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 63.0, 170.0, 91.0, 22.0 ],
+					"patching_rect" : [ 30.0, 136.0, 91.0, 22.0 ],
 					"text" : "prepend setMin"
 				}
 
@@ -213,7 +213,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 377.0, 65.0, 127.0, 20.0 ],
+					"patching_rect" : [ 302.0, 45.0, 127.0, 20.0 ],
 					"text" : "diff, message"
 				}
 
@@ -225,7 +225,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "int", "int" ],
-					"patching_rect" : [ 63.0, 121.0, 59.0, 22.0 ],
+					"patching_rect" : [ 30.0, 87.0, 59.0, 22.0 ],
 					"text" : "unpack i i"
 				}
 
@@ -237,7 +237,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 63.0, 64.0, 157.0, 22.0 ],
+					"patching_rect" : [ 30.0, 30.0, 157.0, 22.0 ],
 					"text" : "patcherargs 0 127 @wrap 0"
 				}
 
@@ -251,7 +251,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 345.0, 60.0, 30.0, 30.0 ]
+					"patching_rect" : [ 270.0, 40.0, 30.0, 30.0 ]
 				}
 
 			}
