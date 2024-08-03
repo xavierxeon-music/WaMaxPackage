@@ -80,9 +80,9 @@
 					"maxclass" : "newobj",
 					"numinlets" : 2,
 					"numoutlets" : 2,
-					"outlettype" : [ "bang", "" ],
-					"patching_rect" : [ 855.0, 176.0, 59.0, 22.0 ],
-					"text" : "select init"
+					"outlettype" : [ "", "" ],
+					"patching_rect" : [ 855.0, 176.0, 55.0, 22.0 ],
+					"text" : "route init"
 				}
 
 			}

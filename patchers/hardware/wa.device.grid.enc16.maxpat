@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 173.0, 412.0, 3537.0, 975.0 ],
+		"rect" : [ 173.0, 412.0, 2919.0, 975.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -44,7 +44,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 1606.5, 447.0, 117.0, 22.0 ],
+					"patching_rect" : [ 1605.0, 583.0, 117.0, 22.0 ],
 					"style" : "wa.send",
 					"text" : "send grid_enc_input"
 				}
@@ -118,9 +118,9 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 434.0, 405.0, 97.0, 22.0 ],
+					"patching_rect" : [ 434.0, 405.0, 129.0, 22.0 ],
 					"style" : "wa.receive",
-					"text" : "receive grid_enc"
+					"text" : "receive grid_enc_input"
 				}
 
 			}
@@ -641,18 +641,6 @@
 ,
 					"style" : "wa.patcher",
 					"text" : "js grid_device"
-				}
-
-			}
-, 			{
-				"box" : 				{
-					"id" : "obj-86",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 1515.5, 583.0, 84.0, 22.0 ],
-					"style" : "wa.send",
-					"text" : "send grid_enc"
 				}
 
 			}
@@ -1442,7 +1430,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-86", 0 ],
+					"destination" : [ "obj-12", 0 ],
 					"source" : [ "obj-43", 0 ]
 				}
 

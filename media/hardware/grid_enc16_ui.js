@@ -140,14 +140,56 @@ class GridCanvas extends Canvas {
       }
    }
 
+   #compileIndex(x, y) {
+
+      x = x - 5;
+      y = y - 5;
+
+
+      let col = Math.floor(x / 50);
+      let row = Math.floor(y / 50);
+
+      let index = ((4 - row) * 10) + (col + 1);
+
+
+      let rx = ((x / 50) - col) - 0.35;
+      let ry = ((y / 50) - row) - 0.74;
+
+      let radius = Math.sqrt((rx * rx) + (ry * ry));
+      let mode = undefined;
+
+      if (radius < 0.15)
+         mode = "button";
+      else if (radius < 0.3) {
+         if (rx > 0)
+            mode = "plus";
+         else
+            mode = "minus";
+      }
+
+      //debug("index", index, mode, radius, rx, ry);
+
+      return [index, mode]
+   }
+
    #clicked(x, y) {
 
-      debug("clicked", x, y);
+      let [index, mode] = this.#compileIndex(x, y);
+      if ("button" == mode)
+         max.outlet("input", "button", index, 1);
+      else if ("minus" == mode)
+         max.outlet("input", "turn", index, -1);
+      else if ("plus" == mode)
+         max.outlet("input", "turn", index, 1);
+
    }
 
    #released(x, y) {
 
-      debug("released", x, y);
+      let [index, mode] = this.#compileIndex(x, y);
+      if ("button" == mode) {
+         max.outlet("input", "button", index, 0);
+      }
    }
 }
 

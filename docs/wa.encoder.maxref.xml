@@ -62,15 +62,15 @@
             <arglist>
                 <arg name="int" optional="0" type="int"/>
             </arglist>
-            <digest/>
-            <description>In left input: decrement the current value, will repeat at <m>intervall</m><br/><br/>In middle input: increment the current value, will repeat at <m>intervall</m><br/><br/>In right  input:  force the current value</description>
+            <digest>diff</digest>
+            <description>the diff vlaue</description>
         </method>
         <method name="bang" standard="1">
             <arglist>
                 <arg name="bang" optional="0" type="bang"/>
             </arglist>
             <digest/>
-            <description>in left input: decrement the value<br/><br/>in middle input: increment the value<br/></description>
+            <description><br/></description>
         </method>
     </methodlist>
     <seealsolist/>
