@@ -1,6 +1,8 @@
 //
 let turnDict = {};
-let lastvalue = Date.now();
+let lastTurnTime = Date.now();
+const turnTimeOut = 500;
+
 let buttonDict = {};
 let nameDict = {};
 let colorDict = {};
@@ -13,8 +15,8 @@ function sendReset() {
 max.bindInlet('refreshUI', refreshUI);
 function refreshUI() {
 
-   let diff = Date.now() - lastvalue;
-   if (diff < 1000)
+   let diff = Date.now() - lastTurnTime;
+   if (diff < turnTimeOut)
       return;
 
    for (let row = 0; row < 4; row++) {
@@ -31,7 +33,7 @@ function refreshUI() {
 max.bindInlet('turn', turn);
 function turn(id, value) {
 
-   lastvalue = Date.now();
+   lastTurnTime = Date.now();
 
    turnDict[id] = value;
    canvas.update();
@@ -93,13 +95,13 @@ class GridCanvas extends Canvas {
             let x = 20 + (row * 50);
             let y = 20 + (col * 50);
 
-            let index = ((4 - col) * 10) + (row + 1);
+            let id = ((4 - col) * 10) + (row + 1);
 
             // outer circle
             this.circle(x, y, 14, outlineColor);
 
             // knob indicator
-            let value = turnDict[index];
+            let value = turnDict[id];
             if (undefined == value)
                value == 0;
 
@@ -108,7 +110,7 @@ class GridCanvas extends Canvas {
             else if (value < 0)
                this.ring(x, y, 10, 7, fullColor, 0.5, 0.5 * Math.PI);
 
-            if (buttonDict[index]) {
+            if (buttonDict[id]) {
                this.ring(x, y, 10, 7, fullColor, 0.5, -0.5 * Math.PI);
                this.ring(x, y, 10, 7, fullColor, 0.5, 0.5 * Math.PI);
             }
@@ -118,7 +120,7 @@ class GridCanvas extends Canvas {
             this.circle(x, y, 9, outlineColor);
 
             // color inidicator
-            let color = colorDict[index];
+            let color = colorDict[id];
             if (undefined == color)
                color = "#000000";
 
@@ -126,10 +128,10 @@ class GridCanvas extends Canvas {
 
 
             // name 
-            let name = nameDict[index];
+            let name = nameDict[id];
             let fontColor = fullColor;
             if (undefined == name) {
-               name = index.toString();
+               name = id.toString();
                fontColor = outlineColor;
             }
 
@@ -140,17 +142,15 @@ class GridCanvas extends Canvas {
       }
    }
 
-   #compileIndex(x, y) {
+   #getButtonAndMode(x, y) {
 
       x = x - 5;
       y = y - 5;
 
-
       let col = Math.floor(x / 50);
       let row = Math.floor(y / 50);
 
-      let index = ((4 - row) * 10) + (col + 1);
-
+      let id = ((4 - row) * 10) + (col + 1);
 
       let rx = ((x / 50) - col) - 0.35;
       let ry = ((y / 50) - row) - 0.74;
@@ -160,35 +160,41 @@ class GridCanvas extends Canvas {
 
       if (radius < 0.15)
          mode = "button";
-      else if (radius < 0.3) {
+      else if (radius < 0.4) {
          if (rx > 0)
             mode = "plus";
          else
             mode = "minus";
       }
 
-      //debug("index", index, mode, radius, rx, ry);
+      //debug("index", id, mode, radius, rx, ry);
 
-      return [index, mode]
+      return [id, mode]
    }
 
    #clicked(x, y) {
 
-      let [index, mode] = this.#compileIndex(x, y);
-      if ("button" == mode)
-         max.outlet("input", "button", index, 1);
-      else if ("minus" == mode)
-         max.outlet("input", "turn", index, -1);
-      else if ("plus" == mode)
-         max.outlet("input", "turn", index, 1);
+      let [id, mode] = this.#getButtonAndMode(x, y);
+      if ("button" == mode) {
+         max.outlet("input", "button", id, 1);
+      }
+      else if ("minus" == mode) {
+         turn(id, -1);
+         max.outlet("input", "turn", id, -1);
 
+      }
+      else if ("plus" == mode) {
+         turn(id, 1);
+         max.outlet("input", "turn", id, 1);
+      }
    }
 
    #released(x, y) {
 
-      let [index, mode] = this.#compileIndex(x, y);
+      let [id, mode] = this.#getButtonAndMode(x, y);
       if ("button" == mode) {
-         max.outlet("input", "button", index, 0);
+         max.outlet("input", "button", id, 0);
+         this.update();
       }
    }
 }

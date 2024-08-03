@@ -1,3 +1,4 @@
+//
 function LCDDevice(deviceName) {
 
    this.internal = new Global("lcd");
@@ -87,28 +88,75 @@ function LCDBox(x, y, width, height, hexColor, fill) {
    this.width = width;
    this.height = height;
 
-   this.color = new Color(hexColor);
-   if (!fill)
-      fill = true;
-   this.fill = fill;
+   this.penSize = 1;
+
+   this.setColor(hexColor, fill);
 
    return this;
 }
 
-LCDBox.prototype.setColor = function (hexColor) {
+LCDBox.prototype.setColor = function (hexColor, fill) {
 
    this.color = new Color(hexColor);
+
+   if (undefined == fill)
+      fill = true;
+   this.fill = fill;
 }
 
 LCDBox.prototype.renderCommands = function () {
 
    var commandList = [];
    commandList.push(["frgb", this.color.red, this.color.green, this.color.blue]);
+   commandList.push(["pensize", this.penSize, this.penSize]);
 
    if (this.fill)
       commandList.push(["paintrect", this.x, this.y, this.x + this.width, this.y + this.height]);
    else
       commandList.push(["framerect", this.x, this.y, this.x + this.width, this.y + this.height]);
+
+   return commandList;
+}
+
+//---------------------------------
+
+function LCDPie(x, y, width, height, hexColor, fill) {
+
+   this.x = x;
+   this.y = y;
+   this.width = width;
+   this.height = height;
+
+   this.penSize = 1;
+
+   this.startAngle = 0;
+   this.arcLength = 360;
+
+   this.setColor(hexColor, fill);
+
+   return this;
+}
+
+LCDPie.prototype.setColor = function (hexColor, fill) {
+
+   this.color = new Color(hexColor);
+
+   if (undefined == fill)
+      fill = true;
+
+   this.fill = fill;
+}
+
+LCDPie.prototype.renderCommands = function () {
+
+   var commandList = [];
+   commandList.push(["frgb", this.color.red, this.color.green, this.color.blue]);
+   commandList.push(["pensize", this.penSize, this.penSize]);
+
+   if (this.fill)
+      commandList.push(["paintarc", this.x, this.y, this.x + this.width, this.y + this.height, this.startAngle, this.arcLength]);
+   else
+      commandList.push(["framearc", this.x, this.y, this.x + this.width, this.y + this.height, this.startAngle, this.arcLength]);
 
    return commandList;
 }

@@ -61,11 +61,11 @@ function diff(value) {
    //print("diff", current, value, min, max);
 
    if (wrapAround) {
-      var diff = max - min;
-      while (current > max)
-         current -= diff;
+      var range = max - min;
+      while (current >= max)
+         current -= range;
       while (current < min)
-         current += diff;
+         current += range;
    }
    else {
       if (current > max)
