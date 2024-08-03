@@ -1,8 +1,0 @@
-{
-   "HatoModelled": "https://sofacoustics.org/data/database/tu-berlin/FABIAN_HRIR_modeled_HATO_50.sofa",
-   "HatoMeasured": "https://sofacoustics.org/data/database/tu-berlin/FABIAN_HRIR_measured_HATO_50.sofa",
-   "Subject52": "http://sofacoustics.org/data/database/ari/dtf%20b_nh52.sofa",
-   "NIR50": "https://sofacoustics.org/data/database/thk/HRIR_L2702_NF150.sofa",
-   "Artificial": "http://sofacoustics.org/data/database/clubfritz/ClubFritz11.sofa",
-   "Kemar": "http://sofacoustics.org/data/database/aachen%20(high-resolution%20kemar)/Kemar_HRTF_sofa.sofa"
-}

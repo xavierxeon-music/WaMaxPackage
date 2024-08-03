@@ -8,6 +8,6 @@
    "tags": [],
    "version": "0.1.0",
    "extends": "",
-   "extensible": 0,
+   "extensible": 1,
    "homepatcher": "WaMaxPackage.maxpat"
 }
