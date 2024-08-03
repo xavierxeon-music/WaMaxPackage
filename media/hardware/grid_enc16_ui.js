@@ -1,5 +1,5 @@
 //
-let valueDict = {};
+let turnDict = {};
 let lastvalue = Date.now();
 let buttonDict = {};
 let nameDict = {};
@@ -21,24 +21,24 @@ function refreshUI() {
       for (let col = 0; col < 4; col++) {
 
          let index = ((4 - col) * 10) + (row + 1);
-         valueDict[index] = 0;
+         turnDict[index] = 0;
       }
    }
    canvas.update();
 }
 
 
-max.bindInlet('gridInput', gridInput);
-function gridInput(id, value) {
+max.bindInlet('turn', turn);
+function turn(id, value) {
 
    lastvalue = Date.now();
 
-   valueDict[id] = value;
+   turnDict[id] = value;
    canvas.update();
 }
 
-max.bindInlet('gridButton', gridButton);
-function gridButton(id, state) {
+max.bindInlet('button', button);
+function button(id, state) {
 
    buttonDict[id] = state;
    canvas.update();
@@ -68,6 +68,16 @@ class GridCanvas extends Canvas {
 
       this.ctx.font = "12px Arial";
       this.ctx.textAlign = "center";
+
+      this.element.addEventListener("pointerdown", (clickEvent) => {
+         this.#clicked(clickEvent.layerX, clickEvent.layerY);
+      });
+      this.element.addEventListener("pointerup", (clickEvent) => {
+         this.#released(clickEvent.layerX, clickEvent.layerY);
+      });
+      this.element.addEventListener("pointercancel", (clickEvent) => {
+         this.#released(clickEvent.layerX, clickEvent.layerY);
+      });
    }
 
    update() {
@@ -89,7 +99,7 @@ class GridCanvas extends Canvas {
             this.circle(x, y, 14, outlineColor);
 
             // knob indicator
-            let value = valueDict[index];
+            let value = turnDict[index];
             if (undefined == value)
                value == 0;
 
@@ -128,6 +138,16 @@ class GridCanvas extends Canvas {
 
          }
       }
+   }
+
+   #clicked(x, y) {
+
+      debug("clicked", x, y);
+   }
+
+   #released(x, y) {
+
+      debug("released", x, y);
    }
 }
 

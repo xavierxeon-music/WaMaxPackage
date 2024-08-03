@@ -8,6 +8,9 @@ outlets = 2;
 setoutletassist(0, "midi");
 setoutletassist(1, "rgb");
 
+include("_grid.js");
+var device = new GridDevice(true);
+
 var lookup = new Dict("grid_mapping");
 
 var redMidi = 128;
@@ -37,7 +40,7 @@ function convertColor(id, name) {
    outlet(0, ["color", id, color.hex]);
 }
 
-function command_enc(name, id, value) {
+function command_enc(type, id, value) {
 
-   print(name, id, value);
+   device.sendCallback(type, id, value)
 }
