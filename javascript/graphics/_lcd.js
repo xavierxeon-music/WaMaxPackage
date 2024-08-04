@@ -160,3 +160,43 @@ LCDPie.prototype.renderCommands = function () {
 
    return commandList;
 }
+
+//---------------------------------
+
+function LCDText(x, y, text, hexColor, fontSize) {
+
+   this.x = x;
+   this.y = y;
+
+   this.setColor(hexColor);
+   this.setText(text);
+
+   return this;
+}
+
+LCDText.prototype.setColor = function (hexColor) {
+
+   this.color = new Color(hexColor);
+}
+
+LCDText.prototype.setText = function (text, fontSize) {
+
+   this.text = text;
+
+   if (!fontSize)
+      this.fontSize = 12;
+   else
+      this.fontSize = fontSize;
+}
+
+LCDText.prototype.renderCommands = function () {
+
+   var commandList = [];
+   commandList.push(["frgb", this.color.red, this.color.green, this.color.blue]);
+   commandList.push(["moveto", this.x, this.y]);
+   commandList.push(["font", "Arial", this.fontSize]);
+
+   commandList.push(["write", this.text]);
+
+   return commandList;
+}
