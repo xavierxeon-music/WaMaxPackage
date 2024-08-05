@@ -74,7 +74,7 @@ bool Package::Info::update(const QString& someFileInPackage)
 
    if (!path.isEmpty())
    {
-      if (patchInfo.absoluteFilePath().startsWith(path))
+      if (patchInfo.absoluteFilePath().startsWith(path + "/"))
          return true;
       else
          return false;
