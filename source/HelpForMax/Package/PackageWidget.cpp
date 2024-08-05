@@ -8,6 +8,7 @@
 
 Package::Widget::Widget(QWidget* parent)
    : QWidget(parent)
+   , RecentFiles(this, "Package/Recent")
    , Info()
    , model(nullptr)
 {
@@ -75,4 +76,14 @@ void Package::Widget::create(const QString& packagePath)
    model->create(packagePath);
 
    packageNameInfo->setText("<b>" + name + "</b>");
+   addRecentFile(packagePath);
+}
+
+RecentFiles::Entry Package::Widget::creatreEntry(const QFileInfo& fileInfo)
+{
+   const QString name = fileInfo.baseName();
+   auto openFunction = std::bind(&Package::Info::setPackage, fileInfo.absoluteFilePath() + "/");
+
+   Entry entry{name, openFunction};
+   return entry;
 }

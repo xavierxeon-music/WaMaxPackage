@@ -84,8 +84,12 @@ void MainWindow::populateMenuAndToolBar()
 
    // package
    QMenu* packageMenu = menuBar()->addMenu("Package");
+
    packageMenu->addAction(QIcon(":/PackageLoad.svg"), "Load", packageWidget, &Package::Widget::slotLoadPackage);
    packageMenu->addAction(QIcon(":/PackageClose.svg"), "Close", packageWidget, &Package::Widget::slotClosePackage);
+
+   packageMenu->addSeparator();
+   packageMenu->addMenu(packageWidget->getRecentMenu());
 
    // view
    QMenu* viewMenu = menuBar()->addMenu("View");

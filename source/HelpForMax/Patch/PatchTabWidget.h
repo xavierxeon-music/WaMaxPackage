@@ -1,29 +1,24 @@
 #ifndef PatchTabWidgetH
 #define PatchTabWidgetH
 
+#include "RecentFiles.h"
 #include <QTabWidget>
 
 #include <QLocalServer>
-
-#include "Package/PackageInfo.h"
 
 namespace Patch
 {
    class Widget;
 
-   class TabWidget : public QTabWidget
+   class TabWidget : public QTabWidget, public RecentFiles
    {
       Q_OBJECT
 
    public:
       TabWidget(QWidget* parent);
-      ~TabWidget();
 
    signals:
       void signalTabSelected(const QString& patchPath);
-
-   public:
-      QMenu* getRecentMenu();
 
    public slots:
       void slotPromptLoadPatch();
@@ -39,16 +34,13 @@ namespace Patch
       void slotNewConnection();
       void slotWindowTitleChanged(const QString& name);
       void slotTabChanged(int index);
-      void slotFillRecentMenu();
-      void slotClearRecentPatches();
 
    private:
       void tabSelected(const Patch::Widget* pathWidget);
+      Entry creatreEntry(const QFileInfo& fileInfo) override;
 
    private:
       QLocalServer* server;
-      QStringList recentFileList;
-      QMenu* recentMenu;
    };
 } // namespace Patch
 

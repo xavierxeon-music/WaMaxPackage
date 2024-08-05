@@ -6,18 +6,16 @@
 #include <QSettings>
 
 #include "HelpForMax.h"
+#include "Package/PackageInfo.h"
 #include "PatchSocketWidget.h"
 #include "PatchWidget.h"
 
 Patch::TabWidget::TabWidget(QWidget* parent)
    : QTabWidget(parent)
+   , RecentFiles(this, "Patch/Recent")
    , server(nullptr)
-   , recentFileList()
-   , recentMenu(nullptr)
 {
    setDocumentMode(true);
-   recentMenu = new QMenu("Recent Patches", this);
-   connect(recentMenu, &QMenu::aboutToShow, this, &TabWidget::slotFillRecentMenu);
 
    server = new QLocalServer(this);
    connect(server, &QLocalServer::newConnection, this, &TabWidget::slotNewConnection);
@@ -25,20 +23,6 @@ Patch::TabWidget::TabWidget(QWidget* parent)
    server->listen(HelpForMax::compileSockerName());
 
    connect(this, &QTabWidget::currentChanged, this, &TabWidget::slotTabChanged);
-
-   QSettings settings;
-   recentFileList = settings.value("RecentPatches").toStringList();
-}
-
-Patch::TabWidget::~TabWidget()
-{
-   QSettings settings;
-   settings.setValue("RecentPatches", recentFileList);
-}
-
-QMenu* Patch::TabWidget::getRecentMenu()
-{
-   return recentMenu;
 }
 
 void Patch::TabWidget::slotPromptLoadPatch()
@@ -66,12 +50,7 @@ void Patch::TabWidget::slotLoadPatch(const QString& patchFileName)
    connect(patchWidget, &QWidget::windowTitleChanged, this, &TabWidget::slotWindowTitleChanged);
 
    patchWidget->openPatch(patchFileName);
-
-   if (!recentFileList.contains(patchFileName))
-      recentFileList.append(patchFileName);
-
-   while (recentFileList.size() > 10)
-      recentFileList.takeFirst();
+   addRecentFile(patchFileName);
 }
 
 void Patch::TabWidget::slotWriteRef()
@@ -148,26 +127,6 @@ void Patch::TabWidget::slotTabChanged(int index)
    tabSelected(pathWidget);
 }
 
-void Patch::TabWidget::slotFillRecentMenu()
-{
-   recentMenu->clear();
-   for (const QString& patchFileName : recentFileList)
-   {
-      QFileInfo patchInfo(patchFileName);
-      const QString patchName = patchInfo.fileName().replace(".maxpat", "");
-      auto openFunction = std::bind(&TabWidget::slotLoadPatch, this, patchFileName);
-      recentMenu->addAction(patchName, openFunction);
-   }
-
-   recentMenu->addSeparator();
-   recentMenu->addAction("Clear Recent", this, &TabWidget::slotClearRecentPatches);
-}
-
-void Patch::TabWidget::slotClearRecentPatches()
-{
-   recentFileList.clear();
-}
-
 void Patch::TabWidget::tabSelected(const Patch::Widget* pathWidget)
 {
    const QString& path = pathWidget->getPath();
@@ -175,4 +134,13 @@ void Patch::TabWidget::tabSelected(const Patch::Widget* pathWidget)
       return;
 
    emit signalTabSelected(path);
+}
+
+RecentFiles::Entry Patch::TabWidget::creatreEntry(const QFileInfo& fileInfo)
+{
+   const QString patchName = fileInfo.completeBaseName();
+   auto openFunction = std::bind(&TabWidget::slotLoadPatch, this, fileInfo.absoluteFilePath());
+
+   Entry entry{patchName, openFunction};
+   return entry;
 }

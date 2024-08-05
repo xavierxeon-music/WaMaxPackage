@@ -35,6 +35,7 @@ HEADERS += \
    MainWindow.h \
    MessageBar.h \
    MessageChannel.h \
+   RecentFiles.h \
    SchemaWidget.h \
    TestClient.h \
    HelpForMax.h \
@@ -44,6 +45,7 @@ SOURCES += \
    MainWindow.cpp \
    MessageBar.cpp \
    MessageChannel.cpp \
+   RecentFiles.cpp \
    SchemaWidget.cpp \
    TestClient.cpp
 

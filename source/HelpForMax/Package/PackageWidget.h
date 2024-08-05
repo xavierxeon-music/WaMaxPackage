@@ -2,6 +2,7 @@
 #define PackageWidgetH
 
 #include "PackageInfo.h"
+#include "RecentFiles.h"
 #include "ui_PackageWidget.h"
 #include <QWidget>
 
@@ -9,7 +10,7 @@ namespace Package
 {
    class Model;
 
-   class Widget : public QWidget, private Info, private Ui::Widget
+   class Widget : public QWidget, public RecentFiles, private Info, private Ui::Widget
    {
       Q_OBJECT
 
@@ -30,6 +31,7 @@ namespace Package
    private:
       void clear() override;
       void create(const QString& packagePath) override;
+      Entry creatreEntry(const QFileInfo& fileInfo) override;
 
    private:
       Model* model;
