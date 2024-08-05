@@ -1,5 +1,6 @@
 #include "PackageWidget.h"
 
+#include <QFileDialog>
 #include <QFileInfo>
 #include <QSettings>
 
@@ -28,6 +29,11 @@ Package::Widget::Widget(QWidget* parent)
 
 void Package::Widget::slotLoadPackage()
 {
+   const QString packageFileName = QFileDialog::getOpenFileName(this, "MAX PACKAGE", Package::Info::getPath(), "package-info.json");
+   if (packageFileName.isEmpty())
+      return;
+
+   setPackage(packageFileName);
 }
 
 void Package::Widget::slotClosePackage()
