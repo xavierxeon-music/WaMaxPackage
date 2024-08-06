@@ -10,6 +10,7 @@ setoutletassist(0, "value");
 var min = 0;
 var max = 100;
 var current = 0;
+var scale = 1.0;
 var wrapAround = false;
 
 function getvalueof() {
@@ -56,7 +57,7 @@ function setMax(value) {
 
 function diff(value) {
 
-   current += value;
+   current += value * scale;
 
    //print("diff", current, value, min, max);
 
@@ -77,8 +78,6 @@ function diff(value) {
    outlet(0, current);
 }
 
-
-
 function forceValue(value) {
 
    if (value < min)
@@ -96,6 +95,11 @@ function forceValue(value) {
 function wrap(value) {
 
    wrapAround = value;
+}
+
+function delta(value) {
+
+   scale = value;
 }
 
 

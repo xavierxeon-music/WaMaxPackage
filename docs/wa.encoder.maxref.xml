@@ -14,22 +14,33 @@
         </entry>
     </misc>
     <objarglist>
-        <objarg name="min" optional="1" type="int">
+        <objarg name="min" optional="1" type="float">
             <digest>set the minmum value (0)</digest>
             <description>set the minmum value<br/><br/>default is 0<br/>see <m>setMin</m><br/><br/><br/></description>
         </objarg>
-        <objarg name="max" optional="1" type="int">
+        <objarg name="max" optional="1" type="float">
             <digest>set the maximum value (127)</digest>
             <description>see <m>setMax</m><br/><br/>default is 127</description>
         </objarg>
     </objarglist>
     <attributelist>
+        <attribute name="delta" type="float">
+            <digest>scale encoder (1.0)</digest>
+            <description>scales the incoming encoder values</description>
+        </attribute>
         <attribute name="wrap" type="int">
             <digest>wrap (1)</digest>
             <description>if set to true max value will jump to min value and vice versa</description>
         </attribute>
     </attributelist>
     <methodlist>
+        <method name="delta" standard="0">
+            <arglist>
+                <arg name="delta" optional="0" type="float"/>
+            </arglist>
+            <digest>scale encoder (1.0)</digest>
+            <description>scales the incoming encoder values</description>
+        </method>
         <method name="forceValue" standard="0">
             <arglist>
                 <arg name="forceValue" optional="0" type="int"/>
@@ -70,7 +81,6 @@
                 <arg name="bang" optional="0" type="bang"/>
             </arglist>
             <digest/>
-            <description><br/></description>
         </method>
     </methodlist>
     <seealsolist/>
