@@ -18,6 +18,9 @@ public:
 public:
    void checkDirty();
 
+private slots:
+   void slotUpdateWindowTitle(const QString& packageName);
+
 private:
    void populateMenuAndToolBar();
    void closeEvent(QCloseEvent* ce) override;

@@ -19,7 +19,10 @@ Package::Widget::Widget(QWidget* parent)
    packageTree->setModel(model);
 
    connect(packageTree, &QTreeView::doubleClicked, this, &Widget::slotItemDoubleClicked);
+}
 
+void Package::Widget::init()
+{
    QSettings settings;
    const QString packagePath = settings.value("Package/Path").toString();
    if (!packagePath.isEmpty())
@@ -34,13 +37,14 @@ void Package::Widget::slotLoadPackage()
    if (packageFileName.isEmpty())
       return;
 
-   setPackage(packageFileName);
+   loadPackage(packageFileName);
 }
 
 void Package::Widget::slotClosePackage()
 {
    clear();
    emit signalCloseAllPatches();
+   emit signalPackageLoaded("");
 }
 
 void Package::Widget::slotItemDoubleClicked(const QModelIndex& index)
@@ -74,15 +78,24 @@ void Package::Widget::create(const QString& packagePath)
    }
 
    model->create(packagePath);
+   addRecentFile(packagePath);
 
    packageNameInfo->setText("<b>" + name + "</b>");
-   addRecentFile(packagePath);
+   emit signalPackageLoaded(name);
+}
+
+void Package::Widget::loadPackage(const QString& packageFileName)
+{
+   clear();
+   emit signalCloseAllPatches();
+
+   setPackage(packageFileName);
 }
 
 RecentFiles::Entry Package::Widget::creatreEntry(const QFileInfo& fileInfo)
 {
    const QString name = fileInfo.baseName();
-   auto openFunction = std::bind(&Package::Info::setPackage, fileInfo.absoluteFilePath() + "/");
+   auto openFunction = std::bind(&Widget::loadPackage, this, fileInfo.absoluteFilePath() + "/");
 
    Entry entry{name, openFunction};
    return entry;
