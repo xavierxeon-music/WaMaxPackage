@@ -176,7 +176,7 @@ LCD.Text = function (x, y, text, hexColor, fontSize) {
    this.y = y;
 
    this.setColor(hexColor);
-   this.setText(text);
+   this.setText(text, fontSize);
 
    return this;
 }

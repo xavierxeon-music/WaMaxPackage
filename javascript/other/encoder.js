@@ -7,19 +7,15 @@ setoutletassist(0, "value");
 
 //////////////////////////////////////////
 
-var min = 0;
-var max = 100;
-var current = 0;
-var scale = 1.0;
-var wrapAround = false;
+var rangedValue = new RangedValue();
 
 function getvalueof() {
-   return current
+   return rangedValue.current
 }
 
 function setvalueof(value) {
-   current = value
-   outlet(0, current);
+   rangedValue.forceValue(value)
+   outlet(0, rangedValue.current);
 }
 
 //////////////////////////////////////////
@@ -27,79 +23,36 @@ function setvalueof(value) {
 
 function setMin(value) {
 
-   if (value > max)
-      return;
-   else
-      min = value;
-
-   if (current < min) {
-      current = min;
-      outlet(0, current);
-   }
-
-   //print("setMin", value, min, max, current);
+   rangedValue.setMin(value);
+   outlet(0, rangedValue.current);
 }
 
 function setMax(value) {
 
-   if (value < min)
-      return;
-   else
-      max = value;
-
-   if (current > max) {
-      current = max;
-      outlet(0, current);
-   }
-
-   //print("setMax", value, min, max, current);
+   rangedValue.setMax(value);
+   outlet(0, rangedValue.current);
 }
 
 function diff(value) {
 
-   current += value * scale;
-
-   //print("diff", current, value, min, max);
-
-   if (wrapAround) {
-      var range = max - min;
-      while (current >= max)
-         current -= range;
-      while (current < min)
-         current += range;
-   }
-   else {
-      if (current > max)
-         current = max;
-      else if (current < min)
-         current = min;
-   }
-
-   outlet(0, current);
+   rangedValue.applyDiff(value);
+   outlet(0, rangedValue.current);
 }
 
 function forceValue(value) {
 
-   if (value < min)
-      current = min;
-   else if (value > max)
-      current = max;
-   else
-      current = value;
-
-   outlet(0, current);
-
-   //print("forceValue", min, max, current);
+   rangedValue.forceValue(value);
+   outlet(0, rangedValue.current);
 }
 
 function wrap(value) {
 
-   wrapAround = value;
+   rangedValue.setWrap(value);
 }
 
 function delta(value) {
 
-   scale = value;
+   rangedValue.setScale(value);
 }
 
 
