@@ -1,5 +1,10 @@
 //
-function LCDDevice(deviceName) {
+
+var LCD = {}
+
+//---------------------------------
+
+LCD.Device = function (deviceName) {
 
    this.internal = new Global("lcd");
    if (!this.internal.screen)
@@ -10,12 +15,13 @@ function LCDDevice(deviceName) {
    return this;
 }
 
-LCDDevice.prototype.setScreen = function (screen) {
+
+LCD.Device.prototype.setScreen = function (screen) {
 
    this.internal.screen[this.deviceName] = screen;
 }
 
-LCDDevice.prototype.renderCommands = function () {
+LCD.Device.prototype.renderCommands = function () {
 
    var commandList = [];
    var screen = this.internal.screen[this.deviceName];
@@ -47,7 +53,7 @@ LCDDevice.prototype.renderCommands = function () {
 
 //---------------------------------
 
-function LCDScreen(width, height) {
+LCD.Screen = function (width, height) {
 
    this.width = width;
    this.height = height;
@@ -58,22 +64,23 @@ function LCDScreen(width, height) {
    return this;
 }
 
-LCDScreen.prototype.clear = function () {
+
+LCD.Screen.prototype.clear = function () {
 
    this.objectList.clear();
 }
 
-LCDScreen.prototype.addObject = function (object) {
+LCD.Screen.prototype.addObject = function (object) {
 
    this.objectList.push(object);
 }
 
-LCDScreen.prototype.removeObject = function (object) {
+LCD.Screen.prototype.removeObject = function (object) {
 
    removeFromArray(this.objectList, callback);
 }
 
-LCDScreen.prototype.setBgColor = function (hexColor) {
+LCD.Screen.prototype.setBgColor = function (hexColor) {
 
    this.bgColor = new Color(hexColor);
 }
@@ -81,7 +88,7 @@ LCDScreen.prototype.setBgColor = function (hexColor) {
 
 //---------------------------------
 
-function LCDBox(x, y, width, height, hexColor, fill) {
+LCD.Box = function (x, y, width, height, hexColor, fill) {
 
    this.x = x;
    this.y = y;
@@ -95,7 +102,7 @@ function LCDBox(x, y, width, height, hexColor, fill) {
    return this;
 }
 
-LCDBox.prototype.setColor = function (hexColor, fill) {
+LCD.Box.prototype.setColor = function (hexColor, fill) {
 
    this.color = new Color(hexColor);
 
@@ -104,7 +111,7 @@ LCDBox.prototype.setColor = function (hexColor, fill) {
    this.fill = fill;
 }
 
-LCDBox.prototype.renderCommands = function () {
+LCD.Box.prototype.renderCommands = function () {
 
    var commandList = [];
    commandList.push(["frgb", this.color.red, this.color.green, this.color.blue]);
@@ -120,7 +127,7 @@ LCDBox.prototype.renderCommands = function () {
 
 //---------------------------------
 
-function LCDPie(x, y, width, height, hexColor, fill) {
+LCD.Pie = function (x, y, width, height, hexColor, fill) {
 
    this.x = x;
    this.y = y;
@@ -137,7 +144,7 @@ function LCDPie(x, y, width, height, hexColor, fill) {
    return this;
 }
 
-LCDPie.prototype.setColor = function (hexColor, fill) {
+LCD.Pie.prototype.setColor = function (hexColor, fill) {
 
    this.color = new Color(hexColor);
 
@@ -147,7 +154,7 @@ LCDPie.prototype.setColor = function (hexColor, fill) {
    this.fill = fill;
 }
 
-LCDPie.prototype.renderCommands = function () {
+LCD.Pie.prototype.renderCommands = function () {
 
    var commandList = [];
    commandList.push(["frgb", this.color.red, this.color.green, this.color.blue]);
@@ -163,7 +170,7 @@ LCDPie.prototype.renderCommands = function () {
 
 //---------------------------------
 
-function LCDText(x, y, text, hexColor, fontSize) {
+LCD.Text = function (x, y, text, hexColor, fontSize) {
 
    this.x = x;
    this.y = y;
@@ -174,12 +181,12 @@ function LCDText(x, y, text, hexColor, fontSize) {
    return this;
 }
 
-LCDText.prototype.setColor = function (hexColor) {
+LCD.Text.prototype.setColor = function (hexColor) {
 
    this.color = new Color(hexColor);
 }
 
-LCDText.prototype.setText = function (text, fontSize) {
+LCD.Text.prototype.setText = function (text, fontSize) {
 
    this.text = text;
 
@@ -189,7 +196,7 @@ LCDText.prototype.setText = function (text, fontSize) {
       this.fontSize = fontSize;
 }
 
-LCDText.prototype.renderCommands = function () {
+LCD.Text.prototype.renderCommands = function () {
 
    var commandList = [];
    commandList.push(["frgb", this.color.red, this.color.green, this.color.blue]);
@@ -200,3 +207,36 @@ LCDText.prototype.renderCommands = function () {
 
    return commandList;
 }
+
+//---------------------------------
+
+LCD.Line = function (x1, y1, x2, y2, hexColor) {
+
+   this.x1 = x1;
+   this.y1 = y1;
+
+   this.x2 = x2;
+   this.y2 = y2;
+
+   this.setColor(hexColor);
+
+   return this;
+}
+
+LCD.Line.prototype.setColor = function (hexColor) {
+
+   this.color = new Color(hexColor);
+}
+
+LCD.Line.prototype.renderCommands = function () {
+
+   var commandList = [];
+   commandList.push(["frgb", this.color.red, this.color.green, this.color.blue]);
+   commandList.push(["moveto", this.x, this.y]);
+   commandList.push(["font", "Arial", this.fontSize]);
+
+   commandList.push(["write", this.text]);
+
+   return commandList;
+}
+

@@ -26,6 +26,6 @@ function bang() {
 
 function setName(name) {
 
-   lcd = new LCDDevice(name);
+   lcd = new LCD.Device(name);
 
 }
