@@ -18,8 +18,12 @@ namespace Package
       Widget(QWidget* parent);
 
    signals:
+      void signalPackageLoaded(const QString& name);
       void signalCloseAllPatches();
       void signalPatchSeleted(const QString& path);
+
+   public:
+      void init();
 
    public slots:
       void slotLoadPackage();
@@ -31,6 +35,7 @@ namespace Package
    private:
       void clear() override;
       void create(const QString& packagePath) override;
+      void loadPackage(const QString& packageFileName);
       Entry creatreEntry(const QFileInfo& fileInfo) override;
 
    private:

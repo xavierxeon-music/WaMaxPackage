@@ -23,6 +23,7 @@ MainWindow::MainWindow()
 #endif // TEST_CLIENT_AVAILABLE
 {
    setWindowTitle("Help For Max [*]");
+   setWindowIcon(QIcon(":/HelpForMax.svg"));
 
    tabWidget = new Patch::TabWidget(this);
    setCentralWidget(tabWidget);
@@ -49,6 +50,7 @@ MainWindow::MainWindow()
    connect(tabWidget, &Patch::TabWidget::signalTabSelected, schemaWidget, &Schema::Widget::slotLoad);
    connect(packageWidget, &Package::Widget::signalCloseAllPatches, tabWidget, &Patch::TabWidget::slotCloseAllPatches);
    connect(packageWidget, &Package::Widget::signalPatchSeleted, tabWidget, &Patch::TabWidget::slotLoadPatch);
+   connect(packageWidget, &Package::Widget::signalPackageLoaded, this, &MainWindow::slotUpdateWindowTitle);
 
 #ifdef TEST_CLIENT_AVAILABLE
    testClient = new TestClient;
@@ -57,10 +59,31 @@ MainWindow::MainWindow()
 
    populateMenuAndToolBar();
 
+   packageWidget->init();
+
    QSettings settings;
    qDebug() << "SETTINGS @" << settings.fileName();
    restoreGeometry(settings.value("MainWidget/Geometry").toByteArray());
    restoreState(settings.value("MainWidget/State").toByteArray());
+}
+
+void MainWindow::checkDirty()
+{
+   bool dirty = false;
+   for (Patch::Widget* widget : findChildren<Patch::Widget*>())
+   {
+      dirty |= widget->isDirty();
+   }
+
+   setWindowModified(dirty);
+}
+
+void MainWindow::slotUpdateWindowTitle(const QString& packageName)
+{
+   if (packageName.isEmpty())
+      setWindowTitle("Help For Max [*]");
+   else
+      setWindowTitle(packageName + " @ Help For Max [*]");
 }
 
 void MainWindow::populateMenuAndToolBar()
@@ -158,17 +181,6 @@ void MainWindow::populateMenuAndToolBar()
    viewToolBar->addWidget(spacer());
    viewToolBar->addAction(packageAction);
    viewToolBar->addAction(schemmaAction);
-}
-
-void MainWindow::checkDirty()
-{
-   bool dirty = false;
-   for (Patch::Widget* widget : findChildren<Patch::Widget*>())
-   {
-      dirty |= widget->isDirty();
-   }
-
-   setWindowModified(dirty);
 }
 
 void MainWindow::closeEvent(QCloseEvent* ce)

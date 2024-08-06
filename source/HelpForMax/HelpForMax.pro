@@ -5,6 +5,10 @@ QT += widgets  svg network xml
 CONFIG += c++20
 
 
+CONFIG(debug, debug|release) {
+   DEFINES += TEST_CLIENT_AVAILABLE
+}
+
 macx {
    QMAKE_CXXFLAGS += -Werror
    ICON = $$PWD/icons/HelpForMax.icns
@@ -12,9 +16,6 @@ macx {
    CONFIG(release, debug|release){
       DESTDIR = ~/Applications
       QMAKE_POST_LINK = $$(QTDIR)/bin/macdeployqt $${DESTDIR}/$${TARGET}.app
-   }
-   CONFIG(debug, debug|release) {
-      DEFINES += TEST_CLIENT_AVAILABLE
    }
    CONFIG += sdk_no_version_check
 }
@@ -26,6 +27,14 @@ windows {
       DESTDIR = ../bin
       QMAKE_POST_LINK = $$(QTDIR)/bin/windeployqt --no-translations --no-system-d3d-compiler --compiler-runtime $${DESTDIR}/$${TARGET}.exe
    }
+}
+
+linux {
+    QMAKE_CXXFLAGS += -Werror
+    #ICON = $$PWD/icons/HelpForMax.icns
+    CONFIG(release, debug|release){
+       DESTDIR = ~/bin
+    }
 }
 
 include(Package/Package.pri)
