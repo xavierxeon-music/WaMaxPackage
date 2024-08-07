@@ -36,7 +36,7 @@ RangedValue.prototype.setMax = function (value) {
 
 RangedValue.prototype.applyDiff = function (value) {
 
-   this.current += this.value * this.scale;
+   this.current += value * this.scale;
 
    if (this.wrap) {
       var range = this.max - this.min;
@@ -48,7 +48,7 @@ RangedValue.prototype.applyDiff = function (value) {
    else {
       if (this.current > this.max)
          this.current = this.max;
-      else if (current < min)
+      else if (this.current < this.min)
          this.current = this.min;
    }
 }
