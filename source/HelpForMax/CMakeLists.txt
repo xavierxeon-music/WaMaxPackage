@@ -48,6 +48,8 @@ if(APPLE)
       set(CMAKE_RUNTIME_OUTPUT_DIRECTORY $ENV{HOME}/Applications)
    endif()
 
+   set(CMAKE_OSX_DEPLOYMENT_TARGET "14.0")
+
    qt_add_executable(${PROJECT_NAME} MACOSX_BUNDLE ${APP_ICON} ${SOURCE_FILES})
    target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wpedantic)
 elseif(UNIX)
