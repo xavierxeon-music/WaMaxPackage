@@ -2,6 +2,7 @@
 **/__pycache__
 **/node_modules
 **/*.pro.user
+**/CMakeLists.txt.user
 media/mixer/*.wav
 source/**/build
 externals
