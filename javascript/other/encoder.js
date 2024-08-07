@@ -1,6 +1,6 @@
 //  inlets and outlets
 inlets = 1;
-setinletassist(0, "message(setMin, setMax, increment, decrement, forceValue)");
+setinletassist(0, "message");
 
 outlets = 1;
 setoutletassist(0, "value");
