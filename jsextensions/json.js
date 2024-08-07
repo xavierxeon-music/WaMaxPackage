@@ -38,3 +38,12 @@ function readFromDict(name) {
    var object = JSON.parse(text);
    return object;
 }
+
+function saveToDict(object, name) {
+
+   var text = JSON.stringify(object);
+
+   var dict = new Dict(name);
+   dict.parse(text);
+   delete dict;
+}
