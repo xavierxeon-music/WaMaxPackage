@@ -10,7 +10,7 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 173.0, 412.0, 3537.0, 975.0 ],
+		"rect" : [ 173.0, 412.0, 2919.0, 975.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 1,
 		"default_fontsize" : 12.0,
@@ -39,17 +39,6 @@
 		"subpatcher_template" : "OpenGrid",
 		"assistshowspatchername" : 0,
 		"boxes" : [ 			{
-				"box" : 				{
-					"id" : "obj-10",
-					"maxclass" : "newobj",
-					"numinlets" : 1,
-					"numoutlets" : 0,
-					"patching_rect" : [ 255.0, 180.0, 112.0, 22.0 ],
-					"text" : "print RESET_GRID"
-				}
-
-			}
-, 			{
 				"box" : 				{
 					"id" : "obj-80",
 					"maxclass" : "comment",
@@ -723,7 +712,7 @@
 					"presentation" : 1,
 					"presentation_rect" : [ 0.0, 0.0, 210.0, 230.0 ],
 					"rendermode" : 2,
-					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/WaMaxPackage/media/maxgui.html?content=grid_enc16"
+					"url" : "file:///Volumes/ExternalData/_Home/GitHub/MusicProjects/WaMaxPackageBase/media/maxgui.html?content=grid_enc16"
 				}
 
 			}
@@ -1034,7 +1023,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "bang" ],
+					"outlettype" : [ "" ],
 					"patching_rect" : [ 165.0, 30.0, 30.0, 30.0 ]
 				}
 
@@ -1194,16 +1183,7 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-10", 0 ],
-					"order" : 1,
-					"source" : [ "obj-16", 1 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
 					"destination" : [ "obj-29", 0 ],
-					"order" : 0,
 					"source" : [ "obj-16", 1 ]
 				}
 
