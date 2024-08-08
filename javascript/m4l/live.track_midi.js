@@ -8,7 +8,10 @@ outlets = 1;
 setoutletassist(0, "tracks");
 
 function bang() {
-   createMappings();
+   // createMappings();
+
+   var api = new LiveAPI(null, "live_set");
+   apiPrint(api);
 }
 
 function apiPrint(api) {
