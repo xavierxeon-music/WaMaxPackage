@@ -87,6 +87,13 @@ function inlineHTML(parent, fileName) {
    parent.innerHTML = request.responseText;
 }
 
+function move(element, x, y) {
+
+   element.style["position"] = "absolute";
+   element.style["left"] = x.toString() + "px";
+   element.style["top"] = y.toString() + "px";
+}
+
 class BaseElement {
 
    constructor(tag, parent) {
@@ -108,9 +115,7 @@ class BaseElement {
 
    move(x, y) {
 
-      this.element.style["position"] = "absolute";
-      this.element.style["left"] = x.toString() + "px";
-      this.element.style["top"] = y.toString() + "px";
+      move(this.element, x, y);
    }
 
    inlineHTML(fileName) {

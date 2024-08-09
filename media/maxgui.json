@@ -36,7 +36,10 @@
    },
    "qunatizer": {
       "name": "Qunatizer",
-      "script": "./tuning/quantizer_scale.js"
+      "script": "./tuning/quantizer_scale.js",
+      "styles": [
+         "./tuning/quantizer_scale.css"
+      ]
    },
    "mixer": {
       "name": "Mixer",

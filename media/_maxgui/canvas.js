@@ -64,4 +64,26 @@ class Canvas extends BaseElement {
       this.ctx.closePath();
    }
 
+   box(x, y, width, height, color, borderColor, lineWidth) {
+
+      this.ctx.fillStyle = color;
+
+      this.ctx.beginPath();
+      this.ctx.rect(x, y, width, height);
+      this.ctx.fill();
+      this.ctx.closePath();
+
+      if (borderColor) {
+         this.ctx.strokeStyle = borderColor;
+         if (!lineWidth)
+            lineWidth = 1.0;
+
+         this.ctx.beginPath();
+         this.ctx.rect(x, y, width, height);
+         this.ctx.lineWidth = lineWidth;
+         this.ctx.stroke();
+         this.ctx.closePath();
+      }
+   }
+
 }
