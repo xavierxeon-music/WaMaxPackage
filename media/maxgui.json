@@ -9,10 +9,7 @@
    },
    "debug_window": {
       "name": "Debug Console",
-      "script": "./other/debug_window.js",
-      "styles": [
-         "./other/debug_window.css"
-      ]
+      "script": "./other/debug_window.js"
    },
    "grid_pot16": {
       "name": "Grid Pot16",
@@ -74,7 +71,8 @@
          "./_maxgui/ringbuffer.js",
          "./_maxgui/slider.js",
          "./_maxgui/tab.js",
-         "./_maxgui/table.js"
+         "./_maxgui/table.js",
+         "./_maxgui/textedit.js"
       ]
    }
 }

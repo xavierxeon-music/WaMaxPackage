@@ -15,6 +15,9 @@ class CircleOfFiths extends Canvas {
       this.ctx.font = "bold 16px Arial";
       this.ctx.textAlign = "left";
 
+      this.clickBoxes = [];
+      this.#fillClickBoxes();
+
       this.element.addEventListener("pointerdown", (clickEvent) => {
          this.#clicked(clickEvent.layerX, clickEvent.layerY);
       });
@@ -37,6 +40,10 @@ class CircleOfFiths extends Canvas {
       this.ctx.drawImage(this.img, 0, cy, 250, 250);
 
       this.ctx.fillText("Visu", 10, cy + 272);
+   }
+
+   #fillClickBoxes() {
+
    }
 
    #clicked(x, y) {
@@ -86,28 +93,28 @@ class CircleOfFiths extends Canvas {
       this.ctx.closePath();
    }
 
-   #drawKeys(x, y) {
+   #drawKeys(kx, ky) {
 
       let keyWidth = 30;
       let keyHeight = 80;
 
       // white keys
-      this.box(x + 0, y, keyWidth, keyHeight, "#eeeeee", "#444444");
-      this.box(x + 1 * keyWidth, y, keyWidth, keyHeight, "#eeeeee", "#444444");
-      this.box(x + 2 * keyWidth, y, keyWidth, keyHeight, "#eeeeee", "#444444");
+      this.box(kx + 0, ky, keyWidth, keyHeight, "#eeeeee", "#444444");
+      this.box(kx + 1 * keyWidth, ky, keyWidth, keyHeight, "#eeeeee", "#444444");
+      this.box(kx + 2 * keyWidth, ky, keyWidth, keyHeight, "#eeeeee", "#444444");
 
-      this.box(x + 3 * keyWidth, y, keyWidth, keyHeight, "#eeeeee", "#444444");
-      this.box(x + 4 * keyWidth, y, keyWidth, keyHeight, "#eeeeee", "#444444");
-      this.box(x + 5 * keyWidth, y, keyWidth, keyHeight, "#eeeeee", "#444444");
-      this.box(x + 6 * keyWidth, y, keyWidth, keyHeight, "#eeeeee", "#444444");
+      this.box(kx + 3 * keyWidth, ky, keyWidth, keyHeight, "#eeeeee", "#444444");
+      this.box(kx + 4 * keyWidth, ky, keyWidth, keyHeight, "#eeeeee", "#444444");
+      this.box(kx + 5 * keyWidth, ky, keyWidth, keyHeight, "#eeeeee", "#444444");
+      this.box(kx + 6 * keyWidth, ky, keyWidth, keyHeight, "#eeeeee", "#444444");
 
       // black keys
-      this.box(x + 2 + 0.5 * keyWidth, y, keyWidth - 4, 0.7 * keyHeight, "#444444", "#444444");
-      this.box(x + 2 + 1.5 * keyWidth, y, keyWidth - 4, 0.7 * keyHeight, "#444444", "#444444");
+      this.box(kx + 2 + 0.5 * keyWidth, ky, keyWidth - 4, 0.7 * keyHeight, "#444444", "#444444");
+      this.box(kx + 2 + 1.5 * keyWidth, ky, keyWidth - 4, 0.7 * keyHeight, "#444444", "#444444");
 
-      this.box(x + 2 + 3.5 * keyWidth, y, keyWidth - 4, 0.7 * keyHeight, "#444444", "#444444");
-      this.box(x + 2 + 4.5 * keyWidth, y, keyWidth - 4, 0.7 * keyHeight, "#444444", "#444444");
-      this.box(x + 2 + 5.5 * keyWidth, y, keyWidth - 4, 0.7 * keyHeight, "#444444", "#444444");
+      this.box(kx + 2 + 3.5 * keyWidth, ky, keyWidth - 4, 0.7 * keyHeight, "#444444", "#444444");
+      this.box(kx + 2 + 4.5 * keyWidth, ky, keyWidth - 4, 0.7 * keyHeight, "#444444", "#444444");
+      this.box(kx + 2 + 5.5 * keyWidth, ky, keyWidth - 4, 0.7 * keyHeight, "#444444", "#444444");
    }
 };
 
@@ -122,10 +129,9 @@ main.setStyle("padding", "5px");
 let canvas = new CircleOfFiths(main);
 canvas.update();
 
-let nameEdit = createAndAppend("input", main);
-nameEdit.type = "text";
-nameEdit.className = "lineedit";
-move(nameEdit, 60, 30);
+let nameEdit = new TextEdit(main);
+nameEdit.onChange(nameChanged);
+nameEdit.move(60, 30);
 
 let clearButton = new Button(main, "clear");
 clearButton.onClicked(clearVisu);
@@ -141,12 +147,13 @@ resendButton.move(110, 400);
 
 max.bindInlet('setName', setName);
 function setName(name) {
-   nameEdit.value = name;
+   nameEdit.setText(name);
 }
 
-nameEdit.addEventListener("change", () => {
-   max.outlet("updateName", nameEdit.value);
-});
+function nameChanged(name) {
+
+   max.outlet("updateName", name);
+}
 
 // visu
 

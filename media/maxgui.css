@@ -118,6 +118,7 @@ td {
 
 
 /* button */
+
 button {
    border: 1px solid #111111;
    background: #bbbbbb;
@@ -133,4 +134,18 @@ button:hover {
 
 button.active {
    background-color: #fcc;
+}
+
+/* line edit */
+
+input.lineedit {
+   margin-left: 5px;
+   margin-right: 5px;
+   background: #ccc;
+   color: #111111;
+   border: none;
+   border-bottom: 1px solid #111111;
+   text-align: center;
+   font-size: 12px;
+   font-weight: bold;
 }
