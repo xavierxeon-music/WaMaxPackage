@@ -34,6 +34,10 @@
       "name": "Rack ACDC",
       "script": "./rack/acdc_ui.js"
    },
+   "qunatizer": {
+      "name": "Qunatizer",
+      "script": "./tuning/quantizer_scale.js"
+   },
    "mixer": {
       "name": "Mixer",
       "script": "./mixer/mixer_console_ui.js",
