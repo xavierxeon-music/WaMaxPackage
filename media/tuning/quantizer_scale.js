@@ -1,6 +1,31 @@
 
 // 
 
+const noteNames = ["note_c", "note_cs", "note_d", "note_ds", "note_e", "note_f", "note_fs", "note_g", "note_gs", "note_a", "note_as", "note_b"];
+let noteActive = [false, false, false, false, false, false, false, false, false, false, false, false]
+
+let scaleList = [];
+
+function sectionClicked(section) {
+
+   if (section < 0)
+      scaleList = [];
+   else
+      scaleList[0] = section;
+
+   canvas.update();
+}
+
+function noteClicked(note) {
+
+   let index = noteNames.indexOf(note);
+   noteActive[index] = noteActive[index] ? false : true;
+
+   canvas.update();
+}
+
+//
+
 class ClickBox {
 
    constructor(x, y, width, height, layer) {
@@ -50,10 +75,7 @@ class CircleOfFiths extends Canvas {
 
       this.cx = 125;
       this.cy = 242;
-      this.sector = -1;
-
       this.clickBoxes = {};
-
       this.clickBoxes["scale"] = new ClickBox(0, this.cy - 122, 250, 250, 0);
 
       // white keys
@@ -93,10 +115,14 @@ class CircleOfFiths extends Canvas {
       this.ctx.fillText("Name", 5, 20);
 
       this.#drawKeys();
-      if (this.sector < 0)
+
+      if (0 == scaleList.length)
          this.circle(125, this.cy, 25, "#cccccc");
-      else
-         this.#drawMarker(this.sector);
+      else {
+         for (let index in scaleList)
+            this.#drawMarker(scaleList[index]);
+
+      }
 
       this.ctx.drawImage(this.img, 0, this.cy - 122, 250, 250);
 
@@ -124,25 +150,22 @@ class CircleOfFiths extends Canvas {
          return;
 
       if (hitkey.startsWith("note_"))
-         debug("NOTE", hitkey);
+         noteClicked(hitkey);
       else if ("scale" == hitkey) {
          let cx = x - hitbox.x - 125;
          let cy = y - hitbox.y - 125;
          let radius = Math.sqrt(cx * cx + cy * cy);
          if (radius < 25) {
-            this.sector = -1;
+            sectionClicked(-1);
          }
          else {
             let angle = Math.atan2(cy, cx) * (180 / Math.PI);
             let sector = Math.round(angle / this.pieSize) + 3;
             if (sector < 0)
                sector += 12;
-            this.sector = sector;
-            //debug("SCALE", cx, cy, radius, angle, sector);
+            sectionClicked(sector);
          }
-         this.update();
       }
-
    }
 
    #polar(radius, angle) {
@@ -190,11 +213,18 @@ class CircleOfFiths extends Canvas {
          if (!key.startsWith("note_"))
             continue;
 
+         let index = noteNames.indexOf(key);
+         let active = noteActive[index];
+
          let cbox = this.clickBoxes[key];
+
+         let color = undefined;
          if (1 == cbox.layer)
-            this.box(cbox.x, cbox.y, cbox.width, cbox.height, "#444444", "#444444");
+            color = active ? "#444444" : "#888888";
          else
-            this.box(cbox.x, cbox.y, cbox.width, cbox.height, "#eeeeee", "#444444");
+            color = active ? "#eeeeee" : "#bbbbbb";
+
+         this.box(cbox.x, cbox.y, cbox.width, cbox.height, color, "#444444");
       }
    }
 };
