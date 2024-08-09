@@ -1,4 +1,33 @@
+
 // 
+
+class ClickBox {
+
+   constructor(x, y, width, height, layer) {
+
+      this.x = x;
+      this.y = y;
+      this.width = width;
+      this.height = height;
+
+      this.layer = layer;
+   }
+
+   contains(x, y) {
+
+      if (x < this.x)
+         return false;
+      if (x > this.x + this.width)
+         return false;
+
+      if (y < this.y)
+         return false;
+      if (y > this.y + this.height)
+         return false;
+
+      return true;
+   }
+}
 
 class CircleOfFiths extends Canvas {
 
@@ -8,19 +37,52 @@ class CircleOfFiths extends Canvas {
 
       this.img = new Image();
       this.img.src = "./tuning/CircleOfFiths.svg";
-      this.img.onload = () => {
-         this.update();
-      }
 
       this.ctx.font = "bold 16px Arial";
       this.ctx.textAlign = "left";
 
-      this.clickBoxes = [];
-      this.#fillClickBoxes();
-
       this.element.addEventListener("pointerdown", (clickEvent) => {
-         this.#clicked(clickEvent.layerX, clickEvent.layerY);
+         this.#clicked(Math.round(clickEvent.offsetX), Math.round(clickEvent.offsetY));
       });
+
+      this.pieSize = (360 / 12);
+      this.pieOffset = 8.5 * this.pieSize;
+
+      this.cx = 125;
+      this.cy = 242;
+      this.sector = -1;
+
+      this.clickBoxes = {};
+
+      this.clickBoxes["scale"] = new ClickBox(0, this.cy - 122, 250, 250, 0);
+
+      // white keys
+      const kx = 20;
+      const ky = 30;
+      const keyWidth = 30;
+      const keyHeight = 80;
+
+      this.clickBoxes["note_c"] = new ClickBox(kx + 0 * keyWidth, ky, keyWidth, keyHeight, 0);
+      this.clickBoxes["note_d"] = new ClickBox(kx + 1 * keyWidth, ky, keyWidth, keyHeight, 0);
+      this.clickBoxes["note_e"] = new ClickBox(kx + 2 * keyWidth, ky, keyWidth, keyHeight, 0);
+
+      this.clickBoxes["note_f"] = new ClickBox(kx + 3 * keyWidth, ky, keyWidth, keyHeight, 0);
+      this.clickBoxes["note_g"] = new ClickBox(kx + 4 * keyWidth, ky, keyWidth, keyHeight, 0);
+      this.clickBoxes["note_a"] = new ClickBox(kx + 5 * keyWidth, ky, keyWidth, keyHeight, 0);
+      this.clickBoxes["note_b"] = new ClickBox(kx + 6 * keyWidth, ky, keyWidth, keyHeight, 0);
+
+      // black keys
+      this.clickBoxes["note_cs"] = new ClickBox(kx + 2 + 0.5 * keyWidth, ky, keyWidth - 4, 0.7 * keyHeight, 1);
+      this.clickBoxes["note_ds"] = new ClickBox(kx + 2 + 1.5 * keyWidth, ky, keyWidth - 4, 0.7 * keyHeight, 1);
+
+      this.clickBoxes["note_fs"] = new ClickBox(kx + 2 + 3.5 * keyWidth, ky, keyWidth - 4, 0.7 * keyHeight, 1);
+      this.clickBoxes["note_gs"] = new ClickBox(kx + 2 + 4.5 * keyWidth, ky, keyWidth - 4, 0.7 * keyHeight, 1);
+      this.clickBoxes["note_as"] = new ClickBox(kx + 2 + 5.5 * keyWidth, ky, keyWidth - 4, 0.7 * keyHeight, 1);
+
+      // finalise
+      this.img.onload = () => {
+         this.update();
+      }
    }
 
    update() {
@@ -30,24 +92,57 @@ class CircleOfFiths extends Canvas {
       this.ctx.fillStyle = "#444444";
       this.ctx.fillText("Name", 5, 20);
 
-      this.#drawKeys(20, 30);
+      this.#drawKeys();
+      if (this.sector < 0)
+         this.circle(125, this.cy, 25, "#cccccc");
+      else
+         this.#drawMarker(this.sector);
 
-      const cy = 120;
-      let sector = 0;
-      this.#drawMarker(sector, cy + 122);
-      this.#drawMarker(sector + 6, cy + 122);
-      this.circle(125, cy + 122, 25, "#444444");
-      this.ctx.drawImage(this.img, 0, cy, 250, 250);
+      this.ctx.drawImage(this.img, 0, this.cy - 122, 250, 250);
 
-      this.ctx.fillText("Visu", 10, cy + 272);
+      this.ctx.fillText("Visu", 10, this.cy + 150);
    }
 
-   #fillClickBoxes() {
-
-   }
 
    #clicked(x, y) {
-      debug("CLICK", x, y);
+
+      let hitbox = undefined;
+      let hitkey = undefined;
+
+      for (let key in this.clickBoxes) {
+         let cbox = this.clickBoxes[key];
+         if (!cbox.contains(x, y))
+            continue;
+
+         if (!hitbox || hitbox.layer < cbox.layer) {
+            hitkey = key;
+            hitbox = cbox;
+         }
+      }
+
+      if (!hitkey)
+         return;
+
+      if (hitkey.startsWith("note_"))
+         debug("NOTE", hitkey);
+      else if ("scale" == hitkey) {
+         let cx = x - hitbox.x - 125;
+         let cy = y - hitbox.y - 125;
+         let radius = Math.sqrt(cx * cx + cy * cy);
+         if (radius < 25) {
+            this.sector = -1;
+         }
+         else {
+            let angle = Math.atan2(cy, cx) * (180 / Math.PI);
+            let sector = Math.round(angle / this.pieSize) + 3;
+            if (sector < 0)
+               sector += 12;
+            this.sector = sector;
+            //debug("SCALE", cx, cy, radius, angle, sector);
+         }
+         this.update();
+      }
+
    }
 
    #polar(radius, angle) {
@@ -59,62 +154,48 @@ class CircleOfFiths extends Canvas {
       return [x, y];
    }
 
-   #drawMarker(sector, cy) {
+   #drawMarker(sector) {
 
-      const pieSize = (360 / 12);
-      const offset = 8.5 * pieSize;
-      let startAngle = offset + (sector + 0) * pieSize;
-      let endAngle = offset + (sector + 1) * pieSize;
+      let startAngle = this.pieOffset + (sector + 0) * this.pieSize;
+      let endAngle = this.pieOffset + (sector + 1) * this.pieSize;
 
       this.ctx.fillStyle = "#cccccc";
-
-      let cx = 125;
 
       this.ctx.beginPath();
 
       let [x0, y0] = this.#polar(30, startAngle);
-      this.ctx.moveTo(cx + x0, cy + y0);
+      this.ctx.moveTo(this.cx + x0, this.cy + y0);
 
       let diffAngle = endAngle - startAngle;
-      for (var fraction = 0.0; fraction < 1.0; fraction += 0.1) {
+      for (let fraction = 0.0; fraction < 1.0; fraction += 0.1) {
          let [x1, y1] = this.#polar(125, startAngle + fraction * diffAngle);
-         this.ctx.lineTo(cx + x1, cy + y1);
+         this.ctx.lineTo(this.cx + x1, this.cy + y1);
       }
 
       let [x2, y2] = this.#polar(125, endAngle);
-      this.ctx.lineTo(cx + x2, cy + y2);
+      this.ctx.lineTo(this.cx + x2, this.cy + y2);
 
       let [x3, y3] = this.#polar(30, endAngle);
-      this.ctx.lineTo(cx + x3, cy + y3);
+      this.ctx.lineTo(this.cx + x3, this.cy + y3);
 
-      this.ctx.lineTo(cx + x0, cy + y0);
+      this.ctx.lineTo(this.cx + x0, this.cy + y0);
       this.ctx.fill();
 
       this.ctx.closePath();
    }
 
-   #drawKeys(kx, ky) {
+   #drawKeys() {
 
-      let keyWidth = 30;
-      let keyHeight = 80;
+      for (let key in this.clickBoxes) {
+         if (!key.startsWith("note_"))
+            continue;
 
-      // white keys
-      this.box(kx + 0, ky, keyWidth, keyHeight, "#eeeeee", "#444444");
-      this.box(kx + 1 * keyWidth, ky, keyWidth, keyHeight, "#eeeeee", "#444444");
-      this.box(kx + 2 * keyWidth, ky, keyWidth, keyHeight, "#eeeeee", "#444444");
-
-      this.box(kx + 3 * keyWidth, ky, keyWidth, keyHeight, "#eeeeee", "#444444");
-      this.box(kx + 4 * keyWidth, ky, keyWidth, keyHeight, "#eeeeee", "#444444");
-      this.box(kx + 5 * keyWidth, ky, keyWidth, keyHeight, "#eeeeee", "#444444");
-      this.box(kx + 6 * keyWidth, ky, keyWidth, keyHeight, "#eeeeee", "#444444");
-
-      // black keys
-      this.box(kx + 2 + 0.5 * keyWidth, ky, keyWidth - 4, 0.7 * keyHeight, "#444444", "#444444");
-      this.box(kx + 2 + 1.5 * keyWidth, ky, keyWidth - 4, 0.7 * keyHeight, "#444444", "#444444");
-
-      this.box(kx + 2 + 3.5 * keyWidth, ky, keyWidth - 4, 0.7 * keyHeight, "#444444", "#444444");
-      this.box(kx + 2 + 4.5 * keyWidth, ky, keyWidth - 4, 0.7 * keyHeight, "#444444", "#444444");
-      this.box(kx + 2 + 5.5 * keyWidth, ky, keyWidth - 4, 0.7 * keyHeight, "#444444", "#444444");
+         let cbox = this.clickBoxes[key];
+         if (1 == cbox.layer)
+            this.box(cbox.x, cbox.y, cbox.width, cbox.height, "#444444", "#444444");
+         else
+            this.box(cbox.x, cbox.y, cbox.width, cbox.height, "#eeeeee", "#444444");
+      }
    }
 };
 
@@ -131,7 +212,7 @@ canvas.update();
 
 let nameEdit = new TextEdit(main);
 nameEdit.onChange(nameChanged);
-nameEdit.move(60, 30);
+nameEdit.move(60, 28);
 
 let clearButton = new Button(main, "clear");
 clearButton.onClicked(clearVisu);
@@ -140,8 +221,6 @@ clearButton.move(60, 400);
 let resendButton = new Button(main, "resend");
 resendButton.onClicked(resendVisu);
 resendButton.move(110, 400);
-
-// name 
 
 // name
 
@@ -159,9 +238,11 @@ function nameChanged(name) {
 
 function clearVisu() {
 
+   max.outlet("clear");
 }
 
 function resendVisu() {
 
+   max.outlet("visu");
 }
 

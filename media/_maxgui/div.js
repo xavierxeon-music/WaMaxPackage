@@ -6,12 +6,10 @@ class Div extends BaseElement {
 
       super("div", parent);
 
-      this.textNode = this.element;
-
       if (id) {
          let span = createAndAppend("span", this.element);
          span.setAttribute("id", id);
-         this.textNode = span;
+         this.element = span;
       }
 
       if (value)
@@ -22,7 +20,7 @@ class Div extends BaseElement {
    }
 
    setText(text) {
-      this.textNode.innerHTML = text;
+      this.element.innerHTML = text;
    }
 
    forceHeigth(height) {
